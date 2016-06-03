@@ -1,6 +1,10 @@
 package uk.co.jakelee.cityflow.model;
 
 import com.orm.SugarRecord;
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
+import java.util.List;
 
 public class Puzzle extends SugarRecord {
     private int puzzleId;
@@ -78,5 +82,11 @@ public class Puzzle extends SugarRecord {
 
     public void setBestRating(int bestRating) {
         this.bestRating = bestRating;
+    }
+
+    public List<Tile> getTiles() {
+        List<Tile> tiles = Tile.listAll(Tile.class);
+        return Select.from(Tile.class).where(
+                Condition.prop("puzzle_id").eq(this.getPuzzleId())).list();
     }
 }

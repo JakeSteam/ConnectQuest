@@ -9,6 +9,9 @@ public class Tile extends SugarRecord {
     private int y;
     private int rotation;
 
+    public Tile() {
+    }
+
     public Tile(int puzzleId, int tileTypeId, int x, int y, int rotation) {
         this.puzzleId = puzzleId;
         this.tileTypeId = tileTypeId;
