@@ -3,6 +3,7 @@ package uk.co.jakelee.cityflow.model;
 import com.orm.SugarRecord;
 
 import uk.co.jakelee.cityflow.helper.Constants;
+import uk.co.jakelee.cityflow.helper.TileHelper;
 
 public class Tile extends SugarRecord {
     private int puzzleId;
@@ -69,5 +70,37 @@ public class Tile extends SugarRecord {
             this.rotation++;
         }
         this.save();
+    }
+
+    public int getNorthFlow() {
+        int flow = Constants.FLOW_NONE;
+        Tile_Type type = TileHelper.getTileType(this);
+
+        if (rotation == Constants.ROTATION_NORTH) {
+            flow = type.getFlowSouth();
+        } else if (rotation == Constants.ROTATION_EAST) {
+            flow = type.getFlowWest();
+        } else if (rotation == Constants.ROTATION_SOUTH) {
+            flow = type.getFlowNorth();
+        } else if (rotation == Constants.ROTATION_WEST) {
+            flow = type.getFlowEast();
+        }
+        return flow;
+    }
+
+    public int getSouthFlow() {
+        int flow = Constants.FLOW_NONE;
+        Tile_Type type = TileHelper.getTileType(this);
+
+        if (rotation == Constants.ROTATION_SOUTH) {
+            flow = type.getFlowSouth();
+        } else if (rotation == Constants.ROTATION_WEST) {
+            flow = type.getFlowWest();
+        } else if (rotation == Constants.ROTATION_NORTH) {
+            flow = type.getFlowNorth();
+        } else if (rotation == Constants.ROTATION_EAST) {
+            flow = type.getFlowEast();
+        }
+        return flow;
     }
 }

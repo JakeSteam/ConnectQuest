@@ -2,11 +2,11 @@ package uk.co.jakelee.cityflow.main;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
-import com.orm.query.Condition;
-import com.orm.query.Select;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import uk.co.jakelee.cityflow.model.Tile;
 
 public class PuzzleActivity extends Activity {
     private DisplayHelper dh;
-    private int puzzleId = 2;
+    private int puzzleId = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class PuzzleActivity extends Activity {
     }
 
     public void populateTiles(RelativeLayout tileContainer, int puzzleId) {
-        Puzzle puzzle = Select.from(Puzzle.class).where(Condition.prop("puzzle_id").eq(puzzleId)).first();
+        Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
         List<Tile> tiles = puzzle.getTiles();
         int maxY = TileHelper.getMaxY(tiles);
 
@@ -55,5 +55,10 @@ public class PuzzleActivity extends Activity {
         tile.rotate();
         int drawableId = ImageHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());
         Picasso.with(this).load(drawableId).into(image);
+    }
+
+    public void flowCheck(View v) {
+        boolean flowsCorrectly = TileHelper.checkPuzzleFlow(this.puzzleId);
+        Toast.makeText(this, flowsCorrectly ? "Flows!" : "No flows!", Toast.LENGTH_SHORT).show();
     }
 }

@@ -89,4 +89,8 @@ public class Puzzle extends SugarRecord {
                 Condition.prop("puzzle_id").eq(this.getPuzzleId()))
                 .orderBy("y DESC, x ASC").list();
     }
+
+    public static Puzzle getPuzzle(int puzzleId) {
+        return Select.from(Puzzle.class).where(Condition.prop("puzzle_id").eq(puzzleId)).first();
+    }
 }
