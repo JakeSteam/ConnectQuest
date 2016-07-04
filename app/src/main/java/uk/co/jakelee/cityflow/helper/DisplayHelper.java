@@ -39,7 +39,7 @@ public class DisplayHelper {
     }
 
     public ImageView createTileImageView(final PuzzleActivity activity, final Tile tile, int maxY, int drawableId) {
-        ImageView image = TileHelper.createTileImageView(context, tile, maxY, getTileWidth(), getTileHeight());
+        final ImageView image = TileHelper.createTileImageView(context, tile, maxY, getTileWidth(), getTileHeight());
         Picasso.with(context).load(drawableId).into(image);
 
         image.setDrawingCacheEnabled(true);
@@ -55,7 +55,7 @@ public class DisplayHelper {
                     return false;
                 } else {
                     if(event.getAction()==MotionEvent.ACTION_UP) {
-                        activity.handleTileClick(tile);
+                        activity.handleTileClick(image, tile);
                     }
                     return true;
                 }

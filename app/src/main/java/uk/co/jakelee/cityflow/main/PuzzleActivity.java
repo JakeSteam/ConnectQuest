@@ -7,6 +7,7 @@ import android.widget.RelativeLayout;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,9 +51,9 @@ public class PuzzleActivity extends Activity {
         }
     }
 
-    public void handleTileClick(Tile tile) {
+    public void handleTileClick(ImageView image, Tile tile) {
         tile.rotate();
-        RelativeLayout tileContainer = (RelativeLayout) findViewById(R.id.tileContainer);
-        populateTiles(tileContainer, puzzleId);
+        int drawableId = ImageHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());
+        Picasso.with(this).load(drawableId).into(image);
     }
 }
