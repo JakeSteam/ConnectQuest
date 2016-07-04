@@ -2,6 +2,8 @@ package uk.co.jakelee.cityflow.model;
 
 import com.orm.SugarRecord;
 
+import uk.co.jakelee.cityflow.helper.Constants;
+
 public class Tile extends SugarRecord {
     private int puzzleId;
     private int tileTypeId;
@@ -58,5 +60,14 @@ public class Tile extends SugarRecord {
 
     public void setRotation(int rotation) {
         this.rotation = rotation;
+    }
+
+    public void rotate() {
+        if (this.rotation == Constants.ROTATION_WEST) {
+            this.rotation = Constants.ROTATION_NORTH;
+        } else {
+            this.rotation++;
+        }
+        this.save();
     }
 }

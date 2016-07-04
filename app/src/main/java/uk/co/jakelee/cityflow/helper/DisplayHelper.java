@@ -3,20 +3,16 @@ package uk.co.jakelee.cityflow.helper;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.util.DisplayMetrics;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
-import com.orm.query.Condition;
-import com.orm.query.Select;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
-
-import uk.co.jakelee.cityflow.R;
-import uk.co.jakelee.cityflow.model.Puzzle;
+import uk.co.jakelee.cityflow.main.PuzzleActivity;
 import uk.co.jakelee.cityflow.model.Tile;
 
 public class DisplayHelper {
@@ -42,34 +38,28 @@ public class DisplayHelper {
         return dpToPixel(Constants.TILE_HEIGHT);
     }
 
-    public void populateTiles(RelativeLayout tileContainer, int puzzleId) {
-        Puzzle puzzle = Select.from(Puzzle.class).where(Condition.prop("puzzle_id").eq(puzzleId)).first();
-        List<Tile> tiles = puzzle.getTiles();
-        int maxY = TileHelper.getMaxY(tiles);
-
-        for (Tile tile : tiles) {
-            int drawableId = ImageHelper.getTileDrawableId(context, tile.getTileTypeId(), tile.getRotation());
-            ImageView image = createTileImageView(tile, maxY, drawableId);
-            tileContainer.addView(image);
-        }
-    }
-
-    private ImageView createTileImageView(final Tile tile, int maxY, int drawableId) {
+    public ImageView createTileImageView(final PuzzleActivity activity, final Tile tile, int maxY, int drawableId) {
         ImageView image = TileHelper.createTileImageView(context, tile, maxY, getTileWidth(), getTileHeight());
         Picasso.with(context).load(drawableId).into(image);
 
-        image.setOnClickListener(new View.OnClickListener()
-        {
+        image.setDrawingCacheEnabled(true);
+        image.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v)
-            {
-                Toast.makeText(context, String.format(context.getString(R.string.debugTileInfo),
-                        tile.getX(),
-                        tile.getY(),
-                        tile.getTileTypeId(),
-                        tile.getRotation()), Toast.LENGTH_SHORT).show();
-            }
-        });
+            public boolean onTouch(View v, MotionEvent event) {
+                Bitmap bmp = Bitmap.createBitmap(v.getDrawingCache());
+                if (bmp == null || bmp.getWidth() < event.getX() || bmp.getHeight() < event.getY()) {
+                    return false;
+                }
+                int color = bmp.getPixel((int) event.getX(), (int) event.getY());
+                if (color == Color.TRANSPARENT) {
+                    return false;
+                } else {
+                    if(event.getAction()==MotionEvent.ACTION_UP) {
+                        activity.handleTileClick(tile);
+                    }
+                    return true;
+                }
+            }});
         return image;
     }
 
