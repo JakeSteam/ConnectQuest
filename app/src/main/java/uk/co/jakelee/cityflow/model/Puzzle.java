@@ -85,8 +85,8 @@ public class Puzzle extends SugarRecord {
     }
 
     public List<Tile> getTiles() {
-        List<Tile> tiles = Tile.listAll(Tile.class);
         return Select.from(Tile.class).where(
-                Condition.prop("puzzle_id").eq(this.getPuzzleId())).list();
+                Condition.prop("puzzle_id").eq(this.getPuzzleId()))
+                .orderBy("y DESC, x ASC").list();
     }
 }

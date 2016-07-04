@@ -52,10 +52,15 @@ public class DatabaseHelper {
 
     private static void createTile() {
         List<Tile> tiles = new ArrayList<>();
-            tiles.add(new Tile(1, 1, 0, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 1, 0, 3, Constants.ROTATION_EAST));
+            tiles.add(new Tile(1, 1, 0, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 1, 0, 1, Constants.ROTATION_EAST));
             tiles.add(new Tile(1, 1, 1, 0, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(1, 1, 1, 2, Constants.ROTATION_WEST));
+            tiles.add(new Tile(1, 1, 1, 1, Constants.ROTATION_WEST));
+
+            tiles.add(new Tile(2, 1, 0, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(2, 1, 0, 1, Constants.ROTATION_EAST));
+            tiles.add(new Tile(2, 1, 1, 0, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(2, 1, 1, 1, Constants.ROTATION_WEST));
         Tile.saveInTx(tiles);
     }
 
