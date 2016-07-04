@@ -72,66 +72,23 @@ public class Tile extends SugarRecord {
         this.save();
     }
 
-    public int getNorthFlow() {
+    public int getFlow(int side) {
         int flow = Constants.FLOW_NONE;
         Tile_Type type = TileHelper.getTileType(this);
 
-        if (rotation == Constants.ROTATION_NORTH) {
-            flow = type.getFlowWest();
-        } else if (rotation == Constants.ROTATION_EAST) {
-            flow = type.getFlowWest(); //ch2
-        } else if (rotation == Constants.ROTATION_SOUTH) {
-            flow = type.getFlowSouth(); //ch
-        } else if (rotation == Constants.ROTATION_WEST) {
-            flow = type.getFlowEast(); //ch
+        int target = side + (5 - rotation);
+        if (target > 4) {
+            target -= 4;
         }
-        return flow;
-    }
 
-    public int getEastFlow() {
-        int flow = Constants.FLOW_NONE;
-        Tile_Type type = TileHelper.getTileType(this);
-
-        if (rotation == Constants.ROTATION_NORTH) {
-            flow = type.getFlowEast();
-        } else if (rotation == Constants.ROTATION_EAST) {
-            flow = type.getFlowWest(); //ch2
-        } else if (rotation == Constants.ROTATION_SOUTH) {
-            flow = type.getFlowWest();
-        } else if (rotation == Constants.ROTATION_WEST) {
-            flow = type.getFlowSouth();
-        }
-        return flow;
-    }
-
-    public int getSouthFlow() {
-        int flow = Constants.FLOW_NONE;
-        Tile_Type type = TileHelper.getTileType(this);
-
-        if (rotation == Constants.ROTATION_NORTH) {
-            flow = type.getFlowSouth();
-        } else if (rotation == Constants.ROTATION_EAST) {
-            flow = type.getFlowEast(); //ch
-        } else if (rotation == Constants.ROTATION_SOUTH) {
+        if (target == Constants.ROTATION_NORTH) {
             flow = type.getFlowNorth();
-        } else if (rotation == Constants.ROTATION_WEST) {
-            flow = type.getFlowWest(); //ch
-        }
-        return flow;
-    }
-
-    public int getWestFlow() {
-        int flow = Constants.FLOW_NONE;
-        Tile_Type type = TileHelper.getTileType(this);
-
-        if (rotation == Constants.ROTATION_NORTH) {
+        } else if (target == Constants.ROTATION_EAST) {
+            flow = type.getFlowEast();
+        } else if (target == Constants.ROTATION_SOUTH) {
+            flow = type.getFlowSouth();
+        } else if (target == Constants.ROTATION_WEST) {
             flow = type.getFlowWest();
-        } else if (rotation == Constants.ROTATION_EAST) {
-            flow = type.getFlowWest(); //sh
-        } else if (rotation == Constants.ROTATION_SOUTH) {
-            flow = type.getFlowEast();
-        } else if (rotation == Constants.ROTATION_WEST) {
-            flow = type.getFlowEast();
         }
         return flow;
     }

@@ -20,6 +20,10 @@ public class Constants {
     public static final int ROTATION_EAST = 2;
     public static final int ROTATION_SOUTH = 3;
     public static final int ROTATION_WEST = 4;
+    public static final int SIDE_NORTH = 1;
+    public static final int SIDE_EAST = 2;
+    public static final int SIDE_SOUTH = 3;
+    public static final int SIDE_WEST = 4;
     public static final int TYPE_STORY = 0;
     public static final int TYPE_FREEPLAY = 1;
     public static final int TYPE_CHALLENGE = 2;
