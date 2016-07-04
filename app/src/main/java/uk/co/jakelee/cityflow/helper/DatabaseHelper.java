@@ -59,8 +59,8 @@ public class DatabaseHelper {
 
             tiles.add(new Tile(2, 1, 0, 0, Constants.ROTATION_NORTH));
             tiles.add(new Tile(2, 1, 0, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(2, 1, 1, 0, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(2, 1, 1, 1, Constants.ROTATION_WEST));
+            tiles.add(new Tile(2, 1, 0, 2, Constants.ROTATION_WEST));
+            tiles.add(new Tile(2, 1, 0, 3, Constants.ROTATION_SOUTH));
         Tile.saveInTx(tiles);
     }
 
