@@ -48,10 +48,25 @@ public class TileHelper {
 
     public static boolean checkTileFlow(Tile tile) {
         boolean flowCorrect = true;
-        Tile northTile = getNorthTile(tile);
-        int tileNorthFlow = tile.getNorthFlow();
-        int northTileSouthFlow = northTile.getSouthFlow();
-        if ((northTile.getPuzzleId() == 0 && tileNorthFlow != Constants.FLOW_NONE) || tileNorthFlow != northTileSouthFlow) {
+        if (tile.getNorthFlow() != getNorthTile(tile).getSouthFlow()) {
+            int tileNorthFlow = tile.getNorthFlow();
+            Tile northTile = getNorthTile(tile);
+            int northTileSouthFlow = northTile.getSouthFlow();
+            flowCorrect = false;
+        } else if (tile.getEastFlow() != getEastTile(tile).getWestFlow()) {
+            int tileEastFlow = tile.getEastFlow();
+            Tile eastTile = getEastTile(tile);
+            int eastTileWest = eastTile.getWestFlow();
+            flowCorrect = false;
+        } else if (tile.getSouthFlow() != getSouthTile(tile).getNorthFlow()) {
+            int tileSouthFlow = tile.getSouthFlow();
+            Tile southTile = getSouthTile(tile);
+            int southTileNorthFlow = southTile.getNorthFlow();
+            flowCorrect = false;
+        } else if (tile.getWestFlow() != getWestTile(tile).getEastFlow()) {
+            int tileWestFlow = tile.getWestFlow();
+            Tile westTile = getWestTile(tile);
+            int westTileEast = westTile.getEastFlow();
             flowCorrect = false;
         }
         return flowCorrect;
@@ -72,6 +87,8 @@ public class TileHelper {
 
     public static Tile getNorthTile(Tile tile) {
         Tile northTileDefault = new Tile();
+        northTileDefault.setX(-99);
+        northTileDefault.setY(-99);
 
         List<Tile> northTileResults = Select.from(Tile.class).where(
                 Condition.prop("puzzle_id").eq(tile.getPuzzleId()),
@@ -82,6 +99,57 @@ public class TileHelper {
             return northTileDefault;
         } else {
             return northTileResults.get(0);
+        }
+    }
+
+    public static Tile getEastTile(Tile tile) {
+        Tile eastTileDefault = new Tile();
+        eastTileDefault.setX(-99);
+        eastTileDefault.setY(-99);
+
+        List<Tile> eastTileResults = Select.from(Tile.class).where(
+                Condition.prop("puzzle_id").eq(tile.getPuzzleId()),
+                Condition.prop("x").eq(tile.getX() + 1),
+                Condition.prop("y").eq(tile.getY())).list();
+
+        if (eastTileResults.size() == 0) {
+            return eastTileDefault;
+        } else {
+            return eastTileResults.get(0);
+        }
+    }
+
+    public static Tile getSouthTile(Tile tile) {
+        Tile southTileDefault = new Tile();
+        southTileDefault.setX(-99);
+        southTileDefault.setY(-99);
+
+        List<Tile> southTileResults = Select.from(Tile.class).where(
+                Condition.prop("puzzle_id").eq(tile.getPuzzleId()),
+                Condition.prop("x").eq(tile.getX()),
+                Condition.prop("y").eq(tile.getY() - 1)).list();
+
+        if (southTileResults.size() == 0) {
+            return southTileDefault;
+        } else {
+            return southTileResults.get(0);
+        }
+    }
+
+    public static Tile getWestTile(Tile tile) {
+        Tile westTileDefault = new Tile();
+        westTileDefault.setX(-99);
+        westTileDefault.setY(-99);
+
+        List<Tile> westTileResults = Select.from(Tile.class).where(
+                Condition.prop("puzzle_id").eq(tile.getPuzzleId()),
+                Condition.prop("x").eq(tile.getX() - 1),
+                Condition.prop("y").eq(tile.getY())).list();
+
+        if (westTileResults.size() == 0) {
+            return westTileDefault;
+        } else {
+            return westTileResults.get(0);
         }
     }
 }

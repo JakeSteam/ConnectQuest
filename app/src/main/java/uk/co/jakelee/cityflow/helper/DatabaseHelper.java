@@ -33,6 +33,8 @@ public class DatabaseHelper {
         List<Puzzle> puzzles = new ArrayList<>();
             puzzles.add(new Puzzle(1, 0, Constants.TYPE_STORY, 1, 0L, 0, 0));
             puzzles.add(new Puzzle(2, 0, Constants.TYPE_STORY, 1, 0L, 0, 0));
+            puzzles.add(new Puzzle(3, 0, Constants.TYPE_STORY, 1, 0L, 0, 0));
+            puzzles.add(new Puzzle(4, 0, Constants.TYPE_STORY, 1, 0L, 0, 0));
         Puzzle.saveInTx(puzzles);
     }
 
@@ -57,62 +59,80 @@ public class DatabaseHelper {
             tiles.add(new Tile(1, 3, 0, 1, Constants.ROTATION_EAST));
 
             // Line
-            tiles.add(new Tile(2, 1, 0, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(2, 1, 0, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(2, 1, 0, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(2, 1, 0, 3, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(2, 3, 0, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(2, 3, 0, 1, Constants.ROTATION_EAST));
+            tiles.add(new Tile(2, 3, 1, 0, Constants.ROTATION_WEST));
+            tiles.add(new Tile(2, 3, 1, 1, Constants.ROTATION_SOUTH));
 
             // Larger area
-            tiles.add(new Tile(2, 1, 0, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(2, 2, 0, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(2, 1, 0, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(2, 2, 0, 3, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(2, 2, 1, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(2, 1, 1, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(2, 2, 1, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(2, 1, 1, 3, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(2, 2, 2, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(2, 2, 2, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(2, 2, 2, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(2, 1, 2, 3, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(2, 1, 3, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(2, 2, 3, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(2, 1, 3, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(2, 1, 3, 3, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(3, 1, 0, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 2, 0, 1, Constants.ROTATION_EAST));
+            tiles.add(new Tile(3, 1, 0, 2, Constants.ROTATION_WEST));
+            tiles.add(new Tile(3, 2, 0, 3, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(3, 2, 1, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 1, 1, 1, Constants.ROTATION_EAST));
+            tiles.add(new Tile(3, 2, 1, 2, Constants.ROTATION_WEST));
+            tiles.add(new Tile(3, 1, 1, 3, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(3, 2, 2, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 2, 2, 1, Constants.ROTATION_EAST));
+            tiles.add(new Tile(3, 2, 2, 2, Constants.ROTATION_WEST));
+            tiles.add(new Tile(3, 1, 2, 3, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(3, 1, 3, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 2, 3, 1, Constants.ROTATION_EAST));
+            tiles.add(new Tile(3, 1, 3, 2, Constants.ROTATION_WEST));
+            tiles.add(new Tile(3, 1, 3, 3, Constants.ROTATION_SOUTH));
 
-            tiles.add(new Tile(2, 1, 4, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(2, 2, 4, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(2, 1, 4, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(2, 2, 4, 3, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(2, 2, 5, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(2, 1, 5, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(2, 2, 5, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(2, 1, 5, 3, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(2, 2, 6, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(2, 2, 6, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(2, 2, 6, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(2, 1, 6, 3, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(2, 1, 7, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(2, 2, 7, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(2, 1, 7, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(2, 1, 7, 3, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(3, 1, 4, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 2, 4, 1, Constants.ROTATION_EAST));
+            tiles.add(new Tile(3, 1, 4, 2, Constants.ROTATION_WEST));
+            tiles.add(new Tile(3, 2, 4, 3, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(3, 2, 5, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 1, 5, 1, Constants.ROTATION_EAST));
+            tiles.add(new Tile(3, 2, 5, 2, Constants.ROTATION_WEST));
+            tiles.add(new Tile(3, 1, 5, 3, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(3, 2, 6, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 2, 6, 1, Constants.ROTATION_EAST));
+            tiles.add(new Tile(3, 2, 6, 2, Constants.ROTATION_WEST));
+            tiles.add(new Tile(3, 1, 6, 3, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(3, 1, 7, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 2, 7, 1, Constants.ROTATION_EAST));
+            tiles.add(new Tile(3, 1, 7, 2, Constants.ROTATION_WEST));
+            tiles.add(new Tile(3, 1, 7, 3, Constants.ROTATION_SOUTH));
 
-            tiles.add(new Tile(2, 1, 8, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(2, 2, 8, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(2, 1, 8, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(2, 2, 8, 3, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(2, 2, 9, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(2, 1, 9, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(2, 2, 9, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(2, 1, 9, 3, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(2, 2, 10, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(2, 2, 10, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(2, 2, 10, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(2, 1, 10, 3, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(2, 1, 11, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(2, 2, 11, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(2, 1, 11, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(2, 1, 11, 3, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(3, 1, 8, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 2, 8, 1, Constants.ROTATION_EAST));
+            tiles.add(new Tile(3, 1, 8, 2, Constants.ROTATION_WEST));
+            tiles.add(new Tile(3, 2, 8, 3, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(3, 2, 9, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 1, 9, 1, Constants.ROTATION_EAST));
+            tiles.add(new Tile(3, 2, 9, 2, Constants.ROTATION_WEST));
+            tiles.add(new Tile(3, 1, 9, 3, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(3, 2, 10, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 2, 10, 1, Constants.ROTATION_EAST));
+            tiles.add(new Tile(3, 2, 10, 2, Constants.ROTATION_WEST));
+            tiles.add(new Tile(3, 1, 10, 3, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(3, 1, 11, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 2, 11, 1, Constants.ROTATION_EAST));
+            tiles.add(new Tile(3, 1, 11, 2, Constants.ROTATION_WEST));
+            tiles.add(new Tile(3, 1, 11, 3, Constants.ROTATION_SOUTH));
+
+            // Solveable square
+            tiles.add(new Tile(4, 1, 0, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 2, 0, 1, Constants.ROTATION_EAST));
+            tiles.add(new Tile(4, 2, 0, 2, Constants.ROTATION_EAST));
+            tiles.add(new Tile(4, 1, 0, 3, Constants.ROTATION_EAST));
+            tiles.add(new Tile(4, 2, 1, 0, Constants.ROTATION_WEST));
+            tiles.add(new Tile(4, 1, 1, 1, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(4, 1, 1, 2, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(4, 2, 1, 3, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(4, 2, 2, 0, Constants.ROTATION_WEST));
+            tiles.add(new Tile(4, 1, 2, 1, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(4, 1, 2, 2, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(4, 2, 2, 3, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(4, 1, 3, 0, Constants.ROTATION_WEST));
+            tiles.add(new Tile(4, 2, 3, 1, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(4, 2, 3, 2, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(4, 1, 3, 3, Constants.ROTATION_SOUTH));
         Tile.saveInTx(tiles);
     }
 

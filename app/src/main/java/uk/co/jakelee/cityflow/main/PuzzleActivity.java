@@ -21,7 +21,7 @@ import uk.co.jakelee.cityflow.model.Tile;
 
 public class PuzzleActivity extends Activity {
     private DisplayHelper dh;
-    private int puzzleId = 1;
+    private int puzzleId = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -46,6 +46,7 @@ public class DisplayHelper {
         image.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                if (v.getDrawingCache() == null) { return false; }
                 Bitmap bmp = Bitmap.createBitmap(v.getDrawingCache());
                 if (bmp == null || bmp.getWidth() < event.getX() || bmp.getHeight() < event.getY()) {
                     return false;
