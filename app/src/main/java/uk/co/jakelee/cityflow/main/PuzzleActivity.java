@@ -35,7 +35,11 @@ public class PuzzleActivity extends Activity {
 
         Intent intent = getIntent();
         puzzleId = intent.getIntExtra(Constants.INTENT_PUZZLE, 0);
-        populateTiles();
+
+        Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
+        List<Tile> tiles = puzzle.getTiles();
+        fetchImages(tiles);
+        populateTiles(tiles);
 
         final Runnable everySecond = new Runnable() {
             @Override
@@ -57,13 +61,22 @@ public class PuzzleActivity extends Activity {
         handler.removeCallbacksAndMessages(null);
     }
 
-    public void populateTiles() {
+    public void fetchImages(List<Tile> tiles) {
+        for (Tile tile : tiles) {
+            List<Integer> ids = ImageHelper.getAllTileDrawableIds(this, tile.getTileTypeId());
+            for (Integer id : ids) {
+                Picasso.with(this)
+                        .load(id)
+                        .fetch();
+            }
+        }
+    }
+
+    public void populateTiles(List<Tile> tiles) {
         if (puzzleId == 0) { return; }
 
         RelativeLayout tileContainer = (RelativeLayout) findViewById(R.id.tileContainer);
         tileContainer.removeAllViews();
-        Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
-        List<Tile> tiles = puzzle.getTiles();
         int maxY = TileHelper.getMaxY(tiles);
 
         List<ImageView> images = new ArrayList<>();
