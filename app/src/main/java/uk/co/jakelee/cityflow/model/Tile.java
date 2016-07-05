@@ -11,6 +11,7 @@ public class Tile extends SugarRecord {
     private int x;
     private int y;
     private int rotation;
+    private int defaultRotation;
 
     public Tile() {
     }
@@ -21,6 +22,7 @@ public class Tile extends SugarRecord {
         this.x = x;
         this.y = y;
         this.rotation = rotation;
+        this.defaultRotation = rotation;
     }
 
     public int getPuzzleId() {
@@ -61,6 +63,14 @@ public class Tile extends SugarRecord {
 
     public void setRotation(int rotation) {
         this.rotation = rotation;
+    }
+
+    public int getDefaultRotation() {
+        return defaultRotation;
+    }
+
+    public void setDefaultRotation(int defaultRotation) {
+        this.defaultRotation = defaultRotation;
     }
 
     public void rotate() {

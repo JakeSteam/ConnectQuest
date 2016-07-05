@@ -59,6 +59,8 @@ public class PuzzleActivity extends Activity {
     public void onStop() {
         super.onStop();
         handler.removeCallbacksAndMessages(null);
+
+        Tile.executeQuery("UPDATE tile SET rotation = default_rotation WHERE puzzle_id = " + puzzleId);
     }
 
     public void fetchImages(List<Tile> tiles) {

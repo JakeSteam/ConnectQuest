@@ -35,22 +35,19 @@ public class DatabaseHelper {
 
     private static void createText() {
         List<Text> texts = new ArrayList<>();
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PACK_1_NAME, "Pack 1 English"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PACK_1_DESC, "Desc 1 English"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PACK_2_NAME, "Pack 2 English"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PACK_2_DESC, "Desc 2 English"));
-
-            texts.add(new Text(Constants.LANGUAGE_OTHER, TextHelper.PACK_1_NAME, "Pack 1 Other"));
-            texts.add(new Text(Constants.LANGUAGE_OTHER, TextHelper.PACK_1_DESC, "Desc 1 Other"));
-            texts.add(new Text(Constants.LANGUAGE_OTHER, TextHelper.PACK_2_NAME, "Pack 2 Other"));
-            texts.add(new Text(Constants.LANGUAGE_OTHER, TextHelper.PACK_2_DESC, "Desc 2 Other"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.CHAPTER_1_NAME, "Pack 1 English"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.CHAPTER_1_DESC, "Desc 1 English"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.CHAPTER_2_NAME, "Pack 2 English"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.CHAPTER_2_DESC, "Desc 2 English"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.SETTING_MUSIC, "Music"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.SETTING_SOUND, "Sounds"));
         Text.saveInTx(texts);
     }
 
     private static void createChapter() {
         List<Chapter> chapters = new ArrayList<>();
-            chapters.add(new Chapter(1, TextHelper.PACK_1_NAME, TextHelper.PACK_1_DESC, "test", true));
-            chapters.add(new Chapter(2, TextHelper.PACK_2_NAME, TextHelper.PACK_2_DESC, "test", true));
+            chapters.add(new Chapter(1, TextHelper.CHAPTER_1_NAME, TextHelper.CHAPTER_1_DESC, "test", true));
+            chapters.add(new Chapter(2, TextHelper.CHAPTER_2_NAME, TextHelper.CHAPTER_2_DESC, "test", true));
         Chapter.saveInTx(chapters);
     }
 
@@ -65,15 +62,15 @@ public class DatabaseHelper {
 
     private static void createSetting() {
         List<Setting> settings = new ArrayList<>();
-            settings.add(new Setting(1, "Music", true));
-            settings.add(new Setting(2, "Sounds", true));
+            settings.add(new Setting(1, TextHelper.SETTING_MUSIC, true));
+            settings.add(new Setting(2, TextHelper.SETTING_SOUND, true));
         Setting.saveInTx(settings);
     }
 
     private static void createStatistic() {
         List<Statistic> statistics = new ArrayList<>();
-            statistics.add(new Statistic(1, "PuzzlesCompleted", 0));
-            statistics.add(new Statistic(2, "TilesRotated", 0));
+            statistics.add(new Statistic(1, TextHelper.STATISTIC_PUZZLES_COMPLETED, 0));
+            statistics.add(new Statistic(2, TextHelper.STATISTIC_TILES_ROTATED, 0));
         Statistic.saveInTx(statistics);
     }
 

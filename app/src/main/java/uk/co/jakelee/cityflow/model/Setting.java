@@ -4,13 +4,13 @@ import com.orm.SugarRecord;
 
 public class Setting extends SugarRecord {
     private int settingId;
-    private String name;
+    private int name;
     private boolean value;
 
     public Setting() {
     }
 
-    public Setting(int settingId, String name, boolean value) {
+    public Setting(int settingId, int name, boolean value) {
         this.settingId = settingId;
         this.name = name;
         this.value = value;
@@ -24,11 +24,11 @@ public class Setting extends SugarRecord {
         this.settingId = settingId;
     }
 
-    public String getName() {
+    public int getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(int name) {
         this.name = name;
     }
 

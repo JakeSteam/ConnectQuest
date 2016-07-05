@@ -4,7 +4,7 @@ import com.orm.SugarRecord;
 
 public class Statistic extends SugarRecord {
     private int statisticId;
-    private String name;
+    private int name;
     private String stringValue;
     private int intValue;
     private boolean boolValue;
@@ -12,19 +12,19 @@ public class Statistic extends SugarRecord {
     public Statistic() {
     }
 
-    public Statistic(int statisticId, String name, String stringValue) {
+    public Statistic(int statisticId, int name, String stringValue) {
         this.statisticId = statisticId;
         this.name = name;
         this.stringValue = stringValue;
     }
 
-    public Statistic(int statisticId, String name, int intValue) {
+    public Statistic(int statisticId, int name, int intValue) {
         this.statisticId = statisticId;
         this.name = name;
         this.intValue = intValue;
     }
 
-    public Statistic(int statisticId, String name, boolean boolValue) {
+    public Statistic(int statisticId, int name, boolean boolValue) {
         this.statisticId = statisticId;
         this.name = name;
         this.boolValue = boolValue;
@@ -38,11 +38,11 @@ public class Statistic extends SugarRecord {
         this.statisticId = statisticId;
     }
 
-    public String getName() {
+    public int getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(int name) {
         this.name = name;
     }
 
