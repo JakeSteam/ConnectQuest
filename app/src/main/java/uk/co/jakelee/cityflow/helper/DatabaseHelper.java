@@ -82,10 +82,37 @@ public class DatabaseHelper {
             tiles.add(new Tile(3, 2, 3, 2, Constants.ROTATION_SOUTH));
             tiles.add(new Tile(3, 1, 3, 3, Constants.ROTATION_SOUTH));
 
-            tiles.add(new Tile(4, 8, 0, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 8, 0, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 8, 1, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 8, 1, 1, Constants.ROTATION_NORTH));
+            // Testing all tiles
+            tiles.add(new Tile(4, 1, 0, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 2, 0, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 3, 0, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 4, 0, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 5, 0, 4, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 6, 1, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 7, 1, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 8, 1, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 9, 1, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 10, 1, 4, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 11, 2, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 12, 2, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 13, 2, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 14, 2, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 15, 2, 4, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 16, 3, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 17, 3, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 18, 3, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 19, 3, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 20, 3, 4, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 21, 4, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 22, 4, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 23, 4, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 24, 4, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 25, 4, 4, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 26, 5, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 27, 5, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 28, 5, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 29, 5, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 30, 5, 4, Constants.ROTATION_NORTH));
         Tile.saveInTx(tiles);
     }
 
@@ -103,6 +130,25 @@ public class DatabaseHelper {
             tileTypes.add(new Tile_Type(10, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
             tileTypes.add(new Tile_Type(11, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL));
             tileTypes.add(new Tile_Type(12, Constants.ENVIRONMENT_GRASS, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(13, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(14, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(15, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(16, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(17, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(18, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(19, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(20, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(21, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(22, Constants.ENVIRONMENT_CITY, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(23, Constants.ENVIRONMENT_CITY, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(24, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(25, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_PATH, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(26, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.FLOW_GRASS, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(27, Constants.ENVIRONMENT_CITY, Constants.FLOW_GRASS, Constants.FLOW_NONE, Constants.FLOW_GRASS, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(28, Constants.ENVIRONMENT_CITY, Constants.FLOW_GRASS, Constants.FLOW_NONE, Constants.FLOW_GRASS, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(29, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(30, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+
         Tile_Type.saveInTx(tileTypes);
     }
 }
