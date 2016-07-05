@@ -7,7 +7,8 @@
 
     <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fadeScrollbars="false">
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -19,4 +20,16 @@
                 android:orientation="vertical" />
         </ScrollView>
     </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/successMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="It all flows!"
+        android:textSize="32sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:visibility="gone"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

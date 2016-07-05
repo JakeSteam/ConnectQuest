@@ -47,7 +47,7 @@ public class DatabaseHelper {
     private static void createChapter() {
         List<Chapter> chapters = new ArrayList<>();
             chapters.add(new Chapter(1, TextHelper.CHAPTER_1_NAME, TextHelper.CHAPTER_1_DESC, "test", true));
-            chapters.add(new Chapter(2, TextHelper.CHAPTER_2_NAME, TextHelper.CHAPTER_2_DESC, "test", true));
+            chapters.add(new Chapter(2, TextHelper.CHAPTER_2_NAME, TextHelper.CHAPTER_2_DESC, "test", false));
         Chapter.saveInTx(chapters);
     }
 

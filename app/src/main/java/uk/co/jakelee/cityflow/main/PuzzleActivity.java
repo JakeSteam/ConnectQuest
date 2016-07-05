@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -49,7 +49,7 @@ public class PuzzleActivity extends Activity {
                         flowCheck();
                     }
                 }).start();
-                handler.postDelayed(this, 3 * DateHelper.MILLISECONDS_IN_SECOND);
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND);
             }
         };
         handler.post(everySecond);
@@ -101,12 +101,11 @@ public class PuzzleActivity extends Activity {
     }
 
     public void flowCheck() {
-        final Activity activity = this;
         final boolean flowsCorrectly = TileHelper.checkPuzzleFlow(this.puzzleId);
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(activity, flowsCorrectly ? "Flows!" : "No flows!", Toast.LENGTH_SHORT).show();
+                findViewById(R.id.successMessage).setVisibility(flowsCorrectly ? View.VISIBLE : View.GONE);
             }
         });
     }
