@@ -8,6 +8,7 @@ import uk.co.jakelee.cityflow.model.Chapter;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Statistic;
+import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.Tile_Type;
 
@@ -27,14 +28,29 @@ public class DatabaseHelper {
         createPuzzle();
         createSetting();
         createStatistic();
+        createText();
         createTile();
         createTileType();
     }
 
+    private static void createText() {
+        List<Text> texts = new ArrayList<>();
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PACK_1_NAME, "Pack 1 English"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PACK_1_DESC, "Desc 1 English"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PACK_2_NAME, "Pack 2 English"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PACK_2_DESC, "Desc 2 English"));
+
+            texts.add(new Text(Constants.LANGUAGE_OTHER, TextHelper.PACK_1_NAME, "Pack 1 Other"));
+            texts.add(new Text(Constants.LANGUAGE_OTHER, TextHelper.PACK_1_DESC, "Desc 1 Other"));
+            texts.add(new Text(Constants.LANGUAGE_OTHER, TextHelper.PACK_2_NAME, "Pack 2 Other"));
+            texts.add(new Text(Constants.LANGUAGE_OTHER, TextHelper.PACK_2_DESC, "Desc 2 Other"));
+        Text.saveInTx(texts);
+    }
+
     private static void createChapter() {
         List<Chapter> chapters = new ArrayList<>();
-            chapters.add(new Chapter(1, "First Pack", "This is the first pack", "test", true));
-            chapters.add(new Chapter(2, "Second Pack", "This is the first pack", "test", true));
+            chapters.add(new Chapter(1, TextHelper.PACK_1_NAME, TextHelper.PACK_1_DESC, "test", true));
+            chapters.add(new Chapter(2, TextHelper.PACK_2_NAME, TextHelper.PACK_2_DESC, "test", true));
         Chapter.saveInTx(chapters);
     }
 

@@ -4,15 +4,15 @@ import com.orm.SugarRecord;
 
 public class Chapter extends SugarRecord{
     private int chapterId;
-    private String name;
-    private String description;
+    private int name;
+    private int description;
     private String iapCode;
     private boolean unlocked;
 
     public Chapter() {
     }
 
-    public Chapter(int chapterId, String name, String description, String iapCode, boolean unlocked) {
+    public Chapter(int chapterId, int name, int description, String iapCode, boolean unlocked) {
         this.chapterId = chapterId;
         this.name = name;
         this.description = description;
@@ -28,19 +28,19 @@ public class Chapter extends SugarRecord{
         this.chapterId = chapterId;
     }
 
-    public String getName() {
+    public int getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(int name) {
         this.name = name;
     }
 
-    public String getDescription() {
+    public int getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(int description) {
         this.description = description;
     }
 

@@ -10,7 +10,8 @@
         android:layout_height="match_parent">
         <ScrollView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fadeScrollbars="false">
             <RelativeLayout
                 android:id="@+id/tileContainer"
                 android:layout_width="wrap_content"

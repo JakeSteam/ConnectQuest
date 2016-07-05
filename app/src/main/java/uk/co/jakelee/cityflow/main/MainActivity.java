@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DatabaseHelper;
 
 public class MainActivity extends Activity {
@@ -18,6 +19,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         prefs = getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE);
 
+        MainActivity.prefs.edit().putInt("language", Constants.LANGUAGE_EN_GB).apply();
         DatabaseHelper.handlePatches();
     }
 

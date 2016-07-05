@@ -38,8 +38,8 @@ public class PuzzleActivity extends Activity {
 
         Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
         List<Tile> tiles = puzzle.getTiles();
-        fetchImages(tiles);
         populateTiles(tiles);
+        fetchImages(tiles);
 
         final Runnable everySecond = new Runnable() {
             @Override

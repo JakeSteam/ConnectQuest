@@ -23,6 +23,8 @@ public class Constants {
     public static final int HEIGHT_LOW = 1;
     public static final int HEIGHT_NORMAL = 2;
     public static final int HEIGHT_HIGH = 3;
+    public static final int LANGUAGE_EN_GB = 1;
+    public static final int LANGUAGE_OTHER = 2;
     public static final int ROTATION_NORTH = 1;
     public static final int ROTATION_EAST = 2;
     public static final int ROTATION_SOUTH = 3;
