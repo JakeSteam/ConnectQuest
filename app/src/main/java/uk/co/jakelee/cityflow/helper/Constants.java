@@ -3,8 +3,8 @@ package uk.co.jakelee.cityflow.helper;
 
 public class Constants {
     // Game constants
-    public static final int TILE_WIDTH = 100;
-    public static final int TILE_HEIGHT = 50;
+    public static final int TILE_WIDTH = 130;
+    public static final int TILE_HEIGHT = 65;
 
     // Lookup constants
     public static final int CHAPTER_NONE = 0;
