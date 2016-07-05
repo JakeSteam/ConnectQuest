@@ -21,8 +21,8 @@ public class MainActivity extends Activity {
         DatabaseHelper.handlePatches();
     }
 
-    public void openPuzzle(View view) {
-        Intent intent = new Intent(this, PuzzleActivity.class);
+    public void openChapters(View view) {
+        Intent intent = new Intent(this, StoryActivity.class);
         startActivity(intent);
     }
 }

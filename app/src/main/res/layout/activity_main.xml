@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:text="Story Mode"
             android:textSize="28sp"
-            android:onClick="openPuzzle"/>
+            android:onClick="openChapters"/>
 
         <TextView
             android:layout_width="wrap_content"

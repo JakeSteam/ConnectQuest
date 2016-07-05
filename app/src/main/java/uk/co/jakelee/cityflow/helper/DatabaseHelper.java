@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.cityflow.main.MainActivity;
+import uk.co.jakelee.cityflow.model.Chapter;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Statistic;
@@ -22,6 +23,7 @@ public class DatabaseHelper {
     }
 
     private static void initialSetup() {
+        createChapter();
         createPuzzle();
         createSetting();
         createStatistic();
@@ -29,12 +31,19 @@ public class DatabaseHelper {
         createTileType();
     }
 
+    private static void createChapter() {
+        List<Chapter> chapters = new ArrayList<>();
+            chapters.add(new Chapter(1, "First Pack", "This is the first pack", "test", true));
+            chapters.add(new Chapter(2, "Second Pack", "This is the first pack", "test", true));
+        Chapter.saveInTx(chapters);
+    }
+
     private static void createPuzzle() {
         List<Puzzle> puzzles = new ArrayList<>();
-            puzzles.add(new Puzzle(1, 0, Constants.TYPE_STORY, 1, 0L, 0, 0));
-            puzzles.add(new Puzzle(2, 0, Constants.TYPE_STORY, 1, 0L, 0, 0));
-            puzzles.add(new Puzzle(3, 0, Constants.TYPE_STORY, 1, 0L, 0, 0));
-            puzzles.add(new Puzzle(4, 0, Constants.TYPE_STORY, 1, 0L, 0, 0));
+            puzzles.add(new Puzzle(1, 1, Constants.TYPE_STORY, 1, 0L, 0, 0));
+            puzzles.add(new Puzzle(2, 1, Constants.TYPE_STORY, 1, 0L, 0, 0));
+            puzzles.add(new Puzzle(3, 1, Constants.TYPE_STORY, 1, 0L, 0, 0));
+            puzzles.add(new Puzzle(4, 1, Constants.TYPE_STORY, 1, 0L, 0, 0));
         Puzzle.saveInTx(puzzles);
     }
 

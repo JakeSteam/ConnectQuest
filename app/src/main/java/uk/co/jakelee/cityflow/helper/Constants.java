@@ -2,6 +2,10 @@ package uk.co.jakelee.cityflow.helper;
 
 
 public class Constants {
+    // Intents
+    public static final String INTENT_CHAPTER = "uk.co.jakelee.cityflow.chapter";
+    public static final String INTENT_PUZZLE = "uk.co.jakelee.cityflow.puzzle";
+
     // Game constants
     public static final int TILE_WIDTH = 130;
     public static final int TILE_HEIGHT = 65;

@@ -36,11 +36,11 @@ public class Puzzle extends SugarRecord {
         this.puzzleId = puzzleId;
     }
 
-    public int getchapter() {
+    public int getChapter() {
         return chapter;
     }
 
-    public void setchapter(int chapter) {
+    public void setChapter(int chapter) {
         this.chapter = chapter;
     }
 
@@ -92,5 +92,10 @@ public class Puzzle extends SugarRecord {
 
     public static Puzzle getPuzzle(int puzzleId) {
         return Select.from(Puzzle.class).where(Condition.prop("puzzle_id").eq(puzzleId)).first();
+    }
+
+    public static List<Puzzle> getPuzzles(int puzzleType) {
+        return Select.from(Puzzle.class).where(
+                Condition.prop("type").eq(puzzleType)).list();
     }
 }

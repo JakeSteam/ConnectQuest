@@ -1,6 +1,7 @@
 package uk.co.jakelee.cityflow.main;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.ImageHelper;
@@ -23,7 +25,7 @@ import uk.co.jakelee.cityflow.model.Tile;
 public class PuzzleActivity extends Activity {
     private static final Handler handler = new Handler();
     private DisplayHelper dh;
-    private int puzzleId = 4;
+    private int puzzleId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +33,9 @@ public class PuzzleActivity extends Activity {
         setContentView(R.layout.activity_puzzle);
         dh = DisplayHelper.getInstance(this);
 
-        RelativeLayout tileContainer = (RelativeLayout) findViewById(R.id.tileContainer);
-        populateTiles(tileContainer, puzzleId);
+        Intent intent = getIntent();
+        puzzleId = intent.getIntExtra(Constants.INTENT_PUZZLE, 0);
+        populateTiles();
 
         final Runnable everySecond = new Runnable() {
             @Override
@@ -54,7 +57,11 @@ public class PuzzleActivity extends Activity {
         handler.removeCallbacksAndMessages(null);
     }
 
-    public void populateTiles(RelativeLayout tileContainer, int puzzleId) {
+    public void populateTiles() {
+        if (puzzleId == 0) { return; }
+
+        RelativeLayout tileContainer = (RelativeLayout) findViewById(R.id.tileContainer);
+        tileContainer.removeAllViews();
         Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
         List<Tile> tiles = puzzle.getTiles();
         int maxY = TileHelper.getMaxY(tiles);
