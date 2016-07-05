@@ -18,6 +18,19 @@ public class Tile_Type extends SugarRecord {
 
     }
 
+    public Tile_Type(int typeId, int environmentId, int flow, int height) {
+        this.typeId = typeId;
+        this.environmentId = environmentId;
+        this.flowNorth = flow;
+        this.flowEast = flow;
+        this.flowSouth = flow;
+        this.flowWest = flow;
+        this.heightNorth = height;
+        this.heightEast = height;
+        this.heightSouth = height;
+        this.heightWest = height;
+    }
+
     public Tile_Type(int typeId, int environmentId, int flowNorth, int flowEast, int flowSouth, int flowWest, int height) {
         this.typeId = typeId;
         this.environmentId = environmentId;

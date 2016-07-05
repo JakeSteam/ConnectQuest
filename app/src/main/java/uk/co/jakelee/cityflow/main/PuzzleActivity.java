@@ -2,7 +2,7 @@ package uk.co.jakelee.cityflow.main;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
+import android.os.Handler;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.ImageHelper;
 import uk.co.jakelee.cityflow.helper.TileHelper;
@@ -20,6 +21,7 @@ import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Tile;
 
 public class PuzzleActivity extends Activity {
+    private static final Handler handler = new Handler();
     private DisplayHelper dh;
     private int puzzleId = 4;
 
@@ -31,6 +33,25 @@ public class PuzzleActivity extends Activity {
 
         RelativeLayout tileContainer = (RelativeLayout) findViewById(R.id.tileContainer);
         populateTiles(tileContainer, puzzleId);
+
+        final Runnable everySecond = new Runnable() {
+            @Override
+            public void run() {
+                new Thread(new Runnable() {
+                    public void run() {
+                        flowCheck();
+                    }
+                }).start();
+                handler.postDelayed(this, 3 * DateHelper.MILLISECONDS_IN_SECOND);
+            }
+        };
+        handler.post(everySecond);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        handler.removeCallbacksAndMessages(null);
     }
 
     public void populateTiles(RelativeLayout tileContainer, int puzzleId) {
@@ -57,8 +78,14 @@ public class PuzzleActivity extends Activity {
         Picasso.with(this).load(drawableId).into(image);
     }
 
-    public void flowCheck(View v) {
-        boolean flowsCorrectly = TileHelper.checkPuzzleFlow(this.puzzleId);
-        Toast.makeText(this, flowsCorrectly ? "Flows!" : "No flows!", Toast.LENGTH_SHORT).show();
+    public void flowCheck() {
+        final Activity activity = this;
+        final boolean flowsCorrectly = TileHelper.checkPuzzleFlow(this.puzzleId);
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(activity, flowsCorrectly ? "Flows!" : "No flows!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

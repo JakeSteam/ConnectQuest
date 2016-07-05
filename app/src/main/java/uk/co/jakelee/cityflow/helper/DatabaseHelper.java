@@ -64,75 +64,28 @@ public class DatabaseHelper {
             tiles.add(new Tile(2, 3, 1, 0, Constants.ROTATION_WEST));
             tiles.add(new Tile(2, 3, 1, 1, Constants.ROTATION_SOUTH));
 
-            // Larger area
+            // Solveable square
             tiles.add(new Tile(3, 1, 0, 0, Constants.ROTATION_NORTH));
             tiles.add(new Tile(3, 2, 0, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(3, 1, 0, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(3, 2, 0, 3, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(3, 2, 1, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 1, 1, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(3, 2, 1, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(3, 1, 1, 3, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(3, 2, 2, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 2, 2, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(3, 2, 2, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(3, 1, 2, 3, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(3, 1, 3, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 2, 3, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(3, 1, 3, 2, Constants.ROTATION_WEST));
+            tiles.add(new Tile(3, 2, 0, 2, Constants.ROTATION_EAST));
+            tiles.add(new Tile(3, 1, 0, 3, Constants.ROTATION_EAST));
+            tiles.add(new Tile(3, 2, 1, 0, Constants.ROTATION_WEST));
+            tiles.add(new Tile(3, 1, 1, 1, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(3, 1, 1, 2, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(3, 2, 1, 3, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(3, 2, 2, 0, Constants.ROTATION_WEST));
+            tiles.add(new Tile(3, 1, 2, 1, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(3, 1, 2, 2, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(3, 2, 2, 3, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(3, 1, 3, 0, Constants.ROTATION_WEST));
+            tiles.add(new Tile(3, 2, 3, 1, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(3, 2, 3, 2, Constants.ROTATION_SOUTH));
             tiles.add(new Tile(3, 1, 3, 3, Constants.ROTATION_SOUTH));
 
-            tiles.add(new Tile(3, 1, 4, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 2, 4, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(3, 1, 4, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(3, 2, 4, 3, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(3, 2, 5, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 1, 5, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(3, 2, 5, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(3, 1, 5, 3, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(3, 2, 6, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 2, 6, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(3, 2, 6, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(3, 1, 6, 3, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(3, 1, 7, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 2, 7, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(3, 1, 7, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(3, 1, 7, 3, Constants.ROTATION_SOUTH));
-
-            tiles.add(new Tile(3, 1, 8, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 2, 8, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(3, 1, 8, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(3, 2, 8, 3, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(3, 2, 9, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 1, 9, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(3, 2, 9, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(3, 1, 9, 3, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(3, 2, 10, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 2, 10, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(3, 2, 10, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(3, 1, 10, 3, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(3, 1, 11, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 2, 11, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(3, 1, 11, 2, Constants.ROTATION_WEST));
-            tiles.add(new Tile(3, 1, 11, 3, Constants.ROTATION_SOUTH));
-
-            // Solveable square
-            tiles.add(new Tile(4, 1, 0, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 2, 0, 1, Constants.ROTATION_EAST));
-            tiles.add(new Tile(4, 2, 0, 2, Constants.ROTATION_EAST));
-            tiles.add(new Tile(4, 1, 0, 3, Constants.ROTATION_EAST));
-            tiles.add(new Tile(4, 2, 1, 0, Constants.ROTATION_WEST));
-            tiles.add(new Tile(4, 1, 1, 1, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(4, 1, 1, 2, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(4, 2, 1, 3, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(4, 2, 2, 0, Constants.ROTATION_WEST));
-            tiles.add(new Tile(4, 1, 2, 1, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(4, 1, 2, 2, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(4, 2, 2, 3, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(4, 1, 3, 0, Constants.ROTATION_WEST));
-            tiles.add(new Tile(4, 2, 3, 1, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(4, 2, 3, 2, Constants.ROTATION_SOUTH));
-            tiles.add(new Tile(4, 1, 3, 3, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(4, 3, 0, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 11, 0, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 11, 0, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 3, 0, 3, Constants.ROTATION_NORTH));
         Tile.saveInTx(tiles);
     }
 
@@ -141,6 +94,15 @@ public class DatabaseHelper {
             tileTypes.add(new Tile_Type(1, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
             tileTypes.add(new Tile_Type(2, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
             tileTypes.add(new Tile_Type(3, Constants.ENVIRONMENT_GRASS, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(4, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(5, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(6, Constants.ENVIRONMENT_GRASS, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(7, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_WATER, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(8, Constants.ENVIRONMENT_GRASS, Constants.FLOW_WATER, Constants.FLOW_WATER, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(9, Constants.ENVIRONMENT_GRASS, Constants.FLOW_WATER, Constants.FLOW_NONE, Constants.FLOW_WATER, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(10, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_WATER, Constants.FLOW_ROAD, Constants.FLOW_WATER, Constants.HEIGHT_HIGH, Constants.HEIGHT_NORMAL, Constants.HEIGHT_HIGH, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(11, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(12, Constants.ENVIRONMENT_GRASS, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL));
         Tile_Type.saveInTx(tileTypes);
     }
 }
