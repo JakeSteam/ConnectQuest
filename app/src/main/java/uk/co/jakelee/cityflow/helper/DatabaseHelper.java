@@ -82,10 +82,10 @@ public class DatabaseHelper {
             tiles.add(new Tile(3, 2, 3, 2, Constants.ROTATION_SOUTH));
             tiles.add(new Tile(3, 1, 3, 3, Constants.ROTATION_SOUTH));
 
-            tiles.add(new Tile(4, 3, 0, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 11, 0, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 11, 0, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 3, 0, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 8, 0, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 8, 0, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 8, 1, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 8, 1, 1, Constants.ROTATION_NORTH));
         Tile.saveInTx(tiles);
     }
 

@@ -92,4 +92,29 @@ public class Tile extends SugarRecord {
         }
         return flow;
     }
+
+    public int getHeight(int side) {
+        int height = Constants.HEIGHT_NORMAL;
+        Tile_Type type = TileHelper.getTileType(this);
+
+        int target = side + (5 - rotation);
+        if (target > 4) {
+            target -= 4;
+        }
+
+        if (type.getTypeId() == 0) {
+            return height;
+        }
+
+        if (target == Constants.ROTATION_NORTH) {
+            height = type.getHeightNorth();
+        } else if (target == Constants.ROTATION_EAST && type.getHeightEast() != Constants.HEIGHT_NORMAL) {
+            height = type.getHeightEast();
+        } else if (target == Constants.ROTATION_SOUTH && type.getHeightSouth() != Constants.HEIGHT_NORMAL) {
+            height = type.getHeightSouth();
+        } else if (target == Constants.ROTATION_WEST && type.getHeightWest() != Constants.HEIGHT_NORMAL) {
+            height = type.getHeightWest();
+        }
+        return height;
+    }
 }
