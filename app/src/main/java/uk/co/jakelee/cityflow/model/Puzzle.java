@@ -8,6 +8,7 @@ import java.util.List;
 
 public class Puzzle extends SugarRecord {
     private int puzzleId;
+    private int name;
     private int chapter;
     private int type;
     private int complexity;
@@ -18,8 +19,9 @@ public class Puzzle extends SugarRecord {
     public Puzzle() {
     }
 
-    public Puzzle(int puzzleId, int chapter, int type, int complexity, long bestTime, int bestMoves, int bestRating) {
+    public Puzzle(int puzzleId, int name, int chapter, int type, int complexity, long bestTime, int bestMoves, int bestRating) {
         this.puzzleId = puzzleId;
+        this.name = name;
         this.chapter = chapter;
         this.type = type;
         this.complexity = complexity;
@@ -34,6 +36,14 @@ public class Puzzle extends SugarRecord {
 
     public void setPuzzleId(int puzzleId) {
         this.puzzleId = puzzleId;
+    }
+
+    public int getName() {
+        return name;
+    }
+
+    public void setName(int name) {
+        this.name = name;
     }
 
     public int getChapter() {

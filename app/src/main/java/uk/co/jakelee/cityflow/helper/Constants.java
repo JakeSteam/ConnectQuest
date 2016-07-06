@@ -19,6 +19,7 @@ public class Constants {
     public static final int FLOW_ROAD = 2;
     public static final int FLOW_PATH = 3;
     public static final int FLOW_GRASS = 4;
+    public static final int FLOW_CANAL = 5;
     public static final int HEIGHT_NO_CONNECT = 0;
     public static final int HEIGHT_LOW = 1;
     public static final int HEIGHT_NORMAL = 2;

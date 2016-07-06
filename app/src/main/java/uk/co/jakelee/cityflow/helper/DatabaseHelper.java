@@ -41,6 +41,11 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.CHAPTER_2_DESC, "Desc 2 English"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.SETTING_MUSIC, "Music"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.SETTING_SOUND, "Sounds"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_1_NAME, "Testing large maps"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_2_NAME, "Simple sqaure"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_3_NAME, "More complex square"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_4_NAME, "All possible tiles"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_5_NAME, "City Flow logo"));
         Text.saveInTx(texts);
     }
 
@@ -53,11 +58,11 @@ public class DatabaseHelper {
 
     private static void createPuzzle() {
         List<Puzzle> puzzles = new ArrayList<>();
-            puzzles.add(new Puzzle(1, 1, Constants.TYPE_STORY, 1, 0L, 0, 0));
-            puzzles.add(new Puzzle(2, 1, Constants.TYPE_STORY, 1, 0L, 0, 0));
-            puzzles.add(new Puzzle(3, 1, Constants.TYPE_STORY, 1, 0L, 0, 0));
-            puzzles.add(new Puzzle(4, 1, Constants.TYPE_STORY, 1, 0L, 0, 0));
-            puzzles.add(new Puzzle(5, 1, Constants.TYPE_STORY, 1, 0L, 0, 0));
+            puzzles.add(new Puzzle(1, TextHelper.PUZZLE_1_NAME, 1, Constants.TYPE_STORY, 1, 0L, 0, 0));
+            puzzles.add(new Puzzle(2, TextHelper.PUZZLE_2_NAME, 1, Constants.TYPE_STORY, 1, 0L, 0, 0));
+            puzzles.add(new Puzzle(3, TextHelper.PUZZLE_3_NAME, 1, Constants.TYPE_STORY, 1, 0L, 0, 0));
+            puzzles.add(new Puzzle(4, TextHelper.PUZZLE_4_NAME, 1, Constants.TYPE_STORY, 1, 0L, 0, 0));
+            puzzles.add(new Puzzle(5, TextHelper.PUZZLE_5_NAME, 1, Constants.TYPE_STORY, 1, 0L, 0, 0));
         Puzzle.saveInTx(puzzles);
     }
 
@@ -77,11 +82,47 @@ public class DatabaseHelper {
 
     private static void createTile() {
         List<Tile> tiles = new ArrayList<>();
-            // Flow test
-            tiles.add(new Tile(1, 36, 0, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 36, 0, 1, Constants.ROTATION_EAST));
+            // Testing large maps
+            tiles.add(new Tile(1, 10, 0, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 0, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 0, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 0, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 0, 4, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 1, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 1, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 1, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 1, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 1, 4, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 2, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 2, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 2, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 2, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 2, 4, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 3, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 3, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 3, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 3, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 3, 4, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 4, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 4, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 4, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 4, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 4, 4, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 5, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 5, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 5, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 5, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 5, 4, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 5, 5, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 6, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 6, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 6, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 6, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 6, 4, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 6, 5, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 10, 7, 0, Constants.ROTATION_NORTH));
 
-            // Line
+            // Simple line
             tiles.add(new Tile(2, 3, 0, 0, Constants.ROTATION_NORTH));
             tiles.add(new Tile(2, 3, 0, 1, Constants.ROTATION_EAST));
             tiles.add(new Tile(2, 3, 1, 0, Constants.ROTATION_WEST));
@@ -105,7 +146,7 @@ public class DatabaseHelper {
             tiles.add(new Tile(3, 2, 3, 2, Constants.ROTATION_SOUTH));
             tiles.add(new Tile(3, 1, 3, 3, Constants.ROTATION_SOUTH));
 
-            // Testing all tiles
+            // All possible tiles
             tiles.add(new Tile(4, 1, 0, 0, Constants.ROTATION_NORTH));
             tiles.add(new Tile(4, 2, 0, 1, Constants.ROTATION_NORTH));
             tiles.add(new Tile(4, 3, 0, 2, Constants.ROTATION_NORTH));
@@ -115,28 +156,38 @@ public class DatabaseHelper {
             tiles.add(new Tile(4, 7, 1, 1, Constants.ROTATION_NORTH));
             tiles.add(new Tile(4, 8, 1, 2, Constants.ROTATION_NORTH));
             tiles.add(new Tile(4, 9, 1, 3, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 25, 1, 4, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 25, 2, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 25, 2, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 25, 2, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 25, 2, 3, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 25, 2, 4, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 25, 3, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 25, 3, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 25, 3, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 25, 3, 3, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 25, 3, 4, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 25, 4, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 25, 4, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 25, 4, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 25, 4, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 10, 1, 4, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 11, 2, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 12, 2, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 13, 2, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 14, 2, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 15, 2, 4, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 16, 3, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 17, 3, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 18, 3, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 19, 3, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 20, 3, 4, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 21, 4, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 22, 4, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 23, 4, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 24, 4, 3, Constants.ROTATION_NORTH));
             tiles.add(new Tile(4, 25, 4, 4, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 25, 5, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 25, 5, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 25, 5, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 25, 5, 3, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 25, 5, 4, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(4, 25, 5, 5, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 26, 5, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 27, 5, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 28, 5, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 29, 5, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 30, 5, 4, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 31, 5, 5, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 32, 6, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 33, 6, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 34, 6, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 35, 6, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 36, 6, 4, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 37, 6, 5, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 38, 7, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 39, 7, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 40, 7, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 41, 7, 3, Constants.ROTATION_NORTH));
 
             // City flow logo
             tiles.add(new Tile(5, 21, 0, 5, Constants.ROTATION_NORTH));
@@ -149,16 +200,16 @@ public class DatabaseHelper {
             tiles.add(new Tile(5, 30, 2, 6, Constants.ROTATION_WEST));
             tiles.add(new Tile(5, 21, 2, 7, Constants.ROTATION_NORTH));
             tiles.add(new Tile(5, 19, 3, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(5, 18, 3, 3, Constants.ROTATION_EAST));
-            tiles.add(new Tile(5, 26, 3, 4, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(5, 18, 3, 5, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(5, 18, 3, 6, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(5, 29, 3, 3, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(5, 14, 3, 4, Constants.ROTATION_SOUTH));
+            tiles.add(new Tile(5, 17, 3, 5, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(5, 19, 3, 6, Constants.ROTATION_EAST));
             tiles.add(new Tile(5, 18, 3, 7, Constants.ROTATION_NORTH));
             tiles.add(new Tile(5, 21, 3, 8, Constants.ROTATION_NORTH));
             tiles.add(new Tile(5, 21, 4, 1, Constants.ROTATION_NORTH));
             tiles.add(new Tile(5, 29, 4, 2, Constants.ROTATION_EAST));
             tiles.add(new Tile(5, 21, 4, 3, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(5, 27, 4, 4, Constants.ROTATION_EAST));
+            tiles.add(new Tile(5, 26, 4, 4, Constants.ROTATION_NORTH));
             tiles.add(new Tile(5, 14, 4, 5, Constants.ROTATION_EAST));
             tiles.add(new Tile(5, 19, 4, 6, Constants.ROTATION_WEST));
             tiles.add(new Tile(5, 17, 4, 7, Constants.ROTATION_EAST));
@@ -275,7 +326,9 @@ public class DatabaseHelper {
             tileTypes.add(new Tile_Type(35, Constants.ENVIRONMENT_GRASS, Constants.FLOW_NONE, Constants.FLOW_WATER, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
             tileTypes.add(new Tile_Type(36, Constants.ENVIRONMENT_GRASS, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH));
             tileTypes.add(new Tile_Type(37, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_HIGH));
-
-        Tile_Type.saveInTx(tileTypes);
+            tileTypes.add(new Tile_Type(38, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_LOW, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(39, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH));
+            tileTypes.add(new Tile_Type(40, Constants.ENVIRONMENT_CITY, Constants.FLOW_CANAL, Constants.FLOW_NONE, Constants.FLOW_CANAL, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(41, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_CANAL, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
     }
 }

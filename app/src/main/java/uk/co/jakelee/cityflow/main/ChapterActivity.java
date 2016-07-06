@@ -14,6 +14,7 @@ import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
+import uk.co.jakelee.cityflow.model.Text;
 
 public class ChapterActivity extends Activity {
     private DisplayHelper dh;
@@ -33,7 +34,7 @@ public class ChapterActivity extends Activity {
         List<Puzzle> puzzles = Puzzle.getPuzzles(Constants.TYPE_STORY);
         for (Puzzle puzzle : puzzles) {
             TextView chapterText = new TextView(this);
-            chapterText.setText("#" + puzzle.getPuzzleId());
+            chapterText.setText("#" + puzzle.getPuzzleId() + ": " + Text.get(puzzle.getName()));
             chapterText.setTextSize(24);
             chapterText.setTag(puzzle.getPuzzleId());
             chapterText.setOnClickListener(new Button.OnClickListener() {
