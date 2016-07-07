@@ -46,6 +46,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_3_NAME, "More complex square"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_4_NAME, "All possible tiles"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_5_NAME, "City Flow logo"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_END_TEXT, "It flows!\n\n%1$d stars\nTime: %2$s\nMoves: %3$d\n\nTarget Time: %4$s\nTarget Moves: %5$d\n\nBest Time: %6$s\nBest Moves: %7$d"));
         Text.saveInTx(texts);
     }
 
@@ -58,11 +59,11 @@ public class DatabaseHelper {
 
     private static void createPuzzle() {
         List<Puzzle> puzzles = new ArrayList<>();
-            puzzles.add(new Puzzle(1, TextHelper.PUZZLE_1_NAME, 1, Constants.TYPE_STORY, 1, 0L, 0, 0));
-            puzzles.add(new Puzzle(2, TextHelper.PUZZLE_2_NAME, 1, Constants.TYPE_STORY, 1, 0L, 0, 0));
-            puzzles.add(new Puzzle(3, TextHelper.PUZZLE_3_NAME, 1, Constants.TYPE_STORY, 1, 0L, 0, 0));
-            puzzles.add(new Puzzle(4, TextHelper.PUZZLE_4_NAME, 1, Constants.TYPE_STORY, 1, 0L, 0, 0));
-            puzzles.add(new Puzzle(5, TextHelper.PUZZLE_5_NAME, 1, Constants.TYPE_STORY, 1, 0L, 0, 0));
+            puzzles.add(new Puzzle(1, TextHelper.PUZZLE_1_NAME, 1, Constants.TYPE_STORY, 1, 10000L, 20, 0L, 0, 0));
+            puzzles.add(new Puzzle(2, TextHelper.PUZZLE_2_NAME, 1, Constants.TYPE_STORY, 1, 10000L, 20, 0L, 0, 0));
+            puzzles.add(new Puzzle(3, TextHelper.PUZZLE_3_NAME, 1, Constants.TYPE_STORY, 1, 10000L, 20, 0L, 0, 0));
+            puzzles.add(new Puzzle(4, TextHelper.PUZZLE_4_NAME, 1, Constants.TYPE_STORY, 1, 10000L, 20, 0L, 0, 0));
+            puzzles.add(new Puzzle(5, TextHelper.PUZZLE_5_NAME, 1, Constants.TYPE_STORY, 1, 10000L, 20, 0L, 0, 0));
         Puzzle.saveInTx(puzzles);
     }
 

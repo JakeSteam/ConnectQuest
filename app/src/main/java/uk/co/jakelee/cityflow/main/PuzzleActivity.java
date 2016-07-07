@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -21,8 +22,11 @@ import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.ImageHelper;
+import uk.co.jakelee.cityflow.helper.PuzzleHelper;
+import uk.co.jakelee.cityflow.helper.TextHelper;
 import uk.co.jakelee.cityflow.helper.TileHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
+import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
 
 public class PuzzleActivity extends Activity {
@@ -112,16 +116,10 @@ public class PuzzleActivity extends Activity {
     private Runnable updateTimerThread = new Runnable() {
         public void run() {
             timeInMilliseconds = SystemClock.uptimeMillis() - startTime;
-            ((TextView)(findViewById(R.id.puzzleTimer))).setText(getTimeTaken());
-            handler.postDelayed(this, 10);
+            ((TextView)(findViewById(R.id.puzzleTimer))).setText(DateHelper.getPuzzleTimeString(timeInMilliseconds));
+            handler.postDelayed(this, 5);
         }
     };
-
-    private String getTimeTaken() {
-        int secs = (int) (timeInMilliseconds / 1000);
-        int milliseconds = (int) (timeInMilliseconds % 100);
-        return secs + "." + milliseconds + "s";
-    }
 
     public void populateTiles(List<Tile> tiles) {
         if (puzzleId == 0) { return; }
@@ -155,18 +153,32 @@ public class PuzzleActivity extends Activity {
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                TextView blockingMessage = (TextView) findViewById(R.id.blockingMessage);
                 if (flowsCorrectly) {
                     handler.removeCallbacksAndMessages(null);
 
-                    findViewById(R.id.puzzleTimer).setVisibility(View.GONE);
-                    blockingMessage.setVisibility(View.VISIBLE);
-                    blockingMessage.setTextSize(60);
-                    blockingMessage.setText("Done!\n" + getTimeTaken() + "\n" + movesMade + " moves");
-
+                    displayPuzzleEndScreen();
                     Tile.executeQuery("UPDATE tile SET rotation = default_rotation WHERE puzzle_id = " + puzzleId);
                 }
             }
         });
+    }
+
+    public void displayPuzzleEndScreen() {
+        findViewById(R.id.puzzleTimer).setVisibility(View.GONE);
+        TextView blockingMessage = (TextView) findViewById(R.id.blockingMessage);
+        blockingMessage.setVisibility(View.VISIBLE);
+        blockingMessage.setTextSize(40);
+
+        Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
+        Pair<Boolean, Boolean> newBests = PuzzleHelper.updateBest(puzzle, timeInMilliseconds, movesMade);
+        int stars = PuzzleHelper.getStars(puzzle, timeInMilliseconds, movesMade);
+        blockingMessage.setText(String.format(Text.get(TextHelper.PUZZLE_END_TEXT),
+                stars,
+                DateHelper.getPuzzleTimeString(timeInMilliseconds),
+                movesMade,
+                DateHelper.getPuzzleTimeString(puzzle.getParTime()),
+                puzzle.getParMoves(),
+                DateHelper.getPuzzleTimeString(puzzle.getBestTime()) + (newBests.first ? "*" : ""),
+                puzzle.getBestMoves()) + (newBests.second ? "*" : ""));
     }
 }

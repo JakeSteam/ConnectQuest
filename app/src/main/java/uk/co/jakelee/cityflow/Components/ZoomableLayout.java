@@ -1,4 +1,4 @@
-package uk.co.jakelee.cityflow.Components;
+package uk.co.jakelee.cityflow.components;
 
 import android.content.Context;
 import android.graphics.Canvas;

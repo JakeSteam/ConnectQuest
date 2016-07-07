@@ -14,4 +14,5 @@ public class TextHelper {
     public static final int PUZZLE_3_NAME = 11;
     public static final int PUZZLE_4_NAME = 12;
     public static final int PUZZLE_5_NAME = 13;
+    public static final int PUZZLE_END_TEXT = 14;
 }
