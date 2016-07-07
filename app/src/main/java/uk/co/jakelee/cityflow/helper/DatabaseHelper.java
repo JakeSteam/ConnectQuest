@@ -35,8 +35,8 @@ public class DatabaseHelper {
 
     private static void createText() {
         List<Text> texts = new ArrayList<>();
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.CHAPTER_1_NAME, "Pack 1 English"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.CHAPTER_1_DESC, "Desc 1 English"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.CHAPTER_1_NAME, "The Big City"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.CHAPTER_1_DESC, "Escape To The Country"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.CHAPTER_2_NAME, "Pack 2 English"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.CHAPTER_2_DESC, "Desc 2 English"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.SETTING_MUSIC, "Music"));
@@ -47,13 +47,61 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_4_NAME, "All possible tiles"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_5_NAME, "City Flow logo"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_END_TEXT, "It flows!\n\n%1$d stars\nTime: %2$s\nMoves: %3$d\n\nTarget Time: %4$s\nTarget Moves: %5$d\n\nBest Time: %6$s%7$s\nBest Moves: %8$d%9$s"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_1_TEXT, "Grass Road Corner"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_2_TEXT, "Grass Road Straight"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_3_TEXT, "Grass Road End"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_4_TEXT, "Grass Road Interchange"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_5_TEXT, "Grass Road T Junction"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_6_TEXT, "Grass"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_7_TEXT, "Grass Road Bridge"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_8_TEXT, "Grass Water Corner"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_9_TEXT, "Grass Water Straight"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_10_TEXT, "Grass Road Straight (Median)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_11_TEXT, "Grass Road Slope"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_12_TEXT, "Grass Slope"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_13_TEXT, "City Red Shop"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_14_TEXT, "City Road Straight (Bus Stop)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_15_TEXT, "City Road Straight"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_16_TEXT, "City Road Interchange"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_17_TEXT, "City Road T Junction"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_18_TEXT, "City Road End"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_19_TEXT, "City Road Corner"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_20_TEXT, "City Road Slope"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_21_TEXT, "City"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_22_TEXT, "City Path Straight"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_23_TEXT, "City Path Corner"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_24_TEXT, "City Path End"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_25_TEXT, "City Road/Path T Junction"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_26_TEXT, "City Grass End"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_27_TEXT, "City Grass Straight (Tree)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_28_TEXT, "City Grass Straight"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_29_TEXT, "City Road Straight (Crossing)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_30_TEXT, "City Green Shop"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_31_TEXT, "City (Fountain)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_32_TEXT, "City (Grass)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_33_TEXT, "Grass Road/Water Straight"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_34_TEXT, "Grass High"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_35_TEXT, "Grass Water End"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_36_TEXT, "Grass High Road End"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_37_TEXT, "Grass High Road Straight"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_38_TEXT, "City Road End (Underground)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_39_TEXT, "Grass High Road Corner"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_40_TEXT, "City Water Straight"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_41_TEXT, "City Water End"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_42_TEXT, "Grass Road Corner (Sharp)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_43_TEXT, "Grass (Tree 1)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_44_TEXT, "Grass (Tree 2)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_45_TEXT, "Grass (Tree 3)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_46_TEXT, "City Road/Path Corner"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_47_TEXT, "City High Road Straight"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_48_TEXT, "City High Road Corner"));
         Text.saveInTx(texts);
     }
 
     private static void createChapter() {
         List<Chapter> chapters = new ArrayList<>();
-            chapters.add(new Chapter(1, TextHelper.CHAPTER_1_NAME, TextHelper.CHAPTER_1_DESC, "test", true));
-            chapters.add(new Chapter(2, TextHelper.CHAPTER_2_NAME, TextHelper.CHAPTER_2_DESC, "test", false));
+            chapters.add(new Chapter(1, TextHelper.CHAPTER_1_NAME, TextHelper.CHAPTER_1_DESC, "IAP code", true));
+            chapters.add(new Chapter(2, TextHelper.CHAPTER_2_NAME, TextHelper.CHAPTER_2_DESC, "IAP code", false));
         Chapter.saveInTx(chapters);
     }
 
@@ -335,6 +383,9 @@ public class DatabaseHelper {
             tileTypes.add(new Tile_Type(43, Constants.ENVIRONMENT_GRASS, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
             tileTypes.add(new Tile_Type(44, Constants.ENVIRONMENT_GRASS, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
             tileTypes.add(new Tile_Type(45, Constants.ENVIRONMENT_GRASS, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(46, Constants.ENVIRONMENT_CITY, Constants.FLOW_PATH, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+            tileTypes.add(new Tile_Type(47, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_HIGH));
+            tileTypes.add(new Tile_Type(48, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH));
         Tile_Type.saveInTx(tileTypes);
     }
 }

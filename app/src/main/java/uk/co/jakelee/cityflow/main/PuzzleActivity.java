@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Pair;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -186,5 +187,14 @@ public class PuzzleActivity extends Activity {
                 newBests.first ? "*" : "",
                 puzzle.getBestMoves(),
                 newBests.second ? "*" : ""));
+        blockingMessage.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                closePuzzle();
+            }
+        });
+    }
+
+    public void closePuzzle() {
+        this.finish();
     }
 }
