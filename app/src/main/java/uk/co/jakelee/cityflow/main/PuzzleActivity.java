@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
@@ -172,13 +173,15 @@ public class PuzzleActivity extends Activity {
         Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
         Pair<Boolean, Boolean> newBests = PuzzleHelper.updateBest(puzzle, timeInMilliseconds, movesMade);
         int stars = PuzzleHelper.getStars(puzzle, timeInMilliseconds, movesMade);
-        blockingMessage.setText(String.format(Text.get(TextHelper.PUZZLE_END_TEXT),
+        blockingMessage.setText(String.format(Locale.ENGLISH, Text.get(TextHelper.PUZZLE_END_TEXT),
                 stars,
                 DateHelper.getPuzzleTimeString(timeInMilliseconds),
                 movesMade,
                 DateHelper.getPuzzleTimeString(puzzle.getParTime()),
                 puzzle.getParMoves(),
-                DateHelper.getPuzzleTimeString(puzzle.getBestTime()) + (newBests.first ? "*" : ""),
-                puzzle.getBestMoves()) + (newBests.second ? "*" : ""));
+                DateHelper.getPuzzleTimeString(puzzle.getBestTime()),
+                newBests.first ? "*" : "",
+                puzzle.getBestMoves(),
+                newBests.second ? "*" : ""));
     }
 }
