@@ -36,7 +36,8 @@ public class PuzzleActivity extends Activity {
     private int puzzleId;
     private int movesMade = 0;
     private long startTime = 0L;
-    long timeInMilliseconds = 0L;
+    private long timeInMilliseconds = 0L;
+    private long timeLastMoved = 0L;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,14 +112,14 @@ public class PuzzleActivity extends Activity {
 
     public void startTimeTakenTimer() {
         startTime = SystemClock.uptimeMillis();
-        handler.postDelayed(updateTimerThread, 0);
+        handler.post(updateTimerThread);
     }
 
     private Runnable updateTimerThread = new Runnable() {
         public void run() {
             timeInMilliseconds = SystemClock.uptimeMillis() - startTime;
             ((TextView)(findViewById(R.id.puzzleTimer))).setText(DateHelper.getPuzzleTimeString(timeInMilliseconds));
-            handler.postDelayed(this, 5);
+            handler.postDelayed(this, 20);
         }
     };
 
@@ -147,6 +148,7 @@ public class PuzzleActivity extends Activity {
         int drawableId = ImageHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());
         Picasso.with(this).load(drawableId).into(image);
         movesMade++;
+        timeLastMoved = SystemClock.uptimeMillis();
     }
 
     public void flowCheck() {
@@ -171,6 +173,7 @@ public class PuzzleActivity extends Activity {
         blockingMessage.setTextSize(40);
 
         Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
+        timeInMilliseconds = timeLastMoved - startTime;
         Pair<Boolean, Boolean> newBests = PuzzleHelper.updateBest(puzzle, timeInMilliseconds, movesMade);
         int stars = PuzzleHelper.getStars(puzzle, timeInMilliseconds, movesMade);
         blockingMessage.setText(String.format(Locale.ENGLISH, Text.get(TextHelper.PUZZLE_END_TEXT),
