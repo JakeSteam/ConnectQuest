@@ -22,11 +22,13 @@
     </HorizontalScrollView>
 
     <TextView
-        android:id="@+id/clickableCountdown"
+        android:id="@+id/blockingMessage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textSize="160sp"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/white"
+        android:background="@color/black"
+        android:alpha="0.6"
         android:gravity="center"
         android:onClick="suppressClick"
         android:layout_alignParentBottom="true"/>
@@ -39,17 +41,5 @@
         android:textColor="@color/colorPrimaryDark"
         android:gravity="center_horizontal"
         android:layout_marginBottom="45dp"
-        android:layout_alignParentBottom="true"/>
-
-    <TextView
-        android:id="@+id/successMessage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="It all flows!"
-        android:textSize="32sp"
-        android:textColor="@color/colorPrimaryDark"
-        android:visibility="gone"
-        android:gravity="center_horizontal"
-        android:layout_marginBottom="15dp"
         android:layout_alignParentBottom="true"/>
 </RelativeLayout>

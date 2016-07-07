@@ -29,10 +29,9 @@ public class PuzzleActivity extends Activity {
     private static final Handler handler = new Handler();
     private DisplayHelper dh;
     private int puzzleId;
+    private int movesMade = 0;
     private long startTime = 0L;
     long timeInMilliseconds = 0L;
-
-    private Handler customHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +55,7 @@ public class PuzzleActivity extends Activity {
                         flowCheck();
                     }
                 }).start();
-                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND);
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND / 2);
             }
         };
         handler.post(everySecond);
@@ -67,8 +66,6 @@ public class PuzzleActivity extends Activity {
     public void onStop() {
         super.onStop();
         handler.removeCallbacksAndMessages(null);
-
-        Tile.executeQuery("UPDATE tile SET rotation = default_rotation WHERE puzzle_id = " + puzzleId);
     }
 
     public void fetchImages(List<Tile> tiles) {
@@ -87,7 +84,7 @@ public class PuzzleActivity extends Activity {
     }
 
     public void startCountdownTimer() {
-        final TextView countdownTimer = (TextView)findViewById(R.id.clickableCountdown);
+        final TextView countdownTimer = (TextView)findViewById(R.id.blockingMessage);
         new CountDownTimer(4000, 100) {
             public void onTick(long millisUntilFinished) {
                 int timeLeft = (int) Math.ceil(millisUntilFinished / 1000);
@@ -109,20 +106,22 @@ public class PuzzleActivity extends Activity {
 
     public void startTimeTakenTimer() {
         startTime = SystemClock.uptimeMillis();
-        customHandler.postDelayed(updateTimerThread, 0);
+        handler.postDelayed(updateTimerThread, 0);
     }
 
     private Runnable updateTimerThread = new Runnable() {
         public void run() {
             timeInMilliseconds = SystemClock.uptimeMillis() - startTime;
-            int secs = (int) (timeInMilliseconds / 1000);
-            secs = secs % 60;
-            int milliseconds = (int) (timeInMilliseconds % 1000);
-            ((TextView)(findViewById(R.id.puzzleTimer))).setText(secs + "." + milliseconds);
-            customHandler.postDelayed(this, 10);
+            ((TextView)(findViewById(R.id.puzzleTimer))).setText(getTimeTaken());
+            handler.postDelayed(this, 10);
         }
-
     };
+
+    private String getTimeTaken() {
+        int secs = (int) (timeInMilliseconds / 1000);
+        int milliseconds = (int) (timeInMilliseconds % 100);
+        return secs + "." + milliseconds + "s";
+    }
 
     public void populateTiles(List<Tile> tiles) {
         if (puzzleId == 0) { return; }
@@ -148,6 +147,7 @@ public class PuzzleActivity extends Activity {
         tile.rotate();
         int drawableId = ImageHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());
         Picasso.with(this).load(drawableId).into(image);
+        movesMade++;
     }
 
     public void flowCheck() {
@@ -155,9 +155,16 @@ public class PuzzleActivity extends Activity {
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                findViewById(R.id.successMessage).setVisibility(flowsCorrectly ? View.VISIBLE : View.GONE);
+                TextView blockingMessage = (TextView) findViewById(R.id.blockingMessage);
                 if (flowsCorrectly) {
-                    customHandler.removeCallbacksAndMessages(null);
+                    handler.removeCallbacksAndMessages(null);
+
+                    findViewById(R.id.puzzleTimer).setVisibility(View.GONE);
+                    blockingMessage.setVisibility(View.VISIBLE);
+                    blockingMessage.setTextSize(60);
+                    blockingMessage.setText("Done!\n" + getTimeTaken() + "\n" + movesMade + " moves");
+
+                    Tile.executeQuery("UPDATE tile SET rotation = default_rotation WHERE puzzle_id = " + puzzleId);
                 }
             }
         });
