@@ -3,10 +3,13 @@ package uk.co.jakelee.cityflow.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -26,6 +29,10 @@ public class PuzzleActivity extends Activity {
     private static final Handler handler = new Handler();
     private DisplayHelper dh;
     private int puzzleId;
+    private long startTime = 0L;
+    long timeInMilliseconds = 0L;
+
+    private Handler customHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +60,7 @@ public class PuzzleActivity extends Activity {
             }
         };
         handler.post(everySecond);
+        startCountdownTimer();
     }
 
     @Override
@@ -73,6 +81,48 @@ public class PuzzleActivity extends Activity {
             }
         }
     }
+
+    public void suppressClick(View v) {
+        // Nope
+    }
+
+    public void startCountdownTimer() {
+        final TextView countdownTimer = (TextView)findViewById(R.id.clickableCountdown);
+        new CountDownTimer(4000, 100) {
+            public void onTick(long millisUntilFinished) {
+                int timeLeft = (int) Math.ceil(millisUntilFinished / 1000);
+                if (timeLeft > 0) {
+                    countdownTimer.setText(Integer.toString(timeLeft));
+                } else {
+                    countdownTimer.setTextSize(100);
+                    countdownTimer.setText("Flow!");
+                }
+            }
+
+            public void onFinish() {
+                countdownTimer.setVisibility(View.GONE);
+                startTimeTakenTimer();
+            }
+
+        }.start();
+    }
+
+    public void startTimeTakenTimer() {
+        startTime = SystemClock.uptimeMillis();
+        customHandler.postDelayed(updateTimerThread, 0);
+    }
+
+    private Runnable updateTimerThread = new Runnable() {
+        public void run() {
+            timeInMilliseconds = SystemClock.uptimeMillis() - startTime;
+            int secs = (int) (timeInMilliseconds / 1000);
+            secs = secs % 60;
+            int milliseconds = (int) (timeInMilliseconds % 1000);
+            ((TextView)(findViewById(R.id.puzzleTimer))).setText(secs + "." + milliseconds);
+            customHandler.postDelayed(this, 10);
+        }
+
+    };
 
     public void populateTiles(List<Tile> tiles) {
         if (puzzleId == 0) { return; }
@@ -106,6 +156,9 @@ public class PuzzleActivity extends Activity {
             @Override
             public void run() {
                 findViewById(R.id.successMessage).setVisibility(flowsCorrectly ? View.VISIBLE : View.GONE);
+                if (flowsCorrectly) {
+                    customHandler.removeCallbacksAndMessages(null);
+                }
             }
         });
     }

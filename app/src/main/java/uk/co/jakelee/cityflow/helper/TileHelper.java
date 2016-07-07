@@ -57,14 +57,10 @@ public class TileHelper {
     }
 
     public static boolean checkTileHeight(Tile tile) {
-        int i = tile.getHeight(Constants.SIDE_NORTH);
-        int j = getTile(tile, Constants.SIDE_NORTH).getHeight(Constants.SIDE_SOUTH);
-        boolean a = i == j ;
-        boolean b = tile.getHeight(Constants.SIDE_EAST) == getTile(tile, Constants.SIDE_EAST).getHeight(Constants.SIDE_WEST);
-        boolean c = tile.getHeight(Constants.SIDE_SOUTH) == getTile(tile, Constants.SIDE_SOUTH).getHeight(Constants.SIDE_NORTH);
-        boolean d = tile.getHeight(Constants.SIDE_WEST) == getTile(tile, Constants.SIDE_WEST).getHeight(Constants.SIDE_EAST);
-        return  a && b && c && d;
-
+        return  tile.getHeight(Constants.SIDE_NORTH) == getTile(tile, Constants.SIDE_NORTH).getHeight(Constants.SIDE_SOUTH) &&
+                tile.getHeight(Constants.SIDE_EAST) == getTile(tile, Constants.SIDE_EAST).getHeight(Constants.SIDE_WEST) &&
+                tile.getHeight(Constants.SIDE_SOUTH) == getTile(tile, Constants.SIDE_SOUTH).getHeight(Constants.SIDE_NORTH) &&
+                tile.getHeight(Constants.SIDE_WEST) == getTile(tile, Constants.SIDE_WEST).getHeight(Constants.SIDE_EAST);
     }
 
     public static Tile_Type getTileType(Tile tile) {

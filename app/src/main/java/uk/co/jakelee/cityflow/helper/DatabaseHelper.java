@@ -42,7 +42,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.SETTING_MUSIC, "Music"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.SETTING_SOUND, "Sounds"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_1_NAME, "Testing large maps"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_2_NAME, "Simple sqaure"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_2_NAME, "Simple square"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_3_NAME, "More complex square"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_4_NAME, "All possible tiles"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_5_NAME, "City Flow logo"));
@@ -330,5 +330,6 @@ public class DatabaseHelper {
             tileTypes.add(new Tile_Type(39, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH));
             tileTypes.add(new Tile_Type(40, Constants.ENVIRONMENT_CITY, Constants.FLOW_CANAL, Constants.FLOW_NONE, Constants.FLOW_CANAL, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
             tileTypes.add(new Tile_Type(41, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_CANAL, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL));
+        Tile_Type.saveInTx(tileTypes);
     }
 }
