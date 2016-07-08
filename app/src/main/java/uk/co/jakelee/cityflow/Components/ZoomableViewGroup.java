@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.ViewParent;
 import android.widget.RelativeLayout;
 
+import uk.co.jakelee.cityflow.helper.Constants;
+import uk.co.jakelee.cityflow.model.Setting;
+
 public class ZoomableViewGroup extends RelativeLayout {
 
     private static final int INVALID_POINTER_ID = 1;
@@ -30,8 +33,10 @@ public class ZoomableViewGroup extends RelativeLayout {
     private float mLastTouchY;
 
     private float mFocusY;
-
     private float mFocusX;
+
+    private int MAX_ZOOM = 2;
+    private int MIN_ZOOM = 1;
 
     private float[] mInvalidateWorkingArray = new float[6];
     private float[] mDispatchTouchEventWorkingArray = new float[2];
@@ -60,9 +65,7 @@ public class ZoomableViewGroup extends RelativeLayout {
         for (int i = 0; i < childCount; i++) {
             View child = getChildAt(i);
             if (child.getVisibility() != GONE) {
-                int left = child.getLeft();
-                int top = child.getTop();
-                child.layout(left, top, left+child.getMeasuredWidth(), top + child.getMeasuredHeight());
+                child.layout(child.getLeft(), child.getTop(), child.getLeft() + child.getMeasuredWidth(), child.getTop()  + child.getMeasuredHeight());
             }
         }
     }
@@ -216,7 +219,9 @@ public class ZoomableViewGroup extends RelativeLayout {
                 mFocusX = detector.getFocusX();
                 mFocusY = detector.getFocusY();
             }
-            mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
+            float minZoom = Setting.getFloat(Constants.SETTING_MIN_ZOOM);
+            float maxZoom = Setting.getFloat(Constants.SETTING_MAX_ZOOM);
+            mScaleFactor = Math.max(minZoom, Math.min(mScaleFactor, maxZoom));
             mScaleMatrix.setScale(mScaleFactor, mScaleFactor,
                     mFocusX, mFocusY);
             mScaleMatrix.invert(mScaleMatrixInverse);

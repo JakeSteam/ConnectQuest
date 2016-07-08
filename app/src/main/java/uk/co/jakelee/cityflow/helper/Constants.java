@@ -32,6 +32,8 @@ public class Constants {
     public static final int ROTATION_WEST = 4;
     public static final int SETTING_PUZZLES_COMPLETED = 1;
     public static final int SETTING_TILES_ROTATED = 2;
+    public static final int SETTING_MIN_ZOOM = 3;
+    public static final int SETTING_MAX_ZOOM = 4;
     public static final int SIDE_NORTH = 1;
     public static final int SIDE_EAST = 2;
     public static final int SIDE_SOUTH = 3;

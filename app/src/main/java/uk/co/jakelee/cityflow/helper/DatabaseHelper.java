@@ -123,6 +123,8 @@ public class DatabaseHelper {
         List<Setting> settings = new ArrayList<>();
             settings.add(new Setting(1, true));
             settings.add(new Setting(2, true));
+            settings.add(new Setting(3, 0.75f));
+            settings.add(new Setting(4, 1.75f));
         Setting.saveInTx(settings);
     }
 

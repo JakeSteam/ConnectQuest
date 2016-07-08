@@ -51,19 +51,19 @@ public class DisplayHelper {
         image.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (v.getDrawingCache() == null) { return false; }
-                Bitmap bmp = Bitmap.createBitmap(v.getDrawingCache());
-                if (bmp == null || bmp.getWidth() < event.getX() || bmp.getHeight() < event.getY()) {
-                    return false;
-                }
-                int color = bmp.getPixel((int) event.getX(), (int) event.getY());
-                if (color == Color.TRANSPARENT) {
-                    return false;
-                } else {
-                    if(event.getAction()==MotionEvent.ACTION_UP) {
-                        activity.handleTileClick(image, tile);
+                try {
+                    Bitmap bmp = Bitmap.createBitmap(v.getDrawingCache());
+                    int color = bmp.getPixel((int) event.getX(), (int) event.getY());
+                    if (color == Color.TRANSPARENT) {
+                        return false;
+                    } else {
+                        if (event.getAction() == MotionEvent.ACTION_UP) {
+                            activity.handleTileClick(image, tile);
+                        }
+                        return true;
                     }
-                    return true;
+                } catch (Exception e) {
+                    return false;
                 }
             }});
         return image;

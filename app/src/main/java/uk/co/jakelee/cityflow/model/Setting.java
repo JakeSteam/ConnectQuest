@@ -1,17 +1,31 @@
 package uk.co.jakelee.cityflow.model;
 
 import com.orm.SugarRecord;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 public class Setting extends SugarRecord {
     private int settingId;
-    private boolean value;
+    private boolean booleanValue;
+    private int intValue;
+    private float floatValue;
 
     public Setting() {
     }
 
-    public Setting(int settingId, boolean value) {
+    public Setting(int settingId, boolean booleanValue) {
         this.settingId = settingId;
-        this.value = value;
+        this.booleanValue = booleanValue;
+    }
+
+    public Setting(int settingId, int intValue) {
+        this.settingId = settingId;
+        this.intValue = intValue;
+    }
+
+    public Setting(int settingId, float floatValue) {
+        this.settingId = settingId;
+        this.floatValue = floatValue;
     }
 
     public int getSettingId() {
@@ -22,12 +36,55 @@ public class Setting extends SugarRecord {
         this.settingId = settingId;
     }
 
-    public boolean isValue() {
-        return value;
+    public boolean getBooleanValue() {
+        return booleanValue;
     }
 
-    public void setValue(boolean value) {
-        this.value = value;
+    public void setBooleanValue(boolean value) {
+        this.booleanValue = value;
+    }
+
+    public int getIntValue() {
+        return intValue;
+    }
+
+    public void setIntValue(int intValue) {
+        this.intValue = intValue;
+    }
+
+    public float getFloatValue() {
+        return floatValue;
+    }
+
+    public void setFloatValue(float floatValue) {
+        this.floatValue = floatValue;
+    }
+
+    public static boolean isTrue(int settingId) {
+        Setting setting = Select.from(Setting.class).where(
+                Condition.prop("setting_id").eq(settingId)).first();
+
+        return setting != null && setting.getBooleanValue();
+    }
+
+    public static float getInt(int settingId) {
+        Setting setting = Select.from(Setting.class).where(
+                Condition.prop("setting_id").eq(settingId)).first();
+
+        if (setting != null) {
+            return setting.getIntValue();
+        }
+        return 0;
+    }
+
+    public static float getFloat(int settingId) {
+        Setting setting = Select.from(Setting.class).where(
+                Condition.prop("setting_id").eq(settingId)).first();
+
+        if (setting != null) {
+            return setting.getFloatValue();
+        }
+        return 0f;
     }
 
     public String getName() {
