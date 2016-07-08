@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -130,16 +129,17 @@ public class PuzzleActivity extends Activity {
         tileContainer.removeAllViews();
         int maxY = TileHelper.getMaxY(tiles);
 
-        List<ImageView> images = new ArrayList<>();
+        tileContainer.removeAllViews();
         for (final Tile tile : tiles) {
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+            int leftPadding = (tile.getY() + tile.getX()) * (dh.getTileWidth()/2);
+            int topPadding = (tile.getX() + maxY - tile.getY()) * (dh.getTileHeight()/2);
+            layoutParams.setMargins(leftPadding, topPadding, 0, 0);
+
             int drawableId = ImageHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());
             ImageView image = dh.createTileImageView(this, tile, maxY, drawableId);
-            images.add(image);
-        }
 
-        tileContainer.removeAllViews();
-        for (ImageView image : images) {
-            tileContainer.addView(image);
+            tileContainer.addView(image, layoutParams);
         }
     }
 

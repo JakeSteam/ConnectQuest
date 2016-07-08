@@ -44,7 +44,7 @@ public class DisplayHelper {
     }
 
     public ImageView createTileImageView(final PuzzleActivity activity, final Tile tile, int maxY, int drawableId) {
-        final ImageView image = TileHelper.createTileImageView(context, tile, maxY, getTileWidth(), getTileHeight());
+        final ImageView image = new ImageView(activity);
         Picasso.with(context).load(drawableId).into(image);
 
         image.setDrawingCacheEnabled(true);

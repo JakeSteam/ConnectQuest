@@ -1,8 +1,5 @@
 package uk.co.jakelee.cityflow.helper;
 
-import android.content.Context;
-import android.widget.ImageView;
-
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -22,15 +19,6 @@ public class TileHelper {
             }
         }
         return maxY;
-    }
-
-    public static ImageView createTileImageView(Context context, Tile tile, int maxY, int width, int height) {
-        ImageView image = new ImageView(context);
-        int leftPadding = (tile.getY() + tile.getX()) * (width/2);
-        int topPadding = (tile.getX() + maxY - tile.getY()) * (height/2);
-        image.setPadding(leftPadding, topPadding, 0, 0);
-
-        return image;
     }
 
     public static boolean checkPuzzleFlow(int puzzleId) {

@@ -241,6 +241,13 @@ public class DatabaseHelper {
             tiles.add(new Tile(4, 39, 7, 1, Constants.ROTATION_NORTH));
             tiles.add(new Tile(4, 40, 7, 2, Constants.ROTATION_NORTH));
             tiles.add(new Tile(4, 41, 7, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 42, 7, 4, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 43, 7, 5, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 44, 8, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 45, 8, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 46, 8, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 47, 8, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(4, 48, 8, 4, Constants.ROTATION_NORTH));
 
             // City flow logo
             tiles.add(new Tile(5, 21, 0, 5, Constants.ROTATION_NORTH));
@@ -338,6 +345,7 @@ public class DatabaseHelper {
             tiles.add(new Tile(5, 6, 12, 9, Constants.ROTATION_NORTH));
             tiles.add(new Tile(5, 6, 13, 8, Constants.ROTATION_NORTH));
 
+            // Mountain heights
             tiles.add(new Tile(6, 19, 0, 0, Constants.ROTATION_NORTH));
             tiles.add(new Tile(6, 25, 0, 1, Constants.ROTATION_NORTH));
             tiles.add(new Tile(6, 20, 0, 2, Constants.ROTATION_NORTH));
