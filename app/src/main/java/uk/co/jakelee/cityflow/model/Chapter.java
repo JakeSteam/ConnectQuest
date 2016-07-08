@@ -4,18 +4,14 @@ import com.orm.SugarRecord;
 
 public class Chapter extends SugarRecord{
     private int chapterId;
-    private int name;
-    private int description;
     private String iapCode;
     private boolean unlocked;
 
     public Chapter() {
     }
 
-    public Chapter(int chapterId, int name, int description, String iapCode, boolean unlocked) {
+    public Chapter(int chapterId, String iapCode, boolean unlocked) {
         this.chapterId = chapterId;
-        this.name = name;
-        this.description = description;
         this.iapCode = iapCode;
         this.unlocked = unlocked;
     }
@@ -26,22 +22,6 @@ public class Chapter extends SugarRecord{
 
     public void setChapterId(int chapterId) {
         this.chapterId = chapterId;
-    }
-
-    public int getName() {
-        return name;
-    }
-
-    public void setName(int name) {
-        this.name = name;
-    }
-
-    public int getDescription() {
-        return description;
-    }
-
-    public void setDescription(int description) {
-        this.description = description;
     }
 
     public String getIapCode() {
@@ -58,5 +38,13 @@ public class Chapter extends SugarRecord{
 
     public void setUnlocked(boolean unlocked) {
         this.unlocked = unlocked;
+    }
+
+    public String getName() {
+        return Text.get("CHAPTER_", getChapterId(), "_NAME");
+    }
+
+    public String getDescription() {
+        return Text.get("CHAPTER_", getChapterId(), "_DESC");
     }
 }

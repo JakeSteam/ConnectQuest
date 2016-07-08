@@ -15,7 +15,6 @@ import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.model.Chapter;
-import uk.co.jakelee.cityflow.model.Text;
 
 public class StoryActivity extends Activity {
     private DisplayHelper dh;
@@ -35,7 +34,7 @@ public class StoryActivity extends Activity {
         List<Chapter> chapters = Chapter.listAll(Chapter.class);
         for (Chapter chapter : chapters) {
             TextView chapterText = new TextView(this);
-            chapterText.setText(Text.get(chapter.getName()) + " - " + Text.get(chapter.getDescription()));
+            chapterText.setText(chapter.getName() + " - " + chapter.getDescription());
             chapterText.setTextColor(chapter.isUnlocked() ? Color.BLACK : Color.LTGRAY);
             chapterText.setTextSize(24);
             chapterText.setTag(chapter.getChapterId());

@@ -15,7 +15,6 @@ import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
-import uk.co.jakelee.cityflow.model.Text;
 
 public class ChapterActivity extends Activity {
     private DisplayHelper dh;
@@ -57,7 +56,7 @@ public class ChapterActivity extends Activity {
     public void showPuzzleInfo(Puzzle puzzle) {
         selectedPuzzle = puzzle;
         final Activity activity = this;
-        ((TextView) findViewById(R.id.puzzleName)).setText(Text.get(puzzle.getName()));
+        ((TextView) findViewById(R.id.puzzleName)).setText(puzzle.getName());
         ((TextView) findViewById(R.id.puzzleStars)).setText("Stars: " + puzzle.getBestRating());
         ((TextView) findViewById(R.id.puzzleParTime)).setText("Par Time: " + DateHelper.getPuzzleTimeString(puzzle.getParTime()));
         ((TextView) findViewById(R.id.puzzleParMoves)).setText("Par Moves: " + Integer.toString(puzzle.getParMoves()));

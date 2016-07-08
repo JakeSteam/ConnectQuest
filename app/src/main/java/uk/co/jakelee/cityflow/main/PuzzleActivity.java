@@ -25,7 +25,6 @@ import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.ImageHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleHelper;
-import uk.co.jakelee.cityflow.helper.TextHelper;
 import uk.co.jakelee.cityflow.helper.TileHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Text;
@@ -62,7 +61,7 @@ public class PuzzleActivity extends Activity {
                         flowCheck();
                     }
                 }).start();
-                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 10);
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND / 2);
             }
         };
         handler.post(everySecond);
@@ -177,7 +176,7 @@ public class PuzzleActivity extends Activity {
         timeInMilliseconds = timeLastMoved - startTime;
         int stars = PuzzleHelper.getStars(puzzle, timeInMilliseconds, movesMade);
         Pair<Boolean, Boolean> newBests = PuzzleHelper.updateBest(puzzle, timeInMilliseconds, movesMade, stars);
-        blockingMessage.setText(String.format(Locale.ENGLISH, Text.get(TextHelper.PUZZLE_END_TEXT),
+        blockingMessage.setText(String.format(Locale.ENGLISH, Text.get("PUZZLE_END_TEXT"),
                 stars,
                 DateHelper.getPuzzleTimeString(timeInMilliseconds),
                 movesMade,

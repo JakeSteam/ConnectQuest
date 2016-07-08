@@ -9,13 +9,13 @@ import uk.co.jakelee.cityflow.main.MainActivity;
 
 public class Text extends SugarRecord{
     private int language;
-    private int textId;
+    private String textId;
     private String text;
 
     public Text() {
     }
 
-    public Text(int language, int textId, String text) {
+    public Text(int language, String textId, String text) {
         this.language = language;
         this.textId = textId;
         this.text = text;
@@ -29,11 +29,11 @@ public class Text extends SugarRecord{
         this.language = language;
     }
 
-    public int getTextId() {
+    public String getTextId() {
         return textId;
     }
 
-    public void setTextId(int textId) {
+    public void setTextId(String textId) {
         this.textId = textId;
     }
 
@@ -45,7 +45,23 @@ public class Text extends SugarRecord{
         this.text = text;
     }
 
-    public static String get(int textId) {
+    public static String get(String type, int value) {
+        return get(type + value);
+    }
+
+    public static String get(String type, String value) {
+        return get(type + value);
+    }
+
+    public static String get(String type, int value, String parameter) {
+        return get(type + value + parameter);
+    }
+
+    public static String get(String type, String value, String parameter) {
+        return get(type + value + parameter);
+    }
+
+    public static String get(String textId) {
         int languageId = MainActivity.prefs.getInt("language", Constants.LANGUAGE_EN_GB);
         String defaultText = "Failed to find text... please contact support!";
         Text text = Select.from(Text.class).where(
