@@ -5,21 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".main.PuzzleActivity">
 
-    <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fadeScrollbars="false">
-        <ScrollView
-            android:layout_width="wrap_content"
+        <uk.co.jakelee.cityflow.components.ZoomableViewGroup
+            android:id="@+id/tileContainer"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fadeScrollbars="false">
-            <RelativeLayout
-                android:id="@+id/tileContainer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" />
-        </ScrollView>
-    </HorizontalScrollView>
+            android:orientation="vertical" />
 
     <TextView
         android:id="@+id/blockingMessage"

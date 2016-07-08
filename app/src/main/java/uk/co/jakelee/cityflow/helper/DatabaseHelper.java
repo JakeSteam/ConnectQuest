@@ -135,45 +135,9 @@ public class DatabaseHelper {
 
     private static void createTile() {
         List<Tile> tiles = new ArrayList<>();
-            // Testing large maps
-            tiles.add(new Tile(1, 10, 0, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 0, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 0, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 0, 3, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 0, 4, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 1, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 1, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 1, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 1, 3, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 1, 4, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 2, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 2, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 2, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 2, 3, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 2, 4, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 3, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 3, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 3, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 3, 3, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 3, 4, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 4, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 4, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 4, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 4, 3, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 4, 4, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 5, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 5, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 5, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 5, 3, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 5, 4, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 5, 5, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 6, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 6, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 6, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 6, 3, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 6, 4, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 6, 5, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 10, 7, 0, Constants.ROTATION_NORTH));
+            // Testing scaled maps maps
+            tiles.add(new Tile(1, 18, 0, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 18, 0, 1, Constants.ROTATION_NORTH));
 
             // Simple line
             tiles.add(new Tile(2, 3, 0, 0, Constants.ROTATION_NORTH));

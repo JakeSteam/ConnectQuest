@@ -10,7 +10,6 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -19,6 +18,7 @@ import java.util.List;
 import java.util.Locale;
 
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
@@ -118,13 +118,13 @@ public class PuzzleActivity extends Activity {
     public void populateTiles(List<Tile> tiles) {
         if (puzzleId == 0) { return; }
 
-        RelativeLayout tileContainer = (RelativeLayout) findViewById(R.id.tileContainer);
+        ZoomableViewGroup tileContainer = (ZoomableViewGroup) findViewById(R.id.tileContainer);
         tileContainer.removeAllViews();
         int maxY = TileHelper.getMaxY(tiles);
 
         tileContainer.removeAllViews();
         for (final Tile tile : tiles) {
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+            ZoomableViewGroup.LayoutParams layoutParams = new ZoomableViewGroup.LayoutParams(ZoomableViewGroup.LayoutParams.WRAP_CONTENT, ZoomableViewGroup.LayoutParams.WRAP_CONTENT);
             int leftPadding = (tile.getY() + tile.getX()) * (dh.getTileWidth()/2);
             int topPadding = (tile.getX() + maxY - tile.getY()) * (dh.getTileHeight()/2);
             layoutParams.setMargins(leftPadding, topPadding, 0, 0);
