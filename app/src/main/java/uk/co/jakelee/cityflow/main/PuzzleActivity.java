@@ -51,20 +51,13 @@ public class PuzzleActivity extends Activity {
         List<Tile> tiles = puzzle.getTiles();
         populateTiles(tiles);
         fetchImages(tiles);
-
-        final Runnable everySecond = new Runnable() {
-            @Override
-            public void run() {
-                new Thread(new Runnable() {
-                    public void run() {
-                        flowCheck();
-                    }
-                }).start();
-                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND / 2);
-            }
-        };
-        handler.post(everySecond);
         startCountdownTimer();
+
+        new Thread(new Runnable() {
+            public void run() {
+                flowCheck();
+            }
+        }).start();
     }
 
     @Override
@@ -152,16 +145,18 @@ public class PuzzleActivity extends Activity {
     }
 
     public void flowCheck() {
-        final boolean flowsCorrectly = TileHelper.checkPuzzleFlow(this.puzzleId);
+        boolean flowsCorrectly = false;
+        while (!flowsCorrectly) {
+            flowsCorrectly = TileHelper.checkPuzzleFlow(this.puzzleId);
+        }
+
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (flowsCorrectly) {
-                    handler.removeCallbacksAndMessages(null);
+                handler.removeCallbacksAndMessages(null);
 
-                    displayPuzzleEndScreen();
-                    Tile.executeQuery("UPDATE tile SET rotation = default_rotation WHERE puzzle_id = " + puzzleId);
-                }
+                displayPuzzleEndScreen();
+                Tile.executeQuery("UPDATE tile SET rotation = default_rotation WHERE puzzle_id = " + puzzleId);
             }
         });
     }
