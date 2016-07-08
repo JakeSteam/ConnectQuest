@@ -52,12 +52,6 @@ public class PuzzleActivity extends Activity {
         populateTiles(tiles);
         fetchImages(tiles);
         startCountdownTimer();
-
-        new Thread(new Runnable() {
-            public void run() {
-                flowCheck();
-            }
-        }).start();
     }
 
     @Override
@@ -97,6 +91,12 @@ public class PuzzleActivity extends Activity {
             public void onFinish() {
                 countdownTimer.setVisibility(View.GONE);
                 startTimeTakenTimer();
+
+                new Thread(new Runnable() {
+                    public void run() {
+                        flowCheck();
+                    }
+                }).start();
             }
 
         }.start();
