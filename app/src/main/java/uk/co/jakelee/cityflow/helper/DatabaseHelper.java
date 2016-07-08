@@ -36,16 +36,16 @@ public class DatabaseHelper {
     private static void createText() {
         List<Text> texts = new ArrayList<>();
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.CHAPTER_1_NAME, "The Big City"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.CHAPTER_1_DESC, "Escape To The Country"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.CHAPTER_2_NAME, "Pack 2 English"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.CHAPTER_2_DESC, "Desc 2 English"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.CHAPTER_1_DESC, "Get flowing in the big city."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.CHAPTER_2_NAME, "Escape To The Country"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.CHAPTER_2_DESC, "Flow all the way out to the country."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.SETTING_MUSIC, "Music"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.SETTING_SOUND, "Sounds"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_1_NAME, "Testing large maps"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_2_NAME, "Simple square"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_3_NAME, "More complex square"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_4_NAME, "All possible tiles"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_5_NAME, "City Flow logo"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_1_NAME, "Debugging"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_2_NAME, "Simple Square"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_3_NAME, "More Complex Square"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_4_NAME, "All Tiles"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_5_NAME, "Logo"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_END_TEXT, "It flows!\n\n%1$d stars\nTime: %2$s\nMoves: %3$d\n\nTarget Time: %4$s\nTarget Moves: %5$d\n\nBest Time: %6$s%7$s\nBest Moves: %8$d%9$s"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_1_TEXT, "Grass Road Corner"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_2_TEXT, "Grass Road Straight"));
@@ -95,6 +95,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_46_TEXT, "City Road/Path Corner"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_47_TEXT, "City High Road Straight"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.TILE_48_TEXT, "City High Road Corner"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, TextHelper.PUZZLE_6_NAME, "Mountain Heights"));
         Text.saveInTx(texts);
     }
 
@@ -107,11 +108,12 @@ public class DatabaseHelper {
 
     private static void createPuzzle() {
         List<Puzzle> puzzles = new ArrayList<>();
-            puzzles.add(new Puzzle(1, TextHelper.PUZZLE_1_NAME, 1, Constants.TYPE_STORY, 1, 10000L, 20, 0L, 0, 0));
-            puzzles.add(new Puzzle(2, TextHelper.PUZZLE_2_NAME, 1, Constants.TYPE_STORY, 1, 10000L, 20, 0L, 0, 0));
-            puzzles.add(new Puzzle(3, TextHelper.PUZZLE_3_NAME, 1, Constants.TYPE_STORY, 1, 10000L, 20, 0L, 0, 0));
-            puzzles.add(new Puzzle(4, TextHelper.PUZZLE_4_NAME, 1, Constants.TYPE_STORY, 1, 10000L, 20, 0L, 0, 0));
-            puzzles.add(new Puzzle(5, TextHelper.PUZZLE_5_NAME, 1, Constants.TYPE_STORY, 1, 10000L, 20, 0L, 0, 0));
+            puzzles.add(new Puzzle(1, TextHelper.PUZZLE_1_NAME, 1, Constants.TYPE_STORY, 10000L, 20, 0L, 0, 0));
+            puzzles.add(new Puzzle(2, TextHelper.PUZZLE_2_NAME, 1, Constants.TYPE_STORY, 10000L, 20, 0L, 0, 0));
+            puzzles.add(new Puzzle(3, TextHelper.PUZZLE_3_NAME, 1, Constants.TYPE_STORY, 10000L, 20, 0L, 0, 0));
+            puzzles.add(new Puzzle(4, TextHelper.PUZZLE_4_NAME, 1, Constants.TYPE_STORY, 10000L, 20, 0L, 0, 0));
+            puzzles.add(new Puzzle(5, TextHelper.PUZZLE_5_NAME, 1, Constants.TYPE_STORY, 10000L, 20, 0L, 0, 0));
+            puzzles.add(new Puzzle(6, TextHelper.PUZZLE_6_NAME, 1, Constants.TYPE_STORY, 10000L, 20, 0L, 0, 0));
         Puzzle.saveInTx(puzzles);
     }
 
@@ -333,6 +335,23 @@ public class DatabaseHelper {
             tiles.add(new Tile(5, 6, 12, 8, Constants.ROTATION_NORTH));
             tiles.add(new Tile(5, 6, 12, 9, Constants.ROTATION_NORTH));
             tiles.add(new Tile(5, 6, 13, 8, Constants.ROTATION_NORTH));
+
+            tiles.add(new Tile(6, 19, 0, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(6, 25, 0, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(6, 20, 0, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(6, 48, 0, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(6, 38, 1, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(6, 22, 1, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(6, 13, 1, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(6, 47, 1, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(6, 38, 2, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(6, 22, 2, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(6, 30, 2, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(6, 20, 2, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(6, 19, 3, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(6, 25, 3, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(6, 29, 3, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(6, 19, 3, 3, Constants.ROTATION_NORTH));
         Tile.saveInTx(tiles);
     }
 

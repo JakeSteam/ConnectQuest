@@ -12,40 +12,64 @@ import java.util.List;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
+import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class ChapterActivity extends Activity {
     private DisplayHelper dh;
+    private Puzzle selectedPuzzle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chapter);
         dh = DisplayHelper.getInstance(this);
-
-        LinearLayout puzzleContainer = (LinearLayout) findViewById(R.id.puzzleContainer);
-        populatePuzzles(puzzleContainer);
     }
 
-    public void populatePuzzles(LinearLayout puzzleContainer) {
-        final Activity activity = this;
-        List<Puzzle> puzzles = Puzzle.getPuzzles(Constants.TYPE_STORY);
-        for (Puzzle puzzle : puzzles) {
-            TextView chapterText = new TextView(this);
-            chapterText.setText("#" + puzzle.getPuzzleId() + ": " + Text.get(puzzle.getName()));
-            chapterText.setTextSize(24);
-            chapterText.setTag(puzzle.getPuzzleId());
-            chapterText.setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View v) {
-                    Intent intent = new Intent(activity, PuzzleActivity.class);
-                    intent.putExtra(Constants.INTENT_PUZZLE, (int) v.getTag());
-                    startActivity(intent);
-                }
-            });
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-            puzzleContainer.addView(chapterText);
+        populatePuzzles();
+        showPuzzleInfo(selectedPuzzle);
+    }
+
+    public void populatePuzzles() {
+        LinearLayout puzzleContainer = (LinearLayout) findViewById(R.id.puzzleContainer);
+        puzzleContainer.removeAllViews();
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(7, 7, 7, 7);
+
+        List<Puzzle> puzzles = Puzzle.getPuzzles(Constants.TYPE_STORY);
+        int puzzleNumber = 1;
+        for (final Puzzle puzzle : puzzles) {
+            if (puzzleNumber == 1) {
+                selectedPuzzle = puzzle;
+            }
+
+            puzzleContainer.addView(dh.createPuzzleSelectImageView(this, puzzleNumber, puzzle), layoutParams);
+            puzzleNumber++;
         }
+    }
+
+    public void showPuzzleInfo(Puzzle puzzle) {
+        selectedPuzzle = puzzle;
+        final Activity activity = this;
+        ((TextView) findViewById(R.id.puzzleName)).setText(Text.get(puzzle.getName()));
+        ((TextView) findViewById(R.id.puzzleStars)).setText("Stars: " + puzzle.getBestRating());
+        ((TextView) findViewById(R.id.puzzleParTime)).setText("Par Time: " + DateHelper.getPuzzleTimeString(puzzle.getParTime()));
+        ((TextView) findViewById(R.id.puzzleParMoves)).setText("Par Moves: " + Integer.toString(puzzle.getParMoves()));
+        ((TextView) findViewById(R.id.puzzleBestTime)).setText("Best Time: " + DateHelper.getPuzzleTimeString(puzzle.getBestTime()));
+        ((TextView) findViewById(R.id.puzzleBestMoves)).setText("Best Moves: " + Integer.toString(puzzle.getBestMoves()));
+        findViewById(R.id.puzzleButton).setTag(puzzle.getPuzzleId());
+        findViewById(R.id.puzzleButton).setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, PuzzleActivity.class);
+                intent.putExtra(Constants.INTENT_PUZZLE, (int) v.getTag());
+                startActivity(intent);
+            }
+        });
     }
 }

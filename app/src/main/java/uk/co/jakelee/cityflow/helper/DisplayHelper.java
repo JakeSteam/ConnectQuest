@@ -8,11 +8,16 @@ import android.graphics.Color;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.main.ChapterActivity;
 import uk.co.jakelee.cityflow.main.PuzzleActivity;
+import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Tile;
 
 public class DisplayHelper {
@@ -62,6 +67,21 @@ public class DisplayHelper {
                 }
             }});
         return image;
+    }
+
+    public TextView createPuzzleSelectImageView(final ChapterActivity activity, int puzzleNumber, final Puzzle puzzle) {
+        TextView puzzleText = new TextView(activity);
+        puzzleText.setText("  " + puzzleNumber + " ");
+        puzzleText.setTextSize(30);
+        puzzleText.setPadding(10, 10, 10, 10);
+        puzzleText.setBackgroundResource(R.drawable.white);
+        puzzleText.setTag(puzzle.getPuzzleId());
+        puzzleText.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                activity.showPuzzleInfo(puzzle);
+            }
+        });
+        return puzzleText;
     }
 
     public int dpToPixel(float dp){

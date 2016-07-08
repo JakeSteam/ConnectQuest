@@ -62,7 +62,7 @@ public class PuzzleActivity extends Activity {
                         flowCheck();
                     }
                 }).start();
-                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND / 2);
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 10);
             }
         };
         handler.post(everySecond);
@@ -175,8 +175,8 @@ public class PuzzleActivity extends Activity {
 
         Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
         timeInMilliseconds = timeLastMoved - startTime;
-        Pair<Boolean, Boolean> newBests = PuzzleHelper.updateBest(puzzle, timeInMilliseconds, movesMade);
         int stars = PuzzleHelper.getStars(puzzle, timeInMilliseconds, movesMade);
+        Pair<Boolean, Boolean> newBests = PuzzleHelper.updateBest(puzzle, timeInMilliseconds, movesMade, stars);
         blockingMessage.setText(String.format(Locale.ENGLISH, Text.get(TextHelper.PUZZLE_END_TEXT),
                 stars,
                 DateHelper.getPuzzleTimeString(timeInMilliseconds),

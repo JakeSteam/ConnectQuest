@@ -11,7 +11,6 @@ public class Puzzle extends SugarRecord {
     private int name;
     private int chapter;
     private int type;
-    private int complexity;
     private long parTime;
     private int parMoves;
     private long bestTime;
@@ -21,12 +20,11 @@ public class Puzzle extends SugarRecord {
     public Puzzle() {
     }
 
-    public Puzzle(int puzzleId, int name, int chapter, int type, int complexity, long parTime, int parMoves, long bestTime, int bestMoves, int bestRating) {
+    public Puzzle(int puzzleId, int name, int chapter, int type, long parTime, int parMoves, long bestTime, int bestMoves, int bestRating) {
         this.puzzleId = puzzleId;
         this.name = name;
         this.chapter = chapter;
         this.type = type;
-        this.complexity = complexity;
         this.parTime = parTime;
         this.parMoves = parMoves;
         this.bestTime = bestTime;
@@ -64,14 +62,6 @@ public class Puzzle extends SugarRecord {
 
     public void setType(int type) {
         this.type = type;
-    }
-
-    public int getComplexity() {
-        return complexity;
-    }
-
-    public void setComplexity(int complexity) {
-        this.complexity = complexity;
     }
 
     public long getParTime() {

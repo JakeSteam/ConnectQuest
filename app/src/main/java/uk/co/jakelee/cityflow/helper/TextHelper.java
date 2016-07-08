@@ -1,6 +1,7 @@
 package uk.co.jakelee.cityflow.helper;
 
 public class TextHelper {
+
     public static final int CHAPTER_1_NAME = 1;
     public static final int CHAPTER_1_DESC = 2;
     public static final int CHAPTER_2_NAME = 3;
@@ -63,4 +64,5 @@ public class TextHelper {
     public static final int TILE_46_TEXT = 60;
     public static final int TILE_47_TEXT = 61;
     public static final int TILE_48_TEXT = 62;
+    public static final int PUZZLE_6_NAME = 63;
 }

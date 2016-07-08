@@ -16,7 +16,7 @@ public class PuzzleHelper {
         return stars;
     }
 
-    public static Pair<Boolean, Boolean> updateBest(Puzzle puzzle, long timeTaken, int movesTaken) {
+    public static Pair<Boolean, Boolean> updateBest(Puzzle puzzle, long timeTaken, int movesTaken, int stars) {
         boolean newBestTime = false;
         boolean newBestMoves = false;
         if (timeTaken < puzzle.getBestTime() || puzzle.getBestTime() == 0) {
@@ -26,6 +26,9 @@ public class PuzzleHelper {
         if (movesTaken < puzzle.getBestMoves() || puzzle.getBestMoves() == 0) {
             puzzle.setBestMoves(movesTaken);
             newBestMoves = true;
+        }
+        if (stars > puzzle.getBestRating() || puzzle.getBestRating() == 0) {
+            puzzle.setBestRating(stars);
         }
 
         puzzle.save();
