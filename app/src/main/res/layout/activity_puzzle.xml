@@ -32,4 +32,26 @@
         android:gravity="center_horizontal"
         android:layout_marginBottom="45dp"
         android:layout_alignParentBottom="true"/>
+
+    <TextView
+        android:id="@+id/zoomIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        android:textColor="@color/black"
+        android:text=" In "
+        android:onClick="zoomIn"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+        android:id="@+id/zoomOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        android:textColor="@color/black"
+        android:text=" Out "
+        android:onClick="zoomOut"
+        android:layout_toRightOf="@+id/zoomIn"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

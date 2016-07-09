@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import uk.co.jakelee.cityflow.R;
-import uk.co.jakelee.cityflow.main.ChapterActivity;
+import uk.co.jakelee.cityflow.main.PackActivity;
 import uk.co.jakelee.cityflow.main.PuzzleActivity;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Tile;
@@ -69,7 +69,7 @@ public class DisplayHelper {
         return image;
     }
 
-    public TextView createPuzzleSelectImageView(final ChapterActivity activity, int puzzleNumber, final Puzzle puzzle) {
+    public TextView createPuzzleSelectImageView(final PackActivity activity, int puzzleNumber, final Puzzle puzzle) {
         TextView puzzleText = new TextView(activity);
         puzzleText.setText("  " + puzzleNumber + " ");
         puzzleText.setTextSize(30);
@@ -78,7 +78,8 @@ public class DisplayHelper {
         puzzleText.setTag(puzzle.getPuzzleId());
         puzzleText.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                activity.showPuzzleInfo(puzzle);
+                activity.selectedPuzzle = puzzle;
+                activity.showPuzzleInfo();
             }
         });
         return puzzleText;

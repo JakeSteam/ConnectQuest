@@ -125,6 +125,15 @@ public class ZoomableViewGroup extends RelativeLayout {
         return super.invalidateChildInParent(location, dirty);
     }
 
+    public float getScaleFactor() {
+        return mScaleFactor;
+    }
+
+    public void setScaleFactor(float mScaleFactor) {
+        this.mScaleFactor = mScaleFactor;
+        invalidate();
+    }
+
     private float[] scaledPointsToScreenPoints(float[] a) {
         mScaleMatrix.mapPoints(a);
         mTranslateMatrix.mapPoints(a);

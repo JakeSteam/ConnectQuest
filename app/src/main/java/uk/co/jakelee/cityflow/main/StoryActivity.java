@@ -14,7 +14,7 @@ import java.util.List;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
-import uk.co.jakelee.cityflow.model.Chapter;
+import uk.co.jakelee.cityflow.model.Pack;
 
 public class StoryActivity extends Activity {
     private DisplayHelper dh;
@@ -31,22 +31,22 @@ public class StoryActivity extends Activity {
 
     public void populateChapters(LinearLayout chapterContainer) {
         final Activity activity = this;
-        List<Chapter> chapters = Chapter.listAll(Chapter.class);
-        for (Chapter chapter : chapters) {
-            TextView chapterText = new TextView(this);
-            chapterText.setText(chapter.getName() + " - " + chapter.getDescription());
-            chapterText.setTextColor(chapter.isUnlocked() ? Color.BLACK : Color.LTGRAY);
-            chapterText.setTextSize(24);
-            chapterText.setTag(chapter.getChapterId());
-            chapterText.setOnClickListener(new Button.OnClickListener() {
+        List<Pack> packs = Pack.listAll(Pack.class);
+        for (Pack pack : packs) {
+            TextView packText = new TextView(this);
+            packText.setText(pack.getName() + " - " + pack.getDescription());
+            packText.setTextColor(pack.isUnlocked() ? Color.BLACK : Color.LTGRAY);
+            packText.setTextSize(24);
+            packText.setTag(pack.getPackId());
+            packText.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    Intent intent = new Intent(activity, ChapterActivity.class);
-                    intent.putExtra(Constants.INTENT_CHAPTER, (int) v.getTag());
+                    Intent intent = new Intent(activity, PackActivity.class);
+                    intent.putExtra(Constants.INTENT_PACK, (int) v.getTag());
                     startActivity(intent);
                 }
             });
 
-            chapterContainer.addView(chapterText);
+            chapterContainer.addView(packText);
         }
     }
 }

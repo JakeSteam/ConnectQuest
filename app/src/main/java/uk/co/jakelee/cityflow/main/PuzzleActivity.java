@@ -136,6 +136,16 @@ public class PuzzleActivity extends Activity {
         }
     }
 
+    public void zoomIn(View v) {
+        ZoomableViewGroup tileContainer = (ZoomableViewGroup) findViewById(R.id.tileContainer);
+        tileContainer.setScaleFactor(tileContainer.getScaleFactor() + 0.5f);
+    }
+
+    public void zoomOut(View v) {
+        ZoomableViewGroup tileContainer = (ZoomableViewGroup) findViewById(R.id.tileContainer);
+        tileContainer.setScaleFactor(tileContainer.getScaleFactor() - 0.5f);
+    }
+
     public void handleTileClick(ImageView image, Tile tile) {
         tile.rotate();
         int drawableId = ImageHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());

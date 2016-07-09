@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".main.StoryActivity" />
-        <activity android:name=".main.ChapterActivity" />
+        <activity android:name=".main.PackActivity" />
         <activity android:name=".main.PuzzleActivity" />
     </application>
 
