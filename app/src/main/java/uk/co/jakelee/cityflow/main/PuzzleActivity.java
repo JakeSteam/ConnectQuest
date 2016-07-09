@@ -180,6 +180,8 @@ public class PuzzleActivity extends Activity {
         Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
         timeInMilliseconds = timeLastMoved - startTime;
         int stars = PuzzleHelper.getStars(puzzle, timeInMilliseconds, movesMade);
+        boolean isFirstComplete = puzzle.getBestTime() == 0;
+
         Pair<Boolean, Boolean> newBests = PuzzleHelper.updateBest(puzzle, timeInMilliseconds, movesMade, stars);
         blockingMessage.setText(String.format(Locale.ENGLISH, Text.get("PUZZLE_END_TEXT"),
                 stars,
@@ -191,7 +193,9 @@ public class PuzzleActivity extends Activity {
                 newBests.first ? "*" : "",
                 puzzle.getBestMoves(),
                 newBests.second ? "*" : "",
-                puzzle.getTilesUnlocked().size()));
+                puzzle.getTilesUnlocked().size(),
+                puzzle.getBestTime(),
+                isFirstComplete ? "*" : ""));
         blockingMessage.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 closePuzzle();

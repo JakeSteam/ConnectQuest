@@ -52,7 +52,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_9_NAME", "Competitive Business"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_10_NAME", "The Long Way Round"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_11_NAME", "Highs And Lows"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_END_TEXT", "It flows!\n\n%1$d stars\nTime: %2$s\nMoves: %3$d\n\nTarget Time: %4$s\nTarget Moves: %5$d\n\nBest Time: %6$s%7$s\nBest Moves: %8$d%9$s\nNew Tiles: %10$d"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_END_TEXT", "It flows!\n\n%1$d stars\nTime: %2$s\nMoves: %3$d\n\nTarget Time: %4$s\nTarget Moves: %5$d\n\nBest Time: %6$s%7$s\nBest Moves: %8$d%9$s\nNew Tiles: %10$d%11$s"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_1_TEXT", "Grass Road Corner"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_2_TEXT", "Grass Road Straight"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_3_TEXT", "Grass Road End"));

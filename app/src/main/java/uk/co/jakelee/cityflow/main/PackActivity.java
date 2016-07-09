@@ -5,7 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.List;
@@ -42,17 +43,28 @@ public class PackActivity extends Activity {
     }
 
     public void populatePuzzles() {
-        LinearLayout puzzleContainer = (LinearLayout) findViewById(R.id.puzzleContainer);
+        TableRow.LayoutParams params = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT);
+        int margin = dh.dpToPixel(7);
+        params.setMargins(margin, margin, margin, margin);
+
+        TableLayout puzzleContainer = (TableLayout) findViewById(R.id.puzzleContainer);
         puzzleContainer.removeAllViews();
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(7, 7, 7, 7);
 
         List<Puzzle> puzzles = selectedPack.getPuzzles();
-        for (final Puzzle puzzle : puzzles) {
+        int numPuzzles = puzzles.size();
+        TableRow row = new TableRow(this);
+        for (int puzzleIndex = 1; puzzleIndex <= numPuzzles; puzzleIndex++) {
+            Puzzle puzzle = puzzles.get(puzzleIndex - 1);
             if (selectedPuzzle == null || selectedPuzzle.getPuzzleId() == 0) {
                 selectedPuzzle = puzzle;
             }
-            puzzleContainer.addView(dh.createPuzzleSelectImageView(this, puzzle.getPuzzleId(), puzzle), layoutParams);
+            boolean isSelected = selectedPuzzle.getPuzzleId() == puzzle.getPuzzleId();
+            row.addView(dh.createPuzzleSelectImageView(this, puzzle.getPuzzleId(), puzzle, isSelected), params);
+
+            if (puzzleIndex % 6 == 0 || puzzleIndex == numPuzzles) {
+                puzzleContainer.addView(row);
+                row = new TableRow(this);
+            }
         }
 
         showPuzzleInfo();

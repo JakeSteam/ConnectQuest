@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -69,17 +70,18 @@ public class DisplayHelper {
         return image;
     }
 
-    public TextView createPuzzleSelectImageView(final PackActivity activity, int puzzleNumber, final Puzzle puzzle) {
+    public TextView createPuzzleSelectImageView(final PackActivity activity, int puzzleNumber, final Puzzle puzzle, boolean isSelected) {
         TextView puzzleText = new TextView(activity);
-        puzzleText.setText("  " + puzzleNumber + " ");
+        puzzleText.setText(Integer.toString(puzzleNumber));
         puzzleText.setTextSize(30);
+        puzzleText.setGravity(Gravity.CENTER);
         puzzleText.setPadding(10, 10, 10, 10);
-        puzzleText.setBackgroundResource(R.drawable.white);
+        puzzleText.setBackgroundResource(isSelected ? R.color.green : R.color.white);
         puzzleText.setTag(puzzle.getPuzzleId());
         puzzleText.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 activity.selectedPuzzle = puzzle;
-                activity.showPuzzleInfo();
+                activity.populatePuzzles();
             }
         });
         return puzzleText;
