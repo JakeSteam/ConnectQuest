@@ -180,7 +180,8 @@ public class PuzzleActivity extends Activity {
                 DateHelper.getPuzzleTimeString(puzzle.getBestTime()),
                 newBests.first ? "*" : "",
                 puzzle.getBestMoves(),
-                newBests.second ? "*" : ""));
+                newBests.second ? "*" : "",
+                puzzle.getTilesUnlocked().size()));
         blockingMessage.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 closePuzzle();

@@ -13,12 +13,13 @@ public class Tile_Type extends SugarRecord {
     private int heightEast;
     private int heightSouth;
     private int heightWest;
+    private int puzzleRequired;
 
     public Tile_Type() {
 
     }
 
-    public Tile_Type(int typeId, int environmentId, int flow, int height) {
+    public Tile_Type(int typeId, int environmentId, int flow, int height, int puzzleRequired) {
         this.typeId = typeId;
         this.environmentId = environmentId;
         this.flowNorth = flow;
@@ -29,9 +30,10 @@ public class Tile_Type extends SugarRecord {
         this.heightEast = height;
         this.heightSouth = height;
         this.heightWest = height;
+        this.puzzleRequired = puzzleRequired;
     }
 
-    public Tile_Type(int typeId, int environmentId, int flowNorth, int flowEast, int flowSouth, int flowWest, int height) {
+    public Tile_Type(int typeId, int environmentId, int flowNorth, int flowEast, int flowSouth, int flowWest, int height, int puzzleRequired) {
         this.typeId = typeId;
         this.environmentId = environmentId;
         this.flowNorth = flowNorth;
@@ -42,9 +44,10 @@ public class Tile_Type extends SugarRecord {
         this.heightEast = height;
         this.heightSouth = height;
         this.heightWest = height;
+        this.puzzleRequired = puzzleRequired;
     }
 
-    public Tile_Type(int typeId, int environmentId, int flowNorth, int flowEast, int flowSouth, int flowWest, int heightNorth, int heightEast, int heightSouth, int heightWest) {
+    public Tile_Type(int typeId, int environmentId, int flowNorth, int flowEast, int flowSouth, int flowWest, int heightNorth, int heightEast, int heightSouth, int heightWest, int puzzleRequired) {
         this.typeId = typeId;
         this.environmentId = environmentId;
         this.flowNorth = flowNorth;
@@ -55,6 +58,7 @@ public class Tile_Type extends SugarRecord {
         this.heightEast = heightEast;
         this.heightSouth = heightSouth;
         this.heightWest = heightWest;
+        this.puzzleRequired = puzzleRequired;
     }
 
     public int getTypeId() {
@@ -135,6 +139,14 @@ public class Tile_Type extends SugarRecord {
 
     public void setHeightWest(int heightWest) {
         this.heightWest = heightWest;
+    }
+
+    public int getPuzzleRequired() {
+        return puzzleRequired;
+    }
+
+    public void setPuzzleRequired(int puzzleRequired) {
+        this.puzzleRequired = puzzleRequired;
     }
 }
 

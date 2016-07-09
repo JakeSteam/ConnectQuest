@@ -69,6 +69,12 @@
             android:textColor="@color/black"
             android:textSize="26sp"/>
         <TextView
+            android:id="@+id/puzzleTilesUnlocked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="26sp"/>
+        <TextView
             android:id="@+id/puzzleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -77,7 +83,6 @@
             android:gravity="center_horizontal"
             android:textSize="26sp"
             android:text="Start"
-
             android:padding="10dp"/>
     </LinearLayout>
 </android.support.percent.PercentRelativeLayout>

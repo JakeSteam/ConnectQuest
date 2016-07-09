@@ -62,6 +62,7 @@ public class ChapterActivity extends Activity {
         ((TextView) findViewById(R.id.puzzleParMoves)).setText("Par Moves: " + Integer.toString(puzzle.getParMoves()));
         ((TextView) findViewById(R.id.puzzleBestTime)).setText("Best Time: " + DateHelper.getPuzzleTimeString(puzzle.getBestTime()));
         ((TextView) findViewById(R.id.puzzleBestMoves)).setText("Best Moves: " + Integer.toString(puzzle.getBestMoves()));
+        ((TextView) findViewById(R.id.puzzleTilesUnlocked)).setText("Tiles Unlocked: " + puzzle.getTilesUnlocked().size());
         findViewById(R.id.puzzleButton).setTag(puzzle.getPuzzleId());
         findViewById(R.id.puzzleButton).setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
