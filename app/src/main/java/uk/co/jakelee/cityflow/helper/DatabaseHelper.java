@@ -115,17 +115,17 @@ public class DatabaseHelper {
 
     private static void createPuzzle() {
         List<Puzzle> puzzles = new ArrayList<>();
-            puzzles.add(new Puzzle(1, 1, 10000L, 20, 0L, 0, 0));
-            puzzles.add(new Puzzle(2, 1, 10000L, 20, 0L, 0, 0));
-            puzzles.add(new Puzzle(3, 1, 10000L, 20, 0L, 0, 0));
-            puzzles.add(new Puzzle(4, 1, 10000L, 20, 0L, 0, 0));
-            puzzles.add(new Puzzle(5, 1, 10000L, 20, 0L, 0, 0));
-            puzzles.add(new Puzzle(6, 1, 10000L, 20, 0L, 0, 0));
-            puzzles.add(new Puzzle(7, 1, 10000L, 20, 0L, 0, 0));
-            puzzles.add(new Puzzle(8, 1, 10000L, 20, 0L, 0, 0));
-            puzzles.add(new Puzzle(9, 1, 10000L, 20, 0L, 0, 0));
-            puzzles.add(new Puzzle(10, 1, 10000L, 20, 0L, 0, 0));
-            puzzles.add(new Puzzle(11, 1, 10000L, 20, 0L, 0, 0));
+            puzzles.add(new Puzzle(1, 1, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(2, 1, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(3, 1, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(4, 1, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(5, 1, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(6, 1, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(7, 1, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(8, 1, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(9, 1, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(10, 1, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(11, 1, 10000L, 20, 0L, 0));
         Puzzle.saveInTx(puzzles);
     }
 
@@ -419,7 +419,7 @@ public class DatabaseHelper {
             tileTypes.add(new Tile_Type(13, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new Tile_Type(14, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new Tile_Type(15, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
-            tileTypes.add(new Tile_Type(16, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new Tile_Type(16, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new Tile_Type(17, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new Tile_Type(18, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new Tile_Type(19, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));

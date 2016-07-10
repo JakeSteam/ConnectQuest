@@ -13,19 +13,23 @@ public class Puzzle extends SugarRecord {
     private int parMoves;
     private long bestTime;
     private int bestMoves;
-    private int bestRating;
+    private boolean completionStar;
+    private boolean timeStar;
+    private boolean movesStar;
 
     public Puzzle() {
     }
 
-    public Puzzle(int puzzleId, int packId, long parTime, int parMoves, long bestTime, int bestMoves, int bestRating) {
+    public Puzzle(int puzzleId, int packId, long parTime, int parMoves, long bestTime, int bestMoves) {
         this.puzzleId = puzzleId;
         this.packId = packId;
         this.parTime = parTime;
         this.parMoves = parMoves;
         this.bestTime = bestTime;
         this.bestMoves = bestMoves;
-        this.bestRating = bestRating;
+        this.completionStar = false;
+        this.timeStar = false;
+        this.movesStar = false;
     }
 
     public int getPuzzleId() {
@@ -76,12 +80,28 @@ public class Puzzle extends SugarRecord {
         this.bestMoves = bestMoves;
     }
 
-    public int getBestRating() {
-        return bestRating;
+    public boolean hasCompletionStar() {
+        return completionStar;
     }
 
-    public void setBestRating(int bestRating) {
-        this.bestRating = bestRating;
+    public void setCompletionStar(boolean completionStar) {
+        this.completionStar = completionStar;
+    }
+
+    public boolean hasTimeStar() {
+        return timeStar;
+    }
+
+    public void setTimeStar(boolean timeStar) {
+        this.timeStar = timeStar;
+    }
+
+    public boolean hasMovesStar() {
+        return movesStar;
+    }
+
+    public void setMovesStar(boolean movesStar) {
+        this.movesStar = movesStar;
     }
 
     public String getName() {
@@ -103,8 +123,9 @@ public class Puzzle extends SugarRecord {
         return Select.from(Puzzle.class).where(Condition.prop("puzzle_id").eq(puzzleId)).first();
     }
 
-    public static List<Puzzle> getPuzzles(int puzzleType) {
-        return Select.from(Puzzle.class).where(
-                Condition.prop("type").eq(puzzleType)).list();
+    public String getStarString() {
+        return (hasCompletionStar() ? "X" : "x") +
+                (hasTimeStar() ? "X" : "x") +
+                (hasMovesStar() ? "X" : "x");
     }
 }

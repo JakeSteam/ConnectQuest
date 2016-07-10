@@ -9,6 +9,8 @@ public class Constants {
     // Game constants
     public static final int TILE_WIDTH = 130;
     public static final int TILE_HEIGHT = 65;
+    public static final int PUZZLE_WIDTH = 129;
+    public static final int PUZZLE_HEIGHT = 76;
 
     // Lookup constants
     public static final int ENVIRONMENT_GRASS = 0;

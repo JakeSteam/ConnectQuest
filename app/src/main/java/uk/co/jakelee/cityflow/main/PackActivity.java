@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -72,13 +73,13 @@ public class PackActivity extends Activity {
 
     public void showPuzzleInfo() {
         final Activity activity = this;
+        ((ImageView) findViewById(R.id.puzzleImage)).setImageDrawable(dh.getPuzzleDrawable(selectedPuzzle.getPuzzleId(), selectedPuzzle.hasCompletionStar()));
+        findViewById(R.id.puzzleImageQuestion).setVisibility(selectedPuzzle.hasCompletionStar() ? View.INVISIBLE : View.VISIBLE);
         ((TextView) findViewById(R.id.puzzleName)).setText(selectedPuzzle.getName());
-        ((TextView) findViewById(R.id.puzzleStars)).setText("Stars: " + selectedPuzzle.getBestRating());
-        ((TextView) findViewById(R.id.puzzleParTime)).setText("Par Time: " + DateHelper.getPuzzleTimeString(selectedPuzzle.getParTime()));
-        ((TextView) findViewById(R.id.puzzleParMoves)).setText("Par Moves: " + Integer.toString(selectedPuzzle.getParMoves()));
-        ((TextView) findViewById(R.id.puzzleBestTime)).setText("Best Time: " + DateHelper.getPuzzleTimeString(selectedPuzzle.getBestTime()));
-        ((TextView) findViewById(R.id.puzzleBestMoves)).setText("Best Moves: " + Integer.toString(selectedPuzzle.getBestMoves()));
-        ((TextView) findViewById(R.id.puzzleTilesUnlocked)).setText("Tiles Unlocked: " + selectedPuzzle.getTilesUnlocked().size());
+        ((TextView) findViewById(R.id.puzzleStars)).setText(selectedPuzzle.getStarString());
+        ((TextView) findViewById(R.id.puzzleBestTime)).setText(DateHelper.getPuzzleTimeString(selectedPuzzle.getBestTime()));
+        ((TextView) findViewById(R.id.puzzleBestMoves)).setText(Integer.toString(selectedPuzzle.getBestMoves()));
+        ((TextView) findViewById(R.id.puzzleTilesUnlocked)).setText(Integer.toString(selectedPuzzle.getTilesUnlocked().size()));
         findViewById(R.id.puzzleButton).setTag(selectedPuzzle.getPuzzleId());
         findViewById(R.id.puzzleButton).setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {

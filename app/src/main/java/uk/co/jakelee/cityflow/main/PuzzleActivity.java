@@ -194,7 +194,6 @@ public class PuzzleActivity extends Activity {
                 puzzle.getBestMoves(),
                 newBests.second ? "*" : "",
                 puzzle.getTilesUnlocked().size(),
-                puzzle.getBestTime(),
                 isFirstComplete ? "*" : ""));
         blockingMessage.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {

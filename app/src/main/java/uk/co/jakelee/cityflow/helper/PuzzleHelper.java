@@ -22,14 +22,18 @@ public class PuzzleHelper {
         if (timeTaken < puzzle.getBestTime() || puzzle.getBestTime() == 0) {
             puzzle.setBestTime(timeTaken);
             newBestTime = true;
+            if (timeTaken <= puzzle.getParTime()) {
+                puzzle.setTimeStar(true);
+            }
         }
         if (movesTaken < puzzle.getBestMoves() || puzzle.getBestMoves() == 0) {
             puzzle.setBestMoves(movesTaken);
             newBestMoves = true;
+            if (movesTaken <= puzzle.getParMoves()) {
+                puzzle.setMovesStar(true);
+            }
         }
-        if (stars > puzzle.getBestRating() || puzzle.getBestRating() == 0) {
-            puzzle.setBestRating(stars);
-        }
+        puzzle.setCompletionStar(true);
 
         puzzle.save();
         return new Pair<>(newBestTime, newBestMoves);

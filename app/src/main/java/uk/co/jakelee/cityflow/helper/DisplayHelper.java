@@ -4,7 +4,11 @@ package uk.co.jakelee.cityflow.helper;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -92,5 +96,25 @@ public class DisplayHelper {
         DisplayMetrics metrics = resources.getDisplayMetrics();
         float px = dp * ((float)metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
         return (int) px;
+    }
+
+    public Drawable getPuzzleDrawable(int puzzle, boolean haveCompleted) {
+        Drawable puzzleDrawable = createDrawable(getPuzzleDrawableID(puzzle), Constants.PUZZLE_WIDTH, Constants.PUZZLE_HEIGHT);
+        if (!haveCompleted) {
+            puzzleDrawable.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
+        }
+        return puzzleDrawable;
+    }
+
+    public int getPuzzleDrawableID(int puzzle) {
+        return context.getResources().getIdentifier("puzzle_" + puzzle, "drawable", context.getPackageName());
+    }
+
+    public Drawable createDrawable(int drawableId, int width, int height) {
+        Bitmap rawImage = BitmapFactory.decodeResource(context.getResources(), drawableId);
+        int adjustedWidth = dpToPixel(width);
+        int adjustedHeight = dpToPixel(height);
+        Bitmap resizedImage = Bitmap.createScaledBitmap(rawImage, adjustedWidth, adjustedHeight, false);
+        return new BitmapDrawable(context.getResources(), resizedImage);
     }
 }
