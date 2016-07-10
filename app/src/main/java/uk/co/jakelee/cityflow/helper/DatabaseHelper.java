@@ -138,6 +138,16 @@ public class DatabaseHelper {
             puzzles.add(new Puzzle(9, 1, 10000L, 20, 0L, 0));
             puzzles.add(new Puzzle(10, 1, 10000L, 20, 0L, 0));
             puzzles.add(new Puzzle(11, 1, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(12, 1, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(13, 1, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(14, 1, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(15, 1, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(16, 1, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(17, 1, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(18, 1, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(19, 1, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(20, 1, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(30, 1, 10000L, 20, 0L, 0));
         Puzzle.saveInTx(puzzles);
     }
 
@@ -628,7 +638,7 @@ public class DatabaseHelper {
             tileTypes.add(new Tile_Type(35, Constants.ENVIRONMENT_GRASS, Constants.FLOW_NONE, Constants.FLOW_WATER, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new Tile_Type(36, Constants.ENVIRONMENT_GRASS, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 3));
             tileTypes.add(new Tile_Type(37, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 3));
-            tileTypes.add(new Tile_Type(38, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_LOW, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new Tile_Type(38, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new Tile_Type(39, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 3));
             tileTypes.add(new Tile_Type(40, Constants.ENVIRONMENT_CITY, Constants.FLOW_CANAL, Constants.FLOW_NONE, Constants.FLOW_CANAL, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new Tile_Type(41, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.FLOW_CANAL, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));

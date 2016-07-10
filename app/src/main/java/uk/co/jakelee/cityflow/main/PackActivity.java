@@ -2,6 +2,7 @@ package uk.co.jakelee.cityflow.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -77,8 +78,13 @@ public class PackActivity extends Activity {
         findViewById(R.id.puzzleImageQuestion).setVisibility(selectedPuzzle.hasCompletionStar() ? View.INVISIBLE : View.VISIBLE);
         ((TextView) findViewById(R.id.puzzleName)).setText(selectedPuzzle.getName());
         ((TextView) findViewById(R.id.puzzleStars)).setText(selectedPuzzle.getStarString());
+
         ((TextView) findViewById(R.id.puzzleBestTime)).setText(DateHelper.getPuzzleTimeString(selectedPuzzle.getBestTime()));
+        ((TextView) findViewById(R.id.puzzleBestTime)).setTextColor(selectedPuzzle.hasTimeStar() ? Color.YELLOW : Color.BLACK);
+
         ((TextView) findViewById(R.id.puzzleBestMoves)).setText(Integer.toString(selectedPuzzle.getBestMoves()));
+        ((TextView) findViewById(R.id.puzzleBestMoves)).setTextColor(selectedPuzzle.hasMovesStar() ? Color.YELLOW : Color.BLACK);
+
         ((TextView) findViewById(R.id.puzzleTilesUnlocked)).setText(Integer.toString(selectedPuzzle.getTilesUnlocked().size()));
         findViewById(R.id.puzzleButton).setTag(selectedPuzzle.getPuzzleId());
         findViewById(R.id.puzzleButton).setOnClickListener(new Button.OnClickListener() {
