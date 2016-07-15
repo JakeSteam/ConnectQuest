@@ -7,7 +7,7 @@
     tools:context=".main.PackActivity">
 
     <ScrollView
-        app:layout_heightPercent="35%"
+        app:layout_heightPercent="39%"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/city">

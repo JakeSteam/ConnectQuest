@@ -26,6 +26,7 @@ import uk.co.jakelee.cityflow.helper.ImageHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleHelper;
 import uk.co.jakelee.cityflow.helper.TileHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
+import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
 
@@ -103,10 +104,19 @@ public class PuzzleActivity extends Activity {
     }
 
     public void startTimeTakenTimer() {
-        findViewById(R.id.bottomControls).setVisibility(View.VISIBLE);
+        findViewById(R.id.zoomIn).setVisibility(View.VISIBLE);
+        findViewById(R.id.zoomOut).setVisibility(View.VISIBLE);
+
+        if (!Setting.isTrue(Constants.SETTING_ZEN_MODE)) {
+            findViewById(R.id.moveCounter).setVisibility(View.VISIBLE);
+            findViewById(R.id.puzzleTimer).setVisibility(View.VISIBLE);
+            handler.post(updateTimerThread);
+        }
+
+        findViewById(R.id.zoomIn).setVisibility(View.VISIBLE);
+        findViewById(R.id.zoomOut).setVisibility(View.VISIBLE);
 
         startTime = SystemClock.uptimeMillis();
-        handler.post(updateTimerThread);
     }
 
     private Runnable updateTimerThread = new Runnable() {
@@ -177,7 +187,10 @@ public class PuzzleActivity extends Activity {
 
     public void displayPuzzleEndScreen() {
         findViewById(R.id.puzzleTimer).setVisibility(View.GONE);
-        findViewById(R.id.bottomControls).setVisibility(View.GONE);
+        findViewById(R.id.zoomIn).setVisibility(View.GONE);
+        findViewById(R.id.zoomOut).setVisibility(View.GONE);
+        findViewById(R.id.moveCounter).setVisibility(View.GONE);
+
         TextView blockingMessage = (TextView) findViewById(R.id.blockingMessage);
         blockingMessage.setVisibility(View.VISIBLE);
         blockingMessage.setTextSize(40);

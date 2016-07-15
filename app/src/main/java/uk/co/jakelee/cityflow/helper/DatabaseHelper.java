@@ -43,6 +43,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_2_TEXT", "Sounds"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_3_TEXT", "Minimum Zoom"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_4_TEXT", "Maximum Zoom"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_5_TEXT", "Zen Mode"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_1_NAME", "One Shop Town"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_2_NAME", "No Crossing"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_3_NAME", "Don't Cross The Flows"));
@@ -159,6 +160,7 @@ public class DatabaseHelper {
             settings.add(new Setting(2, true));
             settings.add(new Setting(3, 0.50f));
             settings.add(new Setting(4, 1.75f));
+            settings.add(new Setting(5, false));
         Setting.saveInTx(settings);
     }
 

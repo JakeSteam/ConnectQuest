@@ -35,6 +35,7 @@ public class Constants {
     public static final int SETTING_SOUNDS = 2;
     public static final int SETTING_MIN_ZOOM = 3;
     public static final int SETTING_MAX_ZOOM = 4;
+    public static final int SETTING_ZEN_MODE = 5;
     public static final int STATISTIC_PUZZLES_COMPLETED = 1;
     public static final int STATISTIC_TILES_ROTATED = 2;
     public static final int SIDE_NORTH = 1;

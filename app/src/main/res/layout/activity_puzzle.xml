@@ -33,44 +33,41 @@
         android:layout_marginBottom="45dp"
         android:layout_alignParentBottom="true"/>
 
-    <RelativeLayout
-        android:id="@+id/bottomControls"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/zoomIn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="invisible">
-        <TextView
-            android:id="@+id/zoomIn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="50sp"
-            android:textColor="@color/black"
-            android:text="+"
-            android:onClick="zoomIn"
-            android:padding="10dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"/>
+        android:textSize="50sp"
+        android:textColor="@color/black"
+        android:text="+"
+        android:onClick="zoomIn"
+        android:padding="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:visibility="invisible"/>
 
-        <TextView
-            android:id="@+id/zoomOut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="50sp"
-            android:textColor="@color/black"
-            android:text="-"
-            android:onClick="zoomOut"
-            android:padding="10dp"
-            android:layout_toRightOf="@+id/zoomIn"
-            android:layout_alignParentBottom="true"/>
+    <TextView
+        android:id="@+id/zoomOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+        android:textColor="@color/black"
+        android:text="-"
+        android:onClick="zoomOut"
+        android:padding="10dp"
+        android:layout_toRightOf="@+id/zoomIn"
+        android:layout_alignParentBottom="true"
+        android:visibility="invisible"/>
 
-        <TextView
-            android:id="@+id/moveCounter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="50sp"
-            android:textColor="@color/black"
-            android:text="0"
-            android:padding="10dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"/>
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/moveCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+        android:textColor="@color/black"
+        android:text="0"
+        android:padding="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:visibility="invisible"/>
 </RelativeLayout>
