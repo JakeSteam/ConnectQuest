@@ -103,6 +103,8 @@ public class PuzzleActivity extends Activity {
     }
 
     public void startTimeTakenTimer() {
+        findViewById(R.id.bottomControls).setVisibility(View.VISIBLE);
+
         startTime = SystemClock.uptimeMillis();
         handler.post(updateTimerThread);
     }
@@ -151,6 +153,8 @@ public class PuzzleActivity extends Activity {
         int drawableId = ImageHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());
         Picasso.with(this).load(drawableId).into(image);
         movesMade++;
+        ((TextView) findViewById(R.id.moveCounter)).setText(Integer.toString(movesMade));
+
         timeLastMoved = SystemClock.uptimeMillis();
     }
 
@@ -173,6 +177,7 @@ public class PuzzleActivity extends Activity {
 
     public void displayPuzzleEndScreen() {
         findViewById(R.id.puzzleTimer).setVisibility(View.GONE);
+        findViewById(R.id.bottomControls).setVisibility(View.GONE);
         TextView blockingMessage = (TextView) findViewById(R.id.blockingMessage);
         blockingMessage.setVisibility(View.VISIBLE);
         blockingMessage.setTextSize(40);

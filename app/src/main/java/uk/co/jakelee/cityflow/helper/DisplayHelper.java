@@ -75,12 +75,15 @@ public class DisplayHelper {
     }
 
     public TextView createPuzzleSelectImageView(final PackActivity activity, int puzzleNumber, final Puzzle puzzle, boolean isSelected) {
+        boolean hasAllStars = puzzle.hasCompletionStar() && puzzle.hasMovesStar() && puzzle.hasTimeStar();
+        boolean hasCompleted = puzzle.hasCompletionStar();
+
         TextView puzzleText = new TextView(activity);
         puzzleText.setText(Integer.toString(puzzleNumber));
         puzzleText.setTextSize(30);
         puzzleText.setGravity(Gravity.CENTER);
         puzzleText.setPadding(10, 10, 10, 10);
-        puzzleText.setBackgroundResource(isSelected ? R.color.green : R.color.white);
+        puzzleText.setBackgroundResource(isSelected ? R.color.green : (hasCompleted ? (hasAllStars ? R.drawable.box_tick_yellow : R.drawable.box_tick_green) : R.drawable.box_empty));
         puzzleText.setTag(puzzle.getPuzzleId());
         puzzleText.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {

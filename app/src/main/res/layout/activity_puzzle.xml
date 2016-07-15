@@ -27,31 +27,50 @@
         android:id="@+id/puzzleTimer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="32sp"
+        android:textSize="55sp"
         android:textColor="@color/black"
         android:gravity="center_horizontal"
         android:layout_marginBottom="45dp"
         android:layout_alignParentBottom="true"/>
 
-    <TextView
-        android:id="@+id/zoomIn"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/bottomControls"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="32sp"
-        android:textColor="@color/black"
-        android:text=" In "
-        android:onClick="zoomIn"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"/>
+        android:visibility="invisible">
+        <TextView
+            android:id="@+id/zoomIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:textColor="@color/black"
+            android:text="+"
+            android:onClick="zoomIn"
+            android:padding="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"/>
 
-    <TextView
-        android:id="@+id/zoomOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="32sp"
-        android:textColor="@color/black"
-        android:text=" Out "
-        android:onClick="zoomOut"
-        android:layout_toRightOf="@+id/zoomIn"
-        android:layout_alignParentBottom="true"/>
+        <TextView
+            android:id="@+id/zoomOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:textColor="@color/black"
+            android:text="-"
+            android:onClick="zoomOut"
+            android:padding="10dp"
+            android:layout_toRightOf="@+id/zoomIn"
+            android:layout_alignParentBottom="true"/>
+
+        <TextView
+            android:id="@+id/moveCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:textColor="@color/black"
+            android:text="0"
+            android:padding="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
 </RelativeLayout>

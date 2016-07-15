@@ -59,6 +59,6 @@ public class Statistic extends SugarRecord {
     }
 
     public String getName() {
-        return Text.get("STATISTIC_", getStatisticId());
+        return Text.get("STATISTIC_", getStatisticId(), "_NAME");
     }
 }

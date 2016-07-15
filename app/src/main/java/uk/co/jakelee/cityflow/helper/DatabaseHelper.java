@@ -39,8 +39,10 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_1_DESC", "Get flowing in the big city."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_2_NAME", "Escape To The Country"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_2_DESC", "Flow all the way out to the country."));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_MUSIC", "Music"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_SOUND", "Sounds"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_1_TEXT", "Music"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_2_TEXT", "Sounds"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_3_TEXT", "Minimum Zoom"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_4_TEXT", "Maximum Zoom"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_1_NAME", "One Shop Town"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_2_NAME", "No Crossing"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_3_NAME", "Don't Cross The Flows"));
@@ -113,8 +115,8 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_48_TEXT", "City High Road Corner"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_49_TEXT", "City Grass Corner"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_50_TEXT", "City Canal Corner"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_PUZZLES_COMPLETED", "Puzzles Completed"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_TILES_ROTATED", "Tiles Rotated"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_1_TEXT", "Puzzles Completed"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_2_TEXT", "Tiles Rotated"));
         Text.saveInTx(texts);
     }
 
@@ -155,7 +157,7 @@ public class DatabaseHelper {
         List<Setting> settings = new ArrayList<>();
             settings.add(new Setting(1, true));
             settings.add(new Setting(2, true));
-            settings.add(new Setting(3, 0.75f));
+            settings.add(new Setting(3, 0.50f));
             settings.add(new Setting(4, 1.75f));
         Setting.saveInTx(settings);
     }

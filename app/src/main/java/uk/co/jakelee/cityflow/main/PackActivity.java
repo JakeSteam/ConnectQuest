@@ -77,7 +77,9 @@ public class PackActivity extends Activity {
         ((ImageView) findViewById(R.id.puzzleImage)).setImageDrawable(dh.getPuzzleDrawable(selectedPuzzle.getPuzzleId(), selectedPuzzle.hasCompletionStar()));
         findViewById(R.id.puzzleImageQuestion).setVisibility(selectedPuzzle.hasCompletionStar() ? View.INVISIBLE : View.VISIBLE);
         ((TextView) findViewById(R.id.puzzleName)).setText(selectedPuzzle.getName());
-        ((TextView) findViewById(R.id.puzzleStars)).setText(selectedPuzzle.getStarString());
+        ((ImageView) findViewById(R.id.starCompletion)).setImageResource(selectedPuzzle.hasCompletionStar() ? R.drawable.box_tick_green : R.drawable.box_empty);
+        ((ImageView) findViewById(R.id.starTime)).setImageResource(selectedPuzzle.hasTimeStar() ? R.drawable.box_tick_green : R.drawable.box_empty);
+        ((ImageView) findViewById(R.id.starMoves)).setImageResource(selectedPuzzle.hasMovesStar() ? R.drawable.box_tick_green : R.drawable.box_empty);
 
         ((TextView) findViewById(R.id.puzzleBestTime)).setText(DateHelper.getPuzzleTimeString(selectedPuzzle.getBestTime()));
         ((TextView) findViewById(R.id.puzzleBestTime)).setTextColor(selectedPuzzle.hasTimeStar() ? Color.YELLOW : Color.BLACK);

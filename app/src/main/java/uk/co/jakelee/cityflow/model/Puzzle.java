@@ -122,10 +122,4 @@ public class Puzzle extends SugarRecord {
     public static Puzzle getPuzzle(int puzzleId) {
         return Select.from(Puzzle.class).where(Condition.prop("puzzle_id").eq(puzzleId)).first();
     }
-
-    public String getStarString() {
-        return (hasCompletionStar() ? "X" : "x") +
-                (hasTimeStar() ? "X" : "x") +
-                (hasMovesStar() ? "X" : "x");
-    }
 }

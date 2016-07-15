@@ -88,6 +88,6 @@ public class Setting extends SugarRecord {
     }
 
     public String getName() {
-        return Text.get("SETTING_", getSettingId());
+        return Text.get("SETTING_", getSettingId(), "_NAME");
     }
 }

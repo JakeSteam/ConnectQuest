@@ -45,12 +45,25 @@
                     android:textColor="@color/black"
                     android:textSize="26sp"
                     android:singleLine="false"/>
-                <TextView
-                    android:id="@+id/puzzleStars"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textSize="26sp"/>
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/starCompletion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/box_empty"/>
+                    <ImageView
+                        android:id="@+id/starTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/box_empty"/>
+                    <ImageView
+                        android:id="@+id/starMoves"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/box_empty"/>
+                </LinearLayout>
             </LinearLayout>
             <RelativeLayout>
                 <ImageView
