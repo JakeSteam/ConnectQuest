@@ -1,5 +1,7 @@
 package uk.co.jakelee.cityflow.helper;
 
+import android.util.Pair;
+
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -11,14 +13,18 @@ import uk.co.jakelee.cityflow.model.Tile_Type;
 
 public class TileHelper {
 
-    public static int getMaxY(List<Tile> tiles) {
+    public static Pair<Integer, Integer> getMaxXY(List<Tile> tiles) {
+        int maxX = 0;
         int maxY = 0;
         for (Tile tile : tiles) {
+            if (tile.getX() > maxX) {
+                maxX = tile.getX();
+            }
             if (tile.getY() > maxY) {
                 maxY = tile.getY();
             }
         }
-        return maxY;
+        return new Pair<>(maxX, maxY);
     }
 
     public static boolean checkPuzzleFlow(int puzzleId) {

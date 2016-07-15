@@ -132,17 +132,19 @@ public class PuzzleActivity extends Activity {
 
         ZoomableViewGroup tileContainer = (ZoomableViewGroup) findViewById(R.id.tileContainer);
         tileContainer.removeAllViews();
-        int maxY = TileHelper.getMaxY(tiles);
+        Pair<Integer, Integer> maxXY = TileHelper.getMaxXY(tiles);
+        int leftOffset = (dh.getSizes(this).widthPixels / 3) - (maxXY.first * (dh.getTileWidth() / 2));
+        int topOffset = (dh.getSizes(this).heightPixels / 3) - (maxXY.second * (dh.getTileHeight() / 2));
 
         tileContainer.removeAllViews();
         for (final Tile tile : tiles) {
             ZoomableViewGroup.LayoutParams layoutParams = new ZoomableViewGroup.LayoutParams(ZoomableViewGroup.LayoutParams.WRAP_CONTENT, ZoomableViewGroup.LayoutParams.WRAP_CONTENT);
-            int leftPadding = (tile.getY() + tile.getX()) * (dh.getTileWidth()/2);
-            int topPadding = (tile.getX() + maxY - tile.getY()) * (dh.getTileHeight()/2);
+            int leftPadding = leftOffset + (tile.getY() + tile.getX()) * (dh.getTileWidth()/2);
+            int topPadding = topOffset + (tile.getX() + maxXY.second - tile.getY()) * (dh.getTileHeight()/2);
             layoutParams.setMargins(leftPadding, topPadding, 0, 0);
 
             int drawableId = ImageHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());
-            ImageView image = dh.createTileImageView(this, tile, maxY, drawableId);
+            ImageView image = dh.createTileImageView(this, tile, maxXY.second, drawableId);
 
             tileContainer.addView(image, layoutParams);
         }

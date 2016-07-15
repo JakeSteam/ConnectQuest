@@ -1,6 +1,7 @@
 package uk.co.jakelee.cityflow.helper;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -46,6 +47,12 @@ public class DisplayHelper {
 
     public int getTileHeight() {
         return dpToPixel(Constants.TILE_HEIGHT);
+    }
+
+    public DisplayMetrics getSizes(Activity activity) {
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        return displaymetrics;
     }
 
     public ImageView createTileImageView(final PuzzleActivity activity, final Tile tile, int maxY, int drawableId) {
