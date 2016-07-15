@@ -370,16 +370,16 @@ public class DatabaseHelper {
             tiles.add(new Tile(17, 27, 0, 2, Constants.ROTATION_NORTH));
             tiles.add(new Tile(17, 49, 0, 3, Constants.ROTATION_NORTH));
             tiles.add(new Tile(17, 28, 1, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(17, 47, 1, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(17, 47, 1, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(17, 49, 1, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(17, 49, 1, 2, Constants.ROTATION_NORTH));
             tiles.add(new Tile(17, 28, 1, 3, Constants.ROTATION_NORTH));
             tiles.add(new Tile(17, 28, 2, 0, Constants.ROTATION_NORTH));
             tiles.add(new Tile(17, 26, 2, 1, Constants.ROTATION_NORTH));
             tiles.add(new Tile(17, 28, 2, 2, Constants.ROTATION_NORTH));
             tiles.add(new Tile(17, 27, 2, 3, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(17, 47, 3, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(17, 49, 3, 0, Constants.ROTATION_NORTH));
             tiles.add(new Tile(17, 27, 3, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(17, 47, 3, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(17, 49, 3, 2, Constants.ROTATION_NORTH));
             tiles.add(new Tile(17, 26, 3, 3, Constants.ROTATION_NORTH));
 
             tiles.add(new Tile(18, 32, 0, 0, Constants.ROTATION_NORTH));
