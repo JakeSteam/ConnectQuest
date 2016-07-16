@@ -5,11 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".main.PuzzleActivity">
 
-        <uk.co.jakelee.cityflow.components.ZoomableViewGroup
-            android:id="@+id/tileContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" />
+    <uk.co.jakelee.cityflow.components.ZoomableViewGroup
+        android:id="@+id/tileContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" />
 
     <TextView
         android:id="@+id/blockingMessage"
@@ -22,6 +22,19 @@
         android:gravity="center"
         android:onClick="suppressClick"
         android:layout_alignParentBottom="true"/>
+
+    <TextView
+        android:id="@+id/undoButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="55sp"
+        android:textColor="@color/grey"
+        android:gravity="left"
+        android:text="Undo"
+        android:onClick="undoLastMove"
+        android:layout_marginLeft="55dp"
+        android:layout_alignParentTop="true"
+        android:visibility="invisible"/>
 
     <TextView
         android:id="@+id/puzzleTimer"

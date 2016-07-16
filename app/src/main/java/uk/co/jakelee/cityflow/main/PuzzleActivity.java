@@ -2,6 +2,7 @@ package uk.co.jakelee.cityflow.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -38,6 +39,10 @@ public class PuzzleActivity extends Activity {
     private long startTime = 0L;
     private long timeInMilliseconds = 0L;
     private long timeLastMoved = 0L;
+    private ImageView lastChangedImage;
+    private Tile lastChangedTile;
+    private boolean undoing = false;
+    private boolean justUndone = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,9 +109,6 @@ public class PuzzleActivity extends Activity {
     }
 
     public void startTimeTakenTimer() {
-        findViewById(R.id.zoomIn).setVisibility(View.VISIBLE);
-        findViewById(R.id.zoomOut).setVisibility(View.VISIBLE);
-
         if (!Setting.isTrue(Constants.SETTING_ZEN_MODE)) {
             findViewById(R.id.moveCounter).setVisibility(View.VISIBLE);
             findViewById(R.id.puzzleTimer).setVisibility(View.VISIBLE);
@@ -115,6 +117,7 @@ public class PuzzleActivity extends Activity {
 
         findViewById(R.id.zoomIn).setVisibility(View.VISIBLE);
         findViewById(R.id.zoomOut).setVisibility(View.VISIBLE);
+        findViewById(R.id.undoButton).setVisibility(View.VISIBLE);
 
         startTime = SystemClock.uptimeMillis();
     }
@@ -161,13 +164,29 @@ public class PuzzleActivity extends Activity {
     }
 
     public void handleTileClick(ImageView image, Tile tile) {
-        tile.rotate();
+        tile.rotate(undoing);
         int drawableId = ImageHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());
         Picasso.with(this).load(drawableId).into(image);
-        movesMade++;
-        ((TextView) findViewById(R.id.moveCounter)).setText(Integer.toString(movesMade));
+
+        ((TextView) findViewById(R.id.moveCounter)).setText(Integer.toString(++movesMade));
+        ((TextView) findViewById(R.id.undoButton)).setTextColor(undoing ? Color.GRAY : Color.BLACK);
 
         timeLastMoved = SystemClock.uptimeMillis();
+
+        undoing = false;
+        justUndone = false;
+
+        this.lastChangedImage = image;
+        this.lastChangedTile = tile;
+    }
+
+    public void undoLastMove(View v) {
+        if (lastChangedImage != null && !justUndone) {
+            undoing = true;
+            movesMade = movesMade - 2;
+            handleTileClick(lastChangedImage, lastChangedTile);
+            justUndone = true;
+        }
     }
 
     public void flowCheck() {

@@ -73,11 +73,19 @@ public class Tile extends SugarRecord {
         this.defaultRotation = defaultRotation;
     }
 
-    public void rotate() {
-        if (this.rotation == Constants.ROTATION_WEST) {
-            this.rotation = Constants.ROTATION_NORTH;
+    public void rotate(boolean undoing) {
+        if (undoing) {
+            if (this.rotation == Constants.ROTATION_NORTH) {
+                this.rotation = Constants.ROTATION_WEST;
+            } else {
+                this.rotation--;
+            }
         } else {
-            this.rotation++;
+            if (this.rotation == Constants.ROTATION_WEST) {
+                this.rotation = Constants.ROTATION_NORTH;
+            } else {
+                this.rotation++;
+            }
         }
         this.save();
     }
