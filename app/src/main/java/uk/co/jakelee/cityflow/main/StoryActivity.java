@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -47,19 +48,26 @@ public class StoryActivity extends Activity {
             if (selectedPack == null || selectedPack.getPackId() == 0) {
                 selectedPack = pack;
             }
-
             boolean isSelected = selectedPack.getPackId() == pack.getPackId();
 
             LayoutInflater inflater = LayoutInflater.from(this);
             View inflatedView = inflater.inflate(R.layout.custom_pack_preview, null);
             RelativeLayout packPreview = (RelativeLayout) inflatedView.findViewById(R.id.packPreview);
+            ProgressBar packProgress = (ProgressBar) inflatedView.findViewById(R.id.packProgress);
+
+            if (!isSelected) {
+                packProgress.setProgress(pack.getCurrentStars());
+                packProgress.setMax(pack.getMaxStars());
+            }
+            packProgress.setVisibility(isSelected ? View.INVISIBLE : View.VISIBLE);
+
+            inflatedView.findViewById(R.id.packColourIndicator).setBackgroundResource(pack.isUnlocked() ? R.color.green : R.color.red);
 
             ImageView image = (ImageView)packPreview.findViewById(R.id.packImage);
             image.setImageResource(dh.getPuzzleDrawableID(pack.getFirstPuzzleId()));
 
             TextView text = (TextView)packPreview.findViewById(R.id.packName);
-            text.setText(pack.getName() + (isSelected ? "*" : ""));
-            text.setTextSize(30);
+            text.setText(pack.getName());
 
             inflatedView.setTag(pack.getPackId());
             inflatedView.setOnClickListener(new Button.OnClickListener() {
@@ -85,7 +93,7 @@ public class StoryActivity extends Activity {
 
         TextView packButton = (TextView) findViewById(R.id.packButton);
         packButton.setTag(selectedPack.getPackId());
-        if (selectedPack.isPurchased()) {
+        if (selectedPack.isUnlocked()) {
             packButton.setText("Open Pack");
             packButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
@@ -95,7 +103,8 @@ public class StoryActivity extends Activity {
                 }
             });
         } else {
-            packButton.setText("Purchase Pack");
+            Pack previousPack = Pack.getPack(selectedPack.getPackId() - 1);
+            packButton.setText("Purchase Pack (" + previousPack.getCurrentStars() + " / " + previousPack.getMaxStars() + ")");
             packButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     // IAP prompt

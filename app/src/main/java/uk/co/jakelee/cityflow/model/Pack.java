@@ -79,6 +79,19 @@ public class Pack extends SugarRecord{
                 Condition.prop("pack_id").eq(packId)).first().getPuzzleId();
     }
 
+    public boolean isUnlocked() {
+        return isPurchased() || isPreviousPackComplete();
+    }
+
+    public boolean isPreviousPackComplete() {
+        if (getPackId() == 1) {
+            return true;
+        }
+
+        Pack previousPack = Pack.getPack(getPackId() - 1);
+        return previousPack.getCurrentStars() >= previousPack.getMaxStars();
+    }
+
     public String getName() {
         return Text.get("PACK_", getPackId(), "_NAME");
     }
