@@ -90,7 +90,11 @@ public class DisplayHelper {
         puzzleText.setTextSize(30);
         puzzleText.setGravity(Gravity.CENTER);
         puzzleText.setPadding(10, 10, 10, 10);
-        puzzleText.setBackgroundResource(isSelected ? R.color.green : (hasCompleted ? (hasAllStars ? R.drawable.box_tick_yellow : R.drawable.box_tick_green) : R.drawable.box_empty));
+        if (isSelected) {
+            puzzleText.setBackgroundResource(hasCompleted ? (hasAllStars ? R.drawable.ui_level_selected_completed_fully : R.drawable.ui_level_selected_completed) : R.drawable.ui_level_selected);
+        } else {
+            puzzleText.setBackgroundResource(hasCompleted ? (hasAllStars ? R.drawable.ui_level_unselected_completed_fully : R.drawable.ui_level_unselected_completed) : R.drawable.ui_level_unselected);
+        }
         puzzleText.setTag(puzzle.getPuzzleId());
         puzzleText.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {

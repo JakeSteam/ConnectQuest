@@ -9,14 +9,12 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Pair;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-import java.util.Locale;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
@@ -28,7 +26,6 @@ import uk.co.jakelee.cityflow.helper.PuzzleHelper;
 import uk.co.jakelee.cityflow.helper.TileHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Setting;
-import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
 
 public class PuzzleActivity extends Activity {
@@ -82,7 +79,7 @@ public class PuzzleActivity extends Activity {
     }
 
     public void startCountdownTimer() {
-        final TextView countdownTimer = (TextView)findViewById(R.id.blockingMessage);
+        final TextView countdownTimer = (TextView)findViewById(R.id.initialCountdownText);
         new CountDownTimer(4000, 100) {
             public void onTick(long millisUntilFinished) {
                 int timeLeft = (int) Math.ceil(millisUntilFinished / 1000);
@@ -207,41 +204,42 @@ public class PuzzleActivity extends Activity {
     }
 
     public void displayPuzzleEndScreen() {
+        Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
         findViewById(R.id.puzzleTimer).setVisibility(View.GONE);
         findViewById(R.id.zoomIn).setVisibility(View.GONE);
         findViewById(R.id.zoomOut).setVisibility(View.GONE);
         findViewById(R.id.moveCounter).setVisibility(View.GONE);
+        findViewById(R.id.undoButton).setVisibility(View.GONE);
 
-        TextView blockingMessage = (TextView) findViewById(R.id.blockingMessage);
-        blockingMessage.setVisibility(View.VISIBLE);
-        blockingMessage.setTextSize(40);
+        findViewById(R.id.endGame).setVisibility(View.VISIBLE);
+        ((ImageView) findViewById(R.id.starCompletion)).setImageResource(puzzle.hasCompletionStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
+        ((ImageView) findViewById(R.id.starTime)).setImageResource(puzzle.hasTimeStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
+        ((ImageView) findViewById(R.id.starMoves)).setImageResource(puzzle.hasMovesStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
 
-        Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
         timeInMilliseconds = timeLastMoved - startTime;
         int stars = PuzzleHelper.getStars(puzzle, timeInMilliseconds, movesMade);
         boolean isFirstComplete = puzzle.getBestTime() == 0;
 
         Pair<Boolean, Boolean> newBests = PuzzleHelper.updateBest(puzzle, timeInMilliseconds, movesMade, stars);
-        blockingMessage.setText(String.format(Locale.ENGLISH, Text.get("PUZZLE_END_TEXT"),
-                stars,
-                DateHelper.getPuzzleTimeString(timeInMilliseconds),
-                movesMade,
-                DateHelper.getPuzzleTimeString(puzzle.getParTime()),
-                puzzle.getParMoves(),
-                DateHelper.getPuzzleTimeString(puzzle.getBestTime()),
-                newBests.first ? "*" : "",
-                puzzle.getBestMoves(),
-                newBests.second ? "*" : "",
-                puzzle.getTilesUnlocked().size(),
-                isFirstComplete ? "*" : ""));
-        blockingMessage.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                closePuzzle();
-            }
-        });
+
+
+        ((TextView) findViewById(R.id.currentMoves)).setText(Integer.toString(movesMade));
+        ((TextView) findViewById(R.id.currentTime)).setText(DateHelper.getPuzzleTimeString(timeInMilliseconds));
+
+        ((TextView) findViewById(R.id.bestMoves)).setText(puzzle.getBestMoves() + (newBests.second ? "*" : ""));
+        ((TextView) findViewById(R.id.bestTime)).setText(DateHelper.getPuzzleTimeString(puzzle.getBestTime()) + (newBests.first ? "*" : ""));
+
+        ((TextView) findViewById(R.id.parMoves)).setText(Integer.toString(puzzle.getParMoves()));
+        ((TextView) findViewById(R.id.parTime)).setText(DateHelper.getPuzzleTimeString(puzzle.getParTime()));
+
+        ((TextView) findViewById(R.id.tilesUnlocked)).setText(puzzle.getTilesUnlocked().size() + (isFirstComplete ? "*" : ""));
+
+        // New tiles dialog
+        // If current / best <= par, display in gold
+        // XIf new best, display asterisk next to best text
     }
 
-    public void closePuzzle() {
+    public void closePuzzle(View v) {
         this.finish();
     }
 }
