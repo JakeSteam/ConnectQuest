@@ -2,6 +2,7 @@ package uk.co.jakelee.cityflow.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,6 +78,11 @@ public class StoryActivity extends Activity {
     public void showPackInfo() {
         final Activity activity = this;
         ((TextView) findViewById(R.id.packDesc)).setText(selectedPack.getDescription());
+
+        ((TextView) findViewById(R.id.packStars)).setText(selectedPack.getCurrentStars() + " / " + selectedPack.getMaxStars());
+        boolean allStars = selectedPack.getCurrentStars() == selectedPack.getMaxStars();
+        ((TextView) findViewById(R.id.packStars)).setTextColor(allStars ? Color.YELLOW : Color.BLACK);
+
         TextView packButton = (TextView) findViewById(R.id.packButton);
         packButton.setTag(selectedPack.getPackId());
         if (selectedPack.isPurchased()) {

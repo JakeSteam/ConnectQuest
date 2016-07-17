@@ -127,9 +127,9 @@ public class DatabaseHelper {
 
     private static void createPack() {
         List<Pack> packs = new ArrayList<>();
-            packs.add(new Pack(1, "IAP code", true));
-            packs.add(new Pack(2, "IAP code", false));
-            packs.add(new Pack(3, "IAP code", false));
+            packs.add(new Pack(1, "IAP code", 6, true));
+            packs.add(new Pack(2, "IAP code", 60, false));
+            packs.add(new Pack(3, "IAP code", 3, false));
         Pack.saveInTx(packs);
     }
 

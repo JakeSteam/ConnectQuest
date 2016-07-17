@@ -9,16 +9,19 @@ import java.util.List;
 public class Pack extends SugarRecord{
     private int packId;
     private String iapCode;
+    private int currentStars;
     private boolean purchased;
-    
+    private int maxStars;
 
     public Pack() {
     }
 
-    public Pack(int packId, String iapCode, boolean unlocked) {
+    public Pack(int packId, String iapCode, int maxStars, boolean unlocked) {
         this.packId = packId;
         this.iapCode = iapCode;
         this.purchased = unlocked;
+        this.currentStars = 0;
+        this.maxStars = maxStars;
     }
 
     public int getPackId() {
@@ -43,6 +46,22 @@ public class Pack extends SugarRecord{
 
     public void setPurchased(boolean purchased) {
         this.purchased = purchased;
+    }
+
+    public int getCurrentStars() {
+        return currentStars;
+    }
+
+    public void setCurrentStars(int currentStars) {
+        this.currentStars = currentStars;
+    }
+
+    public int getMaxStars() {
+        return maxStars;
+    }
+
+    public void setMaxStars(int maxStars) {
+        this.maxStars = maxStars;
     }
 
     public static Pack getPack(int packId) {

@@ -222,7 +222,6 @@ public class PuzzleActivity extends Activity {
 
         Pair<Boolean, Boolean> newBests = PuzzleHelper.updateBest(puzzle, timeInMilliseconds, movesMade, stars);
 
-
         ((TextView) findViewById(R.id.currentMoves)).setText(Integer.toString(movesMade));
         ((TextView) findViewById(R.id.currentTime)).setText(DateHelper.getPuzzleTimeString(timeInMilliseconds));
 
@@ -233,10 +232,6 @@ public class PuzzleActivity extends Activity {
         ((TextView) findViewById(R.id.parTime)).setText(DateHelper.getPuzzleTimeString(puzzle.getParTime()));
 
         ((TextView) findViewById(R.id.tilesUnlocked)).setText(puzzle.getUnlockableTiles().size() + (isFirstComplete ? "*" : ""));
-
-        // New tiles dialog
-        // If current / best <= par, display in gold
-        // XIf new best, display asterisk next to best text
     }
 
     public void closePuzzle(View v) {

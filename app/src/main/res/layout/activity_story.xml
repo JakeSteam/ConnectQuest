@@ -46,6 +46,13 @@
                     android:textColor="@color/black"
                     android:textSize="24sp"
                     android:singleLine="false"/>
+                <TextView
+                    android:id="@+id/packStars"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:singleLine="false"/>
             </LinearLayout>
         </TableRow>
 

@@ -2,6 +2,9 @@ package uk.co.jakelee.cityflow.helper;
 
 import android.util.Pair;
 
+import java.util.List;
+
+import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
 
 public class PuzzleHelper {
@@ -22,20 +25,45 @@ public class PuzzleHelper {
         if (timeTaken < puzzle.getBestTime() || puzzle.getBestTime() == 0) {
             puzzle.setBestTime(timeTaken);
             newBestTime = true;
-            if (timeTaken <= puzzle.getParTime()) {
+            if (timeTaken <= puzzle.getParTime() && !puzzle.hasTimeStar()) {
                 puzzle.setTimeStar(true);
             }
         }
         if (movesTaken < puzzle.getBestMoves() || puzzle.getBestMoves() == 0) {
             puzzle.setBestMoves(movesTaken);
             newBestMoves = true;
-            if (movesTaken <= puzzle.getParMoves()) {
+            if (movesTaken <= puzzle.getParMoves() && !puzzle.hasMovesStar()) {
                 puzzle.setMovesStar(true);
             }
         }
-        puzzle.setCompletionStar(true);
+
+        if (!puzzle.hasCompletionStar()) {
+            puzzle.setCompletionStar(true);
+        }
 
         puzzle.save();
+        updatePackTotal(puzzle.getPackId());
         return new Pair<>(newBestTime, newBestMoves);
+    }
+
+    public static void updatePackTotal(int packId) {
+        Pack pack = Pack.getPack(packId);
+        List<Puzzle> puzzles = pack.getPuzzles();
+
+        int stars = 0;
+        for (Puzzle puzzle : puzzles) {
+            if (puzzle.hasCompletionStar()) {
+                stars++;
+            }
+            if (puzzle.hasMovesStar()) {
+                stars++;
+            }
+            if (puzzle.hasTimeStar()) {
+                stars++;
+            }
+        }
+
+        pack.setCurrentStars(stars);
+        pack.save();
     }
 }
