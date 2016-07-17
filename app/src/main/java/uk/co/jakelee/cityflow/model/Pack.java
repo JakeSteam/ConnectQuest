@@ -9,7 +9,8 @@ import java.util.List;
 public class Pack extends SugarRecord{
     private int packId;
     private String iapCode;
-    private boolean unlocked;
+    private boolean purchased;
+    
 
     public Pack() {
     }
@@ -17,7 +18,7 @@ public class Pack extends SugarRecord{
     public Pack(int packId, String iapCode, boolean unlocked) {
         this.packId = packId;
         this.iapCode = iapCode;
-        this.unlocked = unlocked;
+        this.purchased = unlocked;
     }
 
     public int getPackId() {
@@ -36,12 +37,12 @@ public class Pack extends SugarRecord{
         this.iapCode = iapCode;
     }
 
-    public boolean isUnlocked() {
-        return unlocked;
+    public boolean isPurchased() {
+        return purchased;
     }
 
-    public void setUnlocked(boolean unlocked) {
-        this.unlocked = unlocked;
+    public void setPurchased(boolean purchased) {
+        this.purchased = purchased;
     }
 
     public static Pack getPack(int packId) {
@@ -52,6 +53,11 @@ public class Pack extends SugarRecord{
     public List<Puzzle> getPuzzles() {
         return Select.from(Puzzle.class).where(
                 Condition.prop("pack_id").eq(packId)).list();
+    }
+
+    public int getFirstPuzzleId() {
+        return Select.from(Puzzle.class).where(
+                Condition.prop("pack_id").eq(packId)).first().getPuzzleId();
     }
 
     public String getName() {

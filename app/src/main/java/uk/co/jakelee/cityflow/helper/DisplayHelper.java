@@ -81,7 +81,7 @@ public class DisplayHelper {
         return image;
     }
 
-    public TextView createPuzzleSelectImageView(final PackActivity activity, int puzzleNumber, final Puzzle puzzle, boolean isSelected) {
+    public TextView createPuzzleSelectButton(final PackActivity activity, int puzzleNumber, final Puzzle puzzle, boolean isSelected) {
         boolean hasAllStars = puzzle.hasCompletionStar() && puzzle.hasMovesStar() && puzzle.hasTimeStar();
         boolean hasCompleted = puzzle.hasCompletionStar();
 

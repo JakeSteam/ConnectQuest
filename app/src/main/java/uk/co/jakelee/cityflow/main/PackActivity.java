@@ -61,7 +61,7 @@ public class PackActivity extends Activity {
                 selectedPuzzle = puzzle;
             }
             boolean isSelected = selectedPuzzle.getPuzzleId() == puzzle.getPuzzleId();
-            row.addView(dh.createPuzzleSelectImageView(this, puzzle.getPuzzleId(), puzzle, isSelected), params);
+            row.addView(dh.createPuzzleSelectButton(this, puzzle.getPuzzleId(), puzzle, isSelected), params);
 
             if (puzzleIndex % 6 == 0 || puzzleIndex == numPuzzles) {
                 puzzleContainer.addView(row);
@@ -87,7 +87,8 @@ public class PackActivity extends Activity {
         ((TextView) findViewById(R.id.puzzleBestMoves)).setText(Integer.toString(selectedPuzzle.getBestMoves()));
         ((TextView) findViewById(R.id.puzzleBestMoves)).setTextColor(selectedPuzzle.hasMovesStar() ? Color.YELLOW : Color.BLACK);
 
-        ((TextView) findViewById(R.id.puzzleTilesUnlocked)).setText(Integer.toString(selectedPuzzle.getTilesUnlocked().size()));
+        int numTiles = selectedPuzzle.getUnlockableTiles().size();
+        ((TextView) findViewById(R.id.puzzleTilesUnlocked)).setText((selectedPuzzle.hasCompletionStar() ? numTiles : 0) + " / " + numTiles);
         findViewById(R.id.puzzleButton).setTag(selectedPuzzle.getPuzzleId());
         findViewById(R.id.puzzleButton).setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {

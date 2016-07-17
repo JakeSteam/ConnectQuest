@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/packPreview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ui_button_city">
+    <ImageView
+        android:id="@+id/packImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp" />
+    <uk.co.jakelee.cityflow.components.TextViewFont
+        android:id="@+id/packName"
+        android:layout_toRightOf="@id/packImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

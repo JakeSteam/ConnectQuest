@@ -114,7 +114,7 @@ public class Puzzle extends SugarRecord {
                 .orderBy("y DESC, x ASC").list();
     }
 
-    public List<Tile_Type> getTilesUnlocked() {
+    public List<Tile_Type> getUnlockableTiles() {
         return Select.from(Tile_Type.class).where(
                 Condition.prop("puzzle_required").eq(puzzleId)).list();
     }

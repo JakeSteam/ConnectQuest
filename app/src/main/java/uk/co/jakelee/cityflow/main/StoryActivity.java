@@ -2,11 +2,13 @@ package uk.co.jakelee.cityflow.main;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -18,35 +20,81 @@ import uk.co.jakelee.cityflow.model.Pack;
 
 public class StoryActivity extends Activity {
     private DisplayHelper dh;
+    public Pack selectedPack = new Pack();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_story);
         dh = DisplayHelper.getInstance(this);
-
-        LinearLayout chapterContainer = (LinearLayout) findViewById(R.id.chapterContainer);
-        populateChapters(chapterContainer);
     }
 
-    public void populateChapters(LinearLayout chapterContainer) {
-        final Activity activity = this;
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        selectedPack = Pack.getPack(selectedPack.getPackId());
+        populatePacks();
+    }
+
+    public void populatePacks() {
+        LinearLayout packContainer = (LinearLayout) findViewById(R.id.packContainer);
+        packContainer.removeAllViews();
+
         List<Pack> packs = Pack.listAll(Pack.class);
-        for (Pack pack : packs) {
-            TextView packText = new TextView(this);
-            packText.setText(pack.getName() + " - " + pack.getDescription());
-            packText.setTextColor(pack.isUnlocked() ? Color.BLACK : Color.LTGRAY);
-            packText.setTextSize(24);
-            packText.setTag(pack.getPackId());
-            packText.setOnClickListener(new Button.OnClickListener() {
+        for (final Pack pack : packs) {
+            if (selectedPack == null || selectedPack.getPackId() == 0) {
+                selectedPack = pack;
+            }
+
+            boolean isSelected = selectedPack.getPackId() == pack.getPackId();
+
+            LayoutInflater inflater = LayoutInflater.from(this);
+            View inflatedView = inflater.inflate(R.layout.custom_pack_preview, null);
+            RelativeLayout packPreview = (RelativeLayout) inflatedView.findViewById(R.id.packPreview);
+
+            ImageView image = (ImageView)packPreview.findViewById(R.id.packImage);
+            image.setImageResource(dh.getPuzzleDrawableID(pack.getFirstPuzzleId()));
+
+            TextView text = (TextView)packPreview.findViewById(R.id.packName);
+            text.setText(pack.getName() + (isSelected ? "*" : ""));
+            text.setTextSize(30);
+
+            inflatedView.setTag(pack.getPackId());
+            inflatedView.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    selectedPack = pack;
+                    populatePacks();
+                }
+            });
+
+            packContainer.addView(inflatedView);
+        }
+
+        showPackInfo();
+    }
+
+    public void showPackInfo() {
+        final Activity activity = this;
+        ((TextView) findViewById(R.id.packDesc)).setText(selectedPack.getDescription());
+        TextView packButton = (TextView) findViewById(R.id.packButton);
+        packButton.setTag(selectedPack.getPackId());
+        if (selectedPack.isPurchased()) {
+            packButton.setText("Open Pack");
+            packButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(activity, PackActivity.class);
                     intent.putExtra(Constants.INTENT_PACK, (int) v.getTag());
                     startActivity(intent);
                 }
             });
-
-            chapterContainer.addView(packText);
+        } else {
+            packButton.setText("Purchase Pack");
+            packButton.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    // IAP prompt
+                }
+            });
         }
     }
 }

@@ -232,7 +232,7 @@ public class PuzzleActivity extends Activity {
         ((TextView) findViewById(R.id.parMoves)).setText(Integer.toString(puzzle.getParMoves()));
         ((TextView) findViewById(R.id.parTime)).setText(DateHelper.getPuzzleTimeString(puzzle.getParTime()));
 
-        ((TextView) findViewById(R.id.tilesUnlocked)).setText(puzzle.getTilesUnlocked().size() + (isFirstComplete ? "*" : ""));
+        ((TextView) findViewById(R.id.tilesUnlocked)).setText(puzzle.getUnlockableTiles().size() + (isFirstComplete ? "*" : ""));
 
         // New tiles dialog
         // If current / best <= par, display in gold
