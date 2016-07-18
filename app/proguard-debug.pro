@@ -15,3 +15,8 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-dontwarn com.google.**
+-dontwarn com.squareup.okhttp.**
+-keep class com.orm.** { *; }
+-keep class uk.co.jakelee.cityflow.model.** { *; }
+-keepattributes SourceFile,LineNumberTable

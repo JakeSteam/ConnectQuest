@@ -14,7 +14,11 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-debug.pro'
         }
     }
 }
@@ -24,6 +28,6 @@ dependencies {
     compile 'com.github.satyan:sugar:1.4'
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile 'com.android.support:design:24.0.0'
-    compile 'com.android.support:percent:23.4.0'
+    compile 'com.android.support:percent:24.0.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
 }
