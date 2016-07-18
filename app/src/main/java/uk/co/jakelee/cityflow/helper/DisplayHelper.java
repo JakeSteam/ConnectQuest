@@ -81,7 +81,7 @@ public class DisplayHelper {
         return image;
     }
 
-    public TextView createPuzzleSelectButton(final PackActivity activity, int puzzleNumber, final Puzzle puzzle, boolean isSelected) {
+    public TextView createPuzzleSelectButton(final PackActivity activity, int puzzleNumber, final Puzzle puzzle, boolean isSelected, boolean lastLevelCompleted) {
         boolean hasAllStars = puzzle.hasCompletionStar() && puzzle.hasMovesStar() && puzzle.hasTimeStar();
         boolean hasCompleted = puzzle.hasCompletionStar();
 
@@ -90,18 +90,22 @@ public class DisplayHelper {
         puzzleText.setTextSize(30);
         puzzleText.setGravity(Gravity.CENTER);
         puzzleText.setPadding(10, 10, 10, 10);
-        if (isSelected) {
+        if (!lastLevelCompleted) {
+            puzzleText.setBackgroundResource(R.drawable.ui_level_locked);
+        } else if (isSelected) {
             puzzleText.setBackgroundResource(hasCompleted ? (hasAllStars ? R.drawable.ui_level_selected_completed_fully : R.drawable.ui_level_selected_completed) : R.drawable.ui_level_selected);
         } else {
             puzzleText.setBackgroundResource(hasCompleted ? (hasAllStars ? R.drawable.ui_level_unselected_completed_fully : R.drawable.ui_level_unselected_completed) : R.drawable.ui_level_unselected);
         }
         puzzleText.setTag(puzzle.getPuzzleId());
-        puzzleText.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                activity.selectedPuzzle = puzzle;
-                activity.populatePuzzles();
-            }
-        });
+        if (lastLevelCompleted) {
+            puzzleText.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    activity.selectedPuzzle = puzzle;
+                    activity.populatePuzzles();
+                }
+            });
+        }
         return puzzleText;
     }
 

@@ -59,15 +59,15 @@ public class StoryActivity extends Activity {
                 packProgress.setProgress(pack.getCurrentStars());
                 packProgress.setMax(pack.getMaxStars());
             }
-            packProgress.setVisibility(isSelected ? View.INVISIBLE : View.VISIBLE);
+            packProgress.setVisibility(isSelected || !pack.isUnlocked() ? View.INVISIBLE : View.VISIBLE);
 
-            inflatedView.findViewById(R.id.packColourIndicator).setBackgroundResource(pack.isUnlocked() ? R.color.green : R.color.red);
+            inflatedView.findViewById(R.id.packColourIndicator).setBackgroundResource(isSelected ? R.color.green : R.color.red);
 
             ImageView image = (ImageView)packPreview.findViewById(R.id.packImage);
-            image.setImageResource(dh.getPuzzleDrawableID(pack.getFirstPuzzleId()));
+            image.setImageDrawable(dh.getPuzzleDrawable(pack.getFirstPuzzleId(), pack.isUnlocked()));
 
             TextView text = (TextView)packPreview.findViewById(R.id.packName);
-            text.setText(pack.getName());
+            text.setText(pack.getPackId() + ": " + pack.getName());
 
             inflatedView.setTag(pack.getPackId());
             inflatedView.setOnClickListener(new Button.OnClickListener() {

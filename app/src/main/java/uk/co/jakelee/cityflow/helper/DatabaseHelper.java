@@ -35,17 +35,24 @@ public class DatabaseHelper {
 
     private static void createText() {
         List<Text> texts = new ArrayList<>();
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_1_NAME", "Undo"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_1_DESC", "Undo your 1 most recent move, also decreasing the move count."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_1_UPGRADE", "Upgrading Undo increases the number of undoes that can be performed per puzzle by 1 per level."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_2_NAME", "Time Reduction"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_2_DESC", "Reduce the recorded time for the level by 10%."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_2_UPGRADE", "Upgrading Time Reduction reduces the puzzle time taken by 10% per level."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_3_NAME", "Move Reduction"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_3_DESC", "Reduce the recorded moves per level by 1."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_3_UPGRADE", "Upgrading Move Reduction reduces the puzzle moves taken by 1 per level."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_4_NAME", "Shuffle Board"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_4_DESC", "Randomly all rotate all tiles on the board 1 time."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_4_UPGRADE", "Upgrading Shuffle Board increases the number of times the board can be shuffled by 1 per level."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_1_NAME", "Tutorial"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_1_DESC", "Let's go with the flow."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_2_NAME", "The Big City"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_2_DESC", "Get flowing in the big city."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_3_NAME", "Escape To The Country"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_3_DESC", "Flow all the way out to the country."));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_1_TEXT", "Music"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_2_TEXT", "Sounds"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_3_TEXT", "Minimum Zoom"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_4_TEXT", "Maximum Zoom"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_5_TEXT", "Zen Mode"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_1_NAME", "No Crossing"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_2_NAME", "Don't Cross The Flows"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_11_NAME", "One Shop Town"));
@@ -70,6 +77,13 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_30_NAME", "A Summer Walk"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_41_NAME", "Highs And Lows"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_END_TEXT", "It flows!\n\n%1$d stars\nTime: %2$s\nMoves: %3$d\n\nTarget Time: %4$s\nTarget Moves: %5$d\n\nBest Time: %6$s%7$s\nBest Moves: %8$d%9$s\nNew Tiles: %10$d%11$s"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_1_TEXT", "Music"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_2_TEXT", "Sounds"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_3_TEXT", "Minimum Zoom"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_4_TEXT", "Maximum Zoom"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_5_TEXT", "Zen Mode"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_1_TEXT", "Puzzles Completed"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_2_TEXT", "Tiles Rotated"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_1_TEXT", "Grass Road Corner"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_2_TEXT", "Grass Road Straight"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_3_TEXT", "Grass Road End"));
@@ -120,8 +134,6 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_48_TEXT", "City High Road Corner"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_49_TEXT", "City Grass Corner"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_50_TEXT", "City Canal Corner"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_1_TEXT", "Puzzles Completed"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_2_TEXT", "Tiles Rotated"));
         Text.saveInTx(texts);
     }
 

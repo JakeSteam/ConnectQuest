@@ -39,7 +39,6 @@ public class PackActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        // Refreshing puzzle, so that stats update
         selectedPuzzle = Puzzle.getPuzzle(selectedPuzzle.getPuzzleId());
         populatePuzzles();
     }
@@ -55,18 +54,21 @@ public class PackActivity extends Activity {
         List<Puzzle> puzzles = selectedPack.getPuzzles();
         int numPuzzles = puzzles.size();
         TableRow row = new TableRow(this);
+        boolean lastLevelCompleted = true;
         for (int puzzleIndex = 1; puzzleIndex <= numPuzzles; puzzleIndex++) {
             Puzzle puzzle = puzzles.get(puzzleIndex - 1);
             if (selectedPuzzle == null || selectedPuzzle.getPuzzleId() == 0) {
                 selectedPuzzle = puzzle;
             }
             boolean isSelected = selectedPuzzle.getPuzzleId() == puzzle.getPuzzleId();
-            row.addView(dh.createPuzzleSelectButton(this, puzzle.getPuzzleId(), puzzle, isSelected), params);
+            row.addView(dh.createPuzzleSelectButton(this, puzzle.getPuzzleId(), puzzle, isSelected, lastLevelCompleted), params);
 
             if (puzzleIndex % 6 == 0 || puzzleIndex == numPuzzles) {
                 puzzleContainer.addView(row);
                 row = new TableRow(this);
             }
+
+            lastLevelCompleted = puzzle.hasCompletionStar();
         }
 
         showPuzzleInfo();
