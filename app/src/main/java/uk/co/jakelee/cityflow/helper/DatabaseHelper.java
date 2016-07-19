@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.cityflow.main.MainActivity;
+import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Setting;
@@ -24,6 +25,7 @@ public class DatabaseHelper {
     }
 
     private static void initialSetup() {
+        createBoost();
         createPack();
         createPuzzle();
         createSetting();
@@ -31,6 +33,15 @@ public class DatabaseHelper {
         createText();
         createTile();
         createTileType();
+    }
+
+    private static void createBoost() {
+        List<Boost> boosts = new ArrayList<>();
+            boosts.add(new Boost(Constants.BOOST_UNDO, 1, 0, 0));
+            boosts.add(new Boost(Constants.BOOST_TIME, 1, 0, 0));
+            boosts.add(new Boost(Constants.BOOST_MOVE, 1, 0, 0));
+            boosts.add(new Boost(Constants.BOOST_SHUFFLE, 1, 0, 0));
+        Boost.saveInTx(boosts);
     }
 
     private static void createText() {

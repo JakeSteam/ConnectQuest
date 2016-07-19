@@ -13,6 +13,10 @@ public class Constants {
     public static final int PUZZLE_HEIGHT = 76;
 
     // Lookup constants
+    public static final int BOOST_UNDO = 1;
+    public static final int BOOST_TIME = 2;
+    public static final int BOOST_MOVE = 3;
+    public static final int BOOST_SHUFFLE = 4;
     public static final int ENVIRONMENT_GRASS = 0;
     public static final int ENVIRONMENT_CITY = 1;
     public static final int FLOW_NONE = 0;

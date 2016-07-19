@@ -83,27 +83,27 @@ public class Puzzle extends SugarRecord {
     }
 
     public boolean hasCompletionStar() {
-        return ModificationHelper.decodeToBool(completionStar, puzzleId);
+        return ModificationHelper.decodeToBool(completionStar, puzzleId + 1000);
     }
 
     public void setCompletionStar(boolean completionStar) {
-        this.completionStar = ModificationHelper.encode(completionStar, puzzleId);
+        this.completionStar = ModificationHelper.encode(completionStar, puzzleId + 1000);
     }
 
     public boolean hasTimeStar() {
-        return ModificationHelper.decodeToBool(timeStar, puzzleId);
+        return ModificationHelper.decodeToBool(timeStar, puzzleId + 2000);
     }
 
     public void setTimeStar(boolean timeStar) {
-        this.timeStar = ModificationHelper.encode(timeStar, puzzleId);
+        this.timeStar = ModificationHelper.encode(timeStar, puzzleId + 2000);
     }
 
     public boolean hasMovesStar() {
-        return ModificationHelper.decodeToBool(movesStar, puzzleId);
+        return ModificationHelper.decodeToBool(movesStar, puzzleId + 3000);
     }
 
     public void setMovesStar(boolean movesStar) {
-        this.movesStar = ModificationHelper.encode(movesStar, puzzleId);
+        this.movesStar = ModificationHelper.encode(movesStar, puzzleId + 3000);
     }
 
     public String getName() {

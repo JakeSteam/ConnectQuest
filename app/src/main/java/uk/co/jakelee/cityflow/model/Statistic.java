@@ -2,28 +2,30 @@ package uk.co.jakelee.cityflow.model;
 
 import com.orm.SugarRecord;
 
+import uk.co.jakelee.cityflow.helper.ModificationHelper;
+
 public class Statistic extends SugarRecord {
     private int statisticId;
     private String stringValue;
-    private int intValue;
-    private boolean boolValue;
+    private String intValue;
+    private String boolValue;
 
     public Statistic() {
     }
 
     public Statistic(int statisticId, String stringValue) {
         this.statisticId = statisticId;
-        this.stringValue = stringValue;
+        this.stringValue = ModificationHelper.encode(stringValue, statisticId);
     }
 
     public Statistic(int statisticId, int intValue) {
         this.statisticId = statisticId;
-        this.intValue = intValue;
+        this.intValue = ModificationHelper.encode(intValue, statisticId);
     }
 
     public Statistic(int statisticId, boolean boolValue) {
         this.statisticId = statisticId;
-        this.boolValue = boolValue;
+        this.boolValue = ModificationHelper.encode(boolValue, statisticId);
     }
 
     public int getStatisticId() {
@@ -35,27 +37,27 @@ public class Statistic extends SugarRecord {
     }
 
     public String getStringValue() {
-        return stringValue;
+        return ModificationHelper.decode(stringValue, statisticId);
     }
 
     public void setStringValue(String stringValue) {
-        this.stringValue = stringValue;
+        this.stringValue = ModificationHelper.encode(stringValue, statisticId);
     }
 
     public int getIntValue() {
-        return intValue;
+        return ModificationHelper.decodeToInt(intValue, statisticId);
     }
 
     public void setIntValue(int intValue) {
-        this.intValue = intValue;
+        this.intValue = ModificationHelper.encode(intValue, statisticId);
     }
 
     public boolean isBoolValue() {
-        return boolValue;
+        return ModificationHelper.decodeToBool(boolValue, statisticId);
     }
 
     public void setBoolValue(boolean boolValue) {
-        this.boolValue = boolValue;
+        this.boolValue = ModificationHelper.encode(boolValue, statisticId);
     }
 
     public String getName() {

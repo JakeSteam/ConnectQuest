@@ -6,22 +6,24 @@ import com.orm.query.Select;
 
 import java.util.List;
 
+import uk.co.jakelee.cityflow.helper.ModificationHelper;
+
 public class Pack extends SugarRecord{
     private int packId;
     private String iapCode;
-    private int currentStars;
-    private boolean purchased;
-    private int maxStars;
+    private String currentStars;
+    private String purchased;
+    private String maxStars;
 
     public Pack() {
     }
 
-    public Pack(int packId, String iapCode, int maxStars, boolean unlocked) {
+    public Pack(int packId, String iapCode, int maxStars, boolean purchased) {
         this.packId = packId;
-        this.iapCode = iapCode;
-        this.purchased = unlocked;
-        this.currentStars = 0;
-        this.maxStars = maxStars;
+        this.iapCode = ModificationHelper.encode(iapCode, packId);
+        this.purchased = ModificationHelper.encode(purchased, packId);
+        this.currentStars = ModificationHelper.encode(0, packId);
+        this.maxStars = ModificationHelper.encode(maxStars, packId);
     }
 
     public int getPackId() {
@@ -33,35 +35,35 @@ public class Pack extends SugarRecord{
     }
 
     public String getIapCode() {
-        return iapCode;
+        return ModificationHelper.decode(iapCode, packId);
     }
 
     public void setIapCode(String iapCode) {
-        this.iapCode = iapCode;
+        this.iapCode = ModificationHelper.encode(iapCode, packId);
     }
 
     public boolean isPurchased() {
-        return purchased;
+        return ModificationHelper.decodeToBool(purchased, packId);
     }
 
     public void setPurchased(boolean purchased) {
-        this.purchased = purchased;
+        this.purchased = ModificationHelper.encode(purchased, packId);
     }
 
     public int getCurrentStars() {
-        return currentStars;
+        return ModificationHelper.decodeToInt(currentStars, packId);
     }
 
     public void setCurrentStars(int currentStars) {
-        this.currentStars = currentStars;
+        this.currentStars = ModificationHelper.encode(currentStars, packId);
     }
 
     public int getMaxStars() {
-        return maxStars;
+        return ModificationHelper.decodeToInt(maxStars, packId);
     }
 
     public void setMaxStars(int maxStars) {
-        this.maxStars = maxStars;
+        this.maxStars = ModificationHelper.encode(maxStars, packId);
     }
 
     public static Pack getPack(int packId) {

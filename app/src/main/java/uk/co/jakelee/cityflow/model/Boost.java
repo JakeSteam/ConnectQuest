@@ -2,17 +2,19 @@ package uk.co.jakelee.cityflow.model;
 
 import com.orm.SugarRecord;
 
+import uk.co.jakelee.cityflow.helper.ModificationHelper;
+
 public class Boost extends SugarRecord{
     private int boostId;
-    private int level;
-    private int owned;
-    private int used;
+    private String level;
+    private String owned;
+    private String used;
 
     public Boost(int boostId, int level, int owned, int used) {
         this.boostId = boostId;
-        this.level = level;
-        this.owned = owned;
-        this.used = used;
+        this.level = ModificationHelper.encode(level, boostId);
+        this.owned = ModificationHelper.encode(owned, boostId);
+        this.used = ModificationHelper.encode(used, boostId);
     }
 
     public int getBoostId() {
@@ -24,27 +26,27 @@ public class Boost extends SugarRecord{
     }
 
     public int getLevel() {
-        return level;
+        return ModificationHelper.decodeToInt(level, boostId);
     }
 
     public void setLevel(int level) {
-        this.level = level;
+        this.level = ModificationHelper.encode(level, boostId);
     }
 
     public int getOwned() {
-        return owned;
+        return ModificationHelper.decodeToInt(owned, boostId);
     }
 
     public void setOwned(int owned) {
-        this.owned = owned;
+        this.owned = ModificationHelper.encode(owned, boostId);
     }
 
     public int getUsed() {
-        return used;
+        return ModificationHelper.decodeToInt(used, boostId);
     }
 
     public void setUsed(int used) {
-        this.used = used;
+        this.used = ModificationHelper.encode(used, boostId);
     }
 
     public String getName() {
@@ -53,5 +55,9 @@ public class Boost extends SugarRecord{
 
     public String getDescription() {
         return Text.get("BOOST_", getBoostId(), "_DESC");
+    }
+
+    public String getUpgradeText() {
+        return Text.get("BOOST_", getBoostId(), "_UPGRADE");
     }
 }
