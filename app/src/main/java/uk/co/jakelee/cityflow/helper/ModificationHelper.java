@@ -7,7 +7,7 @@ import com.scottyab.aescrypt.AESCrypt;
 import java.security.GeneralSecurityException;
 
 public class ModificationHelper {
-    private static final String encryptionPwd = "This " + "should probably be " + "stored better!";
+    private static final String encryptionPwd = "Please don't cheat! " + "It ruins the game for others, " + "and yourself!";
 
     public static String encode(Long unencrypted, int salt) {
         return encode(Long.toString(unencrypted), salt);

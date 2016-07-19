@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".main.PuzzleActivity">
 
     <uk.co.jakelee.cityflow.components.ZoomableViewGroup
@@ -138,20 +139,79 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/undoButton"
-        android:layout_width="wrap_content"
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/topUI"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:textColor="@color/grey"
-        android:gravity="left"
-        android:text="Boosts"
-        android:onClick="undoLastMove"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/ui_button_grey"
-        android:visibility="invisible"/>
+        android:orientation="horizontal"
+        android:visibility="invisible">
+        <uk.co.jakelee.cityflow.components.TextAwesome
+            android:id="@+id/undoButton"
+            android:layout_width="wrap_content"
+            app:layout_widthPercent="20%"
+            app:layout_heightPercent="15%"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textColor="@color/grey"
+            android:text="&#xf0e2;"
+            android:gravity="center"
+            android:onClick="undoLastMove"
+            android:padding="5dp"
+            android:background="@drawable/ui_button_grey"/>
+        <uk.co.jakelee.cityflow.components.TextAwesome
+            android:id="@+id/timeBoostIndicator"
+            android:layout_width="wrap_content"
+            app:layout_widthPercent="20%"
+            app:layout_heightPercent="15%"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textColor="@color/grey"
+            android:layout_toRightOf="@id/undoButton"
+            android:text="&#xf250;"
+            android:gravity="center"
+            android:padding="5dp"
+            android:background="@drawable/ui_button_grey"/>
+        <TextView
+            android:id="@+id/moveBoostIndicator"
+            android:layout_width="wrap_content"
+            app:layout_widthPercent="20%"
+            app:layout_heightPercent="15%"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textColor="@color/grey"
+            android:layout_toRightOf="@id/timeBoostIndicator"
+            android:text="-1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:background="@drawable/ui_button_grey"/>
+        <uk.co.jakelee.cityflow.components.TextAwesome
+            android:id="@+id/shuffleButton"
+            android:layout_width="wrap_content"
+            app:layout_widthPercent="20%"
+            app:layout_heightPercent="15%"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textColor="@color/grey"
+            android:layout_toRightOf="@id/moveBoostIndicator"
+            android:text="&#xf074;"
+            android:gravity="center"
+            android:padding="5dp"
+            android:background="@drawable/ui_button_grey"/>
+        <uk.co.jakelee.cityflow.components.TextAwesome
+            android:id="@+id/pauseButton"
+            android:layout_width="wrap_content"
+            app:layout_widthPercent="20%"
+            app:layout_heightPercent="15%"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textColor="@color/grey"
+            android:layout_toRightOf="@id/shuffleButton"
+            android:text="&#xf04c;"
+            android:gravity="center"
+            android:padding="5dp"
+            android:background="@drawable/ui_button_grey"/>
+
+    </android.support.percent.PercentRelativeLayout>
 
     <TextView
         android:id="@+id/puzzleTimer"

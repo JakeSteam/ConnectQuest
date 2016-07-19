@@ -114,7 +114,7 @@ public class PuzzleActivity extends Activity {
 
         findViewById(R.id.zoomIn).setVisibility(View.VISIBLE);
         findViewById(R.id.zoomOut).setVisibility(View.VISIBLE);
-        findViewById(R.id.undoButton).setVisibility(View.VISIBLE);
+        findViewById(R.id.topUI).setVisibility(View.VISIBLE);
 
         startTime = SystemClock.uptimeMillis();
     }
@@ -209,7 +209,7 @@ public class PuzzleActivity extends Activity {
         findViewById(R.id.zoomIn).setVisibility(View.GONE);
         findViewById(R.id.zoomOut).setVisibility(View.GONE);
         findViewById(R.id.moveCounter).setVisibility(View.GONE);
-        findViewById(R.id.undoButton).setVisibility(View.GONE);
+        findViewById(R.id.topUI).setVisibility(View.GONE);
 
         findViewById(R.id.endGame).setVisibility(View.VISIBLE);
         ((ImageView) findViewById(R.id.starCompletion)).setImageResource(puzzle.hasCompletionStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
