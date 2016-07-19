@@ -9,6 +9,7 @@ import android.view.View;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DatabaseHelper;
+import uk.co.jakelee.cityflow.helper.ModificationHelper;
 
 public class MainActivity extends Activity {
     public static SharedPreferences prefs;
@@ -20,7 +21,10 @@ public class MainActivity extends Activity {
         prefs = getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE);
 
         MainActivity.prefs.edit().putInt("language", Constants.LANGUAGE_EN_GB).apply();
+
+        String hash = ModificationHelper.getDatabaseHash(this);
         DatabaseHelper.handlePatches();
+
     }
 
     public void openChapters(View view) {
