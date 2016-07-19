@@ -6,16 +6,18 @@ import com.orm.query.Select;
 
 import java.util.List;
 
+import uk.co.jakelee.cityflow.helper.ModificationHelper;
+
 public class Puzzle extends SugarRecord {
     private int puzzleId;
     private int packId;
-    private long parTime;
-    private int parMoves;
-    private long bestTime;
-    private int bestMoves;
-    private boolean completionStar;
-    private boolean timeStar;
-    private boolean movesStar;
+    private String parTime;
+    private String parMoves;
+    private String bestTime;
+    private String bestMoves;
+    private String completionStar;
+    private String timeStar;
+    private String movesStar;
 
     public Puzzle() {
     }
@@ -23,13 +25,13 @@ public class Puzzle extends SugarRecord {
     public Puzzle(int puzzleId, int packId, long parTime, int parMoves, long bestTime, int bestMoves) {
         this.puzzleId = puzzleId;
         this.packId = packId;
-        this.parTime = parTime;
-        this.parMoves = parMoves;
-        this.bestTime = bestTime;
-        this.bestMoves = bestMoves;
-        this.completionStar = false;
-        this.timeStar = false;
-        this.movesStar = false;
+        this.parTime = ModificationHelper.encode(parTime, puzzleId);
+        this.parMoves = ModificationHelper.encode(parMoves, puzzleId);
+        this.bestTime = ModificationHelper.encode(bestTime, puzzleId);
+        this.bestMoves = ModificationHelper.encode(bestMoves, puzzleId);
+        this.completionStar = ModificationHelper.encode(false, puzzleId);;
+        this.timeStar = ModificationHelper.encode(false, puzzleId);;
+        this.movesStar = ModificationHelper.encode(false, puzzleId);;
     }
 
     public int getPuzzleId() {
@@ -49,59 +51,59 @@ public class Puzzle extends SugarRecord {
     }
 
     public long getParTime() {
-        return parTime;
+        return ModificationHelper.decodeToLong(parTime, puzzleId);
     }
 
     public void setParTime(long parTime) {
-        this.parTime = parTime;
+        this.parTime = ModificationHelper.encode(parTime, puzzleId);
     }
 
     public int getParMoves() {
-        return parMoves;
+        return ModificationHelper.decodeToInt(parMoves, puzzleId);
     }
 
     public void setParMoves(int parMoves) {
-        this.parMoves = parMoves;
+        this.parMoves = ModificationHelper.encode(parMoves, puzzleId);
     }
 
     public long getBestTime() {
-        return bestTime;
+        return ModificationHelper.decodeToLong(bestTime, puzzleId);
     }
 
     public void setBestTime(long bestTime) {
-        this.bestTime = bestTime;
+        this.bestTime = ModificationHelper.encode(bestTime, puzzleId);
     }
 
     public int getBestMoves() {
-        return bestMoves;
+        return ModificationHelper.decodeToInt(bestMoves, puzzleId);
     }
 
     public void setBestMoves(int bestMoves) {
-        this.bestMoves = bestMoves;
+        this.bestMoves = ModificationHelper.encode(bestMoves, puzzleId);
     }
 
     public boolean hasCompletionStar() {
-        return completionStar;
+        return ModificationHelper.decodeToBool(completionStar, puzzleId);
     }
 
     public void setCompletionStar(boolean completionStar) {
-        this.completionStar = completionStar;
+        this.completionStar = ModificationHelper.encode(completionStar, puzzleId);
     }
 
     public boolean hasTimeStar() {
-        return timeStar;
+        return ModificationHelper.decodeToBool(timeStar, puzzleId);
     }
 
     public void setTimeStar(boolean timeStar) {
-        this.timeStar = timeStar;
+        this.timeStar = ModificationHelper.encode(timeStar, puzzleId);
     }
 
     public boolean hasMovesStar() {
-        return movesStar;
+        return ModificationHelper.decodeToBool(movesStar, puzzleId);
     }
 
     public void setMovesStar(boolean movesStar) {
-        this.movesStar = movesStar;
+        this.movesStar = ModificationHelper.encode(movesStar, puzzleId);
     }
 
     public String getName() {
