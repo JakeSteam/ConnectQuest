@@ -24,6 +24,7 @@ import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.ImageHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleHelper;
 import uk.co.jakelee.cityflow.helper.TileHelper;
+import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Tile;
@@ -55,6 +56,17 @@ public class PuzzleActivity extends Activity {
         populateTiles(tiles);
         fetchImages(tiles);
         startCountdownTimer();
+
+        updateBoostVisibility();
+    }
+
+    public void updateBoostVisibility() {
+        if (Setting.isTrue(Constants.SETTING_HIDE_UNSTOCKED_BOOSTS)) {
+            findViewById(R.id.undoBoost).setVisibility(Boost.getOwned(Constants.BOOST_UNDO) > 0 ? View.VISIBLE : View.INVISIBLE);
+            findViewById(R.id.timeBoost).setVisibility(Boost.getOwned(Constants.BOOST_TIME) > 0 ? View.VISIBLE : View.INVISIBLE);
+            findViewById(R.id.moveBoost).setVisibility(Boost.getOwned(Constants.BOOST_MOVE) > 0 ? View.VISIBLE : View.INVISIBLE);
+            findViewById(R.id.shuffleBoost).setVisibility(Boost.getOwned(Constants.BOOST_SHUFFLE) > 0 ? View.VISIBLE : View.INVISIBLE);
+        }
     }
 
     @Override
@@ -166,7 +178,7 @@ public class PuzzleActivity extends Activity {
         Picasso.with(this).load(drawableId).into(image);
 
         ((TextView) findViewById(R.id.moveCounter)).setText(Integer.toString(++movesMade));
-        ((TextView) findViewById(R.id.undoButton)).setTextColor(undoing ? Color.GRAY : Color.BLACK);
+        ((TextView) findViewById(R.id.undoBoost)).setTextColor(undoing ? Color.GRAY : Color.BLACK);
 
         timeLastMoved = SystemClock.uptimeMillis();
 

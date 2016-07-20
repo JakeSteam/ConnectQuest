@@ -1,6 +1,10 @@
 package uk.co.jakelee.cityflow.model;
 
 import com.orm.SugarRecord;
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
+import java.util.List;
 
 import uk.co.jakelee.cityflow.helper.ModificationHelper;
 
@@ -59,5 +63,12 @@ public class Boost extends SugarRecord{
 
     public String getUpgradeText() {
         return Text.get("BOOST_", getBoostId(), "_UPGRADE");
+    }
+
+    public static int getOwned(int boostId) {
+        List<Boost> boosts = Boost.listAll(Boost.class);
+
+        return Select.from(Boost.class).where(
+                Condition.prop("boost_id").eq(boostId)).first().getOwned();
     }
 }

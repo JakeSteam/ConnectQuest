@@ -38,8 +38,8 @@ public class DatabaseHelper {
     private static void createBoost() {
         List<Boost> boosts = new ArrayList<>();
             boosts.add(new Boost(Constants.BOOST_UNDO, 1, 0, 0));
-            boosts.add(new Boost(Constants.BOOST_TIME, 1, 0, 0));
-            boosts.add(new Boost(Constants.BOOST_MOVE, 1, 0, 0));
+            boosts.add(new Boost(Constants.BOOST_TIME, 1, 5, 0));
+            boosts.add(new Boost(Constants.BOOST_MOVE, 1, 5, 0));
             boosts.add(new Boost(Constants.BOOST_SHUFFLE, 1, 0, 0));
         Boost.saveInTx(boosts);
     }
@@ -93,6 +93,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_3_TEXT", "Minimum Zoom"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_4_TEXT", "Maximum Zoom"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_5_TEXT", "Zen Mode"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_6_TEXT", "Hide Unstocked Boosts"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_1_TEXT", "Puzzles Completed"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_2_TEXT", "Tiles Rotated"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_1_TEXT", "Grass Road Corner"));
@@ -191,6 +192,7 @@ public class DatabaseHelper {
             settings.add(new Setting(3, 0.50f));
             settings.add(new Setting(4, 1.75f));
             settings.add(new Setting(5, false));
+            settings.add(new Setting(6, true));
         Setting.saveInTx(settings);
     }
 
