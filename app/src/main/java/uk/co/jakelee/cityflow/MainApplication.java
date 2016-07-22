@@ -12,7 +12,8 @@ import org.acra.annotation.ReportsCrashes;
 
 @ReportsCrashes(mailTo = "city.flow@jakelee.co.uk",
         customReportContent = { ReportField.APP_VERSION_CODE, ReportField.APP_VERSION_NAME, ReportField.ANDROID_VERSION, ReportField.PHONE_MODEL, ReportField.CUSTOM_DATA, ReportField.STACK_TRACE, ReportField.LOGCAT },
-        mode = ReportingInteractionMode.TOAST)
+        mode = ReportingInteractionMode.TOAST,
+        resToastText = R.string.app_name)
 public class MainApplication extends Application {
     @Override
     protected void attachBaseContext(Context base) {

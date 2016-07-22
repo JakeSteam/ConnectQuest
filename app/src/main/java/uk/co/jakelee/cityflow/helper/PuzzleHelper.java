@@ -4,6 +4,7 @@ import android.util.Pair;
 
 import java.util.List;
 
+import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
 
@@ -65,5 +66,27 @@ public class PuzzleHelper {
 
         pack.setCurrentStars(stars);
         pack.save();
+    }
+
+    public static long getAdjustedTime(long timeLastMoved, long startTime, boolean timeBoostActive) {
+        long time = timeLastMoved - startTime;
+        if (timeBoostActive) {
+            Boost timeBoost = Boost.get(Constants.BOOST_TIME);
+            timeBoost.use();
+
+            double multiplier = 1 - (0.1 * timeBoost.getLevel());
+            time *= multiplier;
+        }
+        return time;
+    }
+
+    public static int getAdjustedMoves(int movesMade, boolean moveBoostActive) {
+        if (moveBoostActive) {
+            Boost moveBoost = Boost.get(Constants.BOOST_MOVE);
+            moveBoost.use();
+
+            movesMade = moveBoost.getLevel() > movesMade ? 0 : movesMade - moveBoost.getLevel();
+        }
+        return movesMade;
     }
 }

@@ -152,12 +152,25 @@
             app:layout_heightPercent="15%"
             android:layout_height="wrap_content"
             android:textSize="30sp"
-            android:textColor="@color/grey"
+            android:textColor="@color/ltgrey"
             android:text="&#xf0e2;"
             android:gravity="center"
-            android:onClick="undoLastMove"
+            android:onClick="useBoostUndo"
             android:padding="5dp"
             android:background="@drawable/ui_button_grey"/>
+        <uk.co.jakelee.cityflow.components.TextAwesome
+            android:id="@+id/undoCount"
+            android:layout_width="wrap_content"
+            app:layout_widthPercent="18%"
+            app:layout_marginTopPercent="9%"
+            android:layout_alignLeft="@id/undoBoost"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="0"
+            android:gravity="center"
+            android:padding="5dp"/>
+
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/timeBoost"
             android:layout_width="wrap_content"
@@ -165,12 +178,26 @@
             app:layout_heightPercent="15%"
             android:layout_height="wrap_content"
             android:textSize="30sp"
-            android:textColor="@color/grey"
+            android:textColor="@color/ltgrey"
             android:layout_toRightOf="@id/undoBoost"
             android:text="&#xf250;"
             android:gravity="center"
+            android:onClick="useBoostTime"
             android:padding="5dp"
             android:background="@drawable/ui_button_grey"/>
+        <uk.co.jakelee.cityflow.components.TextAwesome
+            android:id="@+id/timeCount"
+            android:layout_width="wrap_content"
+            app:layout_widthPercent="18%"
+            app:layout_marginTopPercent="9%"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/timeBoost"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="0"
+            android:gravity="center"
+            android:padding="5dp"/>
+
         <TextView
             android:id="@+id/moveBoost"
             android:layout_width="wrap_content"
@@ -178,12 +205,26 @@
             app:layout_heightPercent="15%"
             android:layout_height="wrap_content"
             android:textSize="30sp"
-            android:textColor="@color/grey"
+            android:textColor="@color/ltgrey"
             android:layout_toRightOf="@id/timeBoost"
             android:text="-1"
             android:gravity="center"
+            android:onClick="useBoostMove"
             android:padding="5dp"
             android:background="@drawable/ui_button_grey"/>
+        <uk.co.jakelee.cityflow.components.TextAwesome
+            android:id="@+id/moveCount"
+            android:layout_width="wrap_content"
+            app:layout_widthPercent="18%"
+            app:layout_marginTopPercent="9%"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/moveBoost"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="0"
+            android:gravity="center"
+            android:padding="5dp"/>
+
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/shuffleBoost"
             android:layout_width="wrap_content"
@@ -191,12 +232,26 @@
             app:layout_heightPercent="15%"
             android:layout_height="wrap_content"
             android:textSize="30sp"
-            android:textColor="@color/grey"
+            android:textColor="@color/ltgrey"
             android:layout_toRightOf="@id/moveBoost"
             android:text="&#xf074;"
             android:gravity="center"
+            android:onClick="useBoostShuffle"
             android:padding="5dp"
             android:background="@drawable/ui_button_grey"/>
+        <uk.co.jakelee.cityflow.components.TextAwesome
+            android:id="@+id/shuffleCount"
+            android:layout_width="wrap_content"
+            app:layout_widthPercent="18%"
+            app:layout_marginTopPercent="9%"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/shuffleBoost"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="0"
+            android:gravity="center"
+            android:padding="5dp"/>
+
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/pauseButton"
             android:layout_width="wrap_content"
@@ -204,7 +259,7 @@
             app:layout_heightPercent="15%"
             android:layout_height="wrap_content"
             android:textSize="30sp"
-            android:textColor="@color/grey"
+            android:textColor="@color/black"
             android:layout_alignParentRight="true"
             android:text="&#xf04c;"
             android:gravity="center"

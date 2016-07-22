@@ -4,8 +4,6 @@ import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
-import java.util.List;
-
 import uk.co.jakelee.cityflow.helper.ModificationHelper;
 
 public class Boost extends SugarRecord{
@@ -13,6 +11,8 @@ public class Boost extends SugarRecord{
     private String level;
     private String owned;
     private String used;
+
+    public Boost() {}
 
     public Boost(int boostId, int level, int owned, int used) {
         this.boostId = boostId;
@@ -65,10 +65,28 @@ public class Boost extends SugarRecord{
         return Text.get("BOOST_", getBoostId(), "_UPGRADE");
     }
 
-    public static int getOwned(int boostId) {
-        List<Boost> boosts = Boost.listAll(Boost.class);
-
+    public static int getOwnedCount(int boostId) {
         return Select.from(Boost.class).where(
                 Condition.prop("boost_id").eq(boostId)).first().getOwned();
+    }
+
+    public static void use(int boostId) {
+        Boost boost = Select.from(Boost.class).where(
+                Condition.prop("boost_id").eq(boostId)).first();
+
+        if (boost != null && boost.getOwned() > 0) {
+            boost.use();
+        }
+    }
+
+    public void use() {
+        setOwned(getOwned() - 1);
+        setUsed(getUsed() + 1);
+        save();
+    }
+
+    public static Boost get(int boostId) {
+        return Select.from(Boost.class).where(
+                Condition.prop("boost_id").eq(boostId)).first();
     }
 }

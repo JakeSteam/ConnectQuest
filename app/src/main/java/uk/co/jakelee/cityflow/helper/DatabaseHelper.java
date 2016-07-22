@@ -37,10 +37,10 @@ public class DatabaseHelper {
 
     private static void createBoost() {
         List<Boost> boosts = new ArrayList<>();
-            boosts.add(new Boost(Constants.BOOST_UNDO, 1, 0, 0));
+            boosts.add(new Boost(Constants.BOOST_UNDO, 1, 10, 0));
             boosts.add(new Boost(Constants.BOOST_TIME, 1, 5, 0));
             boosts.add(new Boost(Constants.BOOST_MOVE, 1, 5, 0));
-            boosts.add(new Boost(Constants.BOOST_SHUFFLE, 1, 0, 0));
+            boosts.add(new Boost(Constants.BOOST_SHUFFLE, 1, 20, 0));
         Boost.saveInTx(boosts);
     }
 
@@ -192,7 +192,7 @@ public class DatabaseHelper {
             settings.add(new Setting(3, 0.50f));
             settings.add(new Setting(4, 1.75f));
             settings.add(new Setting(5, false));
-            settings.add(new Setting(6, true));
+            settings.add(new Setting(6, false));
         Setting.saveInTx(settings);
     }
 

@@ -124,4 +124,11 @@ public class Puzzle extends SugarRecord {
     public static Puzzle getPuzzle(int puzzleId) {
         return Select.from(Puzzle.class).where(Condition.prop("puzzle_id").eq(puzzleId)).first();
     }
+
+    public static void shuffle(List<Tile> tiles) {
+        for (Tile tile : tiles) {
+            tile.setRotation(1 + (int)(Math.random() * 4));
+        }
+        Tile.saveInTx(tiles);
+    }
 }
