@@ -10,6 +10,7 @@ import android.os.SystemClock;
 import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -28,6 +29,7 @@ import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Tile;
+import uk.co.jakelee.cityflow.model.Tile_Type;
 
 public class PuzzleActivity extends Activity {
     private static final Handler handler = new Handler();
@@ -65,17 +67,27 @@ public class PuzzleActivity extends Activity {
     }
 
     public void updateBoostVisibility() {
+        int boostUndo = Boost.getOwnedCount(Constants.BOOST_UNDO);
+        int boostTime = Boost.getOwnedCount(Constants.BOOST_TIME);
+        int boostMove = Boost.getOwnedCount(Constants.BOOST_MOVE);
+        int boostShuffle = Boost.getOwnedCount(Constants.BOOST_SHUFFLE);
+
         if (Setting.isTrue(Constants.SETTING_HIDE_UNSTOCKED_BOOSTS)) {
-            findViewById(R.id.undoBoost).setVisibility(Boost.getOwnedCount(Constants.BOOST_UNDO) > 0 ? View.VISIBLE : View.INVISIBLE);
-            findViewById(R.id.timeBoost).setVisibility(Boost.getOwnedCount(Constants.BOOST_TIME) > 0 ? View.VISIBLE : View.INVISIBLE);
-            findViewById(R.id.moveBoost).setVisibility(Boost.getOwnedCount(Constants.BOOST_MOVE) > 0 ? View.VISIBLE : View.INVISIBLE);
-            findViewById(R.id.shuffleBoost).setVisibility(Boost.getOwnedCount(Constants.BOOST_SHUFFLE) > 0 ? View.VISIBLE : View.INVISIBLE);
+            findViewById(R.id.undoBoost).setVisibility(boostUndo > 0 ? View.VISIBLE : View.INVISIBLE);
+            findViewById(R.id.timeBoost).setVisibility(boostTime > 0 ? View.VISIBLE : View.INVISIBLE);
+            findViewById(R.id.moveBoost).setVisibility(boostMove > 0 ? View.VISIBLE : View.INVISIBLE);
+            findViewById(R.id.shuffleBoost).setVisibility(boostShuffle > 0 ? View.VISIBLE : View.INVISIBLE);
         }
 
-        ((TextView)findViewById(R.id.undoCount)).setText(Integer.toString(Boost.getOwnedCount(Constants.BOOST_UNDO)));
-        ((TextView)findViewById(R.id.timeCount)).setText(Integer.toString(Boost.getOwnedCount(Constants.BOOST_TIME)));
-        ((TextView)findViewById(R.id.moveCount)).setText(Integer.toString(Boost.getOwnedCount(Constants.BOOST_MOVE)));
-        ((TextView)findViewById(R.id.shuffleCount)).setText(Integer.toString(Boost.getOwnedCount(Constants.BOOST_SHUFFLE)));
+        ((TextView)findViewById(R.id.undoBoost)).setTextColor(boostUndo > 0 ? Color.BLACK : Color.LTGRAY);
+        ((TextView)findViewById(R.id.timeBoost)).setTextColor(boostTime > 0 ? Color.BLACK : Color.LTGRAY);
+        ((TextView)findViewById(R.id.moveBoost)).setTextColor(boostMove > 0 ? Color.BLACK : Color.LTGRAY);
+        ((TextView)findViewById(R.id.shuffleBoost)).setTextColor(boostShuffle > 0 ? Color.BLACK : Color.LTGRAY);
+
+        ((TextView)findViewById(R.id.undoCount)).setText(Integer.toString(boostUndo));
+        ((TextView)findViewById(R.id.timeCount)).setText(Integer.toString(boostTime));
+        ((TextView)findViewById(R.id.moveCount)).setText(Integer.toString(boostMove));
+        ((TextView)findViewById(R.id.shuffleCount)).setText(Integer.toString(boostShuffle));
     }
 
     @Override
@@ -216,14 +228,14 @@ public class PuzzleActivity extends Activity {
     public void useBoostMove(View v) {
         if (Boost.getOwnedCount(Constants.BOOST_MOVE) > 0) {
             moveBoostActive = !moveBoostActive;
-            ((TextView)findViewById(R.id.moveBoost)).setTextColor(moveBoostActive ? Color.BLACK : Color.LTGRAY);
+            findViewById(R.id.moveBoost).setBackgroundResource(moveBoostActive ? R.drawable.ui_button_city : R.drawable.ui_button_grey);
         }
     }
 
     public void useBoostTime(View v) {
         if (Boost.getOwnedCount(Constants.BOOST_TIME) > 0) {
             timeBoostActive = !timeBoostActive;
-            ((TextView)findViewById(R.id.timeBoost)).setTextColor(timeBoostActive ? Color.BLACK : Color.LTGRAY);
+            findViewById(R.id.timeBoost).setBackgroundResource(timeBoostActive ? R.drawable.ui_button_city : R.drawable.ui_button_grey);
         }
     }
 
@@ -265,30 +277,31 @@ public class PuzzleActivity extends Activity {
         findViewById(R.id.moveCounter).setVisibility(View.GONE);
         findViewById(R.id.topUI).setVisibility(View.GONE);
 
+        movesMade = PuzzleHelper.getAdjustedMoves(movesMade, moveBoostActive);
+        timeInMilliseconds = PuzzleHelper.getAdjustedTime(timeLastMoved, startTime, timeBoostActive);
+        boolean isFirstComplete = puzzle.getBestTime() == 0;
+
+        int originalStars = puzzle.getStarCount();
+        Pair<Boolean, Boolean> newBests = PuzzleHelper.updateBest(puzzle, timeInMilliseconds, movesMade, originalStars);
+        int stars = puzzle.getStarCount();
+
+        List<Integer> boostsEarned = PuzzleHelper.getEarnedBoosts(isFirstComplete, originalStars != 3 && stars == 3, stars == 3);
+        PuzzleHelper.populateBoostImages(dh, (LinearLayout) findViewById(R.id.boostsContainer), boostsEarned);
+
+        List<Tile_Type> tilesUnlocked = puzzle.getUnlockableTiles();
+        PuzzleHelper.populateTileImages(dh, (LinearLayout) findViewById(R.id.tilesContainer), tilesUnlocked, isFirstComplete);
+
+        // Populating end screen
         findViewById(R.id.endGame).setVisibility(View.VISIBLE);
         ((ImageView) findViewById(R.id.starCompletion)).setImageResource(puzzle.hasCompletionStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
         ((ImageView) findViewById(R.id.starTime)).setImageResource(puzzle.hasTimeStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
         ((ImageView) findViewById(R.id.starMoves)).setImageResource(puzzle.hasMovesStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
-
-        movesMade = PuzzleHelper.getAdjustedMoves(movesMade, moveBoostActive);
-        timeInMilliseconds = PuzzleHelper.getAdjustedTime(timeLastMoved, startTime, timeBoostActive);
-        int stars = PuzzleHelper.getStars(puzzle, timeInMilliseconds, movesMade);
-        boolean isFirstComplete = puzzle.getBestTime() == 0;
-
-        //int boostsEarned = getEarnedBoosts(isFirstComplete, isFullComplete, isFirstFullComplete)
-
-        Pair<Boolean, Boolean> newBests = PuzzleHelper.updateBest(puzzle, timeInMilliseconds, movesMade, stars);
-
         ((TextView) findViewById(R.id.currentMoves)).setText(Integer.toString(movesMade));
         ((TextView) findViewById(R.id.currentTime)).setText(DateHelper.getPuzzleTimeString(timeInMilliseconds));
-
         ((TextView) findViewById(R.id.bestMoves)).setText(puzzle.getBestMoves() + (newBests.second ? "*" : ""));
         ((TextView) findViewById(R.id.bestTime)).setText(DateHelper.getPuzzleTimeString(puzzle.getBestTime()) + (newBests.first ? "*" : ""));
-
         ((TextView) findViewById(R.id.parMoves)).setText(Integer.toString(puzzle.getParMoves()));
         ((TextView) findViewById(R.id.parTime)).setText(DateHelper.getPuzzleTimeString(puzzle.getParTime()));
-
-        ((TextView) findViewById(R.id.tilesUnlocked)).setText(puzzle.getUnlockableTiles().size() + (isFirstComplete ? "*" : ""));
     }
 
     public void closePuzzle(View v) {

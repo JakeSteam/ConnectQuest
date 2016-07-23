@@ -70,12 +70,23 @@ public class Boost extends SugarRecord{
                 Condition.prop("boost_id").eq(boostId)).first().getOwned();
     }
 
+    public static void add(int boostId) {
+        Boost boost = Select.from(Boost.class).where(
+                Condition.prop("boost_id").eq(boostId)).first();
+
+        if (boost != null) {
+            boost.setOwned(boost.getOwned() + 1);
+            boost.save();
+        }
+    }
+
     public static void use(int boostId) {
         Boost boost = Select.from(Boost.class).where(
                 Condition.prop("boost_id").eq(boostId)).first();
 
         if (boost != null && boost.getOwned() > 0) {
             boost.use();
+            boost.save();
         }
     }
 

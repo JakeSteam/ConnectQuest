@@ -128,11 +128,19 @@
                 </TableRow>
                 <TableRow>
                     <uk.co.jakelee.cityflow.components.TextViewFontEndGame
-                        android:text="Tiles"/>
+                        android:text="New Tiles"/>
+                    <LinearLayout
+                        android:id="@+id/tilesContainer"
+                        android:orientation="horizontal"
+                        android:layout_span="2"/>
+                </TableRow>
+                <TableRow>
                     <uk.co.jakelee.cityflow.components.TextViewFontEndGame
-                        android:id="@+id/tilesUnlocked"/>
-                    <uk.co.jakelee.cityflow.components.TextViewFontEndGame
-                        android:text=""/>
+                        android:text="Boosts"/>
+                    <LinearLayout
+                        android:id="@+id/boostsContainer"
+                        android:orientation="horizontal"
+                        android:layout_span="2"/>
                 </TableRow>
             </TableLayout>
         </RelativeLayout>

@@ -109,6 +109,32 @@ public class DisplayHelper {
         return puzzleText;
     }
 
+    public ImageView createBoostIcon(int boostId, int width, int height) {
+        ImageView boostIcon = new ImageView(context);
+        boostIcon.setImageDrawable(createDrawable(getBoostDrawableID(boostId), width, height));
+        boostIcon.setTag(boostId);
+        boostIcon.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                // Display message with boost info
+            }
+        });
+
+        return boostIcon;
+    }
+
+    public ImageView createTileIcon(int tileId, int width, int height) {
+        ImageView tileIcon = new ImageView(context);
+        tileIcon.setImageDrawable(createDrawable(getTileDrawableID(tileId), width, height));
+        tileIcon.setTag(tileId);
+        tileIcon.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                // Display message with tile info
+            }
+        });
+
+        return tileIcon;
+    }
+
     public int dpToPixel(float dp){
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
@@ -126,6 +152,14 @@ public class DisplayHelper {
 
     public int getPuzzleDrawableID(int puzzle) {
         return context.getResources().getIdentifier("puzzle_" + puzzle, "drawable", context.getPackageName());
+    }
+
+    public int getBoostDrawableID(int boost) {
+        return context.getResources().getIdentifier("boost_" + boost, "drawable", context.getPackageName());
+    }
+
+    public int getTileDrawableID(int boost) {
+        return context.getResources().getIdentifier("tile_" + boost + "_1", "drawable", context.getPackageName());
     }
 
     public Drawable createDrawable(int drawableId, int width, int height) {

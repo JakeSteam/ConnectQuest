@@ -6,7 +6,9 @@ import com.orm.query.Select;
 
 import java.util.List;
 
+import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.ModificationHelper;
+import uk.co.jakelee.cityflow.helper.RandomHelper;
 
 public class Puzzle extends SugarRecord {
     private int puzzleId;
@@ -127,8 +129,22 @@ public class Puzzle extends SugarRecord {
 
     public static void shuffle(List<Tile> tiles) {
         for (Tile tile : tiles) {
-            tile.setRotation(1 + (int)(Math.random() * 4));
+            tile.setRotation(RandomHelper.getNumber(Constants.ROTATION_MIN, Constants.ROTATION_MAX));
         }
         Tile.saveInTx(tiles);
+    }
+
+    public int getStarCount() {
+        int stars = 0;
+        if (hasCompletionStar()) {
+            stars++;
+        }
+        if (hasMovesStar()) {
+            stars++;
+        }
+        if (hasTimeStar()) {
+            stars++;
+        }
+        return stars;
     }
 }

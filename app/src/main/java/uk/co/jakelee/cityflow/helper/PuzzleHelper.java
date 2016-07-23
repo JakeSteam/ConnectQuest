@@ -1,25 +1,17 @@
 package uk.co.jakelee.cityflow.helper;
 
 import android.util.Pair;
+import android.widget.LinearLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
+import uk.co.jakelee.cityflow.model.Tile_Type;
 
 public class PuzzleHelper {
-    public static int getStars(Puzzle puzzle, long timeTaken, int moves) {
-        int stars = 1;
-        if (timeTaken <= puzzle.getParTime()) {
-            stars++;
-        }
-        if (moves <= puzzle.getParMoves()) {
-            stars++;
-        }
-        return stars;
-    }
-
     public static Pair<Boolean, Boolean> updateBest(Puzzle puzzle, long timeTaken, int movesTaken, int stars) {
         boolean newBestTime = false;
         boolean newBestMoves = false;
@@ -88,5 +80,43 @@ public class PuzzleHelper {
             movesMade = moveBoost.getLevel() > movesMade ? 0 : movesMade - moveBoost.getLevel();
         }
         return movesMade;
+    }
+
+    public static List<Integer> getEarnedBoosts(boolean isFirstComplete, boolean isFirstFullComplete, boolean isFullComplete) {
+        int earnedBoosts = 0;
+        List<Integer> boosts = new ArrayList<>();
+        if (isFirstComplete) {
+            earnedBoosts++;
+        }
+        if (isFirstFullComplete) {
+            earnedBoosts++;
+        }
+        if (!isFirstFullComplete && isFullComplete && RandomHelper.getBoolean(Constants.FULL_RECOMPLETE_BOOST_CHANCE)) {
+            earnedBoosts++;
+        }
+
+        for (int i = 0; i < earnedBoosts; i++) {
+            int boostId = RandomHelper.getNumber(Constants.BOOST_MIN, Constants.BOOST_MAX);
+            boosts.add(boostId);
+            Boost.add(boostId);
+        }
+
+        return boosts;
+    }
+
+    public static void populateBoostImages(DisplayHelper dh, LinearLayout boostContainer, List<Integer> boosts) {
+        for (Integer boostId : boosts) {
+            boostContainer.addView(dh.createBoostIcon(boostId, 50, 50));
+        }
+    }
+
+    public static void populateTileImages(DisplayHelper dh, LinearLayout tilesContainer, List<Tile_Type> tiles, boolean isFirstComplete) {
+        if (!isFirstComplete) {
+            return;
+        }
+
+        for (Tile_Type tile : tiles) {
+            tilesContainer.addView(dh.createTileIcon(tile.getTypeId(), 50, 50));
+        }
     }
 }

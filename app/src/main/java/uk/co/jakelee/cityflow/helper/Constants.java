@@ -12,7 +12,12 @@ public class Constants {
     public static final int PUZZLE_WIDTH = 129;
     public static final int PUZZLE_HEIGHT = 76;
 
+    // Percentage based constants
+    public static final int FULL_RECOMPLETE_BOOST_CHANCE = 25;
+
     // Lookup constants
+    public static final int BOOST_MIN = 1;
+    public static final int BOOST_MAX = 4;
     public static final int BOOST_UNDO = 1;
     public static final int BOOST_TIME = 2;
     public static final int BOOST_MOVE = 3;
@@ -31,6 +36,8 @@ public class Constants {
     public static final int HEIGHT_HIGH = 3;
     public static final int LANGUAGE_EN_GB = 1;
     public static final int LANGUAGE_OTHER = 2;
+    public static final int ROTATION_MIN = 1;
+    public static final int ROTATION_MAX = 4;
     public static final int ROTATION_NORTH = 1;
     public static final int ROTATION_EAST = 2;
     public static final int ROTATION_SOUTH = 3;
