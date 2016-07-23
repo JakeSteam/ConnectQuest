@@ -91,11 +91,13 @@ public class PackActivity extends Activity {
 
         int numTiles = selectedPuzzle.getUnlockableTiles().size();
         ((TextView) findViewById(R.id.puzzleTilesUnlocked)).setText((selectedPuzzle.hasCompletionStar() ? numTiles : 0) + " / " + numTiles);
-        findViewById(R.id.puzzleButton).setTag(selectedPuzzle.getPuzzleId());
+        findViewById(R.id.puzzleButton).setTag(R.id.puzzleId, selectedPuzzle.getPuzzleId());
+        findViewById(R.id.puzzleButton).setTag(R.id.puzzleIsCustom, false);
         findViewById(R.id.puzzleButton).setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(activity, PuzzleActivity.class);
-                intent.putExtra(Constants.INTENT_PUZZLE, (int) v.getTag());
+                intent.putExtra(Constants.INTENT_PUZZLE, (int) v.getTag(R.id.puzzleId));
+                intent.putExtra(Constants.INTENT_PUZZLE_TYPE, (boolean) v.getTag(R.id.puzzleIsCustom));
                 startActivity(intent);
             }
         });

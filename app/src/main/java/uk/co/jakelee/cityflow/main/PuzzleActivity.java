@@ -35,6 +35,7 @@ public class PuzzleActivity extends Activity {
     private static final Handler handler = new Handler();
     private DisplayHelper dh;
     private int puzzleId;
+    private boolean isCustom;
     private int movesMade = 0;
     private long startTime = 0L;
     private long timeInMilliseconds = 0L;
@@ -55,6 +56,7 @@ public class PuzzleActivity extends Activity {
 
         Intent intent = getIntent();
         puzzleId = intent.getIntExtra(Constants.INTENT_PUZZLE, 0);
+        isCustom = intent.getBooleanExtra(Constants.INTENT_PUZZLE_TYPE, true);
 
         Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
         List<Tile> tiles = puzzle.getTiles();

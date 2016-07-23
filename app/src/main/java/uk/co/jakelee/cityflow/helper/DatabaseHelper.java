@@ -194,8 +194,8 @@ public class DatabaseHelper {
         List<Puzzle_Custom> puzzleCustoms = new ArrayList<>();
             puzzleCustoms.add(new Puzzle_Custom(98, System.currentTimeMillis(), "Test puzzle", "Test puzzle desc", "Someone", true));
             puzzleCustoms.add(new Puzzle_Custom(99, System.currentTimeMillis(), "Test puzzle 2", "Test puzzle desc 2", "Someone 2", true));
-            puzzleCustoms.add(new Puzzle_Custom(100, System.currentTimeMillis(), "Test puzzle 3", "Test puzzle desc 3", "Someone 3", false));
-            puzzleCustoms.add(new Puzzle_Custom(101, System.currentTimeMillis(), "Test puzzle 4", "Test puzzle desc 4", "Someone 4", false));
+            puzzleCustoms.add(new Puzzle_Custom(98, System.currentTimeMillis(), "Test puzzle 3", "Test puzzle desc 3", "Someone 3", false));
+            puzzleCustoms.add(new Puzzle_Custom(99, System.currentTimeMillis(), "Test puzzle 4", "Test puzzle desc 4", "Someone 4", false));
         Puzzle_Custom.saveInTx(puzzleCustoms);
     }
 

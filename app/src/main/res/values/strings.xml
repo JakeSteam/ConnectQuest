@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">City Flow</string>
+    <string name="crash_message">Oh no, City Flow has crashed! Please email a crash report using your email client of choice. Sorry!</string>
 
     <string name="tile_filename">tile_%1$d_%2$d</string>
 </resources>
