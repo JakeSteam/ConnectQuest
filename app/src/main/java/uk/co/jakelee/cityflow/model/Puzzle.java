@@ -31,9 +31,9 @@ public class Puzzle extends SugarRecord {
         this.parMoves = ModificationHelper.encode(parMoves, puzzleId);
         this.bestTime = ModificationHelper.encode(bestTime, puzzleId);
         this.bestMoves = ModificationHelper.encode(bestMoves, puzzleId);
-        this.completionStar = ModificationHelper.encode(false, puzzleId);;
-        this.timeStar = ModificationHelper.encode(false, puzzleId);;
-        this.movesStar = ModificationHelper.encode(false, puzzleId);;
+        this.completionStar = ModificationHelper.encode(false, puzzleId);
+        this.timeStar = ModificationHelper.encode(false, puzzleId);
+        this.movesStar = ModificationHelper.encode(false, puzzleId);
     }
 
     public int getPuzzleId() {
@@ -146,5 +146,17 @@ public class Puzzle extends SugarRecord {
             stars++;
         }
         return stars;
+    }
+
+    public static List<Puzzle> getMyCustomPuzzles() {
+        return Select.from(Puzzle.class).where("puzzle_id IN (SELECT puzzle_id FROM puzzlecustom WHERE original_author = 1 ORDER BY date_added DESC)").list();
+    }
+
+    public static List<Puzzle> getOthersCustomPuzzles() {
+        return Select.from(Puzzle.class).where("puzzle_id IN (SELECT puzzle_id FROM puzzlecustom WHERE original_author = 0 ORDER BY date_added DESC)").list();
+    }
+
+    public Puzzle_Custom getCustomData() {
+        return Select.from(Puzzle_Custom.class).where(Condition.prop("puzzle_id").eq(puzzleId)).first();
     }
 }

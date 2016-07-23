@@ -169,4 +169,13 @@ public class DisplayHelper {
         Bitmap resizedImage = Bitmap.createScaledBitmap(rawImage, adjustedWidth, adjustedHeight, false);
         return new BitmapDrawable(context.getResources(), resizedImage);
     }
+
+    public TextView createTextView(String text, int size, int color) {
+        TextView textView = new TextView(context);
+        textView.setText(text);
+        textView.setTextSize(size);
+        textView.setTextColor(color);
+
+        return textView;
+    }
 }

@@ -39,7 +39,6 @@ public class PuzzleActivity extends Activity {
     private long startTime = 0L;
     private long timeInMilliseconds = 0L;
     private long timeLastMoved = 0L;
-    private long timePaused = 0L;
     private ImageView lastChangedImage;
     private Tile lastChangedTile;
     private boolean undoing = false;

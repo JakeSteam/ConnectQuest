@@ -15,14 +15,14 @@ public class PuzzleHelper {
     public static Pair<Boolean, Boolean> updateBest(Puzzle puzzle, long timeTaken, int movesTaken, int stars) {
         boolean newBestTime = false;
         boolean newBestMoves = false;
-        if (timeTaken < puzzle.getBestTime() || puzzle.getBestTime() == 0) {
+        if (timeTaken >= 0 && (timeTaken < puzzle.getBestTime() || puzzle.getBestTime() == 0)) {
             puzzle.setBestTime(timeTaken);
             newBestTime = true;
             if (timeTaken <= puzzle.getParTime() && !puzzle.hasTimeStar()) {
                 puzzle.setTimeStar(true);
             }
         }
-        if (movesTaken < puzzle.getBestMoves() || puzzle.getBestMoves() == 0) {
+        if (movesTaken >= 0 && (movesTaken < puzzle.getBestMoves() || puzzle.getBestMoves() == 0)) {
             puzzle.setBestMoves(movesTaken);
             newBestMoves = true;
             if (movesTaken <= puzzle.getParMoves() && !puzzle.hasMovesStar()) {

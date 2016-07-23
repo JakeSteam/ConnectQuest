@@ -7,6 +7,7 @@ import uk.co.jakelee.cityflow.main.MainActivity;
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
+import uk.co.jakelee.cityflow.model.Puzzle_Custom;
 import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.Text;
@@ -94,6 +95,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_4_TEXT", "Maximum Zoom"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_5_TEXT", "Zen Mode"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_6_TEXT", "Hide Unstocked Boosts"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_7_TEXT", "Player Name"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_1_TEXT", "Puzzles Completed"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_2_TEXT", "Tiles Rotated"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_1_TEXT", "Grass Road Corner"));
@@ -182,7 +184,19 @@ public class DatabaseHelper {
             puzzles.add(new Puzzle(29, 2, 10000L, 20, 0L, 0));
             puzzles.add(new Puzzle(30, 2, 10000L, 20, 0L, 0));
             puzzles.add(new Puzzle(41, 3, 10000L, 20, 0L, 0));
+
+            puzzles.add(new Puzzle(98, 0, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(99, 0, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(100, 0, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(101, 0, 10000L, 20, 0L, 0));
         Puzzle.saveInTx(puzzles);
+
+        List<Puzzle_Custom> puzzleCustoms = new ArrayList<>();
+            puzzleCustoms.add(new Puzzle_Custom(98, System.currentTimeMillis(), "Test puzzle", "Test puzzle desc", "Someone", true));
+            puzzleCustoms.add(new Puzzle_Custom(99, System.currentTimeMillis(), "Test puzzle 2", "Test puzzle desc 2", "Someone 2", true));
+            puzzleCustoms.add(new Puzzle_Custom(100, System.currentTimeMillis(), "Test puzzle 3", "Test puzzle desc 3", "Someone 3", false));
+            puzzleCustoms.add(new Puzzle_Custom(101, System.currentTimeMillis(), "Test puzzle 4", "Test puzzle desc 4", "Someone 4", false));
+        Puzzle_Custom.saveInTx(puzzleCustoms);
     }
 
     private static void createSetting() {
@@ -193,6 +207,7 @@ public class DatabaseHelper {
             settings.add(new Setting(4, 1.75f));
             settings.add(new Setting(5, false));
             settings.add(new Setting(6, false));
+            settings.add(new Setting(7, "New Player"));
         Setting.saveInTx(settings);
     }
 

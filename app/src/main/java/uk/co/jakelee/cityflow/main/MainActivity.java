@@ -29,4 +29,9 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(this, StoryActivity.class);
         startActivity(intent);
     }
+
+    public void openCreator(View view) {
+        Intent intent = new Intent(this, CreatorActivity.class);
+        startActivity(intent);
+    }
 }

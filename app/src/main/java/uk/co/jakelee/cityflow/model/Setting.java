@@ -9,6 +9,7 @@ public class Setting extends SugarRecord {
     private boolean booleanValue;
     private int intValue;
     private float floatValue;
+    private String stringValue;
 
     public Setting() {
     }
@@ -26,6 +27,11 @@ public class Setting extends SugarRecord {
     public Setting(int settingId, float floatValue) {
         this.settingId = settingId;
         this.floatValue = floatValue;
+    }
+
+    public Setting(int settingId, String stringValue) {
+        this.settingId = settingId;
+        this.stringValue = stringValue;
     }
 
     public int getSettingId() {
@@ -60,6 +66,14 @@ public class Setting extends SugarRecord {
         this.floatValue = floatValue;
     }
 
+    public String getStringValue() {
+        return stringValue;
+    }
+
+    public void setStringValue(String stringValue) {
+        this.stringValue = stringValue;
+    }
+
     public static boolean isTrue(int settingId) {
         Setting setting = Select.from(Setting.class).where(
                 Condition.prop("setting_id").eq(settingId)).first();
@@ -85,6 +99,16 @@ public class Setting extends SugarRecord {
             return setting.getFloatValue();
         }
         return 0f;
+    }
+
+    public static String getString(int settingId) {
+        Setting setting = Select.from(Setting.class).where(
+                Condition.prop("setting_id").eq(settingId)).first();
+
+        if (setting != null) {
+            return setting.getStringValue();
+        }
+        return "";
     }
 
     public String getName() {
