@@ -8,6 +8,7 @@ import java.util.List;
 
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.ModificationHelper;
+import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
 import uk.co.jakelee.cityflow.helper.RandomHelper;
 
 public class Puzzle extends SugarRecord {
@@ -158,5 +159,9 @@ public class Puzzle extends SugarRecord {
 
     public Puzzle_Custom getCustomData() {
         return Select.from(Puzzle_Custom.class).where(Condition.prop("puzzle_id").eq(puzzleId)).first();
+    }
+
+    public String getShareText() {
+        return PuzzleShareHelper.getPuzzleString(this);
     }
 }

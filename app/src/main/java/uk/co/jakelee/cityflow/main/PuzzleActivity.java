@@ -265,12 +265,12 @@ public class PuzzleActivity extends Activity {
             @Override
             public void run() {
                 handler.removeCallbacksAndMessages(null);
-                displayPuzzleEndScreen();
+                displayPuzzleComplete();
             }
         });
     }
 
-    public void displayPuzzleEndScreen() {
+    public void displayPuzzleComplete() {
         Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
         findViewById(R.id.puzzleTimer).setVisibility(View.GONE);
         findViewById(R.id.zoomIn).setVisibility(View.GONE);
@@ -286,21 +286,28 @@ public class PuzzleActivity extends Activity {
         Pair<Boolean, Boolean> newBests = PuzzleHelper.updateBest(puzzle, timeInMilliseconds, movesMade, originalStars);
         int stars = puzzle.getStarCount();
 
+        if (isCustom) {
+            //populateCustomPuzzleCompleteScreen();
+        } else {
+            populateStoryPuzzleCompleteScreen(puzzle, newBests.first, newBests.second, isFirstComplete, originalStars, stars);
+        }
+    }
+
+    public void populateStoryPuzzleCompleteScreen(Puzzle puzzle, boolean newBestTime, boolean newBestMoves, boolean isFirstComplete, int originalStars, int stars) {
         List<Integer> boostsEarned = PuzzleHelper.getEarnedBoosts(isFirstComplete, originalStars != 3 && stars == 3, stars == 3);
         PuzzleHelper.populateBoostImages(dh, (LinearLayout) findViewById(R.id.boostsContainer), boostsEarned);
 
         List<Tile_Type> tilesUnlocked = puzzle.getUnlockableTiles();
         PuzzleHelper.populateTileImages(dh, (LinearLayout) findViewById(R.id.tilesContainer), tilesUnlocked, isFirstComplete);
 
-        // Populating end screen
         findViewById(R.id.endGame).setVisibility(View.VISIBLE);
         ((ImageView) findViewById(R.id.starCompletion)).setImageResource(puzzle.hasCompletionStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
         ((ImageView) findViewById(R.id.starTime)).setImageResource(puzzle.hasTimeStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
         ((ImageView) findViewById(R.id.starMoves)).setImageResource(puzzle.hasMovesStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
         ((TextView) findViewById(R.id.currentMoves)).setText(Integer.toString(movesMade));
         ((TextView) findViewById(R.id.currentTime)).setText(DateHelper.getPuzzleTimeString(timeInMilliseconds));
-        ((TextView) findViewById(R.id.bestMoves)).setText(puzzle.getBestMoves() + (newBests.second ? "*" : ""));
-        ((TextView) findViewById(R.id.bestTime)).setText(DateHelper.getPuzzleTimeString(puzzle.getBestTime()) + (newBests.first ? "*" : ""));
+        ((TextView) findViewById(R.id.bestMoves)).setText(puzzle.getBestMoves() + (newBestMoves ? "*" : ""));
+        ((TextView) findViewById(R.id.bestTime)).setText(DateHelper.getPuzzleTimeString(puzzle.getBestTime()) + (newBestTime ? "*" : ""));
         ((TextView) findViewById(R.id.parMoves)).setText(Integer.toString(puzzle.getParMoves()));
         ((TextView) findViewById(R.id.parTime)).setText(DateHelper.getPuzzleTimeString(puzzle.getParTime()));
     }
