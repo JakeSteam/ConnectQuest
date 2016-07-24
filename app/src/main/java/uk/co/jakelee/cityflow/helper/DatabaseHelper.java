@@ -192,10 +192,10 @@ public class DatabaseHelper {
         Puzzle.saveInTx(puzzles);
 
         List<Puzzle_Custom> puzzleCustoms = new ArrayList<>();
-            puzzleCustoms.add(new Puzzle_Custom(98, System.currentTimeMillis(), "Test puzzle", "Test puzzle desc", "Someone", true));
-            puzzleCustoms.add(new Puzzle_Custom(99, System.currentTimeMillis(), "Test puzzle 2", "Test puzzle desc 2", "Someone 2", true));
-            puzzleCustoms.add(new Puzzle_Custom(98, System.currentTimeMillis(), "Test puzzle 3", "Test puzzle desc 3", "Someone 3", false));
-            puzzleCustoms.add(new Puzzle_Custom(99, System.currentTimeMillis(), "Test puzzle 4", "Test puzzle desc 4", "Someone 4", false));
+            puzzleCustoms.add(new Puzzle_Custom(98, System.currentTimeMillis(), "Block test", "Test puzzle desc", "Someone", true));
+            puzzleCustoms.add(new Puzzle_Custom(99, System.currentTimeMillis(), "Logo", "Test puzzle desc 2", "Someone 2", true));
+            puzzleCustoms.add(new Puzzle_Custom(100, System.currentTimeMillis(), "A square, but this is a test of long names", "Test puzzle desc 3", "Someone 3", false));
+            puzzleCustoms.add(new Puzzle_Custom(101, System.currentTimeMillis(), "A line", "Test puzzle desc 4", "Someone 4", false));
         Puzzle_Custom.saveInTx(puzzleCustoms);
     }
 
@@ -667,7 +667,18 @@ public class DatabaseHelper {
             tiles.add(new Tile(99, 6, 12, 8, Constants.ROTATION_NORTH));
             tiles.add(new Tile(99, 6, 12, 9, Constants.ROTATION_NORTH));
             tiles.add(new Tile(99, 6, 13, 8, Constants.ROTATION_NORTH));
-        Tile.saveInTx(tiles);
+
+            tiles.add(new Tile(100, 1, 0, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(100, 1, 0, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(100, 1, 1, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(100, 1, 1, 1, Constants.ROTATION_NORTH));
+
+            tiles.add(new Tile(101, 18, 0, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(101, 15, 0, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(101, 15, 0, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(101, 18, 0, 3, Constants.ROTATION_NORTH));
+
+            Tile.saveInTx(tiles);
     }
 
     private static void createTileType() {

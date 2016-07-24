@@ -55,7 +55,7 @@ public class DisplayHelper {
         return displaymetrics;
     }
 
-    public ImageView createTileImageView(final PuzzleActivity activity, final Tile tile, int maxY, int drawableId) {
+    public ImageView createTileImageView(final PuzzleActivity activity, final Tile tile, int drawableId) {
         final ImageView image = new ImageView(activity);
         Picasso.with(context).load(drawableId).into(image);
 

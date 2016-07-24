@@ -179,7 +179,7 @@ public class PuzzleActivity extends Activity {
             layoutParams.setMargins(leftPadding, topPadding, 0, 0);
 
             int drawableId = ImageHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());
-            ImageView image = dh.createTileImageView(this, tile, maxXY.second, drawableId);
+            ImageView image = dh.createTileImageView(this, tile, drawableId);
 
             tileContainer.addView(image, layoutParams);
         }
@@ -283,11 +283,12 @@ public class PuzzleActivity extends Activity {
         boolean isFirstComplete = puzzle.getBestTime() == 0;
 
         int originalStars = puzzle.getStarCount();
-        Pair<Boolean, Boolean> newBests = PuzzleHelper.updateBest(puzzle, timeInMilliseconds, movesMade, originalStars);
+        Pair<Boolean, Boolean> newBests = PuzzleHelper.updateBest(puzzle, timeInMilliseconds, movesMade, isCustom);
         int stars = puzzle.getStarCount();
 
         if (isCustom) {
             //populateCustomPuzzleCompleteScreen();
+            this.finish();
         } else {
             populateStoryPuzzleCompleteScreen(puzzle, newBests.first, newBests.second, isFirstComplete, originalStars, stars);
         }

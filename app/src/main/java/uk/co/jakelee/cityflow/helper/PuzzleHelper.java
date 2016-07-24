@@ -12,7 +12,7 @@ import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Tile_Type;
 
 public class PuzzleHelper {
-    public static Pair<Boolean, Boolean> updateBest(Puzzle puzzle, long timeTaken, int movesTaken, int stars) {
+    public static Pair<Boolean, Boolean> updateBest(Puzzle puzzle, long timeTaken, int movesTaken, boolean isCustom) {
         boolean newBestTime = false;
         boolean newBestMoves = false;
         if (timeTaken >= 0 && (timeTaken < puzzle.getBestTime() || puzzle.getBestTime() == 0)) {
@@ -35,7 +35,10 @@ public class PuzzleHelper {
         }
 
         puzzle.save();
-        updatePackTotal(puzzle.getPackId());
+
+        if (!isCustom) {
+            updatePackTotal(puzzle.getPackId());
+        }
         return new Pair<>(newBestTime, newBestMoves);
     }
 

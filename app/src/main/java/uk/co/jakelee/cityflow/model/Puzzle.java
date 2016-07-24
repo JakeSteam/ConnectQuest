@@ -113,6 +113,14 @@ public class Puzzle extends SugarRecord {
         return Text.get("PUZZLE_", getPuzzleId(), "_NAME");
     }
 
+    public void safelyDelete() {
+        Puzzle_Custom puzzleCustom = getCustomData();
+        if (puzzleCustom != null) {
+            puzzleCustom.delete();
+        }
+        delete();
+    }
+
     public List<Tile> getTiles() {
         return Select.from(Tile.class).where(
                 Condition.prop("puzzle_id").eq(this.getPuzzleId()))

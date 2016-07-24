@@ -16,6 +16,8 @@ import java.util.List;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
+import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
+import uk.co.jakelee.cityflow.helper.RandomHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Puzzle_Custom;
 
@@ -52,14 +54,27 @@ public class CreatorActivity extends Activity {
         LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
 
         List<Puzzle> puzzles = Puzzle.getOthersCustomPuzzles();
-        for (Puzzle puzzle : puzzles) {
+        for (final Puzzle puzzle : puzzles) {
             Puzzle_Custom puzzleCustom = puzzle.getCustomData();
             View inflatedView = inflater.inflate(R.layout.custom_puzzle_preview_other, null);
             RelativeLayout othersPuzzle = (RelativeLayout) inflatedView.findViewById(R.id.puzzleLayout);
-            othersPuzzle.setTag(R.id.puzzleId, puzzle.getPuzzleId());
-            othersPuzzle.setTag(R.id.puzzleIsCustom, puzzle.getPackId() == 0);
 
-            othersPuzzle.setOnClickListener(new Button.OnClickListener() {
+            TextView deleteButton = (TextView) othersPuzzle.findViewById(R.id.deleteButton);
+            deleteButton.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    puzzle.safelyDelete();
+                    populatePuzzles();
+                }
+            });
+
+
+            TextView infoButton = (TextView) othersPuzzle.findViewById(R.id.infoButton);
+            infoButton.setTag(puzzle.getPuzzleId());
+
+            TextView playButton = (TextView) othersPuzzle.findViewById(R.id.playButton);
+            playButton.setTag(R.id.puzzleId, puzzle.getPuzzleId());
+            playButton.setTag(R.id.puzzleIsCustom, puzzle.getPackId() == 0);
+            playButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(getApplicationContext(), PuzzleActivity.class);
                     intent.putExtra(Constants.INTENT_PUZZLE, (int) v.getTag(R.id.puzzleId));
@@ -68,16 +83,28 @@ public class CreatorActivity extends Activity {
                 }
             });
 
+
             ((TextView)othersPuzzle.findViewById(R.id.puzzleName)).setText(puzzleCustom.getName());
-            ((TextView)othersPuzzle.findViewById(R.id.puzzleDesc)).setText(puzzleCustom.getDescription());
-            ((TextView)othersPuzzle.findViewById(R.id.puzzleAuthor)).setText(puzzleCustom.getAuthor());
 
             puzzleContainer.addView(othersPuzzle);
         }
+
+        TextView importButton = dh.createTextView("Import Puzzle", 25, Color.BLACK);
+        importButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                Puzzle puzzle = Puzzle.getPuzzle(RandomHelper.getNumber(98, 101));
+                String backup = PuzzleShareHelper.getPuzzleString(puzzle);
+                PuzzleShareHelper.importPuzzleString(backup);
+                populatePuzzles();
+            }
+        });
+        puzzleContainer.addView(importButton);
     }
 
     public void populateMyPuzzles(LinearLayout puzzleContainer) {
+        puzzleContainer.removeAllViews();
 
+        puzzleContainer.addView(dh.createTextView("Create Puzzle", 25, Color.BLACK));
     }
 
     public void changeTab(View v) {
