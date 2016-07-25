@@ -41,22 +41,18 @@ public class CreatorActivity extends Activity {
 
     public void populatePuzzles() {
         LinearLayout puzzleContainer = ((LinearLayout)findViewById(R.id.puzzleContainer));
-        if (displayOthers) {
-            populateOthersPuzzles(puzzleContainer);
-        } else {
-            populateMyPuzzles(puzzleContainer);
-        }
+        populatePuzzles(puzzleContainer);
         updateTabDisplay();
     }
 
-    public void populateOthersPuzzles(LinearLayout puzzleContainer) {
+    public void populatePuzzles(LinearLayout puzzleContainer) {
         puzzleContainer.removeAllViews();
         LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
 
-        List<Puzzle> puzzles = Puzzle.getOthersCustomPuzzles();
+        List<Puzzle> puzzles = Puzzle.getCustomPuzzles(displayOthers);
         for (final Puzzle puzzle : puzzles) {
             Puzzle_Custom puzzleCustom = puzzle.getCustomData();
-            View inflatedView = inflater.inflate(R.layout.custom_puzzle_preview_other, null);
+            View inflatedView = inflater.inflate(displayOthers ? R.layout.custom_puzzle_preview_other : R.layout.custom_puzzle_preview_mine, null);
             RelativeLayout othersPuzzle = (RelativeLayout) inflatedView.findViewById(R.id.puzzleLayout);
 
             TextView deleteButton = (TextView) othersPuzzle.findViewById(R.id.deleteButton);
@@ -67,21 +63,22 @@ public class CreatorActivity extends Activity {
                 }
             });
 
-
             TextView infoButton = (TextView) othersPuzzle.findViewById(R.id.infoButton);
             infoButton.setTag(puzzle.getPuzzleId());
 
             TextView playButton = (TextView) othersPuzzle.findViewById(R.id.playButton);
             playButton.setTag(R.id.puzzleId, puzzle.getPuzzleId());
             playButton.setTag(R.id.puzzleIsCustom, puzzle.getPackId() == 0);
-            playButton.setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View v) {
-                    Intent intent = new Intent(getApplicationContext(), PuzzleActivity.class);
-                    intent.putExtra(Constants.INTENT_PUZZLE, (int) v.getTag(R.id.puzzleId));
-                    intent.putExtra(Constants.INTENT_PUZZLE_TYPE, (boolean) v.getTag(R.id.puzzleIsCustom));
-                    startActivity(intent);
-                }
-            });
+            if (displayOthers) {
+                playButton.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getApplicationContext(), PuzzleActivity.class);
+                        intent.putExtra(Constants.INTENT_PUZZLE, (int) v.getTag(R.id.puzzleId));
+                        intent.putExtra(Constants.INTENT_PUZZLE_TYPE, (boolean) v.getTag(R.id.puzzleIsCustom));
+                        startActivity(intent);
+                    }
+                });
+            }
 
 
             ((TextView)othersPuzzle.findViewById(R.id.puzzleName)).setText(puzzleCustom.getName());
@@ -89,7 +86,7 @@ public class CreatorActivity extends Activity {
             puzzleContainer.addView(othersPuzzle);
         }
 
-        TextView importButton = dh.createTextView("Import Puzzle", 25, Color.BLACK);
+        TextView importButton = dh.createTextView(displayOthers ? "Import Puzzle" : "Create Puzzle", 25, Color.BLACK);
         importButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 Puzzle puzzle = Puzzle.getPuzzle(RandomHelper.getNumber(98, 101));

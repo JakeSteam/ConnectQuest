@@ -157,12 +157,9 @@ public class Puzzle extends SugarRecord {
         return stars;
     }
 
-    public static List<Puzzle> getMyCustomPuzzles() {
-        return Select.from(Puzzle.class).where("puzzle_id IN (SELECT puzzle_id FROM puzzlecustom WHERE original_author = 1 ORDER BY date_added DESC)").list();
-    }
-
-    public static List<Puzzle> getOthersCustomPuzzles() {
-        return Select.from(Puzzle.class).where("puzzle_id IN (SELECT puzzle_id FROM puzzlecustom WHERE original_author = 0 ORDER BY date_added DESC)").list();
+    public static List<Puzzle> getCustomPuzzles(boolean displayOthers) {
+        int authorSelection = displayOthers ? 0 : 1;
+        return Select.from(Puzzle.class).where("puzzle_id IN (SELECT puzzle_id FROM puzzlecustom WHERE original_author = " + authorSelection + " ORDER BY date_added DESC)").list();
     }
 
     public Puzzle_Custom getCustomData() {

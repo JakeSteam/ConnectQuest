@@ -47,7 +47,7 @@
         android:padding="3dp"
         android:textSize="26sp"
         android:gravity="center_horizontal"
-        android:text="Play"
+        android:text="Edit"
         android:background="@color/white"
         android:textColor="@color/black"/>
 </RelativeLayout>

@@ -286,20 +286,17 @@ public class PuzzleActivity extends Activity {
         Pair<Boolean, Boolean> newBests = PuzzleHelper.updateBest(puzzle, timeInMilliseconds, movesMade, isCustom);
         int stars = puzzle.getStarCount();
 
-        if (isCustom) {
-            //populateCustomPuzzleCompleteScreen();
-            this.finish();
-        } else {
-            populateStoryPuzzleCompleteScreen(puzzle, newBests.first, newBests.second, isFirstComplete, originalStars, stars);
-        }
+        populateStoryPuzzleCompleteScreen(puzzle, newBests.first, newBests.second, isFirstComplete, originalStars, stars, isCustom);
     }
 
-    public void populateStoryPuzzleCompleteScreen(Puzzle puzzle, boolean newBestTime, boolean newBestMoves, boolean isFirstComplete, int originalStars, int stars) {
-        List<Integer> boostsEarned = PuzzleHelper.getEarnedBoosts(isFirstComplete, originalStars != 3 && stars == 3, stars == 3);
-        PuzzleHelper.populateBoostImages(dh, (LinearLayout) findViewById(R.id.boostsContainer), boostsEarned);
+    public void populateStoryPuzzleCompleteScreen(Puzzle puzzle, boolean newBestTime, boolean newBestMoves, boolean isFirstComplete, int originalStars, int stars, boolean isCustom) {
+        if (!isCustom) {
+            List<Integer> boostsEarned = PuzzleHelper.getEarnedBoosts(isFirstComplete, originalStars != 3 && stars == 3, stars == 3);
+            PuzzleHelper.populateBoostImages(dh, (LinearLayout) findViewById(R.id.boostsContainer), boostsEarned);
 
-        List<Tile_Type> tilesUnlocked = puzzle.getUnlockableTiles();
-        PuzzleHelper.populateTileImages(dh, (LinearLayout) findViewById(R.id.tilesContainer), tilesUnlocked, isFirstComplete);
+            List<Tile_Type> tilesUnlocked = puzzle.getUnlockableTiles();
+            PuzzleHelper.populateTileImages(dh, (LinearLayout) findViewById(R.id.tilesContainer), tilesUnlocked, isFirstComplete);
+        }
 
         findViewById(R.id.endGame).setVisibility(View.VISIBLE);
         ((ImageView) findViewById(R.id.starCompletion)).setImageResource(puzzle.hasCompletionStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
