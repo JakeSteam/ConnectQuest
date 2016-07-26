@@ -9,7 +9,7 @@ import java.util.List;
 
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Tile;
-import uk.co.jakelee.cityflow.model.Tile_Type;
+import uk.co.jakelee.cityflow.model.TileType;
 
 public class TileHelper {
 
@@ -64,10 +64,10 @@ public class TileHelper {
         return heightN && heightE && heightS && heightW;
     }
 
-    public static Tile_Type getTileType(Tile tile) {
-        Tile_Type defaultType = new Tile_Type();
+    public static TileType getTileType(Tile tile) {
+        TileType defaultType = new TileType();
 
-        List<Tile_Type> typeResults = Select.from(Tile_Type.class).where(
+        List<TileType> typeResults = Select.from(TileType.class).where(
                 Condition.prop("type_id").eq(tile.getTileTypeId())).list();
 
         if (typeResults.size() == 0) {

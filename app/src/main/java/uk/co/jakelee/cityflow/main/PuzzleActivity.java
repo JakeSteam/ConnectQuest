@@ -29,7 +29,7 @@ import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Tile;
-import uk.co.jakelee.cityflow.model.Tile_Type;
+import uk.co.jakelee.cityflow.model.TileType;
 
 public class PuzzleActivity extends Activity {
     private static final Handler handler = new Handler();
@@ -294,7 +294,7 @@ public class PuzzleActivity extends Activity {
             List<Integer> boostsEarned = PuzzleHelper.getEarnedBoosts(isFirstComplete, originalStars != 3 && stars == 3, stars == 3);
             PuzzleHelper.populateBoostImages(dh, (LinearLayout) findViewById(R.id.boostsContainer), boostsEarned);
 
-            List<Tile_Type> tilesUnlocked = puzzle.getUnlockableTiles();
+            List<TileType> tilesUnlocked = puzzle.getUnlockableTiles();
             PuzzleHelper.populateTileImages(dh, (LinearLayout) findViewById(R.id.tilesContainer), tilesUnlocked, isFirstComplete);
         }
 

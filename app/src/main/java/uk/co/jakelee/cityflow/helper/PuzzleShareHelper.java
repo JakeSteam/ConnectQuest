@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.cityflow.model.Puzzle;
-import uk.co.jakelee.cityflow.model.Puzzle_Custom;
+import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Tile;
 
 public class PuzzleShareHelper {
@@ -13,7 +13,7 @@ public class PuzzleShareHelper {
     private static final String tileElementDelimiter = "/E/";
 
     public static String getPuzzleString(Puzzle puzzle) {
-        Puzzle_Custom puzzleCustom = puzzle.getCustomData();
+        PuzzleCustom puzzleCustom = puzzle.getCustomData();
         StringBuilder sb = new StringBuilder();
         sb.append(System.currentTimeMillis()).append(sectionDelimiter)
                 .append(puzzleCustom.getDescription()).append(sectionDelimiter)
@@ -33,7 +33,7 @@ public class PuzzleShareHelper {
 
     public static boolean importPuzzleString(String string) {
         Puzzle puzzle = new Puzzle();
-        Puzzle_Custom puzzleCustom = new Puzzle_Custom();
+        PuzzleCustom puzzleCustom = new PuzzleCustom();
 
         //try {
             String puzzleString = ModificationHelper.decode(string, 0);

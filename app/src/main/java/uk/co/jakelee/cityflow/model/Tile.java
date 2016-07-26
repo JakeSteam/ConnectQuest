@@ -92,7 +92,7 @@ public class Tile extends SugarRecord {
 
     public int getFlow(int side) {
         int flow = Constants.FLOW_NONE;
-        Tile_Type type = TileHelper.getTileType(this);
+        TileType type = TileHelper.getTileType(this);
 
         int target = side + (5 - rotation);
         if (target > 4) {
@@ -113,7 +113,7 @@ public class Tile extends SugarRecord {
 
     public int getHeight(int side) {
         int height = Constants.HEIGHT_NORMAL;
-        Tile_Type type = TileHelper.getTileType(this);
+        TileType type = TileHelper.getTileType(this);
 
         int target = side + (5 - rotation);
         if (target > 4) {

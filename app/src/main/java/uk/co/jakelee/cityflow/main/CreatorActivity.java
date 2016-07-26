@@ -19,7 +19,7 @@ import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
 import uk.co.jakelee.cityflow.helper.RandomHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
-import uk.co.jakelee.cityflow.model.Puzzle_Custom;
+import uk.co.jakelee.cityflow.model.PuzzleCustom;
 
 public class CreatorActivity extends Activity {
     private boolean displayOthers = false;
@@ -51,35 +51,38 @@ public class CreatorActivity extends Activity {
 
         List<Puzzle> puzzles = Puzzle.getCustomPuzzles(displayOthers);
         for (final Puzzle puzzle : puzzles) {
-            Puzzle_Custom puzzleCustom = puzzle.getCustomData();
-            View inflatedView = inflater.inflate(displayOthers ? R.layout.custom_puzzle_preview_other : R.layout.custom_puzzle_preview_mine, null);
+            PuzzleCustom puzzleCustom = puzzle.getCustomData();
+            View inflatedView = inflater.inflate(R.layout.custom_puzzle_preview, null);
             RelativeLayout othersPuzzle = (RelativeLayout) inflatedView.findViewById(R.id.puzzleLayout);
 
-            TextView deleteButton = (TextView) othersPuzzle.findViewById(R.id.deleteButton);
-            deleteButton.setOnClickListener(new Button.OnClickListener() {
+            othersPuzzle.findViewById(R.id.deleteButton).setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     puzzle.safelyDelete();
                     populatePuzzles();
                 }
             });
 
-            TextView infoButton = (TextView) othersPuzzle.findViewById(R.id.infoButton);
-            infoButton.setTag(puzzle.getPuzzleId());
+            othersPuzzle.findViewById(R.id.moreButton).setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), CustomInfoActivity.class);
+                    intent.putExtra(Constants.INTENT_PUZZLE, puzzle.getPuzzleId());
+                    startActivity(intent);
+                }
+            });
 
-            TextView playButton = (TextView) othersPuzzle.findViewById(R.id.playButton);
-            playButton.setTag(R.id.puzzleId, puzzle.getPuzzleId());
-            playButton.setTag(R.id.puzzleIsCustom, puzzle.getPackId() == 0);
             if (displayOthers) {
-                playButton.setOnClickListener(new Button.OnClickListener() {
+                ((TextView) othersPuzzle.findViewById(R.id.actionButton)).setText("Play");
+                othersPuzzle.findViewById(R.id.actionButton).setOnClickListener(new Button.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent(getApplicationContext(), PuzzleActivity.class);
-                        intent.putExtra(Constants.INTENT_PUZZLE, (int) v.getTag(R.id.puzzleId));
-                        intent.putExtra(Constants.INTENT_PUZZLE_TYPE, (boolean) v.getTag(R.id.puzzleIsCustom));
+                        intent.putExtra(Constants.INTENT_PUZZLE, puzzle.getPuzzleId());
+                        intent.putExtra(Constants.INTENT_PUZZLE_TYPE, puzzle.getPackId() == 0);
                         startActivity(intent);
                     }
                 });
+            } else {
+                ((TextView) othersPuzzle.findViewById(R.id.actionButton)).setText("Edit");
             }
-
 
             ((TextView)othersPuzzle.findViewById(R.id.puzzleName)).setText(puzzleCustom.getName());
 
@@ -98,10 +101,8 @@ public class CreatorActivity extends Activity {
         puzzleContainer.addView(importButton);
     }
 
-    public void populateMyPuzzles(LinearLayout puzzleContainer) {
-        puzzleContainer.removeAllViews();
+    public void showInfo(View v) {
 
-        puzzleContainer.addView(dh.createTextView("Create Puzzle", 25, Color.BLACK));
     }
 
     public void changeTab(View v) {

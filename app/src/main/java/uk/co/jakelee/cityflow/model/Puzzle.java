@@ -114,7 +114,7 @@ public class Puzzle extends SugarRecord {
     }
 
     public void safelyDelete() {
-        Puzzle_Custom puzzleCustom = getCustomData();
+        PuzzleCustom puzzleCustom = getCustomData();
         if (puzzleCustom != null) {
             puzzleCustom.delete();
         }
@@ -127,8 +127,8 @@ public class Puzzle extends SugarRecord {
                 .orderBy("y DESC, x ASC").list();
     }
 
-    public List<Tile_Type> getUnlockableTiles() {
-        return Select.from(Tile_Type.class).where(
+    public List<TileType> getUnlockableTiles() {
+        return Select.from(TileType.class).where(
                 Condition.prop("puzzle_required").eq(puzzleId)).list();
     }
 
@@ -159,11 +159,11 @@ public class Puzzle extends SugarRecord {
 
     public static List<Puzzle> getCustomPuzzles(boolean displayOthers) {
         int authorSelection = displayOthers ? 0 : 1;
-        return Select.from(Puzzle.class).where("puzzle_id IN (SELECT puzzle_id FROM puzzlecustom WHERE original_author = " + authorSelection + " ORDER BY date_added DESC)").list();
+        return Select.from(Puzzle.class).where("puzzle_id IN (SELECT puzzle_id FROM puzzle_custom WHERE original_author = " + authorSelection + " ORDER BY date_added DESC)").list();
     }
 
-    public Puzzle_Custom getCustomData() {
-        return Select.from(Puzzle_Custom.class).where(Condition.prop("puzzle_id").eq(puzzleId)).first();
+    public PuzzleCustom getCustomData() {
+        return Select.from(PuzzleCustom.class).where(Condition.prop("puzzle_id").eq(puzzleId)).first();
     }
 
     public String getShareText() {

@@ -9,7 +9,7 @@ import java.util.List;
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
-import uk.co.jakelee.cityflow.model.Tile_Type;
+import uk.co.jakelee.cityflow.model.TileType;
 
 public class PuzzleHelper {
     public static Pair<Boolean, Boolean> updateBest(Puzzle puzzle, long timeTaken, int movesTaken, boolean isCustom) {
@@ -113,12 +113,12 @@ public class PuzzleHelper {
         }
     }
 
-    public static void populateTileImages(DisplayHelper dh, LinearLayout tilesContainer, List<Tile_Type> tiles, boolean isFirstComplete) {
+    public static void populateTileImages(DisplayHelper dh, LinearLayout tilesContainer, List<TileType> tiles, boolean isFirstComplete) {
         if (!isFirstComplete) {
             return;
         }
 
-        for (Tile_Type tile : tiles) {
+        for (TileType tile : tiles) {
             tilesContainer.addView(dh.createTileIcon(tile.getTypeId(), 50, 50));
         }
     }

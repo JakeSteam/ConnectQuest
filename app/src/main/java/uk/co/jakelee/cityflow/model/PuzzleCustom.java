@@ -2,7 +2,7 @@ package uk.co.jakelee.cityflow.model;
 
 import com.orm.SugarRecord;
 
-public class Puzzle_Custom extends SugarRecord {
+public class PuzzleCustom extends SugarRecord {
     private int puzzleId;
     private long dateAdded;
     private String name;
@@ -10,10 +10,10 @@ public class Puzzle_Custom extends SugarRecord {
     private String author;
     private boolean originalAuthor;
 
-    public Puzzle_Custom() {
+    public PuzzleCustom() {
     }
 
-    public Puzzle_Custom(int puzzleId, long dateAdded, String name, String description, String author, boolean originalAuthor) {
+    public PuzzleCustom(int puzzleId, long dateAdded, String name, String description, String author, boolean originalAuthor) {
         this.puzzleId = puzzleId;
         this.dateAdded = dateAdded;
         this.name = name;

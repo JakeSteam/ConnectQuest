@@ -26,7 +26,7 @@
         android:background="@color/white"
         android:textColor="@color/black"/>
     <TextView
-        android:id="@+id/infoButton"
+        android:id="@+id/moreButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/puzzleName"
@@ -36,18 +36,18 @@
         android:textSize="26sp"
         android:text=" ... "
         android:background="@color/white"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:onClick="showInfo"/>
     <TextView
-        android:id="@+id/playButton"
+        android:id="@+id/actionButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/puzzleName"
-        android:layout_toRightOf="@id/infoButton"
+        android:layout_toRightOf="@id/moreButton"
         android:layout_margin="3dp"
         android:padding="3dp"
         android:textSize="26sp"
         android:gravity="center_horizontal"
-        android:text="Play"
         android:background="@color/white"
         android:textColor="@color/black"/>
 </RelativeLayout>

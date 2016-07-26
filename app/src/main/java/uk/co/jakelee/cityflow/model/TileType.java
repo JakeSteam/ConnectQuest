@@ -2,7 +2,7 @@ package uk.co.jakelee.cityflow.model;
 
 import com.orm.SugarRecord;
 
-public class Tile_Type extends SugarRecord {
+public class TileType extends SugarRecord {
     private int typeId;
     private int environmentId;
     private int flowNorth;
@@ -15,11 +15,11 @@ public class Tile_Type extends SugarRecord {
     private int heightWest;
     private int puzzleRequired;
 
-    public Tile_Type() {
+    public TileType() {
 
     }
 
-    public Tile_Type(int typeId, int environmentId, int flow, int height, int puzzleRequired) {
+    public TileType(int typeId, int environmentId, int flow, int height, int puzzleRequired) {
         this.typeId = typeId;
         this.environmentId = environmentId;
         this.flowNorth = flow;
@@ -33,7 +33,7 @@ public class Tile_Type extends SugarRecord {
         this.puzzleRequired = puzzleRequired;
     }
 
-    public Tile_Type(int typeId, int environmentId, int flowNorth, int flowEast, int flowSouth, int flowWest, int height, int puzzleRequired) {
+    public TileType(int typeId, int environmentId, int flowNorth, int flowEast, int flowSouth, int flowWest, int height, int puzzleRequired) {
         this.typeId = typeId;
         this.environmentId = environmentId;
         this.flowNorth = flowNorth;
@@ -47,7 +47,7 @@ public class Tile_Type extends SugarRecord {
         this.puzzleRequired = puzzleRequired;
     }
 
-    public Tile_Type(int typeId, int environmentId, int flowNorth, int flowEast, int flowSouth, int flowWest, int heightNorth, int heightEast, int heightSouth, int heightWest, int puzzleRequired) {
+    public TileType(int typeId, int environmentId, int flowNorth, int flowEast, int flowSouth, int flowWest, int heightNorth, int heightEast, int heightSouth, int heightWest, int puzzleRequired) {
         this.typeId = typeId;
         this.environmentId = environmentId;
         this.flowNorth = flowNorth;
