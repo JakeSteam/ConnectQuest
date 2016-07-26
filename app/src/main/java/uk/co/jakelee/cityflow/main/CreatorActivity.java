@@ -94,7 +94,7 @@ public class CreatorActivity extends Activity {
             public void onClick(View v) {
                 Puzzle puzzle = Puzzle.getPuzzle(RandomHelper.getNumber(98, 101));
                 String backup = PuzzleShareHelper.getPuzzleString(puzzle);
-                PuzzleShareHelper.importPuzzleString(backup);
+                PuzzleShareHelper.importPuzzleString(backup, false);
                 populatePuzzles();
             }
         });

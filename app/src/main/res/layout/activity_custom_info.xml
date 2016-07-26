@@ -17,8 +17,7 @@
         android:layout_height="wrap_content"
         app:layout_marginLeftPercent="10%"
         app:layout_marginRightPercent="10%"
-        android:padding="5dp"
-        android:background="@color/city"
+        android:background="@drawable/ui_panel_city"
         android:layout_centerInParent="true">
         <TextView
             android:id="@+id/puzzleName"
@@ -69,11 +68,12 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:layout_margin="5dp"
-                android:background="@color/white"
+                android:background="@drawable/ui_panel_grey"
                 android:text="Copy"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                android:gravity="center_horizontal"/>
+                android:gravity="center_horizontal"
+                android:onClick="copyPuzzle"/>
             <TextView
                 android:id="@+id/exportButton"
                 android:layout_width="0dp"
@@ -81,11 +81,12 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:layout_margin="5dp"
-                android:background="@color/white"
+                android:background="@drawable/ui_panel_grey"
                 android:text="Export"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                android:gravity="center_horizontal"/>
+                android:gravity="center_horizontal"
+                android:onClick="exportPuzzle"/>
             <TextView
                 android:id="@+id/actionButton"
                 android:layout_width="0dp"
@@ -93,11 +94,11 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:layout_margin="5dp"
-                android:background="@color/white"
-                android:text="Play"
+                android:background="@drawable/ui_panel_grey"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                android:gravity="center_horizontal"/>
+                android:gravity="center_horizontal"
+                android:onClick="performAction"/>
         </LinearLayout>
     </RelativeLayout>
     <TextView
@@ -112,5 +113,5 @@
         android:padding="2dp"
         android:layout_marginTop="-5dp"
         android:layout_marginRight="-5dp"
-        android:background="@color/white"/>
+        android:background="@drawable/ui_panel_grey"/>
 </android.support.percent.PercentRelativeLayout>

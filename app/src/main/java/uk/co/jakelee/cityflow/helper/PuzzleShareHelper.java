@@ -15,7 +15,7 @@ public class PuzzleShareHelper {
     public static String getPuzzleString(Puzzle puzzle) {
         PuzzleCustom puzzleCustom = puzzle.getCustomData();
         StringBuilder sb = new StringBuilder();
-        sb.append(System.currentTimeMillis()).append(sectionDelimiter)
+        sb.append(puzzleCustom.getName()).append(sectionDelimiter)
                 .append(puzzleCustom.getDescription()).append(sectionDelimiter)
                 .append(puzzleCustom.getAuthor()).append(sectionDelimiter)
                 .append(puzzle.getParMoves()).append(sectionDelimiter)
@@ -31,7 +31,7 @@ public class PuzzleShareHelper {
         return ModificationHelper.encode(sb.toString(), 0);
     }
 
-    public static boolean importPuzzleString(String string) {
+    public static boolean importPuzzleString(String string, boolean isCopy) {
         Puzzle puzzle = new Puzzle();
         PuzzleCustom puzzleCustom = new PuzzleCustom();
 
@@ -44,11 +44,11 @@ public class PuzzleShareHelper {
             puzzle.setPuzzleId(puzzleId);
             puzzleCustom.setPuzzleId(puzzleId);
 
-            puzzleCustom.setName(parts[0]);
+            puzzleCustom.setName(parts[0] + (isCopy ? " (Copy)":""));
             puzzleCustom.setDescription(parts[1]);
             puzzleCustom.setAuthor(parts[2]);
             puzzleCustom.setDateAdded(System.currentTimeMillis());
-            puzzleCustom.setOriginalAuthor(false);
+            puzzleCustom.setOriginalAuthor(isCopy);
             puzzleCustom.save();
 
             puzzle.setParMoves(Integer.parseInt(parts[3]));

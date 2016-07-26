@@ -23,7 +23,7 @@
         android:padding="3dp"
         android:textSize="26sp"
         android:text=" D "
-        android:background="@color/white"
+        android:background="@drawable/ui_panel_grey"
         android:textColor="@color/black"/>
     <TextView
         android:id="@+id/moreButton"
@@ -35,7 +35,7 @@
         android:padding="3dp"
         android:textSize="26sp"
         android:text=" ... "
-        android:background="@color/white"
+        android:background="@drawable/ui_panel_grey"
         android:textColor="@color/black"
         android:onClick="showInfo"/>
     <TextView
@@ -48,6 +48,6 @@
         android:padding="3dp"
         android:textSize="26sp"
         android:gravity="center_horizontal"
-        android:background="@color/white"
+        android:background="@drawable/ui_panel_grey"
         android:textColor="@color/black"/>
 </RelativeLayout>
