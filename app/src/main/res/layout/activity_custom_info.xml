@@ -61,28 +61,28 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/puzzleMetaContainer"
             android:orientation="horizontal">
-            <TextView
+            <uk.co.jakelee.cityflow.components.TextAwesome
                 android:id="@+id/copyButton"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:padding="10dp"
                 android:layout_margin="5dp"
                 android:background="@drawable/ui_panel_grey"
-                android:text="Copy"
+                android:text="&#xf24d;"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:gravity="center_horizontal"
                 android:onClick="copyPuzzle"/>
-            <TextView
+            <uk.co.jakelee.cityflow.components.TextAwesome
                 android:id="@+id/exportButton"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:padding="10dp"
                 android:layout_margin="5dp"
                 android:background="@drawable/ui_panel_grey"
-                android:text="Export"
+                android:text="&#xf045;"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:gravity="center_horizontal"
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:layout_margin="5dp"
-                android:background="@drawable/ui_panel_grey"
+                android:background="@drawable/ui_panel_blue"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:gravity="center_horizontal"
