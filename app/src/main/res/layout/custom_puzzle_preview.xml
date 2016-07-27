@@ -38,14 +38,14 @@
         android:background="@drawable/ui_panel_grey"
         android:textColor="@color/black"
         android:onClick="showInfo"/>
-    <TextView
+    <uk.co.jakelee.cityflow.components.TextAwesome
         android:id="@+id/actionButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/puzzleName"
         android:layout_toRightOf="@id/moreButton"
         android:layout_margin="3dp"
-        android:padding="3dp"
+        android:padding="7dp"
         android:textSize="26sp"
         android:gravity="center_horizontal"
         android:background="@drawable/ui_panel_blue"

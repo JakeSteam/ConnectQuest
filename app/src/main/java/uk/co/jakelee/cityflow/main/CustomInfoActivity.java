@@ -10,7 +10,6 @@ import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
-import uk.co.jakelee.cityflow.helper.RandomHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 
@@ -44,7 +43,7 @@ public class CustomInfoActivity extends Activity {
         ((TextView) findViewById(R.id.puzzleAuthor)).setText("By: " + (puzzleCustom.isOriginalAuthor() ? "You!" : puzzleCustom.getAuthor()));
         ((TextView) findViewById(R.id.puzzleCreatedDate)).setText("Added: " + DateHelper.displayTime(puzzleCustom.getDateAdded(), DateHelper.date));
 
-        ((TextView) findViewById(R.id.actionButton)).setText(puzzleCustom.isOriginalAuthor() ? " Edit " : " Play ");
+        ((TextView) findViewById(R.id.actionButton)).setText(puzzleCustom.isOriginalAuthor() ? R.string.icon_edit : R.string.icon_play);
     }
 
     public void performAction(View v) {
@@ -57,13 +56,17 @@ public class CustomInfoActivity extends Activity {
     }
 
     public void copyPuzzle(View v) {
-        Puzzle puzzle = Puzzle.getPuzzle(RandomHelper.getNumber(98, 101));
         String backup = PuzzleShareHelper.getPuzzleString(puzzle);
         PuzzleShareHelper.importPuzzleString(backup, true);
     }
 
     public void exportPuzzle(View v) {
+        String backup = PuzzleShareHelper.getPuzzleString(puzzle);
 
+        Intent intent = new Intent(); intent.setAction(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, backup);
+        startActivity(Intent.createChooser(intent, "Save puzzle backup to"));
     }
 
     public void closePopup (View v) {

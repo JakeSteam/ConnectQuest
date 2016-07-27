@@ -71,7 +71,7 @@ public class CreatorActivity extends Activity {
             });
 
             if (displayOthers) {
-                ((TextView) othersPuzzle.findViewById(R.id.actionButton)).setText("Play");
+                ((TextView) othersPuzzle.findViewById(R.id.actionButton)).setText(R.string.icon_play);
                 othersPuzzle.findViewById(R.id.actionButton).setOnClickListener(new Button.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent(getApplicationContext(), PuzzleActivity.class);
@@ -81,7 +81,7 @@ public class CreatorActivity extends Activity {
                     }
                 });
             } else {
-                ((TextView) othersPuzzle.findViewById(R.id.actionButton)).setText("Edit");
+                ((TextView) othersPuzzle.findViewById(R.id.actionButton)).setText(R.string.icon_edit);
             }
 
             ((TextView)othersPuzzle.findViewById(R.id.puzzleName)).setText(puzzleCustom.getName());

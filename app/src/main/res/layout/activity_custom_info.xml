@@ -63,8 +63,7 @@
             android:orientation="horizontal">
             <uk.co.jakelee.cityflow.components.TextAwesome
                 android:id="@+id/copyButton"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_margin="5dp"
@@ -76,8 +75,7 @@
                 android:onClick="copyPuzzle"/>
             <uk.co.jakelee.cityflow.components.TextAwesome
                 android:id="@+id/exportButton"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_margin="5dp"
@@ -87,12 +85,11 @@
                 android:textSize="18sp"
                 android:gravity="center_horizontal"
                 android:onClick="exportPuzzle"/>
-            <TextView
+            <uk.co.jakelee.cityflow.components.TextAwesome
                 android:id="@+id/actionButton"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:padding="10dp"
                 android:layout_margin="5dp"
                 android:background="@drawable/ui_panel_blue"
                 android:textColor="@color/black"
@@ -101,16 +98,16 @@
                 android:onClick="performAction"/>
         </LinearLayout>
     </RelativeLayout>
-    <TextView
+    <uk.co.jakelee.cityflow.components.TextAwesome
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" X "
+        android:text="&#xf00d;"
         android:textColor="@color/red"
         android:layout_alignTop="@id/popupWrapper"
         android:layout_alignRight="@id/popupWrapper"
         android:textSize="30sp"
         android:onClick="closePopup"
-        android:padding="2dp"
+        android:padding="10dp"
         android:layout_marginTop="-5dp"
         android:layout_marginRight="-5dp"
         android:background="@drawable/ui_panel_grey"/>
