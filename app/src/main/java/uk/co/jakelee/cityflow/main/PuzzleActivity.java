@@ -40,6 +40,8 @@ public class PuzzleActivity extends Activity {
     private long startTime = 0L;
     private long timeInMilliseconds = 0L;
     private long timeLastMoved = 0L;
+    private long timePaused = 0L;
+    private long timeSpentPaused = 0L;
     private ImageView lastChangedImage;
     private Tile lastChangedTile;
     private boolean undoing = false;
@@ -156,7 +158,7 @@ public class PuzzleActivity extends Activity {
 
     private Runnable updateTimerThread = new Runnable() {
         public void run() {
-            timeInMilliseconds = SystemClock.uptimeMillis() - startTime;
+            timeInMilliseconds = (SystemClock.uptimeMillis() - startTime) - timeSpentPaused;
             ((TextView)(findViewById(R.id.puzzleTimer))).setText(DateHelper.getPuzzleTimeString(timeInMilliseconds));
             handler.postDelayed(this, 20);
         }
@@ -308,6 +310,19 @@ public class PuzzleActivity extends Activity {
         ((TextView) findViewById(R.id.bestTime)).setText(DateHelper.getPuzzleTimeString(puzzle.getBestTime()) + (newBestTime ? "*" : ""));
         ((TextView) findViewById(R.id.parMoves)).setText(Integer.toString(puzzle.getParMoves()));
         ((TextView) findViewById(R.id.parTime)).setText(DateHelper.getPuzzleTimeString(puzzle.getParTime()));
+    }
+
+    public void pausePuzzle(View v) {
+        findViewById(R.id.pauseScreen).setVisibility(View.VISIBLE);
+        timePaused = System.currentTimeMillis();
+        handler.removeCallbacksAndMessages(null);
+    }
+
+    public void resumePuzzle(View v) {
+        findViewById(R.id.pauseScreen).setVisibility(View.GONE);
+        timeSpentPaused += (System.currentTimeMillis() - timePaused);
+        timePaused = 0;
+        handler.post(updateTimerThread);
     }
 
     public void closePuzzle(View v) {
