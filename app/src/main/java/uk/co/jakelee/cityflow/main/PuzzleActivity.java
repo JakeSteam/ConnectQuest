@@ -302,8 +302,8 @@ public class PuzzleActivity extends Activity {
         ((ImageView) findViewById(R.id.starCompletion)).setImageResource(puzzle.hasCompletionStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
         ((ImageView) findViewById(R.id.starTime)).setImageResource(puzzle.hasTimeStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
         ((ImageView) findViewById(R.id.starMoves)).setImageResource(puzzle.hasMovesStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
-        ((TextView) findViewById(R.id.currentMoves)).setText(Integer.toString(movesMade));
-        ((TextView) findViewById(R.id.currentTime)).setText(DateHelper.getPuzzleTimeString(timeInMilliseconds));
+        ((TextView) findViewById(R.id.currentMoves)).setText(Integer.toString(movesMade > 0 ? movesMade : 0));
+        ((TextView) findViewById(R.id.currentTime)).setText(timeInMilliseconds > 0 ? DateHelper.getPuzzleTimeString(timeInMilliseconds) : "0");
         ((TextView) findViewById(R.id.bestMoves)).setText(puzzle.getBestMoves() + (newBestMoves ? "*" : ""));
         ((TextView) findViewById(R.id.bestTime)).setText(DateHelper.getPuzzleTimeString(puzzle.getBestTime()) + (newBestTime ? "*" : ""));
         ((TextView) findViewById(R.id.parMoves)).setText(Integer.toString(puzzle.getParMoves()));

@@ -22,7 +22,6 @@ public class MainActivity extends Activity {
         MainActivity.prefs.edit().putInt("language", Constants.LANGUAGE_EN_GB).apply();
 
         DatabaseHelper.handlePatches();
-
     }
 
     public void openChapters(View view) {
