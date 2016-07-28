@@ -148,6 +148,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_48_TEXT", "City High Road Corner"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_49_TEXT", "City Grass Corner"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_50_TEXT", "City Canal Corner"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_51_TEXT", "City Road/Path Corner (Inverse)"));
         Text.saveInTx(texts);
     }
 
@@ -733,6 +734,7 @@ public class DatabaseHelper {
             tileTypes.add(new TileType(48, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 3));
             tileTypes.add(new TileType(49, Constants.ENVIRONMENT_CITY, Constants.FLOW_GRASS, Constants.FLOW_GRASS, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new TileType(50, Constants.ENVIRONMENT_CITY, Constants.FLOW_CANAL, Constants.FLOW_CANAL, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(51, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
         TileType.saveInTx(tileTypes);
     }
 }

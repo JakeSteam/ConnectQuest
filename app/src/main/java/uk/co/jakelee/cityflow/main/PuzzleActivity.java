@@ -313,6 +313,10 @@ public class PuzzleActivity extends Activity {
     }
 
     public void pausePuzzle(View v) {
+        pause();
+    }
+
+    private void pause() {
         findViewById(R.id.pauseScreen).setVisibility(View.VISIBLE);
         timePaused = System.currentTimeMillis();
         handler.removeCallbacksAndMessages(null);
@@ -323,6 +327,15 @@ public class PuzzleActivity extends Activity {
         timeSpentPaused += (System.currentTimeMillis() - timePaused);
         timePaused = 0;
         handler.post(updateTimerThread);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (timePaused > 0) {
+            this.finish();
+        } else {
+            pause();
+        }
     }
 
     public void closePuzzle(View v) {
