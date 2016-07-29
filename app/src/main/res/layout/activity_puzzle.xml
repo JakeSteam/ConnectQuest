@@ -241,75 +241,112 @@
             android:background="@color/black"
             android:onClick="closePuzzle"
             android:visibility="invisible">
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/starContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_alignParentTop="true"
-                android:layout_centerInParent="true">
-                <ImageView
-                    android:id="@+id/starCompletion"
+                android:layout_centerHorizontal="true">
+                <RelativeLayout
+                    android:id="@+id/starCompletionWrapper"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ui_star_unachieved"/>
-                <ImageView
-                    android:id="@+id/starTime"
+                    android:layout_centerHorizontal="true">
+                    <ImageView
+                        android:id="@+id/starCompletion"
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
+                        android:src="@drawable/ui_star_unachieved"/>
+                    <uk.co.jakelee.cityflow.components.TextViewFontEndGame
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
+                        android:gravity="center"
+                        android:text="Completion"/>
+                </RelativeLayout>
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ui_star_unachieved"/>
-                <ImageView
-                    android:id="@+id/starMoves"
-                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/starCompletionWrapper"
+                    android:layout_centerHorizontal="true">
+                    <RelativeLayout
+                        android:id="@+id/starTimeWrapper"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/starTime"
+                            android:layout_width="160dp"
+                            android:layout_height="160dp"
+                            android:src="@drawable/ui_star_unachieved"/>
+                        <uk.co.jakelee.cityflow.components.TextViewFontEndGame
+                            android:layout_width="160dp"
+                            android:layout_height="160dp"
+                            android:gravity="center"
+                            android:text="Time"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/starMovesWrapper"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/starMoves"
+                            android:layout_width="160dp"
+                            android:layout_height="160dp"
+                            android:src="@drawable/ui_star_unachieved"/>
+                        <uk.co.jakelee.cityflow.components.TextViewFontEndGame
+                            android:layout_width="160dp"
+                            android:layout_height="160dp"
+                            android:gravity="center"
+                            android:text="Moves"/>
+                    </RelativeLayout>
+                </LinearLayout>
+            </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/actionButtons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/exitButton"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ui_star_unachieved"/>
+                    android:textColor="@color/black"
+                    android:background="@drawable/ui_button_city"
+                    android:gravity="center_horizontal"
+                    android:textSize="26sp"
+                    android:text="Exit"
+                    android:padding="6dp"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/restartButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:background="@drawable/ui_button_city"
+                    android:gravity="center_horizontal"
+                    android:textSize="26sp"
+                    android:text="Restart"
+                    android:padding="6dp"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/nextButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:background="@drawable/ui_button_city"
+                    android:gravity="center_horizontal"
+                    android:textSize="26sp"
+                    android:text="Next"
+                    android:padding="6dp"
+                    android:layout_weight="1"/>
             </LinearLayout>
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/starContainer"
+                android:layout_above="@id/actionButtons"
                 android:stretchColumns="*"
                 android:shrinkColumns="*">
-                <TableRow>
-                    <uk.co.jakelee.cityflow.components.TextViewFontEndGame
-                        android:text=""/>
-                    <uk.co.jakelee.cityflow.components.TextViewFontEndGame
-                        android:text="Time"/>
-                    <uk.co.jakelee.cityflow.components.TextViewFontEndGame
-                        android:text="Moves"/>
-                </TableRow>
-                <TableRow>
-                    <uk.co.jakelee.cityflow.components.TextViewFontEndGame
-                        android:text="Current"/>
-                    <uk.co.jakelee.cityflow.components.TextViewFontEndGame
-                        android:id="@+id/currentTime"/>
-                    <uk.co.jakelee.cityflow.components.TextViewFontEndGame
-                        android:id="@+id/currentMoves"/>
-                </TableRow>
-                <TableRow>
-                    <uk.co.jakelee.cityflow.components.TextViewFontEndGame
-                        android:text="Best"/>
-                    <uk.co.jakelee.cityflow.components.TextViewFontEndGame
-                        android:id="@+id/bestTime"/>
-                    <uk.co.jakelee.cityflow.components.TextViewFontEndGame
-                        android:id="@+id/bestMoves"/>
-                </TableRow>
-                <TableRow>
-                    <uk.co.jakelee.cityflow.components.TextViewFontEndGame
-                        android:text="Par"/>
-                    <uk.co.jakelee.cityflow.components.TextViewFontEndGame
-                        android:id="@+id/parTime"/>
-                    <uk.co.jakelee.cityflow.components.TextViewFontEndGame
-                        android:id="@+id/parMoves"/>
-                </TableRow>
-                <TableRow>
-                    <uk.co.jakelee.cityflow.components.TextViewFontEndGame
-                        android:text=""/>
-                    <uk.co.jakelee.cityflow.components.TextViewFontEndGame
-                        android:text=""/>
-                    <uk.co.jakelee.cityflow.components.TextViewFontEndGame
-                        android:text=""/>
-                </TableRow>
                 <TableRow>
                     <uk.co.jakelee.cityflow.components.TextViewFontEndGame
                         android:text="New Tiles"/>
