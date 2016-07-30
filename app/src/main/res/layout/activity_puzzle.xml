@@ -237,10 +237,12 @@
             android:id="@+id/endGame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:alpha="0.6"
-            android:background="@color/black"
-            android:onClick="closePuzzle"
             android:visibility="invisible">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@color/black"
+                android:alpha="0.6" />
             <RelativeLayout
                 android:id="@+id/starContainer"
                 android:layout_width="wrap_content"
@@ -252,17 +254,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true">
-                    <ImageView
+                    <ProgressBar
                         android:id="@+id/starCompletion"
                         android:layout_width="160dp"
                         android:layout_height="160dp"
-                        android:src="@drawable/ui_star_unachieved"/>
-                    <uk.co.jakelee.cityflow.components.TextViewFontEndGame
+                        android:indeterminate="false"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:progress="70"
+                        android:background="@drawable/ui_star_unachieved"
+                        android:progressDrawable="@drawable/custom_progress_bar_star"/>
+                    <TextView
                         android:id="@+id/starCompletionText"
                         android:layout_width="160dp"
                         android:layout_height="160dp"
+                        android:textColor="@color/black"
                         android:gravity="center"
-                        android:text="Completion"/>
+                        android:textSize="20sp"/>
                 </RelativeLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -274,33 +281,43 @@
                         android:id="@+id/starTimeWrapper"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
-                        <ImageView
+                        <ProgressBar
                             android:id="@+id/starTime"
                             android:layout_width="160dp"
                             android:layout_height="160dp"
-                            android:src="@drawable/ui_star_unachieved"/>
-                        <uk.co.jakelee.cityflow.components.TextViewFontEndGame
+                            android:indeterminate="false"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:progress="70"
+                            android:background="@drawable/ui_star_unachieved"
+                            android:progressDrawable="@drawable/custom_progress_bar_star"/>
+                        <TextView
                             android:id="@+id/starTimeText"
                             android:layout_width="160dp"
                             android:layout_height="160dp"
-                            android:gravity="center"
-                            android:text="Time"/>
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:gravity="center"/>
                     </RelativeLayout>
                     <RelativeLayout
                         android:id="@+id/starMovesWrapper"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
-                        <ImageView
+                        <ProgressBar
                             android:id="@+id/starMoves"
                             android:layout_width="160dp"
                             android:layout_height="160dp"
-                            android:src="@drawable/ui_star_unachieved"/>
-                        <uk.co.jakelee.cityflow.components.TextViewFontEndGame
+                            android:indeterminate="false"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:progress="70"
+                            android:background="@drawable/ui_star_unachieved"
+                            android:progressDrawable="@drawable/custom_progress_bar_star"/>
+                        <TextView
                             android:id="@+id/starMovesText"
                             android:layout_width="160dp"
                             android:layout_height="160dp"
+                            android:textColor="@color/black"
                             android:gravity="center"
-                            android:text="Moves"/>
+                            android:textSize="20sp"/>
                     </RelativeLayout>
                 </LinearLayout>
             </RelativeLayout>
@@ -310,42 +327,42 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:orientation="horizontal">
-                <TextView
+                <uk.co.jakelee.cityflow.components.TextAwesome
                     android:id="@+id/exitButton"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:background="@drawable/ui_button_city"
+                    android:background="@drawable/ui_panel_city"
                     android:gravity="center_horizontal"
-                    android:textSize="26sp"
-                    android:text="Exit"
-                    android:padding="6dp"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"/>
-                <TextView
+                    android:textSize="36sp"
+                    android:text="&#xf00d;"
+                    android:padding="12dp"
+                    android:layout_margin="6dp"
+                    android:onClick="closePuzzle"/>
+                <uk.co.jakelee.cityflow.components.TextAwesome
                     android:id="@+id/restartButton"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:background="@drawable/ui_button_city"
+                    android:background="@drawable/ui_panel_city"
                     android:gravity="center_horizontal"
-                    android:textSize="26sp"
-                    android:text="Restart"
-                    android:padding="6dp"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"/>
-                <TextView
+                    android:textSize="36sp"
+                    android:text="&#xf0e2;"
+                    android:padding="12dp"
+                    android:layout_margin="6dp"
+                    android:onClick="restartPuzzle"/>
+                <uk.co.jakelee.cityflow.components.TextAwesome
                     android:id="@+id/nextButton"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:background="@drawable/ui_button_city"
+                    android:background="@drawable/ui_panel_blue"
                     android:gravity="center_horizontal"
-                    android:textSize="26sp"
-                    android:text="Next"
-                    android:padding="6dp"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"/>
+                    android:textSize="36sp"
+                    android:text="Next &#xf061;"
+                    android:padding="12dp"
+                    android:layout_margin="6dp"
+                    android:onClick="nextPuzzle"/>
             </LinearLayout>
             <TableLayout
                 android:layout_width="match_parent"

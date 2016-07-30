@@ -11,6 +11,7 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -37,7 +38,7 @@ public class PuzzleActivity extends Activity {
     private int puzzleId;
     private boolean isCustom;
     private int movesMade = 0;
-    private long startTime = 0L;
+    private long startTime = System.currentTimeMillis();
     private long timeInMilliseconds = 0L;
     private long timeLastMoved = 0L;
     private long timePaused = 0L;
@@ -301,14 +302,14 @@ public class PuzzleActivity extends Activity {
         }
 
         findViewById(R.id.endGame).setVisibility(View.VISIBLE);
-        ((ImageView) findViewById(R.id.starCompletion)).setImageResource(puzzle.hasCompletionStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
+        ((ProgressBar) findViewById(R.id.starCompletion)).setProgress(puzzle.hasCompletionStar() ? 100 : 0);
         ((TextView) findViewById(R.id.starCompletionText)).setText("Completed!");
 
-        ((ImageView) findViewById(R.id.starTime)).setImageResource(puzzle.hasTimeStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
-        ((TextView) findViewById(R.id.starTimeText)).setText((timeInMilliseconds > 0 ? DateHelper.getPuzzleTimeString(timeInMilliseconds) : "0") + "/" + DateHelper.getPuzzleTimeString(puzzle.getParTime()) + " seconds");
+        ((ProgressBar) findViewById(R.id.starTime)).setProgress(puzzle.hasTimeStar() ? 50 : 0);
+        ((TextView) findViewById(R.id.starTimeText)).setText((timeInMilliseconds > 0 ? DateHelper.getPuzzleTimeString(timeInMilliseconds) : "0") + "/" + DateHelper.getPuzzleTimeString(puzzle.getParTime()) + "\nseconds");
 
-        ((ImageView) findViewById(R.id.starMoves)).setImageResource(puzzle.hasMovesStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
-        ((TextView) findViewById(R.id.starMovesText)).setText((movesMade > 0 ? movesMade : 0) + "/" + puzzle.getParMoves() + " moves");
+        ((ProgressBar) findViewById(R.id.starMoves)).setProgress(puzzle.hasMovesStar() ? 90 : 0);
+        ((TextView) findViewById(R.id.starMovesText)).setText((movesMade > 0 ? movesMade : 0) + "/" + puzzle.getParMoves() + "\nmoves");
     }
 
     public void pausePuzzle(View v) {
@@ -338,6 +339,18 @@ public class PuzzleActivity extends Activity {
     }
 
     public void closePuzzle(View v) {
+        this.finish();
+    }
+
+    public void restartPuzzle(View v) {
+        this.finish();
+        Intent intent = new Intent(this, PuzzleActivity.class);
+        intent.putExtra(Constants.INTENT_PUZZLE, puzzleId);
+        intent.putExtra(Constants.INTENT_PUZZLE_TYPE, isCustom);
+        startActivity(intent);
+    }
+
+    public void nextPuzzle(View v) {
         this.finish();
     }
 }
