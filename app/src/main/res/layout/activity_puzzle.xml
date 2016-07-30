@@ -258,6 +258,7 @@
                         android:layout_height="160dp"
                         android:src="@drawable/ui_star_unachieved"/>
                     <uk.co.jakelee.cityflow.components.TextViewFontEndGame
+                        android:id="@+id/starCompletionText"
                         android:layout_width="160dp"
                         android:layout_height="160dp"
                         android:gravity="center"
@@ -279,6 +280,7 @@
                             android:layout_height="160dp"
                             android:src="@drawable/ui_star_unachieved"/>
                         <uk.co.jakelee.cityflow.components.TextViewFontEndGame
+                            android:id="@+id/starTimeText"
                             android:layout_width="160dp"
                             android:layout_height="160dp"
                             android:gravity="center"
@@ -294,6 +296,7 @@
                             android:layout_height="160dp"
                             android:src="@drawable/ui_star_unachieved"/>
                         <uk.co.jakelee.cityflow.components.TextViewFontEndGame
+                            android:id="@+id/starMovesText"
                             android:layout_width="160dp"
                             android:layout_height="160dp"
                             android:gravity="center"
@@ -317,6 +320,7 @@
                     android:textSize="26sp"
                     android:text="Exit"
                     android:padding="6dp"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"/>
                 <TextView
                     android:id="@+id/restartButton"
@@ -328,6 +332,7 @@
                     android:textSize="26sp"
                     android:text="Restart"
                     android:padding="6dp"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"/>
                 <TextView
                     android:id="@+id/nextButton"
@@ -339,6 +344,7 @@
                     android:textSize="26sp"
                     android:text="Next"
                     android:padding="6dp"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"/>
             </LinearLayout>
             <TableLayout
