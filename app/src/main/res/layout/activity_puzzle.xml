@@ -215,23 +215,67 @@
                 android:onClick="suppressClick"/>
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/pauseScreen"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:onClick="resumePuzzle"
             android:visibility="gone">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@color/black"
+                android:alpha="0.6" />
             <TextView
                 android:id="@+id/pauseScreenText"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:textSize="60sp"
                 android:textColor="@color/white"
-                android:background="@color/black"
-                android:alpha="0.6"
                 android:gravity="center"
-                android:text="Pause"/>
-        </LinearLayout>
+                android:text="Paused"/>
+            <LinearLayout
+                android:id="@+id/pauseButtons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal">
+                <uk.co.jakelee.cityflow.components.TextAwesome
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:background="@drawable/ui_panel_city"
+                    android:gravity="center_horizontal"
+                    android:textSize="36sp"
+                    android:text="&#xf00d;"
+                    android:padding="12dp"
+                    android:layout_margin="6dp"
+                    android:onClick="closePuzzle"/>
+                <uk.co.jakelee.cityflow.components.TextAwesome
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:background="@drawable/ui_panel_city"
+                    android:gravity="center_horizontal"
+                    android:textSize="36sp"
+                    android:text="&#xf0e2;"
+                    android:padding="12dp"
+                    android:layout_margin="6dp"
+                    android:onClick="restartPuzzle"/>
+                <uk.co.jakelee.cityflow.components.TextAwesome
+                    android:id="@+id/resumeButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:background="@drawable/ui_panel_blue"
+                    android:gravity="center_horizontal"
+                    android:textSize="36sp"
+                    android:text="Resume &#xf04b;"
+                    android:padding="12dp"
+                    android:layout_margin="6dp"
+                    android:onClick="resumePuzzle"/>
+            </LinearLayout>
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/endGame"
@@ -352,17 +396,16 @@
                     android:layout_margin="6dp"
                     android:onClick="restartPuzzle"/>
                 <uk.co.jakelee.cityflow.components.TextAwesome
-                    android:id="@+id/nextButton"
+                    android:id="@+id/mainActionButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:background="@drawable/ui_panel_blue"
                     android:gravity="center_horizontal"
                     android:textSize="36sp"
-                    android:text="Next &#xf061;"
                     android:padding="12dp"
                     android:layout_margin="6dp"
-                    android:onClick="nextPuzzle"/>
+                    android:onClick="mainAction"/>
             </LinearLayout>
             <TableLayout
                 android:layout_width="match_parent"
@@ -370,7 +413,7 @@
                 android:layout_above="@id/actionButtons"
                 android:stretchColumns="*"
                 android:shrinkColumns="*">
-                <TableRow>
+                <TableRow android:id="@+id/tilesWrapper">
                     <uk.co.jakelee.cityflow.components.TextViewFontEndGame
                         android:text="New Tiles"/>
                     <LinearLayout
@@ -378,7 +421,7 @@
                         android:orientation="horizontal"
                         android:layout_span="2"/>
                 </TableRow>
-                <TableRow>
+                <TableRow android:id="@+id/boostsWrapper">
                     <uk.co.jakelee.cityflow.components.TextViewFontEndGame
                         android:text="Boosts"/>
                     <LinearLayout

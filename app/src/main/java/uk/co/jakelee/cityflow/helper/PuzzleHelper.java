@@ -122,4 +122,20 @@ public class PuzzleHelper {
             tilesContainer.addView(dh.createTileIcon(tile.getTypeId(), 50, 50));
         }
     }
+
+    public static int getNextPuzzleId(int puzzleId) {
+        Puzzle currentPuzzle = Puzzle.getPuzzle(puzzleId);
+        List<Puzzle> puzzles = Pack.getPack(currentPuzzle.getPackId()).getPuzzles();
+        int nextPuzzleId = 0;
+        boolean nextPuzzleIsNext = false;
+        for (Puzzle puzzle : puzzles) {
+            if (nextPuzzleIsNext) {
+                nextPuzzleId = puzzle.getPuzzleId();
+                break;
+            }
+            nextPuzzleIsNext = puzzle.getPuzzleId() == puzzleId;
+        }
+
+        return nextPuzzleId;
+    }
 }

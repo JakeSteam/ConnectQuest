@@ -5,4 +5,5 @@
     <string name="tile_filename">tile_%1$d_%2$d</string>
     <string name="icon_play">&#xf04b;</string>
     <string name="icon_edit">&#xf040;</string>
+    <string name="icon_next">&#xf061;</string>
 </resources>

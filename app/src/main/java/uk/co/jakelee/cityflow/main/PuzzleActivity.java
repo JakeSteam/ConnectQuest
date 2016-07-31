@@ -289,15 +289,17 @@ public class PuzzleActivity extends Activity {
         Pair<Boolean, Boolean> newBests = PuzzleHelper.updateBest(puzzle, timeInMilliseconds, movesMade, isCustom);
         int stars = puzzle.getStarCount();
 
-        populateStoryPuzzleCompleteScreen(puzzle, newBests.first, newBests.second, isFirstComplete, originalStars, stars, isCustom);
+        populateStoryPuzzleCompleteScreen(puzzle, isFirstComplete, originalStars, stars, isCustom);
     }
 
-    public void populateStoryPuzzleCompleteScreen(Puzzle puzzle, boolean newBestTime, boolean newBestMoves, boolean isFirstComplete, int originalStars, int stars, boolean isCustom) {
+    public void populateStoryPuzzleCompleteScreen(Puzzle puzzle, boolean isFirstComplete, int originalStars, int stars, boolean isCustom) {
         if (!isCustom) {
             List<Integer> boostsEarned = PuzzleHelper.getEarnedBoosts(isFirstComplete, originalStars != 3 && stars == 3, stars == 3);
+            findViewById(R.id.boostsWrapper).setVisibility(boostsEarned.size() > 0 ? View.VISIBLE : View.INVISIBLE);
             PuzzleHelper.populateBoostImages(dh, (LinearLayout) findViewById(R.id.boostsContainer), boostsEarned);
 
             List<TileType> tilesUnlocked = puzzle.getUnlockableTiles();
+            findViewById(R.id.tilesWrapper).setVisibility(tilesUnlocked.size() > 0 ? View.VISIBLE : View.INVISIBLE);
             PuzzleHelper.populateTileImages(dh, (LinearLayout) findViewById(R.id.tilesContainer), tilesUnlocked, isFirstComplete);
         }
 
@@ -310,6 +312,8 @@ public class PuzzleActivity extends Activity {
 
         ((ProgressBar) findViewById(R.id.starMoves)).setProgress(puzzle.hasMovesStar() ? 90 : 0);
         ((TextView) findViewById(R.id.starMovesText)).setText((movesMade > 0 ? movesMade : 0) + "/" + puzzle.getParMoves() + "\nmoves");
+
+        ((TextView)findViewById(R.id.mainActionButton)).setText(isCustom ? R.string.icon_edit : R.string.icon_next);
     }
 
     public void pausePuzzle(View v) {
@@ -343,6 +347,7 @@ public class PuzzleActivity extends Activity {
     }
 
     public void restartPuzzle(View v) {
+        this.onStop();
         this.finish();
         Intent intent = new Intent(this, PuzzleActivity.class);
         intent.putExtra(Constants.INTENT_PUZZLE, puzzleId);
@@ -350,7 +355,22 @@ public class PuzzleActivity extends Activity {
         startActivity(intent);
     }
 
-    public void nextPuzzle(View v) {
-        this.finish();
+    public void mainAction(View v) {
+        if (isCustom) {
+            /*this.finish();
+            Intent intent = new Intent(this, PuzzleEditActivity.class);
+            intent.putExtra(Constants.INTENT_PUZZLE, puzzleId);
+            startActivity(intent);*/
+        } else {
+            int nextPuzzle = PuzzleHelper.getNextPuzzleId(puzzleId);
+            if (nextPuzzle > 0) {
+                Intent intent = new Intent(this, PuzzleActivity.class);
+                intent.putExtra(Constants.INTENT_PUZZLE, nextPuzzle);
+                intent.putExtra(Constants.INTENT_PUZZLE_TYPE, false);
+                startActivity(intent);
+            }
+            this.onStop();
+            this.finish();
+        }
     }
 }
