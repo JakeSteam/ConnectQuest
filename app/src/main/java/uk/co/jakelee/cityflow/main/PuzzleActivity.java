@@ -299,7 +299,7 @@ public class PuzzleActivity extends Activity {
             PuzzleHelper.populateBoostImages(dh, (LinearLayout) findViewById(R.id.boostsContainer), boostsEarned);
 
             List<TileType> tilesUnlocked = puzzle.getUnlockableTiles();
-            findViewById(R.id.tilesWrapper).setVisibility(tilesUnlocked.size() > 0 ? View.VISIBLE : View.INVISIBLE);
+            findViewById(R.id.tilesWrapper).setVisibility((tilesUnlocked.size() > 0 && isFirstComplete) ? View.VISIBLE : View.INVISIBLE);
             PuzzleHelper.populateTileImages(dh, (LinearLayout) findViewById(R.id.tilesContainer), tilesUnlocked, isFirstComplete);
         }
 

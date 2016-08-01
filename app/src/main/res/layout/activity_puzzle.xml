@@ -415,6 +415,7 @@
                 android:shrinkColumns="*">
                 <TableRow android:id="@+id/tilesWrapper">
                     <uk.co.jakelee.cityflow.components.TextViewFontEndGame
+                        android:layout_gravity="right"
                         android:text="New Tiles"/>
                     <LinearLayout
                         android:id="@+id/tilesContainer"
@@ -423,6 +424,7 @@
                 </TableRow>
                 <TableRow android:id="@+id/boostsWrapper">
                     <uk.co.jakelee.cityflow.components.TextViewFontEndGame
+                        android:layout_gravity="right"
                         android:text="Boosts"/>
                     <LinearLayout
                         android:id="@+id/boostsContainer"
