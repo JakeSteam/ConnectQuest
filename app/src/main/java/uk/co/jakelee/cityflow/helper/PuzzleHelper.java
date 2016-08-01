@@ -6,6 +6,7 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
@@ -137,5 +138,24 @@ public class PuzzleHelper {
         }
 
         return nextPuzzleId;
+    }
+
+    public static int getSkyscraperDrawable(int actualValue, int targetValue) {
+        int progress = StatisticsHelper.getPuzzleCriteriaProgress(actualValue, targetValue);
+        if (progress == 100) {
+            return R.drawable.building_1_100;
+        } else if (progress >= 90) {
+            return R.drawable.building_1_90;
+        } else if (progress >= 80) {
+            return R.drawable.building_1_80;
+        } else if (progress >= 60) {
+            return R.drawable.building_1_60;
+        } else if (progress >= 40) {
+            return R.drawable.building_1_40;
+        } else if (progress >= 20) {
+            return R.drawable.building_1_20;
+        } else {
+            return R.drawable.building_1_0;
+        }
     }
 }

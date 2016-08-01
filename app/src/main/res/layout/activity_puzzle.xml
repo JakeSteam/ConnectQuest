@@ -287,84 +287,64 @@
                 android:layout_height="match_parent"
                 android:src="@color/black"
                 android:alpha="0.6" />
-            <RelativeLayout
-                android:id="@+id/starContainer"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/skyscraperContainer"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true">
+                android:orientation="horizontal">
                 <RelativeLayout
-                    android:id="@+id/starCompletionWrapper"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true">
-                    <ProgressBar
-                        android:id="@+id/starCompletion"
-                        android:layout_width="160dp"
-                        android:layout_height="160dp"
-                        android:indeterminate="false"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:progress="70"
-                        android:background="@drawable/ui_star_unachieved"
-                        android:progressDrawable="@drawable/custom_progress_bar_star"/>
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:id="@+id/skyscraperCompletion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/building_1_40"/>
                     <TextView
-                        android:id="@+id/starCompletionText"
-                        android:layout_width="160dp"
-                        android:layout_height="160dp"
+                        android:id="@+id/skyscraperCompletionText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:textColor="@color/black"
                         android:gravity="center"
                         android:textSize="20sp"/>
                 </RelativeLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_below="@id/starCompletionWrapper"
-                    android:layout_centerHorizontal="true">
-                    <RelativeLayout
-                        android:id="@+id/starTimeWrapper"
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:id="@+id/skyscraperTime"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <ProgressBar
-                            android:id="@+id/starTime"
-                            android:layout_width="160dp"
-                            android:layout_height="160dp"
-                            android:indeterminate="false"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:progress="70"
-                            android:background="@drawable/ui_star_unachieved"
-                            android:progressDrawable="@drawable/custom_progress_bar_star"/>
-                        <TextView
-                            android:id="@+id/starTimeText"
-                            android:layout_width="160dp"
-                            android:layout_height="160dp"
-                            android:textColor="@color/black"
-                            android:textSize="20sp"
-                            android:gravity="center"/>
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:id="@+id/starMovesWrapper"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/building_1_0"/>
+                    <TextView
+                        android:id="@+id/skyscraperTimeText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:gravity="center"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:id="@+id/skyscraperMoves"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <ProgressBar
-                            android:id="@+id/starMoves"
-                            android:layout_width="160dp"
-                            android:layout_height="160dp"
-                            android:indeterminate="false"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:progress="70"
-                            android:background="@drawable/ui_star_unachieved"
-                            android:progressDrawable="@drawable/custom_progress_bar_star"/>
-                        <TextView
-                            android:id="@+id/starMovesText"
-                            android:layout_width="160dp"
-                            android:layout_height="160dp"
-                            android:textColor="@color/black"
-                            android:gravity="center"
-                            android:textSize="20sp"/>
-                    </RelativeLayout>
-                </LinearLayout>
-            </RelativeLayout>
+                        android:layout_height="match_parent"
+                        android:src="@drawable/building_1_80"/>
+                    <TextView
+                        android:id="@+id/skyscraperMovesText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:textSize="20sp"/>
+                </RelativeLayout>
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/actionButtons"
                 android:layout_width="match_parent"

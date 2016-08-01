@@ -11,7 +11,6 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -304,14 +303,14 @@ public class PuzzleActivity extends Activity {
         }
 
         findViewById(R.id.endGame).setVisibility(View.VISIBLE);
-        ((ProgressBar) findViewById(R.id.starCompletion)).setProgress(puzzle.hasCompletionStar() ? 100 : 0);
-        ((TextView) findViewById(R.id.starCompletionText)).setText("Completed!");
+        ((ImageView) findViewById(R.id.skyscraperCompletion)).setImageResource(PuzzleHelper.getSkyscraperDrawable(puzzle.hasCompletionStar() ? 100 : 0, 100));
+        ((TextView) findViewById(R.id.skyscraperCompletionText)).setText("Completed!");
 
-        ((ProgressBar) findViewById(R.id.starTime)).setProgress(puzzle.hasTimeStar() ? 50 : 0);
-        ((TextView) findViewById(R.id.starTimeText)).setText((timeInMilliseconds > 0 ? DateHelper.getPuzzleTimeString(timeInMilliseconds) : "0") + "/" + DateHelper.getPuzzleTimeString(puzzle.getParTime()) + "\nseconds");
+        ((ImageView) findViewById(R.id.skyscraperTime)).setImageResource(PuzzleHelper.getSkyscraperDrawable((int) (timeInMilliseconds / 1000), (int) (puzzle.getParTime() / 1000)));
+        ((TextView) findViewById(R.id.skyscraperTimeText)).setText((timeInMilliseconds > 0 ? DateHelper.getPuzzleTimeString(timeInMilliseconds) : "0") + "/" + DateHelper.getPuzzleTimeString(puzzle.getParTime())");
 
-        ((ProgressBar) findViewById(R.id.starMoves)).setProgress(puzzle.hasMovesStar() ? 90 : 0);
-        ((TextView) findViewById(R.id.starMovesText)).setText((movesMade > 0 ? movesMade : 0) + "/" + puzzle.getParMoves() + "\nmoves");
+        ((ImageView) findViewById(R.id.skyscraperMoves)).setImageResource(PuzzleHelper.getSkyscraperDrawable(movesMade, puzzle.getParMoves()));
+        ((TextView) findViewById(R.id.skyscraperMovesText)).setText((movesMade > 0 ? movesMade : 0) + "/" + puzzle.getParMoves() + "\nmoves");
 
         ((TextView)findViewById(R.id.mainActionButton)).setText(isCustom ? R.string.icon_edit : R.string.icon_next);
     }
