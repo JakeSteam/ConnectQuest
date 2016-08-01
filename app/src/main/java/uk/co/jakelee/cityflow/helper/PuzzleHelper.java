@@ -140,8 +140,7 @@ public class PuzzleHelper {
         return nextPuzzleId;
     }
 
-    public static int getSkyscraperDrawable(int actualValue, int targetValue) {
-        int progress = StatisticsHelper.getPuzzleCriteriaProgress(actualValue, targetValue);
+    public static int getSkyscraperDrawable(int progress) {
         if (progress == 100) {
             return R.drawable.building_1_100;
         } else if (progress >= 90) {

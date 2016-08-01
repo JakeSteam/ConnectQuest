@@ -24,6 +24,7 @@ import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.ImageHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleHelper;
+import uk.co.jakelee.cityflow.helper.StatisticsHelper;
 import uk.co.jakelee.cityflow.helper.TileHelper;
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Puzzle;
@@ -303,13 +304,19 @@ public class PuzzleActivity extends Activity {
         }
 
         findViewById(R.id.endGame).setVisibility(View.VISIBLE);
-        ((ImageView) findViewById(R.id.skyscraperCompletion)).setImageResource(PuzzleHelper.getSkyscraperDrawable(puzzle.hasCompletionStar() ? 100 : 0, 100));
+
+        ((TextView) findViewById(R.id.skyscraperCompletionTitle)).setText("Complete\n100%");
+        ((ImageView) findViewById(R.id.skyscraperCompletion)).setImageResource(PuzzleHelper.getSkyscraperDrawable(100));
         ((TextView) findViewById(R.id.skyscraperCompletionText)).setText("Completed!");
 
-        ((ImageView) findViewById(R.id.skyscraperTime)).setImageResource(PuzzleHelper.getSkyscraperDrawable((int) (timeInMilliseconds / 1000), (int) (puzzle.getParTime() / 1000)));
-        ((TextView) findViewById(R.id.skyscraperTimeText)).setText((timeInMilliseconds > 0 ? DateHelper.getPuzzleTimeString(timeInMilliseconds) : "0") + "/" + DateHelper.getPuzzleTimeString(puzzle.getParTime())");
+        int timeProgress = StatisticsHelper.getPuzzleCriteriaProgress((int) timeInMilliseconds, (int) puzzle.getParTime());
+        ((TextView) findViewById(R.id.skyscraperTimeTitle)).setText("Time\n" + timeProgress + "%");
+        ((ImageView) findViewById(R.id.skyscraperTime)).setImageResource(PuzzleHelper.getSkyscraperDrawable(timeProgress));
+        ((TextView) findViewById(R.id.skyscraperTimeText)).setText((timeInMilliseconds > 0 ? DateHelper.getPuzzleTimeString(timeInMilliseconds) : "0") + "/" + DateHelper.getPuzzleTimeString(puzzle.getParTime()));
 
-        ((ImageView) findViewById(R.id.skyscraperMoves)).setImageResource(PuzzleHelper.getSkyscraperDrawable(movesMade, puzzle.getParMoves()));
+        int moveProgress = StatisticsHelper.getPuzzleCriteriaProgress(movesMade, puzzle.getParMoves());
+        ((TextView) findViewById(R.id.skyscraperMovesTitle)).setText("Moves\n" + moveProgress + "%");
+        ((ImageView) findViewById(R.id.skyscraperMoves)).setImageResource(PuzzleHelper.getSkyscraperDrawable(moveProgress));
         ((TextView) findViewById(R.id.skyscraperMovesText)).setText((movesMade > 0 ? movesMade : 0) + "/" + puzzle.getParMoves() + "\nmoves");
 
         ((TextView)findViewById(R.id.mainActionButton)).setText(isCustom ? R.string.icon_edit : R.string.icon_next);
