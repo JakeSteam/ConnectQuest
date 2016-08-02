@@ -1,12 +1,12 @@
 package uk.co.jakelee.cityflow.helper;
 
+import android.content.Context;
 import android.util.Pair;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
@@ -140,21 +140,8 @@ public class PuzzleHelper {
         return nextPuzzleId;
     }
 
-    public static int getSkyscraperDrawable(int progress) {
-        if (progress == 100) {
-            return R.drawable.building_1_100;
-        } else if (progress >= 90) {
-            return R.drawable.building_1_90;
-        } else if (progress >= 80) {
-            return R.drawable.building_1_80;
-        } else if (progress >= 60) {
-            return R.drawable.building_1_60;
-        } else if (progress >= 40) {
-            return R.drawable.building_1_40;
-        } else if (progress >= 20) {
-            return R.drawable.building_1_20;
-        } else {
-            return R.drawable.building_1_0;
-        }
+    public static int getSkyscraperDrawable(Context context, int progress, int skyscraper) {
+        int adjustedProgress = (progress / 10) * 10;
+        return context.getResources().getIdentifier("building_" + skyscraper + "_" + adjustedProgress, "drawable", context.getPackageName());
     }
 }

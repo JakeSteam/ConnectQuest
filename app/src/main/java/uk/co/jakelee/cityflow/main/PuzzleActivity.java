@@ -306,17 +306,20 @@ public class PuzzleActivity extends Activity {
         findViewById(R.id.endGame).setVisibility(View.VISIBLE);
 
         ((TextView) findViewById(R.id.skyscraperCompletionTitle)).setText("Complete\n100%");
-        ((ImageView) findViewById(R.id.skyscraperCompletion)).setImageResource(PuzzleHelper.getSkyscraperDrawable(100));
+        ((TextView) findViewById(R.id.skyscraperCompletionTitle)).setTextColor(getResources().getColor(R.color.gold));
+        ((ImageView) findViewById(R.id.skyscraperCompletion)).setImageResource(PuzzleHelper.getSkyscraperDrawable(this, 100, Constants.SKYSCRAPER_COMPLETE));
         ((TextView) findViewById(R.id.skyscraperCompletionText)).setText("Completed!");
 
         int timeProgress = StatisticsHelper.getPuzzleCriteriaProgress((int) timeInMilliseconds, (int) puzzle.getParTime());
         ((TextView) findViewById(R.id.skyscraperTimeTitle)).setText("Time\n" + timeProgress + "%");
-        ((ImageView) findViewById(R.id.skyscraperTime)).setImageResource(PuzzleHelper.getSkyscraperDrawable(timeProgress));
+        ((TextView) findViewById(R.id.skyscraperTimeTitle)).setTextColor(getResources().getColor(timeProgress == 100 ? R.color.gold : R.color.white));
+        ((ImageView) findViewById(R.id.skyscraperTime)).setImageResource(PuzzleHelper.getSkyscraperDrawable(this, timeProgress, Constants.SKYSCRAPER_TIME));
         ((TextView) findViewById(R.id.skyscraperTimeText)).setText((timeInMilliseconds > 0 ? DateHelper.getPuzzleTimeString(timeInMilliseconds) : "0") + "/" + DateHelper.getPuzzleTimeString(puzzle.getParTime()));
 
         int moveProgress = StatisticsHelper.getPuzzleCriteriaProgress(movesMade, puzzle.getParMoves());
         ((TextView) findViewById(R.id.skyscraperMovesTitle)).setText("Moves\n" + moveProgress + "%");
-        ((ImageView) findViewById(R.id.skyscraperMoves)).setImageResource(PuzzleHelper.getSkyscraperDrawable(moveProgress));
+        ((TextView) findViewById(R.id.skyscraperMovesTitle)).setTextColor(getResources().getColor(timeProgress == 100 ? R.color.gold : R.color.white));
+        ((ImageView) findViewById(R.id.skyscraperMoves)).setImageResource(PuzzleHelper.getSkyscraperDrawable(this, moveProgress, Constants.SKYSCRAPER_MOVES));
         ((TextView) findViewById(R.id.skyscraperMovesText)).setText((movesMade > 0 ? movesMade : 0) + "/" + puzzle.getParMoves() + "\nmoves");
 
         ((TextView)findViewById(R.id.mainActionButton)).setText(isCustom ? R.string.icon_edit : R.string.icon_next);

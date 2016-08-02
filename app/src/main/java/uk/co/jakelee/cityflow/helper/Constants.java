@@ -50,6 +50,9 @@ public class Constants {
     public static final int SETTING_ZEN_MODE = 5;
     public static final int SETTING_HIDE_UNSTOCKED_BOOSTS = 6;
     public static final int SETTING_PLAYER_NAME = 7;
+    public static final int SKYSCRAPER_COMPLETE = 1;
+    public static final int SKYSCRAPER_TIME = 2;
+    public static final int SKYSCRAPER_MOVES = 3;
     public static final int STATISTIC_PUZZLES_COMPLETED = 1;
     public static final int STATISTIC_TILES_ROTATED = 2;
     public static final int SIDE_NORTH = 1;
