@@ -1,8 +1,12 @@
 package uk.co.jakelee.cityflow.helper;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Pair;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.orm.query.Select;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +14,8 @@ import java.util.List;
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
+import uk.co.jakelee.cityflow.model.PuzzleCustom;
+import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
 public class PuzzleHelper {
@@ -109,9 +115,22 @@ public class PuzzleHelper {
     }
 
     public static void populateBoostImages(DisplayHelper dh, LinearLayout boostContainer, List<Integer> boosts) {
+        String boostString = "";
         for (Integer boostId : boosts) {
+            Boost boost = Boost.get(boostId);
+            boostString += boost.getName() + ", ";
             boostContainer.addView(dh.createBoostIcon(boostId, 50, 50));
         }
+
+        if (boosts.size() > 0) {
+            boostString = "Earned " + boostString.substring(0, boostString.length() - 2) + " boost(s)!";
+        } else {
+            boostString = "No boosts earned.";
+        }
+
+        TextView textView = dh.createTextView(boostString, 22, Color.WHITE);
+        textView.setSingleLine(false);
+        boostContainer.addView(textView);
     }
 
     public static void populateTileImages(DisplayHelper dh, LinearLayout tilesContainer, List<TileType> tiles, boolean isFirstComplete) {
@@ -119,9 +138,21 @@ public class PuzzleHelper {
             return;
         }
 
+        String tileString = "";
         for (TileType tile : tiles) {
+            tileString += tile.getName() + ", ";
             tilesContainer.addView(dh.createTileIcon(tile.getTypeId(), 50, 50));
         }
+
+        if (tiles.size() > 0) {
+            tileString = "Unlocked " + tileString.substring(0, tileString.length() - 2) + " tile(s)!";
+        } else {
+            tileString = "No tiles unlocked.";
+        }
+
+        TextView textView = dh.createTextView(tileString, 22, Color.WHITE);
+        textView.setSingleLine(false);
+        tilesContainer.addView(textView);
     }
 
     public static int getNextPuzzleId(int puzzleId) {
@@ -143,5 +174,58 @@ public class PuzzleHelper {
     public static int getSkyscraperDrawable(Context context, int progress, int skyscraper) {
         int adjustedProgress = (progress / 10) * 10;
         return context.getResources().getIdentifier("building_" + skyscraper + "_" + adjustedProgress, "drawable", context.getPackageName());
+    }
+
+    public static int getNextCustomPuzzleId() {
+        Puzzle firstCustomPuzzle = Puzzle.getPuzzle(Constants.PUZZLE_CUSTOM_ID_OFFSET);
+        if (firstCustomPuzzle == null) {
+            return Constants.PUZZLE_CUSTOM_ID_OFFSET;
+        }
+
+        return Select.from(Puzzle.class).orderBy("id DESC").first().getPuzzleId() + 1;
+    }
+
+    public static int createNewPuzzle(int maxX, int maxY) {
+        int nextPuzzleId = getNextCustomPuzzleId();
+        createBasicPuzzleObject(nextPuzzleId).save();
+        createBasicPuzzleCustomObject(nextPuzzleId).save();
+
+        List<Tile> tiles = new ArrayList<>();
+        for (int x = 0; x < maxX; x++) {
+            for (int y = 0; y < maxY; y++) {
+                tiles.add(new Tile(nextPuzzleId, 21, x, y, Constants.ROTATION_NORTH));
+            }
+        }
+        Tile.saveInTx(tiles);
+
+        return nextPuzzleId;
+    }
+
+    public static Puzzle createBasicPuzzleObject(int puzzleId) {
+        Puzzle puzzle = new Puzzle();
+
+        puzzle.setPuzzleId(puzzleId);
+        puzzle.setParMoves(10);
+        puzzle.setParTime(10000);
+        puzzle.setPackId(0);
+        puzzle.setBestMoves(0);
+        puzzle.setBestTime(0);
+        puzzle.setCompletionStar(false);
+        puzzle.setMovesStar(false);
+        puzzle.setTimeStar(false);
+        return puzzle;
+    }
+
+    public static PuzzleCustom createBasicPuzzleCustomObject(int puzzleId) {
+        PuzzleCustom puzzleCustom = new PuzzleCustom();
+
+        puzzleCustom.setPuzzleId(puzzleId);
+        puzzleCustom.setName("Untitled Puzzle");
+        puzzleCustom.setDescription("");
+        puzzleCustom.setAuthor("Current Player");
+        puzzleCustom.setDateAdded(System.currentTimeMillis());
+        puzzleCustom.setOriginalAuthor(true);
+        puzzleCustom.save();
+        return puzzleCustom;
     }
 }

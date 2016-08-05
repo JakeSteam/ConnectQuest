@@ -1,5 +1,7 @@
 package uk.co.jakelee.cityflow.helper;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,33 +34,22 @@ public class PuzzleShareHelper {
     }
 
     public static boolean importPuzzleString(String string, boolean isCopy) {
-        Puzzle puzzle = new Puzzle();
-        PuzzleCustom puzzleCustom = new PuzzleCustom();
-
-        //try {
+        try {
             String puzzleString = ModificationHelper.decode(string, 0);
             String[] parts = puzzleString.split(sectionDelimiter);
 
-            puzzle.save();
-            int puzzleId = (int) (long) puzzle.getId() + 10000;
-            puzzle.setPuzzleId(puzzleId);
-            puzzleCustom.setPuzzleId(puzzleId);
+            int puzzleId = PuzzleHelper.getNextCustomPuzzleId();
+            Puzzle puzzle = PuzzleHelper.createBasicPuzzleObject(puzzleId);
+            PuzzleCustom puzzleCustom = PuzzleHelper.createBasicPuzzleCustomObject(puzzleId);
 
             puzzleCustom.setName(parts[0] + (isCopy ? " (Copy)":""));
             puzzleCustom.setDescription(parts[1]);
             puzzleCustom.setAuthor(parts[2]);
-            puzzleCustom.setDateAdded(System.currentTimeMillis());
             puzzleCustom.setOriginalAuthor(isCopy);
             puzzleCustom.save();
 
             puzzle.setParMoves(Integer.parseInt(parts[3]));
             puzzle.setParTime(Integer.parseInt(parts[4]));
-            puzzle.setPackId(0);
-            puzzle.setBestMoves(0);
-            puzzle.setBestTime(0);
-            puzzle.setCompletionStar(false);
-            puzzle.setMovesStar(false);
-            puzzle.setTimeStar(false);
             puzzle.save();
 
             String[] tiles = parts[5].split(tileDelimiter);
@@ -76,9 +67,9 @@ public class PuzzleShareHelper {
             Tile.saveInTx(finishedTiles);
 
             return true;
-        //} catch (Exception e) {
-        //    Log.e("Decoding", e.getMessage());
-        //    return false;
-        //}
+        } catch (Exception e) {
+            Log.e("Decoding", e.getMessage());
+            return false;
+        }
     }
 }

@@ -25,6 +25,7 @@
         <activity android:name=".main.CreatorActivity" />
         <activity android:name=".main.PackActivity" />
         <activity android:name=".main.PuzzleActivity" />
+        <activity android:name=".main.EditorActivity" />
         <activity android:name=".main.CustomInfoActivity" android:theme="@style/Theme.Transparent"/>
     </application>
 

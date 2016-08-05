@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.main.EditorActivity;
 import uk.co.jakelee.cityflow.main.PackActivity;
 import uk.co.jakelee.cityflow.main.PuzzleActivity;
 import uk.co.jakelee.cityflow.model.Puzzle;
@@ -55,7 +56,7 @@ public class DisplayHelper {
         return displaymetrics;
     }
 
-    public ImageView createTileImageView(final PuzzleActivity activity, final Tile tile, int drawableId) {
+    public ImageView createTileImageView(final Activity activity, final Tile tile, int drawableId) {
         final ImageView image = new ImageView(activity);
         Picasso.with(context).load(drawableId).into(image);
 
@@ -70,7 +71,11 @@ public class DisplayHelper {
                         return false;
                     } else {
                         if (event.getAction() == MotionEvent.ACTION_UP) {
-                            activity.handleTileClick(image, tile);
+                            if (activity.getClass().equals(PuzzleActivity.class)) {
+                                ((PuzzleActivity)activity).handleTileClick(image, tile);
+                            } else if (activity.getClass().equals(EditorActivity.class)) {
+                                ((EditorActivity)activity).handleTileClick(image, tile);
+                            }
                         }
                         return true;
                     }
@@ -110,9 +115,11 @@ public class DisplayHelper {
     }
 
     public ImageView createBoostIcon(int boostId, int width, int height) {
+        int padding = dpToPixel(3);
         ImageView boostIcon = new ImageView(context);
         boostIcon.setImageDrawable(createDrawable(getBoostDrawableID(boostId), width, height));
         boostIcon.setTag(boostId);
+        boostIcon.setPadding(padding, padding, padding, padding);
         boostIcon.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 // Display message with boost info
@@ -123,9 +130,11 @@ public class DisplayHelper {
     }
 
     public ImageView createTileIcon(int tileId, int width, int height) {
+        int padding = dpToPixel(3);
         ImageView tileIcon = new ImageView(context);
         tileIcon.setImageDrawable(createDrawable(getTileDrawableID(tileId), width, height));
         tileIcon.setTag(tileId);
+        tileIcon.setPadding(padding, padding, padding, padding);
         tileIcon.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 // Display message with tile info

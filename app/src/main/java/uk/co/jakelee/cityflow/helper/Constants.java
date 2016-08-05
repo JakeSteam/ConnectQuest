@@ -12,6 +12,7 @@ public class Constants {
     public static final int TILE_HEIGHT = 65;
     public static final int PUZZLE_WIDTH = 129;
     public static final int PUZZLE_HEIGHT = 76;
+    public static final int PUZZLE_CUSTOM_ID_OFFSET = 10000;
 
     // Percentage based constants
     public static final int FULL_RECOMPLETE_BOOST_CHANCE = 25;

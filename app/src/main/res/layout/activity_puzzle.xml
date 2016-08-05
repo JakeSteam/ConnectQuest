@@ -418,23 +418,21 @@
                 android:layout_above="@id/actionButtons"
                 android:stretchColumns="*"
                 android:shrinkColumns="*">
-                <TableRow android:id="@+id/tilesWrapper">
-                    <uk.co.jakelee.cityflow.components.TextViewFontEndGame
-                        android:layout_gravity="right"
-                        android:text="New Tiles"/>
+                <TableRow
+                    android:id="@+id/tilesWrapper"
+                    android:padding="10dp">
                     <LinearLayout
                         android:id="@+id/tilesContainer"
                         android:orientation="horizontal"
-                        android:layout_span="2"/>
+                        android:gravity="center_vertical"/>
                 </TableRow>
-                <TableRow android:id="@+id/boostsWrapper">
-                    <uk.co.jakelee.cityflow.components.TextViewFontEndGame
-                        android:layout_gravity="right"
-                        android:text="Boosts"/>
+                <TableRow
+                    android:id="@+id/boostsWrapper"
+                    android:padding="10dp">
                     <LinearLayout
                         android:id="@+id/boostsContainer"
                         android:orientation="horizontal"
-                        android:layout_span="2"/>
+                        android:gravity="center_vertical"/>
                 </TableRow>
             </TableLayout>
         </RelativeLayout>

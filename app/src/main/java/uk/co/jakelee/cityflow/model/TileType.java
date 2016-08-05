@@ -148,6 +148,10 @@ public class TileType extends SugarRecord {
     public void setPuzzleRequired(int puzzleRequired) {
         this.puzzleRequired = puzzleRequired;
     }
+
+    public String getName() {
+        return Text.get("TILE_", getTypeId(), "_TEXT");
+    }
 }
 
 

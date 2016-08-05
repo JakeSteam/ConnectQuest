@@ -16,6 +16,7 @@ import java.util.List;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
+import uk.co.jakelee.cityflow.helper.PuzzleHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
 import uk.co.jakelee.cityflow.helper.RandomHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
@@ -82,6 +83,13 @@ public class CreatorActivity extends Activity {
                 });
             } else {
                 ((TextView) othersPuzzle.findViewById(R.id.actionButton)).setText(R.string.icon_edit);
+                othersPuzzle.findViewById(R.id.actionButton).setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getApplicationContext(), EditorActivity.class);
+                        intent.putExtra(Constants.INTENT_PUZZLE, puzzle.getPuzzleId());
+                        startActivity(intent);
+                    }
+                });
             }
 
             ((TextView)othersPuzzle.findViewById(R.id.puzzleName)).setText(puzzleCustom.getName());
@@ -89,16 +97,20 @@ public class CreatorActivity extends Activity {
             puzzleContainer.addView(othersPuzzle);
         }
 
-        TextView importButton = dh.createTextView(displayOthers ? "Import Puzzle" : "Create Puzzle", 25, Color.BLACK);
-        importButton.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                Puzzle puzzle = Puzzle.getPuzzle(RandomHelper.getNumber(98, 101));
-                String backup = PuzzleShareHelper.getPuzzleString(puzzle);
-                PuzzleShareHelper.importPuzzleString(backup, false);
-                populatePuzzles();
-            }
-        });
-        puzzleContainer.addView(importButton);
+        findViewById(R.id.newPuzzle).setVisibility(displayOthers ? View.GONE : View.VISIBLE);
+        findViewById(R.id.importPuzzle).setVisibility(displayOthers ? View.VISIBLE : View.GONE);
+    }
+
+    public void newPuzzle(View v) {
+        PuzzleHelper.createNewPuzzle(5, 5);
+        populatePuzzles();
+    }
+
+    public void importPuzzle(View v) {
+        Puzzle puzzle = Puzzle.getPuzzle(RandomHelper.getNumber(98, 101));
+        String backup = PuzzleShareHelper.getPuzzleString(puzzle);
+        PuzzleShareHelper.importPuzzleString(backup, false);
+        populatePuzzles();
     }
 
     public void showInfo(View v) {

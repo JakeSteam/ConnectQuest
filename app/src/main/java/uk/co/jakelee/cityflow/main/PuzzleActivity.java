@@ -295,11 +295,11 @@ public class PuzzleActivity extends Activity {
     public void populateStoryPuzzleCompleteScreen(Puzzle puzzle, boolean isFirstComplete, int originalStars, int stars, boolean isCustom) {
         if (!isCustom) {
             List<Integer> boostsEarned = PuzzleHelper.getEarnedBoosts(isFirstComplete, originalStars != 3 && stars == 3, stars == 3);
-            findViewById(R.id.boostsWrapper).setVisibility(boostsEarned.size() > 0 ? View.VISIBLE : View.INVISIBLE);
+            findViewById(R.id.boostsContainer).setVisibility(boostsEarned.size() > 0 ? View.VISIBLE : View.INVISIBLE);
             PuzzleHelper.populateBoostImages(dh, (LinearLayout) findViewById(R.id.boostsContainer), boostsEarned);
 
             List<TileType> tilesUnlocked = puzzle.getUnlockableTiles();
-            findViewById(R.id.tilesWrapper).setVisibility((tilesUnlocked.size() > 0 && isFirstComplete) ? View.VISIBLE : View.INVISIBLE);
+            findViewById(R.id.tilesContainer).setVisibility((tilesUnlocked.size() > 0 && isFirstComplete) ? View.VISIBLE : View.INVISIBLE);
             PuzzleHelper.populateTileImages(dh, (LinearLayout) findViewById(R.id.tilesContainer), tilesUnlocked, isFirstComplete);
         }
 
@@ -318,7 +318,7 @@ public class PuzzleActivity extends Activity {
 
         int moveProgress = StatisticsHelper.getPuzzleCriteriaProgress(movesMade, puzzle.getParMoves());
         ((TextView) findViewById(R.id.skyscraperMovesTitle)).setText("Moves\n" + moveProgress + "%");
-        ((TextView) findViewById(R.id.skyscraperMovesTitle)).setTextColor(getResources().getColor(timeProgress == 100 ? R.color.gold : R.color.white));
+        ((TextView) findViewById(R.id.skyscraperMovesTitle)).setTextColor(getResources().getColor(moveProgress == 100 ? R.color.gold : R.color.white));
         ((ImageView) findViewById(R.id.skyscraperMoves)).setImageResource(PuzzleHelper.getSkyscraperDrawable(this, moveProgress, Constants.SKYSCRAPER_MOVES));
         ((TextView) findViewById(R.id.skyscraperMovesText)).setText((movesMade > 0 ? movesMade : 0) + "/" + puzzle.getParMoves() + "\nmoves");
 
@@ -366,10 +366,10 @@ public class PuzzleActivity extends Activity {
 
     public void mainAction(View v) {
         if (isCustom) {
-            /*this.finish();
-            Intent intent = new Intent(this, PuzzleEditActivity.class);
+            this.finish();
+            Intent intent = new Intent(this, EditorActivity.class);
             intent.putExtra(Constants.INTENT_PUZZLE, puzzleId);
-            startActivity(intent);*/
+            startActivity(intent);
         } else {
             int nextPuzzle = PuzzleHelper.getNextPuzzleId(puzzleId);
             if (nextPuzzle > 0) {
