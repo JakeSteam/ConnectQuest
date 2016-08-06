@@ -43,6 +43,21 @@ public class EditorActivity extends Activity {
         fetchImages(tiles);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (selectedTile != null && selectedTileImage != null) {
+            redrawSelectedTile();
+        }
+    }
+
+    private void redrawSelectedTile() {
+        selectedTile = Tile.get((int)(long)selectedTile.getId());
+        int drawableId = ImageHelper.getTileDrawableId(this, selectedTile.getTileTypeId(), selectedTile.getRotation());
+        Picasso.with(this).load(drawableId).into(selectedTileImage);
+    }
+
     public void fetchImages(List<Tile> tiles) {
         for (Tile tile : tiles) {
             List<Integer> ids = ImageHelper.getAllTileDrawableIds(this, tile.getTileTypeId());
@@ -93,7 +108,7 @@ public class EditorActivity extends Activity {
         }
 
         selectedTileImage = image;
-        selectedTileImage.setAlpha(0.7f);
+        selectedTileImage.setAlpha(0.75f);
 
         selectedTile = tile;
 
@@ -110,11 +125,15 @@ public class EditorActivity extends Activity {
     }
 
     public void pickTile(View v) {
-
+        if (selectedTile != null) {
+            Intent intent = new Intent(getApplicationContext(), TilePickerActivity.class);
+            intent.putExtra(Constants.INTENT_TILE, selectedTile.getId());
+            startActivity(intent);
+        }
     }
 
-    public void savePuzzle(View v) {
-
+    public void closePuzzle(View v) {
+        this.finish();
     }
 
     public void playPuzzle(View v) {

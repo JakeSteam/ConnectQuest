@@ -6,6 +6,7 @@ public class Constants {
     public static final String INTENT_PACK = "uk.co.jakelee.cityflow.pack";
     public static final String INTENT_PUZZLE = "uk.co.jakelee.cityflow.puzzle";
     public static final String INTENT_PUZZLE_TYPE = "uk.co.jakelee.cityflow.puzzletype";
+    public static final String INTENT_TILE = "uk.co.jakelee.cityflow.tile";
 
     // Game constants
     public static final int TILE_WIDTH = 130;
@@ -24,8 +25,12 @@ public class Constants {
     public static final int BOOST_TIME = 2;
     public static final int BOOST_MOVE = 3;
     public static final int BOOST_SHUFFLE = 4;
-    public static final int ENVIRONMENT_GRASS = 0;
-    public static final int ENVIRONMENT_CITY = 1;
+    public static final int ENVIRONMENT_MIN = 1;
+    public static final int ENVIRONMENT_MAX = 2;
+    public static final int ENVIRONMENT_GRASS = 1;
+    public static final int ENVIRONMENT_CITY = 2;
+    public static final int FLOW_MIN = 0;
+    public static final int FLOW_MAX = 5;
     public static final int FLOW_NONE = 0;
     public static final int FLOW_WATER = 1;
     public static final int FLOW_ROAD = 2;

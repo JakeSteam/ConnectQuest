@@ -27,6 +27,7 @@
         <activity android:name=".main.PuzzleActivity" />
         <activity android:name=".main.EditorActivity" />
         <activity android:name=".main.CustomInfoActivity" android:theme="@style/Theme.Transparent"/>
+        <activity android:name=".main.TilePickerActivity" android:theme="@style/Theme.Transparent"/>
     </application>
 
 </manifest>

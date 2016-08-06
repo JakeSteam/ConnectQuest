@@ -59,6 +59,14 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_4_NAME", "Shuffle Board"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_4_DESC", "Randomly all rotate all tiles on the board 1 time."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_4_UPGRADE", "Upgrading Shuffle Board increases the number of times the board can be shuffled by 1 per level."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_1_NAME", "Grass"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_2_NAME", "City"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_0_NAME", "None"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_1_NAME", "Water"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_2_NAME", "Road"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_3_NAME", "Path"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_4_NAME", "Grass"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_5_NAME", "Canal"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_1_NAME", "Tutorial"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_1_DESC", "Let's go with the flow."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_2_NAME", "The Big City"));
