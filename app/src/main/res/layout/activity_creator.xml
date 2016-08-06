@@ -42,7 +42,6 @@
         android:layout_height="match_parent"
         app:layout_marginTopPercent="11%">
         <LinearLayout
-            android:id="@+id/puzzleContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -52,28 +51,39 @@
             android:paddingTop="@dimen/activity_vertical_margin"
             android:layout_margin="7dp"
             android:background="@drawable/ui_panel_city">
-            <TextView
-                android:id="@+id/importPuzzle"
+            <LinearLayout
+                android:id="@+id/puzzleContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:gravity="center_horizontal"
-                android:textSize="26sp"
-                android:padding="5dp"
-                android:background="@drawable/ui_panel_grey"
-                android:onClick="importPuzzle"
-                android:text="Import Puzzle"/>
-            <TextView
-                android:id="@+id/newPuzzle"
+                android:orientation="vertical">
+                </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:gravity="center_horizontal"
-                android:textSize="26sp"
-                android:padding="5dp"
-                android:background="@drawable/ui_panel_grey"
-                android:onClick="newPuzzle"
-                android:text="New Puzzle"/>
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/importPuzzle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:gravity="center_horizontal"
+                    android:textSize="26sp"
+                    android:padding="5dp"
+                    android:background="@drawable/ui_panel_grey"
+                    android:onClick="importPuzzle"
+                    android:text="Import Puzzle"/>
+                <TextView
+                    android:id="@+id/newPuzzle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:gravity="center_horizontal"
+                    android:textSize="26sp"
+                    android:padding="5dp"
+                    android:background="@drawable/ui_panel_grey"
+                    android:onClick="newPuzzle"
+                    android:text="New Puzzle"/>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

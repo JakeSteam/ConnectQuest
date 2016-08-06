@@ -193,7 +193,8 @@ public class PuzzleHelper {
         List<Tile> tiles = new ArrayList<>();
         for (int x = 0; x < maxX; x++) {
             for (int y = 0; y < maxY; y++) {
-                tiles.add(new Tile(nextPuzzleId, 21, x, y, Constants.ROTATION_NORTH));
+                //tiles.add(new Tile(nextPuzzleId, 21, x, y, Constants.ROTATION_NORTH));
+                tiles.add(new Tile(nextPuzzleId, 18, x, y, RandomHelper.getNumber(Constants.ROTATION_MIN, Constants.ROTATION_MAX)));
             }
         }
         Tile.saveInTx(tiles);

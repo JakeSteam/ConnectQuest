@@ -1,6 +1,8 @@
 package uk.co.jakelee.cityflow.model;
 
 import com.orm.SugarRecord;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 public class TileType extends SugarRecord {
     private int typeId;
@@ -151,6 +153,11 @@ public class TileType extends SugarRecord {
 
     public String getName() {
         return Text.get("TILE_", getTypeId(), "_TEXT");
+    }
+
+    public static TileType get(int tileTypeId) {
+        return Select.from(TileType.class).where(
+                Condition.prop("type_id").eq(tileTypeId)).first();
     }
 }
 

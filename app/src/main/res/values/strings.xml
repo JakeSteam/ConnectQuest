@@ -6,4 +6,12 @@
     <string name="icon_play">&#xf04b;</string>
     <string name="icon_edit">&#xf040;</string>
     <string name="icon_next">&#xf061;</string>
+    <string name="icon_rotate">&#xf01e;</string>
+    <string name="icon_restart">&#xf0e2;</string>
+    <string name="icon_exit">&#xf00d;</string>
+    <string name="icon_pause">&#xf04c;</string>
+    <string name="icon_zoomin">&#xf00e;</string>
+    <string name="icon_zoomout">&#xf010;</string>
+    <string name="icon_save">&#xf0c7;</string>
+    <string name="icon_picktile">&#xf044;</string>
 </resources>

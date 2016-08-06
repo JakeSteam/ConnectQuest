@@ -12,34 +12,105 @@
         android:layout_height="match_parent"
         android:orientation="vertical" />
 
-    <TextView
+    <uk.co.jakelee.cityflow.components.TextAwesome
         android:id="@+id/zoomIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:textColor="@color/black"
-        android:text="+"
+        android:text="@string/icon_zoomin"
         android:onClick="zoomIn"
         android:layout_margin="5dp"
         android:gravity="center_horizontal"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:background="@drawable/ui_button_grey"
-        android:visibility="invisible"/>
+        android:background="@drawable/ui_button_grey"/>
 
-    <TextView
+    <uk.co.jakelee.cityflow.components.TextAwesome
         android:id="@+id/zoomOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:textColor="@color/black"
-        android:text="-"
+        android:text="@string/icon_zoomout"
         android:onClick="zoomOut"
         android:layout_margin="5dp"
         android:gravity="center_horizontal"
         android:textAlignment="center"
         android:layout_toRightOf="@+id/zoomIn"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/ui_button_grey"
-        android:visibility="invisible"/>
+        android:background="@drawable/ui_button_grey"/>
+
+    <uk.co.jakelee.cityflow.components.TextAwesome
+        android:id="@+id/tileRotate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:text="@string/icon_rotate"
+        android:onClick="rotateTile"
+        android:layout_margin="5dp"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/ui_button_grey"/>
+
+    <uk.co.jakelee.cityflow.components.TextAwesome
+        android:id="@+id/tileChange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:text="@string/icon_picktile"
+        android:onClick="pickTile"
+        android:layout_margin="5dp"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:layout_toLeftOf="@id/tileRotate"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/ui_button_grey"/>
+
+    <TextView
+        android:id="@+id/selectedTileText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:text="None"
+        android:onClick="zoomOut"
+        android:layout_margin="5dp"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:layout_alignParentTop="true"/>
+
+    <uk.co.jakelee.cityflow.components.TextAwesome
+        android:id="@+id/savePuzzle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:text="@string/icon_save"
+        android:layout_margin="5dp"
+        android:gravity="center_horizontal"
+        android:onClick="savePuzzle"
+        android:textAlignment="center"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/ui_button_grey"/>
+
+    <uk.co.jakelee.cityflow.components.TextAwesome
+        android:id="@+id/playPuzzle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:text="@string/icon_play"
+        android:layout_margin="5dp"
+        android:gravity="center_horizontal"
+        android:onClick="playPuzzle"
+        android:textAlignment="center"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@id/savePuzzle"
+        android:background="@drawable/ui_button_grey"/>
 </RelativeLayout>

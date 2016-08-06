@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -19,10 +20,13 @@ import uk.co.jakelee.cityflow.helper.ImageHelper;
 import uk.co.jakelee.cityflow.helper.TileHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Tile;
+import uk.co.jakelee.cityflow.model.TileType;
 
 public class EditorActivity extends Activity {
     private DisplayHelper dh;
     private int puzzleId;
+    private ImageView selectedTileImage;
+    private Tile selectedTile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +52,6 @@ public class EditorActivity extends Activity {
                         .fetch();
             }
         }
-    }
-
-    public void suppressClick(View v) {
-        // Nope
     }
 
     public void populateTiles(List<Tile> tiles) {
@@ -88,6 +88,36 @@ public class EditorActivity extends Activity {
     }
 
     public void handleTileClick(ImageView image, Tile tile) {
+        if (selectedTileImage != null) {
+            selectedTileImage.setAlpha(1f);
+        }
+
+        selectedTileImage = image;
+        selectedTileImage.setAlpha(0.7f);
+
+        selectedTile = tile;
+
+        TileType tileType = TileType.get(tile.getTileTypeId());
+        ((TextView)findViewById(R.id.selectedTileText)).setText(tileType.getName());
+    }
+
+    public void rotateTile(View v) {
+        if (selectedTile != null && selectedTileImage != null) {
+            selectedTile.rotate(false);
+            int drawableId = ImageHelper.getTileDrawableId(this, selectedTile.getTileTypeId(), selectedTile.getRotation());
+            Picasso.with(this).load(drawableId).into(selectedTileImage);
+        }
+    }
+
+    public void pickTile(View v) {
+
+    }
+
+    public void savePuzzle(View v) {
+
+    }
+
+    public void playPuzzle(View v) {
 
     }
 }
