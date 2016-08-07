@@ -7,7 +7,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.thomashaertel.widget.MultiSpinner;
@@ -91,24 +92,32 @@ public class TilePickerActivity extends Activity {
     }
 
     private void populateTilePicker() {
-        LinearLayout tilePicker = (LinearLayout)findViewById(R.id.tileContainer);
-        tilePicker.removeAllViews();
+        TableLayout tileContainer = (TableLayout)findViewById(R.id.tileContainer);
+        tileContainer.removeAllViews();
 
-        String whereClause = String.format("%1$s AND %2$s",
+        String whereClause = String.format("%1$s AND %2$s ORDER BY environment_id ASC",
                 getEnvironmentSQL(),
                 getFlowSQL());
         List<TileType> tileTypes = TileType.find(TileType.class, whereClause);
 
-        // foreach tile meeting criteria, set tag to tiletype, and display at default rotation in a grid
-        for (TileType tileType : tileTypes) {
-            ImageView tileImage = dh.createTileIcon(tileType.getTypeId(), 60, 60);
+        int numTiles = tileTypes.size();
+        TableRow row = new TableRow(this);
+        for (int tileIndex = 1; tileIndex <= numTiles; tileIndex++) {
+            TileType tileType = tileTypes.get(tileIndex - 1);
+
+            ImageView tileImage = dh.createTileIcon(tileType.getTypeId(), 80, 80);
             tileImage.setTag(tileType.getTypeId());
             tileImage.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     clickTile(v);
                 }
             });
-            tilePicker.addView(tileImage);
+            row.addView(tileImage);
+
+            if (tileIndex % 3 == 0 || tileIndex == numTiles) {
+                tileContainer.addView(row);
+                row = new TableRow(this);
+            }
         }
     }
 

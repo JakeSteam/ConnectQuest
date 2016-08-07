@@ -15,7 +15,9 @@
         android:id="@+id/mainContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_marginTopPercent="3%"
         app:layout_marginLeftPercent="5%"
+        app:layout_marginBottomPercent="3%"
         app:layout_marginRightPercent="5%"
         android:background="@drawable/ui_panel_city"
         android:layout_centerInParent="true">
@@ -38,11 +40,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/flowPicker">
-            <LinearLayout
+            <TableLayout
                 android:id="@+id/tileContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"/>
+                android:stretchColumns="*"/>
         </ScrollView>
     </RelativeLayout>
     <uk.co.jakelee.cityflow.components.TextAwesome
