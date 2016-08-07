@@ -19,13 +19,13 @@
         app:layout_marginRightPercent="5%"
         android:background="@drawable/ui_panel_city"
         android:layout_centerInParent="true">
-        <TextView
+        <com.thomashaertel.widget.MultiSpinner
             android:id="@+id/environmentPicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="24sp"
-            android:layout_marginRight="20dp"/>
+            android:layout_marginRight="20dp" />
         <TextView
             android:id="@+id/flowPicker"
             android:layout_width="match_parent"
@@ -34,13 +34,16 @@
             android:textSize="24sp"
             android:layout_below="@id/environmentPicker"
             android:layout_marginRight="20dp"/>
-        <LinearLayout
-            android:id="@+id/tileContainer"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/flowPicker"
-            android:layout_marginRight="20dp"
-            android:orientation="vertical"/>
+            android:layout_below="@id/flowPicker">
+            <LinearLayout
+                android:id="@+id/tileContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+        </ScrollView>
     </RelativeLayout>
     <uk.co.jakelee.cityflow.components.TextAwesome
         android:layout_width="wrap_content"

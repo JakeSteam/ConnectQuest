@@ -4,11 +4,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.Arrays;
+import com.thomashaertel.widget.MultiSpinner;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.cityflow.R;
@@ -22,8 +26,11 @@ public class TilePickerActivity extends Activity {
     private DisplayHelper dh;
     private Tile tile;
 
-    private int[] environments = {1, 2};
-    private int[] flows = {1, 2, 3};
+    private MultiSpinner spinner;
+    private ArrayAdapter<String> adapter;
+
+    private ArrayList<Integer> selectedEnvironments = new ArrayList<>();
+    private ArrayList<Integer> selectedFlows = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +39,7 @@ public class TilePickerActivity extends Activity {
         dh = DisplayHelper.getInstance(this);
 
         Intent intent = getIntent();
-        int tileId = intent.getIntExtra(Constants.INTENT_TILE, 0);
+        Long tileId = intent.getLongExtra(Constants.INTENT_TILE, 0);
         if (tileId > 0) {
             tile = Tile.get(tileId);
         }
@@ -48,12 +55,32 @@ public class TilePickerActivity extends Activity {
     }
 
     private void populateEnvironmentPicker() {
-        String environmentString = "Envs: ";
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
         for (int i = Constants.ENVIRONMENT_MIN; i <= Constants.ENVIRONMENT_MAX; i++) {
-            environmentString += Text.get("ENVIRONMENT_" + i + "_NAME") + ", ";
+            adapter.add(Text.get("ENVIRONMENT_" + i + "_NAME"));
         }
-        ((TextView)findViewById(R.id.environmentPicker)).setText(environmentString);
+
+        spinner = (MultiSpinner) findViewById(R.id.environmentPicker);
+        spinner.setAdapter(adapter, false, environmentSelected);
+
+        boolean[] selectedItems = new boolean[adapter.getCount()];
+        selectedItems[1] = true;
+        spinner.setSelected(selectedItems);
     }
+
+    private MultiSpinner.MultiSpinnerListener environmentSelected = new MultiSpinner.MultiSpinnerListener() {
+        public void onItemsSelected(boolean[] environments) {
+            selectedEnvironments.clear();
+            for (int environmentId = 0; environmentId < environments.length; environmentId++) {
+                if (environments[environmentId]) {
+                    selectedEnvironments.add(environmentId);
+                }
+            }
+
+            // and update the selected item display
+            populateTilePicker();
+        }
+    };
 
     private void populateFlowPicker() {
         String flowString = "Flows: ";
@@ -65,20 +92,54 @@ public class TilePickerActivity extends Activity {
 
     private void populateTilePicker() {
         LinearLayout tilePicker = (LinearLayout)findViewById(R.id.tileContainer);
-        String environmentString = Arrays.toString(environments).replace("[","(").replace("]",")");
-        String flowString = Arrays.toString(flows).replace("[","(").replace("]",")");
+        tilePicker.removeAllViews();
 
-        List<TileType> tileTypes = TileType.find(TileType.class, String.format("environment_id IN %1$s AND (flow_north IN %2$s OR flow_east IN %2$s OR flow_south IN %2$s OR flow_west IN %2$s)",
-                environmentString,
-                flowString));
+        String whereClause = String.format("%1$s AND %2$s",
+                getEnvironmentSQL(),
+                getFlowSQL());
+        List<TileType> tileTypes = TileType.find(TileType.class, whereClause);
 
-        for (TileType tileType : tileTypes) {
-            ImageView tileImage = new ImageView(this);
-            // actually give it an image
-            tileImage.setTag(tileType.getTypeId());
-
-        }
         // foreach tile meeting criteria, set tag to tiletype, and display at default rotation in a grid
+        for (TileType tileType : tileTypes) {
+            ImageView tileImage = dh.createTileIcon(tileType.getTypeId(), 60, 60);
+            tileImage.setTag(tileType.getTypeId());
+            tileImage.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    clickTile(v);
+                }
+            });
+            tilePicker.addView(tileImage);
+        }
+    }
+
+    private String getEnvironmentSQL() {
+        if (selectedEnvironments.size() == 0) {
+            return "environment_id IS NOT NULL";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int environmentId : selectedEnvironments) {
+            sb.append(environmentId);
+            sb.append(",");
+        }
+
+        String environmentListString = sb.toString().substring(0, sb.toString().length() - 1);
+        return "environment_id IN (" + environmentListString + ")";
+    }
+
+    private String getFlowSQL() {
+        if (selectedFlows.size() == 0) {
+            return "flow_north IS NOT NULL";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int flowId : selectedFlows) {
+            sb.append(flowId);
+            sb.append(",");
+        }
+
+        String flowListString = sb.toString().substring(0, sb.toString().length() - 1);
+        return String.format("(flow_north IN (%1$s) OR flow_east IN (%1$s) OR flow_south IN (%1$s) OR flow_west IN (%1$s))", flowListString);
     }
 
     public void clickTile(View v) {

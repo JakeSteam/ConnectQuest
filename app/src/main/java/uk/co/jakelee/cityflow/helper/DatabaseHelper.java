@@ -59,6 +59,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_4_NAME", "Shuffle Board"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_4_DESC", "Randomly all rotate all tiles on the board 1 time."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_4_UPGRADE", "Upgrading Shuffle Board increases the number of times the board can be shuffled by 1 per level."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_0_NAME", "None"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_1_NAME", "Grass"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_2_NAME", "City"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_0_NAME", "None"));

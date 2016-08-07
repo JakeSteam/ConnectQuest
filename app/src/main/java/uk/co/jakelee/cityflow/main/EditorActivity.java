@@ -53,7 +53,7 @@ public class EditorActivity extends Activity {
     }
 
     private void redrawSelectedTile() {
-        selectedTile = Tile.get((int)(long)selectedTile.getId());
+        selectedTile = Tile.get(selectedTile.getId());
         int drawableId = ImageHelper.getTileDrawableId(this, selectedTile.getTileTypeId(), selectedTile.getRotation());
         Picasso.with(this).load(drawableId).into(selectedTileImage);
     }

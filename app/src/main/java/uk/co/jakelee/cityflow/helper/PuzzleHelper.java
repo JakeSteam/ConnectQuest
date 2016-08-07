@@ -128,7 +128,7 @@ public class PuzzleHelper {
             boostString = "No boosts earned.";
         }
 
-        TextView textView = dh.createTextView(boostString, 22, Color.WHITE);
+        TextView textView = dh.createTextView(boostString, 18, Color.WHITE);
         textView.setSingleLine(false);
         boostContainer.addView(textView);
     }
@@ -150,7 +150,7 @@ public class PuzzleHelper {
             tileString = "No tiles unlocked.";
         }
 
-        TextView textView = dh.createTextView(tileString, 22, Color.WHITE);
+        TextView textView = dh.createTextView(tileString, 18, Color.WHITE);
         textView.setSingleLine(false);
         tilesContainer.addView(textView);
     }

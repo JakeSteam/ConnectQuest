@@ -25,8 +25,9 @@ public class Constants {
     public static final int BOOST_TIME = 2;
     public static final int BOOST_MOVE = 3;
     public static final int BOOST_SHUFFLE = 4;
-    public static final int ENVIRONMENT_MIN = 1;
+    public static final int ENVIRONMENT_MIN = 0;
     public static final int ENVIRONMENT_MAX = 2;
+    public static final int ENVIRONMENT_NONE = 0;
     public static final int ENVIRONMENT_GRASS = 1;
     public static final int ENVIRONMENT_CITY = 2;
     public static final int FLOW_MIN = 0;

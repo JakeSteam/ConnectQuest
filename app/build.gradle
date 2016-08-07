@@ -27,7 +27,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.github.satyan:sugar:1.5'
     compile 'ch.acra:acra:4.8.5'
-
+    compile 'com.thomashaertel:multispinner:0.1.1'
     compile 'com.scottyab:aescrypt:0.0.1'
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile 'com.android.support:design:24.0.0'

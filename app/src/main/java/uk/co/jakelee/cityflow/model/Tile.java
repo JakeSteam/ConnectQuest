@@ -136,7 +136,7 @@ public class Tile extends SugarRecord {
         return height;
     }
 
-    public static Tile get(int tileId) {
+    public static Tile get(long tileId) {
         return Tile.findById(Tile.class, tileId);
     }
 }

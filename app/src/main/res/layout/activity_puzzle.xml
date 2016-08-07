@@ -152,7 +152,7 @@
         android:layout_marginBottom="45dp"
         android:layout_alignParentBottom="true"/>
 
-    <TextView
+    <uk.co.jakelee.cityflow.components.TextAwesome
         android:id="@+id/zoomIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -167,7 +167,7 @@
         android:background="@drawable/ui_button_grey"
         android:visibility="invisible"/>
 
-    <TextView
+    <uk.co.jakelee.cityflow.components.TextAwesome
         android:id="@+id/zoomOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -420,7 +420,7 @@
                 android:shrinkColumns="*">
                 <TableRow
                     android:id="@+id/tilesWrapper"
-                    android:padding="10dp">
+                    android:padding="5dp">
                     <LinearLayout
                         android:id="@+id/tilesContainer"
                         android:orientation="horizontal"
@@ -428,7 +428,7 @@
                 </TableRow>
                 <TableRow
                     android:id="@+id/boostsWrapper"
-                    android:padding="10dp">
+                    android:padding="5dp">
                     <LinearLayout
                         android:id="@+id/boostsContainer"
                         android:orientation="horizontal"
