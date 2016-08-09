@@ -176,15 +176,17 @@ public class PuzzleActivity extends Activity {
 
         tileContainer.removeAllViews();
         for (final Tile tile : tiles) {
-            ZoomableViewGroup.LayoutParams layoutParams = new ZoomableViewGroup.LayoutParams(ZoomableViewGroup.LayoutParams.WRAP_CONTENT, ZoomableViewGroup.LayoutParams.WRAP_CONTENT);
-            int leftPadding = leftOffset + (tile.getY() + tile.getX()) * (dh.getTileWidth()/2);
-            int topPadding = topOffset + (tile.getX() + maxXY.second - tile.getY()) * (dh.getTileHeight()/2);
-            layoutParams.setMargins(leftPadding, topPadding, 0, 0);
+            if (tile.getTileTypeId() > 0) {
+                ZoomableViewGroup.LayoutParams layoutParams = new ZoomableViewGroup.LayoutParams(ZoomableViewGroup.LayoutParams.WRAP_CONTENT, ZoomableViewGroup.LayoutParams.WRAP_CONTENT);
+                int leftPadding = leftOffset + (tile.getY() + tile.getX()) * (dh.getTileWidth() / 2);
+                int topPadding = topOffset + (tile.getX() + maxXY.second - tile.getY()) * (dh.getTileHeight() / 2);
+                layoutParams.setMargins(leftPadding, topPadding, 0, 0);
 
-            int drawableId = ImageHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());
-            ImageView image = dh.createTileImageView(this, tile, drawableId);
+                int drawableId = ImageHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());
+                ImageView image = dh.createTileImageView(this, tile, drawableId);
 
-            tileContainer.addView(image, layoutParams);
+                tileContainer.addView(image, layoutParams);
+            }
         }
     }
 

@@ -107,6 +107,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_7_TEXT", "Player Name"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_1_TEXT", "Puzzles Completed"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_2_TEXT", "Tiles Rotated"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_0_TEXT", "Invisible Tile"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_1_TEXT", "Grass Road Corner"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_2_TEXT", "Grass Road Straight"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_3_TEXT", "Grass Road End"));
@@ -199,6 +200,7 @@ public class DatabaseHelper {
             puzzles.add(new Puzzle(99, 0, 10000L, 20, 0L, 0));
             puzzles.add(new Puzzle(100, 0, 10000L, 20, 0L, 0));
             puzzles.add(new Puzzle(101, 0, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(102, 0, 10000L, 20, 0L, 0));
         Puzzle.saveInTx(puzzles);
 
         List<PuzzleCustom> puzzleCustoms = new ArrayList<>();
@@ -206,6 +208,7 @@ public class DatabaseHelper {
             puzzleCustoms.add(new PuzzleCustom(99, System.currentTimeMillis(), "Logo", "Test puzzle desc 2", "Someone 2", true));
             puzzleCustoms.add(new PuzzleCustom(100, System.currentTimeMillis(), "A square, but this is a test of long names", "Test puzzle desc 3", "Someone 3", false));
             puzzleCustoms.add(new PuzzleCustom(101, System.currentTimeMillis(), "A line", "Test puzzle desc 4", "Someone 4", false));
+            puzzleCustoms.add(new PuzzleCustom(102, System.currentTimeMillis(), "Empty test", "Test puzzle desc 4", "Someone 4", true));
         PuzzleCustom.saveInTx(puzzleCustoms);
     }
 
@@ -688,11 +691,17 @@ public class DatabaseHelper {
             tiles.add(new Tile(101, 15, 0, 2, Constants.ROTATION_NORTH));
             tiles.add(new Tile(101, 18, 0, 3, Constants.ROTATION_NORTH));
 
+            tiles.add(new Tile(102, 0, 0, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(102, 3, 0, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(102, 3, 1, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(102, 0, 1, 1, Constants.ROTATION_NORTH));
+
             Tile.saveInTx(tiles);
     }
 
     private static void createTileType() {
         List<TileType> tileTypes = new ArrayList<>();
+            tileTypes.add(new TileType(0, Constants.ENVIRONMENT_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 0));
             tileTypes.add(new TileType(1, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 1));
             tileTypes.add(new TileType(2, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 2));
             tileTypes.add(new TileType(3, Constants.ENVIRONMENT_GRASS, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));

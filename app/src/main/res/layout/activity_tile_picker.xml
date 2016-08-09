@@ -21,29 +21,53 @@
         app:layout_marginRightPercent="5%"
         android:background="@drawable/ui_panel_city"
         android:layout_centerInParent="true">
-        <com.thomashaertel.widget.MultiSpinner
-            android:id="@+id/environmentPicker"
+        <LinearLayout
+            android:id="@+id/environmentContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:layout_marginRight="40dp"
-            android:background="@drawable/ui_panel_blue"
-            android:layout_margin="5dp"/>
-        <com.thomashaertel.widget.MultiSpinner
-            android:id="@+id/flowPicker"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:textSize="26sp"
+                android:text="Area: "/>
+            <com.thomashaertel.widget.MultiSpinner
+                android:id="@+id/environmentPicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:background="@drawable/ui_panel_blue"
+                android:layout_margin="5dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/flowContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:layout_below="@id/environmentPicker"
-            android:layout_marginRight="40dp"
-            android:background="@drawable/ui_panel_blue"
-            android:layout_margin="5dp"/>
+            android:orientation="horizontal"
+            android:layout_below="@id/environmentContainer"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:textSize="26sp"
+                android:text="Flow: "/>
+            <com.thomashaertel.widget.MultiSpinner
+                android:id="@+id/flowPicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:background="@drawable/ui_panel_blue"
+                android:layout_margin="5dp"/>
+        </LinearLayout>
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/flowPicker">
+            android:layout_below="@id/flowContainer">
             <TableLayout
                 android:id="@+id/tileContainer"
                 android:layout_width="match_parent"
