@@ -2,6 +2,8 @@ package uk.co.jakelee.cityflow.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
@@ -105,10 +107,13 @@ public class EditorActivity extends Activity {
     public void handleTileClick(ImageView image, Tile tile) {
         if (selectedTileImage != null) {
             selectedTileImage.setAlpha(1f);
+            selectedTileImage.clearColorFilter();
+
         }
 
         selectedTileImage = image;
         selectedTileImage.setAlpha(0.75f);
+        selectedTileImage.setColorFilter(Color.GREEN, PorterDuff.Mode.MULTIPLY);
 
         selectedTile = tile;
 

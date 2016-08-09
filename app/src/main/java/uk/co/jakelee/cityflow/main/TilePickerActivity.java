@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 
 import com.thomashaertel.widget.MultiSpinner;
 
@@ -69,6 +68,20 @@ public class TilePickerActivity extends Activity {
         spinner.setSelected(selectedItems);
     }
 
+    private void populateFlowPicker() {
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
+        for (int i = Constants.FLOW_MIN; i <= Constants.FLOW_MAX; i++) {
+            adapter.add(Text.get("FLOW_" + i + "_NAME"));
+        }
+
+        spinner = (MultiSpinner) findViewById(R.id.flowPicker);
+        spinner.setAdapter(adapter, false, flowSelected);
+
+        boolean[] selectedItems = new boolean[adapter.getCount()];
+        selectedItems[1] = true;
+        spinner.setSelected(selectedItems);
+    }
+
     private MultiSpinner.MultiSpinnerListener environmentSelected = new MultiSpinner.MultiSpinnerListener() {
         public void onItemsSelected(boolean[] environments) {
             selectedEnvironments.clear();
@@ -78,18 +91,22 @@ public class TilePickerActivity extends Activity {
                 }
             }
 
-            // and update the selected item display
             populateTilePicker();
         }
     };
 
-    private void populateFlowPicker() {
-        String flowString = "Flows: ";
-        for (int i = Constants.FLOW_MIN; i <= Constants.FLOW_MAX; i++) {
-            flowString += Text.get("FLOW_" + i + "_NAME") + ", ";
+    private MultiSpinner.MultiSpinnerListener flowSelected = new MultiSpinner.MultiSpinnerListener() {
+        public void onItemsSelected(boolean[] flows) {
+            selectedFlows.clear();
+            for (int flowId = 0; flowId < flows.length; flowId++) {
+                if (flows[flowId]) {
+                    selectedFlows.add(flowId);
+                }
+            }
+
+            populateTilePicker();
         }
-        ((TextView)findViewById(R.id.flowPicker)).setText(flowString);
-    }
+    };
 
     private void populateTilePicker() {
         TableLayout tileContainer = (TableLayout)findViewById(R.id.tileContainer);

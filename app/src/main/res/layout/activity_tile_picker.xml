@@ -14,10 +14,10 @@
     <RelativeLayout
         android:id="@+id/mainContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_marginTopPercent="3%"
+        android:layout_height="match_parent"
+        app:layout_marginTopPercent="10%"
         app:layout_marginLeftPercent="5%"
-        app:layout_marginBottomPercent="3%"
+        app:layout_marginBottomPercent="10%"
         app:layout_marginRightPercent="5%"
         android:background="@drawable/ui_panel_city"
         android:layout_centerInParent="true">
@@ -27,15 +27,19 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="24sp"
-            android:layout_marginRight="20dp" />
-        <TextView
+            android:layout_marginRight="40dp"
+            android:background="@drawable/ui_panel_blue"
+            android:layout_margin="5dp"/>
+        <com.thomashaertel.widget.MultiSpinner
             android:id="@+id/flowPicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:layout_below="@id/environmentPicker"
-            android:layout_marginRight="20dp"/>
+            android:layout_marginRight="40dp"
+            android:background="@drawable/ui_panel_blue"
+            android:layout_margin="5dp"/>
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
