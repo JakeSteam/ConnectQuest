@@ -13,7 +13,7 @@ public class AlertDialogHelper {
         final EditText playerNameBox = new EditText(context);
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity);
-        alertDialog.setMessage("Change player name");
+        alertDialog.setMessage(questionText);
         alertDialog.setView(playerNameBox);
 
         alertDialog.setPositiveButton("Change", new DialogInterface.OnClickListener() {

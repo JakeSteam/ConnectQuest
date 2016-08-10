@@ -44,7 +44,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
-                        android:gravity="center_horizontal"
+                        android:gravity="left"
                         android:text="Sounds"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
@@ -67,7 +67,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
-                        android:gravity="center_horizontal"
+                        android:gravity="left"
                         android:text="Music"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
@@ -111,7 +111,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
-                        android:gravity="center_horizontal"
+                        android:gravity="left"
                         android:text="Zen Mode"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
@@ -134,7 +134,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
-                        android:gravity="center_horizontal"
+                        android:gravity="left"
                         android:text="Hide Empty Boosts"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
@@ -157,7 +157,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
-                        android:gravity="center_horizontal"
+                        android:gravity="left"
                         android:text="Name"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
@@ -167,6 +167,9 @@
                         android:id="@+id/playerNameDisplay"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
+                        android:textSize="30sp"
+                        android:ellipsize="end"
+                        android:singleLine="true"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="-5dp"
                         android:onClick="changeText"/>
