@@ -33,4 +33,9 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(this, CreatorActivity.class);
         startActivity(intent);
     }
+
+    public void openSettings(View view) {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
 }

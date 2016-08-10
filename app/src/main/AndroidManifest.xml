@@ -23,6 +23,7 @@
         </activity>
         <activity android:name=".main.StoryActivity" />
         <activity android:name=".main.CreatorActivity" />
+        <activity android:name=".main.SettingsActivity" />
         <activity android:name=".main.PackActivity" />
         <activity android:name=".main.PuzzleActivity" />
         <activity android:name=".main.EditorActivity" />

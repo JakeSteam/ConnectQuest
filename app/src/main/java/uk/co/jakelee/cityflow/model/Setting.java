@@ -111,6 +111,12 @@ public class Setting extends SugarRecord {
         return "";
     }
 
+    public static boolean getSafeBoolean(long settingId) {
+        Setting setting = Setting.findById(Setting.class, settingId);
+
+        return setting != null && setting.getBooleanValue();
+    }
+
     public String getName() {
         return Text.get("SETTING_", getSettingId(), "_NAME");
     }
