@@ -15,14 +15,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/city"
+        android:background="@color/green"
         android:layout_alignParentTop="true">
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/playPuzzle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="30sp"
-            android:textColor="@color/city"
+            android:textColor="@color/green"
             android:text="@string/icon_play"
             android:layout_margin="5dp"
             android:gravity="center_horizontal"
@@ -32,23 +32,12 @@
             android:layout_alignParentLeft="true"
             android:background="@drawable/ui_button_grey"/>
 
-        <TextView
-            android:id="@+id/selectedTileText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:textColor="@color/black"
-            android:text="None"
-            android:layout_margin="5dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerInParent="true"/>
-
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/closePuzzle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="30sp"
-            android:textColor="@color/city"
+            android:textColor="@color/green"
             android:text="@string/icon_save"
             android:layout_margin="5dp"
             android:gravity="center_horizontal"
@@ -57,6 +46,23 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:background="@drawable/ui_button_grey"/>
+
+        <TextView
+            android:id="@+id/selectedTileText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="26sp"
+            android:textColor="@color/black"
+            android:text="None"
+            android:singleLine="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="50sp"
+            android:layout_marginRight="50sp"
+            android:ellipsize="end"/>
     </RelativeLayout>
 
     <RelativeLayout

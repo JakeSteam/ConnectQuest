@@ -113,7 +113,7 @@ public class EditorActivity extends Activity {
 
         selectedTileImage = image;
         selectedTileImage.setAlpha(0.75f);
-        selectedTileImage.setColorFilter(Color.GREEN, PorterDuff.Mode.MULTIPLY);
+        selectedTileImage.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
 
         selectedTile = tile;
 

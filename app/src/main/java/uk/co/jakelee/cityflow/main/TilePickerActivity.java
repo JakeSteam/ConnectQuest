@@ -27,7 +27,8 @@ public class TilePickerActivity extends Activity {
     private Tile tile;
 
     private MultiSpinner spinner;
-    private ArrayAdapter<String> adapter;
+    private ArrayAdapter<String> envAdapter;
+    private ArrayAdapter<String> flowAdapter;
 
     private ArrayList<Integer> selectedEnvironments = new ArrayList<>();
     private ArrayList<Integer> selectedFlows = new ArrayList<>();
@@ -55,29 +56,29 @@ public class TilePickerActivity extends Activity {
     }
 
     private void populateEnvironmentPicker() {
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
+        envAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
         for (int i = Constants.ENVIRONMENT_MIN; i <= Constants.ENVIRONMENT_MAX; i++) {
-            adapter.add(Text.get("ENVIRONMENT_" + i + "_NAME"));
+            envAdapter.add(Text.get("ENVIRONMENT_" + i + "_NAME"));
         }
 
         spinner = (MultiSpinner) findViewById(R.id.environmentPicker);
-        spinner.setAdapter(adapter, false, environmentSelected);
+        spinner.setAdapter(envAdapter, false, environmentSelected);
 
-        boolean[] selectedItems = new boolean[adapter.getCount()];
+        boolean[] selectedItems = new boolean[envAdapter.getCount()];
         selectedItems[1] = true;
         spinner.setSelected(selectedItems);
     }
 
     private void populateFlowPicker() {
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
+        flowAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
         for (int i = Constants.FLOW_MIN; i <= Constants.FLOW_MAX; i++) {
-            adapter.add(Text.get("FLOW_" + i + "_NAME"));
+            flowAdapter.add(Text.get("FLOW_" + i + "_NAME"));
         }
 
         spinner = (MultiSpinner) findViewById(R.id.flowPicker);
-        spinner.setAdapter(adapter, false, flowSelected);
+        spinner.setAdapter(flowAdapter, false, flowSelected);
 
-        boolean[] selectedItems = new boolean[adapter.getCount()];
+        boolean[] selectedItems = new boolean[flowAdapter.getCount()];
         selectedItems[1] = true;
         spinner.setSelected(selectedItems);
     }
