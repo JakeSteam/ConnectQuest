@@ -21,20 +21,39 @@
         android:layout_centerInParent="true">
         <TextView
             android:id="@+id/puzzleName"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Puzzle Name"
             android:textColor="@color/black"
-            android:textSize="24sp"
-            android:layout_marginRight="20dp"/>
+            android:textSize="24sp"/>
+        <uk.co.jakelee.cityflow.components.TextAwesome
+            android:id="@+id/editPuzzleName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/icon_edit"
+            android:textColor="@color/black"
+            android:textSize="26sp"
+            android:layout_toRightOf="@id/puzzleName"
+            android:layout_alignTop="@id/puzzleName"
+            android:onClick="editPuzzleName"/>
         <TextView
             android:id="@+id/puzzleDesc"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Puzzle Desc"
             android:layout_below="@id/puzzleName"
             android:textColor="@color/black"
             android:textSize="18sp"/>
+        <uk.co.jakelee.cityflow.components.TextAwesome
+            android:id="@+id/editPuzzleDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/icon_edit"
+            android:textColor="@color/black"
+            android:textSize="26sp"
+            android:layout_toRightOf="@id/puzzleDesc"
+            android:layout_alignTop="@id/puzzleDesc"
+            android:onClick="editPuzzleDesc"/>
         <TextView
             android:id="@+id/puzzleAuthor"
             android:layout_width="match_parent"

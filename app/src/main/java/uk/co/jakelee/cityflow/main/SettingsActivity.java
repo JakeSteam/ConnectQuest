@@ -91,7 +91,7 @@ public class SettingsActivity extends Activity {
         }
 
         if (settingID > 0) {
-            AlertDialogHelper.changePlayerName(this, this, "Change Player Name:", settingID);
+            AlertDialogHelper.changePlayerName(this, "Change Player Name:", settingID);
 
             populateSettings();
         }

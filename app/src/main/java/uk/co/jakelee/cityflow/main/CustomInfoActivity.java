@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
@@ -34,6 +35,11 @@ public class CustomInfoActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
+        displayPuzzleInfo();
+    }
+
+    public void redisplayInfo() {
+        puzzleCustom = puzzle.getCustomData();
         displayPuzzleInfo();
     }
 
@@ -67,6 +73,14 @@ public class CustomInfoActivity extends Activity {
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, backup);
         startActivity(Intent.createChooser(intent, "Save puzzle backup to"));
+    }
+
+    public void editPuzzleName(View v) {
+        AlertDialogHelper.changePuzzleInfo(this, puzzleCustom, false);
+    }
+
+    public void editPuzzleDesc(View v) {
+        AlertDialogHelper.changePuzzleInfo(this, puzzleCustom, true);
     }
 
     public void closePopup (View v) {
