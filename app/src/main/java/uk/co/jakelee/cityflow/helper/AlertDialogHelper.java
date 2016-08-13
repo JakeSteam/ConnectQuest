@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.widget.EditText;
 
+import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.main.CustomInfoActivity;
 import uk.co.jakelee.cityflow.main.SettingsActivity;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
@@ -11,10 +12,10 @@ import uk.co.jakelee.cityflow.model.Setting;
 
 public class AlertDialogHelper {
     public static void changePlayerName(final SettingsActivity activity, final String questionText, final int settingId) {
-        final EditText playerNameBox = new EditText(activity);
+        final EditText playerNameBox = new EditText(activity.getApplicationContext());
         playerNameBox.setText(Setting.getString(Constants.SETTING_PLAYER_NAME));
 
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(questionText);
         alertDialog.setView(playerNameBox);
 
@@ -40,7 +41,7 @@ public class AlertDialogHelper {
         final EditText puzzleInfoInput = new EditText(activity.getApplicationContext());
         puzzleInfoInput.setText(changeDesc ? puzzleCustom.getDescription() : puzzleCustom.getName());
 
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(changeDesc ? "Enter Puzzle Description:" : "Enter Puzzle Name:");
         alertDialog.setView(puzzleInfoInput);
 

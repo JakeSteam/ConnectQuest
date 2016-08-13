@@ -6,6 +6,12 @@
         <item name="android:navigationBarColor" tools:targetApi="21">@color/green</item>
     </style>
 
+    <style name="AppTheme.Dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/city</item>
+        <item name="colorAccent">@color/blue</item>  <!--Buttons -->
+        <item name="android:textColorPrimary">@color/black</item> <!-- Main text -->
+    </style>
+
     <style name="Theme.Transparent" parent="@android:style/Theme.Dialog">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
