@@ -1,16 +1,21 @@
 package uk.co.jakelee.cityflow.main;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.games.Games;
+import com.google.android.gms.games.quest.Quests;
+
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
+import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.model.Setting;
 
 public class SettingsActivity extends Activity {
@@ -54,6 +59,12 @@ public class SettingsActivity extends Activity {
 
         TextView playerName = (TextView) findViewById(R.id.playerNameDisplay);
         playerName.setText(Setting.getString(Constants.SETTING_PLAYER_NAME));
+
+        // Google Play settings
+        boolean isConnected = GooglePlayHelper.mGoogleApiClient.isConnected();
+        findViewById(R.id.signInButton).setVisibility(isConnected ? View.GONE : View.VISIBLE);
+        findViewById(R.id.signOutButton).setVisibility(isConnected ? View.VISIBLE : View.GONE);
+        findViewById(R.id.googlePlayFeatureButtons).setVisibility(isConnected ? View.VISIBLE : View.GONE);
     }
 
     public void toggleSetting(View v) {
@@ -94,6 +105,32 @@ public class SettingsActivity extends Activity {
             AlertDialogHelper.changePlayerName(this, "Change Player Name:", settingID);
 
             populateSettings();
+        }
+    }
+
+    public void openAchievements(View v) {
+        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
+            startActivityForResult(Games.Achievements.getAchievementsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_ACHIEVEMENTS);
+        }
+    }
+
+    public void openCloudSaves(View v) {
+        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
+            Intent savedGamesIntent = Games.Snapshots.getSelectSnapshotIntent(GooglePlayHelper.mGoogleApiClient,
+                    "Cloud Saves", true, true, 1);
+            startActivityForResult(savedGamesIntent, GooglePlayHelper.RC_SAVED_GAMES);
+        }
+    }
+
+    public void openQuests(View v) {
+        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
+            startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, Quests.SELECT_ALL_QUESTS), GooglePlayHelper.RC_QUESTS);
+        }
+    }
+
+    public void openLeaderboards(View v) {
+        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
+            startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_LEADERBOARDS);
         }
     }
 }

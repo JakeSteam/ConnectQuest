@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.cityflow.main.MainActivity;
+import uk.co.jakelee.cityflow.model.Achievement;
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
@@ -26,6 +27,7 @@ public class DatabaseHelper {
     }
 
     private static void initialSetup() {
+        createAchievement();
         createBoost();
         createPack();
         createPuzzle();
@@ -34,6 +36,11 @@ public class DatabaseHelper {
         createText();
         createTile();
         createTileType();
+    }
+
+    private static void createAchievement() {
+        List<Achievement> achievements = new ArrayList<>();
+        Achievement.saveInTx(achievements);
     }
 
     private static void createBoost() {
@@ -62,6 +69,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_0_NAME", "None"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_1_NAME", "Grass"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_2_NAME", "City"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_CONNECTION", "Couldn't log in. Please try again later."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_0_NAME", "None"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_1_NAME", "Water"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_2_NAME", "Road"));
@@ -214,20 +222,21 @@ public class DatabaseHelper {
 
     private static void createSetting() {
         List<Setting> settings = new ArrayList<>();
-            settings.add(new Setting(1, true));
-            settings.add(new Setting(2, true));
-            settings.add(new Setting(3, 0.50f));
-            settings.add(new Setting(4, 1.75f));
-            settings.add(new Setting(5, false));
-            settings.add(new Setting(6, false));
-            settings.add(new Setting(7, "New Player"));
+            settings.add(new Setting(Constants.SETTING_MUSIC, true));
+            settings.add(new Setting(Constants.SETTING_SOUNDS, true));
+            settings.add(new Setting(Constants.SETTING_MIN_ZOOM, 0.50f));
+            settings.add(new Setting(Constants.SETTING_MAX_ZOOM, 1.75f));
+            settings.add(new Setting(Constants.SETTING_ZEN_MODE, false));
+            settings.add(new Setting(Constants.SETTING_HIDE_UNSTOCKED_BOOSTS, false));
+            settings.add(new Setting(Constants.SETTING_PLAYER_NAME, "New Player"));
+            settings.add(new Setting(Constants.SETTING_SIGN_IN, true));
         Setting.saveInTx(settings);
     }
 
     private static void createStatistic() {
         List<Statistic> statistics = new ArrayList<>();
-            statistics.add(new Statistic(1, 0));
-            statistics.add(new Statistic(2, 0));
+            statistics.add(new Statistic(Constants.STATISTIC_PUZZLES_COMPLETED, 0));
+            statistics.add(new Statistic(Constants.STATISTIC_TILES_ROTATED, 0));
         Statistic.saveInTx(statistics);
     }
 

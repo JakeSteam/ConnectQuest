@@ -175,6 +175,106 @@
                         android:onClick="changeText"/>
                 </TableRow>
             </TableLayout>
+
+            <!-- Google Play -->
+            <TableLayout
+                android:id="@+id/googlePlaySettings"
+                android:background="@drawable/ui_panel_city"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:shrinkColumns="*"
+                android:stretchColumns="*">
+
+                <TableRow>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_span="2"
+                        android:text="Google Play Settings"
+                        android:textColor="@color/black"
+                        android:textSize="28sp" />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/signInButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_horizontal"
+                        android:text="Sign In"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/signOutButton"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_horizontal"
+                        android:text="Sign Out"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"/>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/googlePlayFeatureButtons"
+                    android:visibility="gone">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_horizontal"
+                        android:text="A"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:onClick="openAchievements"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_horizontal"
+                        android:text="Q"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:onClick="openQuests"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_horizontal"
+                        android:text="L"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:onClick="openLeaderboards"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_horizontal"
+                        android:text="C"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:onClick="openCloudSaves"/>
+                </TableRow>
+            </TableLayout>
         </LinearLayout>
     </ScrollView>
 </android.support.percent.PercentRelativeLayout>
