@@ -207,6 +207,7 @@
                         android:layout_marginTop="5dp"
                         android:gravity="center_horizontal"
                         android:text="Sign In"
+                        android:onClick="signIn"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
                 </TableRow>
@@ -222,6 +223,7 @@
                         android:layout_marginTop="5dp"
                         android:gravity="center_horizontal"
                         android:text="Sign Out"
+                        android:onClick="signOut"
                         android:textColor="@color/black"
                         android:textSize="20sp"/>
                 </TableRow>

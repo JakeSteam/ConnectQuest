@@ -133,4 +133,23 @@ public class SettingsActivity extends Activity {
             startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_LEADERBOARDS);
         }
     }
+
+    public void signIn(View v) {
+        GooglePlayHelper.mGoogleApiClient.connect();
+
+        Setting signIn = Setting.findById(Setting.class, Constants.SETTING_SIGN_IN);
+        signIn.setBooleanValue(true);
+        signIn.save();
+
+        finish();
+    }
+
+    public void signOut(View v) {
+        Games.signOut(GooglePlayHelper.mGoogleApiClient);
+        GooglePlayHelper.mGoogleApiClient.disconnect();
+
+        Setting signIn = Setting.findById(Setting.class, Constants.SETTING_SIGN_IN);
+        signIn.setBooleanValue(false);
+        signIn.save();
+    }
 }
