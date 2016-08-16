@@ -191,8 +191,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
-                        android:layout_span="2"
-                        android:text="Google Play Settings"
+                        android:layout_span="4"
+                        android:text="Google Settings"
                         android:textColor="@color/black"
                         android:textSize="28sp" />
                 </TableRow>
@@ -234,9 +234,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="5dp"
+                        android:background="@drawable/ui_button_grey"
+                        android:padding="5dp"
                         android:gravity="center_horizontal"
                         android:text="A"
                         android:textColor="@color/black"
@@ -245,9 +244,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="5dp"
+                        android:background="@drawable/ui_button_grey"
+                        android:padding="5dp"
                         android:gravity="center_horizontal"
                         android:text="Q"
                         android:textColor="@color/black"
@@ -256,9 +254,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="5dp"
+                        android:background="@drawable/ui_button_grey"
+                        android:padding="5dp"
                         android:gravity="center_horizontal"
                         android:text="L"
                         android:textColor="@color/black"
@@ -267,9 +264,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="5dp"
+                        android:background="@drawable/ui_button_grey"
+                        android:padding="5dp"
                         android:gravity="center_horizontal"
                         android:text="C"
                         android:textColor="@color/black"

@@ -42,7 +42,6 @@ public class MainActivity extends Activity implements
                 .addOnConnectionFailedListener(this)
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES)
                 .addApi(Drive.API).addScope(Drive.SCOPE_APPFOLDER)
-                .setViewForPopups(findViewById(android.R.id.content))
                 .build();
     }
 
@@ -52,8 +51,16 @@ public class MainActivity extends Activity implements
 
         boolean a = Setting.getSafeBoolean(Constants.SETTING_SIGN_IN);
         boolean b = GooglePlayHelper.AreGooglePlayServicesInstalled(this);
-        if (a && b) {
+        if (a && b && !GooglePlayHelper.mGoogleApiClient.isConnecting()) {
             GooglePlayHelper.mGoogleApiClient.connect();
+        }
+    }
+
+    public void openAchievements(View v) {
+
+        boolean isConnected = GooglePlayHelper.IsConnected();
+        if (GooglePlayHelper.IsConnected()) {
+            startActivityForResult(Games.Achievements.getAchievementsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_ACHIEVEMENTS);
         }
     }
 
@@ -68,7 +75,6 @@ public class MainActivity extends Activity implements
     public void onConnected(Bundle connectionHint) {
         if (GooglePlayHelper.IsConnected()) {
             Games.Quests.registerQuestUpdateListener(GooglePlayHelper.mGoogleApiClient, this);
-            gph.UpdateQuest();
         }
     }
 

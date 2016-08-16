@@ -61,7 +61,7 @@ public class SettingsActivity extends Activity {
         playerName.setText(Setting.getString(Constants.SETTING_PLAYER_NAME));
 
         // Google Play settings
-        boolean isConnected = GooglePlayHelper.mGoogleApiClient.isConnected();
+        boolean isConnected = GooglePlayHelper.IsConnected();
         findViewById(R.id.signInButton).setVisibility(isConnected ? View.GONE : View.VISIBLE);
         findViewById(R.id.signOutButton).setVisibility(isConnected ? View.VISIBLE : View.GONE);
         findViewById(R.id.googlePlayFeatureButtons).setVisibility(isConnected ? View.VISIBLE : View.GONE);
@@ -108,14 +108,20 @@ public class SettingsActivity extends Activity {
         }
     }
 
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        GooglePlayHelper.SavedGamesIntent(getApplicationContext(), this, intent);
+    }
+
     public void openAchievements(View v) {
-        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
+
+        boolean isConnected = GooglePlayHelper.IsConnected();
+        if (GooglePlayHelper.IsConnected()) {
             startActivityForResult(Games.Achievements.getAchievementsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_ACHIEVEMENTS);
         }
     }
 
     public void openCloudSaves(View v) {
-        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
+        if (GooglePlayHelper.IsConnected()) {
             Intent savedGamesIntent = Games.Snapshots.getSelectSnapshotIntent(GooglePlayHelper.mGoogleApiClient,
                     "Cloud Saves", true, true, 1);
             startActivityForResult(savedGamesIntent, GooglePlayHelper.RC_SAVED_GAMES);
@@ -123,18 +129,21 @@ public class SettingsActivity extends Activity {
     }
 
     public void openQuests(View v) {
-        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
+        if (GooglePlayHelper.IsConnected()) {
             startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, Quests.SELECT_ALL_QUESTS), GooglePlayHelper.RC_QUESTS);
         }
     }
 
     public void openLeaderboards(View v) {
-        if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
+        if (GooglePlayHelper.IsConnected()) {
             startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_LEADERBOARDS);
         }
     }
 
     public void signIn(View v) {
+        if (GooglePlayHelper.mGoogleApiClient.isConnecting()) {
+            return;
+        }
         GooglePlayHelper.mGoogleApiClient.connect();
 
         Setting signIn = Setting.findById(Setting.class, Constants.SETTING_SIGN_IN);
@@ -145,6 +154,10 @@ public class SettingsActivity extends Activity {
     }
 
     public void signOut(View v) {
+        if (!GooglePlayHelper.mGoogleApiClient.isConnected()) {
+            return;
+        }
+
         Games.signOut(GooglePlayHelper.mGoogleApiClient);
         GooglePlayHelper.mGoogleApiClient.disconnect();
 
