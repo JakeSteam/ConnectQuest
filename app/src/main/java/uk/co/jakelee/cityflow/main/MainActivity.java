@@ -49,18 +49,8 @@ public class MainActivity extends Activity implements
     protected void onStart() {
         super.onStart();
 
-        boolean a = Setting.getSafeBoolean(Constants.SETTING_SIGN_IN);
-        boolean b = GooglePlayHelper.AreGooglePlayServicesInstalled(this);
-        if (a && b && !GooglePlayHelper.mGoogleApiClient.isConnecting()) {
+        if (Setting.getSafeBoolean(Constants.SETTING_SIGN_IN) && GooglePlayHelper.AreGooglePlayServicesInstalled(this) && !GooglePlayHelper.mGoogleApiClient.isConnecting()) {
             GooglePlayHelper.mGoogleApiClient.connect();
-        }
-    }
-
-    public void openAchievements(View v) {
-
-        boolean isConnected = GooglePlayHelper.IsConnected();
-        if (GooglePlayHelper.IsConnected()) {
-            startActivityForResult(Games.Achievements.getAchievementsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_ACHIEVEMENTS);
         }
     }
 

@@ -43,6 +43,6 @@
             android:layout_height="match_parent"
             app:layout_marginTopPercent="67%"
             app:layout_heightPercent="23%"
-            android:onClick="openAchievements"/>
+            android:onClick="openSettings"/>
     </android.support.percent.PercentRelativeLayout>
 </android.support.percent.PercentRelativeLayout>
