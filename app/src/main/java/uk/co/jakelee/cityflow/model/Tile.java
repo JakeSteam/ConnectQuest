@@ -139,4 +139,8 @@ public class Tile extends SugarRecord {
     public static Tile get(long tileId) {
         return Tile.findById(Tile.class, tileId);
     }
+
+    public String getName() {
+        return Text.get("TILE", getTileTypeId(), "_NAME");
+    }
 }

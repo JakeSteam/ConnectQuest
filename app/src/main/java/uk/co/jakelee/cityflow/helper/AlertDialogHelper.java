@@ -1,8 +1,14 @@
 package uk.co.jakelee.cityflow.helper;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.main.CustomInfoActivity;
@@ -65,5 +71,62 @@ public class AlertDialogHelper {
         });
 
         alertDialog.show();
+    }
+
+    public static void displaySlider(Activity activity, int settingId) {
+        final Setting setting = Setting.get(settingId);
+
+        final Dialog dialog = new Dialog(activity);
+        dialog.setContentView(R.layout.custom_dialog_slider);
+        dialog.setTitle("Set size!");
+        dialog.setCancelable(true);
+        dialog.show();
+
+        TextView settingName = (TextView)dialog.findViewById(R.id.settingName);
+        settingName.setText(setting.getName());
+
+        final TextView currentValue = (TextView)dialog.findViewById(R.id.currentValue);
+        currentValue.setText(setting.getFloatValue() + "");
+
+        final TextView minValue = (TextView)dialog.findViewById(R.id.minValue);
+        minValue.setText(setting.getFloatMin() + "");
+
+        final TextView maxValue = (TextView)dialog.findViewById(R.id.maxValue);
+        maxValue.setText(setting.getFloatMax() + "");
+
+        final SeekBar seekbar = (SeekBar) dialog.findViewById(R.id.seekbar);
+        seekbar.setProgress(getProgressFromFloat(setting.getFloatValue(), setting.getFloatMin(), setting.getFloatMax()));
+        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
+                currentValue.setText(String.format("%.2f",
+                        getFloatFromProgress(seekbar.getProgress(), setting.getFloatMin(), setting.getFloatMax())));
+            }
+        });
+
+        final TextView saveValue = (TextView) dialog.findViewById(R.id.saveValue);
+        saveValue.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                float adjustedValue = getFloatFromProgress(seekbar.getProgress(), setting.getFloatMin(), setting.getFloatMax());
+                setting.setFloatValue(adjustedValue);
+                setting.save();
+                dialog.dismiss();
+            }
+        });
+    }
+
+    public static float getFloatFromProgress(int value, float min, float max) {
+        return min + (((max - min) * value) / 100);
+    }
+
+    public static int getProgressFromFloat(float value, float min, float max) {
+        return (int) Math.ceil(((value - min) / (max - min)) * 100);
+
     }
 }

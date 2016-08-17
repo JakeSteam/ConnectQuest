@@ -50,7 +50,7 @@ public class MainActivity extends Activity implements
         super.onStart();
 
         if (Setting.getSafeBoolean(Constants.SETTING_SIGN_IN) && GooglePlayHelper.AreGooglePlayServicesInstalled(this) && !GooglePlayHelper.mGoogleApiClient.isConnecting()) {
-            GooglePlayHelper.mGoogleApiClient.connect();
+            //GooglePlayHelper.mGoogleApiClient.connect();
         }
     }
 

@@ -60,6 +60,14 @@ public class SettingsActivity extends Activity {
         TextView playerName = (TextView) findViewById(R.id.playerNameDisplay);
         playerName.setText(Setting.getString(Constants.SETTING_PLAYER_NAME));
 
+        TextView minZoom = (TextView) findViewById(R.id.minZoomButton);
+        minZoom.setText(String.format("%.2f",
+                Setting.getFloat(Constants.SETTING_MIN_ZOOM)));
+
+        TextView maxZoom = (TextView) findViewById(R.id.maxZoomButton);
+        maxZoom.setText(String.format("%.2f",
+                Setting.getFloat(Constants.SETTING_MAX_ZOOM)));
+
         // Google Play settings
         boolean isConnected = GooglePlayHelper.IsConnected();
         findViewById(R.id.signInButton).setVisibility(isConnected ? View.GONE : View.VISIBLE);
@@ -108,13 +116,15 @@ public class SettingsActivity extends Activity {
         }
     }
 
+    public void changeSlider(View v) {
+        AlertDialogHelper.displaySlider(this, Integer.parseInt((String)v.getTag()));
+    }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         GooglePlayHelper.SavedGamesIntent(getApplicationContext(), this, intent);
     }
 
     public void openAchievements(View v) {
-
-        boolean isConnected = GooglePlayHelper.IsConnected();
         if (GooglePlayHelper.IsConnected()) {
             startActivityForResult(Games.Achievements.getAchievementsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_ACHIEVEMENTS);
         }

@@ -33,7 +33,6 @@ import uk.co.jakelee.cityflow.model.Achievement;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Statistic;
-import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
 
 public class GooglePlayHelper implements com.google.android.gms.common.api.ResultCallback {
@@ -59,7 +58,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
 
         mResolvingConnectionFailure = BaseGameUtils.resolveConnectionFailure(activity,
                 mGoogleApiClient, connectionResult,
-                RC_SIGN_IN, Text.get("ERROR_CONNECTION"));
+                RC_SIGN_IN, ErrorHelper.get(ErrorHelper.Error.FAILEDTOCONNECT));
     }
 
     public static void ActivityResult(Activity activity, int requestCode, int resultCode) {
