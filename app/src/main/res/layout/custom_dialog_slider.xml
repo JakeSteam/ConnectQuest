@@ -49,13 +49,26 @@
         android:layout_below="@id/currentValue"/>
 
     <TextView
+        android:id="@+id/close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Close"
+        android:background="@drawable/ui_panel_orange"
+        android:textSize="25sp"
+        android:layout_marginTop="25dp"
+        android:textColor="@color/black"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/seekbar"/>
+
+    <TextView
         android:id="@+id/saveValue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Save"
         android:background="@drawable/ui_panel_blue"
         android:textSize="25sp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="25dp"
+        android:layout_toRightOf="@id/close"
         android:textColor="@color/black"
         android:gravity="center_horizontal"
         android:layout_below="@id/seekbar"/>

@@ -86,13 +86,13 @@ public class AlertDialogHelper {
         settingName.setText(setting.getName());
 
         final TextView currentValue = (TextView)dialog.findViewById(R.id.currentValue);
-        currentValue.setText(setting.getFloatValue() + "");
+        currentValue.setText(String.format("%.2f", setting.getFloatValue()));
 
         final TextView minValue = (TextView)dialog.findViewById(R.id.minValue);
-        minValue.setText(setting.getFloatMin() + "");
+        minValue.setText(String.format("%.2f", setting.getFloatMin()));
 
         final TextView maxValue = (TextView)dialog.findViewById(R.id.maxValue);
-        maxValue.setText(setting.getFloatMax() + "");
+        maxValue.setText(String.format("%.2f", setting.getFloatMax()));
 
         final SeekBar seekbar = (SeekBar) dialog.findViewById(R.id.seekbar);
         seekbar.setProgress(getProgressFromFloat(setting.getFloatValue(), setting.getFloatMin(), setting.getFloatMax()));
@@ -110,12 +110,17 @@ public class AlertDialogHelper {
             }
         });
 
-        final TextView saveValue = (TextView) dialog.findViewById(R.id.saveValue);
-        saveValue.setOnClickListener(new Button.OnClickListener() {
+        dialog.findViewById(R.id.saveValue).setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 float adjustedValue = getFloatFromProgress(seekbar.getProgress(), setting.getFloatMin(), setting.getFloatMax());
                 setting.setFloatValue(adjustedValue);
                 setting.save();
+                dialog.dismiss();
+            }
+        });
+
+        dialog.findViewById(R.id.close).setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
                 dialog.dismiss();
             }
         });
