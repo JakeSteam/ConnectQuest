@@ -329,6 +329,43 @@
                         android:onClick="openCloudSaves"/>
                 </TableRow>
             </TableLayout>
+
+            <!-- Other -->
+            <TableLayout
+                android:background="@drawable/ui_panel_city"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:shrinkColumns="*"
+                android:stretchColumns="*">
+
+                <TableRow>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_span="2"
+                        android:text="Other Settings"
+                        android:textColor="@color/black"
+                        android:textSize="28sp" />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/supportCodeButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:text="Enter Support Code"
+                        android:layout_span="2"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:onClick="openSupportCode"/>
+                </TableRow>
+            </TableLayout>
         </LinearLayout>
     </ScrollView>
 </android.support.percent.PercentRelativeLayout>

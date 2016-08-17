@@ -120,6 +120,10 @@ public class SettingsActivity extends Activity {
         AlertDialogHelper.displaySlider(this, Integer.parseInt((String)v.getTag()));
     }
 
+    public void openSupportCode(View v) {
+        AlertDialogHelper.enterSupportCode(getApplicationContext(), this);
+    }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         GooglePlayHelper.SavedGamesIntent(getApplicationContext(), this, intent);
     }

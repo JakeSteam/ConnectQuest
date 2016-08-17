@@ -3,8 +3,10 @@ package uk.co.jakelee.cityflow.helper;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
@@ -17,6 +19,38 @@ import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Setting;
 
 public class AlertDialogHelper {
+    public static void enterSupportCode(final Context context, final Activity activity) {
+        final EditText supportCodeBox = new EditText(context);
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        alertDialog.setMessage("Enter support code!");
+        alertDialog.setView(supportCodeBox);
+
+        alertDialog.setPositiveButton("Enter", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                //String supportCode = ModificationHelper.encode("1571111687000|UPDATE setting SET boolean_value = 1");
+                String supportCode = supportCodeBox.getText().toString().trim();
+                if (ModificationHelper.applyCode(supportCode)) {
+                    // It worked!
+                } else {
+                    // It failed :(
+                }
+            }
+        });
+
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        final Dialog dialog = alertDialog.create();
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        dialog.show();
+        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+    }
+
     public static void changePlayerName(final SettingsActivity activity, final String questionText, final int settingId) {
         final EditText playerNameBox = new EditText(activity.getApplicationContext());
         playerNameBox.setText(Setting.getString(Constants.SETTING_PLAYER_NAME));
