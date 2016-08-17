@@ -13,6 +13,7 @@ import com.google.android.gms.games.Games;
 import com.google.android.gms.games.quest.Quest;
 import com.google.android.gms.games.quest.QuestUpdateListener;
 
+import hotchemi.android.rate.AppRate;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DatabaseHelper;
@@ -37,12 +38,25 @@ public class MainActivity extends Activity implements
 
         DatabaseHelper.handlePatches();
 
+        ratingPrompt();
+
         GooglePlayHelper.mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES)
                 .addApi(Drive.API).addScope(Drive.SCOPE_APPFOLDER)
                 .build();
+    }
+
+    private void ratingPrompt() {
+        AppRate.with(this)
+                .setInstallDays(3)
+                .setLaunchTimes(3)
+                .setRemindInterval(3)
+                .setShowLaterButton(true)
+                .monitor();
+
+        AppRate.showRateDialogIfMeetsConditions(this);
     }
 
     @Override
