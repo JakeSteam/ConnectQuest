@@ -107,7 +107,7 @@ public class AlertDialogHelper {
         alertDialog.show();
     }
 
-    public static void displaySlider(Activity activity, int settingId) {
+    public static void displaySlider(final SettingsActivity activity, int settingId) {
         final Setting setting = Setting.get(settingId);
 
         final Dialog dialog = new Dialog(activity);
@@ -150,6 +150,7 @@ public class AlertDialogHelper {
                 setting.setFloatValue(adjustedValue);
                 setting.save();
                 dialog.dismiss();
+                activity.populateSettings();
             }
         });
 

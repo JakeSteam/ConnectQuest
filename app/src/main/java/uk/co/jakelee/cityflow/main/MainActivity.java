@@ -63,16 +63,15 @@ public class MainActivity extends Activity implements
     protected void onStart() {
         super.onStart();
 
-        if (Setting.getSafeBoolean(Constants.SETTING_SIGN_IN) && GooglePlayHelper.AreGooglePlayServicesInstalled(this) && !GooglePlayHelper.mGoogleApiClient.isConnecting()) {
-            //GooglePlayHelper.mGoogleApiClient.connect();
+        if (Setting.getSafeBoolean(Constants.SETTING_SIGN_IN) && GooglePlayHelper.AreGooglePlayServicesInstalled(this)
+                && !GooglePlayHelper.IsConnected() && !GooglePlayHelper.mGoogleApiClient.isConnecting()) {
+            GooglePlayHelper.mGoogleApiClient.connect();
         }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-
-        GooglePlayHelper.mGoogleApiClient.disconnect();
     }
 
     @Override
