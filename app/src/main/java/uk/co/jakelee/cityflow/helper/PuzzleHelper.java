@@ -19,7 +19,7 @@ import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
 public class PuzzleHelper {
-    public static Pair<Boolean, Boolean> updateBest(Puzzle puzzle, long timeTaken, int movesTaken, boolean isCustom) {
+    public static Pair<Boolean, Boolean> updateBests(Puzzle puzzle, long timeTaken, int movesTaken, boolean isCustom) {
         boolean newBestTime = false;
         boolean newBestMoves = false;
         if (timeTaken >= 0 && (timeTaken < puzzle.getBestTime() || puzzle.getBestTime() == 0)) {
@@ -44,30 +44,14 @@ public class PuzzleHelper {
         puzzle.save();
 
         if (!isCustom) {
-            updatePackTotal(puzzle.getPackId());
+            final Pack pack = Pack.getPack(puzzle.getPackId());
+            new Thread(new Runnable() {
+                public void run() {
+                    pack.refreshMetrics();
+                }
+            }).start();
         }
         return new Pair<>(newBestTime, newBestMoves);
-    }
-
-    public static void updatePackTotal(int packId) {
-        Pack pack = Pack.getPack(packId);
-        List<Puzzle> puzzles = pack.getPuzzles();
-
-        int stars = 0;
-        for (Puzzle puzzle : puzzles) {
-            if (puzzle.hasCompletionStar()) {
-                stars++;
-            }
-            if (puzzle.hasMovesStar()) {
-                stars++;
-            }
-            if (puzzle.hasTimeStar()) {
-                stars++;
-            }
-        }
-
-        pack.setCurrentStars(stars);
-        pack.save();
     }
 
     public static long getAdjustedTime(long timeLastMoved, long startTime, boolean timeBoostActive) {

@@ -288,7 +288,7 @@ public class PuzzleActivity extends Activity {
         boolean isFirstComplete = puzzle.getBestTime() == 0;
 
         int originalStars = puzzle.getStarCount();
-        Pair<Boolean, Boolean> newBests = PuzzleHelper.updateBest(puzzle, timeInMilliseconds, movesMade, isCustom);
+        Pair<Boolean, Boolean> newBests = PuzzleHelper.updateBests(puzzle, timeInMilliseconds, movesMade, isCustom);
         int stars = puzzle.getStarCount();
 
         populateStoryPuzzleCompleteScreen(puzzle, isFirstComplete, originalStars, stars, isCustom);

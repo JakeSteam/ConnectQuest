@@ -152,7 +152,7 @@ public class TileType extends SugarRecord {
     }
 
     public String getName() {
-        return Text.get("TILE_", getTypeId(), "_TEXT");
+        return Text.get("TILE_", getTypeId(), "_NAME");
     }
 
     public static TileType get(int tileTypeId) {

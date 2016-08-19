@@ -18,6 +18,11 @@ public class Constants {
     // Percentage based constants
     public static final int FULL_RECOMPLETE_BOOST_CHANCE = 25;
 
+    // Google play constants
+    public static final String LEADERBOARD_PUZZLES_COMPLETED = "CgkIgrzuo64REAIQDg";
+    public static final String LEADERBOARD_PUZZLES_FULLY_COMPLETED = "CgkIgrzuo64REAIQDw";
+    public static final String LEADERBOARD_BOOSTS_USED = "CgkIgrzuo64REAIQEg";
+
     // Lookup constants
     public static final int BOOST_MIN = 1;
     public static final int BOOST_MAX = 4;

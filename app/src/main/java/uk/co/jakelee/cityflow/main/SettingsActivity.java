@@ -163,8 +163,6 @@ public class SettingsActivity extends Activity {
         Setting signIn = Setting.findById(Setting.class, Constants.SETTING_SIGN_IN);
         signIn.setBooleanValue(true);
         signIn.save();
-
-        finish();
     }
 
     public void signOut(View v) {
