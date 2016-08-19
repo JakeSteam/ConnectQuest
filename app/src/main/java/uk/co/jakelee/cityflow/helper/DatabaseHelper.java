@@ -40,6 +40,7 @@ public class DatabaseHelper {
 
     private static void createAchievement() {
         List<Achievement> achievements = new ArrayList<>();
+            achievements.add(new Achievement("Get It Turning", "Rotate 100 tiles", 100, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQAw"));
         Achievement.saveInTx(achievements);
     }
 
@@ -235,8 +236,9 @@ public class DatabaseHelper {
 
     private static void createStatistic() {
         List<Statistic> statistics = new ArrayList<>();
-            statistics.add(new Statistic(Constants.STATISTIC_PUZZLES_COMPLETED, 0));
-            statistics.add(new Statistic(Constants.STATISTIC_TILES_ROTATED, 0));
+            statistics.add(new Statistic(Constants.STATISTIC_PUZZLES_COMPLETED, Statistic.Fields.PuzzlesCompleted, 0));
+            statistics.add(new Statistic(Constants.STATISTIC_TILES_ROTATED, Statistic.Fields.TilesRotated, 0, 0));
+            statistics.add(new Statistic(Constants.STATISTIC_QUESTS_COMPLETED, Statistic.Fields.QuestsCompleted, 0));
         Statistic.saveInTx(statistics);
     }
 

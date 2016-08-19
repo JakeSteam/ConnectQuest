@@ -19,6 +19,12 @@ public class Constants {
     public static final int FULL_RECOMPLETE_BOOST_CHANCE = 25;
 
     // Google play constants
+    public static final String EVENT_COMPLETE_PUZZLE = "CgkIgrzuo64REAIQBA";
+    public static final String EVENT_FULLY_COMPLETE_PUZZLE = "CgkIgrzuo64REAIQBQ";
+    public static final String EVENT_USE_BOOST = "CgkIgrzuo64REAIQBg";
+    public static final String EVENT_TILE_ROTATE = "CgkIgrzuo64REAIQBw";
+    public static final String EVENT_IMPORT_PUZZLE = "CgkIgrzuo64REAIQCA";
+
     public static final String LEADERBOARD_PUZZLES_COMPLETED = "CgkIgrzuo64REAIQDg";
     public static final String LEADERBOARD_PUZZLES_FULLY_COMPLETED = "CgkIgrzuo64REAIQDw";
     public static final String LEADERBOARD_BOOSTS_USED = "CgkIgrzuo64REAIQEg";
@@ -69,6 +75,7 @@ public class Constants {
     public static final int STATISTIC_UNTRACKED = -1;
     public static final int STATISTIC_PUZZLES_COMPLETED = 1;
     public static final int STATISTIC_TILES_ROTATED = 2;
+    public static final int STATISTIC_QUESTS_COMPLETED = 3;
     public static final int SIDE_NORTH = 1;
     public static final int SIDE_EAST = 2;
     public static final int SIDE_SOUTH = 3;

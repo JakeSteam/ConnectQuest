@@ -129,7 +129,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             int currentValue = statistic.getIntValue();
             int lastSentValue = statistic.getLastSentValue();
             List<Achievement> achievements = Select.from(Achievement.class).where(
-                    Condition.prop("player_info_id").eq(statistic.getId())).orderBy("maximum_value ASC").list();
+                    Condition.prop("statistic_id").eq(statistic.getId())).orderBy("maximum_value ASC").list();
 
             for (Achievement achievement : achievements) {
                 UpdateAchievement(achievement, currentValue, lastSentValue);
@@ -144,7 +144,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         boolean isAchieved = (achievement.getMaximumValue() <= lastSentValue);
         if (hasChanged && !isAchieved && mGoogleApiClient.isConnected()) {
             int difference = currentValue - lastSentValue;
-            if (achievement.getMaximumValue() == 1 || achievement.getPlayerInfoID() == 17 || achievement.getPlayerInfoID() == 23) {
+            if (achievement.getMaximumValue() == 1) {
                 Games.Achievements.unlock(mGoogleApiClient, achievement.getRemoteID());
             } else {
                 Games.Achievements.increment(mGoogleApiClient, achievement.getRemoteID(), difference);

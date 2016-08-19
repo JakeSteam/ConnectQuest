@@ -9,6 +9,7 @@ import uk.co.jakelee.cityflow.helper.ModificationHelper;
 
 public class Statistic extends SugarRecord {
     private int statisticId;
+    private Fields enumName;
     private String stringValue;
     private String intValue;
     private String boolValue;
@@ -17,29 +18,32 @@ public class Statistic extends SugarRecord {
     public Statistic() {
     }
 
-    public Statistic(int statisticId, String stringValue) {
+    public Statistic(int statisticId, Fields enumName, String stringValue) {
         this.statisticId = statisticId;
+        this.enumName = enumName;
         this.stringValue = ModificationHelper.encode(stringValue, statisticId);
         this.lastSentValue = Constants.STATISTIC_UNTRACKED;
     }
 
-    public Statistic(int statisticId, int intValue) {
+    public Statistic(int statisticId, Fields enumName, int intValue) {
         this.statisticId = statisticId;
+        this.enumName = enumName;
         this.intValue = ModificationHelper.encode(intValue, statisticId);
         this.lastSentValue = Constants.STATISTIC_UNTRACKED;
     }
 
-    public Statistic(int statisticId, boolean boolValue) {
+    public Statistic(int statisticId, Fields enumName, boolean boolValue) {
         this.statisticId = statisticId;
+        this.enumName = enumName;
         this.boolValue = ModificationHelper.encode(boolValue, statisticId);
         this.lastSentValue = Constants.STATISTIC_UNTRACKED;
     }
 
-    public Statistic(int statisticId, int intValue, int lastSentValue) {
+    public Statistic(int statisticId, Fields enumName, int intValue, int lastSentValue) {
         this.statisticId = statisticId;
+        this.enumName = enumName;
         this.intValue = ModificationHelper.encode(intValue, statisticId);
         this.lastSentValue = lastSentValue;
-        this.lastSentValue = Constants.STATISTIC_UNTRACKED;
     }
 
     public int getStatisticId() {
@@ -48,6 +52,14 @@ public class Statistic extends SugarRecord {
 
     public void setStatisticId(int statisticId) {
         this.statisticId = statisticId;
+    }
+
+    public Fields getEnumName() {
+        return enumName;
+    }
+
+    public void setEnumName(Fields enumName) {
+        this.enumName = enumName;
     }
 
     public String getStringValue() {
@@ -88,7 +100,7 @@ public class Statistic extends SugarRecord {
 
     public static void increaseByOne(Fields statistic) {
         Statistic statToIncrease = Select.from(Statistic.class).where(
-                Condition.prop("name").eq(statistic)).first();
+                Condition.prop("enum_name").eq(statistic)).first();
 
         if (statToIncrease != null) {
             statToIncrease.setIntValue(statToIncrease.getIntValue() + 1);
@@ -98,7 +110,7 @@ public class Statistic extends SugarRecord {
 
     public static void increaseByX(Fields statistic, int value) {
         Statistic statToIncrease = Select.from(Statistic.class).where(
-                Condition.prop("name").eq(statistic)).first();
+                Condition.prop("enum_name").eq(statistic)).first();
 
         if (statToIncrease != null) {
             statToIncrease.setIntValue(statToIncrease.getIntValue() + value);
@@ -111,6 +123,6 @@ public class Statistic extends SugarRecord {
     }
 
     public enum Fields {
-        QuestsCompleted
+        PuzzlesCompleted, TilesRotated, QuestsCompleted
     }
 }

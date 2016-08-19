@@ -15,11 +15,12 @@ import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
+import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
 public class PuzzleHelper {
-    public static Pair<Boolean, Boolean> updateBests(Puzzle puzzle, long timeTaken, int movesTaken, boolean isCustom) {
+    public static Pair<Boolean, Boolean> updateBests(Puzzle puzzle, long timeTaken, final int movesTaken, boolean isCustom) {
         boolean newBestTime = false;
         boolean newBestMoves = false;
         if (timeTaken >= 0 && (timeTaken < puzzle.getBestTime() || puzzle.getBestTime() == 0)) {
@@ -48,6 +49,9 @@ public class PuzzleHelper {
             new Thread(new Runnable() {
                 public void run() {
                     pack.refreshMetrics();
+                    Statistic.increaseByX(Statistic.Fields.TilesRotated, movesTaken);
+                    GooglePlayHelper.UpdateEvent(Constants.EVENT_TILE_ROTATE, movesTaken);
+                    GooglePlayHelper.UpdateAchievements();
                 }
             }).start();
         }
