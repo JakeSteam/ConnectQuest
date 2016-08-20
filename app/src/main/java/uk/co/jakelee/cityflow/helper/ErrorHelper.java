@@ -4,7 +4,7 @@ import uk.co.jakelee.cityflow.model.Text;
 
 public class ErrorHelper {
     public enum Error {
-        FAILEDTOCONNECT
+        FAILED_TO_CONNECT, SUPPORT_CODE_INVALID
     }
 
     public static String get(Error error) {

@@ -11,12 +11,15 @@ import android.widget.TextView;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.quest.Quests;
 
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.model.Setting;
+import uk.co.jakelee.cityflow.model.Text;
 
 public class SettingsActivity extends Activity {
     private DisplayHelper dh;
@@ -97,22 +100,18 @@ public class SettingsActivity extends Activity {
             settingToToggle.setBooleanValue(!settingToToggle.getBooleanValue());
             settingToToggle.save();
 
+            Crouton.makeText(this, String.format(Text.get(settingToToggle.getBooleanValue() ? "ALERT_SETTING_TOGGLE_ON" : "ALERT_SETTING_TOGGLE_OFF"),
+                    settingToToggle.getName()), Style.CONFIRM).show();
+
             populateSettings();
         }
     }
 
     public void changeText(View v) {
-        int settingID = 0;
         switch (v.getId()) {
             case R.id.playerNameDisplay:
-                settingID = Constants.SETTING_PLAYER_NAME;
+                AlertDialogHelper.changePlayerName(this, "Change Player Name:", Constants.SETTING_PLAYER_NAME);
                 break;
-        }
-
-        if (settingID > 0) {
-            AlertDialogHelper.changePlayerName(this, "Change Player Name:", settingID);
-
-            populateSettings();
         }
     }
 

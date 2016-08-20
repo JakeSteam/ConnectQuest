@@ -12,33 +12,36 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.main.CustomInfoActivity;
 import uk.co.jakelee.cityflow.main.SettingsActivity;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Setting;
+import uk.co.jakelee.cityflow.model.Text;
 
 public class AlertDialogHelper {
     public static void enterSupportCode(final Context context, final Activity activity) {
         final EditText supportCodeBox = new EditText(context);
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
-        alertDialog.setMessage("Enter support code!");
+        alertDialog.setMessage(Text.get("DIALOG_SUPPORT_CODE"));
         alertDialog.setView(supportCodeBox);
 
-        alertDialog.setPositiveButton("Enter", new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_CONFIRM"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 //String supportCode = ModificationHelper.encode("1571111687000|UPDATE setting SET boolean_value = 1");
                 String supportCode = supportCodeBox.getText().toString().trim();
                 if (ModificationHelper.applyCode(supportCode)) {
-                    // It worked!
+                    Crouton.makeText(activity, Text.get("SUCCESS_SUPPORT_CODE"), Style.CONFIRM).show();
                 } else {
-                    // It failed :(
+                    Crouton.makeText(activity, Text.get("ERROR_SUPPORT_CODE_INVALID"), Style.ALERT).show();
                 }
             }
         });
 
-        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton(Text.get("DIALOG_BUTTON_CANCEL"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
@@ -52,23 +55,23 @@ public class AlertDialogHelper {
     }
 
     public static void changePlayerName(final SettingsActivity activity, final String questionText, final int settingId) {
+        final Setting settingToToggle = Setting.findById(Setting.class, settingId);
         final EditText playerNameBox = new EditText(activity.getApplicationContext());
         playerNameBox.setText(Setting.getString(Constants.SETTING_PLAYER_NAME));
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
-        alertDialog.setMessage(questionText);
+        alertDialog.setMessage(String.format(Text.get("DIALOG_CHANGE_TEXT"), settingToToggle.getName()));
         alertDialog.setView(playerNameBox);
 
-        alertDialog.setPositiveButton("Change", new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_CHANGE"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                Setting settingToToggle = Setting.findById(Setting.class, settingId);
                 settingToToggle.setStringValue(playerNameBox.getText().toString().trim());
                 settingToToggle.save();
                 activity.populateSettings();
             }
         });
 
-        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton(Text.get("DIALOG_BUTTON_CANCEL"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
@@ -82,10 +85,10 @@ public class AlertDialogHelper {
         puzzleInfoInput.setText(changeDesc ? puzzleCustom.getDescription() : puzzleCustom.getName());
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
-        alertDialog.setMessage(changeDesc ? "Enter Puzzle Description:" : "Enter Puzzle Name:");
+        alertDialog.setMessage(String.format(Text.get("DIALOG_CHANGE_TEXT"), changeDesc ? Text.get("WORD_DESCRIPTION") : Text.get("WORD_NAME")));
         alertDialog.setView(puzzleInfoInput);
 
-        alertDialog.setPositiveButton("Change", new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_CHANGE"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 String newString = puzzleInfoInput.getText().toString().trim();
                 if (changeDesc) {
@@ -98,7 +101,7 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton(Text.get("DIALOG_BUTTON_CANCEL"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
@@ -112,7 +115,7 @@ public class AlertDialogHelper {
 
         final Dialog dialog = new Dialog(activity);
         dialog.setContentView(R.layout.custom_dialog_slider);
-        dialog.setTitle("Set size!");
+        dialog.setTitle(String.format(Text.get("DIALOG_CHANGE_SLIDER"), setting.getName()));
         dialog.setCancelable(true);
         dialog.show();
 

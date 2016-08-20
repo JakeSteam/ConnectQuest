@@ -55,6 +55,8 @@ public class DatabaseHelper {
 
     private static void createText() {
         List<Text> texts = new ArrayList<>();
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SETTING_TOGGLE_ON", "Toggled %1$s on!"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SETTING_TOGGLE_OFF", "Toggled %1$s off!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_1_NAME", "Undo"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_1_DESC", "Undo your 1 most recent move, also decreasing the move count."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_1_UPGRADE", "Upgrading Undo increases the number of undoes that can be performed per puzzle by 1 per level."));
@@ -67,10 +69,17 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_4_NAME", "Shuffle Board"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_4_DESC", "Randomly all rotate all tiles on the board 1 time."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_4_UPGRADE", "Upgrading Shuffle Board increases the number of times the board can be shuffled by 1 per level."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_TEXT", "Change %1$s text"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_SLIDER", "Change %1$s value"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CHANGE", "Change"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CONFIRM", "Confirm"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CANCEL", "Cancel"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_SUPPORT_CODE", "Support Code"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_0_NAME", "None"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_1_NAME", "Grass"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_2_NAME", "City"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_FAILEDTOCONNECT", "Couldn't log in. Please try again later."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_FAILED_TO_CONNECT", "Couldn't log in. Please try again later."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_SUPPORT_CODE_INVALID", "Failed to apply support code! Please contact support."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_0_NAME", "None"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_1_NAME", "Water"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_2_NAME", "Road"));
@@ -116,6 +125,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_7_NAME", "Player Name"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_1_NAME", "Puzzles Completed"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_2_NAME", "Tiles Rotated"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SUCCESS_SUPPORT_CODE", "Successfully applied support code!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_0_NAME", "Invisible Tile"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_1_NAME", "Grass Road Corner"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_2_NAME", "Grass Road Straight"));
@@ -168,6 +178,8 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_49_NAME", "City Grass Corner"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_50_NAME", "City Canal Corner"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_51_NAME", "City Road/Path Corner (Inverse)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_NAME", "Name"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_DESCRIPTION", "Description"));
         Text.saveInTx(texts);
     }
 
