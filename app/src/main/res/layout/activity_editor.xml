@@ -53,7 +53,6 @@
             android:layout_height="wrap_content"
             android:textSize="30sp"
             android:textColor="@color/black"
-            android:text="None"
             android:maxLines="1"
             android:singleLine="true"
             android:layout_marginTop="5dp"

@@ -19,6 +19,7 @@ import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
+import uk.co.jakelee.cityflow.model.Text;
 
 public class PackActivity extends Activity {
     private DisplayHelper dh;
@@ -33,6 +34,15 @@ public class PackActivity extends Activity {
 
         Intent intent = getIntent();
         selectedPack = Pack.getPack(intent.getIntExtra(Constants.INTENT_PACK, 0));
+
+        populateText();
+    }
+
+    private void populateText() {
+        ((TextView) findViewById(R.id.bestTime)).setText(Text.get("METRIC_BEST_TIME"));
+        ((TextView) findViewById(R.id.bestMoves)).setText(Text.get("METRIC_BEST_MOVES"));
+        ((TextView) findViewById(R.id.tilesEarned)).setText(Text.get("METRIC_TILES_EARNED"));
+        ((TextView) findViewById(R.id.puzzleButton)).setText(Text.get("WORD_START"));
     }
 
     @Override

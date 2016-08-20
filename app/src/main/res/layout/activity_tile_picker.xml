@@ -28,11 +28,11 @@
             android:orientation="horizontal"
             android:layout_gravity="center_vertical">
             <TextView
+                android:id="@+id/areaLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textColor="@color/black"
-                android:textSize="26sp"
-                android:text="Area: "/>
+                android:textSize="26sp"/>
             <com.thomashaertel.widget.MultiSpinner
                 android:id="@+id/environmentPicker"
                 android:layout_width="wrap_content"
@@ -50,11 +50,11 @@
             android:layout_below="@id/environmentContainer"
             android:layout_gravity="center_vertical">
             <TextView
+                android:id="@+id/flowLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textColor="@color/black"
-                android:textSize="26sp"
-                android:text="Flow: "/>
+                android:textSize="26sp"/>
             <com.thomashaertel.widget.MultiSpinner
                 android:id="@+id/flowPicker"
                 android:layout_width="wrap_content"

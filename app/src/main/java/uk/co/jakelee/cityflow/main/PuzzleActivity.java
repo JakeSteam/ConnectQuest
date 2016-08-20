@@ -29,6 +29,7 @@ import uk.co.jakelee.cityflow.helper.TileHelper;
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Setting;
+import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
@@ -68,6 +69,11 @@ public class PuzzleActivity extends Activity {
         startCountdownTimer();
 
         updateBoostVisibility();
+        populateText();
+    }
+
+    private void populateText() {
+        ((TextView) findViewById(R.id.pauseScreenText)).setText(Text.get("WORD_PAUSED"));
     }
 
     public void updateBoostVisibility() {

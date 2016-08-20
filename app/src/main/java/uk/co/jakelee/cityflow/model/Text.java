@@ -62,14 +62,23 @@ public class Text extends SugarRecord{
     }
 
     public static String get(String textId) {
+        // Return selected language, fallback to english, fallback to text ID
         int languageId = Constants.LANGUAGE_EN_GB;
-
         if (MainActivity.prefs != null) {
             languageId = MainActivity.prefs.getInt("language", Constants.LANGUAGE_EN_GB);
         }
+
         Text text = Select.from(Text.class).where(
                 Condition.prop("text_id").eq(textId),
                 Condition.prop("language").eq(languageId)).first();
+
+        if (text != null) {
+            return text.getText();
+        }
+
+        text = Select.from(Text.class).where(
+                Condition.prop("text_id").eq(textId),
+                Condition.prop("language").eq(Constants.LANGUAGE_EN_GB)).first();
 
         return text != null ? text.getText() : textId;
     }

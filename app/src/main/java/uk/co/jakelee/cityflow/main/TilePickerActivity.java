@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.thomashaertel.widget.MultiSpinner;
 
@@ -46,6 +47,12 @@ public class TilePickerActivity extends Activity {
         }
 
         displayTilePicker();
+        populateText();
+    }
+
+    private void populateText() {
+        ((TextView) findViewById(R.id.areaLabel)).setText(Text.get("WORD_AREA"));
+        ((TextView) findViewById(R.id.flowLabel)).setText(Text.get("WORD_FLOW"));
     }
 
     private void displayTilePicker() {

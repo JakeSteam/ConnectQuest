@@ -117,6 +117,8 @@ public class AlertDialogHelper {
         dialog.setContentView(R.layout.custom_dialog_slider);
         dialog.setTitle(String.format(Text.get("DIALOG_CHANGE_SLIDER"), setting.getName()));
         dialog.setCancelable(true);
+        ((TextView)dialog.findViewById(R.id.close)).setText(Text.get("DIALOG_BUTTON_CLOSE"));
+        ((TextView)dialog.findViewById(R.id.saveValue)).setText(Text.get("DIALOG_BUTTON_SAVE"));
         dialog.show();
 
         TextView settingName = (TextView)dialog.findViewById(R.id.settingName);

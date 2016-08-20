@@ -13,6 +13,7 @@ import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
+import uk.co.jakelee.cityflow.model.Text;
 
 public class CustomInfoActivity extends Activity {
     private Puzzle puzzle;
@@ -35,7 +36,13 @@ public class CustomInfoActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
+        populateText();
         displayPuzzleInfo();
+    }
+
+    private void populateText() {
+        ((TextView) findViewById(R.id.puzzleName)).setText(Text.get("WORD_NAME"));
+        ((TextView) findViewById(R.id.puzzleDesc)).setText(Text.get("WORD_DESCRIPTION"));
     }
 
     public void redisplayInfo() {

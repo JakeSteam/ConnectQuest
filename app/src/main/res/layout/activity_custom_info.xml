@@ -23,7 +23,6 @@
             android:id="@+id/puzzleName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Puzzle Name"
             android:textColor="@color/black"
             android:textSize="24sp"/>
         <uk.co.jakelee.cityflow.components.TextAwesome
@@ -40,7 +39,6 @@
             android:id="@+id/puzzleDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Puzzle Desc"
             android:layout_below="@id/puzzleName"
             android:textColor="@color/black"
             android:textSize="18sp"/>

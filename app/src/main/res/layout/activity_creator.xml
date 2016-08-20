@@ -23,8 +23,7 @@
             android:gravity="center_horizontal"
             android:textSize="26sp"
             android:padding="5dp"
-            android:background="@drawable/ui_panel_grey"
-            android:text="Created"/>
+            android:background="@drawable/ui_panel_grey"/>
         <TextView
             android:id="@+id/othersPuzzles"
             android:layout_width="wrap_content"
@@ -33,8 +32,7 @@
             android:gravity="center_horizontal"
             android:textSize="26sp"
             android:padding="5dp"
-            android:background="@drawable/ui_panel_grey"
-            android:text="Imported"/>
+            android:background="@drawable/ui_panel_grey"/>
     </LinearLayout>
 
     <ScrollView
@@ -70,8 +68,7 @@
                     android:textSize="26sp"
                     android:padding="5dp"
                     android:background="@drawable/ui_panel_grey"
-                    android:onClick="importPuzzle"
-                    android:text="Import Puzzle"/>
+                    android:onClick="importPuzzle"/>
                 <TextView
                     android:id="@+id/newPuzzle"
                     android:layout_width="match_parent"
@@ -81,8 +78,7 @@
                     android:textSize="26sp"
                     android:padding="5dp"
                     android:background="@drawable/ui_panel_grey"
-                    android:onClick="newPuzzle"
-                    android:text="New Puzzle"/>
+                    android:onClick="newPuzzle"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

@@ -69,10 +69,16 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_4_NAME", "Shuffle Board"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_4_DESC", "Randomly all rotate all tiles on the board 1 time."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_4_UPGRADE", "Upgrading Shuffle Board increases the number of times the board can be shuffled by 1 per level."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_CREATED", "Created"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_IMPORTED", "Imported"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_IMPORT_PUZZLE", "Import Puzzle"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_NEW_PUZZLE", "New Puzzle"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_TEXT", "Change %1$s text"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_SLIDER", "Change %1$s value"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CHANGE", "Change"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CONFIRM", "Confirm"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CLOSE", "Close"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_SAVE", "Save"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CANCEL", "Cancel"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_SUPPORT_CODE", "Support Code"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_0_NAME", "None"));
@@ -88,6 +94,9 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_5_NAME", "Canal"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "GOOGLE_SIGN_IN", "Sign In"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "GOOGLE_SIGN_OUT", "Sign Out"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "METRIC_TILES_EARNED", "Tiles Earned"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "METRIC_BEST_TIME", "Best Time"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "METRIC_BEST_MOVES", "Best Moves"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_1_NAME", "Tutorial"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_1_DESC", "Let's go with the flow."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_2_NAME", "The Big City"));
@@ -186,6 +195,9 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_51_NAME", "City Road/Path Corner (Inverse)"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_NAME", "Name"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_DESCRIPTION", "Description"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_START", "Start"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_PAUSED", "Paused"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_AREA", "Area"));
         Text.saveInTx(texts);
     }
 

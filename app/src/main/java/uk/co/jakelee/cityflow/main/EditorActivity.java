@@ -21,6 +21,7 @@ import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.ImageHelper;
 import uk.co.jakelee.cityflow.helper.TileHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
+import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
@@ -43,6 +44,12 @@ public class EditorActivity extends Activity {
         List<Tile> tiles = puzzle.getTiles();
         populateTiles(tiles);
         fetchImages(tiles);
+
+        populateText();
+    }
+
+    private void populateText() {
+        ((TextView) findViewById(R.id.selectedTileText)).setText(Text.get("TILE_0_NAME"));
     }
 
     @Override

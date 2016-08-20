@@ -232,8 +232,7 @@
                 android:layout_width="match_parent"
                 android:textSize="60sp"
                 android:textColor="@color/white"
-                android:gravity="center"
-                android:text="Paused"/>
+                android:gravity="center"/>
             <LinearLayout
                 android:id="@+id/pauseButtons"
                 android:layout_width="match_parent"
@@ -270,7 +269,7 @@
                     android:background="@drawable/ui_panel_blue"
                     android:gravity="center_horizontal"
                     android:textSize="36sp"
-                    android:text="Resume &#xf04b;"
+                    android:text="&#xf04b;"
                     android:padding="12dp"
                     android:layout_margin="6dp"
                     android:onClick="resumePuzzle"/>

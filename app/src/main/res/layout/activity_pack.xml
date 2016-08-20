@@ -88,11 +88,11 @@
 
         <TableRow>
             <TextView
+                android:id="@+id/bestTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="26sp"
-                android:text="Best Time:"/>
+                android:textSize="26sp"/>
             <TextView
                 android:id="@+id/puzzleBestTime"
                 android:layout_width="wrap_content"
@@ -103,11 +103,11 @@
 
         <TableRow>
             <TextView
+                android:id="@+id/bestMoves"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="26sp"
-                android:text="Best Moves:"/>
+                android:textSize="26sp"/>
             <TextView
                 android:id="@+id/puzzleBestMoves"
                 android:layout_width="wrap_content"
@@ -118,11 +118,11 @@
 
         <TableRow>
             <TextView
+                android:id="@+id/tilesEarned"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="26sp"
-                android:text="Tiles Earned:"/>
+                android:textSize="26sp"/>
             <TextView
                 android:id="@+id/puzzleTilesUnlocked"
                 android:layout_width="wrap_content"
@@ -140,7 +140,6 @@
                 android:background="@drawable/ui_button_city"
                 android:gravity="center_horizontal"
                 android:textSize="26sp"
-                android:text="Start"
                 android:padding="10dp"
                 android:layout_span="2"/>
         </TableRow>

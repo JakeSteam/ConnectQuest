@@ -21,6 +21,7 @@ import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
 import uk.co.jakelee.cityflow.helper.RandomHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
+import uk.co.jakelee.cityflow.model.Text;
 
 public class CreatorActivity extends Activity {
     private boolean displayOthers = false;
@@ -37,7 +38,15 @@ public class CreatorActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
+        populateText();
         populatePuzzles();
+    }
+
+    private void populateText() {
+        ((TextView) findViewById(R.id.myPuzzles)).setText(Text.get("CREATOR_CREATED"));
+        ((TextView) findViewById(R.id.othersPuzzles)).setText(Text.get("CREATOR_IMPORTED"));
+        ((TextView) findViewById(R.id.importPuzzle)).setText(Text.get("CREATOR_IMPORT_PUZZLE"));
+        ((TextView) findViewById(R.id.newPuzzle)).setText(Text.get("CREATOR_NEW_PUZZLE"));
     }
 
     public void populatePuzzles() {
