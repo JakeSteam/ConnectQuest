@@ -203,9 +203,9 @@ public class DatabaseHelper {
 
     private static void createPack() {
         List<Pack> packs = new ArrayList<>();
-            packs.add(new Pack(1, "IAP code", "CgkIgrzuo64REAIQEA", "CgkIgrzuo64REAIQEQ", 6));
-            packs.add(new Pack(2, "IAP code", "CgkIgrzuo64REAIQEw", "CgkIgrzuo64REAIQFA", 30));
-            packs.add(new Pack(3, "IAP code", "CgkIgrzuo64REAIQFQ", "CgkIgrzuo64REAIQFg", 30));
+            packs.add(new Pack(1, "", "CgkIgrzuo64REAIQEA", "CgkIgrzuo64REAIQEQ", 6));
+            packs.add(new Pack(2, "unlock_pack2", "CgkIgrzuo64REAIQEw", "CgkIgrzuo64REAIQFA", 30));
+            packs.add(new Pack(3, "unlock_pack3", "CgkIgrzuo64REAIQFQ", "CgkIgrzuo64REAIQFg", 30));
         Pack.saveInTx(packs);
     }
 

@@ -13,11 +13,14 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.games.Games;
+
 import java.util.List;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
+import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.model.Pack;
 
 public class StoryActivity extends Activity {
@@ -103,13 +106,22 @@ public class StoryActivity extends Activity {
                 }
             });
         } else {
-            Pack previousPack = Pack.getPack(selectedPack.getPackId() - 1);
-            packButton.setText("Purchase Pack (" + previousPack.getCurrentStars() + " / " + previousPack.getMaxStars() + ")");
+            packButton.setText("Purchase Pack");
             packButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     // IAP prompt
                 }
             });
+        }
+    }
+
+    public void openLeaderboard(View v) {
+        if (GooglePlayHelper.IsConnected()) {
+            if (v.getId() == R.id.timeLeaderboard && !selectedPack.getTimeLeaderboard().equals("")) {
+                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, selectedPack.getTimeLeaderboard()), GooglePlayHelper.RC_LEADERBOARDS);
+            } else if (v.getId() == R.id.movesLeaderboard && !selectedPack.getMovesLeaderboard().equals("")) {
+                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, selectedPack.getMovesLeaderboard()), GooglePlayHelper.RC_LEADERBOARDS);
+            }
         }
     }
 }
