@@ -26,7 +26,7 @@
                 android:stretchColumns="*">
 
                 <TableRow>
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/settingSectionAudio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
                 </TableRow>
 
                 <TableRow>
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/soundToggleText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
                 </TableRow>
 
                 <TableRow>
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/musicToggleText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
                 android:stretchColumns="*">
 
                 <TableRow>
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/settingSectionGameplay"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
                 </TableRow>
 
                 <TableRow>
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/zenToggleText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
                 </TableRow>
 
                 <TableRow>
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/hideBoostText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -147,7 +147,7 @@
                 </TableRow>
 
                 <LinearLayout android:orientation="horizontal">
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/playerNameText"
                         android:layout_width="wrap_content"
                         android:layout_height="64dp"
@@ -158,8 +158,7 @@
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 
-                    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-                        xmlns:tools="http://schemas.android.com/tools"
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/playerNameDisplay"
                         android:layout_width="match_parent"
                         android:layout_height="64dp"
@@ -174,7 +173,7 @@
                 </LinearLayout>
 
                 <TableRow>
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/minZoomText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -185,8 +184,7 @@
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 
-                    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-                        xmlns:tools="http://schemas.android.com/tools"
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/minZoomButton"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
@@ -200,7 +198,7 @@
                 </TableRow>
 
                 <TableRow>
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/maxZoomText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -211,8 +209,7 @@
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 
-                    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-                        xmlns:tools="http://schemas.android.com/tools"
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/maxZoomButton"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
@@ -237,7 +234,7 @@
                 android:stretchColumns="*">
 
                 <TableRow>
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/settingSectionGoogle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -248,7 +245,7 @@
                 </TableRow>
 
                 <TableRow>
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/signInButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -262,7 +259,7 @@
                 </TableRow>
 
                 <TableRow>
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/signOutButton"
                         android:visibility="gone"
                         android:layout_width="match_parent"
@@ -279,7 +276,7 @@
                 <TableRow
                     android:id="@+id/googlePlayFeatureButtons"
                     android:visibility="gone">
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/ui_button_grey"
@@ -289,7 +286,7 @@
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:onClick="openAchievements"/>
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/ui_button_grey"
@@ -299,7 +296,7 @@
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:onClick="openQuests"/>
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/ui_button_grey"
@@ -309,7 +306,7 @@
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:onClick="openLeaderboards"/>
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/ui_button_grey"
@@ -319,7 +316,7 @@
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:onClick="openCloudSaves"/>
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/ui_button_grey"
@@ -342,7 +339,7 @@
                 android:stretchColumns="*">
 
                 <TableRow>
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/settingSectionOther"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -353,7 +350,7 @@
                 </TableRow>
 
                 <TableRow>
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/supportCodeButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

@@ -19,9 +19,9 @@ public class TextViewFont extends TextView {
     public TextViewFont(final Context context, final AttributeSet attrs, final int defStyle) {
         super(context, attrs, defStyle);
 
-        /*if (mTypeface == null) {
-            mTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/direction.ttf");
+        if (mTypeface == null) {
+            mTypeface = Typeface.createFromAsset(context.getAssets(), "YagiUhfNo2.otf");
         }
-        setTypeface(mTypeface);*/
+        setTypeface(mTypeface);
     }
 }

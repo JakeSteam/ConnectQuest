@@ -38,6 +38,7 @@ public class PuzzleActivity extends Activity {
     private DisplayHelper dh;
     private int puzzleId;
     private boolean isCustom;
+    private int boostsUsed = 0;
     private int movesMade = 0;
     private long startTime = System.currentTimeMillis();
     private long timeInMilliseconds = 0L;
@@ -234,20 +235,23 @@ public class PuzzleActivity extends Activity {
             movesMade = movesMade - 2;
             handleTileClick(lastChangedImage, lastChangedTile);
             justUndone = true;
+            boostsUsed++;
         }
     }
 
     public void useBoostMove(View v) {
         if (Boost.getOwnedCount(Constants.BOOST_MOVE) > 0) {
-            moveBoostActive = !moveBoostActive;
+            moveBoostActive = true;
             findViewById(R.id.moveBoost).setBackgroundResource(moveBoostActive ? R.drawable.ui_button_city : R.drawable.ui_button_grey);
+            boostsUsed++;
         }
     }
 
     public void useBoostTime(View v) {
         if (Boost.getOwnedCount(Constants.BOOST_TIME) > 0) {
-            timeBoostActive = !timeBoostActive;
+            timeBoostActive = true;
             findViewById(R.id.timeBoost).setBackgroundResource(timeBoostActive ? R.drawable.ui_button_city : R.drawable.ui_button_grey);
+            boostsUsed++;
         }
     }
 
@@ -294,7 +298,7 @@ public class PuzzleActivity extends Activity {
         boolean isFirstComplete = puzzle.getBestTime() == 0;
 
         int originalStars = puzzle.getStarCount();
-        Pair<Boolean, Boolean> newBests = PuzzleHelper.updateBests(puzzle, timeInMilliseconds, movesMade, isCustom);
+        Pair<Boolean, Boolean> newBests = PuzzleHelper.updateMetrics(puzzle, timeInMilliseconds, movesMade, boostsUsed, isCustom);
         int stars = puzzle.getStarCount();
 
         populateStoryPuzzleCompleteScreen(puzzle, isFirstComplete, originalStars, stars, isCustom);

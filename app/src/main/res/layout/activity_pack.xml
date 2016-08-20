@@ -39,7 +39,7 @@
             android:layout_weight="1">
             <LinearLayout
                 android:orientation="vertical">
-                <TextView
+                <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/puzzleName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
                     android:id="@+id/puzzleImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-                <TextView
+                <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/puzzleImageQuestion"
                     android:layout_alignLeft="@id/puzzleImage"
                     android:layout_alignRight="@id/puzzleImage"
@@ -87,13 +87,13 @@
         </TableRow>
 
         <TableRow>
-            <TextView
+            <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/bestTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="26sp"/>
-            <TextView
+            <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/puzzleBestTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -102,13 +102,13 @@
         </TableRow>
 
         <TableRow>
-            <TextView
+            <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/bestMoves"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="26sp"/>
-            <TextView
+            <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/puzzleBestMoves"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -117,13 +117,13 @@
         </TableRow>
 
         <TableRow>
-            <TextView
+            <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/tilesEarned"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="26sp"/>
-            <TextView
+            <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/puzzleTilesUnlocked"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -132,7 +132,7 @@
         </TableRow>
 
         <TableRow>
-            <TextView
+            <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/puzzleButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

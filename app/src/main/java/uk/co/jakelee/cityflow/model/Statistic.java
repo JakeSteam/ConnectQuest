@@ -118,11 +118,17 @@ public class Statistic extends SugarRecord {
         }
     }
 
-    public static int getTotalStars() {
-        return 10;
+    public static int get(Fields statistic) {
+        Statistic statToIncrease = Select.from(Statistic.class).where(
+                Condition.prop("enum_name").eq(statistic)).first();
+
+        if (statToIncrease != null) {
+            return statToIncrease.getIntValue();
+        }
+        return 0;
     }
 
     public enum Fields {
-        PuzzlesCompleted, TilesRotated, QuestsCompleted
+        PuzzlesCompleted, TilesRotated, QuestsCompleted, PuzzlesCompletedFully, BoostsUsed
     }
 }

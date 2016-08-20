@@ -71,7 +71,7 @@
             android:gravity="center"
             android:padding="5dp"/>
 
-        <TextView
+        <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/moveBoost"
             android:layout_width="wrap_content"
             app:layout_widthPercent="18%"
@@ -142,7 +142,7 @@
 
     </android.support.percent.PercentRelativeLayout>
 
-    <TextView
+    <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/puzzleTimer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -183,7 +183,7 @@
         android:background="@drawable/ui_button_grey"
         android:visibility="invisible"/>
 
-    <TextView
+    <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/moveCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -203,7 +203,7 @@
             android:id="@+id/initialCountdown"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <TextView
+            <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/initialCountdownText"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
@@ -226,7 +226,7 @@
                 android:layout_height="match_parent"
                 android:src="@color/black"
                 android:alpha="0.6" />
-            <TextView
+            <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/pauseScreenText"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
@@ -298,7 +298,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/skyscraperCompletionTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -310,7 +310,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/building_1_40"/>
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/skyscraperCompletionText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -323,7 +323,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/skyscraperTimeTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -335,7 +335,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/building_1_0"/>
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/skyscraperTimeText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -348,7 +348,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/skyscraperMovesTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -360,7 +360,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/building_1_80"/>
-                    <TextView
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/skyscraperMovesText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

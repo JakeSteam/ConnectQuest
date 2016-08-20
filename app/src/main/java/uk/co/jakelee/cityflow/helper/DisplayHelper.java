@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.components.TextViewFont;
 import uk.co.jakelee.cityflow.main.EditorActivity;
 import uk.co.jakelee.cityflow.main.PackActivity;
 import uk.co.jakelee.cityflow.main.PuzzleActivity;
@@ -90,7 +91,7 @@ public class DisplayHelper {
         boolean hasAllStars = puzzle.hasCompletionStar() && puzzle.hasMovesStar() && puzzle.hasTimeStar();
         boolean hasCompleted = puzzle.hasCompletionStar();
 
-        TextView puzzleText = new TextView(activity);
+        TextView puzzleText = new TextViewFont(activity);
         puzzleText.setText(Integer.toString(puzzleNumber));
         puzzleText.setTextSize(30);
         puzzleText.setGravity(Gravity.CENTER);

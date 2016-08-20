@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/ui_panel_grey"
     android:padding="7dp">
-    <TextView
+    <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/puzzleName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

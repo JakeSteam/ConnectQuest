@@ -359,7 +359,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
     }
 
     public static boolean newSaveIsBetter(int newStars) {
-        return newStars >= Statistic.getTotalStars();
+        return false; //return newStars >= Statistic.getTotalStars();
     }
 
     private static String[] splitBackupData(String backupData) {

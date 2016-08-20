@@ -20,7 +20,7 @@ import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
 public class PuzzleHelper {
-    public static Pair<Boolean, Boolean> updateBests(Puzzle puzzle, long timeTaken, final int movesTaken, boolean isCustom) {
+    public static Pair<Boolean, Boolean> updateMetrics(final Puzzle puzzle, long timeTaken, final int movesTaken, final int boostsUsed, boolean isCustom) {
         boolean newBestTime = false;
         boolean newBestMoves = false;
         if (timeTaken >= 0 && (timeTaken < puzzle.getBestTime() || puzzle.getBestTime() == 0)) {
@@ -48,10 +48,29 @@ public class PuzzleHelper {
             final Pack pack = Pack.getPack(puzzle.getPackId());
             new Thread(new Runnable() {
                 public void run() {
-                    pack.refreshMetrics();
-                    Statistic.increaseByX(Statistic.Fields.TilesRotated, movesTaken);
+                    pack.refreshMetrics();;
+
+                    if (puzzle.hasCompletionStar() && puzzle.hasMovesStar() && puzzle.hasTimeStar()) {
+                        GooglePlayHelper.UpdateEvent(Constants.EVENT_FULLY_COMPLETE_PUZZLE, 1); // Quests
+                        Statistic.increaseByOne(Statistic.Fields.PuzzlesCompletedFully); // Achievements
+                        GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_PUZZLES_FULLY_COMPLETED, Statistic.get(Statistic.Fields.PuzzlesCompletedFully)); // Leaderboards
+                    }
+
+                    // Update for quests
+                    GooglePlayHelper.UpdateEvent(Constants.EVENT_COMPLETE_PUZZLE, 1);
+                    GooglePlayHelper.UpdateEvent(Constants.EVENT_USE_BOOST, boostsUsed);
                     GooglePlayHelper.UpdateEvent(Constants.EVENT_TILE_ROTATE, movesTaken);
+
+                    // Update for achievements
+                    Statistic.increaseByOne(Statistic.Fields.PuzzlesCompleted);
+                    Statistic.increaseByX(Statistic.Fields.BoostsUsed, boostsUsed);
+                    Statistic.increaseByX(Statistic.Fields.TilesRotated, movesTaken);
                     GooglePlayHelper.UpdateAchievements();
+
+                    // Update for leaderboards
+                    GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_PUZZLES_COMPLETED, Statistic.get(Statistic.Fields.PuzzlesCompleted));
+                    GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_BOOSTS_USED, Statistic.get(Statistic.Fields.BoostsUsed));
+
                 }
             }).start();
         }

@@ -19,7 +19,7 @@
         app:layout_marginRightPercent="10%"
         android:background="@drawable/ui_panel_city"
         android:layout_centerInParent="true">
-        <TextView
+        <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/puzzleName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
             android:layout_toRightOf="@id/puzzleName"
             android:layout_alignTop="@id/puzzleName"
             android:onClick="editPuzzleName"/>
-        <TextView
+        <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/puzzleDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,14 +52,14 @@
             android:layout_toRightOf="@id/puzzleDesc"
             android:layout_alignTop="@id/puzzleDesc"
             android:onClick="editPuzzleDesc"/>
-        <TextView
+        <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/puzzleAuthor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/puzzleDesc"
             android:textColor="@color/black"
             android:textSize="18sp"/>
-        <TextView
+        <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/puzzleCreatedDate"
             android:layout_width="match_parent"
             android:layout_below="@id/puzzleAuthor"

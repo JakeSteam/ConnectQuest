@@ -40,7 +40,26 @@ public class DatabaseHelper {
 
     private static void createAchievement() {
         List<Achievement> achievements = new ArrayList<>();
-            achievements.add(new Achievement("Get It Turning", "Rotate 100 tiles", 100, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQAw"));
+            achievements.add(new Achievement("Turn It Up 1", 100, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQAw"));
+            achievements.add(new Achievement("Turn It Up 2", 1000, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQFw"));
+            achievements.add(new Achievement("Turn It Up 3", 5000, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQGA"));
+            achievements.add(new Achievement("Turn It Up 4", 10000, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQGQ"));
+            achievements.add(new Achievement("The Best Quest 1", 5, Constants.STATISTIC_QUESTS_COMPLETED, "CgkIgrzuo64REAIQGg"));
+            achievements.add(new Achievement("The Best Quest 2", 25, Constants.STATISTIC_QUESTS_COMPLETED, "CgkIgrzuo64REAIQGw"));
+            achievements.add(new Achievement("The Best Quest 3", 75, Constants.STATISTIC_QUESTS_COMPLETED, "CgkIgrzuo64REAIQHA"));
+            achievements.add(new Achievement("The Best Quest 4", 200, Constants.STATISTIC_QUESTS_COMPLETED, "CgkIgrzuo64REAIQHQ"));
+            achievements.add(new Achievement("Working Your Way Through 1", 20, Constants.STATISTIC_PUZZLES_COMPLETED, "CgkIgrzuo64REAIQHg"));
+            achievements.add(new Achievement("Working Your Way Through 2", 100, Constants.STATISTIC_PUZZLES_COMPLETED, "CgkIgrzuo64REAIQHw"));
+            achievements.add(new Achievement("Working Your Way Through 3", 250, Constants.STATISTIC_PUZZLES_COMPLETED, "CgkIgrzuo64REAIQIA"));
+            achievements.add(new Achievement("Working Your Way Through 4", 1500, Constants.STATISTIC_PUZZLES_COMPLETED, "CgkIgrzuo64REAIQIQ"));
+            achievements.add(new Achievement("Completionist 1", 20, Constants.STATISTIC_PUZZLES_COMPLETED_FULLY, "CgkIgrzuo64REAIQIg"));
+            achievements.add(new Achievement("Completionist 2", 100, Constants.STATISTIC_PUZZLES_COMPLETED_FULLY, "CgkIgrzuo64REAIQIw"));
+            achievements.add(new Achievement("Completionist 3", 250, Constants.STATISTIC_PUZZLES_COMPLETED_FULLY, "CgkIgrzuo64REAIQJA"));
+            achievements.add(new Achievement("Completionist 4", 1500, Constants.STATISTIC_PUZZLES_COMPLETED_FULLY, "CgkIgrzuo64REAIQJQ"));
+            achievements.add(new Achievement("Activate Boost 1", 15, Constants.STATISTIC_BOOSTS_USED, "CgkIgrzuo64REAIQJg"));
+            achievements.add(new Achievement("Activate Boost 2", 80, Constants.STATISTIC_BOOSTS_USED, "CgkIgrzuo64REAIQJw"));
+            achievements.add(new Achievement("Activate Boost 3", 260, Constants.STATISTIC_BOOSTS_USED, "CgkIgrzuo64REAIQKA"));
+            achievements.add(new Achievement("Activate Boost 4", 1000, Constants.STATISTIC_BOOSTS_USED, "CgkIgrzuo64REAIQKQ"));
         Achievement.saveInTx(achievements);
     }
 
@@ -266,9 +285,11 @@ public class DatabaseHelper {
 
     private static void createStatistic() {
         List<Statistic> statistics = new ArrayList<>();
-            statistics.add(new Statistic(Constants.STATISTIC_PUZZLES_COMPLETED, Statistic.Fields.PuzzlesCompleted, 0));
+            statistics.add(new Statistic(Constants.STATISTIC_PUZZLES_COMPLETED, Statistic.Fields.PuzzlesCompleted, 0, 0));
             statistics.add(new Statistic(Constants.STATISTIC_TILES_ROTATED, Statistic.Fields.TilesRotated, 0, 0));
-            statistics.add(new Statistic(Constants.STATISTIC_QUESTS_COMPLETED, Statistic.Fields.QuestsCompleted, 0));
+            statistics.add(new Statistic(Constants.STATISTIC_QUESTS_COMPLETED, Statistic.Fields.QuestsCompleted, 0, 0));
+            statistics.add(new Statistic(Constants.STATISTIC_PUZZLES_COMPLETED_FULLY, Statistic.Fields.PuzzlesCompletedFully, 0, 0));
+            statistics.add(new Statistic(Constants.STATISTIC_BOOSTS_USED, Statistic.Fields.BoostsUsed, 0, 0));
         Statistic.saveInTx(statistics);
     }
 

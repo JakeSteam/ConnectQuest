@@ -39,14 +39,14 @@
             android:layout_weight="1">
             <LinearLayout
                 android:orientation="vertical">
-                <TextView
+                <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/packDesc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:textSize="24sp"
                     android:singleLine="false"/>
-                <TextView
+                <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/packStars"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
 
         <LinearLayout
             android:orientation="horizontal">
-            <TextView
+            <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/movesLeaderboard"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -69,7 +69,7 @@
                 android:textColor="@color/black"
                 android:textSize="26sp"
                 android:onClick="openLeaderboard"/>
-            <TextView
+            <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/timeLeaderboard"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -80,7 +80,7 @@
                 android:textColor="@color/black"
                 android:textSize="26sp"
                 android:onClick="openLeaderboard"/>
-            <TextView
+            <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/packButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
