@@ -86,6 +86,8 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_3_NAME", "Path"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_4_NAME", "Grass"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_5_NAME", "Canal"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "GOOGLE_SIGN_IN", "Sign In"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "GOOGLE_SIGN_OUT", "Sign Out"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_1_NAME", "Tutorial"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_1_DESC", "Let's go with the flow."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_2_NAME", "The Big City"));
@@ -116,6 +118,10 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_30_NAME", "A Summer Walk"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_41_NAME", "Highs And Lows"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_END_TEXT", "It flows!\n\n%1$d stars\nTime: %2$s\nMoves: %3$d\n\nTarget Time: %4$s\nTarget Moves: %5$d\n\nBest Time: %6$s%7$s\nBest Moves: %8$d%9$s\nNew Tiles: %10$d%11$s"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_SECTION_AUDIO", "Audio Settings"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_SECTION_GAMEPLAY", "Gameplay Settings"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_SECTION_GOOGLE", "Google Settings"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_SECTION_OTHER", "Other Settings"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_1_NAME", "Music"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_2_NAME", "Sounds"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_3_NAME", "Minimum Zoom"));

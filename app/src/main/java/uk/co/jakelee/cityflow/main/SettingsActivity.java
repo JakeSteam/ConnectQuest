@@ -35,7 +35,28 @@ public class SettingsActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
+        populateText();
         populateSettings();
+    }
+
+    public void populateText() {
+        ((TextView) findViewById(R.id.settingSectionAudio)).setText(Text.get("SETTING_SECTION_AUDIO"));
+        ((TextView) findViewById(R.id.soundToggleText)).setText(Text.get("SETTING_2_NAME"));
+        ((TextView) findViewById(R.id.musicToggleText)).setText(Text.get("SETTING_1_NAME"));
+
+        ((TextView) findViewById(R.id.settingSectionGameplay)).setText(Text.get("SETTING_SECTION_GAMEPLAY"));
+        ((TextView) findViewById(R.id.zenToggleText)).setText(Text.get("SETTING_5_NAME"));
+        ((TextView) findViewById(R.id.hideBoostText)).setText(Text.get("SETTING_6_NAME"));
+        ((TextView) findViewById(R.id.playerNameText)).setText(Text.get("SETTING_7_NAME"));
+        ((TextView) findViewById(R.id.minZoomText)).setText(Text.get("SETTING_3_NAME"));
+        ((TextView) findViewById(R.id.maxZoomText)).setText(Text.get("SETTING_4_NAME"));
+
+        ((TextView) findViewById(R.id.settingSectionGoogle)).setText(Text.get("SETTING_SECTION_GOOGLE"));
+        ((TextView) findViewById(R.id.signInButton)).setText(Text.get("GOOGLE_SIGN_IN"));
+        ((TextView) findViewById(R.id.signOutButton)).setText(Text.get("GOOGLE_SIGN_OUT"));
+
+        ((TextView) findViewById(R.id.settingSectionOther)).setText(Text.get("SETTING_SECTION_OTHER"));
+        ((TextView) findViewById(R.id.supportCodeButton)).setText(Text.get("DIALOG_SUPPORT_CODE"));
     }
 
     public void populateSettings() {
