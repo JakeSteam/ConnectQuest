@@ -146,7 +146,7 @@
                         android:onClick="toggleSetting"/>
                 </TableRow>
 
-                <LinearLayout android:orientation="horizontal">
+                <RelativeLayout>
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/playerNameText"
                         android:layout_width="wrap_content"
@@ -158,19 +158,21 @@
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 
-                    <uk.co.jakelee.cityflow.components.TextViewFont
+                    <me.grantland.widget.AutofitTextView
                         android:id="@+id/playerNameDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="64dp"
+                        android:layout_width="128dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ui_panel_grey"
+                        android:layout_toRightOf="@id/playerNameText"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
                         android:textSize="20sp"
                         android:ellipsize="end"
-                        android:singleLine="true"
-                        android:gravity="right"
+                        android:maxLines="3"
+                        android:layout_alignParentRight="true"
                         android:onClick="changeText"/>
-                </LinearLayout>
+                </RelativeLayout>
 
                 <TableRow>
                     <uk.co.jakelee.cityflow.components.TextViewFont
@@ -186,13 +188,13 @@
 
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/minZoomButton"
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
+                        android:background="@drawable/ui_panel_grey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:textSize="30sp"
                         android:ellipsize="end"
                         android:singleLine="true"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="-5dp"
                         android:onClick="changeSlider"
                         android:tag="3"/>
                 </TableRow>
@@ -211,13 +213,13 @@
 
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/maxZoomButton"
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
+                        android:background="@drawable/ui_panel_grey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:textSize="30sp"
                         android:ellipsize="end"
                         android:singleLine="true"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="-5dp"
                         android:onClick="changeSlider"
                         android:tag="4"/>
                 </TableRow>
@@ -281,51 +283,41 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/ui_button_grey"
                         android:padding="5dp"
-                        android:gravity="center_horizontal"
+                        android:gravity="center"
                         android:text="A"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="26sp"
                         android:onClick="openAchievements"/>
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/ui_button_grey"
                         android:padding="5dp"
-                        android:gravity="center_horizontal"
+                        android:gravity="center"
                         android:text="Q"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="26sp"
                         android:onClick="openQuests"/>
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/ui_button_grey"
                         android:padding="5dp"
-                        android:gravity="center_horizontal"
+                        android:gravity="center"
                         android:text="L"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="26sp"
                         android:onClick="openLeaderboards"/>
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/ui_button_grey"
                         android:padding="5dp"
-                        android:gravity="center_horizontal"
+                        android:gravity="center"
                         android:text="C"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="26sp"
                         android:onClick="openCloudSaves"/>
-                    <uk.co.jakelee.cityflow.components.TextViewFont
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ui_button_grey"
-                        android:padding="5dp"
-                        android:gravity="center_horizontal"
-                        android:text="Q"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:onClick="openQuests"/>
                 </TableRow>
             </TableLayout>
 

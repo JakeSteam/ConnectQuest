@@ -60,6 +60,9 @@ public class DatabaseHelper {
             achievements.add(new Achievement("Activate Boost 2", 80, Constants.STATISTIC_BOOSTS_USED, "CgkIgrzuo64REAIQJw"));
             achievements.add(new Achievement("Activate Boost 3", 260, Constants.STATISTIC_BOOSTS_USED, "CgkIgrzuo64REAIQKA"));
             achievements.add(new Achievement("Activate Boost 4", 1000, Constants.STATISTIC_BOOSTS_USED, "CgkIgrzuo64REAIQKQ"));
+            achievements.add(new Achievement("Complete Pack 1", 1, 0, "CgkIgrzuo64REAIQKg"));
+            achievements.add(new Achievement("Complete Pack 2", 1, 0, "CgkIgrzuo64REAIQKw"));
+            achievements.add(new Achievement("Complete Pack 3", 1, 0, "CgkIgrzuo64REAIQLA"));
         Achievement.saveInTx(achievements);
     }
 

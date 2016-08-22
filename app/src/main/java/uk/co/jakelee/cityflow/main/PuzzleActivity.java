@@ -240,7 +240,7 @@ public class PuzzleActivity extends Activity {
     }
 
     public void useBoostMove(View v) {
-        if (Boost.getOwnedCount(Constants.BOOST_MOVE) > 0) {
+        if (!moveBoostActive && Boost.getOwnedCount(Constants.BOOST_MOVE) > 0) {
             moveBoostActive = true;
             findViewById(R.id.moveBoost).setBackgroundResource(moveBoostActive ? R.drawable.ui_button_city : R.drawable.ui_button_grey);
             boostsUsed++;
@@ -248,7 +248,7 @@ public class PuzzleActivity extends Activity {
     }
 
     public void useBoostTime(View v) {
-        if (Boost.getOwnedCount(Constants.BOOST_TIME) > 0) {
+        if (!timeBoostActive && Boost.getOwnedCount(Constants.BOOST_TIME) > 0) {
             timeBoostActive = true;
             findViewById(R.id.timeBoost).setBackgroundResource(timeBoostActive ? R.drawable.ui_button_city : R.drawable.ui_button_grey);
             boostsUsed++;
