@@ -60,9 +60,9 @@ public class DatabaseHelper {
             achievements.add(new Achievement("Activate Boost 2", 80, Constants.STATISTIC_BOOSTS_USED, "CgkIgrzuo64REAIQJw"));
             achievements.add(new Achievement("Activate Boost 3", 260, Constants.STATISTIC_BOOSTS_USED, "CgkIgrzuo64REAIQKA"));
             achievements.add(new Achievement("Activate Boost 4", 1000, Constants.STATISTIC_BOOSTS_USED, "CgkIgrzuo64REAIQKQ"));
-            achievements.add(new Achievement("Complete Pack 1", 1, 0, "CgkIgrzuo64REAIQKg"));
-            achievements.add(new Achievement("Complete Pack 2", 1, 0, "CgkIgrzuo64REAIQKw"));
-            achievements.add(new Achievement("Complete Pack 3", 1, 0, "CgkIgrzuo64REAIQLA"));
+            achievements.add(new Achievement("Complete Pack 1", 1, Constants.STATISTIC_COMPLETE_PACK_1, "CgkIgrzuo64REAIQKg"));
+            achievements.add(new Achievement("Complete Pack 2", 1, Constants.STATISTIC_COMPLETE_PACK_2, "CgkIgrzuo64REAIQKw"));
+            achievements.add(new Achievement("Complete Pack 3", 1, Constants.STATISTIC_COMPLETE_PACK_3, "CgkIgrzuo64REAIQLA"));
         Achievement.saveInTx(achievements);
     }
 
@@ -293,6 +293,9 @@ public class DatabaseHelper {
             statistics.add(new Statistic(Constants.STATISTIC_QUESTS_COMPLETED, Statistic.Fields.QuestsCompleted, 0, 0));
             statistics.add(new Statistic(Constants.STATISTIC_PUZZLES_COMPLETED_FULLY, Statistic.Fields.PuzzlesCompletedFully, 0, 0));
             statistics.add(new Statistic(Constants.STATISTIC_BOOSTS_USED, Statistic.Fields.BoostsUsed, 0, 0));
+            statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_1, Statistic.Fields.CompletePack1, 0, 0));
+            statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_2, Statistic.Fields.CompletePack2, 0, 0));
+            statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_3, Statistic.Fields.CompletePack3, 0, 0));
         Statistic.saveInTx(statistics);
     }
 

@@ -6,6 +6,7 @@ import com.orm.query.Select;
 
 import java.util.List;
 
+import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.helper.ModificationHelper;
 
@@ -133,6 +134,24 @@ public class Pack extends SugarRecord{
 
         Pack previousPack = Pack.getPack(getPackId() - 1);
         return previousPack.getCurrentStars() >= previousPack.getMaxStars();
+    }
+
+    public void increaseCompletedCount() {
+        int packCompleteStatistic = 0;
+        switch(packId) {
+            case 1:
+                packCompleteStatistic = Constants.STATISTIC_COMPLETE_PACK_1;
+                break;
+            case 2:
+                packCompleteStatistic = Constants.STATISTIC_COMPLETE_PACK_2;
+                break;
+            case 3:
+                packCompleteStatistic = Constants.STATISTIC_COMPLETE_PACK_3;
+                break;
+        }
+        if (packCompleteStatistic > 0) {
+            Statistic.increaseByOne(packCompleteStatistic);
+        }
     }
 
     public void refreshMetrics() {

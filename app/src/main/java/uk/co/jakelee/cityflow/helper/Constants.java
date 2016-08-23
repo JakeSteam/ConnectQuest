@@ -78,6 +78,9 @@ public class Constants {
     public static final int STATISTIC_QUESTS_COMPLETED = 3;
     public static final int STATISTIC_PUZZLES_COMPLETED_FULLY = 4;
     public static final int STATISTIC_BOOSTS_USED = 5;
+    public static final int STATISTIC_COMPLETE_PACK_1 = 6;
+    public static final int STATISTIC_COMPLETE_PACK_2 = 7;
+    public static final int STATISTIC_COMPLETE_PACK_3 = 8;
     public static final int SIDE_NORTH = 1;
     public static final int SIDE_EAST = 2;
     public static final int SIDE_SOUTH = 3;

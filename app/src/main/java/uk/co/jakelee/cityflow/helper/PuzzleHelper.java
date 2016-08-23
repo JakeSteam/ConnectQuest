@@ -20,7 +20,7 @@ import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
 public class PuzzleHelper {
-    public static Pair<Boolean, Boolean> updateMetrics(final Puzzle puzzle, long timeTaken, final int movesTaken, final int boostsUsed, boolean isCustom) {
+    public static Pair<Boolean, Boolean> updateMetrics(final Puzzle puzzle, final boolean isCompletingPack, long timeTaken, final int movesTaken, final int boostsUsed, boolean isCustom) {
         boolean newBestTime = false;
         boolean newBestMoves = false;
         if (timeTaken >= 0 && (timeTaken < puzzle.getBestTime() || puzzle.getBestTime() == 0)) {
@@ -48,7 +48,10 @@ public class PuzzleHelper {
             final Pack pack = Pack.getPack(puzzle.getPackId());
             new Thread(new Runnable() {
                 public void run() {
-                    pack.refreshMetrics();;
+                    if (isCompletingPack) {
+                        pack.increaseCompletedCount();
+                    }
+                    pack.refreshMetrics();
 
                     if (puzzle.hasCompletionStar() && puzzle.hasMovesStar() && puzzle.hasTimeStar()) {
                         GooglePlayHelper.UpdateEvent(Constants.EVENT_FULLY_COMPLETE_PUZZLE, 1); // Quests

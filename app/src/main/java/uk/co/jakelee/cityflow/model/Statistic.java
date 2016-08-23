@@ -108,6 +108,16 @@ public class Statistic extends SugarRecord {
         }
     }
 
+    public static void increaseByOne(int statisticId) {
+        Statistic statToIncrease = Select.from(Statistic.class).where(
+                Condition.prop("statistic_id").eq(statisticId)).first();
+
+        if (statToIncrease != null) {
+            statToIncrease.setIntValue(statToIncrease.getIntValue() + 1);
+            statToIncrease.save();
+        }
+    }
+
     public static void increaseByX(Fields statistic, int value) {
         Statistic statToIncrease = Select.from(Statistic.class).where(
                 Condition.prop("enum_name").eq(statistic)).first();
@@ -129,6 +139,6 @@ public class Statistic extends SugarRecord {
     }
 
     public enum Fields {
-        PuzzlesCompleted, TilesRotated, QuestsCompleted, PuzzlesCompletedFully, BoostsUsed
+        PuzzlesCompleted, TilesRotated, QuestsCompleted, PuzzlesCompletedFully, BoostsUsed, CompletePack1, CompletePack2, CompletePack3
     }
 }
