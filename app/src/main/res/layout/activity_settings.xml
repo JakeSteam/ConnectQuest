@@ -158,9 +158,9 @@
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 
-                    <me.grantland.widget.AutofitTextView
+                    <uk.co.jakelee.cityflow.components.AutofitTextViewFont
                         android:id="@+id/playerNameDisplay"
-                        android:layout_width="128dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/ui_panel_grey"
                         android:layout_toRightOf="@id/playerNameText"
@@ -170,6 +170,7 @@
                         android:textSize="20sp"
                         android:ellipsize="end"
                         android:maxLines="3"
+                        android:gravity="right"
                         android:layout_alignParentRight="true"
                         android:onClick="changeText"/>
                 </RelativeLayout>

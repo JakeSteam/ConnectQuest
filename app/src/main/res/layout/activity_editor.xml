@@ -47,7 +47,7 @@
             android:layout_alignParentTop="true"
             android:background="@drawable/ui_button_grey"/>
 
-        <me.grantland.widget.AutofitTextView
+        <uk.co.jakelee.cityflow.components.AutofitTextViewFont
             android:id="@+id/selectedTileText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,8 +57,9 @@
             android:singleLine="true"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:layout_alignParentTop="true"
+            android:layout_alignBottom="@+id/closePuzzle"
             android:layout_centerInParent="true"
             android:layout_toRightOf="@id/playPuzzle"
             android:layout_toLeftOf="@id/closePuzzle" />
