@@ -54,10 +54,6 @@ public class PackActivity extends Activity {
     }
 
     public void populatePuzzles() {
-        TableRow.LayoutParams params = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT);
-        int margin = dh.dpToPixel(7);
-        params.setMargins(margin, margin, margin, margin);
-
         TableLayout puzzleContainer = (TableLayout) findViewById(R.id.puzzleContainer);
         puzzleContainer.removeAllViews();
 
@@ -71,9 +67,9 @@ public class PackActivity extends Activity {
                 selectedPuzzle = puzzle;
             }
             boolean isSelected = selectedPuzzle.getPuzzleId() == puzzle.getPuzzleId();
-            row.addView(dh.createPuzzleSelectButton(this, puzzle.getPuzzleId(), puzzle, isSelected, lastLevelCompleted), params);
+            row.addView(dh.createPuzzleSelectButton(this, puzzle.getPuzzleId(), puzzle, isSelected, lastLevelCompleted));
 
-            if (puzzleIndex % 6 == 0 || puzzleIndex == numPuzzles) {
+            if (puzzleIndex % 4 == 0 || puzzleIndex == numPuzzles) {
                 puzzleContainer.addView(row);
                 row = new TableRow(this);
             }

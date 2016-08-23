@@ -32,9 +32,9 @@ public class Puzzle extends SugarRecord {
         this.parMoves = ModificationHelper.encode(parMoves, puzzleId);
         this.bestTime = ModificationHelper.encode(bestTime, puzzleId);
         this.bestMoves = ModificationHelper.encode(bestMoves, puzzleId);
-        this.completionStar = ModificationHelper.encode(false, puzzleId);
-        this.timeStar = ModificationHelper.encode(false, puzzleId);
-        this.movesStar = ModificationHelper.encode(false, puzzleId);
+        this.completionStar = ModificationHelper.encode(false, puzzleId + 1000);
+        this.timeStar = ModificationHelper.encode(false, puzzleId + 2000);
+        this.movesStar = ModificationHelper.encode(false, puzzleId + 3000);
     }
 
     public int getPuzzleId() {

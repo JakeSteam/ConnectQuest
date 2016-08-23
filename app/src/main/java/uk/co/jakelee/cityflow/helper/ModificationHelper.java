@@ -28,7 +28,7 @@ public class ModificationHelper {
         try {
             encrypted = AESCrypt.encrypt(encryptionPwd + salt, plaintext);
         } catch (GeneralSecurityException e) {
-            Log.d("Blacksmith", e.toString());
+            Log.d("DecryptionError1", e.toString());
         }
         return encrypted;
     }
@@ -42,7 +42,8 @@ public class ModificationHelper {
     }
 
     public static boolean decodeToBool(String encrypted, int salt) {
-        return decode(encrypted, salt).equals("true");
+        String returned = decode(encrypted, salt);
+        return returned.equals("true");
     }
 
     public static String decode(String encrypted, int salt) {
@@ -50,7 +51,7 @@ public class ModificationHelper {
         try {
             plaintext = AESCrypt.decrypt(encryptionPwd + salt, encrypted);
         } catch (GeneralSecurityException e) {
-            Log.d("Blacksmith", e.toString());
+            Log.d("DecryptionError2", e.toString());
         }
         return plaintext;
     }
@@ -96,7 +97,7 @@ public class ModificationHelper {
         try {
             encrypted = AESCrypt.encrypt(encryptionPwd, plaintext);
         } catch (GeneralSecurityException e) {
-            Log.d("Blacksmith", e.toString());
+            Log.d("DecryptionError3", e.toString());
         }
         return encrypted;
     }
@@ -106,7 +107,7 @@ public class ModificationHelper {
         try {
             plaintext = AESCrypt.decrypt(encryptionPwd, encrypted);
         } catch (GeneralSecurityException e) {
-            Log.d("Blacksmith", e.toString());
+            Log.d("DecryptionError4", e.toString());
         }
         return plaintext;
     }

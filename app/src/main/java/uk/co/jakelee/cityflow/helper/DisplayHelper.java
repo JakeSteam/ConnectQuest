@@ -11,7 +11,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
-import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -91,28 +91,26 @@ public class DisplayHelper {
         boolean hasAllStars = puzzle.hasCompletionStar() && puzzle.hasMovesStar() && puzzle.hasTimeStar();
         boolean hasCompleted = puzzle.hasCompletionStar();
 
-        TextView puzzleText = new TextViewFont(activity);
-        puzzleText.setText(Integer.toString(puzzleNumber));
-        puzzleText.setTextSize(30);
-        puzzleText.setGravity(Gravity.CENTER);
-        puzzleText.setPadding(10, 10, 10, 10);
+        LayoutInflater inflater = LayoutInflater.from(activity);
+        TextView puzzleButton = (TextView) inflater.inflate(R.layout.custom_puzzle_select_button, null);
+
+        puzzleButton.setText(Integer.toString(puzzleNumber));
         if (!lastLevelCompleted) {
-            puzzleText.setBackgroundResource(R.drawable.ui_level_locked);
+            puzzleButton.setBackgroundResource(R.drawable.ui_level_locked);
         } else if (isSelected) {
-            puzzleText.setBackgroundResource(hasCompleted ? (hasAllStars ? R.drawable.ui_level_selected_completed_fully : R.drawable.ui_level_selected_completed) : R.drawable.ui_level_selected);
+            puzzleButton.setBackgroundResource(hasCompleted ? (hasAllStars ? R.drawable.ui_level_selected_completed_fully : R.drawable.ui_level_selected_completed) : R.drawable.ui_level_selected);
         } else {
-            puzzleText.setBackgroundResource(hasCompleted ? (hasAllStars ? R.drawable.ui_level_unselected_completed_fully : R.drawable.ui_level_unselected_completed) : R.drawable.ui_level_unselected);
+            puzzleButton.setBackgroundResource(hasCompleted ? (hasAllStars ? R.drawable.ui_level_unselected_completed_fully : R.drawable.ui_level_unselected_completed) : R.drawable.ui_level_unselected);
         }
-        puzzleText.setTag(puzzle.getPuzzleId());
         if (lastLevelCompleted) {
-            puzzleText.setOnClickListener(new Button.OnClickListener() {
+            puzzleButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     activity.selectedPuzzle = puzzle;
                     activity.populatePuzzles();
                 }
             });
         }
-        return puzzleText;
+        return puzzleButton;
     }
 
     public ImageView createBoostIcon(int boostId, int width, int height) {
@@ -181,7 +179,7 @@ public class DisplayHelper {
     }
 
     public TextView createTextView(String text, int size, int color) {
-        TextView textView = new TextView(context);
+        TextView textView = new TextViewFont(context);
         textView.setText(text);
         textView.setTextSize(size);
         textView.setTextColor(color);
