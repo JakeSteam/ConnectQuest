@@ -138,7 +138,16 @@ public class Statistic extends SugarRecord {
         return 0;
     }
 
+    public static int getCurrency() {
+        return Select.from(Statistic.class).where(
+                Condition.prop("enum_name").eq(Fields.Currency)).first().getIntValue();
+    }
+
+    public static void addCurrency(int amount) {
+        increaseByX(Fields.Currency, amount);
+    }
+
     public enum Fields {
-        PuzzlesCompleted, TilesRotated, QuestsCompleted, PuzzlesCompletedFully, BoostsUsed, CompletePack1, CompletePack2, CompletePack3
+        PuzzlesCompleted, TilesRotated, QuestsCompleted, PuzzlesCompletedFully, BoostsUsed, CompletePack1, CompletePack2, CompletePack3, Currency
     }
 }

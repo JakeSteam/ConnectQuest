@@ -50,6 +50,14 @@ public class Constants {
     public static final int FLOW_PATH = 3;
     public static final int FLOW_GRASS = 4;
     public static final int FLOW_CANAL = 5;
+    public static final int ITEM_BOOST_UNDO = 1;
+    public static final int ITEM_BOOST_TIME = 2;
+    public static final int ITEM_BOOST_MOVES = 3;
+    public static final int ITEM_BOOST_SHUFFLE = 4;
+    public static final int ITEM_BOOST_TIME_UPGRADE = 5;
+    public static final int ITEM_BOOST_MOVES_UPGRADE = 6;
+    public static final int ITEM_BOOST_SHUFFLE_UPGRADE = 7;
+    public static final int ITEM_UNLOCK_PACK = 8;
     public static final int HEIGHT_NO_CONNECT = 0;
     public static final int HEIGHT_LOW = 1;
     public static final int HEIGHT_NORMAL = 2;
@@ -82,6 +90,7 @@ public class Constants {
     public static final int STATISTIC_COMPLETE_PACK_1 = 6;
     public static final int STATISTIC_COMPLETE_PACK_2 = 7;
     public static final int STATISTIC_COMPLETE_PACK_3 = 8;
+    public static final int STATISTIC_CURRENCY = 9;
     public static final int SIDE_NORTH = 1;
     public static final int SIDE_EAST = 2;
     public static final int SIDE_SOUTH = 3;

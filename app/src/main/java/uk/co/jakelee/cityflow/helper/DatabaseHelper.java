@@ -11,6 +11,7 @@ import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Statistic;
+import uk.co.jakelee.cityflow.model.StoreItem;
 import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
@@ -33,6 +34,7 @@ public class DatabaseHelper {
         createPuzzle();
         createSetting();
         createStatistic();
+        createStoreItem();
         createText();
         createTile();
         createTileType();
@@ -79,18 +81,6 @@ public class DatabaseHelper {
         List<Text> texts = new ArrayList<>();
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SETTING_TOGGLE_ON", "Toggled %1$s on!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SETTING_TOGGLE_OFF", "Toggled %1$s off!"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_1_NAME", "Undo"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_1_DESC", "Undo your 1 most recent move, also decreasing the move count."));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_1_UPGRADE", "Upgrading Undo increases the number of undoes that can be performed per puzzle by 1 per level."));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_2_NAME", "Time Reduction"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_2_DESC", "Reduce the recorded time for the level by 10%."));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_2_UPGRADE", "Upgrading Time Reduction reduces the puzzle time taken by 10% per level."));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_3_NAME", "Move Reduction"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_3_DESC", "Reduce the recorded moves per level by 1."));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_3_UPGRADE", "Upgrading Move Reduction reduces the puzzle moves taken by 1 per level."));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_4_NAME", "Shuffle Board"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_4_DESC", "Randomly all rotate all tiles on the board 1 time."));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "BOOST_4_UPGRADE", "Upgrading Shuffle Board increases the number of times the board can be shuffled by 1 per level."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_CREATED", "Created"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_IMPORTED", "Imported"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_IMPORT_PUZZLE", "Import Puzzle"));
@@ -116,6 +106,22 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_5_NAME", "Canal"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "GOOGLE_SIGN_IN", "Sign In"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "GOOGLE_SIGN_OUT", "Sign Out"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_1_NAME", "Undo"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_1_DESC", "Undo your 1 most recent move, also decreasing the move count."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_2_NAME", "Time Reduction"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_2_DESC", "Reduce the recorded time for the level by 10%."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_3_NAME", "Move Reduction"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_3_DESC", "Reduce the recorded moves per level by 1."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_4_NAME", "Shuffle Board"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_4_DESC", "Randomly all rotate all tiles on the board 1 time."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_5_NAME", "Upgrade Time Reduction"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_5_DESC", "Upgrading Time Reduction reduces the puzzle time taken by 10% per level."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_6_NAME", "Upgrade Move Reduction"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_6_DESC", "Upgrading Move Reduction reduces the puzzle moves taken by 1 per level."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_7_NAME", "Upgrade Shuffle Board"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_7_DESC", "Upgrading Shuffle Board increases the number of times the board can be shuffled by 1 per level."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_8_NAME", "Unlock Pack"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_8_DESC", "Unlock the next pack instantly, without collecting all stars."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "METRIC_TILES_EARNED", "Tiles Earned"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "METRIC_BEST_TIME", "Best Time"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "METRIC_BEST_MOVES", "Best Moves"));
@@ -296,7 +302,21 @@ public class DatabaseHelper {
             statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_1, Statistic.Fields.CompletePack1, 0, 0));
             statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_2, Statistic.Fields.CompletePack2, 0, 0));
             statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_3, Statistic.Fields.CompletePack3, 0, 0));
+            statistics.add(new Statistic(Constants.STATISTIC_CURRENCY, Statistic.Fields.Currency, 0));
         Statistic.saveInTx(statistics);
+    }
+
+    private static void createStoreItem() {
+        List<StoreItem> storeItems = new ArrayList<>();
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_UNDO, 4, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_TIME, 6, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_MOVES, 6, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_SHUFFLE, 8, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_TIME_UPGRADE, 150, 5, true));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_MOVES_UPGRADE, 150, 5, true));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_SHUFFLE_UPGRADE, 100, 1, true));
+            storeItems.add(new StoreItem(Constants.ITEM_UNLOCK_PACK, 1000, 0, false));
+        StoreItem.saveInTx(storeItems);
     }
 
     private static void createTile() {
