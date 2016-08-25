@@ -51,6 +51,8 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
     private static Activity callingActivity;
     private static Snapshot loadedSnapshot;
 
+    public enum IAPs { unlock_pack2, unlock_pack3 }
+
     public static void ConnectionFailed(Activity activity, ConnectionResult connectionResult) {
         if (mResolvingConnectionFailure) {
             return;

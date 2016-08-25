@@ -42,7 +42,7 @@
             android:background="@drawable/ui_panel_blue"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:text="£0.99"
+            android:onClick="buyIAP"
             android:gravity="center_horizontal"/>
     </RelativeLayout>
     <uk.co.jakelee.cityflow.components.TextAwesome

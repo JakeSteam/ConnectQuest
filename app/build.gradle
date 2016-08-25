@@ -38,4 +38,5 @@ dependencies {
     compile 'com.github.hotchemi:android-rate:1.0.1'
     compile 'me.grantland:autofittextview:0.2.1'
     compile('de.keyboardsurfer.android.widget:crouton:1.8.5@aar')
+    compile 'com.anjlab.android.iab.v3:library:1.0.31'
 }
