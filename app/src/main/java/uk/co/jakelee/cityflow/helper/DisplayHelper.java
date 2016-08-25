@@ -25,7 +25,9 @@ import uk.co.jakelee.cityflow.components.TextViewFont;
 import uk.co.jakelee.cityflow.main.EditorActivity;
 import uk.co.jakelee.cityflow.main.PackActivity;
 import uk.co.jakelee.cityflow.main.PuzzleActivity;
+import uk.co.jakelee.cityflow.main.ShopActivity;
 import uk.co.jakelee.cityflow.model.Puzzle;
+import uk.co.jakelee.cityflow.model.StoreItem;
 import uk.co.jakelee.cityflow.model.Tile;
 
 public class DisplayHelper {
@@ -109,6 +111,20 @@ public class DisplayHelper {
             });
         }
         return puzzleButton;
+    }
+
+    public TextView createItemSelectButton(final ShopActivity activity, final StoreItem item, int itemNumber, boolean isSelected) {
+        LayoutInflater inflater = LayoutInflater.from(activity);
+        TextView itemButton = (TextView) inflater.inflate(R.layout.custom_item_select_button, null);
+
+        itemButton.setText(Integer.toString(itemNumber));
+        itemButton.setBackgroundResource(isSelected ? R.drawable.ui_level_selected : R.drawable.ui_level_unselected);
+            itemButton.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    activity.displayInformation(item);
+                }
+            });
+        return itemButton;
     }
 
     public ImageView createBoostIcon(int boostId, int width, int height) {

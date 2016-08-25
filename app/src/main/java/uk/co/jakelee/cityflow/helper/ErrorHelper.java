@@ -4,7 +4,7 @@ import uk.co.jakelee.cityflow.model.Text;
 
 public class ErrorHelper {
     public enum Error {
-        FAILED_TO_CONNECT, SUPPORT_CODE_INVALID
+        NO_ERROR, FAILED_TO_CONNECT, SUPPORT_CODE_INVALID, NOT_ENOUGH_CURRENCY, MAX_PURCHASES
     }
 
     public static String get(Error error) {

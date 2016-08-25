@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<uk.co.jakelee.cityflow.components.TextViewFont
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemButtonNumber"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="30sp"
+    android:gravity="center"
+    android:padding="10dp"
+    android:textColor="@color/grey"
+    android:background="@drawable/ui_level_locked" />

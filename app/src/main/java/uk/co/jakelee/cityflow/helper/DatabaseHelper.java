@@ -97,6 +97,9 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_1_NAME", "Grass"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_2_NAME", "City"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_FAILED_TO_CONNECT", "Couldn't log in. Please try again later."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_MAX_PURCHASES", "You've purchased the maximum of this item!"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_NO_ERROR", ""));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_NOT_ENOUGH_CURRENCY", "You can't afford this item!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_SUPPORT_CODE_INVALID", "Failed to apply support code! Please contact support."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_0_NAME", "None"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_1_NAME", "Water"));

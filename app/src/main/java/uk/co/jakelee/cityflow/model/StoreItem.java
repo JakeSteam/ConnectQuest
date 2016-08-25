@@ -4,6 +4,8 @@ import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import uk.co.jakelee.cityflow.helper.ErrorHelper;
+
 public class StoreItem extends SugarRecord {
     private int itemId;
     private int price;
@@ -62,6 +64,11 @@ public class StoreItem extends SugarRecord {
         this.applyMultiplier = applyMultiplier;
     }
 
+    public static StoreItem get(int itemId)  {
+        return Select.from(StoreItem.class).where(
+                Condition.prop("item_id").eq(itemId)).first();
+    }
+
     public String getName() {
         return Text.get("ITEM_", getItemId(), "_NAME");
     }
@@ -70,13 +77,25 @@ public class StoreItem extends SugarRecord {
         return Text.get("ITEM_", getItemId(), "_DESC");
     }
 
-    public void purchase() {
-        Statistic statToIncrease = Select.from(Statistic.class).where(
+    public ErrorHelper.Error tryPurchase() {
+        StoreItem item = Select.from(StoreItem.class).where(
+                Condition.prop("item_id").eq(getItemId())).first();
+
+        Statistic currency = Select.from(Statistic.class).where(
                 Condition.prop("enum_name").eq(Statistic.Fields.Currency)).first();
 
-        if (statToIncrease != null) {
-            statToIncrease.setIntValue(statToIncrease.getIntValue() + getPrice());
-            statToIncrease.save();
+        if (item.getMaxPurchases() != 0 && item.getPurchases() >= item.getMaxPurchases()) {
+            return ErrorHelper.Error.MAX_PURCHASES;
+        } else if (item.getPrice() > currency.getIntValue()) {
+            return ErrorHelper.Error.NOT_ENOUGH_CURRENCY;
         }
+
+        item.setPurchases(item.getPurchases() + 1);
+        item.save();
+
+        currency.setIntValue(currency.getIntValue() - item.getPrice());
+        currency.save();
+
+        return ErrorHelper.Error.NO_ERROR;
     }
 }

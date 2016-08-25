@@ -27,6 +27,15 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:layout_marginTopPercent="5%"
+            app:layout_heightPercent="25%"
+            android:background="@color/white"
+            android:alpha="0.7"
+            android:onClick="openShop"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layout_marginTopPercent="27%"
             app:layout_heightPercent="18%"
             android:onClick="openChapters"/>
