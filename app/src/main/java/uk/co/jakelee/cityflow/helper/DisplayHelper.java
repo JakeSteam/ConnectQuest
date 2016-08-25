@@ -95,9 +95,7 @@ public class DisplayHelper {
         TextView puzzleButton = (TextView) inflater.inflate(R.layout.custom_puzzle_select_button, null);
 
         puzzleButton.setText(Integer.toString(puzzleNumber));
-        if (!lastLevelCompleted) {
-            puzzleButton.setBackgroundResource(R.drawable.ui_level_locked);
-        } else if (isSelected) {
+        if (isSelected) {
             puzzleButton.setBackgroundResource(hasCompleted ? (hasAllStars ? R.drawable.ui_level_selected_completed_fully : R.drawable.ui_level_selected_completed) : R.drawable.ui_level_selected);
         } else {
             puzzleButton.setBackgroundResource(hasCompleted ? (hasAllStars ? R.drawable.ui_level_unselected_completed_fully : R.drawable.ui_level_unselected_completed) : R.drawable.ui_level_unselected);

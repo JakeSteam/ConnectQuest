@@ -109,7 +109,9 @@ public class StoryActivity extends Activity {
             packButton.setText("Purchase Pack");
             packButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    // IAP prompt
+                    Intent intent = new Intent(getApplicationContext(), IAPActivity.class);
+                    intent.putExtra(Constants.INTENT_IAP, "And this is just a test");
+                    startActivity(intent);
                 }
             });
         }

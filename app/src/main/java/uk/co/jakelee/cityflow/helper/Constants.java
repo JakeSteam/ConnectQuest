@@ -7,6 +7,7 @@ public class Constants {
     public static final String INTENT_PUZZLE = "uk.co.jakelee.cityflow.puzzle";
     public static final String INTENT_PUZZLE_TYPE = "uk.co.jakelee.cityflow.puzzletype";
     public static final String INTENT_TILE = "uk.co.jakelee.cityflow.tile";
+    public static final String INTENT_IAP = "uk.co.jakelee.cityflow.iap";
 
     // Game constants
     public static final int TILE_WIDTH = 130;

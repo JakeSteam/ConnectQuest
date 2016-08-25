@@ -7,4 +7,5 @@
     android:textSize="30sp"
     android:gravity="center"
     android:padding="10dp"
+    android:textColor="@color/grey"
     android:background="@drawable/ui_level_locked" />
