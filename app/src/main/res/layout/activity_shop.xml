@@ -7,30 +7,52 @@
     android:background="@color/green"
     tools:context=".main.ShopActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/currencyCountWrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
+        android:background="@drawable/ui_panel_green">
+        <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/currencyCountText"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Currency: "/>
-        <TextView
-            android:id="@+id/currencyCount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="99"/>
-    </LinearLayout>
+            app:layout_marginLeftPercent="15%"
+            app:layout_marginRightPercent="15%"
+            android:layout_centerHorizontal="true"
+            android:layout_toLeftOf="@id/currencyCountIcon"
+            android:layout_toRightOf="@id/buyCurrencyButton"
+            android:maxLines="1"
+            android:textSize="30sp"
+            android:text="1234"/>
+        <ImageView
+            android:id="@+id/currencyCountIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/currencyCountText"
+            android:src="@drawable/ui_level_locked"/>
+        <ImageView
+            android:id="@+id/buyCurrencyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/currencyCountText"
+            android:src="@drawable/ui_level_unselected"/>
+    </RelativeLayout>
+
+    <uk.co.jakelee.cityflow.components.TextViewFont
+        android:id="@+id/freeCurrencyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp"
+        android:background="@drawable/ui_panel_blue"/>
 
     <ScrollView
         android:id="@+id/itemContainerWrapper"
-        app:layout_heightPercent="80%"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="7dp"
         android:layout_below="@id/currencyCountWrapper"
+        android:layout_above="@id/freeCurrencyText"
         android:background="@drawable/ui_panel_city"
         android:fadeScrollbars="false">
         <TableLayout
@@ -40,16 +62,5 @@
             android:stretchColumns="*"/>
     </ScrollView>
 
-    <LinearLayout
-        android:id="@+id/freeCurrencyWrapper"
-        android:layout_below="@id/itemContainerWrapper"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/freeCurrencyText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Earn currency"/>
-    </LinearLayout>
+
 </android.support.percent.PercentRelativeLayout>

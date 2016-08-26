@@ -1,6 +1,7 @@
 package uk.co.jakelee.cityflow.main;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -9,13 +10,13 @@ import android.widget.TextView;
 import java.util.List;
 
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.model.StoreItem;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class ShopActivity extends Activity {
     private DisplayHelper dh;
-    public StoreItem selectedItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,15 +26,13 @@ public class ShopActivity extends Activity {
     }
 
     private void populateText() {
-        ((TextView) findViewById(R.id.itemNameText)).setText(Text.get("WORD_NAME"));
-        ((TextView) findViewById(R.id.itemDescText)).setText(Text.get("WORD_DESCRIPTION"));
+        ((TextView) findViewById(R.id.freeCurrencyText)).setText("Free Currency");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        selectedItem = StoreItem.get(1);
         populateText();
         populateItems();
     }
@@ -52,8 +51,7 @@ public class ShopActivity extends Activity {
 
         for (int itemIndex = 1; itemIndex <= numItems; itemIndex++) {
             StoreItem item = items.get(itemIndex - 1);
-            boolean isSelected = selectedItem.getItemId() == item.getItemId();
-            row.addView(dh.createItemSelectButton(this, item, itemIndex, isSelected), layoutParams);
+            row.addView(dh.createItemSelectButton(this, item), layoutParams);
 
             if (itemIndex % 3 == 0 || itemIndex == numItems) {
                 itemContainer.addView(row);
@@ -64,6 +62,9 @@ public class ShopActivity extends Activity {
 
     public void displayInformation(StoreItem item) {
         // Open popup with extra info
+        Intent intent = new Intent(this, ShopItemActivity.class);
+        intent.putExtra(Constants.INTENT_ITEM, item.getItemId());
+        startActivity(intent);
 
         // Move the following to the info displaying bit
         /*ErrorHelper.Error purchaseResult = selectedItem.tryPurchase();

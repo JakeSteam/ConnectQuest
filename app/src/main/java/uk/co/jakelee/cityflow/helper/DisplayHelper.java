@@ -16,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -113,17 +114,16 @@ public class DisplayHelper {
         return puzzleButton;
     }
 
-    public TextView createItemSelectButton(final ShopActivity activity, final StoreItem item, int itemNumber, boolean isSelected) {
+    public RelativeLayout createItemSelectButton(final ShopActivity activity, final StoreItem item) {
         LayoutInflater inflater = LayoutInflater.from(activity);
-        TextView itemButton = (TextView) inflater.inflate(R.layout.custom_item_select_button, null);
+        RelativeLayout itemButton = (RelativeLayout) inflater.inflate(R.layout.custom_item_select_button, null);
+        ((TextView)itemButton.findViewById(R.id.itemPrice)).setText(Integer.toString(item.getPrice()));
 
-        itemButton.setText(Integer.toString(itemNumber));
-        itemButton.setBackgroundResource(isSelected ? R.drawable.ui_level_selected : R.drawable.ui_level_unselected);
-            itemButton.setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View v) {
-                    activity.displayInformation(item);
-                }
-            });
+        itemButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                activity.displayInformation(item);
+            }
+        });
         return itemButton;
     }
 
