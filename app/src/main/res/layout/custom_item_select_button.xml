@@ -16,7 +16,7 @@
         android:layout_height="20dp"
         android:layout_below="@id/itemImage"
         android:layout_alignLeft="@id/itemImage"
-        android:src="@drawable/boost_1"
+        android:src="@drawable/ui_currency"
         android:layout_margin="5dp"/>
     <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/itemPrice"

@@ -27,13 +27,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/currencyCountText"
-            android:src="@drawable/ui_level_locked"/>
+            android:layout_alignTop="@id/currencyCountText"
+            android:layout_alignBottom="@id/currencyCountText"
+            android:src="@drawable/ui_currency" />
         <ImageView
             android:id="@+id/buyCurrencyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/currencyCountText"
-            android:src="@drawable/ui_level_unselected"/>
+            android:layout_alignTop="@id/currencyCountText"
+            android:layout_alignBottom="@id/currencyCountText"
+            android:src="@drawable/ui_add"/>
     </RelativeLayout>
 
     <uk.co.jakelee.cityflow.components.TextViewFont
