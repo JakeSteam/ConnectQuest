@@ -7,38 +7,49 @@
     android:background="@color/green"
     tools:context=".main.ShopActivity">
 
-    <RelativeLayout
-        android:id="@+id/currencyCountWrapper"
+    <LinearLayout
+        android:id="@+id/shopTopBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/ui_panel_grey"
         android:layout_margin="7dp"
-        android:background="@drawable/ui_panel_grey">
-        <uk.co.jakelee.cityflow.components.TextViewFont
-            android:id="@+id/currencyCountText"
-            android:layout_width="wrap_content"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <uk.co.jakelee.cityflow.components.AutofitTextViewFont
+                android:id="@+id/currencyCountText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/black"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:textSize="30sp"/>
+            <ImageView
+                android:id="@+id/currencyCountIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/currencyCountText"
+                android:layout_alignTop="@id/currencyCountText"
+                android:layout_alignBottom="@id/currencyCountText"
+                android:src="@drawable/ui_currency" />
+            <ImageView
+                android:id="@+id/buyCurrencyButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/currencyCountText"
+                android:layout_alignTop="@id/currencyCountText"
+                android:layout_alignBottom="@id/currencyCountText"
+                android:src="@drawable/ui_add"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/tabContainer"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:textColor="@color/black"
-            android:maxLines="1"
-            android:padding="10dp"
-            android:textSize="30sp"/>
-        <ImageView
-            android:id="@+id/currencyCountIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/currencyCountText"
-            android:layout_alignTop="@id/currencyCountText"
-            android:layout_alignBottom="@id/currencyCountText"
-            android:src="@drawable/ui_currency" />
-        <ImageView
-            android:id="@+id/buyCurrencyButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/currencyCountText"
-            android:layout_alignTop="@id/currencyCountText"
-            android:layout_alignBottom="@id/currencyCountText"
-            android:src="@drawable/ui_add"/>
-    </RelativeLayout>
+            android:orientation="horizontal">
+        </LinearLayout>
+    </LinearLayout>
 
     <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/freeCurrencyText"
@@ -55,7 +66,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="7dp"
-        android:layout_below="@id/currencyCountWrapper"
+        android:layout_below="@id/shopTopBar"
         android:layout_above="@id/freeCurrencyText"
         android:background="@drawable/ui_panel_city"
         android:fadeScrollbars="false">

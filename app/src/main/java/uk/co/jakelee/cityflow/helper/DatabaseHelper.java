@@ -11,6 +11,7 @@ import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Statistic;
+import uk.co.jakelee.cityflow.model.StoreCategory;
 import uk.co.jakelee.cityflow.model.StoreItem;
 import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
@@ -35,6 +36,7 @@ public class DatabaseHelper {
         createSetting();
         createStatistic();
         createStoreItem();
+        createStoreCategory();
         createText();
         createTile();
         createTileType();
@@ -170,6 +172,10 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_5_NAME", "Zen Mode"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_6_NAME", "Hide Unstocked Boosts"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_7_NAME", "Player Name"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_1_NAME", "Boosts"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_2_NAME", "Upgrades"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_3_NAME", "Tiles"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_FREE_CURRENCY", "Free Currency"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_1_NAME", "Puzzles Completed"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_2_NAME", "Tiles Rotated"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SUCCESS_SUPPORT_CODE", "Successfully applied support code!"));
@@ -312,15 +318,23 @@ public class DatabaseHelper {
 
     private static void createStoreItem() {
         List<StoreItem> storeItems = new ArrayList<>();
-            storeItems.add(new StoreItem(Constants.ITEM_BOOST_UNDO, 4, 0, false));
-            storeItems.add(new StoreItem(Constants.ITEM_BOOST_TIME, 6, 0, false));
-            storeItems.add(new StoreItem(Constants.ITEM_BOOST_MOVES, 6, 0, false));
-            storeItems.add(new StoreItem(Constants.ITEM_BOOST_SHUFFLE, 8, 0, false));
-            storeItems.add(new StoreItem(Constants.ITEM_BOOST_TIME_UPGRADE, 150, 5, true));
-            storeItems.add(new StoreItem(Constants.ITEM_BOOST_MOVES_UPGRADE, 150, 5, true));
-            storeItems.add(new StoreItem(Constants.ITEM_BOOST_SHUFFLE_UPGRADE, 100, 1, true));
-            storeItems.add(new StoreItem(Constants.ITEM_UNLOCK_PACK, 1000, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_UNDO, Constants.STORE_CATEGORY_BOOSTS, 4, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_TIME, Constants.STORE_CATEGORY_BOOSTS, 6, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_MOVES, Constants.STORE_CATEGORY_BOOSTS, 6, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_SHUFFLE, Constants.STORE_CATEGORY_BOOSTS, 8, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_TIME_UPGRADE, Constants.STORE_CATEGORY_UPGRADES, 150, 5, true));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_MOVES_UPGRADE, Constants.STORE_CATEGORY_UPGRADES, 150, 5, true));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_SHUFFLE_UPGRADE, Constants.STORE_CATEGORY_UPGRADES, 100, 1, true));
+            storeItems.add(new StoreItem(Constants.ITEM_UNLOCK_PACK, Constants.STORE_CATEGORY_TILES, 1000, 0, false));
         StoreItem.saveInTx(storeItems);
+    }
+
+    private static void createStoreCategory() {
+        List<StoreCategory> categories = new ArrayList<>();
+            categories.add(new StoreCategory(Constants.STORE_CATEGORY_BOOSTS));
+            categories.add(new StoreCategory(Constants.STORE_CATEGORY_UPGRADES));
+            categories.add(new StoreCategory(Constants.STORE_CATEGORY_TILES));
+        StoreCategory.saveInTx(categories);
     }
 
     private static void createTile() {

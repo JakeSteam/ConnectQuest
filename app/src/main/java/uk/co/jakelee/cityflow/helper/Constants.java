@@ -92,6 +92,9 @@ public class Constants {
     public static final int STATISTIC_COMPLETE_PACK_2 = 7;
     public static final int STATISTIC_COMPLETE_PACK_3 = 8;
     public static final int STATISTIC_CURRENCY = 9;
+    public static final int STORE_CATEGORY_BOOSTS = 1;
+    public static final int STORE_CATEGORY_UPGRADES = 2;
+    public static final int STORE_CATEGORY_TILES = 3;
     public static final int SIDE_NORTH = 1;
     public static final int SIDE_EAST = 2;
     public static final int SIDE_SOUTH = 3;

@@ -4,10 +4,13 @@ import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.List;
+
 import uk.co.jakelee.cityflow.helper.ErrorHelper;
 
 public class StoreItem extends SugarRecord {
     private int itemId;
+    private int categoryId;
     private int price;
     private int purchases;
     private int maxPurchases;
@@ -16,8 +19,9 @@ public class StoreItem extends SugarRecord {
     public StoreItem() {
     }
 
-    public StoreItem(int itemId, int price, int maxPurchases, boolean applyMultiplier) {
+    public StoreItem(int itemId, int categoryId, int price, int maxPurchases, boolean applyMultiplier) {
         this.itemId = itemId;
+        this.categoryId = categoryId;
         this.price = price;
         this.purchases = 0;
         this.maxPurchases = maxPurchases;
@@ -30,6 +34,14 @@ public class StoreItem extends SugarRecord {
 
     public void setItemId(int itemId) {
         this.itemId = itemId;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     public int getPrice() {
@@ -67,6 +79,11 @@ public class StoreItem extends SugarRecord {
     public static StoreItem get(int itemId)  {
         return Select.from(StoreItem.class).where(
                 Condition.prop("item_id").eq(itemId)).first();
+    }
+
+    public static List<StoreItem> getByCategory(int categoryId) {
+        return Select.from(StoreItem.class).where(
+                Condition.prop("category_id").eq(categoryId)).list();
     }
 
     public String getName() {
