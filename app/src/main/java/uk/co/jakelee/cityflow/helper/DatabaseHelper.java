@@ -126,8 +126,30 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_6_DESC", "Each upgrade reduces the puzzle moves taken by 1 per level."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_7_NAME", "Upgrade Shuffle Board"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_7_DESC", "Each upgrade increases the number of times the board can be shuffled by 1."));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_8_NAME", "Unlock Pack"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_8_DESC", "Unlock the next pack instantly, without collecting all stars."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_8_NAME", "Unlock Tile 1"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_8_DESC", "Unlock a presumably special tile?"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_9_NAME", "Unlock Tile 2"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_9_DESC", "Unlock a presumably super special tile?"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_10_NAME", "Unlock Tile 3"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_10_DESC", "Unlock a presumably super super special tile?"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_11_NAME", "Unlock Pack"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_11_DESC", "Instantly unlock the next pack, without collecting all stars."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_12_NAME", "10x Undo"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_12_DESC", "10 undo boosts, saving 10%!"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_13_NAME", "10x Time Reduction"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_13_DESC", "10 time reduction boosts, saving 10%!"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_14_NAME", "10x Move Reduction"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_14_DESC", "10 move reduction boosts, saving 10%!"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_15_NAME", "10x Shuffle Board"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_15_DESC", "10 shuffle board boosts, saving 10%!"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_16_NAME", "100x Undo"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_16_DESC", "100 undo boosts, saving 20%!"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_17_NAME", "100x Time Reduction"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_17_DESC", "100 time reduction boosts, saving 20%!"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_18_NAME", "100x Move Reduction"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_18_DESC", "100 move reduction boosts, saving 20%!"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_19_NAME", "100x Shuffle Reduction"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_19_DESC", "100 shuffle board boosts, saving 20%!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "METRIC_TILES_EARNED", "Tiles Earned"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "METRIC_BEST_TIME", "Best Time"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "METRIC_BEST_MOVES", "Best Moves"));
@@ -175,6 +197,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_1_NAME", "Boosts"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_2_NAME", "Upgrades"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_3_NAME", "Tiles"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_4_NAME", "Misc"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_FREE_CURRENCY", "Free Currency"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_1_NAME", "Puzzles Completed"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_2_NAME", "Tiles Rotated"));
@@ -319,13 +342,24 @@ public class DatabaseHelper {
     private static void createStoreItem() {
         List<StoreItem> storeItems = new ArrayList<>();
             storeItems.add(new StoreItem(Constants.ITEM_BOOST_UNDO, Constants.STORE_CATEGORY_BOOSTS, 4, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_UNDO_10, Constants.STORE_CATEGORY_BOOSTS, 36, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_UNDO_100, Constants.STORE_CATEGORY_BOOSTS, 320, 0, false));
             storeItems.add(new StoreItem(Constants.ITEM_BOOST_TIME, Constants.STORE_CATEGORY_BOOSTS, 6, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_TIME_10, Constants.STORE_CATEGORY_BOOSTS, 54, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_TIME_100, Constants.STORE_CATEGORY_BOOSTS, 480, 0, false));
             storeItems.add(new StoreItem(Constants.ITEM_BOOST_MOVES, Constants.STORE_CATEGORY_BOOSTS, 6, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_MOVES_10, Constants.STORE_CATEGORY_BOOSTS, 54, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_MOVES_100, Constants.STORE_CATEGORY_BOOSTS, 480, 0, false));
             storeItems.add(new StoreItem(Constants.ITEM_BOOST_SHUFFLE, Constants.STORE_CATEGORY_BOOSTS, 8, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_SHUFFLE_10, Constants.STORE_CATEGORY_BOOSTS, 72, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_SHUFFLE_100, Constants.STORE_CATEGORY_BOOSTS, 640, 0, false));
             storeItems.add(new StoreItem(Constants.ITEM_BOOST_TIME_UPGRADE, Constants.STORE_CATEGORY_UPGRADES, 150, 5, true));
             storeItems.add(new StoreItem(Constants.ITEM_BOOST_MOVES_UPGRADE, Constants.STORE_CATEGORY_UPGRADES, 150, 5, true));
             storeItems.add(new StoreItem(Constants.ITEM_BOOST_SHUFFLE_UPGRADE, Constants.STORE_CATEGORY_UPGRADES, 100, 1, true));
-            storeItems.add(new StoreItem(Constants.ITEM_UNLOCK_PACK, Constants.STORE_CATEGORY_TILES, 1000, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_TILE_1, Constants.STORE_CATEGORY_TILES, 1000, 1, false));
+            storeItems.add(new StoreItem(Constants.ITEM_TILE_2, Constants.STORE_CATEGORY_TILES, 1500, 1, false));
+            storeItems.add(new StoreItem(Constants.ITEM_TILE_3, Constants.STORE_CATEGORY_TILES, 2000, 1, false));
+            storeItems.add(new StoreItem(Constants.ITEM_UNLOCK_PACK, Constants.STORE_CATEGORY_MISC, 5000, 0, false));
         StoreItem.saveInTx(storeItems);
     }
 
@@ -334,6 +368,7 @@ public class DatabaseHelper {
             categories.add(new StoreCategory(Constants.STORE_CATEGORY_BOOSTS));
             categories.add(new StoreCategory(Constants.STORE_CATEGORY_UPGRADES));
             categories.add(new StoreCategory(Constants.STORE_CATEGORY_TILES));
+            categories.add(new StoreCategory(Constants.STORE_CATEGORY_MISC));
         StoreCategory.saveInTx(categories);
     }
 

@@ -117,6 +117,7 @@ public class DisplayHelper {
     public RelativeLayout createItemSelectButton(final ShopActivity activity, final StoreItem item) {
         LayoutInflater inflater = LayoutInflater.from(activity);
         RelativeLayout itemButton = (RelativeLayout) inflater.inflate(R.layout.custom_item_select_button, null);
+        ((ImageView)itemButton.findViewById(R.id.itemImage)).setImageResource(getItemDrawableID(item.getItemId()));
         ((TextView)itemButton.findViewById(R.id.itemPrice)).setText(Integer.toString(item.getPrice()));
 
         itemButton.setOnClickListener(new Button.OnClickListener() {
@@ -180,8 +181,12 @@ public class DisplayHelper {
         return context.getResources().getIdentifier("boost_" + boost, "drawable", context.getPackageName());
     }
 
-    public int getTileDrawableID(int boost) {
-        return context.getResources().getIdentifier("tile_" + boost + "_1", "drawable", context.getPackageName());
+    public int getTileDrawableID(int tile) {
+        return context.getResources().getIdentifier("tile_" + tile + "_1", "drawable", context.getPackageName());
+    }
+
+    public int getItemDrawableID(int item) {
+        return context.getResources().getIdentifier("item_" + item, "drawable", context.getPackageName());
     }
 
     public Drawable createDrawable(int drawableId, int width, int height) {

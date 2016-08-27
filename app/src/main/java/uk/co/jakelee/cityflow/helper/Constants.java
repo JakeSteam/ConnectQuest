@@ -58,7 +58,18 @@ public class Constants {
     public static final int ITEM_BOOST_TIME_UPGRADE = 5;
     public static final int ITEM_BOOST_MOVES_UPGRADE = 6;
     public static final int ITEM_BOOST_SHUFFLE_UPGRADE = 7;
-    public static final int ITEM_UNLOCK_PACK = 8;
+    public static final int ITEM_TILE_1 = 8;
+    public static final int ITEM_TILE_2 = 9;
+    public static final int ITEM_TILE_3 = 10;
+    public static final int ITEM_UNLOCK_PACK = 11;
+    public static final int ITEM_BOOST_UNDO_10 = 12;
+    public static final int ITEM_BOOST_TIME_10 = 13;
+    public static final int ITEM_BOOST_MOVES_10 = 14;
+    public static final int ITEM_BOOST_SHUFFLE_10 = 15;
+    public static final int ITEM_BOOST_UNDO_100 = 16;
+    public static final int ITEM_BOOST_TIME_100 = 17;
+    public static final int ITEM_BOOST_MOVES_100 = 18;
+    public static final int ITEM_BOOST_SHUFFLE_100 = 19;
     public static final int HEIGHT_NO_CONNECT = 0;
     public static final int HEIGHT_LOW = 1;
     public static final int HEIGHT_NORMAL = 2;
@@ -95,6 +106,7 @@ public class Constants {
     public static final int STORE_CATEGORY_BOOSTS = 1;
     public static final int STORE_CATEGORY_UPGRADES = 2;
     public static final int STORE_CATEGORY_TILES = 3;
+    public static final int STORE_CATEGORY_MISC = 4;
     public static final int SIDE_NORTH = 1;
     public static final int SIDE_EAST = 2;
     public static final int SIDE_SOUTH = 3;
