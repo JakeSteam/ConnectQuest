@@ -84,7 +84,9 @@ public class StoreItem extends SugarRecord {
         Statistic currency = Select.from(Statistic.class).where(
                 Condition.prop("enum_name").eq(Statistic.Fields.Currency)).first();
 
-        if (item.getMaxPurchases() != 0 && item.getPurchases() >= item.getMaxPurchases()) {
+        if (item == null) {
+            return ErrorHelper.Error.TECHNICAL;
+        } else if (item.getMaxPurchases() != 0 && item.getPurchases() >= item.getMaxPurchases()) {
             return ErrorHelper.Error.MAX_PURCHASES;
         } else if (item.getPrice() > currency.getIntValue()) {
             return ErrorHelper.Error.NOT_ENOUGH_CURRENCY;

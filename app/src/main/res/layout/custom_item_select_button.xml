@@ -2,13 +2,13 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/itemWrapper"
-    android:layout_width="wrap"
-    android:layout_height="wrap"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@drawable/ui_panel_grey">
     <ImageView
         android:id="@+id/itemImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:src="@drawable/boost_1"/>
     <ImageView
         android:id="@+id/currencyImage"
@@ -16,11 +16,14 @@
         android:layout_height="20dp"
         android:layout_below="@id/itemImage"
         android:layout_alignLeft="@id/itemImage"
-        android:src="@drawable/boost_1"/>
+        android:src="@drawable/boost_1"
+        android:layout_margin="5dp"/>
     <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/itemPrice"
         android:layout_toRightOf="@id/currencyImage"
         android:layout_below="@id/itemImage"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_margin="5dp"/>
 </RelativeLayout>

@@ -12,8 +12,8 @@ import java.util.List;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
+import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.StoreItem;
-import uk.co.jakelee.cityflow.model.Text;
 
 public class ShopActivity extends Activity {
     private DisplayHelper dh;
@@ -27,6 +27,7 @@ public class ShopActivity extends Activity {
 
     private void populateText() {
         ((TextView) findViewById(R.id.freeCurrencyText)).setText("Free Currency");
+        ((TextView) findViewById(R.id.currencyCountText)).setText(Integer.toString(Statistic.getCurrency()));
     }
 
     @Override
@@ -61,17 +62,8 @@ public class ShopActivity extends Activity {
     }
 
     public void displayInformation(StoreItem item) {
-        // Open popup with extra info
         Intent intent = new Intent(this, ShopItemActivity.class);
         intent.putExtra(Constants.INTENT_ITEM, item.getItemId());
         startActivity(intent);
-
-        // Move the following to the info displaying bit
-        /*ErrorHelper.Error purchaseResult = selectedItem.tryPurchase();
-        if (purchaseResult != ErrorHelper.Error.NO_ERROR) {
-            Crouton.makeText(this, ErrorHelper.get(purchaseResult), Style.ALERT);
-        } else {
-            Crouton.makeText(this, "Successfully purchased " + selectedItem.getName() + " for " + selectedItem.getPrice() + " currency!", Style.CONFIRM);
-        }*/
     }
 }
