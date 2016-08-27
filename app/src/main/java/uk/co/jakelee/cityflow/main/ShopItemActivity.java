@@ -11,6 +11,7 @@ import de.keyboardsurfer.android.widget.crouton.Style;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.ErrorHelper;
+import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.StoreItem;
 
@@ -33,12 +34,18 @@ public class ShopItemActivity extends Activity {
     private void populateItemInfo() {
         ((TextView)findViewById(R.id.itemName)).setText(storeItem.getName());
         ((TextView)findViewById(R.id.itemDesc)).setText(storeItem.getDescription());
-        ((TextView)findViewById(R.id.itemPurchases)).setText(storeItem.getPurchases() + (storeItem.getMaxPurchases() > 0 ? "/" + storeItem.getMaxPurchases() : "") + " purchases");
+
+        if (storeItem.getCategoryId() == Constants.STORE_CATEGORY_BOOSTS && storeItem.getBoostId() > 0) {
+            Boost boost = Boost.get(storeItem.getBoostId());
+            ((TextView) findViewById(R.id.itemPurchases)).setText(boost.getOwned() + " owned");
+        } else {
+            ((TextView) findViewById(R.id.itemPurchases)).setText(storeItem.getPurchases() + (storeItem.getMaxPurchases() > 0 ? "/" + storeItem.getMaxPurchases() : "") + " purchases");
+        }
 
         if (storeItem.getMaxPurchases() > 0 && storeItem.getPurchases() >= storeItem.getMaxPurchases()) {
             ((TextView)findViewById(R.id.purchaseButton)).setText("Maximum Reached");
         } else {
-            ((TextView)findViewById(R.id.purchaseButton)).setText("Buy for " + storeItem.getPrice());
+            ((TextView)findViewById(R.id.purchaseButton)).setText("Buy for " + storeItem.getPrice() + " coins");
         }
         ((TextView) findViewById(R.id.currencyCountText)).setText(Integer.toString(Statistic.getCurrency()));
     }

@@ -11,6 +11,7 @@ import uk.co.jakelee.cityflow.helper.ErrorHelper;
 public class StoreItem extends SugarRecord {
     private int itemId;
     private int categoryId;
+    private int boostId;
     private int price;
     private int purchases;
     private int maxPurchases;
@@ -19,9 +20,10 @@ public class StoreItem extends SugarRecord {
     public StoreItem() {
     }
 
-    public StoreItem(int itemId, int categoryId, int price, int maxPurchases, boolean applyMultiplier) {
+    public StoreItem(int itemId, int categoryId, int boostId, int price, int maxPurchases, boolean applyMultiplier) {
         this.itemId = itemId;
         this.categoryId = categoryId;
+        this.boostId = boostId;
         this.price = price;
         this.purchases = 0;
         this.maxPurchases = maxPurchases;
@@ -42,6 +44,14 @@ public class StoreItem extends SugarRecord {
 
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public int getBoostId() {
+        return boostId;
+    }
+
+    public void setBoostId(int boostId) {
+        this.boostId = boostId;
     }
 
     public int getPrice() {
