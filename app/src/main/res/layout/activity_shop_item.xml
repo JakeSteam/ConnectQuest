@@ -11,6 +11,36 @@
         android:layout_height="match_parent"
         android:src="@color/black"
         android:alpha="0.6"/>
+
+    <RelativeLayout
+        android:id="@+id/currencyCountWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp"
+        android:background="@drawable/ui_panel_grey">
+        <uk.co.jakelee.cityflow.components.TextViewFont
+            android:id="@+id/currencyCountText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/black"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textSize="30sp"/>
+        <ImageView
+            android:id="@+id/currencyCountIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/currencyCountText"
+            android:src="@drawable/ui_level_locked"/>
+        <ImageView
+            android:id="@+id/buyCurrencyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/currencyCountText"
+            android:src="@drawable/ui_level_unselected"/>
+    </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/popupWrapper"
         android:layout_width="match_parent"

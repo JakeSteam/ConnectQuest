@@ -11,6 +11,7 @@ import de.keyboardsurfer.android.widget.crouton.Style;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.ErrorHelper;
+import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.StoreItem;
 
 public class ShopItemActivity extends Activity {
@@ -35,6 +36,7 @@ public class ShopItemActivity extends Activity {
         ((TextView)findViewById(R.id.itemDesc)).setText(storeItem.getDescription());
 
         ((TextView)findViewById(R.id.purchaseButton)).setText("Buy for " + storeItem.getPrice());
+        ((TextView) findViewById(R.id.currencyCountText)).setText(Integer.toString(Statistic.getCurrency()));
     }
 
     public void buyItem(View view) {
@@ -44,6 +46,7 @@ public class ShopItemActivity extends Activity {
         } else {
             Crouton.makeText(this, "Successfully purchased " + storeItem.getName() + " for " + storeItem.getPrice() + " currency!", Style.CONFIRM).show();
         }
+        populateItemInfo();
     }
 
     public void closePopup (View v) {
