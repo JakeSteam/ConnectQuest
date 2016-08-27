@@ -30,12 +30,16 @@ public class ShopItemActivity extends Activity {
         }
     }
 
-
     private void populateItemInfo() {
         ((TextView)findViewById(R.id.itemName)).setText(storeItem.getName());
         ((TextView)findViewById(R.id.itemDesc)).setText(storeItem.getDescription());
+        ((TextView)findViewById(R.id.itemPurchases)).setText(storeItem.getPurchases() + (storeItem.getMaxPurchases() > 0 ? "/" + storeItem.getMaxPurchases() : "") + " purchases");
 
-        ((TextView)findViewById(R.id.purchaseButton)).setText("Buy for " + storeItem.getPrice());
+        if (storeItem.getMaxPurchases() > 0 && storeItem.getPurchases() >= storeItem.getMaxPurchases()) {
+            ((TextView)findViewById(R.id.purchaseButton)).setText("Maximum Reached");
+        } else {
+            ((TextView)findViewById(R.id.purchaseButton)).setText("Buy for " + storeItem.getPrice());
+        }
         ((TextView) findViewById(R.id.currencyCountText)).setText(Integer.toString(Statistic.getCurrency()));
     }
 
@@ -44,8 +48,10 @@ public class ShopItemActivity extends Activity {
         if (purchaseResult != ErrorHelper.Error.NO_ERROR) {
             Crouton.makeText(this, ErrorHelper.get(purchaseResult), Style.ALERT).show();
         } else {
-            Crouton.makeText(this, "Successfully purchased " + storeItem.getName() + " for " + storeItem.getPrice() + " currency!", Style.CONFIRM).show();
+            Crouton.makeText(this, "Successfully purchased " + storeItem.getName() + " for " + storeItem.getPrice() + " coins!", Style.CONFIRM).show();
         }
+
+        storeItem = StoreItem.get(storeItem.getItemId());
         populateItemInfo();
     }
 

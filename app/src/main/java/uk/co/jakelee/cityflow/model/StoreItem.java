@@ -45,7 +45,10 @@ public class StoreItem extends SugarRecord {
     }
 
     public int getPrice() {
-        return price;
+        if (!applyMultiplier()) {
+            return price;
+        }
+        return (purchases + 1) * price;
     }
 
     public void setPrice(int price) {
@@ -68,7 +71,7 @@ public class StoreItem extends SugarRecord {
         this.maxPurchases = maxPurchases;
     }
 
-    public boolean isApplyMultiplier() {
+    public boolean applyMultiplier() {
         return applyMultiplier;
     }
 
@@ -84,6 +87,10 @@ public class StoreItem extends SugarRecord {
     public static List<StoreItem> getByCategory(int categoryId) {
         return Select.from(StoreItem.class).where(
                 Condition.prop("category_id").eq(categoryId)).list();
+    }
+
+    public boolean atMaxPurchases() {
+        return getMaxPurchases() != 0 && getPurchases() >= getMaxPurchases();
     }
 
     public String getName() {
@@ -103,7 +110,7 @@ public class StoreItem extends SugarRecord {
 
         if (item == null) {
             return ErrorHelper.Error.TECHNICAL;
-        } else if (item.getMaxPurchases() != 0 && item.getPurchases() >= item.getMaxPurchases()) {
+        } else if (item.atMaxPurchases()) {
             return ErrorHelper.Error.MAX_PURCHASES;
         } else if (item.getPrice() > currency.getIntValue()) {
             return ErrorHelper.Error.NOT_ENOUGH_CURRENCY;

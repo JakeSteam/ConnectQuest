@@ -59,6 +59,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginRight="35dp"
             android:textSize="24sp"/>
         <uk.co.jakelee.cityflow.components.TextViewFont
@@ -67,7 +70,18 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/itemName"
             android:textColor="@color/black"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginRight="35dp"
+            android:textSize="18sp"/>
+        <uk.co.jakelee.cityflow.components.TextViewFont
+            android:id="@+id/itemPurchases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/itemDesc"
+            android:textColor="@color/black"
+            android:layout_margin="5dp"
             android:textSize="18sp"/>
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/purchaseButton"
@@ -75,7 +89,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:layout_margin="5dp"
-            android:layout_below="@id/itemDesc"
+            android:layout_below="@id/itemPurchases"
             android:background="@drawable/ui_panel_blue"
             android:textColor="@color/black"
             android:textSize="22sp"
