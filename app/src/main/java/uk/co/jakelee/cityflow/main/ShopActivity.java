@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -49,6 +50,7 @@ public class ShopActivity extends Activity {
         LinearLayout tabContainer = (LinearLayout) findViewById(R.id.tabContainer);
         tabContainer.removeAllViews();
 
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1);
         LayoutInflater inflater = LayoutInflater.from(this);
 
         List<StoreCategory> categories = StoreCategory.listAll(StoreCategory.class);
@@ -57,7 +59,7 @@ public class ShopActivity extends Activity {
             categoryTab.setBackgroundResource(selectedCategory == category.getCategoryId() ? R.drawable.ui_panel_city : R.drawable.ui_panel_grey);
             categoryTab.setText(category.getName());
             categoryTab.setTag(category.getCategoryId());
-            tabContainer.addView(categoryTab);
+            tabContainer.addView(categoryTab, lp);
         }
     }
 
