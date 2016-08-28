@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Pair;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.games.Games;
+import com.google.android.gms.games.GamesStatusCodes;
 import com.google.android.gms.games.quest.Quest;
 import com.google.android.gms.games.quest.QuestBuffer;
 import com.google.android.gms.games.quest.Quests;
@@ -28,6 +30,7 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
+import uk.co.jakelee.cityflow.BuildConfig;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.main.MainActivity;
 import uk.co.jakelee.cityflow.model.Achievement;
@@ -181,33 +184,46 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
 
             @Override
             protected Integer doInBackground(Void... params) {
-                final Snapshots.OpenSnapshotResult result = Games.Snapshots.open(mGoogleApiClient, mCurrentSaveName, true).await();
+                Snapshots.OpenSnapshotResult result = Games.Snapshots.open(mGoogleApiClient, mCurrentSaveName, true).await();
 
-                if (result.getStatus().isSuccess()) {
-                    Snapshot snapshot = result.getSnapshot();
-                    try {
-                        if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_METADATA)) {
-                            cloudSaveData = snapshot.getSnapshotContents().readFully();
-                            loadFromCloud(true);
-                            currentTask = "loading";
-                        } else if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_NEW)) {
-                            loadedSnapshot = snapshot;
-                            saveToCloud();
-                            currentTask = "saving";
-                        }
-                    } catch (final IOException e) {
-                        callingActivity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                // Local failure
-                            }
-                        });
-                    }
-                } else {
+                // Conflict! Let's fix it
+                while (!result.getStatus().isSuccess()) {
                     callingActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                           // Remote failure
+                            Crouton.showText(callingActivity, "Save conflict! Hang on, attempting to resolve...", StyleHelper.ERROR);
+                        }
+                    });
+
+                    if (result.getStatus().getStatusCode() == GamesStatusCodes.STATUS_SNAPSHOT_CONFLICT) {
+                        Snapshot snapshot = result.getSnapshot();
+                        Snapshot conflictSnapshot = result.getConflictingSnapshot();
+                        Snapshot mResolvedSnapshot = snapshot;
+
+                        if (snapshot.getMetadata().getLastModifiedTimestamp() < conflictSnapshot.getMetadata().getLastModifiedTimestamp()) {
+                            mResolvedSnapshot = conflictSnapshot;
+                        }
+
+                        result = Games.Snapshots.resolveConflict(mGoogleApiClient, result.getConflictId(), mResolvedSnapshot).await();
+                    }
+                }
+
+                Snapshot snapshot = result.getSnapshot();
+                try {
+                    if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_METADATA)) {
+                        cloudSaveData = snapshot.getSnapshotContents().readFully();
+                        loadFromCloud(true);
+                        currentTask = "loading";
+                    } else if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_NEW)) {
+                        loadedSnapshot = snapshot;
+                        saveToCloud();
+                        currentTask = "saving";
+                    }
+                } catch (final IOException e) {
+                    callingActivity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Crouton.showText(callingActivity, "Uh oh, we had an error: " + e.getMessage(), StyleHelper.ERROR);
                         }
                     });
                 }
@@ -227,17 +243,21 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             @Override
             public void run() {
                 if (!checkIsImprovement) {
-                    Crouton.showText(callingActivity, "Beginning load from cloud", StyleHelper.INFO);
+                    Crouton.showText(callingActivity, "Loading cloud save...", StyleHelper.INFO);
                 }
             }
         });
 
-        int cloudData = getStarsFromSave(cloudSaveData);
+        Pair<Integer, Integer> cloudData = getStarsAndCoinsFromSave(cloudSaveData);
 
         if (!checkIsImprovement || newSaveIsBetter(cloudData)) {
             applyBackup(new String(cloudSaveData));
         } else {
-            // Confirm worse cloud load
+            AlertDialogHelper.confirmCloudLoad(callingActivity,
+                    StatisticsHelper.getTotalStars(),
+                    Statistic.getCurrency(),
+                    cloudData.first,
+                    cloudData.second);
         }
     }
 
@@ -260,7 +280,10 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         new Thread(new Runnable() {
             public void run() {
                 byte[] data = createBackup();
-                String desc = "City Flow Cloud Save";
+                String desc = String.format("%2$d Stars | %1$d Coins | V%3$s",
+                        StatisticsHelper.getTotalStars(),
+                        Statistic.getCurrency(),
+                        BuildConfig.VERSION_NAME);
                 Bitmap cover = BitmapFactory.decodeResource(callingContext.getResources(), R.drawable.tile_1_1);
 
                 loadedSnapshot.getSnapshotContents().writeBytes(data);
@@ -276,7 +299,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                 callingActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Crouton.showText(callingActivity, "Successfully loaded save from cloud!", StyleHelper.INFO);
+                        Crouton.showText(callingActivity, "Successfully saved game to cloud!", StyleHelper.SUCCESS);
                     }
                 });
             }
@@ -291,7 +314,10 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         if (loadedSnapshot.getMetadata().getDeviceName() == null) {
             forceSaveToCloud();
         } else {
-            // Confirm cloud save
+            AlertDialogHelper.confirmCloudSave(callingContext, callingActivity,
+                    loadedSnapshot.getMetadata().getDescription(),
+                    loadedSnapshot.getMetadata().getLastModifiedTimestamp(),
+                    loadedSnapshot.getMetadata().getDeviceName());
         }
 
     }
@@ -311,6 +337,8 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         String backupString;
 
         backupString = MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.V1_0_0) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += StatisticsHelper.getTotalStars() + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += Statistic.getCurrency() + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(Boost.listAll(Boost.class)) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(Pack.listAll(Pack.class)) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(Puzzle.listAll(Puzzle.class)) + GooglePlayHelper.SAVE_DELIMITER;
@@ -329,50 +357,52 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         String[] splitData = splitBackupData(backupData);
         MainActivity.prefs.edit().putInt("databaseVersion", Integer.parseInt(splitData[0])).apply();
 
-        if (splitData.length > 1) {
-            Boost[] boosts = gson.fromJson(splitData[1], Boost[].class);
+        // Skipping [1] and [2], as they're used for comparing saves
+
+        if (splitData.length > 3) {
+            Boost[] boosts = gson.fromJson(splitData[3], Boost[].class);
             Boost.deleteAll(Boost.class);
             Boost.saveInTx(boosts);
         }
 
-        if (splitData.length > 2) {
-            Pack[] packs = gson.fromJson(splitData[2], Pack[].class);
+        if (splitData.length > 4) {
+            Pack[] packs = gson.fromJson(splitData[4], Pack[].class);
             Pack.deleteAll(Pack.class);
             Pack.saveInTx(packs);
         }
         
-        if (splitData.length > 3) {
-            Puzzle[] puzzles = gson.fromJson(splitData[3], Puzzle[].class);
+        if (splitData.length > 5) {
+            Puzzle[] puzzles = gson.fromJson(splitData[5], Puzzle[].class);
             Puzzle.deleteAll(Puzzle.class);
             Puzzle.saveInTx(puzzles);
         }
         
-        if (splitData.length > 4) {
-            PuzzleCustom[] puzzleCustoms = gson.fromJson(splitData[4], PuzzleCustom[].class);
+        if (splitData.length > 6) {
+            PuzzleCustom[] puzzleCustoms = gson.fromJson(splitData[6], PuzzleCustom[].class);
             PuzzleCustom.deleteAll(PuzzleCustom.class);
             PuzzleCustom.saveInTx(puzzleCustoms);
         }
         
-        if (splitData.length > 5) {
-            Setting[] settings = gson.fromJson(splitData[5], Setting[].class);
+        if (splitData.length > 7) {
+            Setting[] settings = gson.fromJson(splitData[7], Setting[].class);
             Setting.deleteAll(Setting.class);
             Setting.saveInTx(settings);
         }
         
-        if (splitData.length > 6) {
-            Statistic[] statistics = gson.fromJson(splitData[6], Statistic[].class);
+        if (splitData.length > 8) {
+            Statistic[] statistics = gson.fromJson(splitData[8], Statistic[].class);
             Statistic.deleteAll(Statistic.class);
             Statistic.saveInTx(statistics);
         }
 
-        if (splitData.length > 7) {
-            Tile[] tiles = gson.fromJson(splitData[7], Tile[].class);
+        if (splitData.length > 9) {
+            Tile[] tiles = gson.fromJson(splitData[9], Tile[].class);
             Tile.deleteAll(Tile.class);
             Tile.saveInTx(tiles);
         }
 
-        if (splitData.length > 8) {
-            TileType[] tileTypes = gson.fromJson(splitData[8], TileType[].class);
+        if (splitData.length > 10) {
+            TileType[] tileTypes = gson.fromJson(splitData[10], TileType[].class);
             TileType.deleteAll(TileType.class);
             TileType.saveInTx(tileTypes);
         }
@@ -383,18 +413,27 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             callingActivity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    // Cloud load success
+                    Crouton.showText(callingActivity, "Successfully loaded game from cloud!", StyleHelper.SUCCESS);
                 }
             });
         }
     }
 
-    public static int getStarsFromSave(byte[] saveBytes) {
-        return 100;
+    public static Pair<Integer, Integer> getStarsAndCoinsFromSave(byte[] saveBytes) {
+        int stars = 0;
+        int coins = 0;
+
+        String[] splitData = splitBackupData(new String(saveBytes));
+        if (splitData.length > 2) {
+            stars = Integer.parseInt(splitData[1]);
+            coins = Integer.parseInt(splitData[2]);
+        }
+
+        return new Pair<>(stars, coins);
     }
 
-    public static boolean newSaveIsBetter(int newStars) {
-        return false; //return newStars >= Statistic.getTotalStars();
+    public static boolean newSaveIsBetter(Pair<Integer, Integer> newValues) {
+        return !(newValues.first <= StatisticsHelper.getTotalStars() && newValues.second <= Statistic.getCurrency());
     }
 
     private static String[] splitBackupData(String backupData) {

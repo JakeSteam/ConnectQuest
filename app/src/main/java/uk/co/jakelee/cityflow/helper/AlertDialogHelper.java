@@ -21,6 +21,61 @@ import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class AlertDialogHelper {
+    public static void confirmCloudLoad(final Activity activity, int localStars, int localPuzzles, int cloudStars, int cloudPuzzles) {
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        alertDialog.setMessage(String.format("Are you sure sure you want to load this cloud save?\n\nLocal: %1$s stars, %2$s puzzles\nCloud: %3$s stars, %4$s puzzles",
+                localStars,
+                localPuzzles,
+                cloudStars,
+                cloudPuzzles));
+
+        alertDialog.setPositiveButton("Load it!", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                GooglePlayHelper.forceLoadFromCloud();
+            }
+        });
+
+        alertDialog.setNegativeButton("Don't!", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                alertDialog.show();
+            }
+        });
+    }
+
+    public static void confirmCloudSave(final Context context, final Activity activity, String desc, long saveTime, String deviceName) {
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        alertDialog.setMessage(String.format("Are you sure you wish to PERMANENTLY overwrite your cloud save:\n\n%1$s\nCreated on %2$s on your %3$s.",
+                desc,
+                DateHelper.displayTime(saveTime, DateHelper.datetime),
+                deviceName));
+
+        alertDialog.setPositiveButton("Save!", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                GooglePlayHelper.forceSaveToCloud();
+            }
+        });
+
+        alertDialog.setNegativeButton("Cancel!", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                alertDialog.show();
+            }
+        });
+    }
+
     public static void enterSupportCode(final Context context, final Activity activity) {
         final EditText supportCodeBox = new EditText(context);
 

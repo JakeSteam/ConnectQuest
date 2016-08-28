@@ -165,10 +165,10 @@ public class Pack extends SugarRecord{
             if (puzzle.getStarCount() > 0) {
                 bestMoves += puzzle.getBestMoves();
                 bestTime += puzzle.getBestTime();
+                bestStars += puzzle.getStarCount();
             } else {
                 allCompleted = false;
             }
-            bestStars += puzzle.getStarCount();
         }
 
         if (allCompleted && (getCurrentMoves() == 0 || bestMoves < getCurrentMoves())) {
