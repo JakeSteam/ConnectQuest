@@ -299,7 +299,7 @@ public class PuzzleActivity extends Activity {
 
         int originalStars = puzzle.getStarCount();
         int nextPuzzle = PuzzleHelper.getNextPuzzleId(puzzleId);
-        Pair<Boolean, Boolean> newBests = PuzzleHelper.updateMetrics(puzzle, nextPuzzle == 0, timeInMilliseconds, movesMade, boostsUsed, isCustom);
+        Pair<Boolean, Boolean> newBests = PuzzleHelper.processPuzzleCompletion(puzzle, nextPuzzle == 0, timeInMilliseconds, movesMade, boostsUsed, isCustom);
         int stars = puzzle.getStarCount();
 
         populateStoryPuzzleCompleteScreen(puzzle, isFirstComplete, originalStars, stars, isCustom);

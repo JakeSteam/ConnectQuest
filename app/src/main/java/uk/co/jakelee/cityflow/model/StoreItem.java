@@ -6,12 +6,14 @@ import com.orm.query.Select;
 
 import java.util.List;
 
+import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.ErrorHelper;
 
 public class StoreItem extends SugarRecord {
     private int itemId;
     private int categoryId;
-    private int boostId;
+    private int rewardId;
+    private int rewardQuantity;
     private int price;
     private int purchases;
     private int maxPurchases;
@@ -20,10 +22,22 @@ public class StoreItem extends SugarRecord {
     public StoreItem() {
     }
 
-    public StoreItem(int itemId, int categoryId, int boostId, int price, int maxPurchases, boolean applyMultiplier) {
+    public StoreItem(int itemId, int categoryId, int price, int maxPurchases, boolean applyMultiplier) {
         this.itemId = itemId;
         this.categoryId = categoryId;
-        this.boostId = boostId;
+        this.rewardId = 0;
+        this.rewardQuantity = 0;
+        this.price = price;
+        this.purchases = 0;
+        this.maxPurchases = maxPurchases;
+        this.applyMultiplier = applyMultiplier;
+    }
+
+    public StoreItem(int itemId, int categoryId, int boostId, int boostQuantity, int price, int maxPurchases, boolean applyMultiplier) {
+        this.itemId = itemId;
+        this.categoryId = categoryId;
+        this.rewardId = boostId;
+        this.rewardQuantity = boostQuantity;
         this.price = price;
         this.purchases = 0;
         this.maxPurchases = maxPurchases;
@@ -46,12 +60,20 @@ public class StoreItem extends SugarRecord {
         this.categoryId = categoryId;
     }
 
-    public int getBoostId() {
-        return boostId;
+    public int getRewardId() {
+        return rewardId;
     }
 
-    public void setBoostId(int boostId) {
-        this.boostId = boostId;
+    public void setRewardId(int rewardId) {
+        this.rewardId = rewardId;
+    }
+
+    public int getRewardQuantity() {
+        return rewardQuantity;
+    }
+
+    public void setRewardQuantity(int rewardQuantity) {
+        this.rewardQuantity = rewardQuantity;
     }
 
     public int getPrice() {
@@ -111,7 +133,37 @@ public class StoreItem extends SugarRecord {
         return Text.get("ITEM_", getItemId(), "_DESC");
     }
 
-    public ErrorHelper.Error tryPurchase() {
+    public void purchase() {
+        StoreItem item = Select.from(StoreItem.class).where(
+                Condition.prop("item_id").eq(getItemId())).first();
+
+        Statistic currency = Select.from(Statistic.class).where(
+                Condition.prop("enum_name").eq(Statistic.Fields.Currency)).first();
+
+        item.setPurchases(item.getPurchases() + 1);
+        item.save();
+
+        currency.setIntValue(currency.getIntValue() - item.getPrice());
+        currency.save();
+
+        if (getCategoryId() == Constants.STORE_CATEGORY_BOOSTS) {
+            Boost boost = Boost.get(getRewardId());
+            boost.setOwned(boost.getOwned() + getRewardQuantity());
+            boost.save();
+        } else if (getCategoryId() == Constants.STORE_CATEGORY_UPGRADES) {
+            Boost boost = Boost.get(getRewardId());
+            boost.setLevel(boost.getLevel() + 1);
+            boost.save();
+        } else if (getCategoryId() == Constants.STORE_CATEGORY_TILES) {
+            TileType tileType = TileType.get(getRewardId());
+            tileType.setPuzzleRequired(1);
+            tileType.save();
+        } else if (getItemId() == Constants.ITEM_UNLOCK_PACK) {
+            // Unlock the next pack I guess?
+        }
+    }
+
+    public ErrorHelper.Error canPurchase() {
         StoreItem item = Select.from(StoreItem.class).where(
                 Condition.prop("item_id").eq(getItemId())).first();
 
@@ -125,13 +177,6 @@ public class StoreItem extends SugarRecord {
         } else if (item.getPrice() > currency.getIntValue()) {
             return ErrorHelper.Error.NOT_ENOUGH_CURRENCY;
         }
-
-        item.setPurchases(item.getPurchases() + 1);
-        item.save();
-
-        currency.setIntValue(currency.getIntValue() - item.getPrice());
-        currency.save();
-
         return ErrorHelper.Error.NO_ERROR;
     }
 }

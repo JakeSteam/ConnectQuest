@@ -20,7 +20,7 @@ import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
 public class PuzzleHelper {
-    public static Pair<Boolean, Boolean> updateMetrics(final Puzzle puzzle, final boolean isCompletingPack, long timeTaken, final int movesTaken, final int boostsUsed, boolean isCustom) {
+    public static Pair<Boolean, Boolean> processPuzzleCompletion(final Puzzle puzzle, final boolean isCompletingPack, long timeTaken, final int movesTaken, final int boostsUsed, boolean isCustom) {
         boolean newBestTime = false;
         boolean newBestMoves = false;
         if (timeTaken >= 0 && (timeTaken < puzzle.getBestTime() || puzzle.getBestTime() == 0)) {
@@ -45,39 +45,47 @@ public class PuzzleHelper {
         puzzle.save();
 
         if (!isCustom) {
-            final Pack pack = Pack.getPack(puzzle.getPackId());
-            new Thread(new Runnable() {
-                public void run() {
-                    if (isCompletingPack) {
-                        pack.increaseCompletedCount();
-                    }
-                    pack.refreshMetrics();
-
-                    if (puzzle.hasCompletionStar() && puzzle.hasMovesStar() && puzzle.hasTimeStar()) {
-                        GooglePlayHelper.UpdateEvent(Constants.EVENT_FULLY_COMPLETE_PUZZLE, 1); // Quests
-                        Statistic.increaseByOne(Statistic.Fields.PuzzlesCompletedFully); // Achievements
-                        GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_PUZZLES_FULLY_COMPLETED, Statistic.get(Statistic.Fields.PuzzlesCompletedFully)); // Leaderboards
-                    }
-
-                    // Update for quests
-                    GooglePlayHelper.UpdateEvent(Constants.EVENT_COMPLETE_PUZZLE, 1);
-                    GooglePlayHelper.UpdateEvent(Constants.EVENT_USE_BOOST, boostsUsed);
-                    GooglePlayHelper.UpdateEvent(Constants.EVENT_TILE_ROTATE, movesTaken);
-
-                    // Update for achievements
-                    Statistic.increaseByOne(Statistic.Fields.PuzzlesCompleted);
-                    Statistic.increaseByX(Statistic.Fields.BoostsUsed, boostsUsed);
-                    Statistic.increaseByX(Statistic.Fields.TilesRotated, movesTaken);
-                    GooglePlayHelper.UpdateAchievements();
-
-                    // Update for leaderboards
-                    GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_PUZZLES_COMPLETED, Statistic.get(Statistic.Fields.PuzzlesCompleted));
-                    GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_BOOSTS_USED, Statistic.get(Statistic.Fields.BoostsUsed));
-
-                }
-            }).start();
+            performBackgroundTasks(puzzle, isCompletingPack, movesTaken, boostsUsed);
         }
+
         return new Pair<>(newBestTime, newBestMoves);
+    }
+
+    public static void performBackgroundTasks(final Puzzle puzzle, final boolean isCompletingPack, final int movesTaken, final int boostsUsed) {
+        new Thread(new Runnable() {
+            public void run() {
+                Pack pack = Pack.getPack(puzzle.getPackId());
+                if (isCompletingPack) {
+                    pack.increaseCompletedCount();
+                }
+                pack.refreshMetrics();
+                TileType.executeQuery(String.format("UPDATE tile_type SET status = %1$d WHERE puzzle_required = %2$d",
+                        Constants.TILE_STATUS_UNLOCKED,
+                        puzzle.getPuzzleId()));
+                puzzle.getUnlockableTiles();
+
+                if (puzzle.hasCompletionStar() && puzzle.hasMovesStar() && puzzle.hasTimeStar()) {
+                    GooglePlayHelper.UpdateEvent(Constants.EVENT_FULLY_COMPLETE_PUZZLE, 1); // Quests
+                    Statistic.increaseByOne(Statistic.Fields.PuzzlesCompletedFully); // Achievements
+                    GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_PUZZLES_FULLY_COMPLETED, Statistic.get(Statistic.Fields.PuzzlesCompletedFully)); // Leaderboards
+                }
+
+                // Update for quests
+                GooglePlayHelper.UpdateEvent(Constants.EVENT_COMPLETE_PUZZLE, 1);
+                GooglePlayHelper.UpdateEvent(Constants.EVENT_USE_BOOST, boostsUsed);
+                GooglePlayHelper.UpdateEvent(Constants.EVENT_TILE_ROTATE, movesTaken);
+
+                // Update for achievements
+                Statistic.increaseByOne(Statistic.Fields.PuzzlesCompleted);
+                Statistic.increaseByX(Statistic.Fields.BoostsUsed, boostsUsed);
+                Statistic.increaseByX(Statistic.Fields.TilesRotated, movesTaken);
+                GooglePlayHelper.UpdateAchievements();
+
+                // Update for leaderboards
+                GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_PUZZLES_COMPLETED, Statistic.get(Statistic.Fields.PuzzlesCompleted));
+                GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_BOOSTS_USED, Statistic.get(Statistic.Fields.BoostsUsed));
+            }
+        }).start();
     }
 
     public static long getAdjustedTime(long timeLastMoved, long startTime, boolean timeBoostActive) {

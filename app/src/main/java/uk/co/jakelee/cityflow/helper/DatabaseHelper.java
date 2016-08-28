@@ -254,11 +254,12 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_49_NAME", "City Grass Corner"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_50_NAME", "City Canal Corner"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_51_NAME", "City Road/Path Corner (Inverse)"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_NAME", "Name"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_DESCRIPTION", "Description"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_START", "Start"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_PAUSED", "Paused"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_AREA", "Area"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_DESCRIPTION", "Description"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_FLOW", "Flow"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_NAME", "Name"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_PAUSED", "Paused"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_START", "Start"));
         Text.saveInTx(texts);
     }
 
@@ -341,25 +342,25 @@ public class DatabaseHelper {
 
     private static void createStoreItem() {
         List<StoreItem> storeItems = new ArrayList<>();
-            storeItems.add(new StoreItem(Constants.ITEM_BOOST_UNDO, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_UNDO, 4, 0, false));
-            storeItems.add(new StoreItem(Constants.ITEM_BOOST_UNDO_10, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_UNDO, 36, 0, false));
-            storeItems.add(new StoreItem(Constants.ITEM_BOOST_UNDO_100, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_UNDO, 320, 0, false));
-            storeItems.add(new StoreItem(Constants.ITEM_BOOST_TIME, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_TIME, 6, 0, false));
-            storeItems.add(new StoreItem(Constants.ITEM_BOOST_TIME_10, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_TIME, 54, 0, false));
-            storeItems.add(new StoreItem(Constants.ITEM_BOOST_TIME_100, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_TIME, 480, 0, false));
-            storeItems.add(new StoreItem(Constants.ITEM_BOOST_MOVES, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_MOVE, 6, 0, false));
-            storeItems.add(new StoreItem(Constants.ITEM_BOOST_MOVES_10, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_MOVE, 54, 0, false));
-            storeItems.add(new StoreItem(Constants.ITEM_BOOST_MOVES_100, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_MOVE, 480, 0, false));
-            storeItems.add(new StoreItem(Constants.ITEM_BOOST_SHUFFLE, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_SHUFFLE, 8, 0, false));
-            storeItems.add(new StoreItem(Constants.ITEM_BOOST_SHUFFLE_10, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_SHUFFLE, 72, 0, false));
-            storeItems.add(new StoreItem(Constants.ITEM_BOOST_SHUFFLE_100, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_SHUFFLE, 640, 0, false));
-            storeItems.add(new StoreItem(Constants.ITEM_BOOST_TIME_UPGRADE, Constants.STORE_CATEGORY_UPGRADES, 0, 150, 5, true));
-            storeItems.add(new StoreItem(Constants.ITEM_BOOST_MOVES_UPGRADE, Constants.STORE_CATEGORY_UPGRADES, 0, 150, 5, true));
-            storeItems.add(new StoreItem(Constants.ITEM_BOOST_SHUFFLE_UPGRADE, Constants.STORE_CATEGORY_UPGRADES, 0, 100, 1, true));
-            storeItems.add(new StoreItem(Constants.ITEM_TILE_1, Constants.STORE_CATEGORY_TILES, 0, 1000, 1, false));
-            storeItems.add(new StoreItem(Constants.ITEM_TILE_2, Constants.STORE_CATEGORY_TILES, 0, 1500, 1, false));
-            storeItems.add(new StoreItem(Constants.ITEM_TILE_3, Constants.STORE_CATEGORY_TILES, 0, 2000, 1, false));
-            storeItems.add(new StoreItem(Constants.ITEM_UNLOCK_PACK, Constants.STORE_CATEGORY_MISC, 0, 5000, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_UNDO, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_UNDO, 1, 4, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_UNDO_10, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_UNDO, 10, 36, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_UNDO_100, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_UNDO, 100, 320, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_TIME, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_TIME, 1, 6, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_TIME_10, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_TIME, 10, 54, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_TIME_100, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_TIME, 100, 480, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_MOVES, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_MOVE, 1, 6, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_MOVES_10, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_MOVE, 10, 54, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_MOVES_100, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_MOVE, 100, 480, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_SHUFFLE, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_SHUFFLE, 1, 8, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_SHUFFLE_10, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_SHUFFLE, 10, 72, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_SHUFFLE_100, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_SHUFFLE, 100, 640, 0, false));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_TIME_UPGRADE, Constants.STORE_CATEGORY_UPGRADES, Constants.BOOST_UNDO, 0, 150, 5, true));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_MOVES_UPGRADE, Constants.STORE_CATEGORY_UPGRADES, Constants.BOOST_MOVE, 0, 150, 5, true));
+            storeItems.add(new StoreItem(Constants.ITEM_BOOST_SHUFFLE_UPGRADE, Constants.STORE_CATEGORY_UPGRADES, Constants.BOOST_SHUFFLE, 0, 100, 1, true));
+            storeItems.add(new StoreItem(Constants.ITEM_TILE_1, Constants.STORE_CATEGORY_TILES, 1000, 1, false));
+            storeItems.add(new StoreItem(Constants.ITEM_TILE_2, Constants.STORE_CATEGORY_TILES, 1500, 1, false));
+            storeItems.add(new StoreItem(Constants.ITEM_TILE_3, Constants.STORE_CATEGORY_TILES, 2000, 1, false));
+            storeItems.add(new StoreItem(Constants.ITEM_UNLOCK_PACK, Constants.STORE_CATEGORY_MISC, 5000, 0, false));
         StoreItem.saveInTx(storeItems);
     }
 

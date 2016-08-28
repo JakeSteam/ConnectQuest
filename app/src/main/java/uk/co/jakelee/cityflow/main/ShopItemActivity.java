@@ -35,8 +35,8 @@ public class ShopItemActivity extends Activity {
         ((TextView)findViewById(R.id.itemName)).setText(storeItem.getName());
         ((TextView)findViewById(R.id.itemDesc)).setText(storeItem.getDescription());
 
-        if (storeItem.getCategoryId() == Constants.STORE_CATEGORY_BOOSTS && storeItem.getBoostId() > 0) {
-            Boost boost = Boost.get(storeItem.getBoostId());
+        if (storeItem.getCategoryId() == Constants.STORE_CATEGORY_BOOSTS && storeItem.getRewardId() > 0) {
+            Boost boost = Boost.get(storeItem.getRewardId());
             ((TextView) findViewById(R.id.itemPurchases)).setText(boost.getOwned() + " owned");
         } else {
             ((TextView) findViewById(R.id.itemPurchases)).setText(storeItem.getPurchases() + (storeItem.getMaxPurchases() > 0 ? "/" + storeItem.getMaxPurchases() : "") + " purchases");
@@ -51,10 +51,11 @@ public class ShopItemActivity extends Activity {
     }
 
     public void buyItem(View view) {
-        ErrorHelper.Error purchaseResult = storeItem.tryPurchase();
+        ErrorHelper.Error purchaseResult = storeItem.canPurchase();
         if (purchaseResult != ErrorHelper.Error.NO_ERROR) {
             Crouton.makeText(this, ErrorHelper.get(purchaseResult), Style.ALERT).show();
         } else {
+            storeItem.purchase();
             Crouton.makeText(this, "Successfully purchased " + storeItem.getName() + " for " + storeItem.getPrice() + " coins!", Style.CONFIRM).show();
         }
 

@@ -4,6 +4,8 @@ import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import uk.co.jakelee.cityflow.helper.Constants;
+
 public class TileType extends SugarRecord {
     private int typeId;
     private int environmentId;
@@ -16,6 +18,7 @@ public class TileType extends SugarRecord {
     private int heightSouth;
     private int heightWest;
     private int puzzleRequired;
+    private int status;
 
     public TileType() {
 
@@ -33,6 +36,7 @@ public class TileType extends SugarRecord {
         this.heightSouth = height;
         this.heightWest = height;
         this.puzzleRequired = puzzleRequired;
+        this.status = Constants.TILE_STATUS_LOCKED;
     }
 
     public TileType(int typeId, int environmentId, int flowNorth, int flowEast, int flowSouth, int flowWest, int height, int puzzleRequired) {
@@ -47,6 +51,7 @@ public class TileType extends SugarRecord {
         this.heightSouth = height;
         this.heightWest = height;
         this.puzzleRequired = puzzleRequired;
+        this.status = Constants.TILE_STATUS_LOCKED;
     }
 
     public TileType(int typeId, int environmentId, int flowNorth, int flowEast, int flowSouth, int flowWest, int heightNorth, int heightEast, int heightSouth, int heightWest, int puzzleRequired) {
@@ -61,6 +66,7 @@ public class TileType extends SugarRecord {
         this.heightSouth = heightSouth;
         this.heightWest = heightWest;
         this.puzzleRequired = puzzleRequired;
+        this.status = Constants.TILE_STATUS_LOCKED;
     }
 
     public int getTypeId() {
@@ -149,6 +155,14 @@ public class TileType extends SugarRecord {
 
     public void setPuzzleRequired(int puzzleRequired) {
         this.puzzleRequired = puzzleRequired;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public String getName() {
