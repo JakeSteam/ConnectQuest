@@ -7,10 +7,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.ErrorHelper;
+import uk.co.jakelee.cityflow.helper.StyleHelper;
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.StoreItem;
@@ -53,10 +53,10 @@ public class ShopItemActivity extends Activity {
     public void buyItem(View view) {
         ErrorHelper.Error purchaseResult = storeItem.canPurchase();
         if (purchaseResult != ErrorHelper.Error.NO_ERROR) {
-            Crouton.makeText(this, ErrorHelper.get(purchaseResult), Style.ALERT).show();
+            Crouton.showText(this, ErrorHelper.get(purchaseResult), StyleHelper.ERROR);
         } else {
             storeItem.purchase();
-            Crouton.makeText(this, "Successfully purchased " + storeItem.getName() + " for " + storeItem.getPrice() + " coins!", Style.CONFIRM).show();
+            Crouton.showText(this, "Successfully purchased " + storeItem.getName() + " for " + storeItem.getPrice() + " coins!", StyleHelper.SUCCESS);
         }
 
         storeItem = StoreItem.get(storeItem.getItemId());

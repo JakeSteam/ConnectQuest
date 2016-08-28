@@ -14,11 +14,11 @@ import android.widget.TextView;
 import java.util.List;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AdvertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
+import uk.co.jakelee.cityflow.helper.StyleHelper;
 import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.StoreCategory;
 import uk.co.jakelee.cityflow.model.StoreItem;
@@ -109,7 +109,7 @@ public class ShopActivity extends Activity {
 
     public void advertWatched() {
         Statistic.addCurrency(Constants.CURRENCY_ADVERT);
-        Crouton.makeText(this, "Earned " + Constants.CURRENCY_ADVERT + " coins!", Style.CONFIRM);
+        Crouton.showText(this, "Earned " + Constants.CURRENCY_ADVERT + " coins!", StyleHelper.SUCCESS);
 
         populateText();
     }

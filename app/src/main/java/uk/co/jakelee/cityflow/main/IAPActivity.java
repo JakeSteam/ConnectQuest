@@ -11,10 +11,10 @@ import com.anjlab.android.iab.v3.SkuDetails;
 import com.anjlab.android.iab.v3.TransactionDetails;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
+import uk.co.jakelee.cityflow.helper.StyleHelper;
 import uk.co.jakelee.cityflow.model.Pack;
 
 public class IAPActivity extends Activity implements BillingProcessor.IBillingHandler {
@@ -48,7 +48,7 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
             pack1.setPurchased(true);
             pack1.save();
 
-            Crouton.makeText(this, "Restored pack 1 purchase!", Style.CONFIRM);
+            Crouton.showText(this, "Restored pack 1 purchase!", StyleHelper.SUCCESS);
         }
     }
 
@@ -59,13 +59,13 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
             pack1.setPurchased(true);
             pack1.save();
 
-            Crouton.makeText(this, "Purchased pack 1!", Style.CONFIRM);
+            Crouton.showText(this, "Purchased pack 1!", StyleHelper.SUCCESS);
         }
     }
 
     @Override
     public void onBillingError(int errorCode, Throwable error) {
-        Crouton.makeText(this, "Uh oh, some kind of error occurred. Try again later?", Style.ALERT);
+        Crouton.showText(this, "Uh oh, some kind of error occurred. Try again later?", StyleHelper.ERROR);
     }
 
     @Override
@@ -82,7 +82,7 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
         if (canBuyIAPs && iapInfo != null) {
             bp.purchase(this, iapInfo.productId);
         } else {
-            Crouton.makeText(this, "Uh oh, some kind of error occurred. Try again later?", Style.ALERT);
+            Crouton.showText(this, "Uh oh, some kind of error occurred. Try again later?", StyleHelper.ERROR);
         }
     }
 

@@ -13,7 +13,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.main.CustomInfoActivity;
 import uk.co.jakelee.cityflow.main.SettingsActivity;
@@ -34,9 +33,9 @@ public class AlertDialogHelper {
                 //String supportCode = ModificationHelper.encode("1571111687000|UPDATE setting SET boolean_value = 1");
                 String supportCode = supportCodeBox.getText().toString().trim();
                 if (ModificationHelper.applyCode(supportCode)) {
-                    Crouton.makeText(activity, Text.get("SUCCESS_SUPPORT_CODE"), Style.CONFIRM).show();
+                    Crouton.showText(activity, Text.get("SUCCESS_SUPPORT_CODE"), StyleHelper.SUCCESS);
                 } else {
-                    Crouton.makeText(activity, Text.get("ERROR_SUPPORT_CODE_INVALID"), Style.ALERT).show();
+                    Crouton.showText(activity, Text.get("ERROR_SUPPORT_CODE_INVALID"), StyleHelper.ERROR);
                 }
             }
         });
