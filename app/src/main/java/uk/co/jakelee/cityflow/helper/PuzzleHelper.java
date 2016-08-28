@@ -88,6 +88,21 @@ public class PuzzleHelper {
         }).start();
     }
 
+    public static int getCurrencyEarned(boolean isCustom, boolean isFirstComplete, int originalStars, int stars) {
+        boolean isFirstFullComplete = originalStars < 3 && stars == 3;
+        int currency = 0;
+        if (isFirstComplete) {
+            currency += isCustom ? Constants.CURRENCY_CUSTOM_FIRST_COMPLETE : Constants.CURRENCY_FIRST_COMPLETE;
+        }
+        if (isFirstFullComplete) {
+            currency += isCustom ? Constants.CURRENCY_CUSTOM_FIRST_COMPLETE_FULL : Constants.CURRENCY_FIRST_COMPLETE_FULL;
+        }
+        if (!isFirstComplete && !isFirstFullComplete && !isCustom) {
+            currency += Constants.CURRENCY_RECOMPLETE;
+        }
+        return currency;
+    }
+
     public static long getAdjustedTime(long timeLastMoved, long startTime, boolean timeBoostActive) {
         long time = timeLastMoved - startTime;
         if (timeBoostActive) {
@@ -108,47 +123,6 @@ public class PuzzleHelper {
             movesMade = moveBoost.getLevel() > movesMade ? 0 : movesMade - moveBoost.getLevel();
         }
         return movesMade;
-    }
-
-    public static List<Integer> getEarnedBoosts(boolean isFirstComplete, boolean isFirstFullComplete, boolean isFullComplete) {
-        int earnedBoosts = 0;
-        List<Integer> boosts = new ArrayList<>();
-        if (isFirstComplete) {
-            earnedBoosts++;
-        }
-        if (isFirstFullComplete) {
-            earnedBoosts++;
-        }
-        if (!isFirstFullComplete && isFullComplete && RandomHelper.getBoolean(Constants.FULL_RECOMPLETE_BOOST_CHANCE)) {
-            earnedBoosts++;
-        }
-
-        for (int i = 0; i < earnedBoosts; i++) {
-            int boostId = RandomHelper.getNumber(Constants.BOOST_MIN, Constants.BOOST_MAX);
-            boosts.add(boostId);
-            Boost.add(boostId);
-        }
-
-        return boosts;
-    }
-
-    public static void populateBoostImages(DisplayHelper dh, LinearLayout boostContainer, List<Integer> boosts) {
-        String boostString = "";
-        for (Integer boostId : boosts) {
-            Boost boost = Boost.get(boostId);
-            boostString += boost.getName() + ", ";
-            boostContainer.addView(dh.createBoostIcon(boostId, 50, 50));
-        }
-
-        if (boosts.size() > 0) {
-            boostString = "Earned " + boostString.substring(0, boostString.length() - 2) + " boost(s)!";
-        } else {
-            boostString = "No boosts earned.";
-        }
-
-        TextView textView = dh.createTextView(boostString, 18, Color.WHITE);
-        textView.setSingleLine(false);
-        boostContainer.addView(textView);
     }
 
     public static void populateTileImages(DisplayHelper dh, LinearLayout tilesContainer, List<TileType> tiles, boolean isFirstComplete) {

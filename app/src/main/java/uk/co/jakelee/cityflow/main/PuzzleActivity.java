@@ -29,6 +29,7 @@ import uk.co.jakelee.cityflow.helper.TileHelper;
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Setting;
+import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
@@ -307,14 +308,14 @@ public class PuzzleActivity extends Activity {
 
     public void populateStoryPuzzleCompleteScreen(Puzzle puzzle, boolean isFirstComplete, int originalStars, int stars, boolean isCustom) {
         if (!isCustom) {
-            List<Integer> boostsEarned = PuzzleHelper.getEarnedBoosts(isFirstComplete, originalStars != 3 && stars == 3, stars == 3);
-            findViewById(R.id.boostsContainer).setVisibility(boostsEarned.size() > 0 ? View.VISIBLE : View.INVISIBLE);
-            PuzzleHelper.populateBoostImages(dh, (LinearLayout) findViewById(R.id.boostsContainer), boostsEarned);
-
             List<TileType> tilesUnlocked = puzzle.getUnlockableTiles();
             findViewById(R.id.tilesContainer).setVisibility((tilesUnlocked.size() > 0 && isFirstComplete) ? View.VISIBLE : View.INVISIBLE);
             PuzzleHelper.populateTileImages(dh, (LinearLayout) findViewById(R.id.tilesContainer), tilesUnlocked, isFirstComplete);
         }
+
+        int currencyEarned = PuzzleHelper.getCurrencyEarned(isCustom, isFirstComplete, originalStars, stars);
+        Statistic.addCurrency(currencyEarned);
+        ((TextView)findViewById(R.id.currencyEarned)).setText("Earned " + currencyEarned + " coin(s)!");
 
         findViewById(R.id.endGame).setVisibility(View.VISIBLE);
 

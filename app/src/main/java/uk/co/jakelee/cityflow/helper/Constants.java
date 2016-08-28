@@ -17,8 +17,14 @@ public class Constants {
     public static final int PUZZLE_HEIGHT = 76;
     public static final int PUZZLE_CUSTOM_ID_OFFSET = 10000;
 
-    // Percentage based constants
-    public static final int FULL_RECOMPLETE_BOOST_CHANCE = 25;
+    // Currency incomes
+    public static final int CURRENCY_RECOMPLETE = 1;
+    public static final int CURRENCY_FIRST_COMPLETE = 10;
+    public static final int CURRENCY_FIRST_COMPLETE_FULL = 15;
+    public static final int CURRENCY_CUSTOM_FIRST_COMPLETE = 1;
+    public static final int CURRENCY_CUSTOM_FIRST_COMPLETE_FULL = 1;
+    public static final int CURRENCY_ADVERT = 45;
+    public static final int CURRENCY_ACHIEVEMENT = 100;
 
     // Google play constants
     public static final String EVENT_COMPLETE_PUZZLE = "CgkIgrzuo64REAIQBA";

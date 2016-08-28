@@ -411,29 +411,37 @@
                     android:layout_margin="6dp"
                     android:onClick="mainAction"/>
             </LinearLayout>
-            <TableLayout
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:id="@+id/tilesContainer"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
                 android:layout_above="@id/actionButtons"
-                android:stretchColumns="*"
-                android:shrinkColumns="*">
-                <TableRow
-                    android:id="@+id/tilesWrapper"
-                    android:padding="5dp">
-                    <LinearLayout
-                        android:id="@+id/tilesContainer"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"/>
-                </TableRow>
-                <TableRow
-                    android:id="@+id/boostsWrapper"
-                    android:padding="5dp">
-                    <LinearLayout
-                        android:id="@+id/boostsContainer"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"/>
-                </TableRow>
-            </TableLayout>
+                android:layout_centerHorizontal="true"
+                android:layout_margin="5dp"/>
+            <LinearLayout
+                android:id="@+id/currencyContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_above="@id/tilesContainer"
+                android:layout_margin="5dp">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ui_currency"
+                    android:padding="7dp"/>
+                <uk.co.jakelee.cityflow.components.AutofitTextViewFont
+                    android:id="@+id/currencyEarned"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
         </RelativeLayout>
 
     </RelativeLayout>

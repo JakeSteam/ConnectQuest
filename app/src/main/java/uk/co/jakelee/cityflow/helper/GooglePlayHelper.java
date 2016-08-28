@@ -135,6 +135,9 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
 
             for (Achievement achievement : achievements) {
                 UpdateAchievement(achievement, currentValue, lastSentValue);
+                if (achievement.getMaximumValue() <= currentValue) {
+                    Statistic.addCurrency(Constants.CURRENCY_ACHIEVEMENT);
+                }
             }
 
             UpdateStatistic(statistic, currentValue, lastSentValue);
