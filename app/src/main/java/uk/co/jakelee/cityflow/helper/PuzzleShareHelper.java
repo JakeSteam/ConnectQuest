@@ -68,7 +68,7 @@ public class PuzzleShareHelper {
 
             return true;
         } catch (Exception e) {
-            Log.e("Decoding", e.getMessage());
+            Log.e("DecodeError", e.getMessage());
             return false;
         }
     }

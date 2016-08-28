@@ -15,6 +15,7 @@ import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
+import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
@@ -177,16 +178,15 @@ public class PuzzleHelper {
         return Select.from(Puzzle.class).orderBy("id DESC").first().getPuzzleId() + 1;
     }
 
-    public static int createNewPuzzle(int maxX, int maxY) {
-        int nextPuzzleId = getNextCustomPuzzleId();
+    public static int createNewPuzzle(final int maxX, final int maxY) {
+        final int nextPuzzleId = getNextCustomPuzzleId();
         createBasicPuzzleObject(nextPuzzleId).save();
         createBasicPuzzleCustomObject(nextPuzzleId).save();
 
         List<Tile> tiles = new ArrayList<>();
         for (int x = 0; x < maxX; x++) {
             for (int y = 0; y < maxY; y++) {
-                //tiles.add(new Tile(nextPuzzleId, 21, x, y, Constants.ROTATION_NORTH));
-                tiles.add(new Tile(nextPuzzleId, 18, x, y, RandomHelper.getNumber(Constants.ROTATION_MIN, Constants.ROTATION_MAX)));
+                tiles.add(new Tile(nextPuzzleId, 18, x, y, Constants.ROTATION_NORTH));
             }
         }
         Tile.saveInTx(tiles);
@@ -215,10 +215,9 @@ public class PuzzleHelper {
         puzzleCustom.setPuzzleId(puzzleId);
         puzzleCustom.setName("Untitled Puzzle");
         puzzleCustom.setDescription("");
-        puzzleCustom.setAuthor("Current Player");
+        puzzleCustom.setAuthor(Setting.getString(Constants.SETTING_PLAYER_NAME));
         puzzleCustom.setDateAdded(System.currentTimeMillis());
         puzzleCustom.setOriginalAuthor(true);
-        puzzleCustom.save();
         return puzzleCustom;
     }
 }

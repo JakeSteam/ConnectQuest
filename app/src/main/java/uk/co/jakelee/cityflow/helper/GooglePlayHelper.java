@@ -27,13 +27,18 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
 
+import de.keyboardsurfer.android.widget.crouton.Crouton;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.main.MainActivity;
 import uk.co.jakelee.cityflow.model.Achievement;
+import uk.co.jakelee.cityflow.model.Boost;
+import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
+import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.Tile;
+import uk.co.jakelee.cityflow.model.TileType;
 
 public class GooglePlayHelper implements com.google.android.gms.common.api.ResultCallback {
     public static final int RC_ACHIEVEMENTS = 9002;
@@ -222,7 +227,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             @Override
             public void run() {
                 if (!checkIsImprovement) {
-                    // Beginning cloud load
+                    Crouton.showText(callingActivity, "Beginning load from cloud", StyleHelper.INFO);
                 }
             }
         });
@@ -248,7 +253,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         callingActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                // Cloud save beginning
+                Crouton.showText(callingActivity, "Beginning save to cloud", StyleHelper.INFO);
             }
         });
 
@@ -271,7 +276,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                 callingActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        // Cloud save success
+                        Crouton.showText(callingActivity, "Successfully loaded save from cloud!", StyleHelper.INFO);
                     }
                 });
             }
@@ -305,14 +310,15 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         Gson gson = new Gson();
         String backupString;
 
-        List<Puzzle> puzzles = Puzzle.listAll(Puzzle.class);
-        List<Setting> settings = Setting.listAll(Setting.class);
-        List<Tile> tiles = Setting.listAll(Tile.class);
-
         backupString = MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.V1_0_0) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(puzzles) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(settings) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(tiles) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Boost.listAll(Boost.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Pack.listAll(Pack.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Puzzle.listAll(Puzzle.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(PuzzleCustom.listAll(PuzzleCustom.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Setting.listAll(Setting.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Statistic.listAll(Statistic.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Tile.listAll(Tile.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(TileType.listAll(TileType.class)) + GooglePlayHelper.SAVE_DELIMITER;
 
         return backupString.getBytes();
     }
@@ -324,27 +330,51 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         MainActivity.prefs.edit().putInt("databaseVersion", Integer.parseInt(splitData[0])).apply();
 
         if (splitData.length > 1) {
-            Puzzle[] puzzles = gson.fromJson(splitData[3], Puzzle[].class);
-            Puzzle.deleteAll(Puzzle.class);
-            for (Puzzle puzzle : puzzles) {
-                puzzle.save();
-            }
+            Boost[] boosts = gson.fromJson(splitData[1], Boost[].class);
+            Boost.deleteAll(Boost.class);
+            Boost.saveInTx(boosts);
         }
 
         if (splitData.length > 2) {
-            Setting[] settings = gson.fromJson(splitData[3], Setting[].class);
+            Pack[] packs = gson.fromJson(splitData[2], Pack[].class);
+            Pack.deleteAll(Pack.class);
+            Pack.saveInTx(packs);
+        }
+        
+        if (splitData.length > 3) {
+            Puzzle[] puzzles = gson.fromJson(splitData[3], Puzzle[].class);
+            Puzzle.deleteAll(Puzzle.class);
+            Puzzle.saveInTx(puzzles);
+        }
+        
+        if (splitData.length > 4) {
+            PuzzleCustom[] puzzleCustoms = gson.fromJson(splitData[4], PuzzleCustom[].class);
+            PuzzleCustom.deleteAll(PuzzleCustom.class);
+            PuzzleCustom.saveInTx(puzzleCustoms);
+        }
+        
+        if (splitData.length > 5) {
+            Setting[] settings = gson.fromJson(splitData[5], Setting[].class);
             Setting.deleteAll(Setting.class);
-            for (Setting setting : settings) {
-                setting.save();
-            }
+            Setting.saveInTx(settings);
+        }
+        
+        if (splitData.length > 6) {
+            Statistic[] statistics = gson.fromJson(splitData[6], Statistic[].class);
+            Statistic.deleteAll(Statistic.class);
+            Statistic.saveInTx(statistics);
         }
 
-        if (splitData.length > 3) {
-            Tile[] tiles = gson.fromJson(splitData[3], Tile[].class);
+        if (splitData.length > 7) {
+            Tile[] tiles = gson.fromJson(splitData[7], Tile[].class);
             Tile.deleteAll(Tile.class);
-            for (Tile tile : tiles) {
-                tile.save();
-            }
+            Tile.saveInTx(tiles);
+        }
+
+        if (splitData.length > 8) {
+            TileType[] tileTypes = gson.fromJson(splitData[8], TileType[].class);
+            TileType.deleteAll(TileType.class);
+            TileType.saveInTx(tileTypes);
         }
 
         DatabaseHelper.handlePatches();
