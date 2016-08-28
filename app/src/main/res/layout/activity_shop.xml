@@ -59,7 +59,8 @@
         android:layout_centerHorizontal="true"
         android:padding="10dp"
         android:textSize="30sp"
-        android:background="@drawable/ui_panel_blue"/>
+        android:background="@drawable/ui_panel_blue"
+        android:onClick="watchAdvert"/>
 
     <ScrollView
         android:id="@+id/itemContainerWrapper"
