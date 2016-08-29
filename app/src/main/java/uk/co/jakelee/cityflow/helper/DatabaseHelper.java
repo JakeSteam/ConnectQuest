@@ -895,6 +895,11 @@ public class DatabaseHelper {
             tileTypes.add(new TileType(49, Constants.ENVIRONMENT_CITY, Constants.FLOW_GRASS, Constants.FLOW_GRASS, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new TileType(50, Constants.ENVIRONMENT_CITY, Constants.FLOW_CANAL, Constants.FLOW_CANAL, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new TileType(51, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(52, Constants.ENVIRONMENT_CITY, Constants.FLOW_WATER, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(53, Constants.ENVIRONMENT_CITY, Constants.FLOW_WATER, Constants.FLOW_WATER, Constants.FLOW_WATER, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(54, Constants.ENVIRONMENT_CITY, Constants.FLOW_GRASS, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(55, Constants.ENVIRONMENT_CITY, Constants.FLOW_GRASS, Constants.FLOW_GRASS, Constants.FLOW_GRASS, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+
         TileType.saveInTx(tileTypes);
     }
 }
