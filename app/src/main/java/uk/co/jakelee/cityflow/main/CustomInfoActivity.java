@@ -82,7 +82,7 @@ public class CustomInfoActivity extends Activity {
         Intent intent = new Intent(); intent.setAction(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, backup);
-        startActivity(Intent.createChooser(intent, Text.get("UI_PUZZLE_EXPORT_HINT")));
+        startActivity(Intent.createChooser(intent, Text.get("UI_EXPORT_PUZZLE_HINT")));
     }
 
     public void editPuzzleName(View v) {

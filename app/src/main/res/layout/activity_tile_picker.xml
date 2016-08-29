@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:src="@color/black"
         android:alpha="0.6"/>
-    <RelativeLayout
+    <TableLayout
         android:id="@+id/mainContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,42 +20,45 @@
         app:layout_marginBottomPercent="10%"
         app:layout_marginRightPercent="5%"
         android:background="@drawable/ui_panel_city"
-        android:layout_centerInParent="true">
-        <LinearLayout
+        android:layout_centerInParent="true"
+        android:stretchColumns="1"
+        android:shrinkColumns="1">
+        <TableRow
             android:id="@+id/environmentContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center_vertical">
+            android:orientation="horizontal">
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/areaLabel"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:textColor="@color/black"
                 android:textSize="26sp"/>
-            <com.thomashaertel.widget.MultiSpinner
+            <uk.co.jakelee.cityflow.components.MultiSpinnerFont
                 android:id="@+id/environmentPicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 android:background="@drawable/ui_panel_blue"
-                android:layout_margin="5dp"/>
-        </LinearLayout>
-        <LinearLayout
+                android:layout_marginRight="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+        </TableRow>
+        <TableRow
             android:id="@+id/flowContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@id/environmentContainer"
             android:layout_gravity="center_vertical">
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/flowLabel"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="26sp"/>
-            <com.thomashaertel.widget.MultiSpinner
+            <uk.co.jakelee.cityflow.components.MultiSpinnerFont
                 android:id="@+id/flowPicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -63,18 +66,18 @@
                 android:textSize="24sp"
                 android:background="@drawable/ui_panel_blue"
                 android:layout_margin="5dp"/>
-        </LinearLayout>
+        </TableRow>
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/flowContainer">
+            android:layout_gravity="center_vertical">
             <TableLayout
                 android:id="@+id/tileContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:stretchColumns="*"/>
         </ScrollView>
-    </RelativeLayout>
+    </TableLayout>
     <uk.co.jakelee.cityflow.components.TextAwesome
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

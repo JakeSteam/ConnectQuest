@@ -63,31 +63,35 @@ public class TilePickerActivity extends Activity {
     }
 
     private void populateEnvironmentPicker() {
-        envAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
-        for (int i = Constants.ENVIRONMENT_MIN; i <= Constants.ENVIRONMENT_MAX; i++) {
+        int numEnvironments = (Constants.ENVIRONMENT_MAX - Constants.ENVIRONMENT_MIN) + 1;
+        boolean[] selectedEnvironments = new boolean[numEnvironments];
+
+        envAdapter = new ArrayAdapter<>(this, R.layout.custom_spinner_item);
+        for (int i = 0; i < numEnvironments; i++) {
             envAdapter.add(Text.get("ENVIRONMENT_" + i + "_NAME"));
+            selectedEnvironments[i] = true;
         }
 
         spinner = (MultiSpinner) findViewById(R.id.environmentPicker);
         spinner.setAdapter(envAdapter, false, environmentSelected);
-
-        boolean[] selectedItems = new boolean[envAdapter.getCount()];
-        selectedItems[1] = true;
-        spinner.setSelected(selectedItems);
+        spinner.setSelected(selectedEnvironments);
+        spinner.setText(Text.get("WORD_ALL"));
     }
 
     private void populateFlowPicker() {
-        flowAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
-        for (int i = Constants.FLOW_MIN; i <= Constants.FLOW_MAX; i++) {
+        int numFlows = (Constants.FLOW_MAX - Constants.FLOW_MIN) + 1;
+        boolean[] selectedFlows = new boolean[numFlows];
+
+        flowAdapter = new ArrayAdapter<>(this, R.layout.custom_spinner_item);
+        for (int i = 0; i < numFlows; i++) {
             flowAdapter.add(Text.get("FLOW_" + i + "_NAME"));
+            selectedFlows[i] = true;
         }
 
         spinner = (MultiSpinner) findViewById(R.id.flowPicker);
         spinner.setAdapter(flowAdapter, false, flowSelected);
-
-        boolean[] selectedItems = new boolean[flowAdapter.getCount()];
-        selectedItems[1] = true;
-        spinner.setSelected(selectedItems);
+        spinner.setSelected(selectedFlows);
+        spinner.setText(Text.get("WORD_ALL"));
     }
 
     private MultiSpinner.MultiSpinnerListener environmentSelected = new MultiSpinner.MultiSpinnerListener() {

@@ -17,6 +17,7 @@ import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Statistic;
+import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
@@ -181,7 +182,7 @@ public class PuzzleHelper {
     public static int createNewPuzzle(final int maxX, final int maxY) {
         final int nextPuzzleId = getNextCustomPuzzleId();
         createBasicPuzzleObject(nextPuzzleId).save();
-        createBasicPuzzleCustomObject(nextPuzzleId).save();
+        createBasicPuzzleCustomObject(nextPuzzleId, maxX, maxY).save();
 
         List<Tile> tiles = new ArrayList<>();
         for (int x = 0; x < maxX; x++) {
@@ -210,11 +211,15 @@ public class PuzzleHelper {
     }
 
     public static PuzzleCustom createBasicPuzzleCustomObject(int puzzleId) {
+        return createBasicPuzzleCustomObject(puzzleId, 0, 0);
+    }
+
+    public static PuzzleCustom createBasicPuzzleCustomObject(int puzzleId, int maxX, int maxY) {
         PuzzleCustom puzzleCustom = new PuzzleCustom();
 
         puzzleCustom.setPuzzleId(puzzleId);
-        puzzleCustom.setName("Untitled Puzzle");
-        puzzleCustom.setDescription("");
+        puzzleCustom.setName(String.format(Text.get("PUZZLE_DEFAULT_NAME"), maxX, maxY));
+        puzzleCustom.setDescription(Text.get("PUZZLE_DEFAULT_DESC"));
         puzzleCustom.setAuthor(Setting.getString(Constants.SETTING_PLAYER_NAME));
         puzzleCustom.setDateAdded(System.currentTimeMillis());
         puzzleCustom.setOriginalAuthor(true);

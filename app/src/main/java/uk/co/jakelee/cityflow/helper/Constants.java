@@ -14,6 +14,10 @@ public class Constants {
     public static final int TILE_WIDTH = 130;
     public static final int TILE_HEIGHT = 65;
     public static final int PUZZLE_WIDTH = 129;
+    public static final int PUZZLE_X_MIN = 1;
+    public static final int PUZZLE_X_MAX = 10;
+    public static final int PUZZLE_Y_MIN = 1;
+    public static final int PUZZLE_Y_MAX = 10;
     public static final int PUZZLE_HEIGHT = 76;
     public static final int PUZZLE_CUSTOM_ID_OFFSET = 10000;
 

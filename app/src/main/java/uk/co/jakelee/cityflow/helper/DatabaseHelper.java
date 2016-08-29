@@ -102,6 +102,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CONFIRM", "Confirm"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CLOSE", "Close"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_SAVE", "Save"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CREATE", "Create"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_LOAD", "Load"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CANCEL", "Cancel"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_SUPPORT_CODE", "Support Code"));
@@ -172,6 +173,8 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_2_DESC", "Get flowing in the big city."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_3_NAME", "Escape To The Country"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_3_DESC", "Flow all the way out to the country."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_DEFAULT_NAME", "New Puzzle (%1$dx%2$d)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_DEFAULT_DESC", "No description."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_1_NAME", "No Crossing"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_2_NAME", "Don't Cross The Flows"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_11_NAME", "One Shop Town"));
@@ -283,7 +286,11 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_MOVES_TEXT", ""));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_BY", "By: %1$s"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_DATE_ADDED", "Added: %1$s"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_WIDTH", "Width: %1$d"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_HEIGHT", "Height: %1$d"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_OPTIONS", "Puzzle Options"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_AREA", "Area"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_ALL", "All"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_DESCRIPTION", "Description"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_FLOW", "Flow"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_NAME", "Name"));

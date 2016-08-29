@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.main.CreatorActivity;
 import uk.co.jakelee.cityflow.main.CustomInfoActivity;
 import uk.co.jakelee.cityflow.main.SettingsActivity;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
@@ -164,6 +165,70 @@ public class AlertDialogHelper {
         alertDialog.show();
     }
 
+    public static void puzzleCreationOptions(final CreatorActivity activity) {
+        // Creating dialog
+        final Dialog dialog = new Dialog(activity);
+        dialog.setContentView(R.layout.custom_dialog_puzzle_options);
+        dialog.setTitle(Text.get("UI_PUZZLE_OPTIONS"));
+        dialog.setCancelable(true);
+
+        // Filling in all the text fields
+        ((TextView)dialog.findViewById(R.id.close)).setText(Text.get("DIALOG_BUTTON_CLOSE"));
+        ((TextView)dialog.findViewById(R.id.createButton)).setText(Text.get("DIALOG_BUTTON_CREATE"));
+        ((TextView)dialog.findViewById(R.id.title)).setText(Text.get("UI_PUZZLE_OPTIONS"));
+        ((TextView)dialog.findViewById(R.id.minWidth)).setText(Integer.toString(Constants.PUZZLE_X_MIN));
+        ((TextView)dialog.findViewById(R.id.maxWidth)).setText(Integer.toString(Constants.PUZZLE_X_MAX));
+        ((TextView)dialog.findViewById(R.id.minHeight)).setText(Integer.toString(Constants.PUZZLE_Y_MIN));
+        ((TextView)dialog.findViewById(R.id.maxHeight)).setText(Integer.toString(Constants.PUZZLE_Y_MAX));
+        ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Text.get("UI_PUZZLE_WIDTH"), Constants.PUZZLE_X_MIN));
+        ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Text.get("UI_PUZZLE_HEIGHT"), Constants.PUZZLE_Y_MIN));
+
+        // Creating X slider
+        final SeekBar sliderWidth = (SeekBar) dialog.findViewById(R.id.sliderWidth);
+        sliderWidth.setProgress(0);
+        sliderWidth.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
+            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
+                ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Text.get("UI_PUZZLE_WIDTH"), getIntFromProgress(sliderWidth.getProgress(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX)));
+            }
+        });
+
+        // Creating Y slider
+        final SeekBar sliderHeight = (SeekBar) dialog.findViewById(R.id.sliderHeight);
+        sliderHeight.setProgress(0);
+        sliderHeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
+            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
+                ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Text.get("UI_PUZZLE_HEIGHT"), getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX)));
+            }
+        });
+
+        dialog.findViewById(R.id.createButton).setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                int xValue = getIntFromProgress(sliderWidth.getProgress(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX);
+                int yValue = getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX);
+                PuzzleHelper.createNewPuzzle(xValue, yValue);
+
+                dialog.dismiss();
+                activity.populatePuzzles();
+            }
+        });
+
+        dialog.findViewById(R.id.close).setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
     public static void changeSettingSlider(final SettingsActivity activity, int settingId) {
         final Setting setting = Setting.get(settingId);
 
@@ -171,30 +236,24 @@ public class AlertDialogHelper {
         dialog.setContentView(R.layout.custom_dialog_slider);
         dialog.setTitle(String.format(Text.get("DIALOG_CHANGE_SLIDER"), setting.getName()));
         dialog.setCancelable(true);
+
         ((TextView)dialog.findViewById(R.id.close)).setText(Text.get("DIALOG_BUTTON_CLOSE"));
         ((TextView)dialog.findViewById(R.id.saveValue)).setText(Text.get("DIALOG_BUTTON_SAVE"));
-        dialog.show();
+        ((TextView)dialog.findViewById(R.id.settingName)).setText(setting.getName());
 
-        TextView settingName = (TextView)dialog.findViewById(R.id.settingName);
-        settingName.setText(setting.getName());
-
+        TextView minValue = (TextView)dialog.findViewById(R.id.minValue);
+        TextView maxValue = (TextView)dialog.findViewById(R.id.maxValue);
         final TextView currentValue = (TextView)dialog.findViewById(R.id.currentValue);
-        currentValue.setText(String.format("%.2f", setting.getFloatValue()));
 
-        final TextView minValue = (TextView)dialog.findViewById(R.id.minValue);
         minValue.setText(String.format("%.2f", setting.getFloatMin()));
-
-        final TextView maxValue = (TextView)dialog.findViewById(R.id.maxValue);
         maxValue.setText(String.format("%.2f", setting.getFloatMax()));
+        currentValue.setText(String.format("%.2f", setting.getFloatValue()));
 
         final SeekBar seekbar = (SeekBar) dialog.findViewById(R.id.seekbar);
         seekbar.setProgress(getProgressFromFloat(setting.getFloatValue(), setting.getFloatMin(), setting.getFloatMax()));
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
+            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
@@ -218,6 +277,8 @@ public class AlertDialogHelper {
                 dialog.dismiss();
             }
         });
+
+        dialog.show();
     }
 
     public static float getFloatFromProgress(int value, float min, float max) {
@@ -226,6 +287,9 @@ public class AlertDialogHelper {
 
     public static int getProgressFromFloat(float value, float min, float max) {
         return (int) Math.ceil(((value - min) / (max - min)) * 100);
+    }
 
+    public static int getIntFromProgress(int value, int min, int max) {
+        return min + (((max - min) * value) / 100);
     }
 }

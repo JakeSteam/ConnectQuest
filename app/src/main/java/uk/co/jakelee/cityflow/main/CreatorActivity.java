@@ -14,9 +14,9 @@ import android.widget.TextView;
 import java.util.List;
 
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
-import uk.co.jakelee.cityflow.helper.PuzzleHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
 import uk.co.jakelee.cityflow.helper.RandomHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
@@ -111,8 +111,7 @@ public class CreatorActivity extends Activity {
     }
 
     public void newPuzzle(View v) {
-        PuzzleHelper.createNewPuzzle(5, 5);
-        populatePuzzles();
+        AlertDialogHelper.puzzleCreationOptions(this);
     }
 
     public void importPuzzle(View v) {
