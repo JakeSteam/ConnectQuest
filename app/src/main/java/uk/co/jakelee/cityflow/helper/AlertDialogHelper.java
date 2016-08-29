@@ -23,19 +23,19 @@ import uk.co.jakelee.cityflow.model.Text;
 public class AlertDialogHelper {
     public static void confirmCloudLoad(final Activity activity, int localStars, int localPuzzles, int cloudStars, int cloudPuzzles) {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
-        alertDialog.setMessage(String.format("Are you sure sure you want to load this cloud save?\n\nLocal: %1$s stars, %2$s puzzles\nCloud: %3$s stars, %4$s puzzles",
+        alertDialog.setMessage(String.format(Text.get("DIALOG_CLOUD_LOAD_CONFIRM"),
                 localStars,
                 localPuzzles,
                 cloudStars,
                 cloudPuzzles));
 
-        alertDialog.setPositiveButton("Load it!", new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_LOAD"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 GooglePlayHelper.forceLoadFromCloud();
             }
         });
 
-        alertDialog.setNegativeButton("Don't!", new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton(Text.get("DIALOG_BUTTON_CANCEL"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
@@ -49,20 +49,20 @@ public class AlertDialogHelper {
         });
     }
 
-    public static void confirmCloudSave(final Context context, final Activity activity, String desc, long saveTime, String deviceName) {
+    public static void confirmCloudSave(final Activity activity, String desc, long saveTime, String deviceName) {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
-        alertDialog.setMessage(String.format("Are you sure you wish to PERMANENTLY overwrite your cloud save:\n\n%1$s\nCreated on %2$s on your %3$s.",
+        alertDialog.setMessage(String.format(Text.get("DIALOG_CLOUD_SAVE_CONFIRM"),
                 desc,
                 DateHelper.displayTime(saveTime, DateHelper.datetime),
                 deviceName));
 
-        alertDialog.setPositiveButton("Save!", new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_SAVE"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 GooglePlayHelper.forceSaveToCloud();
             }
         });
 
-        alertDialog.setNegativeButton("Cancel!", new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton(Text.get("DIALOG_BUTTON_CANCEL"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
@@ -108,7 +108,7 @@ public class AlertDialogHelper {
         dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
     }
 
-    public static void changePlayerName(final SettingsActivity activity, final String questionText, final int settingId) {
+    public static void changeSettingText(final SettingsActivity activity, final int settingId) {
         final Setting settingToToggle = Setting.findById(Setting.class, settingId);
         final EditText playerNameBox = new EditText(activity.getApplicationContext());
         playerNameBox.setText(Setting.getString(Constants.SETTING_PLAYER_NAME));
@@ -164,7 +164,7 @@ public class AlertDialogHelper {
         alertDialog.show();
     }
 
-    public static void displaySlider(final SettingsActivity activity, int settingId) {
+    public static void changeSettingSlider(final SettingsActivity activity, int settingId) {
         final Setting setting = Setting.get(settingId);
 
         final Dialog dialog = new Dialog(activity);

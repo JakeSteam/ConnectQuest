@@ -48,7 +48,7 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
             pack1.setPurchased(true);
             pack1.save();
 
-            Crouton.showText(this, "Restored pack 1 purchase!", StyleHelper.SUCCESS);
+            Crouton.showText(this, "Restored pack 2 purchase!", StyleHelper.SUCCESS);
         }
     }
 

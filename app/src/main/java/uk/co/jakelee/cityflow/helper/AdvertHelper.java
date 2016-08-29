@@ -13,6 +13,7 @@ import java.util.Map;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import uk.co.jakelee.cityflow.main.ShopActivity;
+import uk.co.jakelee.cityflow.model.Text;
 
 public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplayListener, AppLovinAdVideoPlaybackListener {
     private Context context;
@@ -43,7 +44,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         if (advert.isAdReadyToDisplay()) {
             advert.show(activity, this, this, this);
         } else {
-            Crouton.showText(callingActivity, "Failed to load ad! This might be due to a poor connection, or there might not be any ads available.", StyleHelper.ERROR);
+            Crouton.showText(callingActivity, Text.get("ERROR_ADVERT_NOT_LOADED"), StyleHelper.ERROR);
         }
     }
 
@@ -52,7 +53,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         if (verified) {
             callingActivity.advertWatched();
         } else {
-            Crouton.showText(callingActivity, "Something went wrong, and the ad view couldn't be verified!", StyleHelper.ERROR);
+            Crouton.showText(callingActivity, Text.get("ERROR_ADVERT_NOT_VERIFIED"), StyleHelper.ERROR);
         }
 
         advert.preload(null);

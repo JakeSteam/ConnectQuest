@@ -27,14 +27,12 @@ import uk.co.jakelee.cityflow.model.Text;
 public class ShopActivity extends Activity {
     private DisplayHelper dh;
     private int selectedCategory = 1;
-    private AdvertHelper ah;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
         dh = DisplayHelper.getInstance(this);
-        ah = AdvertHelper.getInstance(this);
     }
 
     @Override
@@ -104,12 +102,12 @@ public class ShopActivity extends Activity {
     }
 
     public void watchAdvert(View v) {
-        AdvertHelper.getInstance(this).showAdvert(this);
+        AdvertHelper.getInstance(getApplicationContext()).showAdvert(this);
     }
 
     public void advertWatched() {
         Statistic.addCurrency(Constants.CURRENCY_ADVERT);
-        Crouton.showText(this, "Earned " + Constants.CURRENCY_ADVERT + " coins!", StyleHelper.SUCCESS);
+        Crouton.showText(this, String.format(Text.get("ALERT_COINS_EARNED"), Constants.CURRENCY_ADVERT), StyleHelper.SUCCESS);
 
         populateText();
     }

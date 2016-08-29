@@ -40,6 +40,7 @@ import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Statistic;
+import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
@@ -180,8 +181,6 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         callingActivity = activity;
 
         AsyncTask<Void, Void, Integer> task = new AsyncTask<Void, Void, Integer>() {
-            String currentTask = "synchronising";
-
             @Override
             protected Integer doInBackground(Void... params) {
                 Snapshots.OpenSnapshotResult result = Games.Snapshots.open(mGoogleApiClient, mCurrentSaveName, true).await();
@@ -191,7 +190,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                     callingActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Crouton.showText(callingActivity, "Save conflict! Hang on, attempting to resolve...", StyleHelper.ERROR);
+                            Crouton.showText(callingActivity, Text.get("ALERT_SAVE_CONFLICT"), StyleHelper.ERROR);
                         }
                     });
 
@@ -213,17 +212,15 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                     if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_METADATA)) {
                         cloudSaveData = snapshot.getSnapshotContents().readFully();
                         loadFromCloud(true);
-                        currentTask = "loading";
                     } else if (intent.hasExtra(Snapshots.EXTRA_SNAPSHOT_NEW)) {
                         loadedSnapshot = snapshot;
                         saveToCloud();
-                        currentTask = "saving";
                     }
                 } catch (final IOException e) {
                     callingActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Crouton.showText(callingActivity, "Uh oh, we had an error: " + e.getMessage(), StyleHelper.ERROR);
+                            Crouton.showText(callingActivity, String.format(ErrorHelper.get(ErrorHelper.Error.CLOUD_ERROR), e.getMessage()), StyleHelper.ERROR);
                         }
                     });
                 }
@@ -243,7 +240,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             @Override
             public void run() {
                 if (!checkIsImprovement) {
-                    Crouton.showText(callingActivity, "Loading cloud save...", StyleHelper.INFO);
+                    Crouton.showText(callingActivity, Text.get("ALERT_CLOUD_LOADING"), StyleHelper.INFO);
                 }
             }
         });
@@ -273,18 +270,18 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         callingActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Crouton.showText(callingActivity, "Beginning save to cloud", StyleHelper.INFO);
+                Crouton.showText(callingActivity, Text.get("ALERT_CLOUD_SAVING"), StyleHelper.INFO);
             }
         });
 
         new Thread(new Runnable() {
             public void run() {
                 byte[] data = createBackup();
-                String desc = String.format("%2$d Stars | %1$d Coins | V%3$s",
+                String desc = String.format(Text.get("CLOUD_SAVE_DESC"),
                         StatisticsHelper.getTotalStars(),
                         Statistic.getCurrency(),
                         BuildConfig.VERSION_NAME);
-                Bitmap cover = BitmapFactory.decodeResource(callingContext.getResources(), R.drawable.tile_1_1);
+                Bitmap cover = BitmapFactory.decodeResource(callingContext.getResources(), R.drawable.coverimage);
 
                 loadedSnapshot.getSnapshotContents().writeBytes(data);
 
@@ -299,7 +296,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                 callingActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Crouton.showText(callingActivity, "Successfully saved game to cloud!", StyleHelper.SUCCESS);
+                        Crouton.showText(callingActivity, Text.get("ALERT_CLOUD_SAVED"), StyleHelper.SUCCESS);
                     }
                 });
             }
@@ -314,7 +311,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         if (loadedSnapshot.getMetadata().getDeviceName() == null) {
             forceSaveToCloud();
         } else {
-            AlertDialogHelper.confirmCloudSave(callingContext, callingActivity,
+            AlertDialogHelper.confirmCloudSave(callingActivity,
                     loadedSnapshot.getMetadata().getDescription(),
                     loadedSnapshot.getMetadata().getLastModifiedTimestamp(),
                     loadedSnapshot.getMetadata().getDeviceName());
@@ -413,7 +410,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             callingActivity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Crouton.showText(callingActivity, "Successfully loaded game from cloud!", StyleHelper.SUCCESS);
+                    Crouton.showText(callingActivity, Text.get("ALERT_CLOUD_LOADED"), StyleHelper.SUCCESS);
                 }
             });
         }

@@ -81,29 +81,42 @@ public class DatabaseHelper {
 
     private static void createText() {
         List<Text> texts = new ArrayList<>();
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_SAVING", "Saving to cloud..."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_SAVED", "Successfully saved game to cloud!"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_LOADING", "Loading cloud save..."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_LOADED", "Successfully loaded game from cloud!"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_COINS_EARNED", "Earned %1$d coins!"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SAVE_CONFLICT", "Save conflict detected! Currently resolving, this might take a few seconds, please be patient..."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SETTING_TOGGLE_ON", "Toggled %1$s on!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SETTING_TOGGLE_OFF", "Toggled %1$s off!"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "CLOUD_SAVE_DESC", "%1$d Stars | %2$d Coins | V%3$s"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_CREATED", "Created"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_IMPORTED", "Imported"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_IMPORT_PUZZLE", "Import Puzzle"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_NEW_PUZZLE", "New Puzzle"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_TEXT", "Change %1$s text"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_SLIDER", "Change %1$s value"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CLOUD_LOAD_CONFIRM", "Are you sure sure you want to load this cloud save?\n\nLocal: %1$s stars, %2$s coins\nCloud: %3$s stars, %4$s coins"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CLOUD_SAVE_CONFIRM", "Are you sure you wish to PERMANENTLY overwrite your cloud save:\n\n%1$s\n\nCreated on %2$s on your %3$s."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CHANGE", "Change"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CONFIRM", "Confirm"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CLOSE", "Close"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_SAVE", "Save"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_LOAD", "Load"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CANCEL", "Cancel"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_SUPPORT_CODE", "Support Code"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_0_NAME", "None"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_1_NAME", "Grass"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_2_NAME", "City"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_ADVERT_NOT_LOADED", "Failed to load ad! This might be due to a poor connection, or there might not be any ads available."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_ADVERT_NOT_VERIFIED", "Something went wrong, and the ad view couldn't be verified!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_FAILED_TO_CONNECT", "Couldn't log in. Please try again later."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_MAX_PURCHASES", "You've purchased the maximum of this item!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_NO_ERROR", ""));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_NOT_ENOUGH_CURRENCY", "You can't afford this item!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_SUPPORT_CODE_INVALID", "Failed to apply support code! Please contact support."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_TECHNICAL", "An unknown technical error occurred! Try again?"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_CLOUD_ERROR", "An error occurred whilst handling the cloud save: %1$s"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_0_NAME", "None"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_1_NAME", "Water"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_2_NAME", "Road"));
@@ -182,7 +195,6 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_29_NAME", "End Of The Line"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_30_NAME", "A Summer Walk"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_41_NAME", "Highs And Lows"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_END_TEXT", "It flows!\n\n%1$d stars\nTime: %2$s\nMoves: %3$d\n\nTarget Time: %4$s\nTarget Moves: %5$d\n\nBest Time: %6$s%7$s\nBest Moves: %8$d%9$s\nNew Tiles: %10$d%11$s"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_SECTION_AUDIO", "Audio Settings"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_SECTION_GAMEPLAY", "Gameplay Settings"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_SECTION_GOOGLE", "Google Settings"));
@@ -254,6 +266,22 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_49_NAME", "City Grass Corner"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_50_NAME", "City Canal Corner"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_51_NAME", "City Road/Path Corner (Inverse)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_52_NAME", "City Water Interchange"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_53_NAME", "City Water T Junction"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_54_NAME", "City Grass Interchange"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_55_NAME", "City Grass T Junction"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_56_NAME", "City Road Corner (Sharp)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_57_NAME", "City Road Corner (Lights)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_58_NAME", "City Road Corner (Tree)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_EXPORT_PUZZLE_HINT", "Export puzzle data to:"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_COMPLETE_TITLE", "Complete\n100%"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_COMPLETE_TEXT", "Completed!"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_TIME_TITLE", "Time\n%1$s%"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_TIME_TEXT", ""));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_MOVES_TITLE", ""));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_MOVES_TEXT", ""));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_BY", "By: %1$s"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_DATE_ADDED", "Added: %1$s"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_AREA", "Area"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_DESCRIPTION", "Description"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_FLOW", "Flow"));
@@ -899,6 +927,9 @@ public class DatabaseHelper {
             tileTypes.add(new TileType(53, Constants.ENVIRONMENT_CITY, Constants.FLOW_WATER, Constants.FLOW_WATER, Constants.FLOW_WATER, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new TileType(54, Constants.ENVIRONMENT_CITY, Constants.FLOW_GRASS, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new TileType(55, Constants.ENVIRONMENT_CITY, Constants.FLOW_GRASS, Constants.FLOW_GRASS, Constants.FLOW_GRASS, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(56, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(57, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(58, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
 
         TileType.saveInTx(tileTypes);
     }

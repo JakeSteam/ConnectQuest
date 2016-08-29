@@ -13,6 +13,7 @@ import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
+import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class CustomInfoActivity extends Activity {
@@ -53,8 +54,10 @@ public class CustomInfoActivity extends Activity {
     private void displayPuzzleInfo() {
         ((TextView) findViewById(R.id.puzzleName)).setText(puzzleCustom.getName());
         ((TextView) findViewById(R.id.puzzleDesc)).setText(puzzleCustom.getDescription());
-        ((TextView) findViewById(R.id.puzzleAuthor)).setText("By: " + (puzzleCustom.isOriginalAuthor() ? "You!" : puzzleCustom.getAuthor()));
-        ((TextView) findViewById(R.id.puzzleCreatedDate)).setText("Added: " + DateHelper.displayTime(puzzleCustom.getDateAdded(), DateHelper.date));
+        ((TextView) findViewById(R.id.puzzleAuthor)).setText(String.format(Text.get("UI_PUZZLE_BY"),
+                (puzzleCustom.isOriginalAuthor() ? Setting.getString(Constants.SETTING_PLAYER_NAME) : puzzleCustom.getAuthor())));
+        ((TextView) findViewById(R.id.puzzleCreatedDate)).setText(String.format(Text.get("UI_DATE_ADDED"),
+                DateHelper.displayTime(puzzleCustom.getDateAdded(), DateHelper.date)));
 
         ((TextView) findViewById(R.id.actionButton)).setText(puzzleCustom.isOriginalAuthor() ? R.string.icon_edit : R.string.icon_play);
     }
@@ -79,7 +82,7 @@ public class CustomInfoActivity extends Activity {
         Intent intent = new Intent(); intent.setAction(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, backup);
-        startActivity(Intent.createChooser(intent, "Save puzzle backup to"));
+        startActivity(Intent.createChooser(intent, Text.get("UI_PUZZLE_EXPORT_HINT")));
     }
 
     public void editPuzzleName(View v) {

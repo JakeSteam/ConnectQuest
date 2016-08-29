@@ -131,13 +131,13 @@ public class SettingsActivity extends Activity {
     public void changeText(View v) {
         switch (v.getId()) {
             case R.id.playerNameDisplay:
-                AlertDialogHelper.changePlayerName(this, "Change Player Name:", Constants.SETTING_PLAYER_NAME);
+                AlertDialogHelper.changeSettingText(this, Constants.SETTING_PLAYER_NAME);
                 break;
         }
     }
 
     public void changeSlider(View v) {
-        AlertDialogHelper.displaySlider(this, Integer.parseInt((String)v.getTag()));
+        AlertDialogHelper.changeSettingSlider(this, Integer.parseInt((String)v.getTag()));
     }
 
     public void openSupportCode(View v) {

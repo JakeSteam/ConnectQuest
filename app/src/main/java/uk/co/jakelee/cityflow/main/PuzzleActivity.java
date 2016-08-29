@@ -133,7 +133,7 @@ public class PuzzleActivity extends Activity {
                     countdownTimer.setText(Integer.toString(timeLeft));
                 } else {
                     countdownTimer.setTextSize(100);
-                    countdownTimer.setText("Flow!");
+                    countdownTimer.setText(Text.get("WORD_FLOW") + "!");
                 }
             }
 
@@ -315,17 +315,17 @@ public class PuzzleActivity extends Activity {
 
         int currencyEarned = PuzzleHelper.getCurrencyEarned(isCustom, isFirstComplete, originalStars, stars);
         Statistic.addCurrency(currencyEarned);
-        ((TextView)findViewById(R.id.currencyEarned)).setText("Earned " + currencyEarned + " coin(s)!");
+        ((TextView)findViewById(R.id.currencyEarned)).setText(String.format(Text.get("ALERT_COINS_EARNED"), currencyEarned));
 
         findViewById(R.id.endGame).setVisibility(View.VISIBLE);
 
-        ((TextView) findViewById(R.id.skyscraperCompletionTitle)).setText("Complete\n100%");
+        ((TextView) findViewById(R.id.skyscraperCompletionTitle)).setText(Text.get("UI_SKYSCRAPER_COMPLETE_TITLE"));
         ((TextView) findViewById(R.id.skyscraperCompletionTitle)).setTextColor(getResources().getColor(R.color.gold));
         ((ImageView) findViewById(R.id.skyscraperCompletion)).setImageResource(PuzzleHelper.getSkyscraperDrawable(this, 100, Constants.SKYSCRAPER_COMPLETE));
-        ((TextView) findViewById(R.id.skyscraperCompletionText)).setText("Completed!");
+        ((TextView) findViewById(R.id.skyscraperCompletionText)).setText(Text.get("UI_SKYSCRAPER_COMPLETE_TEXT"));
 
         int timeProgress = StatisticsHelper.getPuzzleCriteriaProgress((int) timeInMilliseconds, (int) puzzle.getParTime());
-        ((TextView) findViewById(R.id.skyscraperTimeTitle)).setText("Time\n" + timeProgress + "%");
+        ((TextView) findViewById(R.id.skyscraperTimeTitle)).setText(String.format(Text.get("UI_SKYSCRAPER_TIME_TITLE"), timeProgress));
         ((TextView) findViewById(R.id.skyscraperTimeTitle)).setTextColor(getResources().getColor(timeProgress == 100 ? R.color.gold : R.color.white));
         ((ImageView) findViewById(R.id.skyscraperTime)).setImageResource(PuzzleHelper.getSkyscraperDrawable(this, timeProgress, Constants.SKYSCRAPER_TIME));
         ((TextView) findViewById(R.id.skyscraperTimeText)).setText((timeInMilliseconds > 0 ? DateHelper.getPuzzleTimeString(timeInMilliseconds) : "0") + "/" + DateHelper.getPuzzleTimeString(puzzle.getParTime()));
