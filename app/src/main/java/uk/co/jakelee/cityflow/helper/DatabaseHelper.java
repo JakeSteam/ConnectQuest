@@ -94,7 +94,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_IMPORTED", "Imported"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_IMPORT_PUZZLE", "Import Puzzle"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_NEW_PUZZLE", "New Puzzle"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_TEXT", "Change %1$s text"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_TEXT", "Change %1$s text\n(max %2$d chars)"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_SLIDER", "Change %1$s value"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CLOUD_LOAD_CONFIRM", "Are you sure sure you want to load this cloud save?\n\nLocal: %1$s stars, %2$s coins\nCloud: %3$s stars, %4$s coins"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CLOUD_SAVE_CONFIRM", "Are you sure you wish to PERMANENTLY overwrite your cloud save:\n\n%1$s\n\nCreated on %2$s on your %3$s."));

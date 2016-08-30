@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.InputFilter;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -111,16 +112,17 @@ public class AlertDialogHelper {
 
     public static void changeSettingText(final SettingsActivity activity, final int settingId) {
         final Setting settingToToggle = Setting.findById(Setting.class, settingId);
-        final EditText playerNameBox = new EditText(activity.getApplicationContext());
-        playerNameBox.setText(Setting.getString(Constants.SETTING_PLAYER_NAME));
+        final EditText editText = new EditText(activity.getApplicationContext());
+        editText.setText(Setting.getString(Constants.SETTING_PLAYER_NAME));
+        editText.setFilters(new InputFilter[]{ FilterHelper.playerName });
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
-        alertDialog.setMessage(String.format(Text.get("DIALOG_CHANGE_TEXT"), settingToToggle.getName()));
-        alertDialog.setView(playerNameBox);
+        alertDialog.setMessage(String.format(Text.get("DIALOG_CHANGE_TEXT"), settingToToggle.getName(), Constants.PLAYER_NAME_MAX_LENGTH));
+        alertDialog.setView(editText);
 
         alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_CHANGE"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                settingToToggle.setStringValue(playerNameBox.getText().toString().trim());
+                settingToToggle.setStringValue(editText.getText().toString().trim());
                 settingToToggle.save();
                 activity.populateSettings();
             }
@@ -138,9 +140,12 @@ public class AlertDialogHelper {
     public static void changePuzzleInfo(final CustomInfoActivity activity, final PuzzleCustom puzzleCustom, final boolean changeDesc) {
         final EditText puzzleInfoInput = new EditText(activity.getApplicationContext());
         puzzleInfoInput.setText(changeDesc ? puzzleCustom.getDescription() : puzzleCustom.getName());
+        puzzleInfoInput.setFilters(new InputFilter[]{ changeDesc ? FilterHelper.puzzleDesc : FilterHelper.puzzleName });
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
-        alertDialog.setMessage(String.format(Text.get("DIALOG_CHANGE_TEXT"), changeDesc ? Text.get("WORD_DESCRIPTION") : Text.get("WORD_NAME")));
+        alertDialog.setMessage(String.format(Text.get("DIALOG_CHANGE_TEXT"),
+                changeDesc ? Text.get("WORD_DESCRIPTION") : Text.get("WORD_NAME"),
+                changeDesc ? Constants.PUZZLE_DESC_MAX_LENGTH : Constants.PUZZLE_NAME_MAX_LENGTH));
         alertDialog.setView(puzzleInfoInput);
 
         alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_CHANGE"), new DialogInterface.OnClickListener() {

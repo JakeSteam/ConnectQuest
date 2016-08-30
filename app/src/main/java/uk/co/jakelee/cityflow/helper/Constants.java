@@ -20,6 +20,9 @@ public class Constants {
     public static final int PUZZLE_Y_MAX = 10;
     public static final int PUZZLE_HEIGHT = 76;
     public static final int PUZZLE_CUSTOM_ID_OFFSET = 10000;
+    public static final int PUZZLE_NAME_MAX_LENGTH = 80;
+    public static final int PUZZLE_DESC_MAX_LENGTH = 450;
+    public static final int PLAYER_NAME_MAX_LENGTH = 30;
 
     // Currency incomes
     public static final int CURRENCY_RECOMPLETE = 1;

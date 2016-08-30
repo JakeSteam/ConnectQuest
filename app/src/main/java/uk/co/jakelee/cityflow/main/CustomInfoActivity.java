@@ -89,11 +89,15 @@ public class CustomInfoActivity extends Activity {
     }
 
     public void editPuzzleName(View v) {
-        AlertDialogHelper.changePuzzleInfo(this, puzzleCustom, false);
+        if (puzzleCustom.isOriginalAuthor()) {
+            AlertDialogHelper.changePuzzleInfo(this, puzzleCustom, false);
+        }
     }
 
     public void editPuzzleDesc(View v) {
-        AlertDialogHelper.changePuzzleInfo(this, puzzleCustom, true);
+        if (puzzleCustom.isOriginalAuthor()) {
+            AlertDialogHelper.changePuzzleInfo(this, puzzleCustom, true);
+        }
     }
 
     public void closePopup (View v) {
