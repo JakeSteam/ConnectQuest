@@ -11,103 +11,124 @@
         android:layout_height="match_parent"
         android:src="@color/black"
         android:alpha="0.6"/>
-    <RelativeLayout
+    <TableLayout
         android:id="@+id/popupWrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_marginLeftPercent="10%"
         app:layout_marginRightPercent="10%"
+        android:padding="10dp"
         android:background="@drawable/ui_panel_city"
-        android:layout_centerInParent="true">
-        <uk.co.jakelee.cityflow.components.TextViewFont
-            android:id="@+id/puzzleName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="24sp"/>
-        <uk.co.jakelee.cityflow.components.TextAwesome
-            android:id="@+id/editPuzzleName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/icon_edit"
-            android:textColor="@color/black"
-            android:textSize="26sp"
-            android:layout_toRightOf="@id/puzzleName"
-            android:layout_alignTop="@id/puzzleName"
-            android:onClick="editPuzzleName"/>
-        <uk.co.jakelee.cityflow.components.TextViewFont
-            android:id="@+id/puzzleDesc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/puzzleName"
-            android:textColor="@color/black"
-            android:textSize="18sp"/>
-        <uk.co.jakelee.cityflow.components.TextAwesome
-            android:id="@+id/editPuzzleDesc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/icon_edit"
-            android:textColor="@color/black"
-            android:textSize="26sp"
-            android:layout_toRightOf="@id/puzzleDesc"
-            android:layout_alignTop="@id/puzzleDesc"
-            android:onClick="editPuzzleDesc"/>
-        <uk.co.jakelee.cityflow.components.TextViewFont
-            android:id="@+id/puzzleAuthor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/puzzleDesc"
-            android:textColor="@color/black"
-            android:textSize="18sp"/>
-        <uk.co.jakelee.cityflow.components.TextViewFont
-            android:id="@+id/puzzleCreatedDate"
-            android:layout_width="match_parent"
-            android:layout_below="@id/puzzleAuthor"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="18sp"/>
+        android:layout_centerInParent="true"
+        android:shrinkColumns="1"
+        android:stretchColumns="1">
+        <TableRow android:layout_marginRight="35dp">
+            <uk.co.jakelee.cityflow.components.TextViewFont
+                android:id="@+id/puzzleNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:textColor="@color/black"
+                android:onClick="editPuzzleName"
+                android:textSize="22sp"/>
+            <uk.co.jakelee.cityflow.components.TextViewFont
+                android:id="@+id/puzzleName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:textSize="22sp"/>
+        </TableRow>
+        <TableRow android:layout_marginRight="35dp">
+            <uk.co.jakelee.cityflow.components.TextViewFont
+                android:id="@+id/puzzleDescText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:textColor="@color/black"
+                android:onClick="editPuzzleDesc"
+                android:textSize="22sp"/>
+            <uk.co.jakelee.cityflow.components.TextViewFont
+                android:id="@+id/puzzleDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:textSize="22sp"/>
+        </TableRow>
+        <TableRow>
+            <uk.co.jakelee.cityflow.components.TextViewFont
+                android:id="@+id/puzzleAuthorText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:textColor="@color/black"
+                android:textSize="22sp"/>
+            <uk.co.jakelee.cityflow.components.TextViewFont
+                android:id="@+id/puzzleAuthor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:textSize="22sp"/>
+        </TableRow>
+        <TableRow>
+            <uk.co.jakelee.cityflow.components.TextViewFont
+                android:id="@+id/puzzleCreatedDateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:textColor="@color/black"
+                android:textSize="22sp"/>
+            <uk.co.jakelee.cityflow.components.TextViewFont
+                android:id="@+id/puzzleCreatedDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:textSize="22sp"/>
+        </TableRow>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/puzzleCreatedDate"
             android:orientation="horizontal">
             <uk.co.jakelee.cityflow.components.TextAwesome
                 android:id="@+id/copyButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:padding="6dp"
                 android:layout_margin="5dp"
                 android:background="@drawable/ui_panel_grey"
                 android:text="&#xf24d;"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="28sp"
                 android:gravity="center_horizontal"
                 android:onClick="copyPuzzle"/>
             <uk.co.jakelee.cityflow.components.TextAwesome
                 android:id="@+id/exportButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:padding="6dp"
                 android:layout_margin="5dp"
                 android:background="@drawable/ui_panel_grey"
                 android:text="&#xf045;"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="28sp"
                 android:gravity="center_horizontal"
                 android:onClick="exportPuzzle"/>
             <uk.co.jakelee.cityflow.components.TextAwesome
                 android:id="@+id/actionButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:padding="6dp"
                 android:layout_margin="5dp"
                 android:background="@drawable/ui_panel_blue"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="28sp"
                 android:gravity="center_horizontal"
                 android:onClick="performAction"/>
         </LinearLayout>
-    </RelativeLayout>
+    </TableLayout>
     <uk.co.jakelee.cityflow.components.TextAwesome
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

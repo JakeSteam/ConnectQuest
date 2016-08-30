@@ -54,10 +54,13 @@ public class CustomInfoActivity extends Activity {
     private void displayPuzzleInfo() {
         ((TextView) findViewById(R.id.puzzleName)).setText(puzzleCustom.getName());
         ((TextView) findViewById(R.id.puzzleDesc)).setText(puzzleCustom.getDescription());
-        ((TextView) findViewById(R.id.puzzleAuthor)).setText(String.format(Text.get("UI_PUZZLE_BY"),
-                (puzzleCustom.isOriginalAuthor() ? Setting.getString(Constants.SETTING_PLAYER_NAME) : puzzleCustom.getAuthor())));
-        ((TextView) findViewById(R.id.puzzleCreatedDate)).setText(String.format(Text.get("UI_DATE_ADDED"),
-                DateHelper.displayTime(puzzleCustom.getDateAdded(), DateHelper.date)));
+        ((TextView) findViewById(R.id.puzzleAuthor)).setText(puzzleCustom.isOriginalAuthor() ? Setting.getString(Constants.SETTING_PLAYER_NAME) : puzzleCustom.getAuthor());
+        ((TextView) findViewById(R.id.puzzleCreatedDate)).setText(DateHelper.displayTime(puzzleCustom.getDateAdded(), DateHelper.date));
+
+        ((TextView) findViewById(R.id.puzzleNameText)).setText(Text.get("UI_PUZZLE_NAME"));
+        ((TextView) findViewById(R.id.puzzleDescText)).setText(Text.get("UI_PUZZLE_DESC"));
+        ((TextView) findViewById(R.id.puzzleAuthorText)).setText(Text.get("UI_PUZZLE_BY"));
+        ((TextView) findViewById(R.id.puzzleCreatedDateText)).setText(Text.get("UI_PUZZLE_DATE_ADDED"));
 
         ((TextView) findViewById(R.id.actionButton)).setText(puzzleCustom.isOriginalAuthor() ? R.string.icon_edit : R.string.icon_play);
     }

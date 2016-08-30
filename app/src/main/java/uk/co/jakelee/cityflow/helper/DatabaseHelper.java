@@ -284,8 +284,10 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_TIME_TEXT", ""));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_MOVES_TITLE", ""));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_MOVES_TEXT", ""));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_BY", "By: %1$s"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_DATE_ADDED", "Added: %1$s"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_BY", "By:"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_NAME", "Name:"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_DESC", "Desc:"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_DATE_ADDED", "Added:"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_WIDTH", "Width: %1$d"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_HEIGHT", "Height: %1$d"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_OPTIONS", "Puzzle Options"));
