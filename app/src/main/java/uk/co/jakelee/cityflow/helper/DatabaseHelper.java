@@ -314,6 +314,8 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_72_NAME", "Forest High"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_73_NAME", "Forest (Rocks)"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_74_NAME", "Forest (Trees)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_75_NAME", "Forest Dirt End"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_76_NAME", "Forest River End"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_EXPORT_PUZZLE_HINT", "Export puzzle data to:"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_COMPLETE_TITLE", "Complete\n100%"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_COMPLETE_TEXT", "Completed!"));
@@ -468,6 +470,8 @@ public class DatabaseHelper {
             tiles.add(new Tile(1, 72, 3, 0, Constants.ROTATION_NORTH));
             tiles.add(new Tile(1, 73, 3, 1, Constants.ROTATION_NORTH));
             tiles.add(new Tile(1, 74, 3, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 75, 3, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 76, 4, 0, Constants.ROTATION_NORTH));
 
             tiles.add(new Tile(2, 41, 0, 0, Constants.ROTATION_NORTH));
             tiles.add(new Tile(2, 41, 0, 1, Constants.ROTATION_NORTH));
@@ -1012,6 +1016,8 @@ public class DatabaseHelper {
             tileTypes.add(new TileType(72, Constants.ENVIRONMENT_FOREST, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 3));
             tileTypes.add(new TileType(73, Constants.ENVIRONMENT_FOREST, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new TileType(74, Constants.ENVIRONMENT_FOREST, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(75, Constants.ENVIRONMENT_FOREST, Constants.FLOW_NONE, Constants.FLOW_DIRT, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(76, Constants.ENVIRONMENT_FOREST, Constants.FLOW_NONE, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
 
         TileType.saveInTx(tileTypes);
     }
