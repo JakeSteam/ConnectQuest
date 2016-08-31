@@ -94,6 +94,23 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_IMPORTED", "Imported"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_IMPORT_PUZZLE", "Import Puzzle"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_NEW_PUZZLE", "New Puzzle"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_GRAPHICS_TITLE", "Graphics"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_GRAPHICS_TEXT", "<a href='http://kenney.nl/'>Kenney</a>: Base tilesets, majority of UI elements.\n" +
+                    "<a href='http://www.dafont.com/claudep.d857>Claude P</a>: Main font (Yagiuhf No 2).\n" +
+                    "<a href='http://fontawesome.io/'>FontAwesome</a>: Button icons."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_TECHNOLOGIES_TITLE", "Technologies"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_TECHNOLOGIES_TEXT", "<a href='https://github.com/bperin/FontAwesomeAndroid'>FontAwesomeAndroid</a>: FontAwesome support.\n" +
+                    "<a href=''>Sugar</a>: Database ORM.\n" +
+                    "<a href=''>ACRA</a>: Crash management.\n" +
+                    "<a href=''>GSON</a>: Cloud saves + puzzle sharing.\n" +
+                    "<a href=''>Multispinner</a>: Multi-selectable options list.\n" +
+                    "<a href=''>AESCrypt</a>: Support codes + save games + puzzle sharing.\n" +
+                    "<a href=''>Picasso</a>: Image caching.\n" +
+                    "<a href=''>Android-Rate</a>: Play Store rate prompting.\n" +
+                    "<a href=''>AutofitTextView</a>: Intelligently scaling textboxes.\n" +
+                    "<a href=''>Crouton</a>: On-screen alerts.\n" +
+                    "<a href=''>IAB</a>: In-app billing.\n" +
+                    "<a href=''>AppLovin</a>: Advertising."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_TEXT", "Change %1$s text\n(max %2$d chars)"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_SLIDER", "Change %1$s value"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CLOUD_LOAD_CONFIRM", "Are you sure sure you want to load this cloud save?\n\nLocal: %1$s stars, %2$s coins\nCloud: %3$s stars, %4$s coins"));

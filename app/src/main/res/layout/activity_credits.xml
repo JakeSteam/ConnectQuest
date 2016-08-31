@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green"
+    tools:context=".main.CreditsActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:background="@drawable/ui_panel_city"
+        android:fadeScrollbars="false">
+        <LinearLayout
+            android:id="@+id/creditsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <uk.co.jakelee.cityflow.components.TextViewFont
+                android:id="@+id/graphicsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="30sp"/>
+            <uk.co.jakelee.cityflow.components.TextViewFont
+                android:id="@+id/graphicsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="22sp"/>
+
+            <uk.co.jakelee.cityflow.components.TextViewFont
+                android:id="@+id/technologiesTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="30sp"/>
+            <uk.co.jakelee.cityflow.components.TextViewFont
+                android:id="@+id/technologiesText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="22sp"/>
+        </LinearLayout>
+
+    </ScrollView>
+</android.support.percent.PercentRelativeLayout>
