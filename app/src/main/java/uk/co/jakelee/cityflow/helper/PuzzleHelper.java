@@ -139,9 +139,9 @@ public class PuzzleHelper {
         }
 
         if (tiles.size() > 0) {
-            tileString = "Unlocked " + tileString.substring(0, tileString.length() - 2) + " tile(s)!";
+            tileString = String.format(Text.get("UI_TILE_UNLOCK"), tileString.substring(0, tileString.length() - 2));
         } else {
-            tileString = "No tiles unlocked.";
+            tileString = Text.get("UI_TILE_NO_UNLOCK");
         }
 
         TextView textView = dh.createTextView(tileString, 18, Color.WHITE);

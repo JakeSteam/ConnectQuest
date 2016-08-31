@@ -328,13 +328,17 @@ public class PuzzleActivity extends Activity {
         ((TextView) findViewById(R.id.skyscraperTimeTitle)).setText(String.format(Text.get("UI_SKYSCRAPER_TIME_TITLE"), timeProgress));
         ((TextView) findViewById(R.id.skyscraperTimeTitle)).setTextColor(getResources().getColor(timeProgress == 100 ? R.color.gold : R.color.white));
         ((ImageView) findViewById(R.id.skyscraperTime)).setImageResource(PuzzleHelper.getSkyscraperDrawable(this, timeProgress, Constants.SKYSCRAPER_TIME));
-        ((TextView) findViewById(R.id.skyscraperTimeText)).setText((timeInMilliseconds > 0 ? DateHelper.getPuzzleTimeString(timeInMilliseconds) : "0") + "/" + DateHelper.getPuzzleTimeString(puzzle.getParTime()));
+        ((TextView) findViewById(R.id.skyscraperTimeText)).setText(String.format(Text.get("UI_SKYSCRAPER_TIME_TEXT"),
+                timeInMilliseconds > 0 ? DateHelper.getPuzzleTimeString(timeInMilliseconds) : "0",
+                DateHelper.getPuzzleTimeString(puzzle.getParTime())));
 
         int moveProgress = StatisticsHelper.getPuzzleCriteriaProgress(movesMade, puzzle.getParMoves());
-        ((TextView) findViewById(R.id.skyscraperMovesTitle)).setText("Moves\n" + moveProgress + "%");
+        ((TextView) findViewById(R.id.skyscraperMovesTitle)).setText(String.format(Text.get("UI_SKYSCRAPER_MOVES_TITLE"), moveProgress));
         ((TextView) findViewById(R.id.skyscraperMovesTitle)).setTextColor(getResources().getColor(moveProgress == 100 ? R.color.gold : R.color.white));
         ((ImageView) findViewById(R.id.skyscraperMoves)).setImageResource(PuzzleHelper.getSkyscraperDrawable(this, moveProgress, Constants.SKYSCRAPER_MOVES));
-        ((TextView) findViewById(R.id.skyscraperMovesText)).setText((movesMade > 0 ? movesMade : 0) + "/" + puzzle.getParMoves() + "\nmoves");
+        ((TextView) findViewById(R.id.skyscraperMovesText)).setText(String.format(Text.get("UI_SKYSCRAPER_MOVES_TEXT"),
+                movesMade > 0 ? movesMade : 0,
+                puzzle.getParMoves()));
 
         ((TextView)findViewById(R.id.mainActionButton)).setText(isCustom ? R.string.icon_edit : R.string.icon_next);
     }

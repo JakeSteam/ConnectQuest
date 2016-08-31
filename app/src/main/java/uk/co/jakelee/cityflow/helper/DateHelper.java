@@ -59,6 +59,6 @@ public class DateHelper {
     }
 
     public static String getPuzzleTimeString(long timeTaken) {
-        return String.format("%.2fs", (double)timeTaken/1000);
+        return String.format("%.1fs", (double)timeTaken/1000);
     }
 }

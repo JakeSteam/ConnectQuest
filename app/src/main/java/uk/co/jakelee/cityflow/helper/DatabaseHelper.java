@@ -127,6 +127,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_0_NAME", "None"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_1_NAME", "Grass"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_2_NAME", "City"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_3_NAME", "Forest"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_ADVERT_NOT_LOADED", "Failed to load ad! This might be due to a poor connection, or there might not be any ads available."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_ADVERT_NOT_VERIFIED", "Something went wrong, and the ad view couldn't be verified!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_FAILED_TO_CONNECT", "Couldn't log in. Please try again later."));
@@ -142,6 +143,8 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_3_NAME", "Path"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_4_NAME", "Grass"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_5_NAME", "Canal"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_6_NAME", "River"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_7_NAME", "Dirt"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "GOOGLE_SIGN_IN", "Sign In"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "GOOGLE_SIGN_OUT", "Sign Out"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_1_NAME", "Undo"));
@@ -195,6 +198,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_DEFAULT_DESC", "No description."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_1_NAME", "No Crossing"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_2_NAME", "Don't Cross The Flows"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_3_NAME", "Forest Test"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_11_NAME", "One Shop Town"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_12_NAME", "Beware The Moat"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_13_NAME", "Pop To The Shops"));
@@ -294,14 +298,29 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_56_NAME", "City Road Corner (Sharp)"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_57_NAME", "City Road Corner (Lights)"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_58_NAME", "City Road Corner (Tree)"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_58_NAME", "City Road/Path Straight"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_59_NAME", "City Road/Path Straight"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_60_NAME", "Forest River Corner"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_61_NAME", "Forest River Straight"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_62_NAME", "Forest Dirt Corner"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_63_NAME", "Forest High Dirt Straight"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_64_NAME", "Forest Dirt Straight"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_65_NAME", "Forest Dirt Straight (Humped)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_66_NAME", "Forest Dirt T Junction"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_67_NAME", "Forest Dirt Corner (Sharp)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_68_NAME", "Forest Interchange"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_69_NAME", "Forest"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_70_NAME", "Forest Dirt Slope"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_71_NAME", "Forest Slope"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_72_NAME", "Forest High"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_73_NAME", "Forest (Rocks)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_74_NAME", "Forest (Trees)"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_EXPORT_PUZZLE_HINT", "Export puzzle data to:"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_COMPLETE_TITLE", "Complete\n100%"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_COMPLETE_TEXT", "Completed!"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_TIME_TITLE", "Time\n%1$s%"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_TIME_TEXT", ""));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_MOVES_TITLE", ""));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_MOVES_TEXT", ""));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_TIME_TITLE", "Time\n%1$d%%"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_TIME_TEXT", "%1$s/%2$s"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_MOVES_TITLE", "Moves\n%1$d%%"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_MOVES_TEXT", "%1$d/%2$d\nmoves"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_BY", "By:"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_NAME", "Name:"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_DESC", "Desc:"));
@@ -309,6 +328,8 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_WIDTH", "Width: %1$d"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_HEIGHT", "Height: %1$d"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_OPTIONS", "Puzzle Options"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_TILE_UNLOCK", "Unlocked %1$s tile(s)!"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_TILE_NO_UNLOCK", "No tiles unlocked."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_AREA", "Area"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_ALL", "All"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_DESCRIPTION", "Description"));
@@ -331,6 +352,7 @@ public class DatabaseHelper {
         List<Puzzle> puzzles = new ArrayList<>();
             puzzles.add(new Puzzle(1, 1, 10000L, 20, 0L, 0));
             puzzles.add(new Puzzle(2, 1, 10000L, 20, 0L, 0));
+            puzzles.add(new Puzzle(3, 1, 10000L, 20, 0L, 0));
             puzzles.add(new Puzzle(11, 2, 10000L, 20, 0L, 0));
             puzzles.add(new Puzzle(12, 2, 10000L, 20, 0L, 0));
             puzzles.add(new Puzzle(13, 2, 10000L, 20, 0L, 0));
@@ -431,15 +453,31 @@ public class DatabaseHelper {
 
     private static void createTile() {
         List<Tile> tiles = new ArrayList<>();
-            tiles.add(new Tile(1, 19, 0, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 18, 0, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 18, 1, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 13, 1, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 60, 0, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 61, 0, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 62, 0, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 63, 0, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 64, 1, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 65, 1, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 66, 1, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 67, 1, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 68, 2, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 69, 2, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 70, 2, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 71, 2, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 72, 3, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 73, 3, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 74, 3, 2, Constants.ROTATION_NORTH));
 
             tiles.add(new Tile(2, 41, 0, 0, Constants.ROTATION_NORTH));
             tiles.add(new Tile(2, 41, 0, 1, Constants.ROTATION_NORTH));
             tiles.add(new Tile(2, 26, 1, 0, Constants.ROTATION_NORTH));
             tiles.add(new Tile(2, 26, 1, 1, Constants.ROTATION_NORTH));
+
+            tiles.add(new Tile(3, 19, 0, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 18, 0, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 18, 1, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 13, 1, 1, Constants.ROTATION_NORTH));
 
             tiles.add(new Tile(11, 19, 0, 0, Constants.ROTATION_NORTH));
             tiles.add(new Tile(11, 19, 0, 1, Constants.ROTATION_NORTH));
@@ -937,7 +975,7 @@ public class DatabaseHelper {
             tileTypes.add(new TileType(35, Constants.ENVIRONMENT_GRASS, Constants.FLOW_NONE, Constants.FLOW_WATER, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new TileType(36, Constants.ENVIRONMENT_GRASS, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 3));
             tileTypes.add(new TileType(37, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 3));
-            tileTypes.add(new TileType(38, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(38, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new TileType(39, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 3));
             tileTypes.add(new TileType(40, Constants.ENVIRONMENT_CITY, Constants.FLOW_CANAL, Constants.FLOW_NONE, Constants.FLOW_CANAL, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new TileType(41, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.FLOW_CANAL, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
@@ -959,6 +997,21 @@ public class DatabaseHelper {
             tileTypes.add(new TileType(57, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new TileType(58, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new TileType(59, Constants.ENVIRONMENT_CITY, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(60, Constants.ENVIRONMENT_FOREST, Constants.FLOW_RIVER, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(61, Constants.ENVIRONMENT_FOREST, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(62, Constants.ENVIRONMENT_FOREST, Constants.FLOW_DIRT, Constants.FLOW_DIRT, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(63, Constants.ENVIRONMENT_FOREST, Constants.FLOW_DIRT, Constants.FLOW_NONE, Constants.FLOW_DIRT, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 3));
+            tileTypes.add(new TileType(64, Constants.ENVIRONMENT_FOREST, Constants.FLOW_DIRT, Constants.FLOW_NONE, Constants.FLOW_DIRT, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(65, Constants.ENVIRONMENT_FOREST, Constants.FLOW_DIRT, Constants.FLOW_NONE, Constants.FLOW_DIRT, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(66, Constants.ENVIRONMENT_FOREST, Constants.FLOW_DIRT, Constants.FLOW_DIRT, Constants.FLOW_DIRT, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(67, Constants.ENVIRONMENT_FOREST, Constants.FLOW_DIRT, Constants.FLOW_DIRT, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(68, Constants.ENVIRONMENT_FOREST, Constants.FLOW_DIRT, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(69, Constants.ENVIRONMENT_FOREST, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(70, Constants.ENVIRONMENT_FOREST, Constants.FLOW_DIRT, Constants.FLOW_NONE, Constants.FLOW_DIRT, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(71, Constants.ENVIRONMENT_FOREST, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(72, Constants.ENVIRONMENT_FOREST, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 3));
+            tileTypes.add(new TileType(73, Constants.ENVIRONMENT_FOREST, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(74, Constants.ENVIRONMENT_FOREST, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
 
         TileType.saveInTx(tileTypes);
     }
