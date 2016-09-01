@@ -100,17 +100,17 @@ public class DatabaseHelper {
                     "<a href='http://kenney.nl/'>Kenney</a>: Base tilesets, majority of UI elements.\n"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_TECHNOLOGIES_TITLE", "Technologies"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_TECHNOLOGIES_TEXT", "<a href=''>ACRA</a>: Crash management.\n" +
-                    "<a href=''>AESCrypt</a>: Support codes + save games + puzzle sharing.\n" +
-                    "<a href=''>Android-Rate</a>: Play Store rate prompting.\n" +
-                    "<a href=''>AppLovin</a>: Advertising.\n" +
-                    "<a href=''>AutofitTextView</a>: Intelligently scaling textboxes.\n" +
-                    "<a href=''>Crouton</a>: On-screen alerts.\n" +
+                    "<a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt</a>: Support codes + save games + puzzle sharing.\n" +
+                    "<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a>: Play Store rate prompting.\n" +
+                    "<a href='https://www.applovin.com/'>AppLovin</a>: Advertising.\n" +
+                    "<a href='https://github.com/grantland/android-autofittextview'>AutofitTextView</a>: Intelligently resizing textboxes.\n" +
+                    "<a href='https://github.com/keyboardsurfer/Crouton'>Crouton</a>: On-screen alerts.\n" +
                     "<a href='https://github.com/bperin/FontAwesomeAndroid'>FontAwesomeAndroid</a>: FontAwesome support.\n" +
-                    "<a href=''>GSON</a>: Cloud saves + puzzle sharing.\n" +
-                    "<a href=''>IAB</a>: In-app billing.\n" +
-                    "<a href=''>Multispinner</a>: Multi-selectable options list.\n" +
-                    "<a href=''>Picasso</a>: Image caching.\n" +
-                    "<a href=''>Sugar</a>: Database ORM.\n" +
+                    "<a href='https://github.com/google/gson'>GSON</a>: Cloud saves + puzzle sharing.\n" +
+                    "<a href='https://github.com/anjlab/android-inapp-billing-v3'>IAB</a>: In-app billing.\n" +
+                    "<a href='https://github.com/thomashaertel/MultiSpinner'>Multispinner</a>: Multi-selectable options list.\n" +
+                    "<a href='https://github.com/square/picasso'>Picasso</a>: Image caching.\n" +
+                    "<a href='https://satyan.github.io/sugar/'>Sugar</a>: Database ORM.\n" +
                     ""));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_TEXT", "Change %1$s text\n(max %2$d chars)"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_SLIDER", "Change %1$s value"));
