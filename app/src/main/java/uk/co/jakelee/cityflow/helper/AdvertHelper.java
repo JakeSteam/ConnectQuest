@@ -8,6 +8,11 @@ import com.applovin.sdk.AppLovinAdDisplayListener;
 import com.applovin.sdk.AppLovinAdRewardListener;
 import com.applovin.sdk.AppLovinAdVideoPlaybackListener;
 import com.applovin.sdk.AppLovinSdk;
+import com.tapjoy.TJActionRequest;
+import com.tapjoy.TJError;
+import com.tapjoy.TJPlacement;
+import com.tapjoy.TJPlacementListener;
+import com.tapjoy.Tapjoy;
 
 import java.util.Map;
 
@@ -15,7 +20,7 @@ import de.keyboardsurfer.android.widget.crouton.Crouton;
 import uk.co.jakelee.cityflow.main.ShopActivity;
 import uk.co.jakelee.cityflow.model.Text;
 
-public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplayListener, AppLovinAdVideoPlaybackListener {
+public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplayListener, AppLovinAdVideoPlaybackListener, TJPlacementListener {
     private Context context;
     public AppLovinIncentivizedInterstitial advert;
     private ShopActivity callingActivity;
@@ -24,6 +29,9 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
 
     public AdvertHelper(Context context) {
         this.context = context;
+
+        Tapjoy.connect(context, "kgX9Y9-zQuGTCApHM5TuUwECacqwGwpWQshWxLsTNMPC8QU65rl-psQ76RrV", null);
+        Tapjoy.setDebugEnabled(true);
 
         AppLovinSdk.initializeSdk(context);
         advert = AppLovinIncentivizedInterstitial.create(context);
@@ -58,6 +66,14 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
 
         advert.preload(null);
     }
+
+    public void onPurchaseRequest(TJPlacement placement, TJActionRequest tjActionRequest, String string) {} // Called when the SDK has made contact with Tapjoy's servers. It does not necessarily mean that any content is available.
+    public void onRewardRequest(TJPlacement placement, TJActionRequest tjActionRequest, String string, int number) {} // Called when the SDK has made contact with Tapjoy's servers. It does not necessarily mean that any content is available.
+    public void onRequestSuccess(TJPlacement placement) {} // Called when the SDK has made contact with Tapjoy's servers. It does not necessarily mean that any content is available.
+    public void onRequestFailure(TJPlacement placement, TJError error) {} // Called when there was a problem during connecting Tapjoy servers.
+    public void onContentReady(TJPlacement placement) {} // Called when the content is actually available to display.
+    public void onContentShow(TJPlacement placement) {} // Called when the content is showed.
+    public void onContentDismiss(TJPlacement placement) {} // Called when the content is dismissed.
 
     @Override
     public void userRewardVerified(AppLovinAd appLovinAd, Map map) {

@@ -12,10 +12,10 @@ import com.google.android.gms.drive.Drive;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.quest.Quest;
 import com.google.android.gms.games.quest.QuestUpdateListener;
+import com.tapjoy.Tapjoy;
 
 import hotchemi.android.rate.AppRate;
 import uk.co.jakelee.cityflow.R;
-import uk.co.jakelee.cityflow.helper.AdvertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DatabaseHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
@@ -47,9 +47,6 @@ public class MainActivity extends Activity implements
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES)
                 .addApi(Drive.API).addScope(Drive.SCOPE_APPFOLDER)
                 .build();
-
-
-        AdvertHelper.getInstance(this);
     }
 
     private void ratingPrompt() {
@@ -71,11 +68,15 @@ public class MainActivity extends Activity implements
                 Setting.getSafeBoolean(Constants.SETTING_SIGN_IN) && GooglePlayHelper.AreGooglePlayServicesInstalled(this)) {
              GooglePlayHelper.mGoogleApiClient.connect();
         }
+
+        Tapjoy.onActivityStart(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+
+        Tapjoy.onActivityStop(this);
     }
 
     @Override

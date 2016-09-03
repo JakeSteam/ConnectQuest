@@ -238,7 +238,8 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_2_NAME", "Upgrades"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_3_NAME", "Tiles"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_4_NAME", "Misc"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_FREE_CURRENCY", "Free Coins"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_APPLOVIN", "Advert"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_TAPJOY", "Offers"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_1_NAME", "Puzzles Completed"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_2_NAME", "Tiles Rotated"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SUCCESS_SUPPORT_CODE", "Successfully applied support code!"));
@@ -357,7 +358,7 @@ public class DatabaseHelper {
         List<Puzzle> puzzles = new ArrayList<>();
             puzzles.add(new Puzzle(1, 1, 10000L, 20, 0L, 0));
             puzzles.add(new Puzzle(2, 1, 10000L, 20, 0L, 0));
-            puzzles.add(new Puzzle(3, 1, 10000L, 20, 0L, 0));
+            //puzzles.add(new Puzzle(3, 1, 10000L, 20, 0L, 0));
             puzzles.add(new Puzzle(11, 2, 10000L, 20, 0L, 0));
             puzzles.add(new Puzzle(12, 2, 10000L, 20, 0L, 0));
             puzzles.add(new Puzzle(13, 2, 10000L, 20, 0L, 0));
@@ -458,33 +459,33 @@ public class DatabaseHelper {
 
     private static void createTile() {
         List<Tile> tiles = new ArrayList<>();
-            tiles.add(new Tile(1, 60, 0, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 61, 0, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 62, 0, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 63, 0, 3, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 64, 1, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 65, 1, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 66, 1, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 67, 1, 3, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 68, 2, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 69, 2, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 70, 2, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 71, 2, 3, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 72, 3, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 73, 3, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 74, 3, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 75, 3, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 76, 4, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 60, 0, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 61, 0, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 62, 0, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 63, 0, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 64, 1, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 65, 1, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 66, 1, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 67, 1, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 68, 2, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 69, 2, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 70, 2, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 71, 2, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 72, 3, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 73, 3, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 74, 3, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 75, 3, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 76, 4, 0, Constants.ROTATION_NORTH));
 
             tiles.add(new Tile(2, 41, 0, 0, Constants.ROTATION_NORTH));
             tiles.add(new Tile(2, 41, 0, 1, Constants.ROTATION_NORTH));
             tiles.add(new Tile(2, 26, 1, 0, Constants.ROTATION_NORTH));
             tiles.add(new Tile(2, 26, 1, 1, Constants.ROTATION_NORTH));
 
-            tiles.add(new Tile(3, 19, 0, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 18, 0, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 18, 1, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 13, 1, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 19, 0, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 18, 0, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 18, 1, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 13, 1, 1, Constants.ROTATION_NORTH));
 
             tiles.add(new Tile(11, 19, 0, 0, Constants.ROTATION_NORTH));
             tiles.add(new Tile(11, 19, 0, 1, Constants.ROTATION_NORTH));

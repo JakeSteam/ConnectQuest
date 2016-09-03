@@ -10,6 +10,8 @@ import org.acra.ReportField;
 import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 
+import uk.co.jakelee.cityflow.helper.AdvertHelper;
+
 @ReportsCrashes(mailTo = "city.flow@jakelee.co.uk",
         customReportContent = { ReportField.APP_VERSION_NAME, ReportField.ANDROID_VERSION, ReportField.PHONE_MODEL, ReportField.CUSTOM_DATA, ReportField.STACK_TRACE, ReportField.LOGCAT },
         mode = ReportingInteractionMode.TOAST,
@@ -26,6 +28,7 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
         SugarContext.init(this);
+        AdvertHelper.getInstance(this);
     }
 
     @Override

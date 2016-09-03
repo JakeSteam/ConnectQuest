@@ -3,6 +3,7 @@ package uk.co.jakelee.cityflow.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,11 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.tapjoy.TJEarnedCurrencyListener;
+import com.tapjoy.TJPlacement;
+import com.tapjoy.TJPlacementListener;
+import com.tapjoy.Tapjoy;
 
 import java.util.List;
 
@@ -27,12 +33,21 @@ import uk.co.jakelee.cityflow.model.Text;
 public class ShopActivity extends Activity {
     private DisplayHelper dh;
     private int selectedCategory = 1;
+    private static final Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
         dh = DisplayHelper.getInstance(this);
+
+        final Activity activity = this;
+        Tapjoy.setEarnedCurrencyListener(new TJEarnedCurrencyListener() {
+            @Override
+            public void onEarnedCurrency(String currencyName, int amount) {
+                Crouton.showText(activity, "You've just earned " + amount + " " + currencyName, StyleHelper.SUCCESS);
+            }
+        });
     }
 
     @Override
@@ -45,7 +60,8 @@ public class ShopActivity extends Activity {
     }
 
     private void populateText() {
-        ((TextView) findViewById(R.id.freeCurrencyText)).setText(Text.get("SHOP_FREE_CURRENCY"));
+        ((TextView) findViewById(R.id.freeCurrencyAppLovin)).setText(Text.get("SHOP_APPLOVIN"));
+        ((TextView) findViewById(R.id.freeCurrencyTapJoy)).setText(Text.get("SHOP_TAPJOY"));
         ((TextView) findViewById(R.id.currencyCountText)).setText(Integer.toString(Statistic.getCurrency()));
     }
 
@@ -101,8 +117,21 @@ public class ShopActivity extends Activity {
         startActivity(intent);
     }
 
-    public void watchAdvert(View v) {
+    public void launchAppLovin(View v) {
         AdvertHelper.getInstance(getApplicationContext()).showAdvert(this);
+    }
+
+    public void launchTapJoy(View v) {
+        TJPlacementListener placementListener = AdvertHelper.getInstance(this);
+        TJPlacement p = new TJPlacement(this, "Offer Wall", placementListener);
+
+        if(Tapjoy.isConnected()) {
+            p.requestContent();
+        }
+
+        if(p.isContentReady()) {
+            p.showContent();
+        }
     }
 
     public void advertWatched() {

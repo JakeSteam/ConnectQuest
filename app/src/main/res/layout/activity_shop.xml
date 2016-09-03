@@ -51,16 +51,29 @@
         </LinearLayout>
     </LinearLayout>
 
-    <uk.co.jakelee.cityflow.components.TextViewFont
-        android:id="@+id/freeCurrencyText"
+    <LinearLayout
+        android:id="@+id/freeCurrencyWrapper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:padding="10dp"
-        android:textSize="30sp"
-        android:background="@drawable/ui_panel_blue"
-        android:onClick="watchAdvert"/>
+        android:layout_centerHorizontal="true">
+        <uk.co.jakelee.cityflow.components.TextViewFont
+            android:id="@+id/freeCurrencyAppLovin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="30sp"
+            android:background="@drawable/ui_panel_blue"
+            android:onClick="launchAppLovin"/>
+        <uk.co.jakelee.cityflow.components.TextViewFont
+            android:id="@+id/freeCurrencyTapJoy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="30sp"
+            android:background="@drawable/ui_panel_blue"
+            android:onClick="launchTapJoy"/>
+    </LinearLayout>
 
     <ScrollView
         android:id="@+id/itemContainerWrapper"
@@ -70,7 +83,7 @@
         android:layout_marginRight="7dp"
         android:layout_marginBottom="4dp"
         android:layout_below="@id/shopTopBar"
-        android:layout_above="@id/freeCurrencyText"
+        android:layout_above="@id/freeCurrencyWrapper"
         android:background="@drawable/ui_panel_city"
         android:fadeScrollbars="false">
         <TableLayout
