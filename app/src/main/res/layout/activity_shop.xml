@@ -58,21 +58,21 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true">
         <uk.co.jakelee.cityflow.components.TextViewFont
-            android:id="@+id/freeCurrencyAppLovin"
+            android:id="@+id/freeCurrencyAdvert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textSize="30sp"
             android:background="@drawable/ui_panel_blue"
-            android:onClick="launchAppLovin"/>
+            android:onClick="launchAdvert"/>
         <uk.co.jakelee.cityflow.components.TextViewFont
-            android:id="@+id/freeCurrencyTapJoy"
+            android:id="@+id/freeCurrencyOffers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textSize="30sp"
             android:background="@drawable/ui_panel_blue"
-            android:onClick="launchTapJoy"/>
+            android:onClick="launchOffers"/>
     </LinearLayout>
 
     <ScrollView

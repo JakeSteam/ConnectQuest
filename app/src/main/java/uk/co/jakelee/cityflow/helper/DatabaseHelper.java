@@ -238,8 +238,8 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_2_NAME", "Upgrades"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_3_NAME", "Tiles"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_4_NAME", "Misc"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_APPLOVIN", "Advert"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_TAPJOY", "Offers"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_ADVERT", "Advert"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_OFFERS", "Offers"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_1_NAME", "Puzzles Completed"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_2_NAME", "Tiles Rotated"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SUCCESS_SUPPORT_CODE", "Successfully applied support code!"));

@@ -79,8 +79,8 @@ public class ShopActivity extends Activity {
     }
 
     private void populateText() {
-        ((TextView) findViewById(R.id.freeCurrencyAppLovin)).setText(Text.get("SHOP_APPLOVIN"));
-        ((TextView) findViewById(R.id.freeCurrencyTapJoy)).setText(Text.get("SHOP_TAPJOY"));
+        ((TextView) findViewById(R.id.freeCurrencyAdvert)).setText(Text.get("SHOP_ADVERT"));
+        ((TextView) findViewById(R.id.freeCurrencyOffers)).setText(Text.get("SHOP_OFFERS"));
         ((TextView) findViewById(R.id.currencyCountText)).setText(Integer.toString(Statistic.getCurrency()));
     }
 
@@ -136,11 +136,11 @@ public class ShopActivity extends Activity {
         startActivity(intent);
     }
 
-    public void launchAppLovin(View v) {
+    public void launchAdvert(View v) {
         AdvertHelper.getInstance(getApplicationContext()).showAdvert(this, watchAdvert);
     }
 
-    public void launchTapJoy(View v) {
+    public void launchOffers(View v) {
         if(Tapjoy.isConnected()) {
             if (offerWall.isContentReady()) {
                 offerWall.showContent();
