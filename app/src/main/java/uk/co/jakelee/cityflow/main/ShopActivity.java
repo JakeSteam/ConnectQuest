@@ -3,7 +3,6 @@ package uk.co.jakelee.cityflow.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,8 +32,8 @@ import uk.co.jakelee.cityflow.model.Text;
 public class ShopActivity extends Activity {
     private DisplayHelper dh;
     private int selectedCategory = 1;
-    private static final Handler handler = new Handler();
     private TJPlacement offerWall;
+    private TJPlacement watchAdvert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +44,9 @@ public class ShopActivity extends Activity {
 
         TJPlacementListener placementListener = AdvertHelper.getInstance(this);
         offerWall = new TJPlacement(this, "OfferWall", placementListener);
+        watchAdvert = new TJPlacement(this, "WatchAdvert", placementListener);
         offerWall.requestContent();
+        watchAdvert.requestContent();
     }
     @Override
     protected void onStart() {
@@ -136,7 +137,7 @@ public class ShopActivity extends Activity {
     }
 
     public void launchAppLovin(View v) {
-        AdvertHelper.getInstance(getApplicationContext()).showAdvert(this);
+        AdvertHelper.getInstance(getApplicationContext()).showAdvert(this, watchAdvert);
     }
 
     public void launchTapJoy(View v) {

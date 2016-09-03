@@ -47,12 +47,14 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         return dhInstance;
     }
 
-    public void showAdvert(ShopActivity activity) {
+    public void showAdvert(ShopActivity activity, TJPlacement adPlacement) {
         verified = false;
         callingActivity = activity;
 
         if (advert.isAdReadyToDisplay()) {
             advert.show(activity, this, this, this);
+        } else if (adPlacement.isContentReady()) {
+            adPlacement.showContent();
         } else {
             Crouton.showText(callingActivity, Text.get("ERROR_ADVERT_NOT_LOADED"), StyleHelper.ERROR);
         }
@@ -89,13 +91,13 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         return 0;
     }
 
+    public void onContentDismiss(TJPlacement placement) {}
     public void onPurchaseRequest(TJPlacement placement, TJActionRequest tjActionRequest, String string) {} // Called when the SDK has made contact with Tapjoy's servers. It does not necessarily mean that any content is available.
     public void onRewardRequest(TJPlacement placement, TJActionRequest tjActionRequest, String string, int number) {} // Called when the SDK has made contact with Tapjoy's servers. It does not necessarily mean that any content is available.
     public void onRequestSuccess(TJPlacement placement) {} // Called when the SDK has made contact with Tapjoy's servers. It does not necessarily mean that any content is available.
     public void onRequestFailure(TJPlacement placement, TJError error) {} // Called when there was a problem during connecting Tapjoy servers.
     public void onContentReady(TJPlacement placement) {} // Called when the content is actually available to display.
     public void onContentShow(TJPlacement placement) {} // Called when the content is showed.
-    public void onContentDismiss(TJPlacement placement) {} // Called when the content is dismissed.
 
     @Override
     public void userRewardVerified(AppLovinAd appLovinAd, Map map) {
