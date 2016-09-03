@@ -421,6 +421,7 @@ public class DatabaseHelper {
             statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_2, Statistic.Fields.CompletePack2, 0, 0));
             statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_3, Statistic.Fields.CompletePack3, 0, 0));
             statistics.add(new Statistic(Constants.STATISTIC_CURRENCY, Statistic.Fields.Currency, 100000));
+            statistics.add(new Statistic(Constants.STATISTIC_TAPJOY_COINS, Statistic.Fields.TapJoyCoinsEarned, 0));
         Statistic.saveInTx(statistics);
     }
 

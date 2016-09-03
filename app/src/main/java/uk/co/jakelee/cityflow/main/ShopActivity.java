@@ -12,7 +12,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.tapjoy.TJEarnedCurrencyListener;
+import com.tapjoy.TJGetCurrencyBalanceListener;
 import com.tapjoy.TJPlacement;
 import com.tapjoy.TJPlacementListener;
 import com.tapjoy.Tapjoy;
@@ -34,6 +34,7 @@ public class ShopActivity extends Activity {
     private DisplayHelper dh;
     private int selectedCategory = 1;
     private static final Handler handler = new Handler();
+    private TJPlacement offerWall;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +42,21 @@ public class ShopActivity extends Activity {
         setContentView(R.layout.activity_shop);
         dh = DisplayHelper.getInstance(this);
 
-        final Activity activity = this;
-        Tapjoy.setEarnedCurrencyListener(new TJEarnedCurrencyListener() {
-            @Override
-            public void onEarnedCurrency(String currencyName, int amount) {
-                Crouton.showText(activity, "You've just earned " + amount + " " + currencyName, StyleHelper.SUCCESS);
-            }
-        });
+
+        TJPlacementListener placementListener = AdvertHelper.getInstance(this);
+        offerWall = new TJPlacement(this, "OfferWall", placementListener);
+        offerWall.requestContent();
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Tapjoy.onActivityStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        Tapjoy.onActivityStop(this);
+        super.onStop();
     }
 
     @Override
@@ -57,6 +66,15 @@ public class ShopActivity extends Activity {
         populateText();
         populateTabs();
         populateItems();
+
+        final Activity activity = this;
+        Tapjoy.getCurrencyBalance(new TJGetCurrencyBalanceListener(){
+            @Override
+            public void onGetCurrencyBalanceResponse(String currencyName, int balance) {
+                AdvertHelper.synchroniseCoins(activity, balance);
+            }
+            @Override public void onGetCurrencyBalanceResponseFailure(String error) {}
+        });
     }
 
     private void populateText() {
@@ -122,15 +140,12 @@ public class ShopActivity extends Activity {
     }
 
     public void launchTapJoy(View v) {
-        TJPlacementListener placementListener = AdvertHelper.getInstance(this);
-        TJPlacement p = new TJPlacement(this, "Offer Wall", placementListener);
-
         if(Tapjoy.isConnected()) {
-            p.requestContent();
-        }
-
-        if(p.isContentReady()) {
-            p.showContent();
+            if (offerWall.isContentReady()) {
+                offerWall.showContent();
+            } else {
+                offerWall.requestContent();
+            }
         }
     }
 

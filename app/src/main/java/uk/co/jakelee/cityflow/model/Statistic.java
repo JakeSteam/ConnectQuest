@@ -138,6 +138,11 @@ public class Statistic extends SugarRecord {
         return 0;
     }
 
+    public static Statistic find(Fields statistic) {
+        return Select.from(Statistic.class).where(
+                Condition.prop("enum_name").eq(statistic)).first();
+    }
+
     public static int getCurrency() {
         return Select.from(Statistic.class).where(
                 Condition.prop("enum_name").eq(Fields.Currency)).first().getIntValue();
@@ -148,6 +153,6 @@ public class Statistic extends SugarRecord {
     }
 
     public enum Fields {
-        PuzzlesCompleted, TilesRotated, QuestsCompleted, PuzzlesCompletedFully, BoostsUsed, CompletePack1, CompletePack2, CompletePack3, Currency
+        PuzzlesCompleted, TilesRotated, QuestsCompleted, PuzzlesCompletedFully, BoostsUsed, CompletePack1, CompletePack2, CompletePack3, Currency, TapJoyCoinsEarned
     }
 }

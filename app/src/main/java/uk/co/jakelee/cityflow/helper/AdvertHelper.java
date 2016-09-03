@@ -1,5 +1,6 @@
 package uk.co.jakelee.cityflow.helper;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.applovin.adview.AppLovinIncentivizedInterstitial;
@@ -18,6 +19,7 @@ import java.util.Map;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import uk.co.jakelee.cityflow.main.ShopActivity;
+import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplayListener, AppLovinAdVideoPlaybackListener, TJPlacementListener {
@@ -65,6 +67,26 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         }
 
         advert.preload(null);
+    }
+
+    public static void synchroniseCoins(Activity activity, int remoteCoins) {
+        int coinsEarned = synchroniseCoins(remoteCoins);
+        if (coinsEarned > 0) {
+            Crouton.showText(activity, "Earned coins: " + coinsEarned, StyleHelper.SUCCESS);
+        }
+    }
+
+    public static int synchroniseCoins(int remoteCoins) {
+        Statistic localCoins = Statistic.find(Statistic.Fields.TapJoyCoinsEarned);
+        int difference = remoteCoins - localCoins.getIntValue();
+
+        if (difference > 0) {
+            Statistic.addCurrency(difference);
+            localCoins.setIntValue(remoteCoins);
+            localCoins.save();
+            return difference;
+        }
+        return 0;
     }
 
     public void onPurchaseRequest(TJPlacement placement, TJActionRequest tjActionRequest, String string) {} // Called when the SDK has made contact with Tapjoy's servers. It does not necessarily mean that any content is available.
