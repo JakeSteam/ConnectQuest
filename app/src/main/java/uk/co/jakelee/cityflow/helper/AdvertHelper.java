@@ -34,7 +34,6 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
 
         Tapjoy.connect(context, "kgX9Y9-zQuGTCApHM5TuUwECacqwGwpWQshWxLsTNMPC8QU65rl-psQ76RrV", null);
         Tapjoy.setGcmSender("596538793474");
-        Tapjoy.setDebugEnabled(true);
 
         AppLovinSdk.initializeSdk(context);
         advert = AppLovinIncentivizedInterstitial.create(context);

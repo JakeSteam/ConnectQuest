@@ -312,6 +312,8 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             forceSaveToCloud();
         } else {
             AlertDialogHelper.confirmCloudSave(callingActivity,
+                    StatisticsHelper.getTotalStars(),
+                    Statistic.getCurrency(),
                     loadedSnapshot.getMetadata().getDescription(),
                     loadedSnapshot.getMetadata().getLastModifiedTimestamp(),
                     loadedSnapshot.getMetadata().getDeviceName());

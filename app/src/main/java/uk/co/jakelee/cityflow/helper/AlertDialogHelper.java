@@ -14,6 +14,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
+import uk.co.jakelee.cityflow.BuildConfig;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.main.CreatorActivity;
 import uk.co.jakelee.cityflow.main.CustomInfoActivity;
@@ -23,13 +24,13 @@ import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class AlertDialogHelper {
-    public static void confirmCloudLoad(final Activity activity, int localStars, int localPuzzles, int cloudStars, int cloudPuzzles) {
+    public static void confirmCloudLoad(final Activity activity, int localStars, int localCurrency, int cloudStars, int cloudCurrency) {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(Text.get("DIALOG_CLOUD_LOAD_CONFIRM"),
                 localStars,
-                localPuzzles,
+                localCurrency,
                 cloudStars,
-                cloudPuzzles));
+                cloudCurrency));
 
         alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_LOAD"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
@@ -51,12 +52,15 @@ public class AlertDialogHelper {
         });
     }
 
-    public static void confirmCloudSave(final Activity activity, String desc, long saveTime, String deviceName) {
+    public static void confirmCloudSave(final Activity activity, int localStars, int localCurrency, String desc, long saveTime, String deviceName) {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(Text.get("DIALOG_CLOUD_SAVE_CONFIRM"),
                 desc,
                 DateHelper.displayTime(saveTime, DateHelper.datetime),
-                deviceName));
+                deviceName,
+                localStars,
+                localCurrency,
+                BuildConfig.VERSION_NAME));
 
         alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_SAVE"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
