@@ -13,10 +13,10 @@ import uk.co.jakelee.cityflow.helper.ErrorHelper;
 import uk.co.jakelee.cityflow.helper.StyleHelper;
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Statistic;
-import uk.co.jakelee.cityflow.model.StoreItem;
+import uk.co.jakelee.cityflow.model.ShopItem;
 
 public class ShopItemActivity extends Activity {
-    private StoreItem storeItem;
+    private ShopItem shopItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,42 +24,42 @@ public class ShopItemActivity extends Activity {
         setContentView(R.layout.activity_shop_item);
 
         Intent intent = getIntent();
-        storeItem = StoreItem.get(intent.getIntExtra(Constants.INTENT_ITEM, 0));
+        shopItem = ShopItem.get(intent.getIntExtra(Constants.INTENT_ITEM, 0));
 
-        if (storeItem != null) {
+        if (shopItem != null) {
             populateItemInfo();
         }
     }
 
     private void populateItemInfo() {
-        ((TextView)findViewById(R.id.itemName)).setText(storeItem.getName());
-        ((TextView)findViewById(R.id.itemDesc)).setText(storeItem.getDescription());
+        ((TextView)findViewById(R.id.itemName)).setText(shopItem.getName());
+        ((TextView)findViewById(R.id.itemDesc)).setText(shopItem.getDescription());
 
-        if (storeItem.getCategoryId() == Constants.STORE_CATEGORY_BOOSTS && storeItem.getRewardId() > 0) {
-            Boost boost = Boost.get(storeItem.getRewardId());
+        if (shopItem.getCategoryId() == Constants.STORE_CATEGORY_BOOSTS && shopItem.getRewardId() > 0) {
+            Boost boost = Boost.get(shopItem.getRewardId());
             ((TextView) findViewById(R.id.itemPurchases)).setText(boost.getOwned() + " owned");
         } else {
-            ((TextView) findViewById(R.id.itemPurchases)).setText(storeItem.getPurchases() + (storeItem.getMaxPurchases() > 0 ? "/" + storeItem.getMaxPurchases() : "") + " purchases");
+            ((TextView) findViewById(R.id.itemPurchases)).setText(shopItem.getPurchases() + (shopItem.getMaxPurchases() > 0 ? "/" + shopItem.getMaxPurchases() : "") + " purchases");
         }
 
-        if (storeItem.getMaxPurchases() > 0 && storeItem.getPurchases() >= storeItem.getMaxPurchases()) {
+        if (shopItem.getMaxPurchases() > 0 && shopItem.getPurchases() >= shopItem.getMaxPurchases()) {
             ((TextView)findViewById(R.id.purchaseButton)).setText("Maximum Reached");
         } else {
-            ((TextView)findViewById(R.id.purchaseButton)).setText("Buy for " + storeItem.getPrice() + " coins");
+            ((TextView)findViewById(R.id.purchaseButton)).setText("Buy for " + shopItem.getPrice() + " coins");
         }
         ((TextView) findViewById(R.id.currencyCountText)).setText(Integer.toString(Statistic.getCurrency()));
     }
 
     public void buyItem(View view) {
-        ErrorHelper.Error purchaseResult = storeItem.canPurchase();
+        ErrorHelper.Error purchaseResult = shopItem.canPurchase();
         if (purchaseResult != ErrorHelper.Error.NO_ERROR) {
             Crouton.showText(this, ErrorHelper.get(purchaseResult), StyleHelper.ERROR);
         } else {
-            storeItem.purchase();
-            Crouton.showText(this, "Successfully purchased " + storeItem.getName() + " for " + storeItem.getPrice() + " coins!", StyleHelper.SUCCESS);
+            shopItem.purchase();
+            Crouton.showText(this, "Successfully purchased " + shopItem.getName() + " for " + shopItem.getPrice() + " coins!", StyleHelper.SUCCESS);
         }
 
-        storeItem = StoreItem.get(storeItem.getItemId());
+        shopItem = ShopItem.get(shopItem.getItemId());
         populateItemInfo();
     }
 

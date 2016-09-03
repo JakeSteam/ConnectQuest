@@ -3,13 +3,13 @@ package uk.co.jakelee.cityflow.model;
 
 import com.orm.SugarRecord;
 
-public class StoreCategory extends SugarRecord{
+public class ShopCategory extends SugarRecord{
     private int categoryId;
 
-    public StoreCategory() {
+    public ShopCategory() {
     }
 
-    public StoreCategory(int categoryId) {
+    public ShopCategory(int categoryId) {
         this.categoryId = categoryId;
     }
 

@@ -41,7 +41,8 @@
                 android:layout_toRightOf="@id/currencyCountText"
                 android:layout_alignTop="@id/currencyCountText"
                 android:layout_alignBottom="@id/currencyCountText"
-                android:src="@drawable/ui_add"/>
+                android:src="@drawable/ui_add"
+                android:onClick="buyCoins"/>
         </RelativeLayout>
         <LinearLayout
             android:id="@+id/tabContainer"

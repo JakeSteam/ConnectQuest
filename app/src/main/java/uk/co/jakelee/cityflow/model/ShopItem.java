@@ -9,7 +9,7 @@ import java.util.List;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.ErrorHelper;
 
-public class StoreItem extends SugarRecord {
+public class ShopItem extends SugarRecord {
     private int itemId;
     private int categoryId;
     private int rewardId;
@@ -19,10 +19,10 @@ public class StoreItem extends SugarRecord {
     private int maxPurchases;
     private boolean applyMultiplier;
 
-    public StoreItem() {
+    public ShopItem() {
     }
 
-    public StoreItem(int itemId, int categoryId, int price, int maxPurchases, boolean applyMultiplier) {
+    public ShopItem(int itemId, int categoryId, int price, int maxPurchases, boolean applyMultiplier) {
         this.itemId = itemId;
         this.categoryId = categoryId;
         this.rewardId = 0;
@@ -33,7 +33,7 @@ public class StoreItem extends SugarRecord {
         this.applyMultiplier = applyMultiplier;
     }
 
-    public StoreItem(int itemId, int categoryId, int boostId, int boostQuantity, int price, int maxPurchases, boolean applyMultiplier) {
+    public ShopItem(int itemId, int categoryId, int boostId, int boostQuantity, int price, int maxPurchases, boolean applyMultiplier) {
         this.itemId = itemId;
         this.categoryId = categoryId;
         this.rewardId = boostId;
@@ -111,13 +111,13 @@ public class StoreItem extends SugarRecord {
         this.applyMultiplier = applyMultiplier;
     }
 
-    public static StoreItem get(int itemId)  {
-        return Select.from(StoreItem.class).where(
+    public static ShopItem get(int itemId)  {
+        return Select.from(ShopItem.class).where(
                 Condition.prop("item_id").eq(itemId)).first();
     }
 
-    public static List<StoreItem> getByCategory(int categoryId) {
-        return Select.from(StoreItem.class).where(
+    public static List<ShopItem> getByCategory(int categoryId) {
+        return Select.from(ShopItem.class).where(
                 Condition.prop("category_id").eq(categoryId)).list();
     }
 
@@ -134,7 +134,7 @@ public class StoreItem extends SugarRecord {
     }
 
     public void purchase() {
-        StoreItem item = Select.from(StoreItem.class).where(
+        ShopItem item = Select.from(ShopItem.class).where(
                 Condition.prop("item_id").eq(getItemId())).first();
 
         Statistic currency = Select.from(Statistic.class).where(
@@ -164,7 +164,7 @@ public class StoreItem extends SugarRecord {
     }
 
     public ErrorHelper.Error canPurchase() {
-        StoreItem item = Select.from(StoreItem.class).where(
+        ShopItem item = Select.from(ShopItem.class).where(
                 Condition.prop("item_id").eq(getItemId())).first();
 
         Statistic currency = Select.from(Statistic.class).where(

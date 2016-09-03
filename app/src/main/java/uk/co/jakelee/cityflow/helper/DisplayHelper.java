@@ -28,7 +28,7 @@ import uk.co.jakelee.cityflow.main.PackActivity;
 import uk.co.jakelee.cityflow.main.PuzzleActivity;
 import uk.co.jakelee.cityflow.main.ShopActivity;
 import uk.co.jakelee.cityflow.model.Puzzle;
-import uk.co.jakelee.cityflow.model.StoreItem;
+import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Tile;
 
 public class DisplayHelper {
@@ -116,7 +116,7 @@ public class DisplayHelper {
         return puzzleButton;
     }
 
-    public RelativeLayout createItemSelectButton(final ShopActivity activity, final StoreItem item) {
+    public RelativeLayout createItemSelectButton(final ShopActivity activity, final ShopItem item) {
         LayoutInflater inflater = LayoutInflater.from(activity);
         RelativeLayout itemButton = (RelativeLayout) inflater.inflate(R.layout.custom_item_select_button, null);
         ((ImageView)itemButton.findViewById(R.id.itemImage)).setImageResource(getItemDrawableID(item.getItemId()));

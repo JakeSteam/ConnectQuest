@@ -25,8 +25,8 @@ import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.StyleHelper;
 import uk.co.jakelee.cityflow.model.Statistic;
-import uk.co.jakelee.cityflow.model.StoreCategory;
-import uk.co.jakelee.cityflow.model.StoreItem;
+import uk.co.jakelee.cityflow.model.ShopCategory;
+import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class ShopActivity extends Activity {
@@ -91,8 +91,8 @@ public class ShopActivity extends Activity {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1);
         LayoutInflater inflater = LayoutInflater.from(this);
 
-        List<StoreCategory> categories = StoreCategory.listAll(StoreCategory.class);
-        for (StoreCategory category : categories) {
+        List<ShopCategory> categories = ShopCategory.listAll(ShopCategory.class);
+        for (ShopCategory category : categories) {
             TextView categoryTab = (TextView) inflater.inflate(R.layout.custom_store_tab, null);
             categoryTab.setBackgroundResource(selectedCategory == category.getCategoryId() ? R.drawable.ui_panel_city : R.drawable.ui_panel_grey);
             categoryTab.setText(category.getName());
@@ -109,12 +109,12 @@ public class ShopActivity extends Activity {
         int margins = dh.dpToPixel(5);
         layoutParams.setMargins(margins, margins, margins, margins);
 
-        List<StoreItem> items = StoreItem.getByCategory(selectedCategory);
+        List<ShopItem> items = ShopItem.getByCategory(selectedCategory);
         int numItems = items.size();
         TableRow row = new TableRow(this);
 
         for (int itemIndex = 1; itemIndex <= numItems; itemIndex++) {
-            StoreItem item = items.get(itemIndex - 1);
+            ShopItem item = items.get(itemIndex - 1);
             row.addView(dh.createItemSelectButton(this, item), layoutParams);
 
             if (itemIndex % 3 == 0 || itemIndex == numItems) {
@@ -130,7 +130,11 @@ public class ShopActivity extends Activity {
         populateItems();
     }
 
-    public void displayInformation(StoreItem item) {
+    public void buyCoins (View view) {
+
+    }
+
+    public void displayInformation(ShopItem item) {
         Intent intent = new Intent(this, ShopItemActivity.class);
         intent.putExtra(Constants.INTENT_ITEM, item.getItemId());
         startActivity(intent);
