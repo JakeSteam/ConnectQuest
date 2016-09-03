@@ -57,6 +57,7 @@ public class SettingsActivity extends Activity {
 
         ((TextView) findViewById(R.id.settingSectionOther)).setText(Text.get("SETTING_SECTION_OTHER"));
         ((TextView) findViewById(R.id.supportCodeButton)).setText(Text.get("DIALOG_SUPPORT_CODE"));
+        ((TextView) findViewById(R.id.creditsButton)).setText(Text.get("DIALOG_CREDITS"));
     }
 
     public void populateSettings() {
@@ -142,6 +143,11 @@ public class SettingsActivity extends Activity {
 
     public void openSupportCode(View v) {
         AlertDialogHelper.enterSupportCode(getApplicationContext(), this);
+    }
+
+    public void openCredits(View v) {
+        Intent intent = new Intent(this, CreditsActivity.class);
+        startActivity(intent);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {

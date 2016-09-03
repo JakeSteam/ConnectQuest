@@ -87,9 +87,9 @@ public class AlertDialogHelper {
 
         alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_CONFIRM"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                //String supportCode = ModificationHelper.encode("1571111687000|UPDATE setting SET boolean_value = 1");
+                //String supportCode = EncryptHelper.encode("1571111687000|UPDATE setting SET boolean_value = 1");
                 String supportCode = supportCodeBox.getText().toString().trim();
-                if (ModificationHelper.applyCode(supportCode)) {
+                if (EncryptHelper.applyCode(supportCode)) {
                     Crouton.showText(activity, Text.get("SUCCESS_SUPPORT_CODE"), StyleHelper.SUCCESS);
                 } else {
                     Crouton.showText(activity, Text.get("ERROR_SUPPORT_CODE_INVALID"), StyleHelper.ERROR);

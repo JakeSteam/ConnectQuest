@@ -8,7 +8,7 @@ import java.security.GeneralSecurityException;
 
 import uk.co.jakelee.cityflow.model.Statistic;
 
-public class ModificationHelper {
+public class EncryptHelper {
     private static final String encryptionPwd = "Please don't cheat! " + "It ruins the game for others, " + "and yourself!";
 
     public static String encode(Long unencrypted, int salt) {

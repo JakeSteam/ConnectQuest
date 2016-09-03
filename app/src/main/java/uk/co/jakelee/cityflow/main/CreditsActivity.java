@@ -2,13 +2,14 @@ package uk.co.jakelee.cityflow.main;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import uk.co.jakelee.cityflow.R;
-import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.components.TextViewFont;
+import uk.co.jakelee.cityflow.model.Text;
 
 public class CreditsActivity extends Activity {
     @Override
@@ -31,9 +32,9 @@ public class CreditsActivity extends Activity {
     private void activateLinks() {
         LinearLayout root = (LinearLayout) findViewById(R.id.creditsContainer);
         for (int i = 0; i < root.getChildCount(); i++) {
-            if (root.getChildAt(i) instanceof TextViewFont) {
-                ((TextViewFont) root.getChildAt(i)).setMovementMethod(LinkMovementMethod.getInstance());
-            }
+            TextViewFont textViewFont = (TextViewFont)root.getChildAt(i);
+            textViewFont.setText(Html.fromHtml(textViewFont.getText().toString()));
+            textViewFont.setMovementMethod(LinkMovementMethod.getInstance());
         }
     }
 }

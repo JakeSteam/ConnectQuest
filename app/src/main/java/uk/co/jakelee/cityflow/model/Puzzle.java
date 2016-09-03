@@ -7,7 +7,7 @@ import com.orm.query.Select;
 import java.util.List;
 
 import uk.co.jakelee.cityflow.helper.Constants;
-import uk.co.jakelee.cityflow.helper.ModificationHelper;
+import uk.co.jakelee.cityflow.helper.EncryptHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
 import uk.co.jakelee.cityflow.helper.RandomHelper;
 
@@ -28,13 +28,13 @@ public class Puzzle extends SugarRecord {
     public Puzzle(int puzzleId, int packId, long parTime, int parMoves, long bestTime, int bestMoves) {
         this.puzzleId = puzzleId;
         this.packId = packId;
-        this.parTime = ModificationHelper.encode(parTime, puzzleId);
-        this.parMoves = ModificationHelper.encode(parMoves, puzzleId);
-        this.bestTime = ModificationHelper.encode(bestTime, puzzleId);
-        this.bestMoves = ModificationHelper.encode(bestMoves, puzzleId);
-        this.completionStar = ModificationHelper.encode(false, puzzleId + 1000);
-        this.timeStar = ModificationHelper.encode(false, puzzleId + 2000);
-        this.movesStar = ModificationHelper.encode(false, puzzleId + 3000);
+        this.parTime = EncryptHelper.encode(parTime, puzzleId);
+        this.parMoves = EncryptHelper.encode(parMoves, puzzleId);
+        this.bestTime = EncryptHelper.encode(bestTime, puzzleId);
+        this.bestMoves = EncryptHelper.encode(bestMoves, puzzleId);
+        this.completionStar = EncryptHelper.encode(false, puzzleId + 1000);
+        this.timeStar = EncryptHelper.encode(false, puzzleId + 2000);
+        this.movesStar = EncryptHelper.encode(false, puzzleId + 3000);
     }
 
     public int getPuzzleId() {
@@ -54,59 +54,59 @@ public class Puzzle extends SugarRecord {
     }
 
     public long getParTime() {
-        return ModificationHelper.decodeToLong(parTime, puzzleId);
+        return EncryptHelper.decodeToLong(parTime, puzzleId);
     }
 
     public void setParTime(long parTime) {
-        this.parTime = ModificationHelper.encode(parTime, puzzleId);
+        this.parTime = EncryptHelper.encode(parTime, puzzleId);
     }
 
     public int getParMoves() {
-        return ModificationHelper.decodeToInt(parMoves, puzzleId);
+        return EncryptHelper.decodeToInt(parMoves, puzzleId);
     }
 
     public void setParMoves(int parMoves) {
-        this.parMoves = ModificationHelper.encode(parMoves, puzzleId);
+        this.parMoves = EncryptHelper.encode(parMoves, puzzleId);
     }
 
     public long getBestTime() {
-        return ModificationHelper.decodeToLong(bestTime, puzzleId);
+        return EncryptHelper.decodeToLong(bestTime, puzzleId);
     }
 
     public void setBestTime(long bestTime) {
-        this.bestTime = ModificationHelper.encode(bestTime, puzzleId);
+        this.bestTime = EncryptHelper.encode(bestTime, puzzleId);
     }
 
     public int getBestMoves() {
-        return ModificationHelper.decodeToInt(bestMoves, puzzleId);
+        return EncryptHelper.decodeToInt(bestMoves, puzzleId);
     }
 
     public void setBestMoves(int bestMoves) {
-        this.bestMoves = ModificationHelper.encode(bestMoves, puzzleId);
+        this.bestMoves = EncryptHelper.encode(bestMoves, puzzleId);
     }
 
     public boolean hasCompletionStar() {
-        return ModificationHelper.decodeToBool(completionStar, puzzleId + 1000);
+        return EncryptHelper.decodeToBool(completionStar, puzzleId + 1000);
     }
 
     public void setCompletionStar(boolean completionStar) {
-        this.completionStar = ModificationHelper.encode(completionStar, puzzleId + 1000);
+        this.completionStar = EncryptHelper.encode(completionStar, puzzleId + 1000);
     }
 
     public boolean hasTimeStar() {
-        return ModificationHelper.decodeToBool(timeStar, puzzleId + 2000);
+        return EncryptHelper.decodeToBool(timeStar, puzzleId + 2000);
     }
 
     public void setTimeStar(boolean timeStar) {
-        this.timeStar = ModificationHelper.encode(timeStar, puzzleId + 2000);
+        this.timeStar = EncryptHelper.encode(timeStar, puzzleId + 2000);
     }
 
     public boolean hasMovesStar() {
-        return ModificationHelper.decodeToBool(movesStar, puzzleId + 3000);
+        return EncryptHelper.decodeToBool(movesStar, puzzleId + 3000);
     }
 
     public void setMovesStar(boolean movesStar) {
-        this.movesStar = ModificationHelper.encode(movesStar, puzzleId + 3000);
+        this.movesStar = EncryptHelper.encode(movesStar, puzzleId + 3000);
     }
 
     public String getName() {

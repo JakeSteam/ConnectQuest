@@ -30,12 +30,12 @@ public class PuzzleShareHelper {
                     .append(tile.getY()).append(tileElementDelimiter)
                     .append(tile.getRotation()).append(tileDelimiter);
         }
-        return ModificationHelper.encode(sb.toString(), 0);
+        return EncryptHelper.encode(sb.toString(), 0);
     }
 
     public static boolean importPuzzleString(String string, boolean isCopy) {
         try {
-            String puzzleString = ModificationHelper.decode(string, 0);
+            String puzzleString = EncryptHelper.decode(string, 0);
             String[] parts = puzzleString.split(sectionDelimiter);
 
             int puzzleId = PuzzleHelper.getNextCustomPuzzleId();

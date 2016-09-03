@@ -5,7 +5,7 @@ import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import uk.co.jakelee.cityflow.helper.Constants;
-import uk.co.jakelee.cityflow.helper.ModificationHelper;
+import uk.co.jakelee.cityflow.helper.EncryptHelper;
 
 public class Statistic extends SugarRecord {
     private int statisticId;
@@ -21,28 +21,28 @@ public class Statistic extends SugarRecord {
     public Statistic(int statisticId, Fields enumName, String stringValue) {
         this.statisticId = statisticId;
         this.enumName = enumName;
-        this.stringValue = ModificationHelper.encode(stringValue, statisticId);
+        this.stringValue = EncryptHelper.encode(stringValue, statisticId);
         this.lastSentValue = Constants.STATISTIC_UNTRACKED;
     }
 
     public Statistic(int statisticId, Fields enumName, int intValue) {
         this.statisticId = statisticId;
         this.enumName = enumName;
-        this.intValue = ModificationHelper.encode(intValue, statisticId);
+        this.intValue = EncryptHelper.encode(intValue, statisticId);
         this.lastSentValue = Constants.STATISTIC_UNTRACKED;
     }
 
     public Statistic(int statisticId, Fields enumName, boolean boolValue) {
         this.statisticId = statisticId;
         this.enumName = enumName;
-        this.boolValue = ModificationHelper.encode(boolValue, statisticId);
+        this.boolValue = EncryptHelper.encode(boolValue, statisticId);
         this.lastSentValue = Constants.STATISTIC_UNTRACKED;
     }
 
     public Statistic(int statisticId, Fields enumName, int intValue, int lastSentValue) {
         this.statisticId = statisticId;
         this.enumName = enumName;
-        this.intValue = ModificationHelper.encode(intValue, statisticId);
+        this.intValue = EncryptHelper.encode(intValue, statisticId);
         this.lastSentValue = lastSentValue;
     }
 
@@ -63,27 +63,27 @@ public class Statistic extends SugarRecord {
     }
 
     public String getStringValue() {
-        return ModificationHelper.decode(stringValue, statisticId);
+        return EncryptHelper.decode(stringValue, statisticId);
     }
 
     public void setStringValue(String stringValue) {
-        this.stringValue = ModificationHelper.encode(stringValue, statisticId);
+        this.stringValue = EncryptHelper.encode(stringValue, statisticId);
     }
 
     public int getIntValue() {
-        return ModificationHelper.decodeToInt(intValue, statisticId);
+        return EncryptHelper.decodeToInt(intValue, statisticId);
     }
 
     public void setIntValue(int intValue) {
-        this.intValue = ModificationHelper.encode(intValue, statisticId);
+        this.intValue = EncryptHelper.encode(intValue, statisticId);
     }
 
     public boolean isBoolValue() {
-        return ModificationHelper.decodeToBool(boolValue, statisticId);
+        return EncryptHelper.decodeToBool(boolValue, statisticId);
     }
 
     public void setBoolValue(boolean boolValue) {
-        this.boolValue = ModificationHelper.encode(boolValue, statisticId);
+        this.boolValue = EncryptHelper.encode(boolValue, statisticId);
     }
 
     public int getLastSentValue() {

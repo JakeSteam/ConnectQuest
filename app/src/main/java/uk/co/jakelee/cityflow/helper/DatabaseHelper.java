@@ -95,23 +95,24 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_IMPORT_PUZZLE", "Import Puzzle"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_NEW_PUZZLE", "New Puzzle"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_GRAPHICS_TITLE", "Graphics"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_GRAPHICS_TEXT", "<a href='http://www.dafont.com/claudep.d857>Claude P</a>: Main font (Yagiuhf No 2).\n" +
-                    "<a href='http://fontawesome.io/'>FontAwesome</a>: Button icons.\n" +
-                    "<a href='http://kenney.nl/'>Kenney</a>: Base tilesets, majority of UI elements.\n"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_GRAPHICS_TEXT", "<a href='http://www.dafont.com/claudep.d857'>Claude P</a>: Main font (Yagiuhf No 2).<br>" +
+                    "<a href='http://fontawesome.io/'>FontAwesome</a>: Button icons.<br>" +
+                    "<a href='http://kenney.nl/'>Kenney</a>: Base tilesets, majority of UI elements.<br>" +
+                ""));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_TECHNOLOGIES_TITLE", "Technologies"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_TECHNOLOGIES_TEXT", "<a href=''>ACRA</a>: Crash management.\n" +
-                    "<a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt</a>: Support codes + save games + puzzle sharing.\n" +
-                    "<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a>: Play Store rate prompting.\n" +
-                    "<a href='https://www.applovin.com/'>AppLovin</a>: Advertising.\n" +
-                    "<a href='https://github.com/grantland/android-autofittextview'>AutofitTextView</a>: Intelligently resizing textboxes.\n" +
-                    "<a href='https://github.com/keyboardsurfer/Crouton'>Crouton</a>: On-screen alerts.\n" +
-                    "<a href='https://github.com/bperin/FontAwesomeAndroid'>FontAwesomeAndroid</a>: FontAwesome support.\n" +
-                    "<a href='https://github.com/google/gson'>GSON</a>: Cloud saves + puzzle sharing.\n" +
-                    "<a href='https://github.com/anjlab/android-inapp-billing-v3'>IAB</a>: In-app billing.\n" +
-                    "<a href='https://github.com/thomashaertel/MultiSpinner'>Multispinner</a>: Multi-selectable options list.\n" +
-                    "<a href='https://github.com/square/picasso'>Picasso</a>: Image caching.\n" +
-                    "<a href='https://satyan.github.io/sugar/'>Sugar</a>: Database ORM.\n" +
-                    ""));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_TECHNOLOGIES_TEXT", "<a href='https://github.com/ACRA/acra'>ACRA</a>: Crash management.<br>" +
+                    "<a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt</a>: Database / game save encrypting.<br>" +
+                    "<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a>: Play Store rate prompting.<br>" +
+                    "<a href='https://www.applovin.com/'>AppLovin</a>: Advertising.<br>" +
+                    "<a href='https://github.com/grantland/android-autofittextview'>AutofitTextView</a>: Intelligently resizing textboxes.<br>" +
+                    "<a href='https://github.com/keyboardsurfer/Crouton'>Crouton</a>: On-screen alerts.<br>" +
+                    "<a href='https://github.com/bperin/FontAwesomeAndroid'>FontAwesomeAndroid</a>: FontAwesome support.<br>" +
+                    "<a href='https://github.com/google/gson'>GSON</a>: Cloud saves + puzzle sharing.<br>" +
+                    "<a href='https://github.com/anjlab/android-inapp-billing-v3'>IAB</a>: In-app billing.<br>" +
+                    "<a href='https://github.com/thomashaertel/MultiSpinner'>Multispinner</a>: Multi-selectable options list.<br>" +
+                    "<a href='https://github.com/square/picasso'>Picasso</a>: Image caching.<br>" +
+                    "<a href='https://satyan.github.io/sugar/'>Sugar</a>: Database ORM.<br>" +
+                ""));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_TEXT", "Change %1$s text\n(max %2$d chars)"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_SLIDER", "Change %1$s value"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CLOUD_LOAD_CONFIRM", "Are you sure sure you want to load this cloud save?\n\nLocal: %1$s stars, %2$s coins\nCloud: %3$s stars, %4$s coins"));
@@ -124,6 +125,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_LOAD", "Load"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CANCEL", "Cancel"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_SUPPORT_CODE", "Support Code"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CREDITS", "Credits"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_0_NAME", "None"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_1_NAME", "Grass"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_2_NAME", "City"));

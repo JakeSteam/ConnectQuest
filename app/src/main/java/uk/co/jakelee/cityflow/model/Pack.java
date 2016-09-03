@@ -7,8 +7,8 @@ import com.orm.query.Select;
 import java.util.List;
 
 import uk.co.jakelee.cityflow.helper.Constants;
+import uk.co.jakelee.cityflow.helper.EncryptHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
-import uk.co.jakelee.cityflow.helper.ModificationHelper;
 
 public class Pack extends SugarRecord{
     private int packId;
@@ -26,14 +26,14 @@ public class Pack extends SugarRecord{
 
     public Pack(int packId, String iapCode, String timeLeaderboard, String movesLeaderboard, int maxStars) {
         this.packId = packId;
-        this.iapCode = ModificationHelper.encode(iapCode, packId);
+        this.iapCode = EncryptHelper.encode(iapCode, packId);
         this.timeLeaderboard = timeLeaderboard;
         this.movesLeaderboard = movesLeaderboard;
-        this.purchased = ModificationHelper.encode(false, packId);
-        this.currentMoves = ModificationHelper.encode(0, packId);
-        this.currentTime = ModificationHelper.encode(0, packId);
-        this.currentStars = ModificationHelper.encode(0, packId);
-        this.maxStars = ModificationHelper.encode(maxStars, packId);
+        this.purchased = EncryptHelper.encode(false, packId);
+        this.currentMoves = EncryptHelper.encode(0, packId);
+        this.currentTime = EncryptHelper.encode(0, packId);
+        this.currentStars = EncryptHelper.encode(0, packId);
+        this.maxStars = EncryptHelper.encode(maxStars, packId);
     }
 
     public int getPackId() {
@@ -45,11 +45,11 @@ public class Pack extends SugarRecord{
     }
 
     public String getIapCode() {
-        return ModificationHelper.decode(iapCode, packId);
+        return EncryptHelper.decode(iapCode, packId);
     }
 
     public void setIapCode(String iapCode) {
-        this.iapCode = ModificationHelper.encode(iapCode, packId);
+        this.iapCode = EncryptHelper.encode(iapCode, packId);
     }
 
     public String getTimeLeaderboard() {
@@ -69,43 +69,43 @@ public class Pack extends SugarRecord{
     }
 
     public boolean isPurchased() {
-        return ModificationHelper.decodeToBool(purchased, packId);
+        return EncryptHelper.decodeToBool(purchased, packId);
     }
 
     public void setPurchased(boolean purchased) {
-        this.purchased = ModificationHelper.encode(purchased, packId);
+        this.purchased = EncryptHelper.encode(purchased, packId);
     }
 
     public int getCurrentMoves() {
-        return ModificationHelper.decodeToInt(currentMoves, packId);
+        return EncryptHelper.decodeToInt(currentMoves, packId);
     }
 
     public void setCurrentMoves(int currentMoves) {
-        this.currentMoves = ModificationHelper.encode(currentMoves, packId);
+        this.currentMoves = EncryptHelper.encode(currentMoves, packId);
     }
 
     public int getCurrentTime() {
-        return ModificationHelper.decodeToInt(currentTime, packId);
+        return EncryptHelper.decodeToInt(currentTime, packId);
     }
 
     public void setCurrentTime(int currentTime) {
-        this.currentTime = ModificationHelper.encode(currentTime, packId);
+        this.currentTime = EncryptHelper.encode(currentTime, packId);
     }
 
     public int getCurrentStars() {
-        return ModificationHelper.decodeToInt(currentStars, packId);
+        return EncryptHelper.decodeToInt(currentStars, packId);
     }
 
     public void setCurrentStars(int currentStars) {
-        this.currentStars = ModificationHelper.encode(currentStars, packId);
+        this.currentStars = EncryptHelper.encode(currentStars, packId);
     }
 
     public int getMaxStars() {
-        return ModificationHelper.decodeToInt(maxStars, packId);
+        return EncryptHelper.decodeToInt(maxStars, packId);
     }
 
     public void setMaxStars(int maxStars) {
-        this.maxStars = ModificationHelper.encode(maxStars, packId);
+        this.maxStars = EncryptHelper.encode(maxStars, packId);
     }
 
     public static Pack getPack(int packId) {

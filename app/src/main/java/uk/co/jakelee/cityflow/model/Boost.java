@@ -4,7 +4,7 @@ import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
-import uk.co.jakelee.cityflow.helper.ModificationHelper;
+import uk.co.jakelee.cityflow.helper.EncryptHelper;
 
 public class Boost extends SugarRecord{
     private int boostId;
@@ -16,9 +16,9 @@ public class Boost extends SugarRecord{
 
     public Boost(int boostId, int level, int owned, int used) {
         this.boostId = boostId;
-        this.level = ModificationHelper.encode(level, boostId);
-        this.owned = ModificationHelper.encode(owned, boostId);
-        this.used = ModificationHelper.encode(used, boostId);
+        this.level = EncryptHelper.encode(level, boostId);
+        this.owned = EncryptHelper.encode(owned, boostId);
+        this.used = EncryptHelper.encode(used, boostId);
     }
 
     public int getBoostId() {
@@ -30,27 +30,27 @@ public class Boost extends SugarRecord{
     }
 
     public int getLevel() {
-        return ModificationHelper.decodeToInt(level, boostId);
+        return EncryptHelper.decodeToInt(level, boostId);
     }
 
     public void setLevel(int level) {
-        this.level = ModificationHelper.encode(level, boostId);
+        this.level = EncryptHelper.encode(level, boostId);
     }
 
     public int getOwned() {
-        return ModificationHelper.decodeToInt(owned, boostId);
+        return EncryptHelper.decodeToInt(owned, boostId);
     }
 
     public void setOwned(int owned) {
-        this.owned = ModificationHelper.encode(owned, boostId);
+        this.owned = EncryptHelper.encode(owned, boostId);
     }
 
     public int getUsed() {
-        return ModificationHelper.decodeToInt(used, boostId);
+        return EncryptHelper.decodeToInt(used, boostId);
     }
 
     public void setUsed(int used) {
-        this.used = ModificationHelper.encode(used, boostId);
+        this.used = EncryptHelper.encode(used, boostId);
     }
 
     public String getName() {

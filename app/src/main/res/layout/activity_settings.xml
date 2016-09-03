@@ -350,12 +350,28 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
-                        android:gravity="center_horizontal"
+                        android:gravity="center"
                         android:background="@drawable/ui_button_grey"
                         android:layout_span="2"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:onClick="openSupportCode"/>
+                </TableRow>
+
+                <TableRow>
+                    <uk.co.jakelee.cityflow.components.TextViewFont
+                        android:id="@+id/creditsButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:background="@drawable/ui_button_grey"
+                        android:layout_span="2"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:onClick="openCredits"/>
                 </TableRow>
             </TableLayout>
         </LinearLayout>
