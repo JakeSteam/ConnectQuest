@@ -133,12 +133,14 @@ public class ShopItem extends SugarRecord {
         return Text.get("ITEM_", getItemId(), "_DESC");
     }
 
-    public void purchase() {
-        ShopItem item = Select.from(ShopItem.class).where(
-                Condition.prop("item_id").eq(getItemId())).first();
+    public static ShopItem find(int itemId) {
+        return Select.from(ShopItem.class).where(
+                Condition.prop("item_id").eq(itemId)).first();
+    }
 
-        Statistic currency = Select.from(Statistic.class).where(
-                Condition.prop("enum_name").eq(Statistic.Fields.Currency)).first();
+    public void purchase() {
+        ShopItem item = ShopItem.find(getItemId());
+        Statistic currency = Statistic.find(Constants.STATISTIC_CURRENCY);
 
         item.setPurchases(item.getPurchases() + 1);
         item.save();
@@ -167,8 +169,7 @@ public class ShopItem extends SugarRecord {
         ShopItem item = Select.from(ShopItem.class).where(
                 Condition.prop("item_id").eq(getItemId())).first();
 
-        Statistic currency = Select.from(Statistic.class).where(
-                Condition.prop("enum_name").eq(Statistic.Fields.Currency)).first();
+        Statistic currency = Statistic.find(Constants.STATISTIC_CURRENCY);
 
         if (item == null) {
             return ErrorHelper.Error.TECHNICAL;

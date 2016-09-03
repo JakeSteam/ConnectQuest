@@ -417,16 +417,16 @@ public class DatabaseHelper {
 
     private static void createStatistic() {
         List<Statistic> statistics = new ArrayList<>();
-            statistics.add(new Statistic(Constants.STATISTIC_PUZZLES_COMPLETED, Statistic.Fields.PuzzlesCompleted, 0, 0));
-            statistics.add(new Statistic(Constants.STATISTIC_TILES_ROTATED, Statistic.Fields.TilesRotated, 0, 0));
-            statistics.add(new Statistic(Constants.STATISTIC_QUESTS_COMPLETED, Statistic.Fields.QuestsCompleted, 0, 0));
-            statistics.add(new Statistic(Constants.STATISTIC_PUZZLES_COMPLETED_FULLY, Statistic.Fields.PuzzlesCompletedFully, 0, 0));
-            statistics.add(new Statistic(Constants.STATISTIC_BOOSTS_USED, Statistic.Fields.BoostsUsed, 0, 0));
-            statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_1, Statistic.Fields.CompletePack1, 0, 0));
-            statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_2, Statistic.Fields.CompletePack2, 0, 0));
-            statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_3, Statistic.Fields.CompletePack3, 0, 0));
-            statistics.add(new Statistic(Constants.STATISTIC_CURRENCY, Statistic.Fields.Currency, 100000));
-            statistics.add(new Statistic(Constants.STATISTIC_TAPJOY_COINS, Statistic.Fields.TapJoyCoinsEarned, 0));
+            statistics.add(new Statistic(Constants.STATISTIC_PUZZLES_COMPLETED, 0, 0));
+            statistics.add(new Statistic(Constants.STATISTIC_TILES_ROTATED, 0, 0));
+            statistics.add(new Statistic(Constants.STATISTIC_QUESTS_COMPLETED, 0, 0));
+            statistics.add(new Statistic(Constants.STATISTIC_PUZZLES_COMPLETED_FULLY, 0, 0));
+            statistics.add(new Statistic(Constants.STATISTIC_BOOSTS_USED, 0, 0));
+            statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_1, 0, 0));
+            statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_2, 0, 0));
+            statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_3, 0, 0));
+            statistics.add(new Statistic(Constants.STATISTIC_CURRENCY, 100000));
+            statistics.add(new Statistic(Constants.STATISTIC_TAPJOY_COINS, 0));
         Statistic.saveInTx(statistics);
     }
 

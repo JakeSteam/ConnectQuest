@@ -68,8 +68,8 @@ public class PuzzleHelper {
 
                 if (puzzle.hasCompletionStar() && puzzle.hasMovesStar() && puzzle.hasTimeStar()) {
                     GooglePlayHelper.UpdateEvent(Constants.EVENT_FULLY_COMPLETE_PUZZLE, 1); // Quests
-                    Statistic.increaseByOne(Statistic.Fields.PuzzlesCompletedFully); // Achievements
-                    GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_PUZZLES_FULLY_COMPLETED, Statistic.get(Statistic.Fields.PuzzlesCompletedFully)); // Leaderboards
+                    Statistic.increaseByOne(Constants.STATISTIC_PUZZLES_COMPLETED_FULLY); // Achievements
+                    GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_PUZZLES_FULLY_COMPLETED, Statistic.get(Constants.STATISTIC_PUZZLES_COMPLETED_FULLY)); // Leaderboards
                 }
 
                 // Update for quests
@@ -78,14 +78,14 @@ public class PuzzleHelper {
                 GooglePlayHelper.UpdateEvent(Constants.EVENT_TILE_ROTATE, movesTaken);
 
                 // Update for achievements
-                Statistic.increaseByOne(Statistic.Fields.PuzzlesCompleted);
-                Statistic.increaseByX(Statistic.Fields.BoostsUsed, boostsUsed);
-                Statistic.increaseByX(Statistic.Fields.TilesRotated, movesTaken);
+                Statistic.increaseByOne(Constants.STATISTIC_PUZZLES_COMPLETED);
+                Statistic.increaseByX(Constants.STATISTIC_BOOSTS_USED, boostsUsed);
+                Statistic.increaseByX(Constants.STATISTIC_TILES_ROTATED, movesTaken);
                 GooglePlayHelper.UpdateAchievements();
 
                 // Update for leaderboards
-                GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_PUZZLES_COMPLETED, Statistic.get(Statistic.Fields.PuzzlesCompleted));
-                GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_BOOSTS_USED, Statistic.get(Statistic.Fields.BoostsUsed));
+                GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_PUZZLES_COMPLETED, Statistic.get(Constants.STATISTIC_PUZZLES_COMPLETED));
+                GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_BOOSTS_USED, Statistic.get(Constants.STATISTIC_BOOSTS_USED));
             }
         }).start();
     }

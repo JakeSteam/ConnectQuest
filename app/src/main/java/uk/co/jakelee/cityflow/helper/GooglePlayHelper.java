@@ -93,7 +93,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         String questDifficulty = new String(quest.getCurrentMilestone().getCompletionRewardData(), Charset.forName("UTF-8"));
         String questReward = "Nothing yet!";
 
-        Statistic.increaseByOne(Statistic.Fields.QuestsCompleted);
+        Statistic.increaseByOne(Constants.STATISTIC_QUESTS_COMPLETED);
         return "Quest completed!";
     }
 

@@ -60,7 +60,7 @@ public class ShopActivity extends Activity {
     protected void onStop() {
         Tapjoy.onActivityStop(this);
         handler.removeCallbacksAndMessages(null);
-        
+
         super.onStop();
     }
 

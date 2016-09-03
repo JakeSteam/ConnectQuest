@@ -79,7 +79,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
     }
 
     public static int synchroniseCoins(int remoteCoins) {
-        Statistic localCoins = Statistic.find(Statistic.Fields.TapJoyCoinsEarned);
+        Statistic localCoins = Statistic.find(Constants.STATISTIC_TAPJOY_COINS);
         int difference = remoteCoins - localCoins.getIntValue();
 
         if (difference > 0) {
