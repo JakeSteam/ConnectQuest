@@ -3,6 +3,7 @@ package uk.co.jakelee.cityflow.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,11 +23,12 @@ import de.keyboardsurfer.android.widget.crouton.Crouton;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AdvertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
+import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.StyleHelper;
-import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.ShopCategory;
 import uk.co.jakelee.cityflow.model.ShopItem;
+import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class ShopActivity extends Activity {
@@ -34,13 +36,13 @@ public class ShopActivity extends Activity {
     private int selectedCategory = 1;
     private TJPlacement offerWall;
     private TJPlacement watchAdvert;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
         dh = DisplayHelper.getInstance(this);
-
 
         TJPlacementListener placementListener = AdvertHelper.getInstance(this);
         offerWall = new TJPlacement(this, "OfferWall", placementListener);
@@ -57,6 +59,8 @@ public class ShopActivity extends Activity {
     @Override
     protected void onStop() {
         Tapjoy.onActivityStop(this);
+        handler.removeCallbacksAndMessages(null);
+        
         super.onStop();
     }
 
@@ -69,13 +73,20 @@ public class ShopActivity extends Activity {
         populateItems();
 
         final Activity activity = this;
-        Tapjoy.getCurrencyBalance(new TJGetCurrencyBalanceListener(){
+        final Runnable everyFiveSeconds = new Runnable() {
             @Override
-            public void onGetCurrencyBalanceResponse(String currencyName, int balance) {
-                AdvertHelper.synchroniseCoins(activity, balance);
+            public void run() {
+                Tapjoy.getCurrencyBalance(new TJGetCurrencyBalanceListener(){
+                    @Override
+                    public void onGetCurrencyBalanceResponse(String currencyName, int balance) {
+                        AdvertHelper.synchroniseCoins(activity, balance);
+                    }
+                    @Override public void onGetCurrencyBalanceResponseFailure(String error) {}
+                });
+                handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 5);
             }
-            @Override public void onGetCurrencyBalanceResponseFailure(String error) {}
-        });
+        };
+        handler.post(everyFiveSeconds);
     }
 
     private void populateText() {
@@ -156,7 +167,7 @@ public class ShopActivity extends Activity {
 
     public void advertWatched() {
         Statistic.addCurrency(Constants.CURRENCY_ADVERT);
-        Crouton.showText(this, String.format(Text.get("ALERT_COINS_EARNED"), Constants.CURRENCY_ADVERT), StyleHelper.SUCCESS);
+        Crouton.showText(this, String.format(Text.get("ALERT_COINS_EARNED_FREE"), Constants.CURRENCY_ADVERT), StyleHelper.SUCCESS);
 
         populateText();
     }

@@ -81,11 +81,13 @@ public class DatabaseHelper {
 
     private static void createText() {
         List<Text> texts = new ArrayList<>();
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_BEGINNING", "Comparing local and cloud saves..."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_SAVING", "Saving to cloud..."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_SAVED", "Successfully saved game to cloud!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_LOADING", "Loading cloud save..."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_LOADED", "Successfully loaded game from cloud!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_COINS_EARNED", "Earned %1$d coins!"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_COINS_EARNED_FREE", "Earned %1$d free coins, enjoy!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SAVE_CONFLICT", "Save conflict detected! Currently resolving, this might take a few seconds, please be patient..."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SETTING_TOGGLE_ON", "Toggled %1$s on!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SETTING_TOGGLE_OFF", "Toggled %1$s off!"));

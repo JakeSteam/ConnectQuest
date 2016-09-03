@@ -74,7 +74,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
     public static void synchroniseCoins(Activity activity, int remoteCoins) {
         int coinsEarned = synchroniseCoins(remoteCoins);
         if (coinsEarned > 0) {
-            Crouton.showText(activity, "Earned coins: " + coinsEarned, StyleHelper.SUCCESS);
+            Crouton.showText(activity, String.format(Text.get("ALERT_COINS_EARNED_FREE"), coinsEarned), StyleHelper.SUCCESS);
         }
     }
 

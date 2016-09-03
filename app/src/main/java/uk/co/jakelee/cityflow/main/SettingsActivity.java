@@ -151,6 +151,7 @@ public class SettingsActivity extends Activity {
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        Crouton.showText(this, Text.get("ALERT_CLOUD_BEGINNING"), StyleHelper.INFO);
         GooglePlayHelper.SavedGamesIntent(getApplicationContext(), this, intent);
     }
 
