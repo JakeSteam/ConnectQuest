@@ -320,6 +320,9 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_74_NAME", "Forest (Trees)"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_75_NAME", "Forest Dirt End"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_76_NAME", "Forest River End"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_77_NAME", "City Road Straight (Median)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_78_NAME", "City Road Straight (Trees)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_79_NAME", "Grass Road Slope (Narrow)"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_EXPORT_PUZZLE_HINT", "Export puzzle data to:"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_COMPLETE_TITLE", "Complete\n100%"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_COMPLETE_TEXT", "Completed!"));
@@ -1023,6 +1026,9 @@ public class DatabaseHelper {
             tileTypes.add(new TileType(74, Constants.ENVIRONMENT_FOREST, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new TileType(75, Constants.ENVIRONMENT_FOREST, Constants.FLOW_NONE, Constants.FLOW_DIRT, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new TileType(76, Constants.ENVIRONMENT_FOREST, Constants.FLOW_NONE, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(77, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(78, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(79, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, 3));
 
         TileType.saveInTx(tileTypes);
     }
