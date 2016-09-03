@@ -16,6 +16,7 @@ import com.tapjoy.Tapjoy;
 
 import hotchemi.android.rate.AppRate;
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.helper.AnimationHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DatabaseHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
@@ -70,6 +71,13 @@ public class MainActivity extends Activity implements
         }
 
         Tapjoy.onActivityStart(this);
+
+        createAnimations();
+    }
+
+    private void createAnimations() {
+        findViewById(R.id.animatedCar1).startAnimation(AnimationHelper.topLeftToBottomRight());
+        findViewById(R.id.animatedCar2).startAnimation(AnimationHelper.midLeftToBottomMiddle());
     }
 
     @Override
@@ -104,7 +112,7 @@ public class MainActivity extends Activity implements
         GooglePlayHelper.ActivityResult(this, requestCode, resultCode);
     }
 
-    public void openChapters(View view) {
+    public void openStory(View view) {
         Intent intent = new Intent(this, StoryActivity.class);
         startActivity(intent);
     }

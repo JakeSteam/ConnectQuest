@@ -281,7 +281,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                         StatisticsHelper.getTotalStars(),
                         Statistic.getCurrency(),
                         BuildConfig.VERSION_NAME);
-                Bitmap cover = BitmapFactory.decodeResource(callingContext.getResources(), R.drawable.coverimage);
+                Bitmap cover = BitmapFactory.decodeResource(callingContext.getResources(), R.drawable.main_logo);
 
                 loadedSnapshot.getSnapshotContents().writeBytes(data);
 
