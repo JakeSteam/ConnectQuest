@@ -114,7 +114,7 @@ public class AlertDialogHelper {
         final Setting settingToToggle = Setting.findById(Setting.class, settingId);
         final EditText editText = new EditText(activity.getApplicationContext());
         editText.setText(Setting.getString(Constants.SETTING_PLAYER_NAME));
-        editText.setFilters(new InputFilter[]{ FilterHelper.playerName });
+        editText.setFilters(new InputFilter[]{ FilterHelper.getFilter(Constants.PLAYER_NAME_MAX_LENGTH) });
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(Text.get("DIALOG_CHANGE_TEXT"), settingToToggle.getName(), Constants.PLAYER_NAME_MAX_LENGTH));
@@ -140,7 +140,7 @@ public class AlertDialogHelper {
     public static void changePuzzleInfo(final CustomInfoActivity activity, final PuzzleCustom puzzleCustom, final boolean changeDesc) {
         final EditText puzzleInfoInput = new EditText(activity.getApplicationContext());
         puzzleInfoInput.setText(changeDesc ? puzzleCustom.getDescription() : puzzleCustom.getName());
-        puzzleInfoInput.setFilters(new InputFilter[]{ changeDesc ? FilterHelper.puzzleDesc : FilterHelper.puzzleName });
+        puzzleInfoInput.setFilters(new InputFilter[]{ FilterHelper.getFilter(changeDesc ? Constants.PUZZLE_DESC_MAX_LENGTH : Constants.PUZZLE_NAME_MAX_LENGTH) });
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(Text.get("DIALOG_CHANGE_TEXT"),

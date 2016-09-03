@@ -98,6 +98,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_GRAPHICS_TEXT", "<a href='http://www.dafont.com/claudep.d857'>Claude P</a>: Main font (Yagiuhf No 2).<br>" +
                     "<a href='http://fontawesome.io/'>FontAwesome</a>: Button icons.<br>" +
                     "<a href='http://kenney.nl/'>Kenney</a>: Base tilesets, majority of UI elements.<br>" +
+                    "<a href=''>Tash</a>: Design help throughout, along with designing many of the interfaces. Thank you!<br>" +
                 ""));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_TECHNOLOGIES_TITLE", "Technologies"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_TECHNOLOGIES_TEXT", "<a href='https://github.com/ACRA/acra'>ACRA</a>: Crash management.<br>" +
@@ -111,7 +112,7 @@ public class DatabaseHelper {
                     "<a href='https://github.com/anjlab/android-inapp-billing-v3'>IAB</a>: In-app billing.<br>" +
                     "<a href='https://github.com/thomashaertel/MultiSpinner'>Multispinner</a>: Multi-selectable options list.<br>" +
                     "<a href='https://github.com/square/picasso'>Picasso</a>: Image caching.<br>" +
-                    "<a href='https://satyan.github.io/sugar/'>Sugar</a>: Database ORM.<br>" +
+                    "<a href='https://github.com/satyan/sugar'>Sugar</a>: Database ORM.<br>" +
                 ""));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_TEXT", "Change %1$s text\n(max %2$d chars)"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_SLIDER", "Change %1$s value"));
