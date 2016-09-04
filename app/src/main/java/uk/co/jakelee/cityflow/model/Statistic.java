@@ -6,6 +6,7 @@ import com.orm.query.Select;
 
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.EncryptHelper;
+import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 
 public class Statistic extends SugarRecord {
     private int statisticId;
@@ -126,6 +127,7 @@ public class Statistic extends SugarRecord {
     }
 
     public static void addCurrency(int amount) {
+        GooglePlayHelper.UpdateEvent(Constants.EVENT_EARN_COINS, amount);
         increaseByX(Constants.STATISTIC_CURRENCY, amount);
     }
 

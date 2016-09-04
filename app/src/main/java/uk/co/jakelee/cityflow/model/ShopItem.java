@@ -8,6 +8,7 @@ import java.util.List;
 
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.ErrorHelper;
+import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 
 public class ShopItem extends SugarRecord {
     private int itemId;
@@ -149,6 +150,7 @@ public class ShopItem extends SugarRecord {
         currency.save();
 
         if (getCategoryId() == Constants.STORE_CATEGORY_BOOSTS) {
+            GooglePlayHelper.UpdateEvent(Constants.EVENT_BUY_BOOST, getRewardQuantity());
             Boost boost = Boost.get(getRewardId());
             boost.setOwned(boost.getOwned() + getRewardQuantity());
             boost.save();
