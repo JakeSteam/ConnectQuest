@@ -100,7 +100,6 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_GRAPHICS_TEXT", "<a href='http://www.dafont.com/claudep.d857'>Claude P</a>: Main font (Yagiuhf No 2).<br>" +
                     "<a href='http://fontawesome.io/'>FontAwesome</a>: Button icons.<br>" +
                     "<a href='http://kenney.nl/'>Kenney</a>: Base tilesets, majority of UI elements.<br>" +
-                    "<a href=''>Tash</a>: Design help throughout, along with designing many of the interfaces. Thank you!<br>" +
                 ""));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_TECHNOLOGIES_TITLE", "Technologies"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_TECHNOLOGIES_TEXT", "<a href='https://github.com/ACRA/acra'>ACRA</a>: Crash management.<br>" +
@@ -116,6 +115,16 @@ public class DatabaseHelper {
                     "<a href='https://github.com/square/picasso'>Picasso</a>: Image caching.<br>" +
                     "<a href='https://github.com/satyan/sugar'>Sugar</a>: Database ORM.<br>" +
                 ""));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_OTHER_TITLE", "Other"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_OTHER_TEXT", "Of course, developing a game isn't just about technical resources. As such, there's a few people and communities who definitely need thanking.<br><br>" +
+                    "<b>Britt</b>: Responsible for a few of the more... interesting ideas in the game, and providing motivation throughout. If she had her way, the game would be a lot more absurd..!<br><br>" +
+                    "<b>Tash</b>: An absurd amount of design work. Basically, anywhere the game looks rather nice, she's the one to thank!<br><br>" +
+                    "<b>/r/AndroidGaming</b>: Always providing tons of feedback, beta testing, and just generally being an excellent place for gamers + developers to meet. <br><br>" +
+                    "<b>/r/CityFlow</b>: There's a lot of crossover between the mentioned subreddits, but I really appreciate everyone who contributes an opinion on the game.<br><br>" +
+                    "<b>/r/PixelBlacksmith</b>: You guys have been super-patient whilst I work on City Flow, and I hope you all enjoy it as much as Pixel Blacksmith.<br><br>" +
+                    "<b>You</b>: Thank you for playing the game! A game is nothing without players (especially super dedicated ones who read the credits!). If you ever have any feedback / bugs / suggestions / good jokes / bad puns, <a href='mailto:city.flow@jakelee.co.uk'>email me</a>.<br><br>" +
+                    "<i>- Jake</i>" +
+                    ""));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_TEXT", "Change %1$s text\n(max %2$d chars)"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_SLIDER", "Change %1$s value"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CLOUD_LOAD_CONFIRM", "Are you sure sure you want to load this cloud save?\n\nLocal: %1$s stars, %2$s coins\nCloud: %3$s stars, %4$s coins"));
@@ -230,7 +239,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_SECTION_AUDIO", "Audio Settings"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_SECTION_GAMEPLAY", "Gameplay Settings"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_SECTION_GOOGLE", "Google Settings"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_SECTION_OTHER", "Other Settings"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_SECTION_OTHER", "Other"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_1_NAME", "Music"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_2_NAME", "Sounds"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_3_NAME", "Minimum Zoom"));
