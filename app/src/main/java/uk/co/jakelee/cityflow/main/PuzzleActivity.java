@@ -288,6 +288,8 @@ public class PuzzleActivity extends Activity {
 
     public void displayPuzzleComplete() {
         Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
+
+        puzzle.resetTileRotations();
         findViewById(R.id.puzzleTimer).setVisibility(View.GONE);
         findViewById(R.id.zoomIn).setVisibility(View.GONE);
         findViewById(R.id.zoomOut).setVisibility(View.GONE);

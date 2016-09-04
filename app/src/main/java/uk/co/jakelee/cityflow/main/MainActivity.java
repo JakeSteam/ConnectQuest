@@ -16,12 +16,14 @@ import com.google.android.gms.games.quest.Quest;
 import com.google.android.gms.games.quest.QuestUpdateListener;
 import com.tapjoy.Tapjoy;
 
+import de.keyboardsurfer.android.widget.crouton.Crouton;
 import hotchemi.android.rate.AppRate;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DatabaseHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
+import uk.co.jakelee.cityflow.helper.StyleHelper;
 import uk.co.jakelee.cityflow.model.Setting;
 
 public class MainActivity extends Activity implements
@@ -126,7 +128,7 @@ public class MainActivity extends Activity implements
     }
 
     public void onQuestCompleted(Quest quest) {
-        // Show quest complete message
+        Crouton.showText(this, GooglePlayHelper.CompleteQuest(quest), StyleHelper.SUCCESS);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -150,6 +152,11 @@ public class MainActivity extends Activity implements
 
     public void openShop(View view) {
         Intent intent = new Intent(this, ShopActivity.class);
+        startActivity(intent);
+    }
+
+    public void openQuestMenu(View view) {
+        Intent intent = new Intent(this, QuestActivity.class);
         startActivity(intent);
     }
 }

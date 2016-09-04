@@ -35,6 +35,10 @@ public class Constants {
     public static final int CURRENCY_CUSTOM_FIRST_COMPLETE_FULL = 1;
     public static final int CURRENCY_ADVERT = 45;
     public static final int CURRENCY_ACHIEVEMENT = 100;
+    public static final int CURRENCY_QUEST_EASY = 20;
+    public static final int CURRENCY_QUEST_MEDIUM = 50;
+    public static final int CURRENCY_QUEST_HARD = 100;
+    public static final int CURRENCY_QUEST_ELITE = 200;
 
     // Google play constants
     public static final String EVENT_COMPLETE_PUZZLE = "CgkIgrzuo64REAIQBA";

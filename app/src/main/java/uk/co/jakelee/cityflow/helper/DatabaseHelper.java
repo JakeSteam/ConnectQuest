@@ -236,6 +236,12 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_29_NAME", "End Of The Line"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_30_NAME", "A Summer Walk"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_41_NAME", "Highs And Lows"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "QUEST_CURRENT", "In Progress"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "QUEST_AVAILABLE", "Available"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "QUEST_UPCOMING", "Upcoming"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "QUEST_COMPLETED", "Completed"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "QUEST_FAILED", "Failed"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "QUEST_COMPLETED_TEXT", "Completed the %1$s quest \"%1$s\" and earned %3$d coins!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_SECTION_AUDIO", "Audio Settings"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_SECTION_GAMEPLAY", "Gameplay Settings"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_SECTION_GOOGLE", "Google Settings"));

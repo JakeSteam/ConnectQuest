@@ -11,7 +11,6 @@ import android.util.Pair;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.GamesStatusCodes;
 import com.google.android.gms.games.quest.Quest;
@@ -87,29 +86,33 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
     public static String CompleteQuest(Quest quest) {
         Games.Quests.claim(mGoogleApiClient, quest.getQuestId(),
                 quest.getCurrentMilestone().getMilestoneId());
-        Context context = mGoogleApiClient.getContext();
 
         String questName = quest.getName();
         String questDifficulty = new String(quest.getCurrentMilestone().getCompletionRewardData(), Charset.forName("UTF-8"));
-        String questReward = "Nothing yet!";
+        int questCoins = getQuestReward(questDifficulty);
 
+        Statistic.increaseByX(Constants.STATISTIC_CURRENCY, questCoins);
         Statistic.increaseByOne(Constants.STATISTIC_QUESTS_COMPLETED);
-        return "Quest completed!";
+        return String.format(Text.get("QUEST_COMPLETED_TEXT"),
+                questDifficulty,
+                questName,
+                questCoins);
+    }
+
+    private static int getQuestReward(String questDifficulty) {
+        switch (questDifficulty) {
+            case "Easy": return Constants.CURRENCY_QUEST_EASY;
+            case "Medium": return Constants.CURRENCY_QUEST_MEDIUM;
+            case "Hard": return Constants.CURRENCY_QUEST_HARD;
+            case "Elite": return Constants.CURRENCY_QUEST_ELITE;
+        }
+        return 0;
     }
 
     public void onResult(com.google.android.gms.common.api.Result result) {
         Quests.LoadQuestsResult r = (Quests.LoadQuestsResult)result;
         QuestBuffer qb = r.getQuests();
         qb.close();
-    }
-
-    public void UpdateQuest() {
-        if (!IsConnected()) {
-            return;
-        }
-
-        PendingResult<Quests.LoadQuestsResult> quests = Games.Quests.load(mGoogleApiClient, new int[] {Quest.STATE_ACCEPTED}, Quests.SORT_ORDER_ENDING_SOON_FIRST, false);
-        quests.setResultCallback(this);
     }
 
     public static void UpdateEvent(String eventId, int quantity) {

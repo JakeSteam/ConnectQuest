@@ -166,6 +166,10 @@ public class Puzzle extends SugarRecord {
         return Select.from(PuzzleCustom.class).where(Condition.prop("puzzle_id").eq(puzzleId)).first();
     }
 
+    public void resetTileRotations() {
+        Tile.executeQuery("UPDATE tile SET rotation = default_rotation WHERE puzzle_id = " + puzzleId);
+    }
+
     public String getShareText() {
         return PuzzleShareHelper.getPuzzleString(this);
     }
