@@ -218,4 +218,12 @@ public class DisplayHelper {
         imageview.setImageDrawable(createDrawable(carDrawable, 20, 20));
         return imageview;
     }
+
+    public void createCarAnimation(RelativeLayout container, DisplayMetrics metrics, int rotation) {
+        int duration = RandomHelper.getNumber(20000, 40000);
+
+        ImageView carView = createCarImageview(rotation);
+        container.addView(carView);
+        carView.startAnimation(AnimationHelper.move(metrics, rotation, duration));
+    }
 }

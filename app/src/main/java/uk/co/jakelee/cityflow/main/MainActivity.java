@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -19,7 +18,6 @@ import com.tapjoy.Tapjoy;
 
 import hotchemi.android.rate.AppRate;
 import uk.co.jakelee.cityflow.R;
-import uk.co.jakelee.cityflow.helper.AnimationHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DatabaseHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
@@ -87,18 +85,9 @@ public class MainActivity extends Activity implements
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        for (int i = 0; i <= 2; i++) {
-            int duration = RandomHelper.getNumber(2000, 20000);
-            ImageView carView = dh.createCarImageview(Constants.ROTATION_NORTH);
-            container.addView(carView);
-            carView.startAnimation(AnimationHelper.move(metrics, Constants.ROTATION_NORTH, duration));
-        }
-
-        for (int i = 0; i <= 2; i++) {
-            int duration = RandomHelper.getNumber(2000, 20000);
-            ImageView carView = dh.createCarImageview(Constants.ROTATION_WEST);
-            container.addView(carView);
-            carView.startAnimation(AnimationHelper.move(metrics, Constants.ROTATION_WEST, duration));
+        for (int i = 0; i <= 5; i++) {
+            int direction = RandomHelper.getNumber(Constants.ROTATION_MIN, Constants.ROTATION_MAX);
+            dh.createCarAnimation(container, metrics, direction);
         }
     }
 
