@@ -18,6 +18,7 @@ public class Constants {
     public static final int PUZZLE_X_MAX = 10;
     public static final int PUZZLE_Y_MIN = 1;
     public static final int PUZZLE_Y_MAX = 10;
+    public static final int NUMBER_CARS = 3;
     public static final int PUZZLE_HEIGHT = 76;
     public static final int PUZZLE_CUSTOM_ID_OFFSET = 10000;
     public static final int PUZZLE_NAME_MAX_LENGTH = 80;

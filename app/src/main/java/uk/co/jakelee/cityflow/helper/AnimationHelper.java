@@ -19,16 +19,20 @@ public class AnimationHelper {
         return southEast;
     }
 
-    public static TranslateAnimation moveNorthEast(DisplayMetrics metrics, int seconds) {
-        int yOffset = metrics.heightPixels;
+    public static TranslateAnimation moveNorthEast(DisplayMetrics metrics, int duration) {
+        int yOffset = RandomHelper.getNumber(metrics.heightPixels / 4, metrics.heightPixels);
+        return moveNorthEast(metrics, duration, 0, yOffset);
+    }
+
+    public static TranslateAnimation moveNorthEast(DisplayMetrics metrics, int duration, int xOffset, int yOffset) {
         float ratio = ((float)Constants.TILE_HEIGHT) / ((float)Constants.TILE_WIDTH);
 
         TranslateAnimation southEast = new TranslateAnimation(
-                TranslateAnimation.ABSOLUTE, 0,
-                TranslateAnimation.ABSOLUTE, metrics.widthPixels,
+                TranslateAnimation.ABSOLUTE, xOffset,
+                TranslateAnimation.ABSOLUTE, xOffset + metrics.widthPixels,
                 TranslateAnimation.ABSOLUTE, yOffset,
                 TranslateAnimation.ABSOLUTE, yOffset - (metrics.widthPixels * ratio));
-        southEast.setDuration(seconds * DateHelper.MILLISECONDS_IN_SECOND);
+        southEast.setDuration(duration);
         southEast.setFillAfter(false);
         southEast.setInterpolator(new LinearInterpolator());
         southEast.setRepeatCount(Animation.INFINITE);

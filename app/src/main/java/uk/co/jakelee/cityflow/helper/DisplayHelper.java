@@ -191,6 +191,10 @@ public class DisplayHelper {
         return context.getResources().getIdentifier("item_" + item, "drawable", context.getPackageName());
     }
 
+    public int getCarDrawableID(int carNumber, String direction) {
+        return context.getResources().getIdentifier("car_" + direction + "_" + carNumber, "drawable", context.getPackageName());
+    }
+
     public Drawable createDrawable(int drawableId, int width, int height) {
         Bitmap rawImage = BitmapFactory.decodeResource(context.getResources(), drawableId);
         int adjustedWidth = dpToPixel(width);
@@ -206,5 +210,12 @@ public class DisplayHelper {
         textView.setTextColor(color);
 
         return textView;
+    }
+
+    public ImageView createCarImageview(String direction) {
+        int carDrawable = getCarDrawableID(RandomHelper.getNumber(1, Constants.NUMBER_CARS), direction);
+        ImageView imageview = new ImageView(context);
+        imageview.setImageDrawable(createDrawable(carDrawable, 16, 12));
+        return imageview;
     }
 }

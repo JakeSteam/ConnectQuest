@@ -19,6 +19,11 @@
             android:layout_height="match_parent"
             android:background="@drawable/main_background_repeat"/>
 
+        <RelativeLayout
+            android:id="@+id/carContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
         <ImageView
             android:id="@+id/mainLogo"
             android:layout_width="match_parent"

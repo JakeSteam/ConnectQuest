@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -20,7 +22,9 @@ import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AnimationHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DatabaseHelper;
+import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
+import uk.co.jakelee.cityflow.helper.RandomHelper;
 import uk.co.jakelee.cityflow.model.Setting;
 
 public class MainActivity extends Activity implements
@@ -29,6 +33,7 @@ public class MainActivity extends Activity implements
         QuestUpdateListener {
     public static SharedPreferences prefs;
     private GooglePlayHelper gph;
+    private DisplayHelper dh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,7 @@ public class MainActivity extends Activity implements
         setContentView(R.layout.activity_main);
         prefs = getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE);
         gph = new GooglePlayHelper();
+        dh = DisplayHelper.getInstance(this);
 
         MainActivity.prefs.edit().putInt("language", Constants.LANGUAGE_EN_GB).apply();
 
@@ -77,14 +83,16 @@ public class MainActivity extends Activity implements
     }
 
     private void createAnimations() {
+        RelativeLayout container = (RelativeLayout) findViewById(R.id.carContainer);
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        /*findViewById(R.id.carSouthEast1).startAnimation(AnimationHelper.moveSouthEast(800, 23));
-        findViewById(R.id.carSouthEast2).startAnimation(AnimationHelper.moveSouthEast(1000, 20));
-        findViewById(R.id.carSouthEast3).startAnimation(AnimationHelper.moveSouthEast(1400, 35));
-        findViewById(R.id.carNorthEast1).startAnimation(AnimationHelper.moveNorthEast(metrics, 18));*/
-        findViewById(R.id.carNorthEast2).startAnimation(AnimationHelper.moveNorthEast(metrics, 5));
+        for (int i = 0; i <= 4; i++) {
+            int duration = RandomHelper.getNumber(2000, 20000);
+            ImageView carView = dh.createCarImageview("ne");
+            container.addView(carView);
+            carView.startAnimation(AnimationHelper.moveNorthEast(metrics, duration));
+        }
     }
 
     @Override
