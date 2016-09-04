@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -130,7 +131,7 @@ public class SettingsActivity extends Activity {
             settingToToggle.save();
 
             Crouton.showText(this, String.format(Text.get(settingToToggle.getBooleanValue() ? "ALERT_SETTING_TOGGLE_ON" : "ALERT_SETTING_TOGGLE_OFF"),
-                    settingToToggle.getName()), StyleHelper.SUCCESS);
+                    settingToToggle.getName()), StyleHelper.SUCCESS, (ViewGroup)findViewById(R.id.croutonview));
 
             populateSettings();
         }
@@ -162,7 +163,7 @@ public class SettingsActivity extends Activity {
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        Crouton.showText(this, Text.get("ALERT_CLOUD_BEGINNING"), StyleHelper.INFO);
+        Crouton.showText(this, Text.get("ALERT_CLOUD_BEGINNING"), StyleHelper.INFO, (ViewGroup)findViewById(R.id.croutonview));
         GooglePlayHelper.SavedGamesIntent(getApplicationContext(), this, intent);
     }
 

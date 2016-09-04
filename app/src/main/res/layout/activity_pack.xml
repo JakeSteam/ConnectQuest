@@ -144,4 +144,11 @@
                 android:layout_span="2"/>
         </TableRow>
     </TableLayout>
+    <LinearLayout
+        android:id="@+id/croutonview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+    </LinearLayout>
 </android.support.percent.PercentRelativeLayout>

@@ -2,6 +2,7 @@ package uk.co.jakelee.cityflow.helper;
 
 import android.app.Activity;
 import android.content.Context;
+import android.view.ViewGroup;
 
 import com.applovin.adview.AppLovinIncentivizedInterstitial;
 import com.applovin.sdk.AppLovinAd;
@@ -18,6 +19,7 @@ import com.tapjoy.Tapjoy;
 import java.util.Map;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
+import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.main.ShopActivity;
 import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.Text;
@@ -56,7 +58,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         } else if (adPlacement.isContentReady()) {
             adPlacement.showContent();
         } else {
-            Crouton.showText(callingActivity, Text.get("ERROR_ADVERT_NOT_LOADED"), StyleHelper.ERROR);
+            Crouton.showText(callingActivity, Text.get("ERROR_ADVERT_NOT_LOADED"), StyleHelper.ERROR, (ViewGroup)callingActivity.findViewById(R.id.croutonview));
         }
     }
 
@@ -65,7 +67,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         if (verified) {
             callingActivity.advertWatched();
         } else {
-            Crouton.showText(callingActivity, Text.get("ERROR_ADVERT_NOT_VERIFIED"), StyleHelper.ERROR);
+            Crouton.showText(callingActivity, Text.get("ERROR_ADVERT_NOT_VERIFIED"), StyleHelper.ERROR, (ViewGroup)callingActivity.findViewById(R.id.croutonview));
         }
 
         advert.preload(null);
@@ -74,7 +76,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
     public static void synchroniseCoins(Activity activity, int remoteCoins) {
         int coinsEarned = synchroniseCoins(remoteCoins);
         if (coinsEarned > 0) {
-            Crouton.showText(activity, String.format(Text.get("ALERT_COINS_EARNED_FREE"), coinsEarned), StyleHelper.SUCCESS);
+            Crouton.showText(activity, String.format(Text.get("ALERT_COINS_EARNED_FREE"), coinsEarned), StyleHelper.SUCCESS, (ViewGroup)activity.findViewById(R.id.croutonview));
         }
     }
 

@@ -167,7 +167,7 @@ public class ShopActivity extends Activity {
 
     public void advertWatched() {
         Statistic.addCurrency(Constants.CURRENCY_ADVERT);
-        Crouton.showText(this, String.format(Text.get("ALERT_COINS_EARNED_FREE"), Constants.CURRENCY_ADVERT), StyleHelper.SUCCESS);
+        Crouton.showText(this, String.format(Text.get("ALERT_COINS_EARNED_FREE"), Constants.CURRENCY_ADVERT), StyleHelper.SUCCESS, (ViewGroup)findViewById(R.id.croutonview));
 
         populateText();
     }

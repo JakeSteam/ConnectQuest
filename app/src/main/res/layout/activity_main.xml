@@ -84,4 +84,12 @@
             android:background="@drawable/ui_panel_blue"
             android:onClick="openSettings"/>
     </android.support.percent.PercentRelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/croutonview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+    </LinearLayout>
 </android.support.percent.PercentRelativeLayout>

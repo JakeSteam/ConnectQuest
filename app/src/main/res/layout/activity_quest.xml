@@ -93,4 +93,11 @@
         android:layout_marginTop="-5dp"
         android:layout_marginRight="-5dp"
         android:background="@drawable/ui_panel_grey"/>
+    <LinearLayout
+        android:id="@+id/croutonview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+    </LinearLayout>
 </android.support.percent.PercentRelativeLayout>

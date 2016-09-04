@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -128,7 +129,7 @@ public class MainActivity extends Activity implements
     }
 
     public void onQuestCompleted(Quest quest) {
-        Crouton.showText(this, GooglePlayHelper.CompleteQuest(quest), StyleHelper.SUCCESS);
+        Crouton.showText(this, GooglePlayHelper.CompleteQuest(quest), StyleHelper.SUCCESS, (ViewGroup)findViewById(R.id.croutonview));
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -136,8 +137,10 @@ public class MainActivity extends Activity implements
     }
 
     public void openStory(View view) {
-        Intent intent = new Intent(this, StoryActivity.class);
-        startActivity(intent);
+        /*Intent intent = new Intent(this, StoryActivity.class);
+        startActivity(intent);*/
+
+        Crouton.showText(this, "Please god, please.3 Pleaefsaefasef asf asf af .3 Please god, please.3 Please god, please.3Please god, please.3Please god, please.3Please god, please.3", StyleHelper.SUCCESS, (ViewGroup)findViewById(R.id.croutonview));
     }
 
     public void openCreator(View view) {

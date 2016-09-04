@@ -94,5 +94,11 @@
             android:stretchColumns="*"/>
     </ScrollView>
 
-
+    <LinearLayout
+        android:id="@+id/croutonview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+    </LinearLayout>
 </android.support.percent.PercentRelativeLayout>

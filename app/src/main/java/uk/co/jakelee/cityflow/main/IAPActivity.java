@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
@@ -48,7 +49,7 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
             pack1.setPurchased(true);
             pack1.save();
 
-            Crouton.showText(this, "Restored pack 2 purchase!", StyleHelper.SUCCESS);
+            Crouton.showText(this, "Restored pack 2 purchase!", StyleHelper.SUCCESS, (ViewGroup)findViewById(R.id.croutonview));
         }
     }
 
@@ -59,13 +60,13 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
             pack1.setPurchased(true);
             pack1.save();
 
-            Crouton.showText(this, "Purchased pack 1!", StyleHelper.SUCCESS);
+            Crouton.showText(this, "Purchased pack 1!", StyleHelper.SUCCESS, (ViewGroup)findViewById(R.id.croutonview));
         }
     }
 
     @Override
     public void onBillingError(int errorCode, Throwable error) {
-        Crouton.showText(this, "Uh oh, some kind of error occurred. Try again later?", StyleHelper.ERROR);
+        Crouton.showText(this, "Uh oh, some kind of error occurred. Try again later?", StyleHelper.ERROR, (ViewGroup)findViewById(R.id.croutonview));
     }
 
     @Override
@@ -82,7 +83,7 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
         if (canBuyIAPs && iapInfo != null) {
             bp.purchase(this, iapInfo.productId);
         } else {
-            Crouton.showText(this, "Uh oh, some kind of error occurred. Try again later?", StyleHelper.ERROR);
+            Crouton.showText(this, "Uh oh, some kind of error occurred. Try again later?", StyleHelper.ERROR, (ViewGroup)findViewById(R.id.croutonview));
         }
     }
 

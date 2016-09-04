@@ -129,4 +129,11 @@
             android:layout_alignParentBottom="true"
             android:background="@drawable/ui_button_grey"/>
     </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/croutonview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+    </LinearLayout>
 </RelativeLayout>
