@@ -48,6 +48,7 @@ public class Constants {
     public static final String EVENT_IMPORT_PUZZLE = "CgkIgrzuo64REAIQCA";
     public static final String EVENT_EARN_COINS = "CgkIgrzuo64REAIQLQ";
     public static final String EVENT_BUY_BOOST = "CgkIgrzuo64REAIQLg";
+    public static final String EVENT_WATCH_ADVERT = "CgkIgrzuo64REAIQLw";
 
     public static final String LEADERBOARD_PUZZLES_COMPLETED = "CgkIgrzuo64REAIQDg";
     public static final String LEADERBOARD_PUZZLES_FULLY_COMPLETED = "CgkIgrzuo64REAIQDw";
