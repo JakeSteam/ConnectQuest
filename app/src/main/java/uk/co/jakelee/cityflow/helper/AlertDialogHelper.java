@@ -7,14 +7,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.text.InputFilter;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import de.keyboardsurfer.android.widget.crouton.Crouton;
 import uk.co.jakelee.cityflow.BuildConfig;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.main.CreatorActivity;
@@ -95,9 +93,9 @@ public class AlertDialogHelper {
                 //String supportCode = EncryptHelper.encode("1571111687000|UPDATE setting SET boolean_value = 1");
                 String supportCode = supportCodeBox.getText().toString().trim();
                 if (EncryptHelper.applyCode(supportCode)) {
-                    Crouton.showText(activity, Text.get("SUCCESS_SUPPORT_CODE"), StyleHelper.SUCCESS, (ViewGroup)activity.findViewById(R.id.croutonview));
+                    AlertHelper.success(activity, Text.get("SUCCESS_SUPPORT_CODE"));
                 } else {
-                    Crouton.showText(activity, Text.get("ERROR_SUPPORT_CODE_INVALID"), StyleHelper.ERROR, (ViewGroup)activity.findViewById(R.id.croutonview));
+                    AlertHelper.error(activity, Text.get("ERROR_SUPPORT_CODE_INVALID"));
                 }
             }
         });

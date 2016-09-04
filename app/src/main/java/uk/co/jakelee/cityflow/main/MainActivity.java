@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -17,14 +16,13 @@ import com.google.android.gms.games.quest.Quest;
 import com.google.android.gms.games.quest.QuestUpdateListener;
 import com.tapjoy.Tapjoy;
 
-import de.keyboardsurfer.android.widget.crouton.Crouton;
 import hotchemi.android.rate.AppRate;
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DatabaseHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
-import uk.co.jakelee.cityflow.helper.StyleHelper;
 import uk.co.jakelee.cityflow.model.Setting;
 
 public class MainActivity extends Activity implements
@@ -129,7 +127,7 @@ public class MainActivity extends Activity implements
     }
 
     public void onQuestCompleted(Quest quest) {
-        Crouton.showText(this, GooglePlayHelper.CompleteQuest(quest), StyleHelper.SUCCESS, (ViewGroup)findViewById(R.id.croutonview));
+        AlertHelper.success(this, GooglePlayHelper.CompleteQuest(quest));
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {

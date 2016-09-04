@@ -4,18 +4,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.SkuDetails;
 import com.anjlab.android.iab.v3.TransactionDetails;
 
-import de.keyboardsurfer.android.widget.crouton.Crouton;
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
-import uk.co.jakelee.cityflow.helper.StyleHelper;
 import uk.co.jakelee.cityflow.model.Pack;
 
 public class IAPActivity extends Activity implements BillingProcessor.IBillingHandler {
@@ -49,7 +47,7 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
             pack1.setPurchased(true);
             pack1.save();
 
-            Crouton.showText(this, "Restored pack 2 purchase!", StyleHelper.SUCCESS, (ViewGroup)findViewById(R.id.croutonview));
+            AlertHelper.success(this, "Maybe restored pack 2?");
         }
     }
 
@@ -60,13 +58,13 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
             pack1.setPurchased(true);
             pack1.save();
 
-            Crouton.showText(this, "Purchased pack 1!", StyleHelper.SUCCESS, (ViewGroup)findViewById(R.id.croutonview));
+            AlertHelper.success(this, "Maybe purchased pack 1?");
         }
     }
 
     @Override
     public void onBillingError(int errorCode, Throwable error) {
-        Crouton.showText(this, "Uh oh, some kind of error occurred. Try again later?", StyleHelper.ERROR, (ViewGroup)findViewById(R.id.croutonview));
+        AlertHelper.error(this, "Uh oh, some kind of error occurred. Try again later?");
     }
 
     @Override
@@ -83,7 +81,7 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
         if (canBuyIAPs && iapInfo != null) {
             bp.purchase(this, iapInfo.productId);
         } else {
-            Crouton.showText(this, "Uh oh, some kind of error occurred. Try again later?", StyleHelper.ERROR, (ViewGroup)findViewById(R.id.croutonview));
+            AlertHelper.error(this, "Uh oh, some kind of error occurred. Try again later?");
         }
     }
 

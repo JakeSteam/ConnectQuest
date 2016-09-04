@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Pair;
-import android.view.ViewGroup;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -29,7 +28,6 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
 
-import de.keyboardsurfer.android.widget.crouton.Crouton;
 import uk.co.jakelee.cityflow.BuildConfig;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.main.MainActivity;
@@ -194,7 +192,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                     callingActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Crouton.showText(callingActivity, Text.get("ALERT_SAVE_CONFLICT"), StyleHelper.ERROR, (ViewGroup)callingActivity.findViewById(R.id.croutonview));
+                            AlertHelper.error(callingActivity, Text.get("ALERT_SAVE_CONFLICT"));
                         }
                     });
 
@@ -224,7 +222,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                     callingActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Crouton.showText(callingActivity, String.format(ErrorHelper.get(ErrorHelper.Error.CLOUD_ERROR), e.getMessage()), StyleHelper.ERROR, (ViewGroup)callingActivity.findViewById(R.id.croutonview));
+                            AlertHelper.error(callingActivity, String.format(ErrorHelper.get(ErrorHelper.Error.CLOUD_ERROR), e.getMessage()));
                         }
                     });
                 }
@@ -244,7 +242,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             @Override
             public void run() {
                 if (!checkIsImprovement) {
-                    Crouton.showText(callingActivity, Text.get("ALERT_CLOUD_LOADING"), StyleHelper.INFO, (ViewGroup)callingActivity.findViewById(R.id.croutonview));
+                    AlertHelper.info(callingActivity, Text.get("ALERT_CLOUD_LOADING"));
                 }
             }
         });
@@ -274,7 +272,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         callingActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Crouton.showText(callingActivity, Text.get("ALERT_CLOUD_SAVING"), StyleHelper.INFO, (ViewGroup)callingActivity.findViewById(R.id.croutonview));
+                AlertHelper.info(callingActivity, Text.get("ALERT_CLOUD_SAVING"));
             }
         });
 
@@ -300,7 +298,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                 callingActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Crouton.showText(callingActivity, Text.get("ALERT_CLOUD_SAVED"), StyleHelper.SUCCESS, (ViewGroup)callingActivity.findViewById(R.id.croutonview));
+                        AlertHelper.success(callingActivity, Text.get("ALERT_CLOUD_SAVED"));
                     }
                 });
             }
@@ -416,7 +414,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             callingActivity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Crouton.showText(callingActivity, Text.get("ALERT_CLOUD_LOADED"), StyleHelper.SUCCESS, (ViewGroup)callingActivity.findViewById(R.id.croutonview));
+                    AlertHelper.success(callingActivity, Text.get("ALERT_CLOUD_LOADED"));
                 }
             });
         }

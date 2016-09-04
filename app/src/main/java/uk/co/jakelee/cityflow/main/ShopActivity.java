@@ -19,13 +19,12 @@ import com.tapjoy.Tapjoy;
 
 import java.util.List;
 
-import de.keyboardsurfer.android.widget.crouton.Crouton;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AdvertHelper;
+import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
-import uk.co.jakelee.cityflow.helper.StyleHelper;
 import uk.co.jakelee.cityflow.model.ShopCategory;
 import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Statistic;
@@ -167,7 +166,7 @@ public class ShopActivity extends Activity {
 
     public void advertWatched() {
         Statistic.addCurrency(Constants.CURRENCY_ADVERT);
-        Crouton.showText(this, String.format(Text.get("ALERT_COINS_EARNED_FREE"), Constants.CURRENCY_ADVERT), StyleHelper.SUCCESS, (ViewGroup)findViewById(R.id.croutonview));
+        AlertHelper.success(this, String.format(Text.get("ALERT_COINS_EARNED_FREE"), Constants.CURRENCY_ADVERT));
 
         populateText();
     }

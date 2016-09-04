@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ff99cc00"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:layout_gravity="bottom"
+    android:layout_alignParentBottom="true">
+
+    <uk.co.jakelee.cityflow.components.TextViewFont
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="#fff" />
+
+</LinearLayout>

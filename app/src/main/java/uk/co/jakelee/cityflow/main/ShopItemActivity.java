@@ -4,14 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
-import de.keyboardsurfer.android.widget.crouton.Crouton;
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.ErrorHelper;
-import uk.co.jakelee.cityflow.helper.StyleHelper;
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Statistic;
@@ -57,13 +55,12 @@ public class ShopItemActivity extends Activity {
     public void buyItem(View view) {
         ErrorHelper.Error purchaseResult = shopItem.canPurchase();
         if (purchaseResult != ErrorHelper.Error.NO_ERROR) {
-            Crouton.showText(this, ErrorHelper.get(purchaseResult), StyleHelper.ERROR, (ViewGroup)findViewById(R.id.croutonview));
+            AlertHelper.error(this, ErrorHelper.get(purchaseResult));
         } else {
             shopItem.purchase();
-            Crouton.showText(this, String.format(Text.get("SHOP_ITEM_PURCHASED"),
-                        shopItem.getName(),
-                        shopItem.getPrice()
-                ), StyleHelper.SUCCESS, (ViewGroup)findViewById(R.id.croutonview));
+            AlertHelper.success(this, String.format(Text.get("SHOP_ITEM_PURCHASED"),
+                    shopItem.getName(),
+                    shopItem.getPrice()));
         }
 
         shopItem = ShopItem.get(shopItem.getItemId());
