@@ -20,7 +20,7 @@ public class AnimationHelper {
     }
 
     public static TranslateAnimation moveNorthEast(DisplayMetrics metrics, int duration) {
-        int yOffset = RandomHelper.getNumber(metrics.heightPixels / 4, metrics.heightPixels);
+        int yOffset = RandomHelper.getNumber(100, metrics.heightPixels);
         return moveNorthEast(metrics, duration, 0, yOffset);
     }
 

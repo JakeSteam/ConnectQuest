@@ -191,8 +191,8 @@ public class DisplayHelper {
         return context.getResources().getIdentifier("item_" + item, "drawable", context.getPackageName());
     }
 
-    public int getCarDrawableID(int carNumber, String direction) {
-        return context.getResources().getIdentifier("car_" + direction + "_" + carNumber, "drawable", context.getPackageName());
+    public int getCarDrawableID(int carNumber, int rotation) {
+        return context.getResources().getIdentifier("car_" + carNumber + "_" + rotation, "drawable", context.getPackageName());
     }
 
     public Drawable createDrawable(int drawableId, int width, int height) {
@@ -212,10 +212,10 @@ public class DisplayHelper {
         return textView;
     }
 
-    public ImageView createCarImageview(String direction) {
-        int carDrawable = getCarDrawableID(RandomHelper.getNumber(1, Constants.NUMBER_CARS), direction);
+    public ImageView createCarImageview(int rotation) {
+        int carDrawable = getCarDrawableID(RandomHelper.getNumber(1, Constants.NUMBER_CARS), rotation);
         ImageView imageview = new ImageView(context);
-        imageview.setImageDrawable(createDrawable(carDrawable, 16, 12));
+        imageview.setImageDrawable(createDrawable(carDrawable, 20, 20));
         return imageview;
     }
 }

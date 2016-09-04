@@ -89,7 +89,7 @@ public class MainActivity extends Activity implements
 
         for (int i = 0; i <= 4; i++) {
             int duration = RandomHelper.getNumber(2000, 20000);
-            ImageView carView = dh.createCarImageview("ne");
+            ImageView carView = dh.createCarImageview(Constants.ROTATION_NORTH);
             container.addView(carView);
             carView.startAnimation(AnimationHelper.moveNorthEast(metrics, duration));
         }
