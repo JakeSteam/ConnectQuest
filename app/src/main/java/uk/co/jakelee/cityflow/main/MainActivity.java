@@ -87,11 +87,18 @@ public class MainActivity extends Activity implements
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        for (int i = 0; i <= 4; i++) {
+        for (int i = 0; i <= 2; i++) {
             int duration = RandomHelper.getNumber(2000, 20000);
             ImageView carView = dh.createCarImageview(Constants.ROTATION_NORTH);
             container.addView(carView);
-            carView.startAnimation(AnimationHelper.moveNorthEast(metrics, duration));
+            carView.startAnimation(AnimationHelper.move(metrics, Constants.ROTATION_NORTH, duration));
+        }
+
+        for (int i = 0; i <= 2; i++) {
+            int duration = RandomHelper.getNumber(2000, 20000);
+            ImageView carView = dh.createCarImageview(Constants.ROTATION_WEST);
+            container.addView(carView);
+            carView.startAnimation(AnimationHelper.move(metrics, Constants.ROTATION_WEST, duration));
         }
     }
 

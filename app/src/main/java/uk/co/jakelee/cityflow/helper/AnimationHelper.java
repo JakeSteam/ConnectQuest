@@ -19,23 +19,23 @@ public class AnimationHelper {
         return southEast;
     }
 
-    public static TranslateAnimation moveNorthEast(DisplayMetrics metrics, int duration) {
+    public static TranslateAnimation move(DisplayMetrics metrics, int rotation, int duration) {
         int yOffset = RandomHelper.getNumber(100, metrics.heightPixels);
-        return moveNorthEast(metrics, duration, 0, yOffset);
+        return move(metrics, rotation, duration, 0, yOffset);
     }
 
-    public static TranslateAnimation moveNorthEast(DisplayMetrics metrics, int duration, int xOffset, int yOffset) {
+    public static TranslateAnimation move(DisplayMetrics metrics, int rotation, int duration, int xOffset, int yOffset) {
         float ratio = ((float)Constants.TILE_HEIGHT) / ((float)Constants.TILE_WIDTH);
 
-        TranslateAnimation southEast = new TranslateAnimation(
-                TranslateAnimation.ABSOLUTE, xOffset,
-                TranslateAnimation.ABSOLUTE, xOffset + metrics.widthPixels,
+        TranslateAnimation northEast = new TranslateAnimation(
+                TranslateAnimation.ABSOLUTE, (rotation == Constants.ROTATION_WEST ? xOffset + metrics.widthPixels : xOffset),
+                TranslateAnimation.ABSOLUTE, (rotation == Constants.ROTATION_NORTH ? xOffset + metrics.widthPixels : xOffset),
                 TranslateAnimation.ABSOLUTE, yOffset,
                 TranslateAnimation.ABSOLUTE, yOffset - (metrics.widthPixels * ratio));
-        southEast.setDuration(duration);
-        southEast.setFillAfter(false);
-        southEast.setInterpolator(new LinearInterpolator());
-        southEast.setRepeatCount(Animation.INFINITE);
-        return southEast;
+        northEast.setDuration(duration);
+        northEast.setFillAfter(false);
+        northEast.setInterpolator(new LinearInterpolator());
+        northEast.setRepeatCount(Animation.INFINITE);
+        return northEast;
     }
 }
