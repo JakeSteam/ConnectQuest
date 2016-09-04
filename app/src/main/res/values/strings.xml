@@ -14,4 +14,6 @@
     <string name="icon_zoomout">&#xf010;</string>
     <string name="icon_save">&#xf0c7;</string>
     <string name="icon_picktile">&#xf044;</string>
+    <string name="icon_settings">&#xf085;</string>
+    <string name="icon_quests">&#xf128;</string>
 </resources>

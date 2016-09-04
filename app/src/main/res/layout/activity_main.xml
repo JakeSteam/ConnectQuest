@@ -20,16 +20,44 @@
             android:background="@drawable/main_background_repeat"/>
 
         <ImageView
-            android:id="@+id/animatedCar1"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/car_1"/>
+            android:id="@+id/carSouthEast1"
+            android:layout_marginTop="-20dp"
+            android:layout_marginLeft="-20dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/car_se_1"/>
 
         <ImageView
-            android:id="@+id/animatedCar2"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/car_2"/>
+            android:id="@+id/carSouthEast2"
+            android:layout_marginTop="-20dp"
+            android:layout_marginLeft="-20dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/car_se_2"/>
+
+        <ImageView
+            android:id="@+id/carSouthEast3"
+            android:layout_marginTop="-20dp"
+            android:layout_marginLeft="-20dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/car_se_3"/>
+
+        <ImageView
+            android:id="@+id/carNorthEast1"
+            android:layout_marginTop="-20dp"
+            android:layout_marginLeft="-20dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/car_ne_1"/>
+
+        <ImageView
+            android:id="@+id/carNorthEast2"
+            android:layout_marginTop="-20dp"
+            android:layout_marginLeft="-20dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/car_ne_2"/>
 
         <ImageView
             android:id="@+id/mainLogo"
@@ -65,22 +93,30 @@
             android:src="@drawable/main_shop"
             android:onClick="openShop"/>
 
-        <ImageView
+        <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/mainQuests"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
-            android:src="@drawable/tile_1_3"
+            android:text="@string/icon_quests"
+            android:textSize="35sp"
+            android:textColor="@color/black"
+            android:padding="12dp"
+            android:background="@drawable/ui_panel_blue"
             android:onClick="openSettings"/>
 
-        <ImageView
+        <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/mainSettings"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:src="@drawable/tile_0_4"
+            android:text="@string/icon_settings"
+            android:textSize="35sp"
+            android:textColor="@color/black"
+            android:padding="12dp"
+            android:background="@drawable/ui_panel_blue"
             android:onClick="openSettings"/>
     </android.support.percent.PercentRelativeLayout>
 </android.support.percent.PercentRelativeLayout>

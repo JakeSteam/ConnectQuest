@@ -76,8 +76,11 @@ public class MainActivity extends Activity implements
     }
 
     private void createAnimations() {
-        findViewById(R.id.animatedCar1).startAnimation(AnimationHelper.topLeftToBottomRight());
-        findViewById(R.id.animatedCar2).startAnimation(AnimationHelper.midLeftToBottomMiddle());
+        findViewById(R.id.carSouthEast1).startAnimation(AnimationHelper.moveSouthEast(0, 23));
+        findViewById(R.id.carSouthEast2).startAnimation(AnimationHelper.moveSouthEast(470, 20));
+        findViewById(R.id.carSouthEast3).startAnimation(AnimationHelper.moveSouthEast(1000, 35));
+        findViewById(R.id.carNorthEast1).startAnimation(AnimationHelper.moveNorthEast(840, 18));
+        findViewById(R.id.carNorthEast2).startAnimation(AnimationHelper.moveNorthEast(1300, 27));
     }
 
     @Override
