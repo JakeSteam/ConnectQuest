@@ -180,4 +180,10 @@ public class ShopItem extends SugarRecord {
         }
         return ErrorHelper.Error.NO_ERROR;
     }
+
+    public static boolean isPurchased(int itemId) {
+        ShopItem item = Select.from(ShopItem.class).where(
+                Condition.prop("item_id").eq(itemId)).first();
+        return !(item == null || item.getPurchases() <= 0);
+    }
 }

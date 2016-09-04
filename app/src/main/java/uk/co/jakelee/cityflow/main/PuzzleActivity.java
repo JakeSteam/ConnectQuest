@@ -369,6 +369,13 @@ public class PuzzleActivity extends Activity {
         }
     }
 
+    public void openShop(View view) {
+        this.onStop();
+        this.finish();
+        Intent intent = new Intent(this, ShopActivity.class);
+        startActivity(intent);
+    }
+
     public void closePuzzle(View v) {
         this.finish();
     }

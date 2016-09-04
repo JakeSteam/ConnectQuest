@@ -86,8 +86,8 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_SAVED", "Successfully saved game to cloud!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_LOADING", "Loading cloud save..."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_LOADED", "Successfully loaded game from cloud!"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_COINS_EARNED", "Earned %1$d coins!"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_COINS_EARNED_FREE", "Earned %1$d free coins, enjoy!"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_COINS_EARNED", "Earned %1$d coin(s)!"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_COINS_EARNED_FREE", "Earned %1$d free coin(s), enjoy!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SAVE_CONFLICT", "Save conflict detected! Currently resolving, this might take a few seconds, please be patient..."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SETTING_TOGGLE_ON", "Toggled %1$s on!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SETTING_TOGGLE_OFF", "Toggled %1$s off!"));
@@ -190,6 +190,8 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_18_DESC", "Purchase move reduction boosts in massive bulk, saving 20%!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_19_NAME", "100x Shuffle Reduction"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_19_DESC", "Purchase shuffle board boosts in massive bulk, saving 20%!"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_20_NAME", "Main Menu Cars"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_20_DESC", "Choose how many cars appear on the main menu, between 0 and 75!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "METRIC_TILES_EARNED", "Tiles Earned"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "METRIC_BEST_TIME", "Best Time"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "METRIC_BEST_MOVES", "Best Moves"));
@@ -236,6 +238,8 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_5_NAME", "Zen Mode"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_6_NAME", "Hide Unstocked Boosts"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_7_NAME", "Player Name"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_8_NAME", "Google Play Sign In"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_9_NAME", "Main Menu Cars"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_1_NAME", "Boosts"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_2_NAME", "Upgrades"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_3_NAME", "Tiles"));
@@ -418,6 +422,7 @@ public class DatabaseHelper {
             settings.add(new Setting(Constants.SETTING_HIDE_UNSTOCKED_BOOSTS, false));
             settings.add(new Setting(Constants.SETTING_PLAYER_NAME, "New Player"));
             settings.add(new Setting(Constants.SETTING_SIGN_IN, true));
+            settings.add(new Setting(Constants.SETTING_MAX_CARS, 5, 0, 75));
         Setting.saveInTx(settings);
     }
 
@@ -457,6 +462,7 @@ public class DatabaseHelper {
             shopItems.add(new ShopItem(Constants.ITEM_TILE_2, Constants.STORE_CATEGORY_TILES, 1500, 1, false));
             shopItems.add(new ShopItem(Constants.ITEM_TILE_3, Constants.STORE_CATEGORY_TILES, 2000, 1, false));
             shopItems.add(new ShopItem(Constants.ITEM_UNLOCK_PACK, Constants.STORE_CATEGORY_MISC, 5000, 0, false));
+            shopItems.add(new ShopItem(Constants.ITEM_MAX_CARS, Constants.STORE_CATEGORY_MISC, 2000, 1, false));
         ShopItem.saveInTx(shopItems);
     }
 

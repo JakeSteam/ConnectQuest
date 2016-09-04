@@ -19,6 +19,7 @@ import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.helper.StyleHelper;
 import uk.co.jakelee.cityflow.model.Setting;
+import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class SettingsActivity extends Activity {
@@ -35,8 +36,18 @@ public class SettingsActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
+        updateVisibilities();
         populateText();
         populateSettings();
+    }
+
+    public void updateVisibilities() {
+        boolean isConnected = GooglePlayHelper.IsConnected();
+        findViewById(R.id.signInButton).setVisibility(isConnected ? View.GONE : View.VISIBLE);
+        findViewById(R.id.signOutButton).setVisibility(isConnected ? View.VISIBLE : View.GONE);
+        findViewById(R.id.googlePlayFeatureButtons).setVisibility(isConnected ? View.VISIBLE : View.GONE);
+
+        findViewById(R.id.maxCarsContainer).setVisibility(ShopItem.isPurchased(Constants.ITEM_MAX_CARS) ? View.VISIBLE : View.GONE);
     }
 
     public void populateText() {
@@ -50,6 +61,7 @@ public class SettingsActivity extends Activity {
         ((TextView) findViewById(R.id.playerNameText)).setText(Text.get("SETTING_7_NAME"));
         ((TextView) findViewById(R.id.minZoomText)).setText(Text.get("SETTING_3_NAME"));
         ((TextView) findViewById(R.id.maxZoomText)).setText(Text.get("SETTING_4_NAME"));
+        ((TextView) findViewById(R.id.maxCarsText)).setText(Text.get("SETTING_9_NAME"));
 
         ((TextView) findViewById(R.id.settingSectionGoogle)).setText(Text.get("SETTING_SECTION_GOOGLE"));
         ((TextView) findViewById(R.id.signInButton)).setText(Text.get("GOOGLE_SIGN_IN"));
@@ -86,18 +98,13 @@ public class SettingsActivity extends Activity {
         playerName.setText(Setting.getString(Constants.SETTING_PLAYER_NAME));
 
         TextView minZoom = (TextView) findViewById(R.id.minZoomButton);
-        minZoom.setText(String.format("%.2f",
-                Setting.getFloat(Constants.SETTING_MIN_ZOOM)));
+        minZoom.setText(String.format("%.2f", Setting.getFloat(Constants.SETTING_MIN_ZOOM)));
 
         TextView maxZoom = (TextView) findViewById(R.id.maxZoomButton);
-        maxZoom.setText(String.format("%.2f",
-                Setting.getFloat(Constants.SETTING_MAX_ZOOM)));
+        maxZoom.setText(String.format("%.2f", Setting.getFloat(Constants.SETTING_MAX_ZOOM)));
 
-        // Google Play settings
-        boolean isConnected = GooglePlayHelper.IsConnected();
-        findViewById(R.id.signInButton).setVisibility(isConnected ? View.GONE : View.VISIBLE);
-        findViewById(R.id.signOutButton).setVisibility(isConnected ? View.VISIBLE : View.GONE);
-        findViewById(R.id.googlePlayFeatureButtons).setVisibility(isConnected ? View.VISIBLE : View.GONE);
+        TextView maxCars = (TextView) findViewById(R.id.maxCarsButton);
+        maxCars.setText(Integer.toString(Setting.getInt(Constants.SETTING_MAX_CARS)));
     }
 
     public void toggleSetting(View v) {
@@ -137,8 +144,12 @@ public class SettingsActivity extends Activity {
         }
     }
 
-    public void changeSlider(View v) {
-        AlertDialogHelper.changeSettingSlider(this, Integer.parseInt((String)v.getTag()));
+    public void changeFloat(View v) {
+        AlertDialogHelper.changeSettingFloat(this, Integer.parseInt((String)v.getTag()));
+    }
+
+    public void changeInt(View v) {
+        AlertDialogHelper.changeSettingInt(this, Integer.parseInt((String)v.getTag()));
     }
 
     public void openSupportCode(View v) {

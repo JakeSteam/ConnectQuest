@@ -441,6 +441,18 @@
                     android:gravity="center_vertical"
                     android:textSize="18sp"
                     android:textColor="@color/white"/>
+                <uk.co.jakelee.cityflow.components.TextAwesome
+                    android:id="@+id/shopButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:background="@drawable/ui_panel_blue"
+                    android:gravity="center_horizontal"
+                    android:textSize="26sp"
+                    android:text="@string/icon_shop"
+                    android:padding="10dp"
+                    android:layout_margin="6dp"
+                    android:onClick="openShop"/>
             </LinearLayout>
         </RelativeLayout>
 

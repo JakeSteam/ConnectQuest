@@ -238,7 +238,7 @@ public class AlertDialogHelper {
         dialog.show();
     }
 
-    public static void changeSettingSlider(final SettingsActivity activity, int settingId) {
+    public static void changeSettingFloat(final SettingsActivity activity, int settingId) {
         final Setting setting = Setting.get(settingId);
 
         final Dialog dialog = new Dialog(activity);
@@ -290,15 +290,66 @@ public class AlertDialogHelper {
         dialog.show();
     }
 
+    public static void changeSettingInt(final SettingsActivity activity, int settingId) {
+        final Setting setting = Setting.get(settingId);
+
+        final Dialog dialog = new Dialog(activity);
+        dialog.setContentView(R.layout.custom_dialog_slider);
+        dialog.setTitle(String.format(Text.get("DIALOG_CHANGE_SLIDER"), setting.getName()));
+        dialog.setCancelable(true);
+
+        ((TextView)dialog.findViewById(R.id.close)).setText(Text.get("DIALOG_BUTTON_CLOSE"));
+        ((TextView)dialog.findViewById(R.id.saveValue)).setText(Text.get("DIALOG_BUTTON_SAVE"));
+        ((TextView)dialog.findViewById(R.id.settingName)).setText(setting.getName());
+
+        TextView minValue = (TextView)dialog.findViewById(R.id.minValue);
+        TextView maxValue = (TextView)dialog.findViewById(R.id.maxValue);
+        final TextView currentValue = (TextView)dialog.findViewById(R.id.currentValue);
+
+        minValue.setText(Integer.toString(setting.getIntMin()));
+        maxValue.setText(Integer.toString(setting.getIntMax()));
+        currentValue.setText(Integer.toString(setting.getIntValue()));
+
+        final SeekBar seekbar = (SeekBar) dialog.findViewById(R.id.seekbar);
+        seekbar.setProgress(getProgressFromFloat((float) setting.getIntValue(), (float) setting.getIntMin(), (float) setting.getIntMax()));
+        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
+            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
+                currentValue.setText(Integer.toString(getIntFromProgress(seekbar.getProgress(), setting.getIntMin(), setting.getIntMax())));
+            }
+        });
+
+        dialog.findViewById(R.id.saveValue).setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                int adjustedValue = getIntFromProgress(seekbar.getProgress(), setting.getIntMin(), setting.getIntMax());
+                setting.setIntValue(adjustedValue);
+                setting.save();
+                dialog.dismiss();
+                activity.populateSettings();
+            }
+        });
+
+        dialog.findViewById(R.id.close).setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
     public static float getFloatFromProgress(int value, float min, float max) {
+        return min + (((max - min) * value) / 100);
+    }
+
+    public static int getIntFromProgress(int value, int min, int max) {
         return min + (((max - min) * value) / 100);
     }
 
     public static int getProgressFromFloat(float value, float min, float max) {
         return (int) Math.ceil(((value - min) / (max - min)) * 100);
-    }
-
-    public static int getIntFromProgress(int value, int min, int max) {
-        return min + (((max - min) * value) / 100);
     }
 }

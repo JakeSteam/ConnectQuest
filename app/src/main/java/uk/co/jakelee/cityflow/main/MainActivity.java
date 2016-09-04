@@ -22,7 +22,6 @@ import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DatabaseHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
-import uk.co.jakelee.cityflow.helper.RandomHelper;
 import uk.co.jakelee.cityflow.model.Setting;
 
 public class MainActivity extends Activity implements
@@ -76,8 +75,19 @@ public class MainActivity extends Activity implements
         }
 
         Tapjoy.onActivityStart(this);
-
         createAnimations();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        RelativeLayout container = (RelativeLayout) findViewById(R.id.carContainer);
+        int numCars = container.getChildCount();
+        for (int i = 0; i < numCars; i++) {
+            container.getChildAt(i).clearAnimation();
+        }
+        container.removeAllViews();
     }
 
     private void createAnimations() {
@@ -85,9 +95,9 @@ public class MainActivity extends Activity implements
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        for (int i = 0; i <= 5; i++) {
-            int direction = RandomHelper.getNumber(Constants.ROTATION_MIN, Constants.ROTATION_MAX);
-            dh.createCarAnimation(container, metrics, direction);
+        int numCars = Setting.getInt(Constants.SETTING_MAX_CARS);
+        for (int i = 0; i < numCars; i++) {
+            dh.createCarAnimation(container, metrics);
         }
     }
 

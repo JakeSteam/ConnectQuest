@@ -19,6 +19,8 @@ public class Constants {
     public static final int PUZZLE_Y_MIN = 1;
     public static final int PUZZLE_Y_MAX = 10;
     public static final int NUMBER_CARS = 8;
+    public static final int CARS_MIN_TIME = 8000;
+    public static final int CARS_MAX_TIME = 35000;
     public static final int PUZZLE_HEIGHT = 76;
     public static final int PUZZLE_CUSTOM_ID_OFFSET = 10000;
     public static final int PUZZLE_NAME_MAX_LENGTH = 80;
@@ -87,6 +89,7 @@ public class Constants {
     public static final int ITEM_BOOST_TIME_100 = 17;
     public static final int ITEM_BOOST_MOVES_100 = 18;
     public static final int ITEM_BOOST_SHUFFLE_100 = 19;
+    public static final int ITEM_MAX_CARS = 20;
     public static final int HEIGHT_NO_CONNECT = 0;
     public static final int HEIGHT_LOW = 1;
     public static final int HEIGHT_NORMAL = 2;
@@ -107,6 +110,7 @@ public class Constants {
     public static final int SETTING_HIDE_UNSTOCKED_BOOSTS = 6;
     public static final int SETTING_PLAYER_NAME = 7;
     public static final int SETTING_SIGN_IN = 8;
+    public static final int SETTING_MAX_CARS = 9;
     public static final int SKYSCRAPER_COMPLETE = 1;
     public static final int SKYSCRAPER_TIME = 2;
     public static final int SKYSCRAPER_MOVES = 3;

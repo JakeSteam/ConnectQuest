@@ -22,10 +22,10 @@ public class AnimationHelper {
         boolean goingDown = rotation == Constants.ROTATION_SOUTH || rotation == Constants.ROTATION_EAST;
 
         TranslateAnimation northEast = new TranslateAnimation(
-                TranslateAnimation.ABSOLUTE, -20 + (goingRight ? xOffset : xOffset + metrics.widthPixels),
-                TranslateAnimation.ABSOLUTE, 20 + (!goingRight ? xOffset : xOffset + metrics.widthPixels),
-                TranslateAnimation.ABSOLUTE, -20 + (!goingDown ? yOffset : yOffset - (metrics.widthPixels * ratio)),
-                TranslateAnimation.ABSOLUTE, 20 + (goingDown ? yOffset : yOffset - (metrics.widthPixels * ratio)));
+                TranslateAnimation.ABSOLUTE, goingRight ? xOffset : xOffset + metrics.widthPixels,
+                TranslateAnimation.ABSOLUTE, !goingRight ? xOffset : xOffset + metrics.widthPixels,
+                TranslateAnimation.ABSOLUTE, !goingDown ? yOffset : yOffset - (metrics.widthPixels * ratio),
+                TranslateAnimation.ABSOLUTE, goingDown ? yOffset : yOffset - (metrics.widthPixels * ratio));
         northEast.setDuration(duration);
         northEast.setFillAfter(false);
         northEast.setInterpolator(new LinearInterpolator());

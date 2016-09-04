@@ -219,8 +219,9 @@ public class DisplayHelper {
         return imageview;
     }
 
-    public void createCarAnimation(RelativeLayout container, DisplayMetrics metrics, int rotation) {
-        int duration = RandomHelper.getNumber(20000, 40000);
+    public void createCarAnimation(RelativeLayout container, DisplayMetrics metrics) {
+        int rotation = RandomHelper.getNumber(Constants.ROTATION_MIN, Constants.ROTATION_MAX);
+        int duration = RandomHelper.getNumber(Constants.CARS_MIN_TIME, Constants.CARS_MAX_TIME);
 
         ImageView carView = createCarImageview(rotation);
         container.addView(carView);

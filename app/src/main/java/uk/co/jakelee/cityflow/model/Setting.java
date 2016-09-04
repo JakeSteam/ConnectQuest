@@ -8,6 +8,8 @@ public class Setting extends SugarRecord {
     private int settingId;
     private boolean booleanValue;
     private int intValue;
+    private int intMin;
+    private int intMax;
     private float floatValue;
     private float floatMin;
     private float floatMax;
@@ -21,9 +23,11 @@ public class Setting extends SugarRecord {
         this.booleanValue = booleanValue;
     }
 
-    public Setting(int settingId, int intValue) {
+    public Setting(int settingId, int intValue, int intMin, int intMax) {
         this.settingId = settingId;
         this.intValue = intValue;
+        this.intMin = intMin;
+        this.intMax = intMax;
     }
 
     public Setting(int settingId, float floatValue, float floatMin, float floatMax) {
@@ -60,6 +64,22 @@ public class Setting extends SugarRecord {
 
     public void setIntValue(int intValue) {
         this.intValue = intValue;
+    }
+
+    public int getIntMin() {
+        return intMin;
+    }
+
+    public void setIntMin(int intMin) {
+        this.intMin = intMin;
+    }
+
+    public int getIntMax() {
+        return intMax;
+    }
+
+    public void setIntMax(int intMax) {
+        this.intMax = intMax;
     }
 
     public float getFloatValue() {
@@ -106,7 +126,7 @@ public class Setting extends SugarRecord {
                 Condition.prop("setting_id").eq(settingId)).first();
     }
 
-    public static float getInt(int settingId) {
+    public static int getInt(int settingId) {
         Setting setting = Select.from(Setting.class).where(
                 Condition.prop("setting_id").eq(settingId)).first();
 
