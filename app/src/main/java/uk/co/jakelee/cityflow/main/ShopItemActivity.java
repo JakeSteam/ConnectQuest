@@ -15,6 +15,7 @@ import uk.co.jakelee.cityflow.helper.StyleHelper;
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Statistic;
+import uk.co.jakelee.cityflow.model.Text;
 
 public class ShopItemActivity extends Activity {
     private ShopItem shopItem;
@@ -38,15 +39,17 @@ public class ShopItemActivity extends Activity {
 
         if (shopItem.getCategoryId() == Constants.STORE_CATEGORY_BOOSTS && shopItem.getRewardId() > 0) {
             Boost boost = Boost.get(shopItem.getRewardId());
-            ((TextView) findViewById(R.id.itemPurchases)).setText(boost.getOwned() + " owned");
+            ((TextView) findViewById(R.id.itemPurchases)).setText(String.format(Text.get("SHOP_NUMBER_OWNED"), boost.getOwned()));
         } else {
-            ((TextView) findViewById(R.id.itemPurchases)).setText(shopItem.getPurchases() + (shopItem.getMaxPurchases() > 0 ? "/" + shopItem.getMaxPurchases() : "") + " purchases");
+            ((TextView) findViewById(R.id.itemPurchases)).setText(String.format(Text.get("SHOP_NUMBER_PURCHASES"),
+                    shopItem.getPurchases(),
+                    shopItem.getMaxPurchases() > 0 ? "/" + shopItem.getMaxPurchases() : ""));
         }
 
         if (shopItem.getMaxPurchases() > 0 && shopItem.getPurchases() >= shopItem.getMaxPurchases()) {
-            ((TextView)findViewById(R.id.purchaseButton)).setText("Maximum Reached");
+            ((TextView)findViewById(R.id.purchaseButton)).setText(Text.get("SHOP_MAX_PURCHASED"));
         } else {
-            ((TextView)findViewById(R.id.purchaseButton)).setText("Buy for " + shopItem.getPrice() + " coins");
+            ((TextView)findViewById(R.id.purchaseButton)).setText(String.format(Text.get("SHOP_PURCHASE_TEXT"), shopItem.getPrice()));
         }
         ((TextView) findViewById(R.id.currencyCountText)).setText(Integer.toString(Statistic.getCurrency()));
     }
@@ -57,7 +60,10 @@ public class ShopItemActivity extends Activity {
             Crouton.showText(this, ErrorHelper.get(purchaseResult), StyleHelper.ERROR, (ViewGroup)findViewById(R.id.croutonview));
         } else {
             shopItem.purchase();
-            Crouton.showText(this, "Successfully purchased " + shopItem.getName() + " for " + shopItem.getPrice() + " coins!", StyleHelper.SUCCESS, (ViewGroup)findViewById(R.id.croutonview));
+            Crouton.showText(this, String.format(Text.get("SHOP_ITEM_PURCHASED"),
+                        shopItem.getName(),
+                        shopItem.getPrice()
+                ), StyleHelper.SUCCESS, (ViewGroup)findViewById(R.id.croutonview));
         }
 
         shopItem = ShopItem.get(shopItem.getItemId());

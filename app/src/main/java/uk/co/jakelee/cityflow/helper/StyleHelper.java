@@ -10,12 +10,15 @@ public class StyleHelper {
     static {
         ERROR = new Style.Builder()
                 .setBackgroundColorValue(0xffff4444)
+                .setPaddingInPixels(20)
                 .build();
         SUCCESS = new Style.Builder()
                 .setBackgroundColorValue(0xff99cc00)
+                .setPaddingInPixels(20)
                 .build();
         INFO = new Style.Builder()
                 .setBackgroundColorValue(0xff33b5e5)
+                .setPaddingInPixels(20)
                 .build();
     }
 }

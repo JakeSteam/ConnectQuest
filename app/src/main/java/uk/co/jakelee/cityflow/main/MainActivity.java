@@ -137,10 +137,8 @@ public class MainActivity extends Activity implements
     }
 
     public void openStory(View view) {
-        /*Intent intent = new Intent(this, StoryActivity.class);
-        startActivity(intent);*/
-
-        Crouton.showText(this, "Please god, please.3 Pleaefsaefasef asf asf af .3 Please god, please.3 Please god, please.3Please god, please.3Please god, please.3Please god, please.3", StyleHelper.SUCCESS, (ViewGroup)findViewById(R.id.croutonview));
+        Intent intent = new Intent(this, StoryActivity.class);
+        startActivity(intent);
     }
 
     public void openCreator(View view) {

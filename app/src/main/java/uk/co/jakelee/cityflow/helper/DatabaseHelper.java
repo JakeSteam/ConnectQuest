@@ -261,6 +261,11 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_4_NAME", "Misc"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_ADVERT", "Advert"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_OFFERS", "Offers"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_PURCHASE_TEXT", "Buy for %1$s coins"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_NUMBER_PURCHASES", "%1$s%2$s purchases"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_NUMBER_OWNED", "%1$s owned"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_ITEM_PURCHASED", "Successfully purchased %1$s for %2$d coins!"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_MAX_PURCHASED", "Maximum Purchased"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_1_NAME", "Puzzles Completed"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_2_NAME", "Tiles Rotated"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "SUCCESS_SUPPORT_CODE", "Successfully applied support code!"));
@@ -357,6 +362,8 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_TIME_TEXT", "%1$s/%2$s"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_MOVES_TITLE", "Moves\n%1$d%%"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_MOVES_TEXT", "%1$d/%2$d\nmoves"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PACK_OPEN", "Open Pack"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PACK_PURCHASE", "Purchase Pack"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_BY", "By:"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_NAME", "Name:"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_DESC", "Desc:"));

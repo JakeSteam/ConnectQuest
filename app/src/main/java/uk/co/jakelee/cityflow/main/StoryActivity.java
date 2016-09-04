@@ -22,6 +22,7 @@ import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.model.Pack;
+import uk.co.jakelee.cityflow.model.Text;
 
 public class StoryActivity extends Activity {
     private DisplayHelper dh;
@@ -97,7 +98,7 @@ public class StoryActivity extends Activity {
         TextView packButton = (TextView) findViewById(R.id.packButton);
         packButton.setTag(selectedPack.getPackId());
         if (selectedPack.isUnlocked()) {
-            packButton.setText("Open Pack");
+            packButton.setText(Text.get("UI_PACK_OPEN"));
             packButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(activity, PackActivity.class);
@@ -106,7 +107,7 @@ public class StoryActivity extends Activity {
                 }
             });
         } else {
-            packButton.setText("Purchase Pack");
+            packButton.setText(Text.get("UI_PACK_PURCHASE"));
             packButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(getApplicationContext(), IAPActivity.class);
