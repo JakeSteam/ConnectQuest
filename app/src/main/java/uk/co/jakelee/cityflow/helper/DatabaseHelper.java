@@ -313,7 +313,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_65_NAME", "Forest Dirt Straight (Humped)"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_66_NAME", "Forest Dirt T Junction"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_67_NAME", "Forest Dirt Corner (Sharp)"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_68_NAME", "Forest Interchange"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_68_NAME", "Forest Dirt Interchange"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_69_NAME", "Forest"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_70_NAME", "Forest Dirt Slope"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_71_NAME", "Forest Slope"));
@@ -325,6 +325,12 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_77_NAME", "City Road Straight (Median)"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_78_NAME", "City Road Straight (Trees)"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_79_NAME", "Grass Road Slope (Narrow)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_80_NAME", "City Road End (Barrier)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_81_NAME", "Forest River T Junction"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_82_NAME", "Forest River Interchange"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_83_NAME", "Forest High Path End"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_84_NAME", "Forest High Path Corner"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_85_NAME", "City High Path End"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_EXPORT_PUZZLE_HINT", "Export puzzle data to:"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_COMPLETE_TITLE", "Complete\n100%"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_COMPLETE_TEXT", "Completed!"));
@@ -1031,6 +1037,12 @@ public class DatabaseHelper {
             tileTypes.add(new TileType(77, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new TileType(78, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
             tileTypes.add(new TileType(79, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(80, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(81, Constants.ENVIRONMENT_FOREST, Constants.FLOW_RIVER, Constants.FLOW_RIVER, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(82, Constants.ENVIRONMENT_FOREST, Constants.FLOW_RIVER, Constants.HEIGHT_NORMAL, 3));
+            tileTypes.add(new TileType(83, Constants.ENVIRONMENT_FOREST, Constants.FLOW_NONE, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 3));
+            tileTypes.add(new TileType(84, Constants.ENVIRONMENT_FOREST, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 3));
+            tileTypes.add(new TileType(85, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 3));
 
         TileType.saveInTx(tileTypes);
     }
