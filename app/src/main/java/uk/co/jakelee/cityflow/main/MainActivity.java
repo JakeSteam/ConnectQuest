@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -76,11 +77,14 @@ public class MainActivity extends Activity implements
     }
 
     private void createAnimations() {
-        findViewById(R.id.carSouthEast1).startAnimation(AnimationHelper.moveSouthEast(0, 23));
-        findViewById(R.id.carSouthEast2).startAnimation(AnimationHelper.moveSouthEast(470, 20));
-        findViewById(R.id.carSouthEast3).startAnimation(AnimationHelper.moveSouthEast(1000, 35));
-        findViewById(R.id.carNorthEast1).startAnimation(AnimationHelper.moveNorthEast(840, 18));
-        findViewById(R.id.carNorthEast2).startAnimation(AnimationHelper.moveNorthEast(1300, 27));
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        /*findViewById(R.id.carSouthEast1).startAnimation(AnimationHelper.moveSouthEast(800, 23));
+        findViewById(R.id.carSouthEast2).startAnimation(AnimationHelper.moveSouthEast(1000, 20));
+        findViewById(R.id.carSouthEast3).startAnimation(AnimationHelper.moveSouthEast(1400, 35));
+        findViewById(R.id.carNorthEast1).startAnimation(AnimationHelper.moveNorthEast(metrics, 18));*/
+        findViewById(R.id.carNorthEast2).startAnimation(AnimationHelper.moveNorthEast(metrics, 5));
     }
 
     @Override
