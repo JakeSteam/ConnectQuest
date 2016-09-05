@@ -22,8 +22,8 @@ public class AnimationHelper {
         boolean goingDown = rotation == Constants.ROTATION_SOUTH || rotation == Constants.ROTATION_EAST;
 
         TranslateAnimation northEast = new TranslateAnimation(
-                TranslateAnimation.ABSOLUTE, goingRight ? xOffset : xOffset + metrics.widthPixels,
-                TranslateAnimation.ABSOLUTE, !goingRight ? xOffset : xOffset + metrics.widthPixels,
+                TranslateAnimation.ABSOLUTE, goingRight ? xOffset - 50 : xOffset + metrics.widthPixels + 50,
+                TranslateAnimation.ABSOLUTE, !goingRight ? xOffset - 50 : xOffset + metrics.widthPixels + 50,
                 TranslateAnimation.ABSOLUTE, !goingDown ? yOffset : yOffset - (metrics.widthPixels * ratio),
                 TranslateAnimation.ABSOLUTE, goingDown ? yOffset : yOffset - (metrics.widthPixels * ratio));
         northEast.setDuration(duration);
