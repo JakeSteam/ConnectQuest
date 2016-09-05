@@ -142,6 +142,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_1_NAME", "Grass"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_2_NAME", "City"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_3_NAME", "Forest"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_4_NAME", "Mountain"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_ADVERT_NOT_LOADED", "Failed to load ad! This might be due to a poor connection, or there might not be any ads available."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_ADVERT_NOT_VERIFIED", "Something went wrong, and the ad view couldn't be verified!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_FAILED_TO_CONNECT", "Couldn't log in. Please try again later."));
@@ -355,6 +356,13 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_83_NAME", "Forest High Path End"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_84_NAME", "Forest High Path Corner"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_85_NAME", "City High Path End"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_86_NAME", "Mountain Hill"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_87_NAME", "Mountain"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_88_NAME", "Mountain River End"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_89_NAME", "Mountain River Corner"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_90_NAME", "Mountain River Straight"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_91_NAME", "Mountain River T Junction"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_92_NAME", "Mountain River Interchange"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_EXPORT_PUZZLE_HINT", "Export puzzle data to:"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_COMPLETE_TITLE", "Complete\n100%"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_COMPLETE_TEXT", "Completed!"));
@@ -1071,6 +1079,13 @@ public class DatabaseHelper {
             tileTypes.add(new TileType(83, Constants.ENVIRONMENT_FOREST, Constants.FLOW_NONE, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 3));
             tileTypes.add(new TileType(84, Constants.ENVIRONMENT_FOREST, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 3));
             tileTypes.add(new TileType(85, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 3));
+            tileTypes.add(new TileType(86, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_ULTRA_LOW, 3));
+            tileTypes.add(new TileType(87, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_ULTRA_LOW, 3));
+            tileTypes.add(new TileType(88, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_ULTRA_LOW, 3));
+            tileTypes.add(new TileType(89, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_RIVER, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_ULTRA_LOW, 3));
+            tileTypes.add(new TileType(90, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.HEIGHT_ULTRA_LOW, 3));
+            tileTypes.add(new TileType(91, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_RIVER, Constants.FLOW_RIVER, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.HEIGHT_ULTRA_LOW, 3));
+            tileTypes.add(new TileType(92, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_RIVER, Constants.HEIGHT_ULTRA_LOW, 3));
 
         TileType.saveInTx(tileTypes);
     }
