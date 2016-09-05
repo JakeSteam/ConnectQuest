@@ -18,9 +18,9 @@ public class Constants {
     public static final int PUZZLE_X_MAX = 10;
     public static final int PUZZLE_Y_MIN = 1;
     public static final int PUZZLE_Y_MAX = 10;
-    public static final int NUMBER_CARS = 8;
-    public static final int CARS_MIN_TIME = 8000;
-    public static final int CARS_MAX_TIME = 35000;
+    public static final int NUMBER_CARS = 9;
+    public static final int CARS_MIN_TIME = 6000;
+    public static final int CARS_MAX_TIME = 40000;
     public static final int PUZZLE_HEIGHT = 76;
     public static final int PUZZLE_CUSTOM_ID_OFFSET = 10000;
     public static final int PUZZLE_NAME_MAX_LENGTH = 80;

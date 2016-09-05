@@ -64,11 +64,12 @@ public class PuzzleActivity extends Activity {
         puzzleId = intent.getIntExtra(Constants.INTENT_PUZZLE, 0);
         isCustom = intent.getBooleanExtra(Constants.INTENT_PUZZLE_TYPE, true);
 
+        startCountdownTimer();
         Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
+        puzzle.resetTileRotations();
         List<Tile> tiles = puzzle.getTiles();
         populateTiles(tiles);
         fetchImages(tiles);
-        startCountdownTimer();
 
         updateBoostVisibility();
         populateText();
@@ -106,7 +107,6 @@ public class PuzzleActivity extends Activity {
     public void onStop() {
         super.onStop();
         handler.removeCallbacksAndMessages(null);
-        Tile.executeQuery("UPDATE tile SET rotation = default_rotation WHERE puzzle_id = " + puzzleId);
     }
 
     public void fetchImages(List<Tile> tiles) {
@@ -288,8 +288,6 @@ public class PuzzleActivity extends Activity {
 
     public void displayPuzzleComplete() {
         Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
-
-        puzzle.resetTileRotations();
         findViewById(R.id.puzzleTimer).setVisibility(View.GONE);
         findViewById(R.id.zoomIn).setVisibility(View.GONE);
         findViewById(R.id.zoomOut).setVisibility(View.GONE);
