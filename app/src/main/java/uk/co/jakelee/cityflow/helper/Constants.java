@@ -62,12 +62,13 @@ public class Constants {
     public static final int BOOST_MOVE = 3;
     public static final int BOOST_SHUFFLE = 4;
     public static final int ENVIRONMENT_MIN = 0;
-    public static final int ENVIRONMENT_MAX = 4;
+    public static final int ENVIRONMENT_MAX = 5;
     public static final int ENVIRONMENT_NONE = 0;
     public static final int ENVIRONMENT_GRASS = 1;
     public static final int ENVIRONMENT_CITY = 2;
     public static final int ENVIRONMENT_FOREST = 3;
     public static final int ENVIRONMENT_MOUNTAIN = 4;
+    public static final int ENVIRONMENT_DESERT = 5;
     public static final int FLOW_MIN = 0;
     public static final int FLOW_MAX = 7;
     public static final int FLOW_NONE = 0;
@@ -78,6 +79,7 @@ public class Constants {
     public static final int FLOW_CANAL = 5;
     public static final int FLOW_RIVER = 6;
     public static final int FLOW_DIRT = 7;
+    public static final int FLOW_RAIL = 8;
     public static final int ITEM_BOOST_UNDO = 1;
     public static final int ITEM_BOOST_TIME = 2;
     public static final int ITEM_BOOST_MOVES = 3;
