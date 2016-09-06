@@ -2,6 +2,7 @@ package uk.co.jakelee.cityflow.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,8 +10,10 @@ import android.widget.TextView;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
+import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
+import uk.co.jakelee.cityflow.helper.ErrorHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
@@ -39,7 +42,7 @@ public class CustomInfoActivity extends Activity {
         super.onResume();
 
         populateText();
-        displayPuzzleInfo();
+        redisplayInfo();
     }
 
     private void populateText() {
@@ -57,11 +60,8 @@ public class CustomInfoActivity extends Activity {
         ((TextView) findViewById(R.id.puzzleDesc)).setText(puzzleCustom.getDescription());
         ((TextView) findViewById(R.id.puzzleAuthor)).setText(puzzleCustom.isOriginalAuthor() ? Setting.getString(Constants.SETTING_PLAYER_NAME) : puzzleCustom.getAuthor());
         ((TextView) findViewById(R.id.puzzleCreatedDate)).setText(DateHelper.displayTime(puzzleCustom.getDateAdded(), DateHelper.date));
-        ((TextView) findViewById(R.id.puzzleBestMoves)).setText(puzzle.getBestMoves() > 0 ? Integer.toString(puzzle.getBestMoves()) : Text.get("WORD_NA"));
-        ((TextView) findViewById(R.id.puzzleBestTime)).setText(puzzle.getBestTime() > 0 ? DateHelper.displayTime(puzzle.getBestTime(), DateHelper.time) : Text.get("WORD_NA"));
-        ((ImageView) findViewById(R.id.puzzleStarComplete)).setImageResource(puzzle.hasCompletionStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
-        ((ImageView) findViewById(R.id.puzzleStarMoves)).setImageResource(puzzle.hasMovesStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
-        ((ImageView) findViewById(R.id.puzzleStarTime)).setImageResource(puzzle.hasTimeStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
+        ((TextView) findViewById(R.id.puzzleBestMoves)).setText(puzzle.getBestMovesText());
+        ((TextView) findViewById(R.id.puzzleBestTime)).setText(DateHelper.getPuzzleTimeString(puzzle.getBestTime()));
 
         ((TextView) findViewById(R.id.puzzleNameText)).setText(Text.get("UI_PUZZLE_NAME"));
         ((TextView) findViewById(R.id.puzzleDescText)).setText(Text.get("UI_PUZZLE_DESC"));
@@ -69,7 +69,15 @@ public class CustomInfoActivity extends Activity {
         ((TextView) findViewById(R.id.puzzleCreatedDateText)).setText(Text.get("UI_PUZZLE_DATE_ADDED"));
         ((TextView) findViewById(R.id.puzzleBestMovesText)).setText(Text.get("UI_PUZZLE_BEST_MOVES"));
         ((TextView) findViewById(R.id.puzzleBestTimeText)).setText(Text.get("UI_PUZZLE_BEST_TIME"));
-        ((TextView) findViewById(R.id.puzzleStarsText)).setText(Text.get("UI_PUZZLE_STARS"));
+
+        if (!puzzleCustom.isOriginalAuthor()) {
+            findViewById(R.id.starWrapper).setVisibility(View.VISIBLE);
+            ((ImageView) findViewById(R.id.puzzleStarComplete)).setImageResource(puzzle.hasCompletionStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
+            ((ImageView) findViewById(R.id.puzzleStarMoves)).setImageResource(puzzle.hasMovesStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
+            ((ImageView) findViewById(R.id.puzzleStarTime)).setImageResource(puzzle.hasTimeStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
+            ((TextView) findViewById(R.id.puzzleStarsText)).setText(Text.get("UI_PUZZLE_STARS"));
+        }
+        ((TextView) findViewById(R.id.exportButton)).setTextColor(puzzleCustom.hasBeenTested() ? Color.BLACK : Color.LTGRAY);
     }
 
     public void playPuzzle(View v) {
@@ -77,6 +85,7 @@ public class CustomInfoActivity extends Activity {
         intent.putExtra(Constants.INTENT_PUZZLE, puzzle.getPuzzleId());
         intent.putExtra(Constants.INTENT_PUZZLE_TYPE, puzzle.getPackId() == 0);
         startActivity(intent);
+        this.finish();
     }
 
     public void copyPuzzle(View v) {
@@ -85,11 +94,18 @@ public class CustomInfoActivity extends Activity {
     }
 
     public void exportPuzzle(View v) {
+        if (puzzleCustom.isOriginalAuthor() && !puzzleCustom.hasBeenTested()) {
+            AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.PUZZLE_NOT_TESTED));
+            return;
+        }
+
+        AlertHelper.info(this, Text.get("PUZZLE_EXPORT_START"));
         String backup = PuzzleShareHelper.getPuzzleString(puzzle);
 
-        Intent intent = new Intent(); intent.setAction(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, backup);
+        Intent intent = new Intent()
+                .setAction(Intent.ACTION_SEND)
+                .setType("text/plain")
+                .putExtra(Intent.EXTRA_TEXT, backup);
         startActivity(Intent.createChooser(intent, Text.get("UI_EXPORT_PUZZLE_HINT")));
     }
 

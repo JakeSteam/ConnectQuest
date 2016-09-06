@@ -27,6 +27,9 @@ public class Constants {
     public static final int PUZZLE_DESC_MAX_LENGTH = 450;
     public static final int PLAYER_NAME_MAX_LENGTH = 30;
 
+    public static final long PUZZLE_DEFAULT_TIME = 3600000;
+    public static final int PUZZLE_DEFAULT_MOVES = 100000;
+
     // Currency incomes
     public static final int CURRENCY_RECOMPLETE = 1;
     public static final int CURRENCY_FIRST_COMPLETE = 10;
@@ -80,6 +83,13 @@ public class Constants {
     public static final int FLOW_RIVER = 6;
     public static final int FLOW_DIRT = 7;
     public static final int FLOW_RAIL = 8;
+    public static final int HEIGHT_MIN = 0;
+    public static final int HEIGHT_MAX = 4;
+    public static final int HEIGHT_NO_CONNECT = 0;
+    public static final int HEIGHT_ULTRA_LOW = 1;
+    public static final int HEIGHT_LOW = 2;
+    public static final int HEIGHT_NORMAL = 3;
+    public static final int HEIGHT_HIGH = 4;
     public static final int ITEM_BOOST_UNDO = 1;
     public static final int ITEM_BOOST_TIME = 2;
     public static final int ITEM_BOOST_MOVES = 3;
@@ -100,11 +110,6 @@ public class Constants {
     public static final int ITEM_BOOST_MOVES_100 = 18;
     public static final int ITEM_BOOST_SHUFFLE_100 = 19;
     public static final int ITEM_MAX_CARS = 20;
-    public static final int HEIGHT_NO_CONNECT = 0;
-    public static final int HEIGHT_ULTRA_LOW = 1;
-    public static final int HEIGHT_LOW = 2;
-    public static final int HEIGHT_NORMAL = 3;
-    public static final int HEIGHT_HIGH = 4;
     public static final int LANGUAGE_EN_GB = 1;
     public static final int LANGUAGE_OTHER = 2;
     public static final int ROTATION_MIN = 1;

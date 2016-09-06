@@ -22,7 +22,7 @@ import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
 public class PuzzleHelper {
-    public static Pair<Boolean, Boolean> processPuzzleCompletion(final Puzzle puzzle, final boolean isCompletingPack, long timeTaken, final int movesTaken, final int boostsUsed, boolean isCustom) {
+    public static Pair<Boolean, Boolean> processPuzzleCompletion(final Puzzle puzzle, final boolean isCompletingPack, long timeTaken, final int movesTaken, final int boostsUsed, PuzzleCustom puzzleCustom) {
         boolean newBestTime = false;
         boolean newBestMoves = false;
         if (timeTaken >= 0 && (timeTaken < puzzle.getBestTime() || puzzle.getBestTime() == 0)) {
@@ -30,6 +30,10 @@ public class PuzzleHelper {
             newBestTime = true;
             if (timeTaken <= puzzle.getParTime() && !puzzle.hasTimeStar()) {
                 puzzle.setTimeStar(true);
+                if (puzzleCustom != null) {
+                    puzzle.setParTime(timeTaken);
+                    puzzle.setBestTime(timeTaken);
+                }
             }
         }
         if (movesTaken >= 0 && (movesTaken < puzzle.getBestMoves() || puzzle.getBestMoves() == 0)) {
@@ -37,6 +41,10 @@ public class PuzzleHelper {
             newBestMoves = true;
             if (movesTaken <= puzzle.getParMoves() && !puzzle.hasMovesStar()) {
                 puzzle.setMovesStar(true);
+                if (puzzleCustom != null) {
+                    puzzle.setParMoves(movesTaken);
+                    puzzle.setBestMoves(movesTaken);
+                }
             }
         }
 
@@ -46,8 +54,11 @@ public class PuzzleHelper {
 
         puzzle.save();
 
-        if (!isCustom) {
+        if (puzzleCustom == null) {
             performBackgroundTasks(puzzle, isCompletingPack, movesTaken, boostsUsed);
+        } else if (puzzleCustom.isOriginalAuthor()) {
+            puzzleCustom.setHasBeenTested(true);
+            puzzleCustom.save();
         }
 
         return new Pair<>(newBestTime, newBestMoves);
@@ -94,7 +105,7 @@ public class PuzzleHelper {
         if (puzzleCustom != null && puzzleCustom.isOriginalAuthor()) {
             return 0;
         }
-        
+
         boolean isCustom = puzzleCustom != null;
         boolean isFirstFullComplete = originalStars < 3 && stars == 3;
         int currency = 0;
@@ -204,11 +215,11 @@ public class PuzzleHelper {
         Puzzle puzzle = new Puzzle();
 
         puzzle.setPuzzleId(puzzleId);
-        puzzle.setParMoves(10);
-        puzzle.setParTime(10000);
+        puzzle.setParMoves(Constants.PUZZLE_DEFAULT_MOVES);
+        puzzle.setParTime(Constants.PUZZLE_DEFAULT_TIME);
         puzzle.setPackId(0);
-        puzzle.setBestMoves(0);
-        puzzle.setBestTime(0);
+        puzzle.setBestMoves(Constants.PUZZLE_DEFAULT_MOVES);
+        puzzle.setBestTime(Constants.PUZZLE_DEFAULT_TIME);
         puzzle.setCompletionStar(false);
         puzzle.setMovesStar(false);
         puzzle.setTimeStar(false);

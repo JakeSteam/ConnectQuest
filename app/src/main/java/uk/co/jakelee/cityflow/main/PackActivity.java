@@ -96,7 +96,7 @@ public class PackActivity extends Activity {
         ((TextView) findViewById(R.id.puzzleBestTime)).setText(DateHelper.getPuzzleTimeString(selectedPuzzle.getBestTime()));
         ((TextView) findViewById(R.id.puzzleBestTime)).setTextColor(selectedPuzzle.hasTimeStar() ? Color.YELLOW : Color.BLACK);
 
-        ((TextView) findViewById(R.id.puzzleBestMoves)).setText(Integer.toString(selectedPuzzle.getBestMoves()));
+        ((TextView) findViewById(R.id.puzzleBestMoves)).setText(selectedPuzzle.getBestMovesText());
         ((TextView) findViewById(R.id.puzzleBestMoves)).setTextColor(selectedPuzzle.hasMovesStar() ? Color.YELLOW : Color.BLACK);
 
         int numTiles = selectedPuzzle.getUnlockableTiles().size();

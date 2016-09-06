@@ -153,6 +153,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_SUPPORT_CODE_INVALID", "Failed to apply support code! Please contact support."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_TECHNICAL", "An unknown technical error occurred! Try again?"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_CLOUD_ERROR", "An error occurred whilst handling the cloud save: %1$s"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_PUZZLE_NOT_TESTED", "The puzzle must be successfully completed before it can be exported!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_0_NAME", "None"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_1_NAME", "Water"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_2_NAME", "Road"));
@@ -164,6 +165,11 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_8_NAME", "Rail"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "GOOGLE_SIGN_IN", "Sign In"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "GOOGLE_SIGN_OUT", "Sign Out"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "HEIGHT_0_NAME", "None"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "HEIGHT_1_NAME", "Ultra Low"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "HEIGHT_2_NAME", "Low"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "HEIGHT_3_NAME", "Normal"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "HEIGHT_4_NAME", "High"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_1_NAME", "Undo"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_1_DESC", "Undo your 1 most recent move, also decreasing the move count."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_2_NAME", "Time Reduction"));
@@ -215,6 +221,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_3_DESC", "Flow all the way out to the country."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_DEFAULT_NAME", "New Puzzle (%1$dx%2$d)"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_DEFAULT_DESC", "No description."));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_EXPORT_START", "Beginning puzzle export process..."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_1_NAME", "No Crossing"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_2_NAME", "Don't Cross The Flows"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_3_NAME", "Forest Test"));
@@ -422,14 +429,15 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_OPTIONS", "Puzzle Options"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_TILE_UNLOCK", "Unlocked %1$s tile(s)!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_TILE_NO_UNLOCK", "No tiles unlocked."));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_AREA", "Area"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_ALL", "All"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_AREA", "Area"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_DESCRIPTION", "Description"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_FLOW", "Flow"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_HEIGHT", "Height"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_NA", "N/A"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_NAME", "Name"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_PAUSED", "Paused"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_START", "Start"));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_NA", "N/A"));
         Text.saveInTx(texts);
     }
 

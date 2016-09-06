@@ -15,10 +15,11 @@
         android:id="@+id/mainContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_marginTopPercent="10%"
-        app:layout_marginLeftPercent="5%"
-        app:layout_marginBottomPercent="10%"
-        app:layout_marginRightPercent="5%"
+        app:layout_marginTopPercent="5%"
+        app:layout_marginLeftPercent="3%"
+        app:layout_marginBottomPercent="5%"
+        app:layout_marginRightPercent="3%"
+        android:padding="10dp"
         android:background="@drawable/ui_panel_city"
         android:layout_centerInParent="true"
         android:stretchColumns="1"
@@ -34,13 +35,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/black"
-                android:textSize="26sp"/>
+                android:textSize="22sp"
+                android:layout_margin="5dp"/>
             <uk.co.jakelee.cityflow.components.MultiSpinnerFont
                 android:id="@+id/environmentPicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:background="@drawable/ui_panel_blue"
                 android:layout_marginRight="40dp"
                 android:layout_marginLeft="5dp"
@@ -57,13 +59,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="26sp"/>
+                android:textSize="22sp"
+                android:layout_margin="5dp"/>
             <uk.co.jakelee.cityflow.components.MultiSpinnerFont
                 android:id="@+id/flowPicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="24sp"
+                android:textSize="20sp"
+                android:background="@drawable/ui_panel_blue"
+                android:layout_margin="5dp"/>
+        </TableRow>
+        <TableRow
+            android:id="@+id/heightContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
+            <uk.co.jakelee.cityflow.components.TextViewFont
+                android:id="@+id/heightLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:layout_margin="5dp"/>
+            <uk.co.jakelee.cityflow.components.MultiSpinnerFont
+                android:id="@+id/heightPicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="20sp"
                 android:background="@drawable/ui_panel_blue"
                 android:layout_margin="5dp"/>
         </TableRow>

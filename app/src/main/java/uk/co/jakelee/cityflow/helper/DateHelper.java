@@ -14,6 +14,9 @@ public class DateHelper {
     private static final int MINUTES_IN_HOUR = 60;
 
     public static String displayTime(Long timestamp, String timeFormat) {
+        if (timestamp == Constants.PUZZLE_DEFAULT_TIME) {
+            return "N/A";
+        }
         Date date = new Date(timestamp);
         Format format = new SimpleDateFormat(timeFormat);
         return format.format(date);
@@ -59,6 +62,9 @@ public class DateHelper {
     }
 
     public static String getPuzzleTimeString(long timeTaken) {
-        return String.format("%.1fs", (double)timeTaken/1000);
+        if (timeTaken == 0 || timeTaken == Constants.PUZZLE_DEFAULT_TIME) {
+            return "N/A";
+        }
+        return String.format("%.2fs", (double)timeTaken/1000);
     }
 }

@@ -81,6 +81,14 @@ public class Puzzle extends SugarRecord {
         return EncryptHelper.decodeToInt(bestMoves, puzzleId);
     }
 
+    public String getBestMovesText() {
+        int unfiltered = EncryptHelper.decodeToInt(bestMoves, puzzleId);
+        if (unfiltered == 0 || unfiltered == Constants.PUZZLE_DEFAULT_MOVES) {
+            return Text.get("WORD_NA");
+        }
+        return Integer.toString(unfiltered);
+    }
+
     public void setBestMoves(int bestMoves) {
         this.bestMoves = EncryptHelper.encode(bestMoves, puzzleId);
     }
@@ -170,8 +178,21 @@ public class Puzzle extends SugarRecord {
         Tile.executeQuery("UPDATE tile SET rotation = default_rotation WHERE puzzle_id = " + puzzleId);
     }
 
-    public void saveCustomPuzzle() {
+    public void saveTileRotations() {
         Tile.executeQuery("UPDATE tile SET default_rotation = rotation WHERE puzzle_id = " + puzzleId);
+        resetMetrics();
+
+        PuzzleCustom puzzleCustom = getCustomData();
+        puzzleCustom.setHasBeenTested(false);
+        puzzleCustom.save();
+    }
+
+    public void resetMetrics() {
+        setParMoves(Constants.PUZZLE_DEFAULT_MOVES);
+        setBestMoves(Constants.PUZZLE_DEFAULT_MOVES);
+        setParTime(Constants.PUZZLE_DEFAULT_TIME);
+        setBestTime(Constants.PUZZLE_DEFAULT_TIME);
+        save();
     }
 
     public String getShareText() {
