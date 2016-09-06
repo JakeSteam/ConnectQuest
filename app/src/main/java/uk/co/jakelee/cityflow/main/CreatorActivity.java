@@ -88,7 +88,7 @@ public class CreatorActivity extends Activity {
                     public void onClick(View v) {
                         Intent intent = new Intent(getApplicationContext(), PuzzleActivity.class);
                         intent.putExtra(Constants.INTENT_PUZZLE, puzzle.getPuzzleId());
-                        intent.putExtra(Constants.INTENT_PUZZLE_TYPE, puzzle.getPackId() == 0);
+                        intent.putExtra(Constants.INTENT_PUZZLE_TYPE, true);
                         startActivity(intent);
                     }
                 });
@@ -121,10 +121,6 @@ public class CreatorActivity extends Activity {
         String backup = PuzzleShareHelper.getPuzzleString(puzzle);
         PuzzleShareHelper.importPuzzleString(backup, false);
         populatePuzzles();
-    }
-
-    public void showInfo(View v) {
-
     }
 
     public void changeTab(View v) {

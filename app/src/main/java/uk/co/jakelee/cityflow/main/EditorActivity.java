@@ -153,6 +153,12 @@ public class EditorActivity extends Activity {
     }
 
     public void playPuzzle(View v) {
+        Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
+        savePuzzle(v);
 
+        Intent intent = new Intent(getApplicationContext(), PuzzleActivity.class);
+        intent.putExtra(Constants.INTENT_PUZZLE, puzzle.getPuzzleId());
+        intent.putExtra(Constants.INTENT_PUZZLE_TYPE, true);
+        startActivity(intent);
     }
 }

@@ -36,8 +36,7 @@
         android:textSize="26sp"
         android:text="&#xf141;"
         android:background="@drawable/ui_panel_grey"
-        android:textColor="@color/black"
-        android:onClick="showInfo"/>
+        android:textColor="@color/black"/>
     <uk.co.jakelee.cityflow.components.TextAwesome
         android:id="@+id/actionButton"
         android:layout_width="match_parent"

@@ -192,7 +192,7 @@ public class PuzzleHelper {
             return Constants.PUZZLE_CUSTOM_ID_OFFSET;
         }
 
-        return Select.from(Puzzle.class).orderBy("id DESC").first().getPuzzleId() + 1;
+        return Select.from(Puzzle.class).orderBy("puzzle_id DESC").first().getPuzzleId() + 1;
     }
 
     public static int createNewPuzzle(final int maxX, final int maxY) {
