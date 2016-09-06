@@ -321,7 +321,7 @@ public class PuzzleActivity extends Activity {
             PuzzleHelper.populateTileImages(dh, (LinearLayout) findViewById(R.id.tilesContainer), tilesUnlocked, isFirstComplete);
         }
 
-        int currencyEarned = PuzzleHelper.getCurrencyEarned(isCustom, isFirstComplete, originalStars, stars);
+        int currencyEarned = PuzzleHelper.getCurrencyEarned(puzzleCustom, isFirstComplete, originalStars, stars);
         Statistic.addCurrency(currencyEarned);
         ((TextView)findViewById(R.id.currencyEarned)).setText(String.format(Text.get("ALERT_COINS_EARNED"), currencyEarned));
 

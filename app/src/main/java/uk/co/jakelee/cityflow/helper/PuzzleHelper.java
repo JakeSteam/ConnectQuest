@@ -90,7 +90,12 @@ public class PuzzleHelper {
         }).start();
     }
 
-    public static int getCurrencyEarned(boolean isCustom, boolean isFirstComplete, int originalStars, int stars) {
+    public static int getCurrencyEarned(PuzzleCustom puzzleCustom, boolean isFirstComplete, int originalStars, int stars) {
+        if (puzzleCustom != null && puzzleCustom.isOriginalAuthor()) {
+            return 0;
+        }
+        
+        boolean isCustom = puzzleCustom != null;
         boolean isFirstFullComplete = originalStars < 3 && stars == 3;
         int currency = 0;
         if (isFirstComplete) {

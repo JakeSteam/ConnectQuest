@@ -58,7 +58,7 @@ public class CustomInfoActivity extends Activity {
         ((TextView) findViewById(R.id.puzzleAuthor)).setText(puzzleCustom.isOriginalAuthor() ? Setting.getString(Constants.SETTING_PLAYER_NAME) : puzzleCustom.getAuthor());
         ((TextView) findViewById(R.id.puzzleCreatedDate)).setText(DateHelper.displayTime(puzzleCustom.getDateAdded(), DateHelper.date));
         ((TextView) findViewById(R.id.puzzleBestMoves)).setText(puzzle.getBestMoves() > 0 ? Integer.toString(puzzle.getBestMoves()) : Text.get("WORD_NA"));
-        ((TextView) findViewById(R.id.puzzleBestTime)).setText(puzzle.getBestTime() > 0 ? DateHelper.displayTime(puzzle.getBestTime(), DateHelper.date) : Text.get("WORD_NA"));
+        ((TextView) findViewById(R.id.puzzleBestTime)).setText(puzzle.getBestTime() > 0 ? DateHelper.displayTime(puzzle.getBestTime(), DateHelper.time) : Text.get("WORD_NA"));
         ((ImageView) findViewById(R.id.puzzleStarComplete)).setImageResource(puzzle.hasCompletionStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
         ((ImageView) findViewById(R.id.puzzleStarMoves)).setImageResource(puzzle.hasMovesStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
         ((ImageView) findViewById(R.id.puzzleStarTime)).setImageResource(puzzle.hasTimeStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
