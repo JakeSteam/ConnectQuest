@@ -170,6 +170,10 @@ public class Puzzle extends SugarRecord {
         Tile.executeQuery("UPDATE tile SET rotation = default_rotation WHERE puzzle_id = " + puzzleId);
     }
 
+    public void saveCustomPuzzle() {
+        Tile.executeQuery("UPDATE tile SET default_rotation = rotation WHERE puzzle_id = " + puzzleId);
+    }
+
     public String getShareText() {
         return PuzzleShareHelper.getPuzzleString(this);
     }

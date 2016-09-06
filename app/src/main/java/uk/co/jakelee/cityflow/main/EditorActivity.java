@@ -41,6 +41,7 @@ public class EditorActivity extends Activity {
         puzzleId = intent.getIntExtra(Constants.INTENT_PUZZLE, 0);
 
         Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
+        puzzle.resetTileRotations();
         List<Tile> tiles = puzzle.getTiles();
         populateTiles(tiles);
         fetchImages(tiles);
@@ -59,6 +60,13 @@ public class EditorActivity extends Activity {
         if (selectedTile != null && selectedTileImage != null) {
             redrawSelectedTile();
         }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        Puzzle.getPuzzle(puzzleId).resetTileRotations();
     }
 
     private void redrawSelectedTile() {
@@ -144,7 +152,8 @@ public class EditorActivity extends Activity {
         }
     }
 
-    public void closePuzzle(View v) {
+    public void savePuzzle(View v) {
+        Puzzle.getPuzzle(puzzleId).saveCustomPuzzle();
         this.finish();
     }
 

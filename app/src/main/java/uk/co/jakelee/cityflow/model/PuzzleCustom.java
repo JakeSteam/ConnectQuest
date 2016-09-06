@@ -1,6 +1,8 @@
 package uk.co.jakelee.cityflow.model;
 
 import com.orm.SugarRecord;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 public class PuzzleCustom extends SugarRecord {
     private int puzzleId;
@@ -9,17 +11,19 @@ public class PuzzleCustom extends SugarRecord {
     private String description;
     private String author;
     private boolean originalAuthor;
+    private boolean hasBeenTested;
 
     public PuzzleCustom() {
     }
 
-    public PuzzleCustom(int puzzleId, long dateAdded, String name, String description, String author, boolean originalAuthor) {
+    public PuzzleCustom(int puzzleId, long dateAdded, String name, String description, String author, boolean originalAuthor, boolean hasBeenTested) {
         this.puzzleId = puzzleId;
         this.dateAdded = dateAdded;
         this.name = name;
         this.description = description;
         this.author = author;
         this.originalAuthor = originalAuthor;
+        this.hasBeenTested = hasBeenTested;
     }
 
     public int getPuzzleId() {
@@ -68,5 +72,18 @@ public class PuzzleCustom extends SugarRecord {
 
     public void setOriginalAuthor(boolean originalAuthor) {
         this.originalAuthor = originalAuthor;
+    }
+
+    public boolean hasBeenTested() {
+        return hasBeenTested;
+    }
+
+    public void setHasBeenTested(boolean hasBeenTested) {
+        this.hasBeenTested = hasBeenTested;
+    }
+
+    static public PuzzleCustom get(int puzzleId) {
+        return Select.from(PuzzleCustom.class).where(
+                Condition.prop("puzzle_id").eq(puzzleId)).first();
     }
 }

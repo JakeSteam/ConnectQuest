@@ -28,6 +28,7 @@ import uk.co.jakelee.cityflow.helper.StatisticsHelper;
 import uk.co.jakelee.cityflow.helper.TileHelper;
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Puzzle;
+import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.Text;
@@ -39,6 +40,7 @@ public class PuzzleActivity extends Activity {
     private DisplayHelper dh;
     private int puzzleId;
     private boolean isCustom;
+    private PuzzleCustom puzzleCustom;
     private int boostsUsed = 0;
     private int movesMade = 0;
     private long startTime = System.currentTimeMillis();
@@ -63,6 +65,9 @@ public class PuzzleActivity extends Activity {
         Intent intent = getIntent();
         puzzleId = intent.getIntExtra(Constants.INTENT_PUZZLE, 0);
         isCustom = intent.getBooleanExtra(Constants.INTENT_PUZZLE_TYPE, true);
+        if(isCustom) {
+            puzzleCustom = PuzzleCustom.get(puzzleId);
+        }
 
         startCountdownTimer();
         Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
@@ -106,6 +111,9 @@ public class PuzzleActivity extends Activity {
     @Override
     public void onStop() {
         super.onStop();
+
+        Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
+        puzzle.resetTileRotations();
         handler.removeCallbacksAndMessages(null);
     }
 
@@ -299,14 +307,14 @@ public class PuzzleActivity extends Activity {
         boolean isFirstComplete = puzzle.getBestTime() == 0;
 
         int originalStars = puzzle.getStarCount();
-        int nextPuzzle = PuzzleHelper.getNextPuzzleId(puzzleId);
+        int nextPuzzle = isCustom ? 0 : PuzzleHelper.getNextPuzzleId(puzzleId);
         Pair<Boolean, Boolean> newBests = PuzzleHelper.processPuzzleCompletion(puzzle, nextPuzzle == 0, timeInMilliseconds, movesMade, boostsUsed, isCustom);
         int stars = puzzle.getStarCount();
 
-        populateStoryPuzzleCompleteScreen(puzzle, isFirstComplete, originalStars, stars, isCustom);
+        populatePuzzleCompleteScreen(puzzle, isFirstComplete, originalStars, stars, isCustom);
     }
 
-    public void populateStoryPuzzleCompleteScreen(Puzzle puzzle, boolean isFirstComplete, int originalStars, int stars, boolean isCustom) {
+    public void populatePuzzleCompleteScreen(Puzzle puzzle, boolean isFirstComplete, int originalStars, int stars, boolean isCustom) {
         if (!isCustom) {
             List<TileType> tilesUnlocked = puzzle.getUnlockableTiles();
             findViewById(R.id.tilesContainer).setVisibility((tilesUnlocked.size() > 0 && isFirstComplete) ? View.VISIBLE : View.INVISIBLE);
@@ -340,7 +348,11 @@ public class PuzzleActivity extends Activity {
                 movesMade > 0 ? movesMade : 0,
                 puzzle.getParMoves()));
 
-        ((TextView)findViewById(R.id.mainActionButton)).setText(isCustom ? R.string.icon_edit : R.string.icon_next);
+        if (puzzleCustom == null || puzzleCustom.isOriginalAuthor()) {
+            ((TextView) findViewById(R.id.mainActionButton)).setText(isCustom ? R.string.icon_edit : R.string.icon_next);
+        } else {
+            findViewById(R.id.mainActionButton).setVisibility(View.GONE);
+        }
     }
 
     public void pausePuzzle(View v) {
@@ -392,9 +404,11 @@ public class PuzzleActivity extends Activity {
     public void mainAction(View v) {
         if (isCustom) {
             this.finish();
-            Intent intent = new Intent(this, EditorActivity.class);
-            intent.putExtra(Constants.INTENT_PUZZLE, puzzleId);
-            startActivity(intent);
+            if (puzzleCustom.isOriginalAuthor()) {
+                Intent intent = new Intent(this, EditorActivity.class);
+                intent.putExtra(Constants.INTENT_PUZZLE, puzzleId);
+                startActivity(intent);
+            }
         } else {
             int nextPuzzle = PuzzleHelper.getNextPuzzleId(puzzleId);
             if (nextPuzzle > 0) {

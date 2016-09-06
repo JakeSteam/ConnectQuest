@@ -414,6 +414,9 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_NAME", "Name:"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_DESC", "Desc:"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_DATE_ADDED", "Added:"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_BEST_MOVES", "Moves:"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_BEST_TIME", "Time:"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_STARS", "Stars:"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_WIDTH", "Width: %1$d"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_HEIGHT", "Height: %1$d"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_OPTIONS", "Puzzle Options"));
@@ -426,6 +429,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_NAME", "Name"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_PAUSED", "Paused"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_START", "Start"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_NA", "N/A"));
         Text.saveInTx(texts);
     }
 
@@ -472,11 +476,11 @@ public class DatabaseHelper {
         Puzzle.saveInTx(puzzles);
 
         List<PuzzleCustom> puzzleCustoms = new ArrayList<>();
-            puzzleCustoms.add(new PuzzleCustom(98, System.currentTimeMillis(), "Block test", "Test puzzle desc", "Someone", true));
-            puzzleCustoms.add(new PuzzleCustom(99, System.currentTimeMillis(), "Logo", "Test puzzle desc 2", "Someone 2", true));
-            puzzleCustoms.add(new PuzzleCustom(100, System.currentTimeMillis(), "A square, but this is a test of long names", "Test puzzle desc 3", "Someone 3", false));
-            puzzleCustoms.add(new PuzzleCustom(101, System.currentTimeMillis(), "A line", "Test puzzle desc 4", "Someone 4", false));
-            puzzleCustoms.add(new PuzzleCustom(102, System.currentTimeMillis(), "Empty test", "Test puzzle desc 4", "Someone 4", true));
+            puzzleCustoms.add(new PuzzleCustom(98, System.currentTimeMillis(), "Block test", "Test puzzle desc", "Someone", true, true));
+            puzzleCustoms.add(new PuzzleCustom(99, System.currentTimeMillis(), "Logo", "Test puzzle desc 2", "Someone 2", true, false));
+            puzzleCustoms.add(new PuzzleCustom(100, System.currentTimeMillis(), "A square, but this is a test of long names", "Test puzzle desc 3", "Someone 3", false, true));
+            puzzleCustoms.add(new PuzzleCustom(101, System.currentTimeMillis(), "A line", "Test puzzle desc 4", "Someone 4", false, false));
+            puzzleCustoms.add(new PuzzleCustom(102, System.currentTimeMillis(), "Empty test", "Test puzzle desc 4", "Someone 4", true, false));
         PuzzleCustom.saveInTx(puzzleCustoms);
     }
 

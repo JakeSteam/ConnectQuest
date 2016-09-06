@@ -24,7 +24,7 @@ import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class CreatorActivity extends Activity {
-    private boolean displayOthers = false;
+    private boolean displayImported = false;
     private DisplayHelper dh;
 
     @Override
@@ -59,12 +59,14 @@ public class CreatorActivity extends Activity {
         puzzleContainer.removeAllViews();
         LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
 
-        List<Puzzle> puzzles = Puzzle.getCustomPuzzles(displayOthers);
+        List<Puzzle> puzzles = Puzzle.getCustomPuzzles(displayImported);
         for (final Puzzle puzzle : puzzles) {
             PuzzleCustom puzzleCustom = puzzle.getCustomData();
             View inflatedView = inflater.inflate(R.layout.custom_puzzle_preview, null);
             RelativeLayout othersPuzzle = (RelativeLayout) inflatedView.findViewById(R.id.puzzleLayout);
 
+            // If we're displaying our levels, change bg colour based on completion status
+            othersPuzzle.setBackgroundResource(!displayImported && puzzleCustom.hasBeenTested() ? R.drawable.ui_panel_green : R.drawable.ui_panel_grey);
             othersPuzzle.findViewById(R.id.deleteButton).setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     puzzle.safelyDelete();
@@ -80,7 +82,7 @@ public class CreatorActivity extends Activity {
                 }
             });
 
-            if (displayOthers) {
+            if (displayImported) {
                 ((TextView) othersPuzzle.findViewById(R.id.actionButton)).setText(R.string.icon_play);
                 othersPuzzle.findViewById(R.id.actionButton).setOnClickListener(new Button.OnClickListener() {
                     public void onClick(View v) {
@@ -106,8 +108,8 @@ public class CreatorActivity extends Activity {
             puzzleContainer.addView(othersPuzzle);
         }
 
-        findViewById(R.id.newPuzzle).setVisibility(displayOthers ? View.GONE : View.VISIBLE);
-        findViewById(R.id.importPuzzle).setVisibility(displayOthers ? View.VISIBLE : View.GONE);
+        findViewById(R.id.newPuzzle).setVisibility(displayImported ? View.GONE : View.VISIBLE);
+        findViewById(R.id.importPuzzle).setVisibility(displayImported ? View.VISIBLE : View.GONE);
     }
 
     public void newPuzzle(View v) {
@@ -126,13 +128,13 @@ public class CreatorActivity extends Activity {
     }
 
     public void changeTab(View v) {
-        displayOthers = !displayOthers;
+        displayImported = !displayImported;
         populatePuzzles();
         updateTabDisplay();
     }
 
     public void updateTabDisplay() {
-        ((TextView)findViewById(R.id.myPuzzles)).setTextColor(displayOthers ? Color.GRAY : Color.BLACK);
-        ((TextView)findViewById(R.id.othersPuzzles)).setTextColor(displayOthers ? Color.BLACK : Color.GRAY);
+        ((TextView)findViewById(R.id.myPuzzles)).setTextColor(displayImported ? Color.GRAY : Color.BLACK);
+        ((TextView)findViewById(R.id.othersPuzzles)).setTextColor(displayImported ? Color.BLACK : Color.GRAY);
     }
 }

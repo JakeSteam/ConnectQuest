@@ -76,7 +76,6 @@ public class MainActivity extends Activity implements
         }
 
         Tapjoy.onActivityStart(this);
-        createAnimations();
     }
 
     @Override
@@ -89,6 +88,13 @@ public class MainActivity extends Activity implements
             container.getChildAt(i).clearAnimation();
         }
         container.removeAllViews();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        createAnimations();
     }
 
     private void createAnimations() {

@@ -33,7 +33,7 @@
             android:background="@drawable/ui_button_grey"/>
 
         <uk.co.jakelee.cityflow.components.TextAwesome
-            android:id="@+id/closePuzzle"
+            android:id="@+id/savePuzzle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="30sp"
@@ -41,7 +41,7 @@
             android:text="@string/icon_save"
             android:layout_margin="5dp"
             android:gravity="center"
-            android:onClick="closePuzzle"
+            android:onClick="savePuzzle"
             android:textAlignment="center"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
@@ -59,10 +59,10 @@
             android:layout_marginBottom="5dp"
             android:gravity="center"
             android:layout_alignParentTop="true"
-            android:layout_alignBottom="@+id/closePuzzle"
+            android:layout_alignBottom="@+id/savePuzzle"
             android:layout_centerInParent="true"
             android:layout_toRightOf="@id/playPuzzle"
-            android:layout_toLeftOf="@id/closePuzzle" />
+            android:layout_toLeftOf="@id/savePuzzle" />
     </RelativeLayout>
 
     <RelativeLayout
