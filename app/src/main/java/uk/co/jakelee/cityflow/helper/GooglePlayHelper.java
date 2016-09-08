@@ -337,7 +337,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         Gson gson = new Gson();
         String backupString;
 
-        backupString = MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.V1_0_0) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString = MainActivity.prefs.getInt("databaseVersion", PatchHelper.V1_0_0) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += StatisticsHelper.getTotalStars() + GooglePlayHelper.SAVE_DELIMITER;
         backupString += Statistic.getCurrency() + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(Boost.listAll(Boost.class)) + GooglePlayHelper.SAVE_DELIMITER;
@@ -408,7 +408,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             TileType.saveInTx(tileTypes);
         }
 
-        DatabaseHelper.handlePatches();
+        new PatchHelper(callingActivity).execute();
 
         if (callingActivity != null) {
             callingActivity.runOnUiThread(new Runnable() {

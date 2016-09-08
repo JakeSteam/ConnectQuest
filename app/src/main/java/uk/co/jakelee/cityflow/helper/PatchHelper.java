@@ -1,5 +1,8 @@
 package uk.co.jakelee.cityflow.helper;
 
+import android.app.Activity;
+import android.os.AsyncTask;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,28 +20,63 @@ import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
-public class DatabaseHelper {
+public class PatchHelper extends AsyncTask<String, String, String> {
     public final static int NO_DATABASE = 0;
     public final static int V1_0_0 = 1;
+    public Activity callingActivity;
+    public String currentTask;
 
-    public static void handlePatches() {
-        if (MainActivity.prefs.getInt("databaseVersion", DatabaseHelper.NO_DATABASE) <= DatabaseHelper.NO_DATABASE) {
-            DatabaseHelper.initialSetup();
-            MainActivity.prefs.edit().putInt("databaseVersion", DatabaseHelper.V1_0_0).apply();
-        }
+    public PatchHelper(Activity activity) {
+        this.callingActivity = activity;
     }
 
-    private static void initialSetup() {
+    private void initialSetup() {
+        publishProgress("Achievements", "0%");
         createAchievement();
+        publishProgress("Boosts", "10%");
         createBoost();
+        publishProgress("Packs", "20%");
         createPack();
+        publishProgress("Puzzles", "30%");
         createPuzzle();
+        publishProgress("Settings", "40%");
         createSetting();
+        publishProgress("Statistics", "50%");
         createStatistic();
+        publishProgress("Store Items", "60%");
         createStoreItem();
+        publishProgress("Store Categories", "70%");
         createStoreCategory();
+        publishProgress("Text", "80%");
         createText();
+        publishProgress("Tile Types", "90%");
         createTileType();
+    }
+
+    @Override
+    protected String doInBackground(String... params) {
+        // Should inform the user that they've just updated if a patch has been installed
+        String action = "";
+        if (MainActivity.prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.NO_DATABASE) {
+            initialSetup();
+            MainActivity.prefs.edit().putInt("databaseVersion", PatchHelper.V1_0_0).apply();
+            action = "Finished installing database!";
+        }
+        return action;
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+        // Hide the "blocker" or whatever
+    }
+
+    @Override
+    protected void onPreExecute() {}
+
+    @Override
+    protected void onProgressUpdate(String... values) {
+        // Update a progress bar?
+        AlertHelper.info(callingActivity, "Currently installing " + values[0] + ", " + values[1] + " completed...");
     }
 
     private static void createAchievement() {

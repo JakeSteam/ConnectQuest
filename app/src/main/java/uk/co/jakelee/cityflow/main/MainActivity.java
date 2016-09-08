@@ -20,7 +20,7 @@ import hotchemi.android.rate.AppRate;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
-import uk.co.jakelee.cityflow.helper.DatabaseHelper;
+import uk.co.jakelee.cityflow.helper.PatchHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.model.Setting;
@@ -43,7 +43,7 @@ public class MainActivity extends Activity implements
 
         MainActivity.prefs.edit().putInt("language", Constants.LANGUAGE_EN_GB).apply();
 
-        DatabaseHelper.handlePatches();
+        new PatchHelper(this).execute();
 
         ratingPrompt();
 
