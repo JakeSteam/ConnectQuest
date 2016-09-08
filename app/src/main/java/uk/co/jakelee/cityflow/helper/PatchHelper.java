@@ -28,9 +28,9 @@ import uk.co.jakelee.cityflow.model.TileType;
 public class PatchHelper extends AsyncTask<String, String, String> {
     public final static int NO_DATABASE = 0;
     public final static int V1_0_0 = 1;
-    public Activity callingActivity;
-    public TextView progressText;
-    public ProgressBar progressBar;
+    private Activity callingActivity;
+    private TextView progressText;
+    private ProgressBar progressBar;
 
     public PatchHelper(Activity activity) {
         this.callingActivity = activity;
@@ -108,7 +108,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
             progressText.setText("Currently installing " + values[0] + "...");
     }
 
-    private static void createAchievement() {
+    private void createAchievement() {
         List<Achievement> achievements = new ArrayList<>();
         achievements.add(new Achievement("Turn It Up 1", 100, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQAw"));
         achievements.add(new Achievement("Turn It Up 2", 1000, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQFw"));
@@ -136,7 +136,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         Achievement.saveInTx(achievements);
     }
 
-    private static void createBoost() {
+    private void createBoost() {
         List<Boost> boosts = new ArrayList<>();
         boosts.add(new Boost(Constants.BOOST_UNDO, 1, 12, 0));
         boosts.add(new Boost(Constants.BOOST_TIME, 1, 16, 0));
@@ -145,7 +145,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         Boost.saveInTx(boosts);
     }
 
-    private static void createText() {
+    private void createText() {
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_BEGINNING", "Comparing local and cloud saves..."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_SAVING", "Saving to cloud..."));
@@ -486,7 +486,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         Text.saveInTx(texts);
     }
 
-    private static void createPack() {
+    private void createPack() {
         List<Pack> packs = new ArrayList<>();
         packs.add(new Pack(1, "", "CgkIgrzuo64REAIQEA", "CgkIgrzuo64REAIQEQ", 6));
         packs.add(new Pack(2, "unlock_pack2", "CgkIgrzuo64REAIQEw", "CgkIgrzuo64REAIQFA", 30));
@@ -494,7 +494,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         Pack.saveInTx(packs);
     }
 
-    private static void createPuzzle() {
+    private void createPuzzle() {
         List<Puzzle> puzzles = new ArrayList<>();
         List<Text> texts = new ArrayList<>();
         List<Tile> tiles = new ArrayList<>();
@@ -1037,7 +1037,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         Tile.saveInTx(tiles);
     }
 
-    private static void createSetting() {
+    private void createSetting() {
         List<Setting> settings = new ArrayList<>();
         settings.add(new Setting(Constants.SETTING_MUSIC, true));
         settings.add(new Setting(Constants.SETTING_SOUNDS, true));
@@ -1051,7 +1051,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         Setting.saveInTx(settings);
     }
 
-    private static void createStatistic() {
+    private void createStatistic() {
         List<Statistic> statistics = new ArrayList<>();
         statistics.add(new Statistic(Constants.STATISTIC_PUZZLES_COMPLETED, 0, 0));
         statistics.add(new Statistic(Constants.STATISTIC_TILES_ROTATED, 0, 0));
@@ -1066,7 +1066,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         Statistic.saveInTx(statistics);
     }
 
-    private static void createStoreItem() {
+    private void createStoreItem() {
         List<ShopItem> shopItems = new ArrayList<>();
         shopItems.add(new ShopItem(Constants.ITEM_BOOST_UNDO, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_UNDO, 1, 4, 0, false));
         shopItems.add(new ShopItem(Constants.ITEM_BOOST_UNDO_10, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_UNDO, 10, 36, 0, false));
@@ -1091,7 +1091,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         ShopItem.saveInTx(shopItems);
     }
 
-    private static void createStoreCategory() {
+    private void createStoreCategory() {
         List<ShopCategory> categories = new ArrayList<>();
         categories.add(new ShopCategory(Constants.STORE_CATEGORY_BOOSTS));
         categories.add(new ShopCategory(Constants.STORE_CATEGORY_UPGRADES));
@@ -1100,7 +1100,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         ShopCategory.saveInTx(categories);
     }
 
-    private static void createTileType() {
+    private void createTileType() {
         List<TileType> tileTypes = new ArrayList<>();
         tileTypes.add(new TileType(0, Constants.ENVIRONMENT_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 0));
         tileTypes.add(new TileType(1, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 1));
