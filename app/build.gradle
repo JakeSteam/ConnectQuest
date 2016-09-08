@@ -31,7 +31,6 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':BaseGameUtils')
     compile 'com.github.satyan:sugar:1.5'
-    compile 'ch.acra:acra:4.8.5'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.thomashaertel:multispinner:0.1.1'
     compile 'com.scottyab:aescrypt:0.0.1'

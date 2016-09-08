@@ -408,6 +408,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_126_NAME", "Desert Road Slope"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_127_NAME", "Desert Road Corner"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_128_NAME", "Desert Road T Junction"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_128_NAME", "Mountain (Stones)"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_EXPORT_PUZZLE_HINT", "Export puzzle data to:"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_COMPLETE_TITLE", "Complete\n100%"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_COMPLETE_TEXT", "Completed!"));
@@ -557,33 +558,28 @@ public class DatabaseHelper {
 
     private static void createTile() {
         List<Tile> tiles = new ArrayList<>();
-            tiles.add(new Tile(3, 60, 0, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 61, 0, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 62, 0, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 63, 0, 3, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 64, 1, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 65, 1, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 66, 1, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 67, 1, 3, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 68, 2, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 69, 2, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 70, 2, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 71, 2, 3, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 72, 3, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 73, 3, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 74, 3, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 75, 3, 2, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(3, 76, 4, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 87, 0, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 86, 0, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 88, 0, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 86, 0, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 88, 1, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 90, 1, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 92, 1, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 89, 1, 3, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 87, 2, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 88, 2, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 91, 2, 2, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(1, 89, 2, 3, Constants.ROTATION_NORTH));
 
             tiles.add(new Tile(2, 41, 0, 0, Constants.ROTATION_NORTH));
             tiles.add(new Tile(2, 41, 0, 1, Constants.ROTATION_NORTH));
             tiles.add(new Tile(2, 26, 1, 0, Constants.ROTATION_NORTH));
             tiles.add(new Tile(2, 26, 1, 1, Constants.ROTATION_NORTH));
 
-            tiles.add(new Tile(1, 19, 0, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 18, 0, 1, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 18, 1, 0, Constants.ROTATION_NORTH));
-            tiles.add(new Tile(1, 13, 1, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 19, 0, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 18, 0, 1, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 18, 1, 0, Constants.ROTATION_NORTH));
+            tiles.add(new Tile(3, 13, 1, 1, Constants.ROTATION_NORTH));
 
             tiles.add(new Tile(11, 19, 0, 0, Constants.ROTATION_NORTH));
             tiles.add(new Tile(11, 19, 0, 1, Constants.ROTATION_NORTH));
@@ -1172,6 +1168,7 @@ public class DatabaseHelper {
             tileTypes.add(new TileType(126, Constants.ENVIRONMENT_DESERT, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.HEIGHT_LOW, Constants.HEIGHT_LOW, Constants.HEIGHT_LOW, 3));
             tileTypes.add(new TileType(127, Constants.ENVIRONMENT_DESERT, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 3));
             tileTypes.add(new TileType(128, Constants.ENVIRONMENT_DESERT, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 3));
+            tileTypes.add(new TileType(128, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_ULTRA_LOW, 3));
         TileType.saveInTx(tileTypes);
     }
 }
