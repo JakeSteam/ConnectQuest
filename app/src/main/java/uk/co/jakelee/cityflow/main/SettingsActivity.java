@@ -73,7 +73,7 @@ public class SettingsActivity extends Activity {
 
     public void populateSettings() {
         Drawable tick = dh.createDrawable(R.drawable.ui_level_unselected_completed, 50, 50);
-        Drawable cross = dh.createDrawable(R.drawable.ui_level_locked, 50, 50);
+        Drawable cross = dh.createDrawable(R.drawable.ui_level_unselected, 50, 50);
 
         // Sound settings
         ImageView musicToggle = (ImageView) findViewById(R.id.musicToggleButton);

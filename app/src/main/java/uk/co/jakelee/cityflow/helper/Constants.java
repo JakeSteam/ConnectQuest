@@ -32,16 +32,16 @@ public class Constants {
 
     // Currency incomes
     public static final int CURRENCY_RECOMPLETE = 1;
-    public static final int CURRENCY_FIRST_COMPLETE = 10;
-    public static final int CURRENCY_FIRST_COMPLETE_FULL = 15;
+    public static final int CURRENCY_FIRST_COMPLETE = 5;
+    public static final int CURRENCY_FIRST_COMPLETE_FULL = 10;
     public static final int CURRENCY_CUSTOM_FIRST_COMPLETE = 1;
     public static final int CURRENCY_CUSTOM_FIRST_COMPLETE_FULL = 1;
-    public static final int CURRENCY_ADVERT = 45;
+    public static final int CURRENCY_ADVERT = 30;
     public static final int CURRENCY_ACHIEVEMENT = 100;
-    public static final int CURRENCY_QUEST_EASY = 20;
-    public static final int CURRENCY_QUEST_MEDIUM = 50;
-    public static final int CURRENCY_QUEST_HARD = 100;
-    public static final int CURRENCY_QUEST_ELITE = 200;
+    public static final int CURRENCY_QUEST_EASY = 50;
+    public static final int CURRENCY_QUEST_MEDIUM = 80;
+    public static final int CURRENCY_QUEST_HARD = 110;
+    public static final int CURRENCY_QUEST_ELITE = 150;
 
     // Google play constants
     public static final String EVENT_COMPLETE_PUZZLE = "CgkIgrzuo64REAIQBA";
