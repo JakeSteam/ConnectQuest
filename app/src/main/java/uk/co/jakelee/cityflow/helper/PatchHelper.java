@@ -2,10 +2,15 @@ package uk.co.jakelee.cityflow.helper;
 
 import android.app.Activity;
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.main.MainActivity;
 import uk.co.jakelee.cityflow.model.Achievement;
 import uk.co.jakelee.cityflow.model.Boost;
@@ -24,33 +29,51 @@ public class PatchHelper extends AsyncTask<String, String, String> {
     public final static int NO_DATABASE = 0;
     public final static int V1_0_0 = 1;
     public Activity callingActivity;
-    public String currentTask;
+    public TextView progressText;
+    public ProgressBar progressBar;
 
     public PatchHelper(Activity activity) {
+        this.callingActivity = activity;
+        this.progressText = (TextView)activity.findViewById(R.id.progressText);
+        this.progressBar = (ProgressBar)activity.findViewById(R.id.progressBar);
+    }
+
+    public PatchHelper(Activity activity, boolean runningCloudImport) {
         this.callingActivity = activity;
     }
 
     private void initialSetup() {
-        publishProgress("Achievements", "0%");
+        setProgress("Achievements", 0);
         createAchievement();
-        publishProgress("Boosts", "10%");
+        setProgress("Boosts", 5);
         createBoost();
-        publishProgress("Packs", "20%");
+        setProgress("Packs", 10);
         createPack();
-        publishProgress("Puzzles", "30%");
-        createPuzzle();
-        publishProgress("Settings", "40%");
+        setProgress("Settings", 15);
         createSetting();
-        publishProgress("Statistics", "50%");
+        setProgress("Statistics", 20);
         createStatistic();
-        publishProgress("Store Items", "60%");
+        setProgress("Store Items", 25);
         createStoreItem();
-        publishProgress("Store Categories", "70%");
+        setProgress("Store Categories", 30);
         createStoreCategory();
-        publishProgress("Text", "80%");
-        createText();
-        publishProgress("Tile Types", "90%");
+        setProgress("Tile Types", 35);
         createTileType();
+
+        // Add 40 - 70 checkpoints inside createText
+        setProgress("Text", 40);
+        createText();
+
+        // Add 70 - 100 checkpoints inside createPuzzle
+        setProgress("Puzzles", 70);
+        createPuzzle();
+    }
+
+    private void setProgress(String currentTask, int percentage) {
+        if (progressText != null && progressBar != null) {
+            publishProgress(currentTask);
+            progressBar.setProgress(percentage);
+        }
     }
 
     @Override
@@ -67,7 +90,14 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        // Hide the "blocker" or whatever
+        AlertHelper.success(callingActivity, result);
+
+        RelativeLayout mainMenuWrapper = (RelativeLayout)callingActivity.findViewById(R.id.mainMenuWrapper);
+        RelativeLayout progressWrapper = (RelativeLayout)callingActivity.findViewById(R.id.progressWrapper);
+        if (mainMenuWrapper != null && progressWrapper != null) {
+            progressWrapper.setVisibility(View.GONE);
+            mainMenuWrapper.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -75,8 +105,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     @Override
     protected void onProgressUpdate(String... values) {
-        // Update a progress bar?
-        AlertHelper.info(callingActivity, "Currently installing " + values[0] + ", " + values[1] + " completed...");
+            progressText.setText("Currently installing " + values[0] + "...");
     }
 
     private static void createAchievement() {

@@ -20,9 +20,9 @@ import hotchemi.android.rate.AppRate;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
-import uk.co.jakelee.cityflow.helper.PatchHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
+import uk.co.jakelee.cityflow.helper.PatchHelper;
 import uk.co.jakelee.cityflow.model.Setting;
 
 public class MainActivity extends Activity implements
@@ -42,17 +42,6 @@ public class MainActivity extends Activity implements
         dh = DisplayHelper.getInstance(this);
 
         MainActivity.prefs.edit().putInt("language", Constants.LANGUAGE_EN_GB).apply();
-
-        new PatchHelper(this).execute();
-
-        ratingPrompt();
-
-        GooglePlayHelper.mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(Games.API).addScope(Games.SCOPE_GAMES)
-                .addApi(Drive.API).addScope(Drive.SCOPE_APPFOLDER)
-                .build();
     }
 
     private void ratingPrompt() {
@@ -69,6 +58,17 @@ public class MainActivity extends Activity implements
     @Override
     protected void onStart() {
         super.onStart();
+
+        new PatchHelper(this).execute();
+
+        ratingPrompt();
+
+        GooglePlayHelper.mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Games.API).addScope(Games.SCOPE_GAMES)
+                .addApi(Drive.API).addScope(Drive.SCOPE_APPFOLDER)
+                .build();
 
         if (!GooglePlayHelper.IsConnected() && !GooglePlayHelper.mGoogleApiClient.isConnecting() &&
                 Setting.getSafeBoolean(Constants.SETTING_SIGN_IN) && GooglePlayHelper.AreGooglePlayServicesInstalled(this)) {

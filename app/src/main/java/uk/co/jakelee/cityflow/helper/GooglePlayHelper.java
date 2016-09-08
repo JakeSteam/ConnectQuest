@@ -408,7 +408,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             TileType.saveInTx(tileTypes);
         }
 
-        new PatchHelper(callingActivity).execute();
+        new PatchHelper(callingActivity, true).execute();
 
         if (callingActivity != null) {
             callingActivity.runOnUiThread(new Runnable() {

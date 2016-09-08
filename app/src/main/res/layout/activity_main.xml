@@ -21,7 +21,7 @@
         <RelativeLayout
             android:id="@+id/carContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
         <ImageView
             android:id="@+id/mainLogo"
@@ -31,60 +31,88 @@
             android:layout_margin="5dp"
             android:src="@drawable/main_logo"/>
 
-        <ImageView
-            android:id="@+id/mainStory"
+        <RelativeLayout
+            android:id="@+id/progressWrapper"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_marginTopPercent="27%"
-            app:layout_heightPercent="20%"
-            android:src="@drawable/main_play"
-            android:onClick="openStory"/>
-
-        <ImageView
-            android:id="@+id/mainBuild"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_marginTopPercent="47%"
-            app:layout_heightPercent="20%"
-            android:src="@drawable/main_build"
-            android:onClick="openCreator"/>
-
-        <ImageView
-            android:id="@+id/mainShop"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_marginTopPercent="67%"
-            app:layout_heightPercent="20%"
-            android:src="@drawable/main_shop"
-            android:onClick="openShop"/>
-
-        <uk.co.jakelee.cityflow.components.TextAwesome
-            android:id="@+id/mainQuests"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="5dp"
-            android:text="@string/icon_quests"
-            android:textSize="35sp"
-            android:textColor="@color/black"
-            android:padding="12dp"
-            android:background="@drawable/ui_panel_blue"
-            android:onClick="openQuestMenu"/>
+            android:layout_below="@id/mainLogo">
+            <uk.co.jakelee.cityflow.components.TextViewFont
+                android:id="@+id/progressText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="40sp"
+                android:padding="20dp"/>
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="30dp"
+                android:layout_below="@id/progressText"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:indeterminate="false"
+                android:max="100"/>
+        </RelativeLayout>
 
-        <uk.co.jakelee.cityflow.components.TextAwesome
-            android:id="@+id/mainSettings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="5dp"
-            android:text="@string/icon_settings"
-            android:textSize="35sp"
-            android:textColor="@color/black"
-            android:padding="12dp"
-            android:background="@drawable/ui_panel_blue"
-            android:onClick="openSettings"/>
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/mainMenuWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+            <ImageView
+                android:id="@+id/mainStory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_marginTopPercent="27%"
+                app:layout_heightPercent="20%"
+                android:src="@drawable/main_play"
+                android:onClick="openStory"/>
+
+            <ImageView
+                android:id="@+id/mainBuild"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_marginTopPercent="47%"
+                app:layout_heightPercent="20%"
+                android:src="@drawable/main_build"
+                android:onClick="openCreator"/>
+
+            <ImageView
+                android:id="@+id/mainShop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_marginTopPercent="67%"
+                app:layout_heightPercent="20%"
+                android:src="@drawable/main_shop"
+                android:onClick="openShop"/>
+
+            <uk.co.jakelee.cityflow.components.TextAwesome
+                android:id="@+id/mainQuests"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="5dp"
+                android:text="@string/icon_quests"
+                android:textSize="35sp"
+                android:textColor="@color/black"
+                android:padding="12dp"
+                android:background="@drawable/ui_panel_blue"
+                android:onClick="openQuestMenu"/>
+
+            <uk.co.jakelee.cityflow.components.TextAwesome
+                android:id="@+id/mainSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="5dp"
+                android:text="@string/icon_settings"
+                android:textSize="35sp"
+                android:textColor="@color/black"
+                android:padding="12dp"
+                android:background="@drawable/ui_panel_blue"
+                android:onClick="openSettings"/>
+        </android.support.percent.PercentRelativeLayout>
     </android.support.percent.PercentRelativeLayout>
 
     <LinearLayout
