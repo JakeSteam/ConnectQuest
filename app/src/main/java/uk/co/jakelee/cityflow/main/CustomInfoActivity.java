@@ -100,13 +100,15 @@ public class CustomInfoActivity extends Activity {
         }
 
         AlertHelper.info(this, Text.get("PUZZLE_EXPORT_START"));
-        String backup = PuzzleShareHelper.getPuzzleString(puzzle);
 
+        /*String backup = PuzzleShareHelper.getPuzzleString(puzzle);
         Intent intent = new Intent()
                 .setAction(Intent.ACTION_SEND)
                 .setType("text/plain")
                 .putExtra(Intent.EXTRA_TEXT, backup);
-        startActivity(Intent.createChooser(intent, Text.get("UI_EXPORT_PUZZLE_HINT")));
+        startActivity(Intent.createChooser(intent, Text.get("UI_EXPORT_PUZZLE_HINT")));*/
+        String backup = PuzzleShareHelper.getPuzzleSQL(puzzle);
+        backup.toString();
     }
 
     public void editPuzzleName(View v) {
