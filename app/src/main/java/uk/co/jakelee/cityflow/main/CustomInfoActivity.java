@@ -3,6 +3,7 @@ package uk.co.jakelee.cityflow.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -57,7 +58,9 @@ public class CustomInfoActivity extends Activity {
 
     private void displayPuzzleInfo() {
         ((TextView) findViewById(R.id.puzzleName)).setText(puzzleCustom.getName());
+        ((TextView) findViewById(R.id.puzzleName)).setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         ((TextView) findViewById(R.id.puzzleDesc)).setText(puzzleCustom.getDescription());
+        ((TextView) findViewById(R.id.puzzleDesc)).setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         ((TextView) findViewById(R.id.puzzleAuthor)).setText(puzzleCustom.isOriginalAuthor() ? Setting.getString(Constants.SETTING_PLAYER_NAME) : puzzleCustom.getAuthor());
         ((TextView) findViewById(R.id.puzzleCreatedDate)).setText(DateHelper.displayTime(puzzleCustom.getDateAdded(), DateHelper.date));
         ((TextView) findViewById(R.id.puzzleBestMoves)).setText(puzzle.getBestMovesText());

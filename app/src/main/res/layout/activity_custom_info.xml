@@ -36,7 +36,7 @@
                 android:id="@+id/puzzleName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/blue"
                 android:paddingRight="35dp"
                 android:textSize="20sp"
                 android:singleLine="false"/>
@@ -55,7 +55,7 @@
                 android:id="@+id/puzzleDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/blue"
                 android:paddingRight="35dp"
                 android:textSize="20sp"
                 android:singleLine="false"/>
