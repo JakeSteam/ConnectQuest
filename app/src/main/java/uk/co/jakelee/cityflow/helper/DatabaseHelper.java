@@ -88,6 +88,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_LOADED", "Successfully loaded game from cloud!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_COINS_EARNED", "Earned %1$d coin(s)!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_COINS_EARNED_FREE", "Earned %1$d free coin(s), enjoy!"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_DELETE_PUZZLE", "Delete puzzle \"%1$s\"?\n\nNote: This can't be undone!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SAVE_CONFLICT", "Save conflict detected! Currently resolving, this might take a few seconds, please be patient..."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SETTING_TOGGLE_ON", "Toggled %1$s on!"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SETTING_TOGGLE_OFF", "Toggled %1$s off!"));
@@ -136,6 +137,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CREATE", "Create"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_LOAD", "Load"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CANCEL", "Cancel"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_DELETE", "Delete"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_SUPPORT_CODE", "Support Code"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CREDITS", "Credits"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_0_NAME", "None"));
@@ -219,7 +221,7 @@ public class DatabaseHelper {
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_2_DESC", "Get flowing in the big city."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_3_NAME", "Escape To The Country"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_3_DESC", "Flow all the way out to the country."));
-            texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_DEFAULT_NAME", "New Puzzle (%1$dx%2$d)"));
+            texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_DEFAULT_NAME", "New Puzzle (%1$dx%2$d, %3$s)"));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_DEFAULT_DESC", "No description."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_EXPORT_START", "Beginning puzzle export process..."));
             texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_1_NAME", "No Crossing"));

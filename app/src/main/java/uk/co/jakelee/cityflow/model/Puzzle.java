@@ -118,6 +118,9 @@ public class Puzzle extends SugarRecord {
     }
 
     public String getName() {
+        if (packId == 0) {
+            return getCustomData().getName();
+        }
         return Text.get("PUZZLE_", getPuzzleId(), "_NAME");
     }
 
@@ -126,6 +129,7 @@ public class Puzzle extends SugarRecord {
         if (puzzleCustom != null) {
             puzzleCustom.delete();
         }
+        Tile.deleteAll(Tile.class, "puzzle_id = " + puzzleId);
         delete();
     }
 

@@ -5,24 +5,53 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.text.InputFilter;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import uk.co.jakelee.cityflow.BuildConfig;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.main.CreatorActivity;
 import uk.co.jakelee.cityflow.main.CustomInfoActivity;
+import uk.co.jakelee.cityflow.main.EditorActivity;
 import uk.co.jakelee.cityflow.main.SettingsActivity;
+import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class AlertDialogHelper {
+    public static void confirmPuzzleDeletion(final Activity activity, final Puzzle puzzle) {
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        alertDialog.setMessage(String.format(Text.get("ALERT_DELETE_PUZZLE"), puzzle.getName()));
+
+        alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_DELETE"), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                puzzle.safelyDelete();
+            }
+        });
+
+        alertDialog.setNegativeButton(Text.get("DIALOG_BUTTON_CANCEL"), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                alertDialog.show();
+            }
+        });
+    }
+
     public static void confirmCloudLoad(final Activity activity, int localStars, int localCurrency, int cloudStars, int cloudCurrency) {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(Text.get("DIALOG_CLOUD_LOAD_CONFIRM"),
@@ -190,6 +219,7 @@ public class AlertDialogHelper {
         ((TextView)dialog.findViewById(R.id.maxHeight)).setText(Integer.toString(Constants.PUZZLE_Y_MAX));
         ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Text.get("UI_PUZZLE_WIDTH"), Constants.PUZZLE_X_MIN));
         ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Text.get("UI_PUZZLE_HEIGHT"), Constants.PUZZLE_Y_MIN));
+        ((TextView)dialog.findViewById(R.id.environmentText)).setText(Text.get("WORD_AREA"));
 
         // Creating X slider
         final SeekBar sliderWidth = (SeekBar) dialog.findViewById(R.id.sliderWidth);
@@ -217,14 +247,29 @@ public class AlertDialogHelper {
             }
         });
 
+        // Creating Environment picker
+        int numEnvironments = (Constants.ENVIRONMENT_MAX - Constants.ENVIRONMENT_MIN) + 1;
+        ArrayAdapter<String> envAdapter = new ArrayAdapter<>(activity, R.layout.custom_spinner_item);
+        envAdapter.setDropDownViewResource(R.layout.custom_spinner_item);
+        for (int i = 0; i < numEnvironments; i++) {
+            envAdapter.add(Text.get("ENVIRONMENT_" + i + "_NAME"));
+        }
+
+        final Spinner spinner = (Spinner) dialog.findViewById(R.id.environmentPicker);
+        spinner.setAdapter(envAdapter);
+
+        // Create button
         dialog.findViewById(R.id.createButton).setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 int xValue = getIntFromProgress(sliderWidth.getProgress(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX);
                 int yValue = getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX);
-                PuzzleHelper.createNewPuzzle(xValue, yValue);
+                int environmentId = spinner.getSelectedItemPosition();
+                int newPuzzleId = PuzzleHelper.createNewPuzzle(xValue, yValue, environmentId);
 
+                Intent intent = new Intent(activity, EditorActivity.class)
+                        .putExtra(Constants.INTENT_PUZZLE, newPuzzleId);
+                activity.startActivity(intent);
                 dialog.dismiss();
-                activity.populatePuzzles();
             }
         });
 

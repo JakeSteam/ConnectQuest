@@ -195,20 +195,33 @@ public class PuzzleHelper {
         return Select.from(Puzzle.class).orderBy("puzzle_id DESC").first().getPuzzleId() + 1;
     }
 
-    public static int createNewPuzzle(final int maxX, final int maxY) {
-        final int nextPuzzleId = getNextCustomPuzzleId();
-        createBasicPuzzleObject(nextPuzzleId).save();
-        createBasicPuzzleCustomObject(nextPuzzleId, maxX, maxY).save();
+    public static int createNewPuzzle(int maxX, int maxY, final int environmentId) {
+        int newPuzzleId = getNextCustomPuzzleId();
+        int defaultTileId = getDefaultTileId(environmentId);
+        createBasicPuzzleObject(newPuzzleId).save();
+        createBasicPuzzleCustomObject(newPuzzleId, maxX, maxY).save();
 
         List<Tile> tiles = new ArrayList<>();
         for (int x = 0; x < maxX; x++) {
             for (int y = 0; y < maxY; y++) {
-                tiles.add(new Tile(nextPuzzleId, 18, x, y, Constants.ROTATION_NORTH));
+                tiles.add(new Tile(newPuzzleId, defaultTileId, x, y, Constants.ROTATION_NORTH));
             }
         }
         Tile.saveInTx(tiles);
 
-        return nextPuzzleId;
+        return newPuzzleId;
+    }
+
+    public static int getDefaultTileId(int environmentId) {
+        switch(environmentId) {
+            case Constants.ENVIRONMENT_NONE: return 0;
+            case Constants.ENVIRONMENT_GRASS: return 6;
+            case Constants.ENVIRONMENT_CITY: return 21;
+            case Constants.ENVIRONMENT_FOREST: return 69;
+            case Constants.ENVIRONMENT_MOUNTAIN: return 87;
+            case Constants.ENVIRONMENT_DESERT: return 93;
+            default: return 0;
+        }
     }
 
     public static Puzzle createBasicPuzzleObject(int puzzleId) {
@@ -234,7 +247,10 @@ public class PuzzleHelper {
         PuzzleCustom puzzleCustom = new PuzzleCustom();
 
         puzzleCustom.setPuzzleId(puzzleId);
-        puzzleCustom.setName(String.format(Text.get("PUZZLE_DEFAULT_NAME"), maxX, maxY));
+        puzzleCustom.setName(String.format(Text.get("PUZZLE_DEFAULT_NAME"),
+                maxX,
+                maxY,
+                DateHelper.displayTime(System.currentTimeMillis(), DateHelper.date)));
         puzzleCustom.setDescription(Text.get("PUZZLE_DEFAULT_DESC"));
         puzzleCustom.setAuthor(Setting.getString(Constants.SETTING_PLAYER_NAME));
         puzzleCustom.setDateAdded(System.currentTimeMillis());

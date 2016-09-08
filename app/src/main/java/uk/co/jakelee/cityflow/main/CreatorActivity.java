@@ -56,6 +56,7 @@ public class CreatorActivity extends Activity {
     }
 
     public void populatePuzzles(LinearLayout puzzleContainer) {
+        final Activity activity = this;
         puzzleContainer.removeAllViews();
         LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
 
@@ -69,8 +70,7 @@ public class CreatorActivity extends Activity {
             othersPuzzle.setBackgroundResource(!displayImported && puzzleCustom.hasBeenTested() ? R.drawable.ui_panel_green : R.drawable.ui_panel_grey);
             othersPuzzle.findViewById(R.id.deleteButton).setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    puzzle.safelyDelete();
-                    populatePuzzles();
+                    AlertDialogHelper.confirmPuzzleDeletion(activity, puzzle);
                 }
             });
 

@@ -92,6 +92,28 @@
             android:layout_below="@id/currentHeight"/>
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/environmentWrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/heightWrapper">
+        <uk.co.jakelee.cityflow.components.TextViewFont
+            android:id="@+id/environmentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="20sp" />
+        <Spinner
+            android:id="@+id/environmentPicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_toRightOf="@id/environmentText"
+            android:background="@drawable/ui_panel_blue"
+            android:layout_margin="5dp"/>
+    </RelativeLayout>
+
     <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/close"
         android:layout_width="wrap_content"
@@ -101,7 +123,7 @@
         android:layout_marginTop="25dp"
         android:textColor="@color/black"
         android:gravity="center_horizontal"
-        android:layout_below="@id/heightWrapper"/>
+        android:layout_below="@id/environmentWrapper"/>
 
     <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/createButton"
@@ -113,6 +135,6 @@
         android:layout_toRightOf="@id/close"
         android:textColor="@color/black"
         android:gravity="center_horizontal"
-        android:layout_below="@id/heightWrapper"/>
+        android:layout_below="@id/environmentWrapper"/>
 
 </RelativeLayout>
