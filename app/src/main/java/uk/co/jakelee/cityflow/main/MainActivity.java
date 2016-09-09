@@ -42,6 +42,8 @@ public class MainActivity extends Activity implements
         dh = DisplayHelper.getInstance(this);
 
         MainActivity.prefs.edit().putInt("language", Constants.LANGUAGE_EN_GB).apply();
+
+        new PatchHelper(this).execute();
     }
 
     private void ratingPrompt() {
@@ -58,8 +60,6 @@ public class MainActivity extends Activity implements
     @Override
     protected void onStart() {
         super.onStart();
-
-        new PatchHelper(this).execute();
 
         ratingPrompt();
 

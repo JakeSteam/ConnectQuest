@@ -488,7 +488,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     private void createPack() {
         List<Pack> packs = new ArrayList<>();
-        packs.add(new Pack(1, "", "CgkIgrzuo64REAIQEA", "CgkIgrzuo64REAIQEQ", 6));
+        packs.add(new Pack(1, "", "CgkIgrzuo64REAIQEA", "CgkIgrzuo64REAIQEQ", 9));
         packs.add(new Pack(2, "unlock_pack2", "CgkIgrzuo64REAIQEw", "CgkIgrzuo64REAIQFA", 30));
         packs.add(new Pack(3, "unlock_pack3", "CgkIgrzuo64REAIQFQ", "CgkIgrzuo64REAIQFg", 30));
         Pack.saveInTx(packs);
@@ -522,11 +522,11 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(2, 26, 1, 1, Constants.ROTATION_NORTH));
 
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_3_NAME", "Forest Test"));
-        //puzzles.add(new Puzzle(3, 1, 10000L, 20, 0L, 0));
-        tiles.add(new Tile(3, 19, 0, 0, Constants.ROTATION_NORTH));
-        tiles.add(new Tile(3, 18, 0, 1, Constants.ROTATION_NORTH));
-        tiles.add(new Tile(3, 18, 1, 0, Constants.ROTATION_NORTH));
-        tiles.add(new Tile(3, 13, 1, 1, Constants.ROTATION_NORTH));
+        puzzles.add(new Puzzle(3, 1, 10000L, 20, 0L, 0));
+        tiles.add(new Tile(3, 89, 0, 0, Constants.ROTATION_NORTH));
+        tiles.add(new Tile(3, 89, 0, 1, Constants.ROTATION_NORTH));
+        tiles.add(new Tile(3, 89, 1, 0, Constants.ROTATION_NORTH));
+        tiles.add(new Tile(3, 89, 1, 1, Constants.ROTATION_NORTH));
 
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_11_NAME", "One Shop Town"));
         puzzles.add(new Puzzle(11, 2, 10000L, 20, 0L, 0));
