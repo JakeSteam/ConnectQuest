@@ -35,8 +35,8 @@ public class ShopItemActivity extends Activity {
         ((TextView)findViewById(R.id.itemName)).setText(shopItem.getName());
         ((TextView)findViewById(R.id.itemDesc)).setText(shopItem.getDescription());
 
-        if (shopItem.getCategoryId() == Constants.STORE_CATEGORY_BOOSTS && shopItem.getRewardId() > 0) {
-            Boost boost = Boost.get(shopItem.getRewardId());
+        if (shopItem.getCategoryId() == Constants.STORE_CATEGORY_BOOSTS && shopItem.getSubcategoryId() > 0) {
+            Boost boost = Boost.get(shopItem.getSubcategoryId());
             ((TextView) findViewById(R.id.itemPurchases)).setText(String.format(Text.get("SHOP_NUMBER_OWNED"), boost.getOwned()));
         } else {
             ((TextView) findViewById(R.id.itemPurchases)).setText(String.format(Text.get("SHOP_NUMBER_PURCHASES"),

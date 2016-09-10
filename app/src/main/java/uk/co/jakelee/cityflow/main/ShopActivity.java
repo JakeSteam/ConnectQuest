@@ -34,6 +34,7 @@ import uk.co.jakelee.cityflow.model.Text;
 public class ShopActivity extends Activity {
     private DisplayHelper dh;
     private int selectedCategory = 1;
+    private int preselectedItem = 0;
     private TJPlacement offerWall;
     private TJPlacement watchAdvert;
     private Handler handler = new Handler();
@@ -49,7 +50,11 @@ public class ShopActivity extends Activity {
         watchAdvert = new TJPlacement(this, "WatchAdvert", placementListener);
         offerWall.requestContent();
         watchAdvert.requestContent();
+
+        Intent intent = getIntent();
+        preselectedItem = intent.getIntExtra(Constants.INTENT_ITEM, 0);
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -71,6 +76,11 @@ public class ShopActivity extends Activity {
         populateText();
         populateTabs();
         populateItems();
+
+        if (preselectedItem > 0) {
+            displayInformation(ShopItem.get(preselectedItem));
+            preselectedItem = 0;
+        }
 
         final Activity activity = this;
         final Runnable everyFiveSeconds = new Runnable() {
@@ -120,7 +130,7 @@ public class ShopActivity extends Activity {
         int margins = dh.dpToPixel(5);
         layoutParams.setMargins(margins, margins, margins, margins);
 
-        List<ShopItem> items = ShopItem.getByCategory(selectedCategory);
+        List<ShopItem> items = ShopCategory.getItems(selectedCategory);
         int numItems = items.size();
         TableRow row = new TableRow(this);
 

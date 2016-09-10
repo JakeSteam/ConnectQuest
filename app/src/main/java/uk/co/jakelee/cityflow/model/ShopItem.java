@@ -4,8 +4,6 @@ import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
-import java.util.List;
-
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.ErrorHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
@@ -13,8 +11,8 @@ import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 public class ShopItem extends SugarRecord {
     private int itemId;
     private int categoryId;
-    private int rewardId;
-    private int rewardQuantity;
+    private int subcategoryId;
+    private int miscData;
     private int price;
     private int purchases;
     private int maxPurchases;
@@ -26,8 +24,8 @@ public class ShopItem extends SugarRecord {
     public ShopItem(int itemId, int categoryId, int price, int maxPurchases, boolean applyMultiplier) {
         this.itemId = itemId;
         this.categoryId = categoryId;
-        this.rewardId = 0;
-        this.rewardQuantity = 0;
+        this.subcategoryId = 0;
+        this.miscData = 0;
         this.price = price;
         this.purchases = 0;
         this.maxPurchases = maxPurchases;
@@ -37,8 +35,8 @@ public class ShopItem extends SugarRecord {
     public ShopItem(int itemId, int categoryId, int boostId, int boostQuantity, int price, int maxPurchases, boolean applyMultiplier) {
         this.itemId = itemId;
         this.categoryId = categoryId;
-        this.rewardId = boostId;
-        this.rewardQuantity = boostQuantity;
+        this.subcategoryId = boostId;
+        this.miscData = boostQuantity;
         this.price = price;
         this.purchases = 0;
         this.maxPurchases = maxPurchases;
@@ -61,20 +59,20 @@ public class ShopItem extends SugarRecord {
         this.categoryId = categoryId;
     }
 
-    public int getRewardId() {
-        return rewardId;
+    public int getSubcategoryId() {
+        return subcategoryId;
     }
 
-    public void setRewardId(int rewardId) {
-        this.rewardId = rewardId;
+    public void setSubcategoryId(int subcategoryId) {
+        this.subcategoryId = subcategoryId;
     }
 
-    public int getRewardQuantity() {
-        return rewardQuantity;
+    public int getMiscData() {
+        return miscData;
     }
 
-    public void setRewardQuantity(int rewardQuantity) {
-        this.rewardQuantity = rewardQuantity;
+    public void setMiscData(int miscData) {
+        this.miscData = miscData;
     }
 
     public int getPrice() {
@@ -112,16 +110,6 @@ public class ShopItem extends SugarRecord {
         this.applyMultiplier = applyMultiplier;
     }
 
-    public static ShopItem get(int itemId)  {
-        return Select.from(ShopItem.class).where(
-                Condition.prop("item_id").eq(itemId)).first();
-    }
-
-    public static List<ShopItem> getByCategory(int categoryId) {
-        return Select.from(ShopItem.class).where(
-                Condition.prop("category_id").eq(categoryId)).list();
-    }
-
     public boolean atMaxPurchases() {
         return getMaxPurchases() != 0 && getPurchases() >= getMaxPurchases();
     }
@@ -134,13 +122,20 @@ public class ShopItem extends SugarRecord {
         return Text.get("ITEM_", getItemId(), "_DESC");
     }
 
-    public static ShopItem find(int itemId) {
+    public static ShopItem get(int itemId)  {
         return Select.from(ShopItem.class).where(
                 Condition.prop("item_id").eq(itemId)).first();
     }
 
+    public static ShopItem getPackItem(int packId) {
+        return Select.from(ShopItem.class).where(
+                Condition.prop("category_id").eq(Constants.STORE_CATEGORY_MISC),
+                Condition.prop("subcategory_id").eq(Constants.STORE_SUBCATEGORY_PACK),
+                Condition.prop("misc_data").eq(packId)).first();
+    }
+
     public void purchase() {
-        ShopItem item = ShopItem.find(getItemId());
+        ShopItem item = ShopItem.get(getItemId());
         Statistic currency = Statistic.find(Constants.STATISTIC_CURRENCY);
 
         item.setPurchases(item.getPurchases() + 1);
@@ -149,21 +144,24 @@ public class ShopItem extends SugarRecord {
         currency.setIntValue(currency.getIntValue() - item.getPrice());
         currency.save();
 
+        // Go through each category first, then the misc subcategories
         if (getCategoryId() == Constants.STORE_CATEGORY_BOOSTS) {
-            GooglePlayHelper.UpdateEvent(Constants.EVENT_BUY_BOOST, getRewardQuantity());
-            Boost boost = Boost.get(getRewardId());
-            boost.setOwned(boost.getOwned() + getRewardQuantity());
+            GooglePlayHelper.UpdateEvent(Constants.EVENT_BUY_BOOST, getMiscData());
+            Boost boost = Boost.get(getSubcategoryId());
+            boost.setOwned(boost.getOwned() + getMiscData());
             boost.save();
         } else if (getCategoryId() == Constants.STORE_CATEGORY_UPGRADES) {
-            Boost boost = Boost.get(getRewardId());
+            Boost boost = Boost.get(getSubcategoryId());
             boost.setLevel(boost.getLevel() + 1);
             boost.save();
         } else if (getCategoryId() == Constants.STORE_CATEGORY_TILES) {
-            TileType tileType = TileType.get(getRewardId());
+            TileType tileType = TileType.get(getSubcategoryId());
             tileType.setPuzzleRequired(1);
             tileType.save();
-        } else if (getItemId() == Constants.ITEM_UNLOCK_PACK) {
-            // Unlock the next pack I guess?
+        } else if (getSubcategoryId() == Constants.STORE_SUBCATEGORY_PACK) {
+            Pack targetPack = Pack.getPack(getMiscData());
+            targetPack.setPurchased(true);
+            targetPack.save();
         }
     }
 

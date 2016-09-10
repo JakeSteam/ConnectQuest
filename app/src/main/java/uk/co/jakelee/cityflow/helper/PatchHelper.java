@@ -260,8 +260,6 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_9_DESC", "Unlock a presumably super special tile?"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_10_NAME", "Unlock Tile 3"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_10_DESC", "Unlock a presumably super super special tile?"));
-        texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_11_NAME", "Unlock Pack"));
-        texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_11_DESC", "Instantly unlock the next pack, without collecting all stars."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_12_NAME", "10x Undo"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_12_DESC", "Purchase undo boosts in bulk, saving 10%!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_13_NAME", "10x Time Reduction"));
@@ -280,6 +278,10 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_19_DESC", "Purchase shuffle board boosts in massive bulk, saving 20%!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_20_NAME", "Main Menu Cars"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_20_DESC", "Choose how many cars appear on the main menu, between 0 and 75!"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_21_NAME", "Unlock Pack 2"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_21_DESC", "Instantly unlock pack 2, without collecting all stars."));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_22_NAME", "Unlock Pack 3"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "ITEM_22_DESC", "Instantly unlock pack 3, without collecting all stars."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "METRIC_TILES_EARNED", "Tiles Earned"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "METRIC_BEST_TIME", "Best Time"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "METRIC_BEST_MOVES", "Best Moves"));
@@ -1088,7 +1090,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         shopItems.add(new ShopItem(Constants.ITEM_TILE_1, Constants.STORE_CATEGORY_TILES, 1000, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_TILE_2, Constants.STORE_CATEGORY_TILES, 1500, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_TILE_3, Constants.STORE_CATEGORY_TILES, 2000, 1, false));
-        shopItems.add(new ShopItem(Constants.ITEM_UNLOCK_PACK, Constants.STORE_CATEGORY_MISC, 3000, 0, false));
+        shopItems.add(new ShopItem(Constants.ITEM_PACK_2, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 2, 3000, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_PACK_3, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 3, 3000, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_MAX_CARS, Constants.STORE_CATEGORY_MISC, 1000, 1, false));
         ShopItem.saveInTx(shopItems);
     }
@@ -1233,7 +1236,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tileTypes.add(new TileType(126, Constants.ENVIRONMENT_DESERT, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.HEIGHT_LOW, Constants.HEIGHT_LOW, Constants.HEIGHT_LOW, 3));
         tileTypes.add(new TileType(127, Constants.ENVIRONMENT_DESERT, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 3));
         tileTypes.add(new TileType(128, Constants.ENVIRONMENT_DESERT, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 3));
-        tileTypes.add(new TileType(128, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_ULTRA_LOW, 3));
+        tileTypes.add(new TileType(129, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_ULTRA_LOW, 3));
         TileType.saveInTx(tileTypes);
     }
 }

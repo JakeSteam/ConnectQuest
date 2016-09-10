@@ -131,6 +131,7 @@ public class EditorActivity extends Activity {
 
     public void rotateTile(View v) {
         if (selectedTile != null && selectedTileImage != null) {
+            selectedTile = Tile.get(selectedTile.getId());
             selectedTile.rotate(false);
             int drawableId = ImageHelper.getTileDrawableId(this, selectedTile.getTileTypeId(), selectedTile.getRotation());
             Picasso.with(this).load(drawableId).into(selectedTileImage);

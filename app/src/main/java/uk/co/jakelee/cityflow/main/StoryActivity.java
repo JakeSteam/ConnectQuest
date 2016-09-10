@@ -19,6 +19,7 @@ import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.model.Pack;
+import uk.co.jakelee.cityflow.model.ShopItem;
 
 public class StoryActivity extends Activity {
     private DisplayHelper dh;
@@ -55,6 +56,11 @@ public class StoryActivity extends Activity {
     protected void onResume() {
         super.onResume();
         displayPackInfo();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 
     class CustomPagerAdapter extends PagerAdapter {
@@ -122,8 +128,9 @@ public class StoryActivity extends Activity {
             ((TextView)findViewById(R.id.actionButton)).setText("BUY");
             findViewById(R.id.actionButton).setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
+                    ShopItem packItem = ShopItem.getPackItem(pack.getPackId());
                     Intent intent = new Intent(getApplicationContext(), ShopActivity.class);
-                    intent.putExtra(Constants.INTENT_ITEM, pack.getPackId());
+                    intent.putExtra(Constants.INTENT_ITEM, packItem.getItemId());
                     startActivity(intent);
                 }
             });
