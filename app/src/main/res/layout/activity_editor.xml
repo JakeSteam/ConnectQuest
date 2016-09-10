@@ -61,7 +61,6 @@
             android:layout_alignParentTop="true"
             android:layout_alignBottom="@+id/savePuzzle"
             android:layout_centerInParent="true"
-            android:text=""
             android:layout_toRightOf="@id/playPuzzle"
             android:layout_toLeftOf="@id/savePuzzle" />
     </RelativeLayout>

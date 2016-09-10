@@ -90,10 +90,12 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        AlertHelper.success(callingActivity, result);
+        if (result.length() > 0) {
+            AlertHelper.success(callingActivity, result);
+        }
 
-        RelativeLayout mainMenuWrapper = (RelativeLayout)callingActivity.findViewById(R.id.mainMenuWrapper);
-        RelativeLayout progressWrapper = (RelativeLayout)callingActivity.findViewById(R.id.progressWrapper);
+        RelativeLayout mainMenuWrapper = (RelativeLayout) callingActivity.findViewById(R.id.mainMenuWrapper);
+        RelativeLayout progressWrapper = (RelativeLayout) callingActivity.findViewById(R.id.progressWrapper);
         if (mainMenuWrapper != null && progressWrapper != null) {
             progressWrapper.setVisibility(View.GONE);
             mainMenuWrapper.setVisibility(View.VISIBLE);

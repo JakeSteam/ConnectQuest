@@ -24,26 +24,38 @@
             android:padding="15dp"
             android:background="@color/grey"
             app:layout_heightPercent="40%"/>
+        <uk.co.jakelee.cityflow.components.TextViewFont
+            android:id="@+id/packPuzzleCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_alignBottom="@id/packScroller"
+            android:layout_alignRight="@id/packScroller"
+            android:padding="3dp"
+            android:textSize="16sp"/>
         <uk.co.jakelee.cityflow.components.AutofitTextViewFont
             android:id="@+id/packName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/packScroller"
-            android:padding="10dp"
+            app:layout_heightPercent="10%"
             android:gravity="center"
-            android:textColor="@color/grey"
+            android:padding="8dp"
+            android:textColor="@color/white"
             android:background="@color/blue"
-            android:textSize="50sp"
-            android:text="PACK NAME GOES HERE"
-            android:singleLine="true"/>
+            android:textSize="30sp"
+            android:maxLines="1"/>
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/actionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:layout_margin="10dp"
             android:gravity="center"
-            android:textColor="@color/grey"
+            android:textColor="@color/black"
             android:background="@color/blue"
             android:textSize="30sp"
             android:text="BUY"
@@ -52,14 +64,13 @@
         <uk.co.jakelee.cityflow.components.AutofitTextViewFont
             android:id="@+id/packDescription"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@id/packName"
             android:layout_above="@id/actionButton"
             android:padding="10dp"
             android:gravity="center"
             android:textSize="20sp"
-            android:textColor="@color/grey"
-            android:text="Pack description\nLine2\nLine3\nLine4"/>
+            android:textColor="@color/dkgrey"/>
     </android.support.percent.PercentRelativeLayout>
 
     <LinearLayout

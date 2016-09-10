@@ -195,6 +195,10 @@ public class DisplayHelper {
         return context.getResources().getIdentifier("car_" + carNumber + "_" + rotation, "drawable", context.getPackageName());
     }
 
+    public int getPackDrawableID(int packId) {
+        return context.getResources().getIdentifier("pack_" + packId, "drawable", context.getPackageName());
+    }
+
     public Drawable createDrawable(int drawableId, int width, int height) {
         Bitmap rawImage = BitmapFactory.decodeResource(context.getResources(), drawableId);
         int adjustedWidth = dpToPixel(width);
