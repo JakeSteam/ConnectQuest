@@ -30,6 +30,9 @@ public class TilePickerActivity extends Activity {
     private Tile tile;
     private SharedPreferences prefs;
     private enum filters {Flow, Environment, Height}
+    private final String environmentsPreferenceID = "tilePickerEnvironments";
+    private final String flowsPreferenceID = "tilePickerFlows";
+    private final String heightsPreferenceID = "tilePickerHeights";
 
     private ArrayList<Integer> selectedEnvironmentIDs = new ArrayList<>();
     private ArrayList<Integer> selectedFlowIDs = new ArrayList<>();
@@ -52,9 +55,9 @@ public class TilePickerActivity extends Activity {
             tile = Tile.get(tileId);
         }
 
-        loadSelectedIds("tilePickerEnvironments", filters.Environment);
-        loadSelectedIds("tilePickerFlows", filters.Flow);
-        loadSelectedIds("tilePickerHeights", filters.Height);
+        loadSelectedIds(environmentsPreferenceID);
+        loadSelectedIds(flowsPreferenceID);
+        loadSelectedIds(heightsPreferenceID);
 
         populateEnvironmentPicker();
         populateFlowPicker();
@@ -68,9 +71,9 @@ public class TilePickerActivity extends Activity {
     protected void onStop() {
         super.onStop();
 
-        prefs.edit().putString("tilePickerEnvironments", selectedEnvironmentIDs.toString()).apply();
-        prefs.edit().putString("tilePickerFlows", selectedFlowIDs.toString()).apply();
-        prefs.edit().putString("tilePickerHeights", selectedHeightIDs.toString()).apply();
+        prefs.edit().putString(environmentsPreferenceID, selectedEnvironmentIDs.toString()).apply();
+        prefs.edit().putString(flowsPreferenceID, selectedFlowIDs.toString()).apply();
+        prefs.edit().putString(heightsPreferenceID, selectedHeightIDs.toString()).apply();
     }
 
     private void populateText() {
@@ -79,29 +82,33 @@ public class TilePickerActivity extends Activity {
         ((TextView) findViewById(R.id.heightLabel)).setText(Text.get("WORD_HEIGHT"));
     }
 
-    private void loadSelectedIds(String preferencesKey, filters filter) {
+    private void loadSelectedIds(String preferencesKey) {
         String selectedIdString = prefs.getString(preferencesKey, "");
         if (!selectedIdString.equals("") && selectedIdString.length() > 3) {
             String trimmedSelectedIdsString = selectedIdString.substring(1, selectedIdString.length() - 1);
             List<String> selectedIds = Arrays.asList(trimmedSelectedIdsString.split(", "));
             for (String selectedId : selectedIds) {
-                if (filter == filters.Environment) {
-                    selectedEnvironmentIDs.add(Integer.parseInt(selectedId));
-                } else if (filter == filters.Flow) {
-                    selectedFlowIDs.add(Integer.parseInt(selectedId));
-                } else if (filter == filters.Height) {
-                    selectedHeightIDs.add(Integer.parseInt(selectedId));
+                switch (preferencesKey) {
+                    case environmentsPreferenceID:
+                        selectedEnvironmentIDs.add(Integer.parseInt(selectedId));
+                        break;
+                    case flowsPreferenceID:
+                        selectedFlowIDs.add(Integer.parseInt(selectedId));
+                        break;
+                    case heightsPreferenceID:
+                        selectedHeightIDs.add(Integer.parseInt(selectedId));
+                        break;
                 }
             }
         }
 
-        if (filter == filters.Environment && selectedEnvironmentIDs.size() == 0) {
+        if (preferencesKey.equals(environmentsPreferenceID) && selectedEnvironmentIDs.size() == 0) {
             selectedEnvironmentIDs.add(Constants.ENVIRONMENT_GRASS);
-        } else if (filter == filters.Flow && selectedFlowIDs.size() == 0) {
+        } else if (preferencesKey.equals(flowsPreferenceID) && selectedFlowIDs.size() == 0) {
             for (int i = 0; i <= Constants.FLOW_MAX; i++) {
                 selectedFlowIDs.add(i);
             }
-        } else if (filter == filters.Height && selectedHeightIDs.size() == 0) {
+        } else if (preferencesKey.equals(heightsPreferenceID) && selectedHeightIDs.size() == 0) {
             for (int i = 0; i <= Constants.HEIGHT_MAX; i++) {
                 selectedHeightIDs.add(i);
             }
