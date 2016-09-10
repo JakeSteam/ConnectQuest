@@ -866,6 +866,39 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(41, 29, 3, 2, Constants.ROTATION_NORTH));
         tiles.add(new Tile(41, 19, 3, 3, Constants.ROTATION_NORTH));
 
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_42_NAME", "The Moat"));
+        puzzles.add(new Puzzle(42, 3, 22121L, 39, 22121L, 39));
+        tiles.add(new Tile(42, 1, 0, 4, 2));
+        tiles.add(new Tile(42, 1, 1, 4, 4));
+        tiles.add(new Tile(42, 45, 2, 4, 4));
+        tiles.add(new Tile(42, 43, 3, 4, 1));
+        tiles.add(new Tile(42, 12, 4, 4, 2));
+        tiles.add(new Tile(42, 36, 5, 4, 3));
+        tiles.add(new Tile(42, 11, 0, 3, 2));
+        tiles.add(new Tile(42, 2, 1, 3, 1));
+        tiles.add(new Tile(42, 8, 2, 3, 3));
+        tiles.add(new Tile(42, 9, 3, 3, 4));
+        tiles.add(new Tile(42, 8, 4, 3, 1));
+        tiles.add(new Tile(42, 11, 5, 3, 3));
+        tiles.add(new Tile(42, 37, 0, 2, 4));
+        tiles.add(new Tile(42, 1, 1, 2, 3));
+        tiles.add(new Tile(42, 7, 2, 2, 4));
+        tiles.add(new Tile(42, 2, 3, 2, 3));
+        tiles.add(new Tile(42, 7, 4, 2, 3));
+        tiles.add(new Tile(42, 5, 5, 2, 4));
+        tiles.add(new Tile(42, 39, 0, 1, 3));
+        tiles.add(new Tile(42, 11, 1, 1, 4));
+        tiles.add(new Tile(42, 7, 2, 1, 4));
+        tiles.add(new Tile(42, 10, 3, 1, 1));
+        tiles.add(new Tile(42, 7, 4, 1, 4));
+        tiles.add(new Tile(42, 5, 5, 1, 4));
+        tiles.add(new Tile(42, 12, 0, 0, 1));
+        tiles.add(new Tile(42, 12, 1, 0, 1));
+        tiles.add(new Tile(42, 8, 2, 0, 3));
+        tiles.add(new Tile(42, 9, 3, 0, 4));
+        tiles.add(new Tile(42, 8, 4, 0, 1));
+        tiles.add(new Tile(42, 3, 5, 0, 4));
+
 
         // Here be custom puzzles
         List<PuzzleCustom> puzzleCustoms = new ArrayList<>();
