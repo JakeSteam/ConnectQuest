@@ -16,6 +16,7 @@ import java.util.List;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
+import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.ImageHelper;
@@ -41,7 +42,11 @@ public class EditorActivity extends Activity {
 
         Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
         puzzle.resetTileRotations();
-        List<Tile> tiles = puzzle.getTiles();
+
+        drawPuzzle(puzzle.getTiles());
+    }
+
+    private void drawPuzzle(List<Tile> tiles) {
         populateTiles(tiles);
         fetchImages(tiles);
     }
@@ -144,6 +149,16 @@ public class EditorActivity extends Activity {
             intent.putExtra(Constants.INTENT_TILE, selectedTile.getId());
             startActivity(intent);
         }
+    }
+
+    public void shuffleTiles(View v) {
+        AlertDialogHelper.confirmPuzzleShuffle(this, Puzzle.getPuzzle(puzzleId));
+    }
+
+    public void shuffleTiles() {
+        List<Tile> tiles = Puzzle.getPuzzle(puzzleId).getTiles();
+        Puzzle.shuffle(tiles);
+        drawPuzzle(tiles);
     }
 
     public void savePuzzle(View v) {

@@ -15,9 +15,9 @@ public class Constants {
     public static final int TILE_HEIGHT = 65;
     public static final int PUZZLE_WIDTH = 129;
     public static final int PUZZLE_X_MIN = 1;
-    public static final int PUZZLE_X_MAX = 10;
+    public static final int PUZZLE_X_MAX = 15;
     public static final int PUZZLE_Y_MIN = 1;
-    public static final int PUZZLE_Y_MAX = 10;
+    public static final int PUZZLE_Y_MAX = 15;
     public static final int NUMBER_CARS = 9;
     public static final int CARS_MIN_TIME = 6000;
     public static final int CARS_MAX_TIME = 40000;

@@ -52,6 +52,30 @@ public class AlertDialogHelper {
         });
     }
 
+    public static void confirmPuzzleShuffle(final EditorActivity activity, final Puzzle puzzle) {
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        alertDialog.setMessage(String.format(Text.get("ALERT_SHUFFLE_PUZZLE"), puzzle.getName()));
+
+        alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_SHUFFLE"), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                activity.shuffleTiles();
+            }
+        });
+
+        alertDialog.setNegativeButton(Text.get("DIALOG_BUTTON_CANCEL"), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                alertDialog.show();
+            }
+        });
+    }
+
     public static void confirmCloudLoad(final Activity activity, int localStars, int localCurrency, int cloudStars, int cloudCurrency) {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(Text.get("DIALOG_CLOUD_LOAD_CONFIRM"),

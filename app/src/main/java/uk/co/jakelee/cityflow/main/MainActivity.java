@@ -44,22 +44,6 @@ public class MainActivity extends Activity implements
         prefs.edit().putInt("language", Constants.LANGUAGE_EN_GB).apply();
 
         new PatchHelper(this).execute();
-    }
-
-    private void ratingPrompt() {
-        AppRate.with(this)
-                .setInstallDays(3)
-                .setLaunchTimes(3)
-                .setRemindInterval(3)
-                .setShowLaterButton(true)
-                .monitor();
-
-        AppRate.showRateDialogIfMeetsConditions(this);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
 
         ratingPrompt();
 
@@ -72,10 +56,21 @@ public class MainActivity extends Activity implements
 
         if (!GooglePlayHelper.IsConnected() && !GooglePlayHelper.mGoogleApiClient.isConnecting() &&
                 Setting.getSafeBoolean(Constants.SETTING_SIGN_IN) && GooglePlayHelper.AreGooglePlayServicesInstalled(this)) {
-             GooglePlayHelper.mGoogleApiClient.connect();
+            GooglePlayHelper.mGoogleApiClient.connect();
         }
 
         Tapjoy.onActivityStart(this);
+    }
+
+    private void ratingPrompt() {
+        AppRate.with(this)
+                .setInstallDays(3)
+                .setLaunchTimes(3)
+                .setRemindInterval(3)
+                .setShowLaterButton(true)
+                .monitor();
+
+        AppRate.showRateDialogIfMeetsConditions(this);
     }
 
     @Override

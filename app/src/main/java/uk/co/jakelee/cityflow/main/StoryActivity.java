@@ -20,6 +20,7 @@ import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.ShopItem;
+import uk.co.jakelee.cityflow.model.Text;
 
 public class StoryActivity extends Activity {
     private DisplayHelper dh;
@@ -63,6 +64,43 @@ public class StoryActivity extends Activity {
         super.onStop();
     }
 
+    private void displayPackInfo() {
+        final Pack pack = Pack.getPack(selectedPack);
+
+        ((TextView)findViewById(R.id.packName)).setText(pack.getName());
+        ((TextView)findViewById(R.id.packPuzzleCount)).setText(Integer.toString(pack.getMaxStars() / 3) + " puzzles");
+        if (pack.isUnlocked()) {
+            ((TextView)findViewById(R.id.packDescription)).setText(String.format("%1$d / %2$d Stars\n\nBest Time: %3$s\n\nBest Moves: %4$s",
+                    pack.getCurrentStars(),
+                    pack.getMaxStars(),
+                    pack.getCurrentTime() > 0 ? DateHelper.getPuzzleTimeString(pack.getCurrentTime()) : "N/A",
+                    pack.getCurrentMoves() > 0 ? Integer.toString(pack.getCurrentMoves()) : "N/A"));
+            ((TextView)findViewById(R.id.actionButton)).setText(Text.get("WORD_OPEN"));
+            findViewById(R.id.actionButton).setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), PackActivity.class);
+                    intent.putExtra(Constants.INTENT_PACK, pack.getPackId());
+                    startActivity(intent);
+                }
+            });
+        } else {
+            Pack previousPack = Pack.getPack(selectedPack - 1);
+            ((TextView)findViewById(R.id.packDescription)).setText(String.format("Pack locked!\n\nFully complete pack \"%1$s\" (currently %2$d / %3$d stars) to unlock, or purchase for coins in the shop.",
+                    previousPack.getName(),
+                    previousPack.getCurrentStars(),
+                    previousPack.getMaxStars()));
+            ((TextView)findViewById(R.id.actionButton)).setText(Text.get("WORD_UNLOCK"));
+            findViewById(R.id.actionButton).setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    ShopItem packItem = ShopItem.getPackItem(pack.getPackId());
+                    Intent intent = new Intent(getApplicationContext(), ShopActivity.class);
+                    intent.putExtra(Constants.INTENT_ITEM, packItem.getItemId());
+                    startActivity(intent);
+                }
+            });
+        }
+    }
+
     class CustomPagerAdapter extends PagerAdapter {
         Context mContext;
         LayoutInflater mLayoutInflater;
@@ -97,43 +135,6 @@ public class StoryActivity extends Activity {
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((LinearLayout) object);
-        }
-    }
-
-    private void displayPackInfo() {
-        final Pack pack = Pack.getPack(selectedPack);
-
-        ((TextView)findViewById(R.id.packName)).setText(pack.getName());
-        ((TextView)findViewById(R.id.packPuzzleCount)).setText(Integer.toString(pack.getMaxStars() / 3) + " puzzles");
-        if (pack.isUnlocked()) {
-            ((TextView)findViewById(R.id.packDescription)).setText(String.format("%1$d / %2$d Stars\n\nBest Time: %3$s\n\nBest Moves: %4$s",
-                    pack.getCurrentStars(),
-                    pack.getMaxStars(),
-                    pack.getCurrentTime() > 0 ? DateHelper.getPuzzleTimeString(pack.getCurrentTime()) : "N/A",
-                    pack.getCurrentMoves() > 0 ? Integer.toString(pack.getCurrentMoves()) : "N/A"));
-            ((TextView)findViewById(R.id.actionButton)).setText("PLAY");
-            findViewById(R.id.actionButton).setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View v) {
-                    Intent intent = new Intent(getApplicationContext(), PackActivity.class);
-                    intent.putExtra(Constants.INTENT_PACK, pack.getPackId());
-                    startActivity(intent);
-                }
-            });
-        } else {
-            Pack previousPack = Pack.getPack(selectedPack - 1);
-            ((TextView)findViewById(R.id.packDescription)).setText(String.format("Pack locked!\n\nFully complete pack \"%1$s\" (currently %2$d / %3$d stars) to unlock, or purchase for coins in the shop.",
-                    previousPack.getName(),
-                    previousPack.getCurrentStars(),
-                    previousPack.getMaxStars()));
-            ((TextView)findViewById(R.id.actionButton)).setText("BUY");
-            findViewById(R.id.actionButton).setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View v) {
-                    ShopItem packItem = ShopItem.getPackItem(pack.getPackId());
-                    Intent intent = new Intent(getApplicationContext(), ShopActivity.class);
-                    intent.putExtra(Constants.INTENT_ITEM, packItem.getItemId());
-                    startActivity(intent);
-                }
-            });
         }
     }
 

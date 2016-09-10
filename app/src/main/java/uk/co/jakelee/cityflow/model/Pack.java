@@ -187,8 +187,4 @@ public class Pack extends SugarRecord{
     public String getName() {
         return Text.get("PACK_", getPackId(), "_NAME");
     }
-
-    public String getDescription() {
-        return Text.get("PACK_", getPackId(), "_DESC");
-    }
 }

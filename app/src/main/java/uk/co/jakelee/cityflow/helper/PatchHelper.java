@@ -107,7 +107,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     @Override
     protected void onProgressUpdate(String... values) {
-            progressText.setText("Currently installing " + values[0] + "...");
+            progressText.setText("Installing:\n" + values[0]);
     }
 
     private void createAchievement() {
@@ -156,6 +156,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_LOADED", "Successfully loaded game from cloud!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_COINS_EARNED", "Earned %1$d coin(s)!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_COINS_EARNED_FREE", "Earned %1$d free coin(s), enjoy!"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SHUFFLE_PUZZLE", "Randomly shuffle all tiles?"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_DELETE_PUZZLE", "Delete puzzle \"%1$s\"?\n\nNote: This can't be undone!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SAVE_CONFLICT", "Save conflict detected! Currently resolving, this might take a few seconds, please be patient..."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SETTING_TOGGLE_ON", "Toggled %1$s on!"));
@@ -200,6 +201,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CLOUD_SAVE_CONFIRM", "Are you sure you wish to overwrite your cloud save:\n%1$s\n\n(Created on %2$s on your %3$s) with your local save:\n\n%4$d Stars | %5$d Coins | V%6$s?"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CHANGE", "Change"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CONFIRM", "Confirm"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_SHUFFLE", "Shuffle"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CLOSE", "Close"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_SAVE", "Save"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CREATE", "Create"));
@@ -286,11 +288,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "METRIC_BEST_TIME", "Best Time"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "METRIC_BEST_MOVES", "Best Moves"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_1_NAME", "Tutorial"));
-        texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_1_DESC", "Let's go with the flow."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_2_NAME", "The Big City"));
-        texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_2_DESC", "Get flowing in the big city."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_3_NAME", "Escape To The Country"));
-        texts.add(new Text(Constants.LANGUAGE_EN_GB, "PACK_3_DESC", "Flow all the way out to the country."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_DEFAULT_NAME", "New Puzzle (%1$dx%2$d, %3$s)"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_DEFAULT_DESC", "No description."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_EXPORT_START", "Beginning puzzle export process..."));
@@ -485,8 +484,10 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_HEIGHT", "Height"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_NA", "N/A"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_NAME", "Name"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_OPEN", "Open"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_PAUSED", "Paused"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_START", "Start"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_UNLOCK", "Unlock"));
         Text.saveInTx(texts);
     }
 

@@ -17,4 +17,5 @@
     <string name="icon_settings">&#xf085;</string>
     <string name="icon_quests">&#xf128;</string>
     <string name="icon_shop">&#xf07a;</string>
+    <string name="icon_shuffle">&#xf074;</string>
 </resources>
