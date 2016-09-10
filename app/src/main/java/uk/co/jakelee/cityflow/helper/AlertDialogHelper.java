@@ -148,7 +148,7 @@ public class AlertDialogHelper {
                 if (EncryptHelper.applyCode(supportCode)) {
                     AlertHelper.success(activity, Text.get("SUCCESS_SUPPORT_CODE"));
                 } else {
-                    AlertHelper.error(activity, Text.get("ERROR_SUPPORT_CODE_INVALID"));
+                    AlertHelper.error(activity, ErrorHelper.get(ErrorHelper.Error.SUPPORT_CODE_INVALID));
                 }
             }
         });
@@ -287,13 +287,18 @@ public class AlertDialogHelper {
             public void onClick(View v) {
                 int xValue = getIntFromProgress(sliderWidth.getProgress(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX);
                 int yValue = getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX);
-                int environmentId = spinner.getSelectedItemPosition();
-                int newPuzzleId = PuzzleHelper.createNewPuzzle(xValue, yValue, environmentId);
 
-                Intent intent = new Intent(activity, EditorActivity.class)
-                        .putExtra(Constants.INTENT_PUZZLE, newPuzzleId);
-                activity.startActivity(intent);
-                dialog.dismiss();
+                if (xValue <= 1 && yValue <= 1) {
+                    AlertHelper.error(activity, ErrorHelper.get(ErrorHelper.Error.PUZZLE_TOO_SMALL));
+                } else {
+                    int environmentId = spinner.getSelectedItemPosition();
+                    int newPuzzleId = PuzzleHelper.createNewPuzzle(xValue, yValue, environmentId);
+
+                    Intent intent = new Intent(activity, EditorActivity.class)
+                            .putExtra(Constants.INTENT_PUZZLE, newPuzzleId);
+                    activity.startActivity(intent);
+                    dialog.dismiss();
+                }
             }
         });
 

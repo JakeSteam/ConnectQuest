@@ -24,23 +24,17 @@ import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
+import uk.co.jakelee.cityflow.objects.TileFilter;
 
 public class TilePickerActivity extends Activity {
     private DisplayHelper dh;
     private Tile tile;
     private SharedPreferences prefs;
-    private enum filters {Flow, Environment, Height}
     private final String environmentsPreferenceID = "tilePickerEnvironments";
     private final String flowsPreferenceID = "tilePickerFlows";
     private final String heightsPreferenceID = "tilePickerHeights";
 
-    private ArrayList<Integer> selectedEnvironmentIDs = new ArrayList<>();
-    private ArrayList<Integer> selectedFlowIDs = new ArrayList<>();
-    private ArrayList<Integer> selectedHeightIDs = new ArrayList<>();
-
-    private MultiSpinner environmentSpinner;
-    private MultiSpinner flowSpinner;
-    private MultiSpinner heightSpinner;
+    private ArrayList<TileFilter> filters = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +49,14 @@ public class TilePickerActivity extends Activity {
             tile = Tile.get(tileId);
         }
 
-        loadSelectedIds(environmentsPreferenceID);
-        loadSelectedIds(flowsPreferenceID);
-        loadSelectedIds(heightsPreferenceID);
+        filters.add(new TileFilter(Constants.ENVIRONMENT_MIN, Constants.ENVIRONMENT_MAX, "ENVIRONMENT_", R.id.environmentPicker, environmentsPreferenceID));
+        filters.add(new TileFilter(Constants.FLOW_MIN, Constants.FLOW_MAX, "FLOW_", R.id.flowPicker, flowsPreferenceID));
+        filters.add(new TileFilter(Constants.HEIGHT_MIN, Constants.HEIGHT_MAX, "HEIGHT_", R.id.heightPicker, heightsPreferenceID));
 
-        populateEnvironmentPicker();
-        populateFlowPicker();
-        populateHeightPicker();
+        for (TileFilter filter : filters) {
+            loadSelected(filter);
+            populatePicker(filter);
+        }
 
         populateTilePicker();
         populateText();
@@ -71,9 +66,9 @@ public class TilePickerActivity extends Activity {
     protected void onStop() {
         super.onStop();
 
-        prefs.edit().putString(environmentsPreferenceID, selectedEnvironmentIDs.toString()).apply();
-        prefs.edit().putString(flowsPreferenceID, selectedFlowIDs.toString()).apply();
-        prefs.edit().putString(heightsPreferenceID, selectedHeightIDs.toString()).apply();
+        for (TileFilter filter : filters) {
+            prefs.edit().putString(filter.preferenceKey, filter.selected.toString()).apply();
+        }
     }
 
     private void populateText() {
@@ -82,140 +77,55 @@ public class TilePickerActivity extends Activity {
         ((TextView) findViewById(R.id.heightLabel)).setText(Text.get("WORD_HEIGHT"));
     }
 
-    private void loadSelectedIds(String preferencesKey) {
-        String selectedIdString = prefs.getString(preferencesKey, "");
-        if (!selectedIdString.equals("") && selectedIdString.length() > 3) {
+    private void loadSelected(TileFilter filter) {
+        String selectedIdString = prefs.getString(filter.preferenceKey, "");
+        if (!selectedIdString.equals("") && selectedIdString.length() >= 3) {
             String trimmedSelectedIdsString = selectedIdString.substring(1, selectedIdString.length() - 1);
             List<String> selectedIds = Arrays.asList(trimmedSelectedIdsString.split(", "));
             for (String selectedId : selectedIds) {
-                switch (preferencesKey) {
-                    case environmentsPreferenceID:
-                        selectedEnvironmentIDs.add(Integer.parseInt(selectedId));
-                        break;
-                    case flowsPreferenceID:
-                        selectedFlowIDs.add(Integer.parseInt(selectedId));
-                        break;
-                    case heightsPreferenceID:
-                        selectedHeightIDs.add(Integer.parseInt(selectedId));
-                        break;
-                }
+                filter.selected.add(Integer.parseInt(selectedId));
             }
         }
 
-        if (preferencesKey.equals(environmentsPreferenceID) && selectedEnvironmentIDs.size() == 0) {
-            selectedEnvironmentIDs.add(Constants.ENVIRONMENT_GRASS);
-        } else if (preferencesKey.equals(flowsPreferenceID) && selectedFlowIDs.size() == 0) {
-            for (int i = 0; i <= Constants.FLOW_MAX; i++) {
-                selectedFlowIDs.add(i);
-            }
-        } else if (preferencesKey.equals(heightsPreferenceID) && selectedHeightIDs.size() == 0) {
-            for (int i = 0; i <= Constants.HEIGHT_MAX; i++) {
-                selectedHeightIDs.add(i);
+        if (filter.preferenceKey.equals(environmentsPreferenceID) && filter.selected.size() == 0) {
+            filter.selected.add(Constants.ENVIRONMENT_GRASS);
+        } else if ((filter.preferenceKey.equals(flowsPreferenceID) || filter.preferenceKey.equals(heightsPreferenceID)) && filter.selected.size() == 0) {
+            for (int i = 0; i <= filter.max; i++) {
+                filter.selected.add(i);
             }
         }
     }
 
-    private void populateEnvironmentPicker() {
-        int numEnvironments = (Constants.ENVIRONMENT_MAX - Constants.ENVIRONMENT_MIN) + 1;
-        ArrayAdapter<String> envAdapter = new ArrayAdapter<>(this, R.layout.custom_spinner_item);
-        for (int i = 0; i < numEnvironments; i++) {
-            envAdapter.add(Text.get("ENVIRONMENT_" + i + "_NAME"));
+    private void populatePicker(final TileFilter filter) {
+        int numOptions = (filter.max - filter.min) + 1;
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.custom_spinner_item);
+        for (int i = 0; i < numOptions; i++) {
+            adapter.add(Text.get(filter.prefix + i + "_NAME"));
         }
-        boolean[] selectedEnvironments = new boolean[numEnvironments];
-        for (Integer environmentId : selectedEnvironmentIDs) {
-            selectedEnvironments[environmentId] = true;
-        }
-
-        environmentSpinner = (MultiSpinner) findViewById(R.id.environmentPicker);
-        environmentSpinner.setAdapter(envAdapter, false, environmentSelected);
-        environmentSpinner.setSelected(selectedEnvironments);
-    }
-
-    private void populateFlowPicker() {
-        int numFlows = (Constants.FLOW_MAX - Constants.FLOW_MIN) + 1;
-        ArrayAdapter<String> flowAdapter = new ArrayAdapter<>(this, R.layout.custom_spinner_item);
-        for (int i = 0; i < numFlows; i++) {
-            flowAdapter.add(Text.get("FLOW_" + i + "_NAME"));
+        boolean[] selectedOptions = new boolean[numOptions];
+        for (Integer id : filter.selected) {
+            selectedOptions[id] = true;
         }
 
-        boolean[] selectedFlows = new boolean[numFlows];
-        for (Integer flowId : selectedFlowIDs) {
-            selectedFlows[flowId] = true;
-        }
-
-        flowSpinner = (MultiSpinner) findViewById(R.id.flowPicker);
-        flowSpinner.setAdapter(flowAdapter, false, flowSelected);
-        flowSpinner.setSelected(selectedFlows);
-        flowSpinner.setText(Text.get("WORD_ALL"));
-    }
-
-    private void populateHeightPicker() {
-        int numHeights = (Constants.HEIGHT_MAX - Constants.HEIGHT_MIN) + 1;
-        ArrayAdapter<String> flowAdapter = new ArrayAdapter<>(this, R.layout.custom_spinner_item);
-        for (int i = 0; i < numHeights; i++) {
-            flowAdapter.add(Text.get("HEIGHT_" + i + "_NAME"));
-        }
-
-        boolean[] selectedHeights = new boolean[numHeights];
-        for (Integer heightId : selectedHeightIDs) {
-            selectedHeights[heightId] = true;
-        }
-
-        heightSpinner = (MultiSpinner) findViewById(R.id.heightPicker);
-        heightSpinner.setAdapter(flowAdapter, false, heightSelected);
-        heightSpinner.setSelected(selectedHeights);
-        heightSpinner.setText(Text.get("WORD_ALL"));
-    }
-
-    private MultiSpinner.MultiSpinnerListener environmentSelected = new MultiSpinner.MultiSpinnerListener() {
-        public void onItemsSelected(boolean[] environments) {
-            selectedEnvironmentIDs.clear();
-            for (int environmentId = 0; environmentId < environments.length; environmentId++) {
-                if (environments[environmentId]) {
-                    selectedEnvironmentIDs.add(environmentId);
+        final MultiSpinner spinner = (MultiSpinner) findViewById(filter.spinnerId);
+        spinner.setAdapter(adapter, false, new MultiSpinner.MultiSpinnerListener() {
+            public void onItemsSelected(boolean[] selectedIds) {
+                filter.selected.clear();
+                for (int environmentId = 0; environmentId < selectedIds.length; environmentId++) {
+                    if (selectedIds[environmentId]) {
+                        filter.selected.add(environmentId);
+                    }
                 }
-            }
 
-            if (selectedEnvironmentIDs.size() == environments.length) {
-                environmentSpinner.setText("All");
-            }
-
-            populateTilePicker();
-        }
-    };
-
-    private MultiSpinner.MultiSpinnerListener flowSelected = new MultiSpinner.MultiSpinnerListener() {
-        public void onItemsSelected(boolean[] flows) {
-            selectedFlowIDs.clear();
-            for (int flowId = 0; flowId < flows.length; flowId++) {
-                if (flows[flowId]) {
-                    selectedFlowIDs.add(flowId);
+                if (filter.selected.size() == selectedIds.length) {
+                    spinner.setText("All");
                 }
-            }
 
-            if (selectedFlowIDs.size() == flows.length) {
-                flowSpinner.setText("All");
+                populateTilePicker();
             }
-
-            populateTilePicker();
-        }
-    };
-
-    private MultiSpinner.MultiSpinnerListener heightSelected = new MultiSpinner.MultiSpinnerListener() {
-        public void onItemsSelected(boolean[] heights) {
-            selectedHeightIDs.clear();
-            for (int heightId = 0; heightId < heights.length; heightId++) {
-                if (heights[heightId]) {
-                    selectedHeightIDs.add(heightId);
-                }
-            }
-
-            if (selectedHeightIDs.size() == heights.length) {
-                heightSpinner.setText("All");
-            }
-            populateTilePicker();
-        }
-    };
+        });
+        spinner.setSelected(selectedOptions);
+    }
 
     private void populateTilePicker() {
         TableLayout tileContainer = (TableLayout)findViewById(R.id.tileContainer);
@@ -250,12 +160,13 @@ public class TilePickerActivity extends Activity {
     }
 
     private String getEnvironmentSQL() {
-        if (selectedEnvironmentIDs.size() == 0) {
+        TileFilter environmentFilter = filters.get(0);
+        if (environmentFilter.selected.size() == 0) {
             return "environment_id IS NOT NULL";
         }
 
         StringBuilder sb = new StringBuilder();
-        for (int environmentId : selectedEnvironmentIDs) {
+        for (int environmentId : environmentFilter.selected) {
             sb.append(environmentId);
             sb.append(",");
         }
@@ -265,12 +176,13 @@ public class TilePickerActivity extends Activity {
     }
 
     private String getFlowSQL() {
-        if (selectedFlowIDs.size() == 0) {
+        TileFilter flowFilter = filters.get(1);
+        if (flowFilter.selected.size() == 0) {
             return "flow_north IS NOT NULL";
         }
 
         StringBuilder sb = new StringBuilder();
-        for (int flowId : selectedFlowIDs) {
+        for (int flowId : flowFilter.selected) {
             sb.append(flowId);
             sb.append(",");
         }
@@ -280,12 +192,13 @@ public class TilePickerActivity extends Activity {
     }
 
     private String getHeightSQL() {
-        if (selectedHeightIDs.size() == 0) {
+        TileFilter heightFilter = filters.get(2);
+        if (heightFilter.selected.size() == 0) {
             return "height_north IS NOT NULL";
         }
 
         StringBuilder sb = new StringBuilder();
-        for (int heightId : selectedHeightIDs) {
+        for (int heightId : heightFilter.selected) {
             sb.append(heightId);
             sb.append(",");
         }

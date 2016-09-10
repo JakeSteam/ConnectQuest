@@ -92,27 +92,27 @@
             android:layout_below="@id/currentHeight"/>
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/environmentWrapper"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/heightWrapper">
+        android:layout_below="@id/heightWrapper"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/environmentText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:textSize="20sp" />
         <Spinner
             android:id="@+id/environmentPicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:layout_toRightOf="@id/environmentText"
+            android:textSize="22sp"
             android:background="@drawable/ui_panel_blue"
             android:layout_margin="5dp"/>
-    </RelativeLayout>
+    </LinearLayout>
 
     <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/close"

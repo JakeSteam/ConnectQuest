@@ -55,7 +55,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         } else if (adPlacement.isContentReady()) {
             adPlacement.showContent();
         } else {
-            AlertHelper.error(callingActivity, Text.get("ERROR_ADVERT_NOT_LOADED"));
+            AlertHelper.error(callingActivity, ErrorHelper.get(ErrorHelper.Error.ADVERT_NOT_LOADED));
         }
     }
 
@@ -64,7 +64,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         if (verified) {
             callingActivity.advertWatched();
         } else {
-            AlertHelper.error(callingActivity, Text.get("ERROR_ADVERT_NOT_VERIFIED"));
+            AlertHelper.error(callingActivity, ErrorHelper.get(ErrorHelper.Error.ADVERT_NOT_VERIFIED));
         }
 
         advert.preload(null);

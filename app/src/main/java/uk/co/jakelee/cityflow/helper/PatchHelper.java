@@ -226,6 +226,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_TECHNICAL", "An unknown technical error occurred! Try again?"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_CLOUD_ERROR", "An error occurred whilst handling the cloud save: %1$s"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_PUZZLE_NOT_TESTED", "The puzzle must be successfully completed before it can be exported!"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_PUZZLE_TOO_SMALL", "The puzzle needs more than just one tile!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_0_NAME", "None"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_1_NAME", "Water"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_2_NAME", "Road"));
