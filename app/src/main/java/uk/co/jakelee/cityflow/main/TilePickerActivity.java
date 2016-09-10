@@ -2,6 +2,7 @@ package uk.co.jakelee.cityflow.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.thomashaertel.widget.MultiSpinner;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import uk.co.jakelee.cityflow.R;
@@ -26,6 +28,7 @@ import uk.co.jakelee.cityflow.model.TileType;
 public class TilePickerActivity extends Activity {
     private DisplayHelper dh;
     private Tile tile;
+    private SharedPreferences prefs;
 
     private ArrayList<Integer> selectedEnvironmentIDs = new ArrayList<>();
     private ArrayList<Integer> selectedFlowIDs = new ArrayList<>();
@@ -36,6 +39,7 @@ public class TilePickerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tile_picker);
         dh = DisplayHelper.getInstance(this);
+        prefs = getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE);
 
         Intent intent = getIntent();
         Long tileId = intent.getLongExtra(Constants.INTENT_TILE, 0);
@@ -43,22 +47,26 @@ public class TilePickerActivity extends Activity {
             tile = Tile.get(tileId);
         }
 
-        displayTilePicker();
+
+        populateEnvironmentPicker();
+        populateFlowPicker();
+        populateHeightPicker();
+
+        populateTilePicker();
         populateText();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        prefs.edit().putString("tilePickerEnvironments", selectedEnvironmentIDs.toString()).apply();
     }
 
     private void populateText() {
         ((TextView) findViewById(R.id.areaLabel)).setText(Text.get("WORD_AREA"));
         ((TextView) findViewById(R.id.flowLabel)).setText(Text.get("WORD_FLOW"));
         ((TextView) findViewById(R.id.heightLabel)).setText(Text.get("WORD_HEIGHT"));
-    }
-
-    private void displayTilePicker() {
-        populateEnvironmentPicker();
-        populateFlowPicker();
-        populateHeightPicker();
-
-        populateTilePicker();
     }
 
     private void populateEnvironmentPicker() {
@@ -68,13 +76,31 @@ public class TilePickerActivity extends Activity {
             envAdapter.add(Text.get("ENVIRONMENT_" + i + "_NAME"));
         }
 
+        loadSelectedIds("tilePickerEnvironments");
+
         boolean[] selectedEnvironments = new boolean[numEnvironments];
-        selectedEnvironments[Constants.ENVIRONMENT_GRASS] = true;
-        selectedEnvironmentIDs.add(Constants.ENVIRONMENT_GRASS);
+        for (Integer environmentId : selectedEnvironmentIDs) {
+            selectedEnvironments[environmentId] = true;
+        }
 
         MultiSpinner spinner = (MultiSpinner) findViewById(R.id.environmentPicker);
         spinner.setAdapter(envAdapter, false, environmentSelected);
         spinner.setSelected(selectedEnvironments);
+    }
+
+    private void loadSelectedIds(String preferencesKey) {
+        String selectedIdString = prefs.getString(preferencesKey, "");
+        if (!selectedIdString.equals("") && selectedIdString.length() > 3) {
+            String trimmedSelectedIdsString = selectedIdString.substring(1, selectedIdString.length() - 1);
+            List<String> selectedIds = Arrays.asList(trimmedSelectedIdsString.split(", "));
+            for (String selectedId : selectedIds) {
+                selectedEnvironmentIDs.add(Integer.parseInt(selectedId));
+            }
+        }
+
+        if (selectedEnvironmentIDs.size() == 0) {
+            selectedEnvironmentIDs.add(0);
+        }
     }
 
     private void populateFlowPicker() {
