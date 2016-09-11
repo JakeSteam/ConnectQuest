@@ -12,7 +12,6 @@ import com.anjlab.android.iab.v3.TransactionDetails;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
-import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.model.Pack;
 
@@ -26,17 +25,10 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_iap);
 
-        Intent intent = getIntent();
-        String iapCode = intent.getStringExtra(Constants.INTENT_IAP);
-
         canBuyIAPs = BillingProcessor.isIabServiceAvailable(this);
         if (canBuyIAPs) {
             bp = new BillingProcessor(this, getPublicKey(), this);
-            iapInfo = bp.getPurchaseListingDetails(iapCode);
-
-            if (iapInfo != null) {
-                populateIapInfo();
-            }
+            iapInfo = bp.getPurchaseListingDetails("100_coins");
         }
     }
 
@@ -47,7 +39,7 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
             pack1.setPurchased(true);
             pack1.save();
 
-            AlertHelper.success(this, "Maybe restored pack 2?");
+            AlertHelper.success(this, "Maybe restored coins?");
         }
     }
 
@@ -58,13 +50,13 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
             pack1.setPurchased(true);
             pack1.save();
 
-            AlertHelper.success(this, "Maybe purchased pack 1?");
+            AlertHelper.success(this, "Maybe purchased coins?");
         }
     }
 
     @Override
     public void onBillingError(int errorCode, Throwable error) {
-        AlertHelper.error(this, "Uh oh, some kind of error occurred. Try again later?");
+        AlertHelper.error(this, "Unknown billing error :(");
     }
 
     @Override
@@ -78,10 +70,10 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
     }
 
     public void buyIAP(View v) {
-        if (canBuyIAPs && iapInfo != null) {
-            bp.purchase(this, iapInfo.productId);
+        if (canBuyIAPs) {
+            bp.purchase(this, "100_coins");
         } else {
-            AlertHelper.error(this, "Uh oh, some kind of error occurred. Try again later?");
+            AlertHelper.error(this, "Can't buy IAPs apparently.. logged in?");
         }
     }
 

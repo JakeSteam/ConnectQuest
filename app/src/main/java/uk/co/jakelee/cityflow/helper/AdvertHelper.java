@@ -70,14 +70,16 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         advert.preload(null);
     }
 
-    public static void synchroniseCoins(Activity activity, int remoteCoins) {
+    public static boolean synchroniseCoins(Activity activity, int remoteCoins) {
         int coinsEarned = synchroniseCoins(remoteCoins);
         if (coinsEarned > 0) {
             AlertHelper.success(activity, String.format(Text.get("ALERT_COINS_EARNED_FREE"), coinsEarned));
             if (coinsEarned == Constants.CURRENCY_ADVERT) {
                 GooglePlayHelper.UpdateEvent(Constants.EVENT_WATCH_ADVERT, 1);
+                return true;
             }
         }
+        return false;
     }
 
     public static int synchroniseCoins(int remoteCoins) {

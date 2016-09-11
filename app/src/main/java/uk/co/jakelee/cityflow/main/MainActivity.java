@@ -54,11 +54,6 @@ public class MainActivity extends Activity implements
                 .addApi(Drive.API).addScope(Drive.SCOPE_APPFOLDER)
                 .build();
 
-        if (!GooglePlayHelper.IsConnected() && !GooglePlayHelper.mGoogleApiClient.isConnecting() &&
-                Setting.getSafeBoolean(Constants.SETTING_SIGN_IN) && GooglePlayHelper.AreGooglePlayServicesInstalled(this)) {
-            GooglePlayHelper.mGoogleApiClient.connect();
-        }
-
         Tapjoy.onActivityStart(this);
     }
 
@@ -88,6 +83,11 @@ public class MainActivity extends Activity implements
     @Override
     protected void onResume() {
         super.onResume();
+
+        if (!GooglePlayHelper.IsConnected() && !GooglePlayHelper.mGoogleApiClient.isConnecting() &&
+                Setting.getSafeBoolean(Constants.SETTING_SIGN_IN) && GooglePlayHelper.AreGooglePlayServicesInstalled(this)) {
+            GooglePlayHelper.mGoogleApiClient.connect();
+        }
 
         createAnimations();
     }

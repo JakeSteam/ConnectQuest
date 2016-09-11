@@ -1122,12 +1122,12 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         shopItems.add(new ShopItem(Constants.ITEM_BOOST_TIME_UPGRADE, Constants.STORE_CATEGORY_UPGRADES, Constants.BOOST_UNDO, 0, 150, 5, true));
         shopItems.add(new ShopItem(Constants.ITEM_BOOST_MOVES_UPGRADE, Constants.STORE_CATEGORY_UPGRADES, Constants.BOOST_MOVE, 0, 150, 5, true));
         shopItems.add(new ShopItem(Constants.ITEM_BOOST_SHUFFLE_UPGRADE, Constants.STORE_CATEGORY_UPGRADES, Constants.BOOST_SHUFFLE, 0, 100, 1, true));
-        shopItems.add(new ShopItem(Constants.ITEM_TILE_1, Constants.STORE_CATEGORY_TILES, 1000, 1, false));
-        shopItems.add(new ShopItem(Constants.ITEM_TILE_2, Constants.STORE_CATEGORY_TILES, 1500, 1, false));
-        shopItems.add(new ShopItem(Constants.ITEM_TILE_3, Constants.STORE_CATEGORY_TILES, 2000, 1, false));
-        shopItems.add(new ShopItem(Constants.ITEM_PACK_2, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 2, 3000, 1, false));
-        shopItems.add(new ShopItem(Constants.ITEM_PACK_3, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 3, 3000, 1, false));
-        shopItems.add(new ShopItem(Constants.ITEM_MAX_CARS, Constants.STORE_CATEGORY_MISC, 1000, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_TILE_1, Constants.STORE_CATEGORY_TILES, 500, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_TILE_2, Constants.STORE_CATEGORY_TILES, 500, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_TILE_3, Constants.STORE_CATEGORY_TILES, 500, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_PACK_2, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 2, 1000, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_PACK_3, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 3, 1000, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_MAX_CARS, Constants.STORE_CATEGORY_MISC, 400, 1, false));
         ShopItem.saveInTx(shopItems);
     }
 

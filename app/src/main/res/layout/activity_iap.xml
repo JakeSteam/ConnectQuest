@@ -24,14 +24,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="24sp"/>
+            android:textSize="24sp"
+            android:text="Buy IAP"/>
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/iapDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/iapName"
             android:textColor="@color/black"
-            android:textSize="24sp"/>
+            android:textSize="24sp"
+            android:text="Info about the IAPs, I guess?"/>
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/purchaseButton"
             android:layout_width="match_parent"
@@ -43,7 +45,8 @@
             android:textColor="@color/black"
             android:textSize="18sp"
             android:onClick="buyIAP"
-            android:gravity="center_horizontal"/>
+            android:layout_centerInParent="true"
+            android:text="Buy"/>
     </RelativeLayout>
     <uk.co.jakelee.cityflow.components.TextAwesome
         android:layout_width="wrap_content"

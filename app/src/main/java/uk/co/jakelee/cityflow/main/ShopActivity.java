@@ -89,7 +89,9 @@ public class ShopActivity extends Activity {
                 Tapjoy.getCurrencyBalance(new TJGetCurrencyBalanceListener(){
                     @Override
                     public void onGetCurrencyBalanceResponse(String currencyName, int balance) {
-                        AdvertHelper.synchroniseCoins(activity, balance);
+                        if (AdvertHelper.synchroniseCoins(activity, balance)) {
+                            populateText();
+                        };
                     }
                     @Override public void onGetCurrencyBalanceResponseFailure(String error) {}
                 });
@@ -152,7 +154,8 @@ public class ShopActivity extends Activity {
     }
 
     public void buyCoins (View view) {
-
+        Intent intent = new Intent(this, IAPActivity.class);
+        startActivity(intent);
     }
 
     public void displayInformation(ShopItem item) {
