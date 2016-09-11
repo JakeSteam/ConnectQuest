@@ -161,8 +161,10 @@ public class SettingsActivity extends Activity {
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        AlertHelper.info(this, Text.get("ALERT_CLOUD_BEGINNING"));
-        GooglePlayHelper.SavedGamesIntent(getApplicationContext(), this, intent);
+        if (intent != null) {
+            AlertHelper.info(this, Text.get("ALERT_CLOUD_BEGINNING"));
+            GooglePlayHelper.SavedGamesIntent(getApplicationContext(), this, intent);
+        }
     }
 
     public void openAchievements(View v) {

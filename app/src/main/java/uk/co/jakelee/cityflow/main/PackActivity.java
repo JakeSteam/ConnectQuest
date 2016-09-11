@@ -101,6 +101,8 @@ public class PackActivity extends Activity {
 
         int numTiles = selectedPuzzle.getUnlockableTiles().size();
         ((TextView) findViewById(R.id.puzzleTilesUnlocked)).setText((selectedPuzzle.hasCompletionStar() ? numTiles : 0) + " / " + numTiles);
+        ((TextView) findViewById(R.id.puzzleTilesUnlocked)).setTextColor(selectedPuzzle.hasCompletionStar() ? Color.YELLOW : Color.BLACK);
+
         findViewById(R.id.puzzleButton).setTag(R.id.puzzleId, selectedPuzzle.getPuzzleId());
         findViewById(R.id.puzzleButton).setTag(R.id.puzzleIsCustom, false);
         findViewById(R.id.puzzleButton).setOnClickListener(new Button.OnClickListener() {

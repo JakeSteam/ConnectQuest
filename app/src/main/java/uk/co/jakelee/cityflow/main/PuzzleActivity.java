@@ -25,6 +25,7 @@ import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.ImageHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleHelper;
 import uk.co.jakelee.cityflow.helper.StatisticsHelper;
+import uk.co.jakelee.cityflow.helper.StorageHelper;
 import uk.co.jakelee.cityflow.helper.TileHelper;
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Puzzle;
@@ -52,6 +53,7 @@ public class PuzzleActivity extends Activity {
     private Tile lastChangedTile;
     private boolean undoing = false;
     private boolean justUndone = false;
+    private boolean exitedPuzzle = false;
 
     private boolean timeBoostActive = false;
     private boolean moveBoostActive = false;
@@ -114,6 +116,7 @@ public class PuzzleActivity extends Activity {
 
         Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
         puzzle.resetTileRotations();
+        exitedPuzzle = true;
         handler.removeCallbacksAndMessages(null);
     }
 
@@ -281,7 +284,7 @@ public class PuzzleActivity extends Activity {
 
     public void flowCheck() {
         boolean flowsCorrectly = false;
-        while (!flowsCorrectly) {
+        while (!flowsCorrectly && !exitedPuzzle) {
             flowsCorrectly = TileHelper.checkPuzzleFlow(this.puzzleId);
         }
 
@@ -289,7 +292,9 @@ public class PuzzleActivity extends Activity {
             @Override
             public void run() {
                 handler.removeCallbacksAndMessages(null);
-                displayPuzzleComplete();
+                if (!exitedPuzzle) {
+                    displayPuzzleComplete();
+                }
             }
         });
     }
@@ -311,6 +316,11 @@ public class PuzzleActivity extends Activity {
         Pair<Boolean, Boolean> newBests = PuzzleHelper.processPuzzleCompletion(puzzle, nextPuzzle == 0, timeInMilliseconds, movesMade, boostsUsed, puzzleCustom);
         int stars = puzzle.getStarCount();
 
+        if (isCustom) {
+            if (puzzle.getCustomData().isOriginalAuthor()) {
+                StorageHelper.savePuzzleImage(this, puzzleId);
+            }
+        }
         populatePuzzleCompleteScreen(puzzle, isFirstComplete, originalStars, stars, isCustom);
     }
 

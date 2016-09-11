@@ -17,9 +17,7 @@ public class PuzzleShareHelper {
     public static String getPuzzleSQL(Puzzle puzzle) {
         StringBuilder sb = new StringBuilder();
         sb.append("texts.add(new Text(Constants.LANGUAGE_EN_GB, \"PUZZLE_PUZZLE_ID_NAME\", \"PUZZLE_NAME\"));\n");
-        sb.append(String.format("puzzles.add(new Puzzle(PUZZLE_ID, PACK_ID, %1$dL, %2$d, %3$dL, %4$d));\n",
-                puzzle.getParTime(),
-                puzzle.getParMoves(),
+        sb.append(String.format("puzzles.add(new Puzzle(PUZZLE_ID, PACK_ID, %1$dL, %2$d, 0L, 0));\n",
                 puzzle.getBestTime(),
                 puzzle.getBestMoves()));
         List<Tile> tiles = puzzle.getTiles();
