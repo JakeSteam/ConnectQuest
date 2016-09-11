@@ -22,8 +22,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
-                android:shrinkColumns="*"
-                android:stretchColumns="*">
+                android:shrinkColumns="0"
+                android:stretchColumns="0">
 
                 <TableRow>
                     <uk.co.jakelee.cityflow.components.TextViewFont
@@ -88,8 +88,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
-                android:shrinkColumns="*"
-                android:stretchColumns="*">
+                android:shrinkColumns="0"
+                android:stretchColumns="0">
 
                 <TableRow>
                     <uk.co.jakelee.cityflow.components.TextViewFont
@@ -146,7 +146,7 @@
                         android:onClick="toggleSetting"/>
                 </TableRow>
 
-                <RelativeLayout>
+                <TableRow>
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/playerNameText"
                         android:layout_width="wrap_content"
@@ -154,26 +154,22 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
-                        android:gravity="left"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 
                     <uk.co.jakelee.cityflow.components.AutofitTextViewFont
                         android:id="@+id/playerNameDisplay"
-                        android:layout_width="80dp"
+                        android:layout_width="30dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/ui_panel_grey"
-                        android:layout_toRightOf="@id/playerNameText"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
                         android:textSize="20sp"
                         android:ellipsize="end"
                         android:maxLines="3"
-                        android:gravity="right"
-                        android:layout_alignParentRight="true"
                         android:onClick="changeText"/>
-                </RelativeLayout>
+                </TableRow>
 
                 <TableRow>
                     <uk.co.jakelee.cityflow.components.TextViewFont
@@ -261,8 +257,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
-                android:shrinkColumns="*"
-                android:stretchColumns="*">
+                android:shrinkColumns="0"
+                android:stretchColumns="0">
 
                 <TableRow>
                     <uk.co.jakelee.cityflow.components.TextViewFont
@@ -356,8 +352,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
-                android:shrinkColumns="*"
-                android:stretchColumns="*">
+                android:shrinkColumns="0"
+                android:stretchColumns="0">
 
                 <TableRow>
                     <uk.co.jakelee.cityflow.components.TextViewFont

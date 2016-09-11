@@ -118,13 +118,16 @@ public class TilePickerActivity extends Activity {
                 }
 
                 if (filter.selected.size() == selectedIds.length) {
-                    spinner.setText("All");
+                    spinner.setText(Text.get("WORD_ALL"));
                 }
 
                 populateTilePicker();
             }
         });
         spinner.setSelected(selectedOptions);
+        if (filter.selected.size() == numOptions) {
+            spinner.setText(Text.get("WORD_ALL"));
+        }
     }
 
     private void populateTilePicker() {

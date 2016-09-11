@@ -20,6 +20,7 @@ import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.ImageHelper;
+import uk.co.jakelee.cityflow.helper.StorageHelper;
 import uk.co.jakelee.cityflow.helper.TileHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Tile;
@@ -165,6 +166,8 @@ public class EditorActivity extends Activity {
         Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
         puzzle.saveTileRotations();
         puzzle.resetMetrics();
+
+        StorageHelper.savePuzzleImage(this, puzzleId);
         this.finish();
     }
 
