@@ -28,13 +28,14 @@ import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class AlertDialogHelper {
-    public static void confirmPuzzleDeletion(final Activity activity, final Puzzle puzzle) {
+    public static void confirmPuzzleDeletion(final CreatorActivity activity, final Puzzle puzzle) {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
         alertDialog.setMessage(String.format(Text.get("ALERT_DELETE_PUZZLE"), puzzle.getName()));
 
         alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_DELETE"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 puzzle.safelyDelete();
+                activity.populatePuzzles();
             }
         });
 
@@ -196,6 +197,7 @@ public class AlertDialogHelper {
     public static void changePuzzleInfo(final CustomInfoActivity activity, final PuzzleCustom puzzleCustom, final boolean changeDesc) {
         final EditText puzzleInfoInput = new EditText(activity.getApplicationContext());
         puzzleInfoInput.setText(changeDesc ? puzzleCustom.getDescription() : puzzleCustom.getName());
+        puzzleInfoInput.setSelectAllOnFocus(true);
         puzzleInfoInput.setFilters(new InputFilter[]{ FilterHelper.getFilter(changeDesc ? Constants.PUZZLE_DESC_MAX_LENGTH : Constants.PUZZLE_NAME_MAX_LENGTH) });
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);

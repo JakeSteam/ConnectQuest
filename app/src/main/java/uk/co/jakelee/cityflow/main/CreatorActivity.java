@@ -56,7 +56,7 @@ public class CreatorActivity extends Activity {
     }
 
     public void populatePuzzles(LinearLayout puzzleContainer) {
-        final Activity activity = this;
+        final CreatorActivity activity = this;
         puzzleContainer.removeAllViews();
         LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
 

@@ -94,6 +94,7 @@ public class CustomInfoActivity extends Activity {
     public void copyPuzzle(View v) {
         String backup = PuzzleShareHelper.getPuzzleString(puzzle);
         PuzzleShareHelper.importPuzzleString(backup, true);
+        AlertHelper.success(this, String.format(Text.get("ALERT_PUZZLE_COPIED"), puzzle.getName()));
     }
 
     public void exportPuzzle(View v) {

@@ -156,6 +156,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_LOADED", "Successfully loaded game from cloud!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_COINS_EARNED", "Earned %1$d coin(s)!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_COINS_EARNED_FREE", "Earned %1$d free coin(s), enjoy!"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_PUZZLE_COPIED", "Successfully created \"%1$s\"!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SHUFFLE_PUZZLE", "Randomly shuffle all tiles?"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_DELETE_PUZZLE", "Delete puzzle \"%1$s\"?\n\nNote: This can't be undone!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SAVE_CONFLICT", "Save conflict detected! Currently resolving, this might take a few seconds, please be patient..."));
