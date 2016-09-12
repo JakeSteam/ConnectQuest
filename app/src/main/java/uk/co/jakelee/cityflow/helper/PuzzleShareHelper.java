@@ -11,8 +11,8 @@ import uk.co.jakelee.cityflow.model.Tile;
 
 public class PuzzleShareHelper {
     private static final String sectionDelimiter = "/S/";
-    private static final String tileDelimiter = "/T/";
-    private static final String tileElementDelimiter = "/E/";
+    private static final String tileDelimiter = "T";
+    private static final String tileElementDelimiter = "E";
 
     public static String getPuzzleSQL(Puzzle puzzle) {
         StringBuilder sb = new StringBuilder();
@@ -48,13 +48,12 @@ public class PuzzleShareHelper {
                     .append(tile.getY()).append(tileElementDelimiter)
                     .append(tile.getRotation()).append(tileDelimiter);
         }
-        return EncryptHelper.encode(sb.toString(), 0);
+        return sb.toString();
     }
 
     public static boolean importPuzzleString(String string, boolean isCopy) {
         try {
-            String puzzleString = EncryptHelper.decode(string, 0);
-            String[] parts = puzzleString.split(sectionDelimiter);
+            String[] parts = string.split(sectionDelimiter);
 
             int puzzleId = PuzzleHelper.getNextCustomPuzzleId();
             Puzzle puzzle = PuzzleHelper.createBasicPuzzleObject(puzzleId);

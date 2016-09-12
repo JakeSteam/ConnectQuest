@@ -95,6 +95,7 @@ public class CustomInfoActivity extends Activity {
         String backup = PuzzleShareHelper.getPuzzleString(puzzle);
         PuzzleShareHelper.importPuzzleString(backup, true);
         AlertHelper.success(this, String.format(Text.get("ALERT_PUZZLE_COPIED"), puzzle.getName()));
+        //StorageHelper.testQR((ImageView)findViewById(R.id.test), PuzzleShareHelper.getPuzzleString(puzzle));
     }
 
     public void exportPuzzle(View v) {
@@ -103,7 +104,9 @@ public class CustomInfoActivity extends Activity {
             return;
         }
 
-        AlertHelper.info(this, Text.get("PUZZLE_EXPORT_START"));
+        Intent intent = new Intent(getApplicationContext(), ExportActivity.class);
+        intent.putExtra(Constants.INTENT_PUZZLE, puzzle.getPuzzleId());
+        startActivity(intent);
 
         /*String backup = PuzzleShareHelper.getPuzzleString(puzzle);
         Intent intent = new Intent()
@@ -111,8 +114,6 @@ public class CustomInfoActivity extends Activity {
                 .setType("text/plain")
                 .putExtra(Intent.EXTRA_TEXT, backup);
         startActivity(Intent.createChooser(intent, Text.get("UI_EXPORT_PUZZLE_HINT")));*/
-        String backup = PuzzleShareHelper.getPuzzleSQL(puzzle);
-        backup.toString();
     }
 
     public void editPuzzleName(View v) {

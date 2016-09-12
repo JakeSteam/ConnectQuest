@@ -4,8 +4,13 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
+import android.widget.ImageView;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,6 +27,45 @@ public class StorageHelper {
     private static final float screenshotScale = 0.1f;
     private static final int screenshotSize = 300;
 
+
+    public final static int WHITE = 0xFFFFFFFF;
+    public final static int BLACK = 0xFF000000;
+    public final static int WIDTH = 400;
+    public final static int HEIGHT = 400;
+
+    public static void testQR(ImageView imageView, String text) {
+        try {
+            Bitmap bitmap = encodeAsBitmap(text);
+            imageView.setImageBitmap(bitmap);
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static Bitmap encodeAsBitmap(String str) throws WriterException {
+        BitMatrix result;
+        try {
+            result = new MultiFormatWriter().encode(str, BarcodeFormat.QR_CODE, WIDTH, HEIGHT, null);
+        } catch (IllegalArgumentException iae) {
+            // Unsupported format
+            return null;
+        }
+
+        int width = result.getWidth();
+        int height = result.getHeight();
+        int[] pixels = new int[width * height];
+        for (int y = 0; y < height; y++) {
+            int offset = y * width;
+            for (int x = 0; x < width; x++) {
+                pixels[offset + x] = result.get(x, y) ? BLACK : WHITE;
+            }
+        }
+
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
+        return bitmap;
+    }
+
     public static void savePuzzleImage(Activity activity, int puzzleId) {
         confirmStoragePermissions(activity);
 
@@ -36,9 +80,7 @@ public class StorageHelper {
             b = resize(b);
             b = trim(b);
 
-            // Make the directory if it doesn't exist, then create / open the file
-            new File(Environment.getExternalStorageDirectory() + "/CityFlow").mkdirs();
-            File file = new File(Environment.getExternalStorageDirectory() + "/CityFlow", "puzzle_" + puzzleId + ".png");
+            File file = new File(activity.getFilesDir(), "puzzle_" + puzzleId + ".png");
 
             FileOutputStream fos = new FileOutputStream(file);
             b.compress(Bitmap.CompressFormat.PNG, 0, fos);

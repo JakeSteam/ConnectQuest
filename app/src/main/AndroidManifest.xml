@@ -51,6 +51,7 @@
         <activity android:name=".main.IAPActivity" android:theme="@style/Theme.Transparent"/>
         <activity android:name=".main.TilePickerActivity" android:theme="@style/Theme.Transparent"/>
         <activity android:name=".main.QuestActivity" android:theme="@style/Theme.Transparent"/>
+        <activity android:name=".main.ExportActivity" android:theme="@style/Theme.Transparent"/>
 
         <activity android:name="com.applovin.adview.AppLovinInterstitialActivity" />
         <activity android:name="com.applovin.adview.AppLovinConfirmationActivity" />
