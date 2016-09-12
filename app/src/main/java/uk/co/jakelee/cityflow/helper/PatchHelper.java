@@ -205,6 +205,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_SHUFFLE", "Shuffle"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CLOSE", "Close"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_SAVE", "Save"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_SHARE", "Share"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CREATE", "Create"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_LOAD", "Load"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CANCEL", "Cancel"));

@@ -179,6 +179,11 @@ public class DisplayHelper {
         return context.getResources().getIdentifier("puzzle_" + puzzle, "drawable", context.getPackageName());
     }
 
+    public Drawable getCustomPuzzleDrawable(int puzzleId) {
+        String pathName = "/data/data/uk.co.jakelee.cityflow/files/puzzle_" + puzzleId + ".png";
+        return Drawable.createFromPath(pathName);
+    }
+
     public int getBoostDrawableID(int boost) {
         return context.getResources().getIdentifier("boost_" + boost, "drawable", context.getPackageName());
     }

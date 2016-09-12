@@ -2,6 +2,7 @@ package uk.co.jakelee.cityflow.helper;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.support.v4.app.ActivityCompat;
@@ -12,7 +13,6 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
-import java.io.File;
 import java.io.FileOutputStream;
 
 import uk.co.jakelee.cityflow.R;
@@ -33,7 +33,7 @@ public class StorageHelper {
     public final static int WIDTH = 400;
     public final static int HEIGHT = 400;
 
-    public static void testQR(ImageView imageView, String text) {
+    public static void fillWithQrDrawable(ImageView imageView, String text) {
         try {
             Bitmap bitmap = encodeAsBitmap(text);
             imageView.setImageBitmap(bitmap);
@@ -80,9 +80,7 @@ public class StorageHelper {
             b = resize(b);
             b = trim(b);
 
-            File file = new File(activity.getFilesDir(), "puzzle_" + puzzleId + ".png");
-
-            FileOutputStream fos = new FileOutputStream(file);
+            FileOutputStream fos = activity.openFileOutput("puzzle_" + puzzleId + ".png", Context.MODE_PRIVATE);
             b.compress(Bitmap.CompressFormat.PNG, 0, fos);
             fos.flush();
             fos.close();
