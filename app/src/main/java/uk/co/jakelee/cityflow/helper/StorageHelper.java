@@ -73,9 +73,7 @@ public class StorageHelper {
         return bitmap;
     }
 
-    public static void savePuzzleImage(Activity activity, int puzzleId) {
-        confirmStoragePermissions(activity);
-
+    public static void saveCustomPuzzleImage(Activity activity, int puzzleId) {
         ZoomableViewGroup tileContainer = (ZoomableViewGroup)activity.findViewById(R.id.tileContainer);
         if (tileContainer == null) { return; }
 

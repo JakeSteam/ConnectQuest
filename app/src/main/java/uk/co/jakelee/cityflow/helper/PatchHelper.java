@@ -149,7 +149,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     private void createText() {
         List<Text> texts = new ArrayList<>();
-        texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CARD_SAVED", "Card image saved as \"%1$a\" in \"CityFlow\" folder!"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CARD_SAVED", "Card image saved as \"%1$s\" in \"CityFlow\" folder!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_BEGINNING", "Comparing local and cloud saves..."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_SAVING", "Saving to cloud..."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_SAVED", "Successfully saved game to cloud!"));

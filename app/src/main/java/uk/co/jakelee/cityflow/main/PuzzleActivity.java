@@ -24,7 +24,6 @@ import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.ImageHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleHelper;
-import uk.co.jakelee.cityflow.helper.StatisticsHelper;
 import uk.co.jakelee.cityflow.helper.StorageHelper;
 import uk.co.jakelee.cityflow.helper.TileHelper;
 import uk.co.jakelee.cityflow.model.Boost;
@@ -321,7 +320,7 @@ public class PuzzleActivity extends Activity {
                 final Activity activity = this;
                 new Thread(new Runnable() {
                     public void run() {
-                        StorageHelper.savePuzzleImage(activity, puzzleId);
+                        StorageHelper.saveCustomPuzzleImage(activity, puzzleId);
                     }
                 }).start();
             }
@@ -347,7 +346,7 @@ public class PuzzleActivity extends Activity {
         ((ImageView) findViewById(R.id.skyscraperCompletion)).setImageResource(PuzzleHelper.getSkyscraperDrawable(this, 100, Constants.SKYSCRAPER_COMPLETE));
         ((TextView) findViewById(R.id.skyscraperCompletionText)).setText(Text.get("UI_SKYSCRAPER_COMPLETE_TEXT"));
 
-        int timeProgress = StatisticsHelper.getPuzzleCriteriaProgress((int) timeInMilliseconds, (int) puzzle.getParTime());
+        int timeProgress = PuzzleHelper.getPuzzleCriteriaProgress((int) timeInMilliseconds, (int) puzzle.getParTime());
         ((TextView) findViewById(R.id.skyscraperTimeTitle)).setText(String.format(Text.get("UI_SKYSCRAPER_TIME_TITLE"), timeProgress));
         ((TextView) findViewById(R.id.skyscraperTimeTitle)).setTextColor(getResources().getColor(timeProgress == 100 ? R.color.gold : R.color.white));
         ((ImageView) findViewById(R.id.skyscraperTime)).setImageResource(PuzzleHelper.getSkyscraperDrawable(this, timeProgress, Constants.SKYSCRAPER_TIME));
@@ -355,7 +354,7 @@ public class PuzzleActivity extends Activity {
                 timeInMilliseconds > 0 ? DateHelper.getPuzzleTimeString(timeInMilliseconds) : "0",
                 DateHelper.getPuzzleTimeString(puzzle.getParTime())));
 
-        int moveProgress = StatisticsHelper.getPuzzleCriteriaProgress(movesMade, puzzle.getParMoves());
+        int moveProgress = PuzzleHelper.getPuzzleCriteriaProgress(movesMade, puzzle.getParMoves());
         ((TextView) findViewById(R.id.skyscraperMovesTitle)).setText(String.format(Text.get("UI_SKYSCRAPER_MOVES_TITLE"), moveProgress));
         ((TextView) findViewById(R.id.skyscraperMovesTitle)).setTextColor(getResources().getColor(moveProgress == 100 ? R.color.gold : R.color.white));
         ((ImageView) findViewById(R.id.skyscraperMoves)).setImageResource(PuzzleHelper.getSkyscraperDrawable(this, moveProgress, Constants.SKYSCRAPER_MOVES));

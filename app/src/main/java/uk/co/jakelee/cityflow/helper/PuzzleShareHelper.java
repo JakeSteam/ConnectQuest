@@ -14,6 +14,16 @@ public class PuzzleShareHelper {
     private static final String tileDelimiter = "T";
     private static final String tileElementDelimiter = "E";
 
+    private static final int partName = 0;
+    private static final int partDesc = 1;
+    private static final int partAuthor = 2;
+    private static final int partMoves = 3;
+    private static final int partTime = 4;
+    private static final int tileType = 0;
+    private static final int tileX = 1;
+    private static final int tileY = 2;
+    private static final int tileRotation = 3;
+
     public static String getPuzzleSQL(Puzzle puzzle) {
         StringBuilder sb = new StringBuilder();
         sb.append("texts.add(new Text(Constants.LANGUAGE_EN_GB, \"PUZZLE_PUZZLE_ID_NAME\", \"PUZZLE_NAME\"));\n");
@@ -51,22 +61,35 @@ public class PuzzleShareHelper {
         return sb.toString();
     }
 
+    private static String[] validatePuzzleParts(String[] parts) {
+        if (parts[partName].length() > Constants.PUZZLE_NAME_MAX_LENGTH) {
+            parts[partName] = parts[partName].substring(0, Constants.PUZZLE_NAME_MAX_LENGTH);
+        }
+        if (parts[partDesc].length() > Constants.PUZZLE_DESC_MAX_LENGTH) {
+            parts[partDesc] = parts[partDesc].substring(0, Constants.PUZZLE_DESC_MAX_LENGTH);
+        }
+        if (parts[partAuthor].length() > Constants.PLAYER_NAME_MAX_LENGTH) {
+            parts[partAuthor] = parts[partAuthor].substring(0, Constants.PLAYER_NAME_MAX_LENGTH);
+        }
+        return parts;
+    }
+
     public static boolean importPuzzleString(String string, boolean isCopy) {
         try {
-            String[] parts = string.split(sectionDelimiter);
+            String[] parts = validatePuzzleParts(string.split(sectionDelimiter));
 
             int puzzleId = PuzzleHelper.getNextCustomPuzzleId();
             Puzzle puzzle = PuzzleHelper.createBasicPuzzleObject(puzzleId);
             PuzzleCustom puzzleCustom = PuzzleHelper.createBasicPuzzleCustomObject(puzzleId);
 
-            puzzleCustom.setName(parts[0] + (isCopy ? " (Copy)":""));
-            puzzleCustom.setDescription(parts[1]);
-            puzzleCustom.setAuthor(parts[2]);
+            puzzleCustom.setName(parts[partName] + (isCopy ? " (Copy)":""));
+            puzzleCustom.setDescription(parts[partDesc]);
+            puzzleCustom.setAuthor(parts[partAuthor]);
             puzzleCustom.setOriginalAuthor(isCopy);
             puzzleCustom.save();
 
-            puzzle.setParMoves(Integer.parseInt(parts[3]));
-            puzzle.setParTime(Integer.parseInt(parts[4]));
+            puzzle.setParMoves(Integer.parseInt(parts[partMoves]));
+            puzzle.setParTime(Integer.parseInt(parts[partTime]));
             puzzle.save();
 
             String[] tiles = parts[5].split(tileDelimiter);
@@ -75,10 +98,10 @@ public class PuzzleShareHelper {
                 String[] tileData = tileString.split(tileElementDelimiter);
                 Tile tile = new Tile();
                 tile.setPuzzleId(puzzleId);
-                tile.setTileTypeId(Integer.parseInt(tileData[0]));
-                tile.setX(Integer.parseInt(tileData[1]));
-                tile.setY(Integer.parseInt(tileData[2]));
-                tile.setRotation(Integer.parseInt(tileData[3]));
+                tile.setTileTypeId(Integer.parseInt(tileData[tileType]));
+                tile.setX(Integer.parseInt(tileData[tileX]));
+                tile.setY(Integer.parseInt(tileData[tileY]));
+                tile.setRotation(Integer.parseInt(tileData[tileRotation]));
                 finishedTiles.add(tile);
             }
             Tile.saveInTx(finishedTiles);

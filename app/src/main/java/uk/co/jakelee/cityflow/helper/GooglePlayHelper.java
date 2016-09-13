@@ -253,7 +253,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             applyBackup(new String(cloudSaveData));
         } else {
             AlertDialogHelper.confirmCloudLoad(callingActivity,
-                    StatisticsHelper.getTotalStars(),
+                    PuzzleHelper.getTotalStars(),
                     Statistic.getCurrency(),
                     cloudData.first,
                     cloudData.second);
@@ -280,7 +280,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             public void run() {
                 byte[] data = createBackup();
                 String desc = String.format(Text.get("CLOUD_SAVE_DESC"),
-                        StatisticsHelper.getTotalStars(),
+                        PuzzleHelper.getTotalStars(),
                         Statistic.getCurrency(),
                         BuildConfig.VERSION_NAME);
                 Bitmap cover = BitmapFactory.decodeResource(callingContext.getResources(), R.drawable.main_logo);
@@ -314,7 +314,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             forceSaveToCloud();
         } else {
             AlertDialogHelper.confirmCloudSave(callingActivity,
-                    StatisticsHelper.getTotalStars(),
+                    PuzzleHelper.getTotalStars(),
                     Statistic.getCurrency(),
                     loadedSnapshot.getMetadata().getDescription(),
                     loadedSnapshot.getMetadata().getLastModifiedTimestamp(),
@@ -338,7 +338,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         String backupString;
 
         backupString = MainActivity.prefs.getInt("databaseVersion", PatchHelper.V1_0_0) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += StatisticsHelper.getTotalStars() + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += PuzzleHelper.getTotalStars() + GooglePlayHelper.SAVE_DELIMITER;
         backupString += Statistic.getCurrency() + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(Boost.listAll(Boost.class)) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(Pack.listAll(Pack.class)) + GooglePlayHelper.SAVE_DELIMITER;
@@ -434,7 +434,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
     }
 
     public static boolean newSaveIsBetter(Pair<Integer, Integer> newValues) {
-        return !(newValues.first <= StatisticsHelper.getTotalStars() && newValues.second <= Statistic.getCurrency());
+        return !(newValues.first <= PuzzleHelper.getTotalStars() && newValues.second <= Statistic.getCurrency());
     }
 
     private static String[] splitBackupData(String backupData) {

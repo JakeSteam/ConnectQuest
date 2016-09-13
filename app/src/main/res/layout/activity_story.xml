@@ -58,7 +58,6 @@
             android:textColor="@color/black"
             android:background="@color/blue"
             android:textSize="30sp"
-            android:text="BUY"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"/>
         <uk.co.jakelee.cityflow.components.AutofitTextViewFont
