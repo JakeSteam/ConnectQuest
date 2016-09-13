@@ -5,15 +5,21 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
+import java.io.File;
 import java.io.FileOutputStream;
+import java.util.EnumMap;
+import java.util.Map;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
@@ -26,7 +32,6 @@ public class StorageHelper {
     };
     private static final float screenshotScale = 0.1f;
     private static final int screenshotSize = 300;
-
 
     public final static int WHITE = 0xFFFFFFFF;
     public final static int BLACK = 0xFF000000;
@@ -45,7 +50,9 @@ public class StorageHelper {
     private static Bitmap encodeAsBitmap(String str) throws WriterException {
         BitMatrix result;
         try {
-            result = new MultiFormatWriter().encode(str, BarcodeFormat.QR_CODE, WIDTH, HEIGHT, null);
+            Map<EncodeHintType, Object> hints = new EnumMap<>(EncodeHintType.class);
+            hints.put(EncodeHintType.MARGIN, 1);
+            result = new MultiFormatWriter().encode(str, BarcodeFormat.QR_CODE, WIDTH, HEIGHT, hints);
         } catch (IllegalArgumentException iae) {
             // Unsupported format
             return null;
@@ -73,7 +80,6 @@ public class StorageHelper {
         if (tileContainer == null) { return; }
 
         try {
-            // Get the bitmap out
             tileContainer.setScaleFactor(screenshotScale);
             tileContainer.setDrawingCacheEnabled(true);
             Bitmap b = Bitmap.createBitmap(tileContainer.getDrawingCache());
@@ -87,6 +93,31 @@ public class StorageHelper {
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        }
+    }
+
+    public static String saveCardImage(Activity activity, int puzzleId) {
+        confirmStoragePermissions(activity);
+
+        RelativeLayout card = (RelativeLayout)activity.findViewById(R.id.puzzleCard);
+        if (card == null) { return ""; }
+
+        try {
+            card.setDrawingCacheEnabled(true);
+            Bitmap b = Bitmap.createBitmap(card.getDrawingCache());
+
+            new File(Environment.getExternalStorageDirectory() + "/CityFlow").mkdirs();
+            File file = new File(Environment.getExternalStorageDirectory() + "/CityFlow", "CityFlow_puzzle_" + puzzleId + ".png");
+            FileOutputStream fos = new FileOutputStream(file);
+            b.compress(Bitmap.CompressFormat.PNG, 0, fos);
+            fos.flush();
+            fos.close();
+
+            return file.getName();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return "";
         }
     }
 

@@ -318,7 +318,12 @@ public class PuzzleActivity extends Activity {
 
         if (isCustom) {
             if (puzzle.getCustomData().isOriginalAuthor()) {
-                StorageHelper.savePuzzleImage(this, puzzleId);
+                final Activity activity = this;
+                new Thread(new Runnable() {
+                    public void run() {
+                        StorageHelper.savePuzzleImage(activity, puzzleId);
+                    }
+                }).start();
             }
         }
         populatePuzzleCompleteScreen(puzzle, isFirstComplete, originalStars, stars, isCustom);

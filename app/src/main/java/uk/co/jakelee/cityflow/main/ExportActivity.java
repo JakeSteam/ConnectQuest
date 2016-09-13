@@ -8,8 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
+import uk.co.jakelee.cityflow.helper.ErrorHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
 import uk.co.jakelee.cityflow.helper.StorageHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
@@ -49,7 +51,12 @@ public class ExportActivity extends Activity {
     }
 
     public void save(View view) {
-        // Save to local filesystem
+        String filename = StorageHelper.saveCardImage(this, puzzle.getPuzzleId());
+        if (filename.equals("")) {
+            AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.CARD_NOT_SAVED));
+        } else {
+            AlertHelper.success(this, String.format(Text.get("ALERT_CARD_SAVED"), filename));
+        }
     }
 
     public void share(View view) {

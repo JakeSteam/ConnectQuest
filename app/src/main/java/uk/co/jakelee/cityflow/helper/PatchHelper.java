@@ -149,6 +149,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     private void createText() {
         List<Text> texts = new ArrayList<>();
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CARD_SAVED", "Card image saved as \"%1$a\" in \"CityFlow\" folder!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_BEGINNING", "Comparing local and cloud saves..."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_SAVING", "Saving to cloud..."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_SAVED", "Successfully saved game to cloud!"));
@@ -185,6 +186,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
                 "<a href='https://github.com/thomashaertel/MultiSpinner'>Multispinner</a>: Multi-selectable options list.<br>" +
                 "<a href='https://github.com/square/picasso'>Picasso</a>: Image caching.<br>" +
                 "<a href='https://github.com/satyan/sugar'>Sugar</a>: Database ORM.<br>" +
+                "<a href='https://github.com/zxing/zxing'>ZXing</a>: QR Code reading / writing.<br>" +
                 ""));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_OTHER_TITLE", "Other"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_OTHER_TEXT", "Of course, developing a game isn't just about technical resources. As such, there's a few people and communities who definitely need thanking.<br><br>" +
@@ -229,6 +231,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_CLOUD_ERROR", "An error occurred whilst handling the cloud save: %1$s"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_PUZZLE_NOT_TESTED", "The puzzle must be successfully completed before it can be exported!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_PUZZLE_TOO_SMALL", "The puzzle needs more than just one tile!"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_CARD_NOT_SAVED", "The card could not be saved, check storage permissions."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_0_NAME", "None"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_1_NAME", "Water"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_2_NAME", "Road"));
