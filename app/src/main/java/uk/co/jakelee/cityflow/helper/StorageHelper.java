@@ -11,10 +11,16 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.BinaryBitmap;
 import com.google.zxing.EncodeHintType;
+import com.google.zxing.LuminanceSource;
+import com.google.zxing.MultiFormatReader;
 import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.RGBLuminanceSource;
+import com.google.zxing.Result;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+import com.google.zxing.common.HybridBinarizer;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -117,6 +123,29 @@ public class StorageHelper {
             e.printStackTrace();
             return "";
         }
+    }
+
+    public static String readQRImage(Bitmap bMap) {
+        String contents = null;
+
+        int[] intArray = new int[bMap.getWidth()*bMap.getHeight()];
+        //copy pixel data from the Bitmap into the 'intArray' array
+        bMap.getPixels(intArray, 0, bMap.getWidth(), 0, 0, bMap.getWidth(), bMap.getHeight());
+
+        LuminanceSource source = new RGBLuminanceSource(bMap.getWidth(), bMap.getHeight(), intArray);
+        BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+
+        MultiFormatReader reader = new MultiFormatReader();// use this otherwise ChecksumException
+            try {
+                Result result = reader.decode(bitmap);
+                contents = result.getText();
+            } catch (Exception e) {
+
+            }
+            //byte[] rawBytes = result.getRawBytes();
+            //BarcodeFormat format = result.getBarcodeFormat();
+            //ResultPoint[] points = result.getResultPoints();
+        return contents;
     }
 
     private static Bitmap resize(Bitmap image) {

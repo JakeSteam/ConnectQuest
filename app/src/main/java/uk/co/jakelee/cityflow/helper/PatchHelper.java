@@ -165,7 +165,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "CLOUD_SAVE_DESC", "%1$d Stars | %2$d Coins | V%3$s"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_CREATED", "Created"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_IMPORTED", "Imported"));
-        texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_IMPORT_PUZZLE", "Import Puzzle"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_IMPORT_CAMERA", "Camera"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_IMPORT_FILE", "File"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_NEW_PUZZLE", "New Puzzle"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_GRAPHICS_TITLE", "Graphics"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREDITS_GRAPHICS_TEXT", "<a href='http://www.dafont.com/claudep.d857'>Claude P</a>: Main font (Yagiuhf No 2).<br>" +

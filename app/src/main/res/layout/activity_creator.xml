@@ -55,31 +55,43 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 </LinearLayout>
+
             <LinearLayout
+                android:id="@+id/importPuzzle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal">
                 <uk.co.jakelee.cityflow.components.TextViewFont
-                    android:id="@+id/importPuzzle"
-                    android:layout_width="match_parent"
+                    android:id="@+id/importFromCamera"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:gravity="center_horizontal"
                     android:textSize="26sp"
                     android:padding="5dp"
                     android:background="@drawable/ui_panel_grey"
-                    android:onClick="importPuzzle"/>
+                    android:onClick="importFromCamera"/>
                 <uk.co.jakelee.cityflow.components.TextViewFont
-                    android:id="@+id/newPuzzle"
-                    android:layout_width="match_parent"
+                    android:id="@+id/importFromFile"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:gravity="center_horizontal"
                     android:textSize="26sp"
                     android:padding="5dp"
                     android:background="@drawable/ui_panel_grey"
-                    android:onClick="newPuzzle"/>
+                    android:onClick="importFromFile"/>
             </LinearLayout>
+            <uk.co.jakelee.cityflow.components.TextViewFont
+                android:id="@+id/newPuzzle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:gravity="center_horizontal"
+                android:textSize="26sp"
+                android:padding="5dp"
+                android:background="@drawable/ui_panel_grey"
+                android:onClick="newPuzzle"/>
         </LinearLayout>
     </ScrollView>
 

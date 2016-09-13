@@ -2,6 +2,7 @@ package uk.co.jakelee.cityflow.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
+import uk.co.jakelee.cityflow.helper.StorageHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Text;
@@ -47,7 +49,8 @@ public class CreatorActivity extends Activity {
     private void populateText() {
         ((TextView) findViewById(R.id.myPuzzles)).setText(Text.get("CREATOR_CREATED"));
         ((TextView) findViewById(R.id.othersPuzzles)).setText(Text.get("CREATOR_IMPORTED"));
-        ((TextView) findViewById(R.id.importPuzzle)).setText(Text.get("CREATOR_IMPORT_PUZZLE"));
+        ((TextView) findViewById(R.id.importFromCamera)).setText(Text.get("CREATOR_IMPORT_CAMERA"));
+        ((TextView) findViewById(R.id.importFromFile)).setText(Text.get("CREATOR_IMPORT_FILE"));
         ((TextView) findViewById(R.id.newPuzzle)).setText(Text.get("CREATOR_NEW_PUZZLE"));
     }
 
@@ -119,7 +122,7 @@ public class CreatorActivity extends Activity {
         AlertDialogHelper.puzzleCreationOptions(this);
     }
 
-    public void importPuzzle(View v) {
+    public void importFromCamera(View v) {
         try {
             Intent intent = new Intent("com.google.zxing.client.android.SCAN");
             intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
@@ -130,6 +133,11 @@ public class CreatorActivity extends Activity {
             Intent marketIntent = new Intent(Intent.ACTION_VIEW,marketUri);
             startActivity(marketIntent);
         }
+    }
+
+    public void importFromFile(View v) {
+        String test = StorageHelper.readQRImage(BitmapFactory.decodeResource(getResources(), R.drawable.qr));
+        int a = 2;
     }
 
     @Override
