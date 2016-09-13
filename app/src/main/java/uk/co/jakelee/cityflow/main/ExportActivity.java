@@ -42,12 +42,13 @@ public class ExportActivity extends Activity {
         ((TextView)findViewById(R.id.shareCard)).setText(Text.get("DIALOG_BUTTON_SHARE"));
 
         ((TextView)findViewById(R.id.puzzleName)).setText(puzzle.getName());
-        ((TextView)findViewById(R.id.puzzleAuthor)).setText(puzzleCustom.getAuthor());
+        ((TextView)findViewById(R.id.puzzleAuthor)).setText("By: " + puzzleCustom.getAuthor());
 
         ((ImageView)findViewById(R.id.puzzleImage)).setImageDrawable(dh.getCustomPuzzleDrawable(puzzle.getPuzzleId()));
         ((TextView)findViewById(R.id.puzzleDesc)).setText(puzzleCustom.getDescription());
 
-        StorageHelper.fillWithQrDrawable((ImageView)findViewById(R.id.puzzleQrCode), PuzzleShareHelper.getPuzzleString(puzzle));
+        String export = PuzzleShareHelper.getPuzzleString(puzzle);
+        StorageHelper.fillWithQrDrawable((ImageView)findViewById(R.id.puzzleQrCode), export);
     }
 
     public void save(View view) {

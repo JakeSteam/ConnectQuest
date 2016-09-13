@@ -3,6 +3,7 @@ package uk.co.jakelee.cityflow.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,15 +11,16 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
+import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
-import uk.co.jakelee.cityflow.helper.RandomHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Text;
@@ -66,8 +68,9 @@ public class CreatorActivity extends Activity {
             View inflatedView = inflater.inflate(R.layout.custom_puzzle_preview, null);
             RelativeLayout othersPuzzle = (RelativeLayout) inflatedView.findViewById(R.id.puzzleLayout);
 
-            // If we're displaying our levels, change bg colour based on completion status
-            othersPuzzle.setBackgroundResource(!displayImported && puzzleCustom.hasBeenTested() ? R.drawable.ui_panel_green : R.drawable.ui_panel_grey);
+            // If own tested level, or imported completed level, display green.
+            boolean greenBackground = (!displayImported && puzzleCustom.hasBeenTested()) || (displayImported && puzzle.hasCompletionStar());
+            othersPuzzle.setBackgroundResource(greenBackground ? R.drawable.ui_panel_green : R.drawable.ui_panel_grey);
             othersPuzzle.findViewById(R.id.deleteButton).setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     AlertDialogHelper.confirmPuzzleDeletion(activity, puzzle);
@@ -117,10 +120,26 @@ public class CreatorActivity extends Activity {
     }
 
     public void importPuzzle(View v) {
-        Puzzle puzzle = Puzzle.getPuzzle(RandomHelper.getNumber(98, 101));
-        String backup = PuzzleShareHelper.getPuzzleString(puzzle);
-        PuzzleShareHelper.importPuzzleString(backup, false);
-        populatePuzzles();
+        try {
+            Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+            intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
+            startActivityForResult(intent, 0);
+        } catch (Exception e) {
+            Toast.makeText(this, "Scanning QR codes requires a barcode reader to be installed!", Toast.LENGTH_SHORT).show();
+            Uri marketUri = Uri.parse("market://details?id=com.google.zxing.client.android");
+            Intent marketIntent = new Intent(Intent.ACTION_VIEW,marketUri);
+            startActivity(marketIntent);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0 && resultCode == RESULT_OK && PuzzleShareHelper.importPuzzleString(data.getStringExtra("SCAN_RESULT"), false)) {
+            AlertHelper.success(this, "Successfully imported puzzle!");
+        } else {
+            AlertHelper.error(this, "No puzzle data found :(");
+        }
     }
 
     public void changeTab(View v) {

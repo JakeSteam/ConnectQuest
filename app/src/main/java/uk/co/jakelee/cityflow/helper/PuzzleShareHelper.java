@@ -101,6 +101,7 @@ public class PuzzleShareHelper {
                 tile.setTileTypeId(Integer.parseInt(tileData[tileType]));
                 tile.setX(Integer.parseInt(tileData[tileX]));
                 tile.setY(Integer.parseInt(tileData[tileY]));
+                tile.setDefaultRotation(Integer.parseInt(tileData[tileRotation]));
                 tile.setRotation(Integer.parseInt(tileData[tileRotation]));
                 finishedTiles.add(tile);
             }

@@ -72,6 +72,7 @@ public class DisplayHelper {
                     Bitmap bmp = Bitmap.createBitmap(v.getDrawingCache());
                     int color = bmp.getPixel((int) event.getX(), (int) event.getY());
                     if (color == Color.TRANSPARENT) {
+                        // We don't care about this / subsequent touch events
                         return false;
                     } else {
                         if (event.getAction() == MotionEvent.ACTION_UP) {
@@ -81,6 +82,7 @@ public class DisplayHelper {
                                 ((EditorActivity)activity).handleTileClick(image, tile);
                             }
                         }
+                        // We care about subsequent events, even if it was a touch down
                         return true;
                     }
                 } catch (Exception e) {
