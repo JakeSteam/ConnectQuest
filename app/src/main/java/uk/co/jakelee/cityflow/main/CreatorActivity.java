@@ -2,10 +2,11 @@ package uk.co.jakelee.cityflow.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -156,12 +157,13 @@ public class CreatorActivity extends Activity {
                 AlertHelper.error(this, "No puzzle data found :(");
             }
         } else if (requestCode == 2) {
-            Uri selectedImageUri = data.getData();
-            Log.d("URI VAL", "selectedImageUri = " + selectedImageUri.toString());
-            String selectedImagePath = StorageHelper.getPath(this, selectedImageUri);
+            try {
+                Uri selectedImageUri = data.getData();
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
+                String decoded = StorageHelper.readQRImage(bitmap);
+                PuzzleShareHelper.importPuzzleString(decoded, false);
+            } catch (Exception e) {
 
-            if(selectedImagePath!=null){
-                System.out.println("local image");
             }
         }
     }

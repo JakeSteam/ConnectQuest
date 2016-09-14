@@ -145,9 +145,6 @@ public class StorageHelper {
             } catch (Exception e) {
 
             }
-            //byte[] rawBytes = result.getRawBytes();
-            //BarcodeFormat format = result.getBarcodeFormat();
-            //ResultPoint[] points = result.getResultPoints();
         return contents;
     }
 
