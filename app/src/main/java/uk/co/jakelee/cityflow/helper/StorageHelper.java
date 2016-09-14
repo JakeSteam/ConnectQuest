@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.widget.ImageView;
@@ -25,7 +24,6 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.util.EnumMap;
 import java.util.Map;
@@ -109,23 +107,10 @@ public class StorageHelper {
         RelativeLayout card = (RelativeLayout)activity.findViewById(R.id.puzzleCard);
         if (card == null) { return ""; }
 
-        try {
-            card.setDrawingCacheEnabled(true);
-            Bitmap b = Bitmap.createBitmap(card.getDrawingCache());
+        card.setDrawingCacheEnabled(true);
+        Bitmap b = Bitmap.createBitmap(card.getDrawingCache());
+        return MediaStore.Images.Media.insertImage(activity.getContentResolver(), b , "CityFlow_puzzle_" + puzzleId + ".png", null);
 
-            new File(Environment.getExternalStorageDirectory() + "/CityFlow").mkdirs();
-            File file = new File(Environment.getExternalStorageDirectory() + "/CityFlow", "CityFlow_puzzle_" + puzzleId + ".png");
-            FileOutputStream fos = new FileOutputStream(file);
-            b.compress(Bitmap.CompressFormat.PNG, 0, fos);
-            fos.flush();
-            fos.close();
-
-            return file.getName();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            return "";
-        }
     }
 
     public static String readQRImage(Bitmap bMap) {

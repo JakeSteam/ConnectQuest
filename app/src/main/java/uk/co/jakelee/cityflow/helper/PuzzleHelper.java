@@ -56,7 +56,7 @@ public class PuzzleHelper {
 
         if (puzzleCustom == null) {
             performBackgroundTasks(puzzle, isCompletingPack, movesTaken, boostsUsed);
-        } else if (puzzleCustom.isOriginalAuthor()) {
+        } else if (puzzleCustom.isOriginalAuthor() && movesTaken > 0) {
             puzzleCustom.setHasBeenTested(true);
             puzzleCustom.save();
         }

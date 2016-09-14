@@ -148,7 +148,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     private void createText() {
         List<Text> texts = new ArrayList<>();
-        texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CARD_SAVED", "Card image saved as \"%1$s\" in \"CityFlow\" folder!"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CARD_SAVED", "Card image saved to gallery!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_BEGINNING", "Comparing local and cloud saves..."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_SAVING", "Saving to cloud..."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_CLOUD_SAVED", "Successfully saved game to cloud!"));
@@ -464,8 +464,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_126_NAME", "Desert Road Slope"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_127_NAME", "Desert Road Corner"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_128_NAME", "Desert Road T Junction"));
-        texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_128_NAME", "Mountain (Stones)"));
-        texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_EXPORT_PUZZLE_HINT", "Export puzzle data to:"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_129_NAME", "Mountain (Stones)"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_COMPLETE_TITLE", "Complete\n100%"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_COMPLETE_TEXT", "Completed!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_TIME_TITLE", "Time\n%1$d%%"));

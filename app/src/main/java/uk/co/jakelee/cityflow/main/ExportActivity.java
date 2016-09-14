@@ -2,6 +2,7 @@ package uk.co.jakelee.cityflow.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -56,18 +57,22 @@ public class ExportActivity extends Activity {
         if (filename.equals("")) {
             AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.CARD_NOT_SAVED));
         } else {
-            AlertHelper.success(this, String.format(Text.get("ALERT_CARD_SAVED"), filename));
+            AlertHelper.success(this, Text.get("ALERT_CARD_SAVED"));
         }
     }
 
     public void share(View view) {
-        // Share to magical intent
-        String backup = PuzzleShareHelper.getPuzzleString(puzzle);
-        Intent intent = new Intent()
-                .setAction(Intent.ACTION_SEND)
-                .setType("text/plain")
-                .putExtra(Intent.EXTRA_TEXT, backup);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(Intent.createChooser(intent, Text.get("UI_EXPORT_PUZZLE_HINT")));
+        String filename = StorageHelper.saveCardImage(this, puzzle.getPuzzleId());
+
+        if (filename.equals("")) {
+            AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.CARD_NOT_SAVED));
+        } else {
+            Uri bmpUri = Uri.parse(filename);
+            Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+            intent.setType("image/png");
+            startActivity(intent);
+        }
     }
 }
