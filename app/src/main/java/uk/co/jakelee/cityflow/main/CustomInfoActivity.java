@@ -80,7 +80,7 @@ public class CustomInfoActivity extends Activity {
             ((ImageView) findViewById(R.id.puzzleStarTime)).setImageResource(puzzle.hasTimeStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
             ((TextView) findViewById(R.id.puzzleStarsText)).setText(Text.get("UI_PUZZLE_STARS"));
         }
-        ((TextView) findViewById(R.id.exportButton)).setTextColor(puzzleCustom.hasBeenTested() ? Color.BLACK : Color.LTGRAY);
+        ((TextView) findViewById(R.id.exportButton)).setTextColor((puzzleCustom.hasBeenTested() || !puzzleCustom.isOriginalAuthor()) ? Color.BLACK : Color.LTGRAY);
     }
 
     public void playPuzzle(View v) {

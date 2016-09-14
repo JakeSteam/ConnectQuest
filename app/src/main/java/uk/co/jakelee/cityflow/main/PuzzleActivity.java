@@ -224,7 +224,6 @@ public class PuzzleActivity extends Activity {
         Picasso.with(this).load(drawableId).into(image);
 
         ((TextView) findViewById(R.id.moveCounter)).setText(Integer.toString(++movesMade));
-        ((TextView) findViewById(R.id.undoBoost)).setTextColor(undoing ? Color.LTGRAY : Color.BLACK);
 
         timeLastMoved = SystemClock.uptimeMillis();
 

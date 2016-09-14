@@ -21,7 +21,7 @@ import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
-import uk.co.jakelee.cityflow.helper.DisplayHelper;
+import uk.co.jakelee.cityflow.helper.ErrorHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
 import uk.co.jakelee.cityflow.helper.StorageHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
@@ -30,13 +30,13 @@ import uk.co.jakelee.cityflow.model.Text;
 
 public class CreatorActivity extends Activity {
     private boolean displayImported = false;
-    private DisplayHelper dh;
+    final private static int INTENT_CAMERA = 1234;
+    final private static int INTENT_FILE = 1235;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creator);
-        dh = DisplayHelper.getInstance(this);
     }
 
     @Override
@@ -130,11 +130,11 @@ public class CreatorActivity extends Activity {
         try {
             Intent intent = new Intent("com.google.zxing.client.android.SCAN");
             intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
-            startActivityForResult(intent, 1);
+            startActivityForResult(intent, INTENT_CAMERA);
         } catch (Exception e) {
             Toast.makeText(this, "Scanning QR codes requires a barcode reader to be installed!", Toast.LENGTH_SHORT).show();
             Uri marketUri = Uri.parse("market://details?id=com.google.zxing.client.android");
-            Intent marketIntent = new Intent(Intent.ACTION_VIEW,marketUri);
+            Intent marketIntent = new Intent(Intent.ACTION_VIEW, marketUri);
             startActivity(marketIntent);
         }
     }
@@ -143,27 +143,30 @@ public class CreatorActivity extends Activity {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), 2);
-        //String test = StorageHelper.readQRImage(BitmapFactory.decodeResource(getResources(), R.drawable.qr));
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), INTENT_FILE);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK && PuzzleShareHelper.importPuzzleString(data.getStringExtra("SCAN_RESULT"), false)) {
-                AlertHelper.success(this, "Successfully imported puzzle!");
-            } else {
-                AlertHelper.error(this, "No puzzle data found :(");
-            }
-        } else if (requestCode == 2) {
-            try {
-                Uri selectedImageUri = data.getData();
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
-                String decoded = StorageHelper.readQRImage(bitmap);
-                PuzzleShareHelper.importPuzzleString(decoded, false);
-            } catch (Exception e) {
 
+        if (resultCode == RESULT_OK) {
+            String puzzleString = "";
+            if (requestCode == INTENT_CAMERA) {
+                puzzleString = data.getStringExtra("SCAN_RESULT");
+            } else if (requestCode == INTENT_FILE) {
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
+                    puzzleString = StorageHelper.readQRImage(bitmap);
+                } catch (Exception e) {}
+            }
+
+            if (!puzzleString.equals("") && PuzzleShareHelper.importPuzzleString(puzzleString, false)) {
+                AlertHelper.success(this, Text.get("ALERT_PUZZLE_IMPORTED"));
+            } else if (requestCode == INTENT_CAMERA) {
+                AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.CAMERA_IMPORT_FAIL));
+            } else if (requestCode == INTENT_FILE) {
+                AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.FILE_IMPORT_FAIL));
             }
         }
     }

@@ -129,22 +129,22 @@ public class StorageHelper {
     }
 
     public static String readQRImage(Bitmap bMap) {
-        String contents = null;
+        String contents = "";
 
-        int[] intArray = new int[bMap.getWidth()*bMap.getHeight()];
+        int[] intArray = new int[bMap.getWidth() * bMap.getHeight()];
         //copy pixel data from the Bitmap into the 'intArray' array
         bMap.getPixels(intArray, 0, bMap.getWidth(), 0, 0, bMap.getWidth(), bMap.getHeight());
 
         LuminanceSource source = new RGBLuminanceSource(bMap.getWidth(), bMap.getHeight(), intArray);
         BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
 
-        MultiFormatReader reader = new MultiFormatReader();// use this otherwise ChecksumException
-            try {
-                Result result = reader.decode(bitmap);
-                contents = result.getText();
-            } catch (Exception e) {
+        MultiFormatReader reader = new MultiFormatReader();
+        try {
+            Result result = reader.decode(bitmap);
+            contents = result.getText();
+        } catch (Exception e) {
 
-            }
+        }
         return contents;
     }
 

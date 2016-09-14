@@ -157,6 +157,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_COINS_EARNED", "Earned %1$d coin(s)!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_COINS_EARNED_FREE", "Earned %1$d free coin(s), enjoy!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_PUZZLE_COPIED", "Successfully created \"%1$s\"!"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_PUZZLE_IMPORTED", "Successfully imported the puzzle, enjoy!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SHUFFLE_PUZZLE", "Randomly shuffle all tiles?"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_DELETE_PUZZLE", "Delete puzzle \"%1$s\"?\n\nNote: This can't be undone!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SAVE_CONFLICT", "Save conflict detected! Currently resolving, this might take a few seconds, please be patient..."));
@@ -232,6 +233,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_PUZZLE_NOT_TESTED", "The puzzle must be successfully completed before it can be exported!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_PUZZLE_TOO_SMALL", "The puzzle needs more than just one tile!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_CARD_NOT_SAVED", "The card could not be saved, check storage permissions."));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_CAMERA_IMPORT_FAIL", "The puzzle card could not be read, please try retaking the image, or improving lighting conditions."));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_FILE_IMPORT_FAIL", "No puzzle could be imported from the image, please check that a puzzle card image has been selected."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_0_NAME", "None"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_1_NAME", "Water"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_2_NAME", "Road"));
