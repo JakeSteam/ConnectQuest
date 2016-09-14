@@ -399,6 +399,7 @@ public class PuzzleActivity extends Activity {
         this.onStop();
         this.finish();
         Intent intent = new Intent(this, ShopActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
 
@@ -412,6 +413,7 @@ public class PuzzleActivity extends Activity {
         Intent intent = new Intent(this, PuzzleActivity.class);
         intent.putExtra(Constants.INTENT_PUZZLE, puzzleId);
         intent.putExtra(Constants.INTENT_PUZZLE_TYPE, isCustom);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
 
@@ -421,6 +423,7 @@ public class PuzzleActivity extends Activity {
             if (puzzleCustom.isOriginalAuthor()) {
                 Intent intent = new Intent(this, EditorActivity.class);
                 intent.putExtra(Constants.INTENT_PUZZLE, puzzleId);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }
         } else {
@@ -429,6 +432,7 @@ public class PuzzleActivity extends Activity {
                 Intent intent = new Intent(this, PuzzleActivity.class);
                 intent.putExtra(Constants.INTENT_PUZZLE, nextPuzzle);
                 intent.putExtra(Constants.INTENT_PUZZLE_TYPE, false);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }
             this.onStop();

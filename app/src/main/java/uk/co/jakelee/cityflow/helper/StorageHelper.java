@@ -4,8 +4,11 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -209,5 +212,23 @@ public class StorageHelper {
                     REQUEST_EXTERNAL_STORAGE
             );
         }
+    }
+
+    public static String getPath(Activity activity, Uri uri) {
+        String[] projection = {  MediaStore.MediaColumns.DATA};
+        Cursor cursor = activity.getContentResolver().query(uri, projection, null, null, null);
+        if(cursor != null) {
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
+            String filePath = cursor.getString(columnIndex);
+            cursor.close();
+            if (filePath != null) {
+                return filePath;
+            } else {
+                return uri.getPath();
+            }
+        }
+        else
+            return uri.getPath();               // FOR OI/ASTRO/Dropbox etc
     }
 }

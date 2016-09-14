@@ -80,6 +80,7 @@ public class StoryActivity extends Activity {
                 public void onClick(View v) {
                     Intent intent = new Intent(getApplicationContext(), PackActivity.class);
                     intent.putExtra(Constants.INTENT_PACK, pack.getPackId());
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(intent);
                 }
             });
@@ -95,6 +96,7 @@ public class StoryActivity extends Activity {
                     ShopItem packItem = ShopItem.getPackItem(pack.getPackId());
                     Intent intent = new Intent(getApplicationContext(), ShopActivity.class);
                     intent.putExtra(Constants.INTENT_ITEM, packItem.getItemId());
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(intent);
                 }
             });

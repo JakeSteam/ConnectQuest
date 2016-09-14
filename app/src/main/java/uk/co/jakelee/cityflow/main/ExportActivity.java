@@ -67,6 +67,7 @@ public class ExportActivity extends Activity {
                 .setAction(Intent.ACTION_SEND)
                 .setType("text/plain")
                 .putExtra(Intent.EXTRA_TEXT, backup);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(Intent.createChooser(intent, Text.get("UI_EXPORT_PUZZLE_HINT")));
     }
 }

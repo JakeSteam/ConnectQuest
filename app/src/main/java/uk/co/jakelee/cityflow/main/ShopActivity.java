@@ -155,12 +155,14 @@ public class ShopActivity extends Activity {
 
     public void buyCoins (View view) {
         Intent intent = new Intent(this, IAPActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
 
     public void displayInformation(ShopItem item) {
         Intent intent = new Intent(this, ShopItemActivity.class);
         intent.putExtra(Constants.INTENT_ITEM, item.getItemId());
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
 

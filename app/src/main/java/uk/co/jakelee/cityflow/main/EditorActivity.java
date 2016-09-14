@@ -146,6 +146,7 @@ public class EditorActivity extends Activity {
         if (selectedTile != null) {
             Intent intent = new Intent(getApplicationContext(), TilePickerActivity.class);
             intent.putExtra(Constants.INTENT_TILE, selectedTile.getId());
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
         }
     }
@@ -175,6 +176,7 @@ public class EditorActivity extends Activity {
         Intent intent = new Intent(getApplicationContext(), PuzzleActivity.class);
         intent.putExtra(Constants.INTENT_PUZZLE, puzzle.getPuzzleId());
         intent.putExtra(Constants.INTENT_PUZZLE_TYPE, true);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
 }

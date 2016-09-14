@@ -110,6 +110,7 @@ public class PackActivity extends Activity {
                 Intent intent = new Intent(activity, PuzzleActivity.class);
                 intent.putExtra(Constants.INTENT_PUZZLE, (int) v.getTag(R.id.puzzleId));
                 intent.putExtra(Constants.INTENT_PUZZLE_TYPE, (boolean) v.getTag(R.id.puzzleIsCustom));
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }
         });

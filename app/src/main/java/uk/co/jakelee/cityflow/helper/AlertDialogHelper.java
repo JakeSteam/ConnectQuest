@@ -298,6 +298,7 @@ public class AlertDialogHelper {
 
                     Intent intent = new Intent(activity, EditorActivity.class)
                             .putExtra(Constants.INTENT_PUZZLE, newPuzzleId);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     activity.startActivity(intent);
                     dialog.dismiss();
                 }

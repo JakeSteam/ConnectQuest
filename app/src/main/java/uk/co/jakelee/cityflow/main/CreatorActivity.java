@@ -2,10 +2,10 @@ package uk.co.jakelee.cityflow.main;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -84,6 +84,7 @@ public class CreatorActivity extends Activity {
                 public void onClick(View v) {
                     Intent intent = new Intent(getApplicationContext(), CustomInfoActivity.class);
                     intent.putExtra(Constants.INTENT_PUZZLE, puzzle.getPuzzleId());
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(intent);
                 }
             });
@@ -95,6 +96,7 @@ public class CreatorActivity extends Activity {
                         Intent intent = new Intent(getApplicationContext(), PuzzleActivity.class);
                         intent.putExtra(Constants.INTENT_PUZZLE, puzzle.getPuzzleId());
                         intent.putExtra(Constants.INTENT_PUZZLE_TYPE, true);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(intent);
                     }
                 });
@@ -104,6 +106,7 @@ public class CreatorActivity extends Activity {
                     public void onClick(View v) {
                         Intent intent = new Intent(getApplicationContext(), EditorActivity.class);
                         intent.putExtra(Constants.INTENT_PUZZLE, puzzle.getPuzzleId());
+                        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(intent);
                     }
                 });
@@ -126,7 +129,7 @@ public class CreatorActivity extends Activity {
         try {
             Intent intent = new Intent("com.google.zxing.client.android.SCAN");
             intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
-            startActivityForResult(intent, 0);
+            startActivityForResult(intent, 1);
         } catch (Exception e) {
             Toast.makeText(this, "Scanning QR codes requires a barcode reader to be installed!", Toast.LENGTH_SHORT).show();
             Uri marketUri = Uri.parse("market://details?id=com.google.zxing.client.android");
@@ -136,17 +139,30 @@ public class CreatorActivity extends Activity {
     }
 
     public void importFromFile(View v) {
-        String test = StorageHelper.readQRImage(BitmapFactory.decodeResource(getResources(), R.drawable.qr));
-        int a = 2;
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), 2);
+        //String test = StorageHelper.readQRImage(BitmapFactory.decodeResource(getResources(), R.drawable.qr));
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 0 && resultCode == RESULT_OK && PuzzleShareHelper.importPuzzleString(data.getStringExtra("SCAN_RESULT"), false)) {
-            AlertHelper.success(this, "Successfully imported puzzle!");
-        } else {
-            AlertHelper.error(this, "No puzzle data found :(");
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK && PuzzleShareHelper.importPuzzleString(data.getStringExtra("SCAN_RESULT"), false)) {
+                AlertHelper.success(this, "Successfully imported puzzle!");
+            } else {
+                AlertHelper.error(this, "No puzzle data found :(");
+            }
+        } else if (requestCode == 2) {
+            Uri selectedImageUri = data.getData();
+            Log.d("URI VAL", "selectedImageUri = " + selectedImageUri.toString());
+            String selectedImagePath = StorageHelper.getPath(this, selectedImageUri);
+
+            if(selectedImagePath!=null){
+                System.out.println("local image");
+            }
         }
     }
 

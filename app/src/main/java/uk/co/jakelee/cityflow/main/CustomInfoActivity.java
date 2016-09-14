@@ -87,6 +87,7 @@ public class CustomInfoActivity extends Activity {
         Intent intent = new Intent(getApplicationContext(), PuzzleActivity.class);
         intent.putExtra(Constants.INTENT_PUZZLE, puzzle.getPuzzleId());
         intent.putExtra(Constants.INTENT_PUZZLE_TYPE, puzzle.getPackId() == 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
         this.finish();
     }
@@ -105,6 +106,7 @@ public class CustomInfoActivity extends Activity {
 
         Intent intent = new Intent(getApplicationContext(), ExportActivity.class);
         intent.putExtra(Constants.INTENT_PUZZLE, puzzle.getPuzzleId());
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
 
