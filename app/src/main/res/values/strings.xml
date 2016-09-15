@@ -18,4 +18,7 @@
     <string name="icon_quests">&#xf128;</string>
     <string name="icon_shop">&#xf07a;</string>
     <string name="icon_shuffle">&#xf074;</string>
+    <string name="icon_add">&#xf067;</string>
+    <string name="icon_camera">&#xf030;</string>
+    <string name="icon_gallery">&#xf03e;</string>
 </resources>

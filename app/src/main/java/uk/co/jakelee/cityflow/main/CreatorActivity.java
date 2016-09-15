@@ -50,8 +50,8 @@ public class CreatorActivity extends Activity {
     private void populateText() {
         ((TextView) findViewById(R.id.myPuzzles)).setText(Text.get("CREATOR_CREATED"));
         ((TextView) findViewById(R.id.othersPuzzles)).setText(Text.get("CREATOR_IMPORTED"));
-        ((TextView) findViewById(R.id.importFromCamera)).setText(Text.get("CREATOR_IMPORT_CAMERA"));
-        ((TextView) findViewById(R.id.importFromFile)).setText(Text.get("CREATOR_IMPORT_FILE"));
+        ((TextView) findViewById(R.id.importFromCamera)).setText(Text.get("WORD_IMPORT"));
+        ((TextView) findViewById(R.id.importFromFile)).setText(Text.get("WORD_IMPORT"));
         ((TextView) findViewById(R.id.newPuzzle)).setText(Text.get("CREATOR_NEW_PUZZLE"));
     }
 
@@ -118,7 +118,7 @@ public class CreatorActivity extends Activity {
             puzzleContainer.addView(othersPuzzle);
         }
 
-        findViewById(R.id.newPuzzle).setVisibility(displayImported ? View.GONE : View.VISIBLE);
+        findViewById(R.id.newPuzzleWrapper).setVisibility(displayImported ? View.GONE : View.VISIBLE);
         findViewById(R.id.importPuzzle).setVisibility(displayImported ? View.VISIBLE : View.GONE);
     }
 
