@@ -2,10 +2,10 @@ package uk.co.jakelee.cityflow.main;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.games.Games;
@@ -72,26 +72,22 @@ public class SettingsActivity extends Activity {
     }
 
     public void populateSettings() {
-        Drawable tick = dh.createDrawable(R.drawable.ui_level_unselected_completed, 50, 50);
-        Drawable cross = dh.createDrawable(R.drawable.ui_level_unselected, 50, 50);
+        //Drawable tick = dh.createDrawable(R.drawable.ui_level_unselected_completed, 50, 50);
+        //Drawable cross = dh.createDrawable(R.drawable.ui_level_unselected, 50, 50);
 
         // Sound settings
-        ImageView musicToggle = (ImageView) findViewById(R.id.musicToggleButton);
-        boolean musicToggleValue = Setting.getSafeBoolean(Constants.SETTING_MUSIC);
-        musicToggle.setImageDrawable(musicToggleValue ? tick : cross);
+        ((TextView) findViewById(R.id.musicToggleButton)).setText(Setting.getSafeBoolean(Constants.SETTING_MUSIC) ? R.string.icon_tick : R.string.icon_cross);
+        ((TextView) findViewById(R.id.musicToggleButton)).setTextColor(ContextCompat.getColor(this, Setting.getSafeBoolean(Constants.SETTING_MUSIC) ? R.color.green : R.color.red));
 
-        ImageView soundToggle = (ImageView) findViewById(R.id.soundToggleButton);
-        boolean soundToggleValue = Setting.getSafeBoolean(Constants.SETTING_SOUNDS);
-        soundToggle.setImageDrawable(soundToggleValue ? tick : cross);
+        ((TextView) findViewById(R.id.soundToggleButton)).setText(Setting.getSafeBoolean(Constants.SETTING_SOUNDS) ? R.string.icon_tick : R.string.icon_cross);
+        ((TextView) findViewById(R.id.soundToggleButton)).setTextColor(ContextCompat.getColor(this, Setting.getSafeBoolean(Constants.SETTING_SOUNDS) ? R.color.green : R.color.red));
 
         // Gameplay settings
-        ImageView zenToggle = (ImageView) findViewById(R.id.zenToggleButton);
-        boolean zenToggleValue = Setting.getSafeBoolean(Constants.SETTING_ZEN_MODE);
-        zenToggle.setImageDrawable(zenToggleValue ? tick : cross);
+        ((TextView) findViewById(R.id.zenToggleButton)).setText(Setting.getSafeBoolean(Constants.SETTING_ZEN_MODE) ? R.string.icon_tick : R.string.icon_cross);
+        ((TextView) findViewById(R.id.zenToggleButton)).setTextColor(ContextCompat.getColor(this, Setting.getSafeBoolean(Constants.SETTING_ZEN_MODE) ? R.color.green : R.color.red));
 
-        ImageView hideBoostsToggle = (ImageView) findViewById(R.id.hideBoostButton);
-        boolean hideBoostsToggleValue = Setting.getSafeBoolean(Constants.SETTING_HIDE_UNSTOCKED_BOOSTS);
-        hideBoostsToggle.setImageDrawable(hideBoostsToggleValue ? tick : cross);
+        ((TextView) findViewById(R.id.hideBoostButton)).setText(Setting.getSafeBoolean(Constants.SETTING_HIDE_UNSTOCKED_BOOSTS) ? R.string.icon_tick : R.string.icon_cross);
+        ((TextView) findViewById(R.id.hideBoostButton)).setTextColor(ContextCompat.getColor(this, Setting.getSafeBoolean(Constants.SETTING_HIDE_UNSTOCKED_BOOSTS) ? R.color.green : R.color.red));
 
         TextView playerName = (TextView) findViewById(R.id.playerNameDisplay);
         playerName.setText(Setting.getString(Constants.SETTING_PLAYER_NAME));

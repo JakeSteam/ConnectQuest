@@ -15,10 +15,12 @@
     <string name="icon_save">&#xf0c7;</string>
     <string name="icon_picktile">&#xf044;</string>
     <string name="icon_settings">&#xf085;</string>
-    <string name="icon_quests">&#xf128;</string>
+    <string name="icon_quests">&#xf046;</string>
     <string name="icon_shop">&#xf07a;</string>
     <string name="icon_shuffle">&#xf074;</string>
     <string name="icon_add">&#xf067;</string>
     <string name="icon_camera">&#xf030;</string>
     <string name="icon_gallery">&#xf03e;</string>
+    <string name="icon_tick">&#xf00c;</string>
+    <string name="icon_cross">&#xf00d;</string>
 </resources>
