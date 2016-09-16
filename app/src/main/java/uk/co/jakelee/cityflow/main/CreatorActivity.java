@@ -172,7 +172,12 @@ public class CreatorActivity extends Activity {
     }
 
     public void changeTab(View v) {
-        displayImported = !displayImported;
+        if (v.getTag().equals("displayOwn") && displayImported) {
+            displayImported = false;
+        } else if (v.getTag().equals("displayImported") && !displayImported) {
+            displayImported = true;
+        }
+
         populatePuzzles();
         updateTabDisplay();
     }
