@@ -172,11 +172,8 @@ public class EditorActivity extends Activity {
             case EditorMenuActivity.CHANGE_DESC:
                 AlertDialogHelper.changePuzzleInfo(this, PuzzleCustom.get(puzzleId), true);
                 break;
-            case EditorMenuActivity.CHANGE_WIDTH:
-                // Nada
-                break;
-            case EditorMenuActivity.CHANGE_HEIGHT:
-                // Nada
+            case EditorMenuActivity.CHANGE_SIZE:
+                AlertDialogHelper.resizePuzzle(this, puzzleId);
                 break;
             case EditorMenuActivity.SAVE:
                 savePuzzle();

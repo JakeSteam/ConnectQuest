@@ -211,9 +211,11 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_LOAD", "Load"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_CANCEL", "Cancel"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_DELETE", "Delete"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_RESIZE", "Resize"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_RESIZE_CONFIRM", "Are you sure you want to resize the puzzle from %1$dx%2$d to %3$dx%4$d?"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_SUPPORT_CODE", "Support Code"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CREDITS", "Credits"));
-        texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_PLAY", "Play"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_PLAY", "Play Puzzle"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_SHUFFLE_TILES", "Shuffle Tiles"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_NAME", "Change Name"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_DESC", "Change Desc"));
@@ -488,6 +490,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_WIDTH", "Width: %1$d"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_HEIGHT", "Height: %1$d"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_OPTIONS", "Puzzle Options"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_PUZZLE_RESIZE", "Resize \"%1$s\""));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_TILE_UNLOCK", "Unlocked %1$s tile(s)!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_TILE_NO_UNLOCK", "No tiles unlocked."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_ALL", "All"));

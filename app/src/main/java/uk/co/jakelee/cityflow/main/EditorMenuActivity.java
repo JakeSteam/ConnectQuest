@@ -14,9 +14,8 @@ public class EditorMenuActivity extends Activity {
     public final static int SHUFFLE = 2;
     public final static int CHANGE_NAME = 3;
     public final static int CHANGE_DESC = 4;
-    public final static int CHANGE_WIDTH = 5;
-    public final static int CHANGE_HEIGHT = 6;
-    public final static int SAVE = 7;
+    public final static int CHANGE_SIZE = 5;
+    public final static int SAVE = 6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +29,7 @@ public class EditorMenuActivity extends Activity {
         ((TextView)findViewById(R.id.shufflePuzzle)).setText(Text.get("DIALOG_SHUFFLE_TILES"));
         ((TextView)findViewById(R.id.changePuzzleName)).setText(Text.get("DIALOG_CHANGE_NAME"));
         ((TextView)findViewById(R.id.changePuzzleDesc)).setText(Text.get("DIALOG_CHANGE_DESC"));
-        ((TextView)findViewById(R.id.changePuzzleWidth)).setText(Text.get("DIALOG_CHANGE_WIDTH"));
-        ((TextView)findViewById(R.id.changePuzzleHeight)).setText(Text.get("DIALOG_CHANGE_HEIGHT"));
+        ((TextView)findViewById(R.id.changePuzzleSize)).setText(Text.get("DIALOG_BUTTON_RESIZE"));
         ((TextView)findViewById(R.id.savePuzzle)).setText(Text.get("DIALOG_SAVE_EXIT"));
     }
 
@@ -51,12 +49,8 @@ public class EditorMenuActivity extends Activity {
         returnResult(CHANGE_DESC);
     }
 
-    public void changePuzzleWidth(View v) {
-        returnResult(CHANGE_WIDTH);
-    }
-
-    public void changePuzzleHeight(View v) {
-        returnResult(CHANGE_HEIGHT);
+    public void changePuzzleSize(View v) {
+        returnResult(CHANGE_SIZE);
     }
 
     public void savePuzzle(View v) {

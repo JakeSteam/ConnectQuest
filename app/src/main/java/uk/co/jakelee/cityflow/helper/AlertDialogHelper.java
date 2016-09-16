@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.InputFilter;
+import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
@@ -320,6 +321,106 @@ public class AlertDialogHelper {
         dialog.show();
     }
 
+    public static void resizePuzzle(final EditorActivity activity, final int puzzleId) {
+        Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
+        final Pair<Integer, Integer> oldXY = TileHelper.getMaxXY(puzzle.getTiles());
+
+        // Creating dialog
+        final Dialog dialog = new Dialog(activity);
+        dialog.setContentView(R.layout.custom_dialog_puzzle_size);
+        dialog.setCancelable(true);
+
+        // Filling in all the text fields
+        ((TextView)dialog.findViewById(R.id.close)).setText(Text.get("DIALOG_BUTTON_CLOSE"));
+        ((TextView)dialog.findViewById(R.id.resizeButton)).setText(Text.get("DIALOG_BUTTON_RESIZE"));
+        ((TextView)dialog.findViewById(R.id.title)).setText(String.format(Text.get("UI_PUZZLE_RESIZE"), puzzle.getName()));
+        ((TextView)dialog.findViewById(R.id.minWidth)).setText(Integer.toString(Constants.PUZZLE_X_MIN));
+        ((TextView)dialog.findViewById(R.id.maxWidth)).setText(Integer.toString(Constants.PUZZLE_X_MAX));
+        ((TextView)dialog.findViewById(R.id.minHeight)).setText(Integer.toString(Constants.PUZZLE_Y_MIN));
+        ((TextView)dialog.findViewById(R.id.maxHeight)).setText(Integer.toString(Constants.PUZZLE_Y_MAX));
+        ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Text.get("UI_PUZZLE_WIDTH"), oldXY.first + 1));
+        ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Text.get("UI_PUZZLE_HEIGHT"), oldXY.second + 1));
+
+        // Creating X slider
+        final SeekBar sliderWidth = (SeekBar) dialog.findViewById(R.id.sliderWidth);
+        sliderWidth.setProgress(getProgressFromFloat(oldXY.first + 1, Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX));
+        sliderWidth.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
+            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
+                ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Text.get("UI_PUZZLE_WIDTH"), getIntFromProgress(sliderWidth.getProgress(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX)));
+            }
+        });
+
+        // Creating Y slider
+        final SeekBar sliderHeight = (SeekBar) dialog.findViewById(R.id.sliderHeight);
+        sliderHeight.setProgress(getProgressFromFloat(oldXY.second + 1, Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX));
+        sliderHeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
+            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
+                ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Text.get("UI_PUZZLE_HEIGHT"), getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX)));
+            }
+        });
+
+        // Create button
+        dialog.findViewById(R.id.resizeButton).setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                int newX = getIntFromProgress(sliderWidth.getProgress(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX);
+                int newY = getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX);
+
+                if (newX <= 1 && newY <= 1) {
+                    AlertHelper.error(activity, ErrorHelper.get(ErrorHelper.Error.PUZZLE_TOO_SMALL));
+                } else if (oldXY.first != newX || oldXY.second != newY) {
+                    confirmResize(activity, puzzleId, oldXY.first + 1, oldXY.second + 1, newX, newY);
+                    dialog.dismiss();
+                }
+            }
+        });
+
+        dialog.findViewById(R.id.close).setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    public static void confirmResize(final Activity activity, final int puzzleId, final int oldX, final int oldY, final int newX, final int newY) {
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        alertDialog.setMessage(String.format(Text.get("DIALOG_RESIZE_CONFIRM"), oldX, oldY, newX, newY));
+
+        alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_RESIZE"), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                PuzzleHelper.resizePuzzle(puzzleId, oldX, oldY, newX, newY);
+                Intent intent = new Intent(activity, EditorActivity.class);
+                intent.putExtra(Constants.INTENT_PUZZLE, puzzleId);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
+                activity.finish();
+                activity.startActivity(intent);
+            }
+        });
+
+        alertDialog.setNegativeButton(Text.get("DIALOG_BUTTON_CANCEL"), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                alertDialog.show();
+            }
+        });
+    }
+
     public static void changeSettingFloat(final SettingsActivity activity, int settingId) {
         final Setting setting = Setting.get(settingId);
 
@@ -434,4 +535,5 @@ public class AlertDialogHelper {
     public static int getProgressFromFloat(float value, float min, float max) {
         return (int) Math.ceil(((value - min) / (max - min)) * 100);
     }
+
 }
