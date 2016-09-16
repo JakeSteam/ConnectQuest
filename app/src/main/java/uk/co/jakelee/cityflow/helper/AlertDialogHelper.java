@@ -194,7 +194,7 @@ public class AlertDialogHelper {
         alertDialog.show();
     }
 
-    public static void changePuzzleInfo(final CustomInfoActivity activity, final PuzzleCustom puzzleCustom, final boolean changeDesc) {
+    public static void changePuzzleInfo(final Activity activity, final PuzzleCustom puzzleCustom, final boolean changeDesc) {
         final EditText puzzleInfoInput = new EditText(activity.getApplicationContext());
         puzzleInfoInput.setText(changeDesc ? puzzleCustom.getDescription() : puzzleCustom.getName());
         puzzleInfoInput.setSelectAllOnFocus(true);
@@ -215,7 +215,10 @@ public class AlertDialogHelper {
                     puzzleCustom.setName(newString);
                 }
                 puzzleCustom.save();
-                activity.redisplayInfo();
+
+                if (activity instanceof CustomInfoActivity) {
+                    ((CustomInfoActivity)activity).redisplayInfo();
+                }
             }
         });
 
@@ -225,7 +228,10 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.show();
+        Dialog dialog = alertDialog.create();
+        dialog.show();
+        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
     }
 
     public static void puzzleCreationOptions(final CreatorActivity activity) {

@@ -213,6 +213,13 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_DELETE", "Delete"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_SUPPORT_CODE", "Support Code"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CREDITS", "Credits"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_PLAY", "Play"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_SHUFFLE_TILES", "Shuffle Tiles"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_NAME", "Change Name"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_DESC", "Change Desc"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_WIDTH", "Change Width"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CHANGE_HEIGHT", "Change Height"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_SAVE_EXIT", "Save & Exit"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_0_NAME", "None"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_1_NAME", "Grass"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ENVIRONMENT_2_NAME", "City"));

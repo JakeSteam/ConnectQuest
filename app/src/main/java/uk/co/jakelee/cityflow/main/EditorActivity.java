@@ -22,6 +22,7 @@ import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.ImageHelper;
 import uk.co.jakelee.cityflow.helper.TileHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
+import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
@@ -151,8 +152,36 @@ public class EditorActivity extends Activity {
         }
     }
 
-    public void shuffleTiles(View v) {
-        AlertDialogHelper.confirmPuzzleShuffle(this, Puzzle.getPuzzle(puzzleId));
+    public void openMenu(View v) {
+        Intent intent = new Intent(this, EditorMenuActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivityForResult(intent, 0);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (resultCode) {
+            case EditorMenuActivity.PLAY:
+                playPuzzle();
+                break;
+            case EditorMenuActivity.SHUFFLE:
+                AlertDialogHelper.confirmPuzzleShuffle(this, Puzzle.getPuzzle(puzzleId));
+                break;
+            case EditorMenuActivity.CHANGE_NAME:
+                AlertDialogHelper.changePuzzleInfo(this, PuzzleCustom.get(puzzleId), false);
+                break;
+            case EditorMenuActivity.CHANGE_DESC:
+                AlertDialogHelper.changePuzzleInfo(this, PuzzleCustom.get(puzzleId), true);
+                break;
+            case EditorMenuActivity.CHANGE_WIDTH:
+                // Nada
+                break;
+            case EditorMenuActivity.CHANGE_HEIGHT:
+                // Nada
+                break;
+            case EditorMenuActivity.SAVE:
+                savePuzzle();
+                break;
+        }
     }
 
     public void shuffleTiles() {
@@ -161,7 +190,7 @@ public class EditorActivity extends Activity {
         drawPuzzle(tiles);
     }
 
-    public void savePuzzle(View v) {
+    public void savePuzzle() {
         Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
         puzzle.saveTileRotations();
         puzzle.resetMetrics();
@@ -169,9 +198,9 @@ public class EditorActivity extends Activity {
         this.finish();
     }
 
-    public void playPuzzle(View v) {
+    public void playPuzzle() {
         Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
-        savePuzzle(v);
+        savePuzzle();
 
         Intent intent = new Intent(getApplicationContext(), PuzzleActivity.class);
         intent.putExtra(Constants.INTENT_PUZZLE, puzzle.getPuzzleId());
