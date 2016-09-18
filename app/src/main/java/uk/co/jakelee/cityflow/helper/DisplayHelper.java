@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -92,21 +93,19 @@ public class DisplayHelper {
         return image;
     }
 
-    public TextView createPuzzleSelectButton(final PackActivity activity, int puzzleNumber, final Puzzle puzzle, boolean isSelected, boolean lastLevelCompleted) {
+    public RelativeLayout createPuzzleSelectButton(final PackActivity activity, int puzzleNumber, final Puzzle puzzle, boolean isSelected, boolean lastLevelCompleted) {
         boolean hasAllStars = puzzle.hasCompletionStar() && puzzle.hasMovesStar() && puzzle.hasTimeStar();
         boolean hasCompleted = puzzle.hasCompletionStar();
 
-        LayoutInflater inflater = LayoutInflater.from(activity);
-        TextView puzzleButton = (TextView) inflater.inflate(R.layout.custom_puzzle_select_button, null);
+        RelativeLayout puzzleButton = (RelativeLayout) LayoutInflater.from(activity).inflate(R.layout.custom_puzzle_select_button, null);
 
-        puzzleButton.setText(Integer.toString(puzzleNumber));
-        if (!lastLevelCompleted) {
-            puzzleButton.setBackgroundResource(R.drawable.ui_level_locked);
-        } else if (isSelected) {
-            puzzleButton.setBackgroundResource(hasCompleted ? (hasAllStars ? R.drawable.ui_level_selected_completed_fully : R.drawable.ui_level_selected_completed) : R.drawable.ui_level_selected);
-        } else {
-            puzzleButton.setBackgroundResource(hasCompleted ? (hasAllStars ? R.drawable.ui_level_unselected_completed_fully : R.drawable.ui_level_unselected_completed) : R.drawable.ui_level_unselected);
-        }
+        puzzleButton.setBackgroundResource(isSelected ? R.drawable.ui_level_selected : R.drawable.ui_level_unselected);
+        ((TextView)puzzleButton.findViewById(R.id.puzzleNumber)).setText(Integer.toString(puzzleNumber));
+        ((TextView)puzzleButton.findViewById(R.id.puzzleStatus)).setText(
+                !lastLevelCompleted ? R.string.icon_lock : hasAllStars ? R.string.icon_tick : hasCompleted ? R.string.icon_tick : R.string.icon_unlock);
+        ((TextView)puzzleButton.findViewById(R.id.puzzleStatus)).setTextColor(ContextCompat.getColor(activity,
+                !lastLevelCompleted ? R.color.ltgrey : hasAllStars ? R.color.gold : hasCompleted ? R.color.green : R.color.ltgrey));
+
         if (lastLevelCompleted) {
             puzzleButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {

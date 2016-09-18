@@ -552,7 +552,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(2, 43, 2, 0, 1));
 
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_3_NAME", "Divide And Rejoin"));
-        puzzles.add(new Puzzle(3, 3, 3641L, 5, 0L, 0));
+        puzzles.add(new Puzzle(3, 1, 3641L, 5, 0L, 0));
         tiles.add(new Tile(3, 1, 0, 2, 4));
         tiles.add(new Tile(3, 5, 1, 2, 2));
         tiles.add(new Tile(3, 42, 2, 2, 3));
@@ -564,7 +564,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(3, 3, 2, 0, 4));
 
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_4_NAME", "Convert And Cross"));
-        puzzles.add(new Puzzle(4, 4, 6605L, 8, 0L, 0));
+        puzzles.add(new Puzzle(4, 1, 6605L, 8, 0L, 0));
         tiles.add(new Tile(4, 3, 0, 2, 4));
         tiles.add(new Tile(4, 1, 1, 2, 3));
         tiles.add(new Tile(4, 45, 2, 2, 1));

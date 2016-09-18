@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<uk.co.jakelee.cityflow.components.TextViewFont
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/puzzleButtonNumber"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/buttonWrapper"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textSize="30sp"
-    android:gravity="center"
-    android:padding="10dp"
-    android:textColor="@color/black"
-    android:background="@drawable/ui_level_locked" />
+    android:layout_height="wrap_content">
+    <uk.co.jakelee.cityflow.components.TextAwesome
+        android:id="@+id/puzzleStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        android:gravity="center"
+        android:padding="0dp"
+        android:layout_centerInParent="true"/>
+    <uk.co.jakelee.cityflow.components.TextViewFont
+        android:id="@+id/puzzleNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>
