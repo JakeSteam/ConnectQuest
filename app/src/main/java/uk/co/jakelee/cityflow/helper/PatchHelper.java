@@ -65,7 +65,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
         // Add 70 - 100 checkpoints inside createPuzzle
         setProgress("Puzzles", 70);
-        createPuzzle();
+        createPuzzlesPack1();
     }
 
     private void setProgress(String currentTask, int percentage) {
@@ -81,10 +81,19 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         String action = "";
         if (MainActivity.prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.NO_DATABASE) {
             initialSetup();
+            new Thread(new Runnable() {
+                public void run() {
+                    createOtherPuzzles();
+                }
+            }).start();
             MainActivity.prefs.edit().putInt("databaseVersion", PatchHelper.V1_0_0).apply();
-            action = "Finished installing database!";
         }
         return action;
+    }
+
+    private void createOtherPuzzles() {
+        createPuzzlesPack2();
+        createPuzzlesPack3();
     }
 
     @Override
@@ -516,7 +525,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         Pack.saveInTx(packs);
     }
 
-    private void createPuzzle() {
+    private void createPuzzlesPack1() {
         List<Puzzle> puzzles = new ArrayList<>();
         List<Text> texts = new ArrayList<>();
         List<Tile> tiles = new ArrayList<>();
@@ -672,6 +681,16 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(10, 26, 1, 0, 1));
         tiles.add(new Tile(10, 49, 2, 0, 4));
         tiles.add(new Tile(10, 26, 3, 0, 2));
+
+        Puzzle.saveInTx(puzzles);
+        Text.saveInTx(texts);
+        Tile.saveInTx(tiles);
+    }
+
+    private void createPuzzlesPack2() {
+        List<Puzzle> puzzles = new ArrayList<>();
+        List<Text> texts = new ArrayList<>();
+        List<Tile> tiles = new ArrayList<>();
 
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_11_NAME", "One Shop Town"));
         puzzles.add(new Puzzle(11, 2, 10000L, 20, 0L, 0));
@@ -987,6 +1006,16 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(30, 23, 4, 1, Constants.ROTATION_NORTH));
         tiles.add(new Tile(30, 22, 4, 2, Constants.ROTATION_NORTH));
         tiles.add(new Tile(30, 23, 4, 3, Constants.ROTATION_NORTH));
+
+        Puzzle.saveInTx(puzzles);
+        Text.saveInTx(texts);
+        Tile.saveInTx(tiles);
+    }
+
+    private void createPuzzlesPack3() {
+        List<Puzzle> puzzles = new ArrayList<>();
+        List<Text> texts = new ArrayList<>();
+        List<Tile> tiles = new ArrayList<>();
 
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_41_NAME", "Highs And Lows"));
         puzzles.add(new Puzzle(41, 3, 10000L, 20, 0L, 0));
