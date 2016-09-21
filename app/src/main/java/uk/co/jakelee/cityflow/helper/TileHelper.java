@@ -1,6 +1,5 @@
 package uk.co.jakelee.cityflow.helper;
 
-import android.util.Log;
 import android.util.Pair;
 
 import com.orm.query.Condition;
@@ -8,7 +7,6 @@ import com.orm.query.Select;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Tile;
@@ -43,26 +41,21 @@ public class TileHelper {
         return doesItFlow;
     }
 
-    public static List<Tile> checkPuzzleFlow2(List<Tile> uncheckedAndBadTiles) {
+    public static Pair<List<Integer>, List<Integer>> checkPuzzleFlow2(int puzzleId, List<Integer> tilesX, List<Integer> tilesY) {
         List<Long> checkedIds = new ArrayList<>();
-        List<Tile> newTiles = new ArrayList<>();
+        List<Integer> newTilesX = new ArrayList<>();
+        List<Integer> newTilesY = new ArrayList<>();
 
-        ListIterator listIterator = uncheckedAndBadTiles.listIterator(uncheckedAndBadTiles.size());
-        while (listIterator.hasPrevious()) {
-            Tile tile = (Tile)listIterator.previous();
+        for (int i = 0; i < tilesX.size(); i++) {
+            Tile tile = Tile.get(puzzleId, tilesX.get(i), tilesY.get(i));
             if (!checkedIds.contains(tile.getId()) && !checkTileFlow(tile)) {
                 checkedIds.add(tile.getId());
-                newTiles.add(tile);
+                newTilesX.add(tile.getX());
+                newTilesY.add(tile.getY());
             }
         }
 
-        String logMessage = newTiles.size() + "/" + uncheckedAndBadTiles.size() + " tiles: ";
-        for (Tile tile : newTiles) {
-            logMessage += "(" + tile.getX() + ", " + tile.getY() + " (" + tile.getRotation() + ")) ";
-        }
-        Log.d("Tiles", logMessage);
-
-        return newTiles;
+        return new Pair<>(newTilesX, newTilesY);
     }
 
     public static boolean checkTileFlow(Tile tile) {

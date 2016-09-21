@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import uk.co.jakelee.cityflow.R;
@@ -58,7 +59,8 @@ public class PuzzleActivity extends Activity {
     private boolean timeBoostActive = false;
     private boolean moveBoostActive = false;
 
-    private List<Tile> changedTiles = new ArrayList<>();
+    private List<Integer> changedTilesX = new ArrayList<>();
+    private List<Integer> changedTilesY = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -224,7 +226,8 @@ public class PuzzleActivity extends Activity {
     public void handleTileClick(ImageView image, Tile tile) {
         tile.rotate(undoing);
 
-        changedTiles.add(tile);
+        changedTilesX.add(tile.getX());
+        changedTilesY.add(tile.getY());
         int drawableId = ImageHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());
         Picasso.with(this).load(drawableId).into(image);
 
@@ -286,11 +289,28 @@ public class PuzzleActivity extends Activity {
     }
 
     public void flowCheck() {
-        List<Tile> uncheckedAndBadTiles = Puzzle.getPuzzle(puzzleId).getTiles();
-        while (uncheckedAndBadTiles.size() > 0 && !exitedPuzzle) {
-            uncheckedAndBadTiles.addAll(changedTiles);
-            changedTiles.clear();
-            uncheckedAndBadTiles = TileHelper.checkPuzzleFlow2(uncheckedAndBadTiles);
+        List<Tile> badTiles = Puzzle.getPuzzle(puzzleId).getTiles();
+        List<Integer> badTilesX = new ArrayList<>();
+        List<Integer> badTilesY = new ArrayList<>();
+
+        for (Tile tile : badTiles) {
+            badTilesX.add(tile.getX());
+            badTilesY.add(tile.getY());
+        }
+
+        while (badTilesX.size() > 0 && badTilesY.size() > 0 && !exitedPuzzle) {
+
+            badTilesX.addAll(changedTilesX);
+            badTilesY.addAll(changedTilesY);
+
+            Collections.reverse(badTilesX);
+            Collections.reverse(badTilesY);
+            changedTilesX.clear();
+            changedTilesY.clear();
+
+            Pair<List<Integer>, List<Integer>> badTilesNew = TileHelper.checkPuzzleFlow2(puzzleId, badTilesX, badTilesY);
+            badTilesX = badTilesNew.first;
+            badTilesY = badTilesNew.second;
         }
 
         /*

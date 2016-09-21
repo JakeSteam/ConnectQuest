@@ -1,6 +1,8 @@
 package uk.co.jakelee.cityflow.model;
 
 import com.orm.SugarRecord;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.TileHelper;
@@ -138,6 +140,13 @@ public class Tile extends SugarRecord {
 
     public static Tile get(long tileId) {
         return Tile.findById(Tile.class, tileId);
+    }
+
+    public static Tile get(int puzzleId, int x, int y) {
+        return Select.from(Tile.class).where(
+                Condition.prop("puzzle_id").eq(puzzleId),
+                Condition.prop("x").eq(x),
+                Condition.prop("y").eq(y)).first();
     }
 
     public String getName() {
