@@ -1,6 +1,8 @@
 package uk.co.jakelee.cityflow.helper;
 
+import android.app.Activity;
 import android.util.Pair;
+import android.widget.TextView;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -8,7 +10,6 @@ import com.orm.query.Select;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
@@ -28,25 +29,19 @@ public class TileHelper {
         return new Pair<>(maxX, maxY);
     }
 
-    public static boolean checkPuzzleFlow(int puzzleId) {
-        Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
-        List<Tile> tiles = puzzle.getTiles();
-        boolean doesItFlow = true;
-        for (Tile tile : tiles) {
-            if (!checkTileFlow(tile)) {
-                doesItFlow = false;
-                break;
-            }
-        }
-        return doesItFlow;
-    }
-
-    public static Pair<List<Integer>, List<Integer>> checkPuzzleFlow2(int puzzleId, List<Integer> tilesX, List<Integer> tilesY) {
+    public static Pair<List<Integer>, List<Integer>> checkPuzzleFlow(Activity activity,  int puzzleId, final List<Integer> tilesX, final List<Integer> tilesY, final boolean firstScan, final TextView loadingView) {
         List<Long> checkedIds = new ArrayList<>();
         List<Integer> newTilesX = new ArrayList<>();
         List<Integer> newTilesY = new ArrayList<>();
 
         for (int i = 0; i < tilesX.size(); i++) {
+            final int j = i;
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    loadingView.setText((firstScan ? "First scan checked: " : "Checked: ") + j + "/" + tilesX.size());
+                }
+            });
             Tile tile = Tile.get(puzzleId, tilesX.get(i), tilesY.get(i));
             if (!checkedIds.contains(tile.getId()) && !checkTileFlow(tile)) {
                 checkedIds.add(tile.getId());

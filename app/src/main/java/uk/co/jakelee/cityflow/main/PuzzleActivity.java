@@ -16,7 +16,6 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import uk.co.jakelee.cityflow.R;
@@ -293,32 +292,32 @@ public class PuzzleActivity extends Activity {
         List<Integer> badTilesX = new ArrayList<>();
         List<Integer> badTilesY = new ArrayList<>();
 
+        // Initially load up the arrays with all the tiles
         for (Tile tile : badTiles) {
             badTilesX.add(tile.getX());
             badTilesY.add(tile.getY());
         }
 
+        boolean firstScan = true;
         while (badTilesX.size() > 0 && badTilesY.size() > 0 && !exitedPuzzle) {
 
+            // Add any tiles that have changed to the array, so we recheck them
             badTilesX.addAll(changedTilesX);
             badTilesY.addAll(changedTilesY);
 
-            Collections.reverse(badTilesX);
-            Collections.reverse(badTilesY);
+            // Empty the arrays since they've been added now
             changedTilesX.clear();
             changedTilesY.clear();
 
-            Pair<List<Integer>, List<Integer>> badTilesNew = TileHelper.checkPuzzleFlow2(puzzleId, badTilesX, badTilesY);
+            // Check the tiles, then save the results back to the bad tiles arrays
+            Pair<List<Integer>, List<Integer>> badTilesNew = TileHelper.checkPuzzleFlow(this, puzzleId, badTilesX, badTilesY, firstScan, (TextView)findViewById(R.id.puzzleLoadingIndicator));
             badTilesX = badTilesNew.first;
             badTilesY = badTilesNew.second;
-        }
 
-        /*
-        boolean flowsCorrectly = false;
-        while (!flowsCorrectly && !exitedPuzzle) {
-            flowsCorrectly = TileHelper.checkPuzzleFlow(this.puzzleId);
+            if (firstScan) {
+                firstScan = false;
+            }
         }
-        */
 
         this.runOnUiThread(new Runnable() {
             @Override

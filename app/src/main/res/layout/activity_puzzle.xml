@@ -152,6 +152,15 @@
         android:layout_marginBottom="45dp"
         android:layout_alignParentBottom="true"/>
 
+    <uk.co.jakelee.cityflow.components.TextViewFont
+        android:id="@+id/puzzleLoadingIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_above="@id/puzzleTimer"
+        android:gravity="center_horizontal"/>
+
     <uk.co.jakelee.cityflow.components.TextAwesome
         android:id="@+id/zoomIn"
         android:layout_width="wrap_content"
