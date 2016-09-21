@@ -289,6 +289,7 @@ public class PuzzleActivity extends Activity {
         List<Tile> uncheckedAndBadTiles = Puzzle.getPuzzle(puzzleId).getTiles();
         while (uncheckedAndBadTiles.size() > 0 && !exitedPuzzle) {
             uncheckedAndBadTiles.addAll(changedTiles);
+            changedTiles.clear();
             uncheckedAndBadTiles = TileHelper.checkPuzzleFlow2(uncheckedAndBadTiles);
         }
 

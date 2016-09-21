@@ -8,6 +8,7 @@ import com.orm.query.Select;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Tile;
@@ -46,13 +47,20 @@ public class TileHelper {
         List<Long> checkedIds = new ArrayList<>();
         List<Tile> newTiles = new ArrayList<>();
 
-        for (Tile tile : uncheckedAndBadTiles) {
+        ListIterator listIterator = uncheckedAndBadTiles.listIterator(uncheckedAndBadTiles.size());
+        while (listIterator.hasPrevious()) {
+            Tile tile = (Tile)listIterator.previous();
             if (!checkedIds.contains(tile.getId()) && !checkTileFlow(tile)) {
                 checkedIds.add(tile.getId());
                 newTiles.add(tile);
             }
         }
-        Log.d("Tile count:", "" + newTiles.size());
+
+        String logMessage = newTiles.size() + "/" + uncheckedAndBadTiles.size() + " tiles: ";
+        for (Tile tile : newTiles) {
+            logMessage += "(" + tile.getX() + ", " + tile.getY() + " (" + tile.getRotation() + ")) ";
+        }
+        Log.d("Tiles", logMessage);
 
         return newTiles;
     }
