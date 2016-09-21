@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.cityflow.R;
@@ -56,6 +57,8 @@ public class PuzzleActivity extends Activity {
 
     private boolean timeBoostActive = false;
     private boolean moveBoostActive = false;
+
+    private List<Tile> changedTiles = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -220,6 +223,8 @@ public class PuzzleActivity extends Activity {
 
     public void handleTileClick(ImageView image, Tile tile) {
         tile.rotate(undoing);
+
+        changedTiles.add(tile);
         int drawableId = ImageHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());
         Picasso.with(this).load(drawableId).into(image);
 
@@ -281,10 +286,18 @@ public class PuzzleActivity extends Activity {
     }
 
     public void flowCheck() {
+        List<Tile> uncheckedAndBadTiles = Puzzle.getPuzzle(puzzleId).getTiles();
+        while (uncheckedAndBadTiles.size() > 0 && !exitedPuzzle) {
+            uncheckedAndBadTiles.addAll(changedTiles);
+            uncheckedAndBadTiles = TileHelper.checkPuzzleFlow2(uncheckedAndBadTiles);
+        }
+
+        /*
         boolean flowsCorrectly = false;
         while (!flowsCorrectly && !exitedPuzzle) {
             flowsCorrectly = TileHelper.checkPuzzleFlow(this.puzzleId);
         }
+        */
 
         this.runOnUiThread(new Runnable() {
             @Override

@@ -1,10 +1,12 @@
 package uk.co.jakelee.cityflow.helper;
 
+import android.util.Log;
 import android.util.Pair;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.cityflow.model.Puzzle;
@@ -38,6 +40,21 @@ public class TileHelper {
             }
         }
         return doesItFlow;
+    }
+
+    public static List<Tile> checkPuzzleFlow2(List<Tile> uncheckedAndBadTiles) {
+        List<Long> checkedIds = new ArrayList<>();
+        List<Tile> newTiles = new ArrayList<>();
+
+        for (Tile tile : uncheckedAndBadTiles) {
+            if (!checkedIds.contains(tile.getId()) && !checkTileFlow(tile)) {
+                checkedIds.add(tile.getId());
+                newTiles.add(tile);
+            }
+        }
+        Log.d("Tile count:", "" + newTiles.size());
+
+        return newTiles;
     }
 
     public static boolean checkTileFlow(Tile tile) {
