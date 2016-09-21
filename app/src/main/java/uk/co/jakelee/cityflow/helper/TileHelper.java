@@ -9,6 +9,9 @@ import com.orm.query.Select;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
@@ -55,12 +58,12 @@ public class TileHelper {
         return new Pair<>(newTilesX, newTilesY);
     }
 
-    public static Pair<List<Integer>, List<Integer>> checkFirstPuzzleFlow(Activity activity, List<Tile> tiles, final TextView loadingView) {
-        List<Integer> newTilesX = new ArrayList<>();
-        List<Integer> newTilesY = new ArrayList<>();
+    public static Pair<List<Integer>, List<Integer>> checkFirstPuzzleFlow(Activity activity, final List<Tile> tiles, final TextView loadingView) {
+        final List<Integer> newTilesX = new ArrayList<>();
+        final List<Integer> newTilesY = new ArrayList<>();
 
         final int tilesCount = tiles.size();
-        for (int i = 0; i < tilesCount; i++) {
+        /*for (int i = 0; i < tilesCount; i++) {
             final int j = i;
             activity.runOnUiThread(new Runnable() {
                 @Override
@@ -69,11 +72,33 @@ public class TileHelper {
                 }
             });
 
-            Tile tile = tiles.get(i);
+            Tile tile = tiles.get(j);
             if (!checkTileFlow(tile)) {
                 newTilesX.add(tile.getX());
                 newTilesY.add(tile.getY());
             }
+
+        }*/
+
+        ExecutorService taskExecutor = Executors.newFixedThreadPool(20);
+        for (int i = 0; i < tilesCount; i++) {
+            final int j = i;
+
+            taskExecutor.execute(new Runnable() {
+                public void run() {
+                    Tile tile = tiles.get(j);
+                    if (!checkTileFlow(tile)) {
+                        newTilesX.add(tile.getX());
+                        newTilesY.add(tile.getY());
+                    }
+                }
+            });
+        }
+        taskExecutor.shutdown();
+        try {
+            taskExecutor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+        } catch (InterruptedException e) {
+
         }
 
         return new Pair<>(newTilesX, newTilesY);
