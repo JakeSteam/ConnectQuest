@@ -288,35 +288,20 @@ public class PuzzleActivity extends Activity {
     }
 
     public void flowCheck() {
-        List<Tile> badTiles = Puzzle.getPuzzle(puzzleId).getTiles();
-        List<Integer> badTilesX = new ArrayList<>();
-        List<Integer> badTilesY = new ArrayList<>();
+        List<Tile> allTiles = Puzzle.getPuzzle(puzzleId).getTiles();
+        Pair<List<Integer>, List<Integer>> badTiles = TileHelper.checkFirstPuzzleFlow(this, allTiles, (TextView)findViewById(R.id.puzzleLoadingIndicator));
 
-        // Initially load up the arrays with all the tiles
-        for (Tile tile : badTiles) {
-            badTilesX.add(tile.getX());
-            badTilesY.add(tile.getY());
-        }
-
-        boolean firstScan = true;
-        while (badTilesX.size() > 0 && badTilesY.size() > 0 && !exitedPuzzle) {
-
+        while (badTiles.first.size() > 0 && badTiles.second.size() > 0 && !exitedPuzzle) {
             // Add any tiles that have changed to the array, so we recheck them
-            badTilesX.addAll(changedTilesX);
-            badTilesY.addAll(changedTilesY);
+            badTiles.first.addAll(changedTilesX);
+            badTiles.second.addAll(changedTilesY);
 
             // Empty the arrays since they've been added now
             changedTilesX.clear();
             changedTilesY.clear();
 
             // Check the tiles, then save the results back to the bad tiles arrays
-            Pair<List<Integer>, List<Integer>> badTilesNew = TileHelper.checkPuzzleFlow(this, puzzleId, badTilesX, badTilesY, firstScan, (TextView)findViewById(R.id.puzzleLoadingIndicator));
-            badTilesX = badTilesNew.first;
-            badTilesY = badTilesNew.second;
-
-            if (firstScan) {
-                firstScan = false;
-            }
+            badTiles = TileHelper.checkPuzzleFlow(this, puzzleId, badTiles, (TextView)findViewById(R.id.puzzleLoadingIndicator));
         }
 
         this.runOnUiThread(new Runnable() {

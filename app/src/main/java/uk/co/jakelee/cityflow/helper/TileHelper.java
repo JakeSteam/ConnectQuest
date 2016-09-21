@@ -29,22 +29,48 @@ public class TileHelper {
         return new Pair<>(maxX, maxY);
     }
 
-    public static Pair<List<Integer>, List<Integer>> checkPuzzleFlow(Activity activity,  int puzzleId, final List<Integer> tilesX, final List<Integer> tilesY, final boolean firstScan, final TextView loadingView) {
+    public static Pair<List<Integer>, List<Integer>> checkPuzzleFlow(Activity activity, int puzzleId, Pair<List<Integer>, List<Integer>> badTiles, final TextView loadingView) {
         List<Long> checkedIds = new ArrayList<>();
         List<Integer> newTilesX = new ArrayList<>();
         List<Integer> newTilesY = new ArrayList<>();
 
-        for (int i = 0; i < tilesX.size(); i++) {
+        final int tileCount = badTiles.first.size();
+        for (int i = 0; i < tileCount; i++) {
             final int j = i;
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    loadingView.setText((firstScan ? "First scan checked: " : "Checked: ") + j + "/" + tilesX.size());
+                    loadingView.setText("Checked: " + j + "/" + tileCount);
                 }
             });
-            Tile tile = Tile.get(puzzleId, tilesX.get(i), tilesY.get(i));
+
+            Tile tile = Tile.get(puzzleId, badTiles.first.get(i), badTiles.second.get(i));
             if (!checkedIds.contains(tile.getId()) && !checkTileFlow(tile)) {
                 checkedIds.add(tile.getId());
+                newTilesX.add(tile.getX());
+                newTilesY.add(tile.getY());
+            }
+        }
+
+        return new Pair<>(newTilesX, newTilesY);
+    }
+
+    public static Pair<List<Integer>, List<Integer>> checkFirstPuzzleFlow(Activity activity, List<Tile> tiles, final TextView loadingView) {
+        List<Integer> newTilesX = new ArrayList<>();
+        List<Integer> newTilesY = new ArrayList<>();
+
+        final int tilesCount = tiles.size();
+        for (int i = 0; i < tilesCount; i++) {
+            final int j = i;
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    loadingView.setText("First scan checked: " + j + "/" + tilesCount);
+                }
+            });
+
+            Tile tile = tiles.get(i);
+            if (!checkTileFlow(tile)) {
                 newTilesX.add(tile.getX());
                 newTilesY.add(tile.getY());
             }
