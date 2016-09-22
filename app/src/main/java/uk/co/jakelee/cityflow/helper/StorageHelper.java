@@ -100,10 +100,11 @@ public class StorageHelper {
     }
 
     public static String saveCardImage(Activity activity, int puzzleId) {
-        confirmStoragePermissions(activity);
-
         RelativeLayout card = (RelativeLayout)activity.findViewById(R.id.puzzleCard);
-        if (card == null) { return ""; }
+
+        if (card == null || !confirmStoragePermissions(activity)) {
+            return "";
+        }
 
         card.setDrawingCacheEnabled(true);
         Bitmap b = Bitmap.createBitmap(card.getDrawingCache());
@@ -182,7 +183,7 @@ public class StorageHelper {
         return Bitmap.createBitmap(sourceBitmap, minX, minY, (maxX - minX) + 1, (maxY - minY) + 1);
     }
 
-    private static void confirmStoragePermissions(Activity activity) {
+    private static boolean confirmStoragePermissions(Activity activity) {
         int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
         if (permission != PackageManager.PERMISSION_GRANTED) {
@@ -191,6 +192,8 @@ public class StorageHelper {
                     PERMISSIONS_STORAGE,
                     REQUEST_EXTERNAL_STORAGE
             );
+            return false;
         }
+        return true;
     }
 }
