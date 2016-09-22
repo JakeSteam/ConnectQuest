@@ -39,14 +39,6 @@ public class TileHelper {
 
         final int tileCount = badTiles.first.size();
         for (int i = 0; i < tileCount; i++) {
-            final int j = i;
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    loadingView.setText("Checked: " + j + "/" + tileCount);
-                }
-            });
-
             Tile tile = Tile.get(puzzleId, badTiles.first.get(i), badTiles.second.get(i));
             if (!checkedIds.contains(tile.getId()) && !checkTileFlow(tile)) {
                 checkedIds.add(tile.getId());
