@@ -58,9 +58,7 @@ public class CustomInfoActivity extends Activity {
 
     private void displayPuzzleInfo() {
         ((TextView) findViewById(R.id.puzzleName)).setText(puzzleCustom.getName());
-        ((TextView) findViewById(R.id.puzzleName)).setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         ((TextView) findViewById(R.id.puzzleDesc)).setText(puzzleCustom.getDescription());
-        ((TextView) findViewById(R.id.puzzleDesc)).setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         ((TextView) findViewById(R.id.puzzleAuthor)).setText(puzzleCustom.isOriginalAuthor() ? Setting.getString(Constants.SETTING_PLAYER_NAME) : puzzleCustom.getAuthor());
         ((TextView) findViewById(R.id.puzzleCreatedDate)).setText(DateHelper.displayTime(puzzleCustom.getDateAdded(), DateHelper.date));
         ((TextView) findViewById(R.id.puzzleBestMoves)).setText(puzzle.getBestMovesText());
@@ -75,6 +73,8 @@ public class CustomInfoActivity extends Activity {
 
         if (!puzzleCustom.isOriginalAuthor()) {
             findViewById(R.id.starWrapper).setVisibility(View.VISIBLE);
+            ((TextView) findViewById(R.id.puzzleName)).setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+            ((TextView) findViewById(R.id.puzzleDesc)).setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
             ((ImageView) findViewById(R.id.puzzleStarComplete)).setImageResource(puzzle.hasCompletionStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
             ((ImageView) findViewById(R.id.puzzleStarMoves)).setImageResource(puzzle.hasMovesStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
             ((ImageView) findViewById(R.id.puzzleStarTime)).setImageResource(puzzle.hasTimeStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
