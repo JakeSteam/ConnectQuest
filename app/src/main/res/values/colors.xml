@@ -4,10 +4,12 @@
     <color name="black">#000000</color>
     <color name="grey">#696969</color>
     <color name="ltgrey">#BDBDBD</color>
+    <color name="ltltgrey">#eeeeee</color>
     <color name="dkgrey">#2A2A2A</color>
     <color name="city">#d8d3bf</color>
     <color name="green">#8ab549</color>
     <color name="gold">#e6b800</color>
     <color name="red">#660000</color>
     <color name="blue">#1ea7e1</color>
+    <color name="orange">#e86a17</color>
 </resources>

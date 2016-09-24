@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,7 +78,7 @@ public class CreatorActivity extends Activity {
 
             // If own tested level, or imported completed level, display green.
             boolean greenBackground = (!displayImported && puzzleCustom.hasBeenTested()) || (displayImported && puzzle.hasCompletionStar());
-            othersPuzzle.setBackgroundResource(greenBackground ? R.drawable.ui_panel_green : R.drawable.ui_panel_grey);
+            othersPuzzle.setBackgroundColor(ContextCompat.getColor(this, greenBackground ? R.color.green : R.color.ltgrey));
             othersPuzzle.findViewById(R.id.deleteButton).setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     AlertDialogHelper.confirmPuzzleDeletion(activity, puzzle);

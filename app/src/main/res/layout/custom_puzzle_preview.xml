@@ -3,7 +3,7 @@
     android:id="@+id/puzzleLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ui_panel_grey"
+    android:background="@color/ltltgrey"
     android:padding="7dp">
     <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/puzzleName"
@@ -23,7 +23,7 @@
         android:padding="7dp"
         android:textSize="26sp"
         android:text="&#xf1f8;"
-        android:background="@drawable/ui_panel_orange"
+        android:background="@color/orange"
         android:textColor="@color/black"/>
     <uk.co.jakelee.cityflow.components.TextAwesome
         android:id="@+id/moreButton"
@@ -35,7 +35,7 @@
         android:padding="7dp"
         android:textSize="26sp"
         android:text="&#xf141;"
-        android:background="@drawable/ui_panel_grey"
+        android:background="@color/ltltgrey"
         android:textColor="@color/black"/>
     <uk.co.jakelee.cityflow.components.TextAwesome
         android:id="@+id/actionButton"
@@ -47,6 +47,6 @@
         android:padding="7dp"
         android:textSize="26sp"
         android:gravity="center_horizontal"
-        android:background="@drawable/ui_panel_blue"
+        android:background="@color/blue"
         android:textColor="@color/black"/>
 </RelativeLayout>

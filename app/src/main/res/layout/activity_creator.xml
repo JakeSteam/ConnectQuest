@@ -11,7 +11,6 @@
         android:id="@+id/topTabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="7dp"
         android:orientation="horizontal"
         android:gravity="center_horizontal">
         <uk.co.jakelee.cityflow.components.TextViewFont
@@ -22,9 +21,10 @@
             android:gravity="center_horizontal"
             android:textSize="26sp"
             android:padding="10dp"
+            android:layout_margin="5dp"
             android:onClick="changeTab"
             android:tag="displayOwn"
-            android:background="@drawable/ui_panel_grey"/>
+            android:background="@color/ltltgrey"/>
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/othersPuzzles"
             android:layout_width="wrap_content"
@@ -33,9 +33,10 @@
             android:gravity="center_horizontal"
             android:textSize="26sp"
             android:padding="10dp"
+            android:layout_margin="5dp"
             android:onClick="changeTab"
             android:tag="displayImported"
-            android:background="@drawable/ui_panel_grey"/>
+            android:background="@color/ltltgrey"/>
     </LinearLayout>
 
     <ScrollView
@@ -51,7 +52,7 @@
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
             android:layout_margin="7dp"
-            android:background="@drawable/ui_panel_city">
+            android:background="@color/city">
             <LinearLayout
                 android:id="@+id/puzzleContainer"
                 android:layout_width="match_parent"
@@ -68,10 +69,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/ui_panel_grey"
+                    android:background="@color/ltltgrey"
                     android:onClick="importFromCamera"
                     android:gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_margin="3dp">
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/importFromCamera"
                         android:layout_width="wrap_content"
@@ -93,10 +95,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/ui_panel_grey"
+                    android:background="@color/ltltgrey"
                     android:onClick="importFromFile"
                     android:gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_margin="3dp">
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/importFromFile"
                         android:layout_width="wrap_content"
@@ -119,7 +122,7 @@
                 android:id="@+id/newPuzzleWrapper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ui_panel_grey"
+                android:background="@color/ltltgrey"
                 android:onClick="newPuzzle"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
