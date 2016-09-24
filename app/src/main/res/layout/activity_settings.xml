@@ -45,7 +45,6 @@
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
                         android:gravity="left"
-                        android:text="Sounds"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 
@@ -56,8 +55,7 @@
                         android:layout_gravity="center"
                         android:textSize="30sp"
                         android:padding="10dp"
-                        android:onClick="toggleSetting"
-                        android:background="@color/ltltgrey"/>
+                        android:onClick="toggleSetting"/>
                 </TableRow>
 
                 <TableRow>
@@ -79,8 +77,7 @@
                         android:layout_gravity="center"
                         android:textSize="30sp"
                         android:padding="10dp"
-                        android:onClick="toggleSetting"
-                        android:background="@color/ltltgrey"/>
+                        android:onClick="toggleSetting"/>
                 </TableRow>
             </TableLayout>
 
@@ -123,8 +120,7 @@
                         android:layout_gravity="center"
                         android:textSize="30sp"
                         android:padding="10dp"
-                        android:onClick="toggleSetting"
-                        android:background="@color/ltltgrey"/>
+                        android:onClick="toggleSetting"/>
                 </TableRow>
 
                 <TableRow>
@@ -146,8 +142,7 @@
                         android:layout_gravity="center"
                         android:textSize="30sp"
                         android:padding="10dp"
-                        android:onClick="toggleSetting"
-                        android:background="@color/ltltgrey"/>
+                        android:onClick="toggleSetting"/>
                 </TableRow>
 
                 <TableRow>
@@ -165,14 +160,12 @@
                         android:id="@+id/playerNameDisplay"
                         android:layout_width="30dp"
                         android:layout_height="wrap_content"
-                        android:background="@color/ltltgrey"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
                         android:textSize="20sp"
                         android:ellipsize="end"
-                        android:maxLines="3"
-                        android:onClick="changeText"/>
+                        android:maxLines="3"/>
                 </TableRow>
 
                 <TableRow>
@@ -189,7 +182,6 @@
 
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/minZoomButton"
-                        android:background="@color/ltltgrey"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="30sp"
@@ -215,7 +207,6 @@
 
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/maxZoomButton"
-                        android:background="@color/ltltgrey"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="30sp"
@@ -241,7 +232,6 @@
 
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/maxCarsButton"
-                        android:background="@color/ltltgrey"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="30sp"
