@@ -11,7 +11,7 @@
         android:id="@+id/shopTopBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/ui_panel_grey"
+        android:background="@color/ltltgrey"
         android:layout_margin="7dp"
         android:orientation="vertical">
         <RelativeLayout
@@ -64,7 +64,8 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textSize="30sp"
-            android:background="@drawable/ui_panel_blue"
+            android:layout_margin="4dp"
+            android:background="@color/blue"
             android:onClick="launchAdvert"/>
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/freeCurrencyOffers"
@@ -72,7 +73,8 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textSize="30sp"
-            android:background="@drawable/ui_panel_blue"
+            android:layout_margin="4dp"
+            android:background="@color/blue"
             android:onClick="launchOffers"/>
     </LinearLayout>
 
@@ -85,7 +87,7 @@
         android:layout_marginBottom="4dp"
         android:layout_below="@id/shopTopBar"
         android:layout_above="@id/freeCurrencyWrapper"
-        android:background="@drawable/ui_panel_city"
+        android:background="@color/city"
         android:fadeScrollbars="false">
         <TableLayout
             android:id="@+id/itemContainer"

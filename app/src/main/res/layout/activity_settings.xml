@@ -18,7 +18,7 @@
 
             <!-- Sounds -->
             <TableLayout
-                android:background="@drawable/ui_panel_city"
+                android:background="@color/city"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
@@ -57,7 +57,7 @@
                         android:textSize="30sp"
                         android:padding="10dp"
                         android:onClick="toggleSetting"
-                        android:background="@drawable/ui_panel_grey"/>
+                        android:background="@color/ltltgrey"/>
                 </TableRow>
 
                 <TableRow>
@@ -80,13 +80,13 @@
                         android:textSize="30sp"
                         android:padding="10dp"
                         android:onClick="toggleSetting"
-                        android:background="@drawable/ui_panel_grey"/>
+                        android:background="@color/ltltgrey"/>
                 </TableRow>
             </TableLayout>
 
             <!-- Gameplay -->
             <TableLayout
-                android:background="@drawable/ui_panel_city"
+                android:background="@color/city"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
@@ -124,7 +124,7 @@
                         android:textSize="30sp"
                         android:padding="10dp"
                         android:onClick="toggleSetting"
-                        android:background="@drawable/ui_panel_grey"/>
+                        android:background="@color/ltltgrey"/>
                 </TableRow>
 
                 <TableRow>
@@ -147,7 +147,7 @@
                         android:textSize="30sp"
                         android:padding="10dp"
                         android:onClick="toggleSetting"
-                        android:background="@drawable/ui_panel_grey"/>
+                        android:background="@color/ltltgrey"/>
                 </TableRow>
 
                 <TableRow>
@@ -165,7 +165,7 @@
                         android:id="@+id/playerNameDisplay"
                         android:layout_width="30dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/ui_panel_grey"
+                        android:background="@color/ltltgrey"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
@@ -189,7 +189,7 @@
 
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/minZoomButton"
-                        android:background="@drawable/ui_panel_grey"
+                        android:background="@color/ltltgrey"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="30sp"
@@ -215,7 +215,7 @@
 
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/maxZoomButton"
-                        android:background="@drawable/ui_panel_grey"
+                        android:background="@color/ltltgrey"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="30sp"
@@ -241,7 +241,7 @@
 
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/maxCarsButton"
-                        android:background="@drawable/ui_panel_grey"
+                        android:background="@color/ltltgrey"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="30sp"
@@ -257,7 +257,7 @@
             <!-- Google Play -->
             <TableLayout
                 android:id="@+id/googlePlaySettings"
-                android:background="@drawable/ui_panel_city"
+                android:background="@color/city"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
@@ -352,7 +352,7 @@
 
             <!-- Other -->
             <TableLayout
-                android:background="@drawable/ui_panel_city"
+                android:background="@color/city"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"

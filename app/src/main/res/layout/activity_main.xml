@@ -97,7 +97,7 @@
                 android:textSize="35sp"
                 android:textColor="@color/black"
                 android:padding="12dp"
-                android:background="@drawable/ui_panel_blue"
+                android:background="@color/blue"
                 android:onClick="openQuestMenu"/>
 
             <uk.co.jakelee.cityflow.components.TextAwesome
@@ -111,7 +111,7 @@
                 android:textSize="35sp"
                 android:textColor="@color/black"
                 android:padding="12dp"
-                android:background="@drawable/ui_panel_blue"
+                android:background="@color/blue"
                 android:onClick="openSettings"/>
         </android.support.percent.PercentRelativeLayout>
     </android.support.percent.PercentRelativeLayout>

@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="7dp"
-        android:background="@drawable/ui_panel_grey">
+        android:background="@color/ltltgrey">
 
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/currencyCountText"
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         app:layout_marginLeftPercent="10%"
         app:layout_marginRightPercent="10%"
-        android:background="@drawable/ui_panel_city"
+        android:background="@color/city"
         android:layout_centerInParent="true">
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/itemName"
@@ -90,7 +90,7 @@
             android:padding="10dp"
             android:layout_margin="5dp"
             android:layout_below="@id/itemPurchases"
-            android:background="@drawable/ui_panel_blue"
+            android:background="@color/blue"
             android:textColor="@color/black"
             android:textSize="22sp"
             android:onClick="buyItem"
@@ -108,7 +108,7 @@
         android:padding="10dp"
         android:layout_marginTop="-5dp"
         android:layout_marginRight="-5dp"
-        android:background="@drawable/ui_panel_grey"/>
+        android:background="@color/ltltgrey"/>
     <LinearLayout
         android:id="@+id/croutonview"
         android:layout_width="match_parent"

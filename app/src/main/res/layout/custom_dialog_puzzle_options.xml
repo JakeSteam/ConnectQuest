@@ -110,7 +110,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="22sp"
-            android:background="@drawable/ui_panel_blue"
+            android:background="@color/blue"
             android:layout_margin="5dp"/>
     </LinearLayout>
 
@@ -118,7 +118,7 @@
         android:id="@+id/close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/ui_panel_orange"
+        android:background="@color/orange"
         android:textSize="25sp"
         android:layout_marginTop="25dp"
         android:textColor="@color/black"
@@ -129,7 +129,7 @@
         android:id="@+id/createButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/ui_panel_blue"
+        android:background="@color/blue"
         android:textSize="25sp"
         android:layout_marginTop="25dp"
         android:layout_toRightOf="@id/close"

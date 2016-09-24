@@ -20,7 +20,7 @@
         app:layout_marginBottomPercent="5%"
         app:layout_marginRightPercent="3%"
         android:padding="10dp"
-        android:background="@drawable/ui_panel_city"
+        android:background="@color/city"
         android:layout_centerInParent="true"
         android:stretchColumns="1"
         android:shrinkColumns="1">
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:background="@drawable/ui_panel_blue"
+                android:background="@color/blue"
                 android:layout_marginRight="40dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:background="@drawable/ui_panel_blue"
+                android:background="@color/blue"
                 android:layout_margin="5dp"/>
         </TableRow>
         <TableRow
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:background="@drawable/ui_panel_blue"
+                android:background="@color/blue"
                 android:layout_margin="5dp"/>
         </TableRow>
         <ScrollView
@@ -114,7 +114,7 @@
         android:padding="10dp"
         android:layout_marginTop="-5dp"
         android:layout_marginRight="-5dp"
-        android:background="@drawable/ui_panel_grey"/>
+        android:background="@color/ltltgrey"/>
     <LinearLayout
         android:id="@+id/croutonview"
         android:layout_width="match_parent"

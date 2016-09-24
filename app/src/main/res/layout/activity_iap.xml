@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         app:layout_marginLeftPercent="10%"
         app:layout_marginRightPercent="10%"
-        android:background="@drawable/ui_panel_city"
+        android:background="@color/city"
         android:layout_centerInParent="true">
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/iapName"
@@ -41,7 +41,7 @@
             android:padding="10dp"
             android:layout_margin="5dp"
             android:layout_below="@id/iapDesc"
-            android:background="@drawable/ui_panel_blue"
+            android:background="@color/blue"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:onClick="buyIAP"
@@ -60,7 +60,7 @@
         android:padding="10dp"
         android:layout_marginTop="-5dp"
         android:layout_marginRight="-5dp"
-        android:background="@drawable/ui_panel_grey"/>
+        android:background="@color/ltltgrey"/>
     <LinearLayout
         android:id="@+id/croutonview"
         android:layout_width="match_parent"

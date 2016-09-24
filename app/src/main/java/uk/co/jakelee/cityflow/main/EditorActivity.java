@@ -104,6 +104,16 @@ public class EditorActivity extends Activity {
             int drawableId = ImageHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());
             ImageView image = dh.createTileImageView(this, tile, drawableId);
 
+            // Make sure we always have a tile selected
+            if (selectedTile == null || selectedTileImage == null) {
+                image.setAlpha(0.75f);
+                image.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+                selectedTileImage = image;
+                selectedTile = tile;
+
+                ((TextView)findViewById(R.id.selectedTileText)).setText(tile.getName());
+            }
+
             tileContainer.addView(image, layoutParams);
         }
     }

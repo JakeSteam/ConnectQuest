@@ -117,7 +117,7 @@ public class ShopActivity extends Activity {
         List<ShopCategory> categories = ShopCategory.listAll(ShopCategory.class);
         for (ShopCategory category : categories) {
             TextView categoryTab = (TextView) inflater.inflate(R.layout.custom_store_tab, null);
-            categoryTab.setBackgroundResource(selectedCategory == category.getCategoryId() ? R.drawable.ui_panel_city : R.drawable.ui_panel_grey);
+            categoryTab.setBackgroundResource(selectedCategory == category.getCategoryId() ? R.color.city : R.color.ltltgrey);
             categoryTab.setText(category.getName());
             categoryTab.setTag(category.getCategoryId());
             tabContainer.addView(categoryTab, lp);

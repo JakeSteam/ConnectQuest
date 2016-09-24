@@ -105,7 +105,7 @@
             android:textColor="@color/black"
             android:padding="6dp"
             android:layout_margin="6dp"
-            android:background="@drawable/ui_panel_grey"
+            android:background="@color/ltltgrey"
             android:textSize="30sp"
             android:onClick="save"/>
         <uk.co.jakelee.cityflow.components.TextViewFont
@@ -115,7 +115,7 @@
             android:textColor="@color/black"
             android:padding="6dp"
             android:layout_margin="6dp"
-            android:background="@drawable/ui_panel_grey"
+            android:background="@color/ltltgrey"
             android:textSize="30sp"
             android:onClick="share"/>
     </LinearLayout>
