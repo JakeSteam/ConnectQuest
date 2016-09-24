@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -65,6 +66,8 @@ public class CreatorActivity extends Activity {
         final CreatorActivity activity = this;
         puzzleContainer.removeAllViews();
         LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        lp.setMargins(0, 0, 0, 20);
 
         List<Puzzle> puzzles = Puzzle.getCustomPuzzles(displayImported);
         for (final Puzzle puzzle : puzzles) {
@@ -115,7 +118,7 @@ public class CreatorActivity extends Activity {
 
             ((TextView)othersPuzzle.findViewById(R.id.puzzleName)).setText(puzzleCustom.getName());
 
-            puzzleContainer.addView(othersPuzzle);
+            puzzleContainer.addView(othersPuzzle, lp);
         }
 
         findViewById(R.id.newPuzzleWrapper).setVisibility(displayImported ? View.GONE : View.VISIBLE);
@@ -158,7 +161,9 @@ public class CreatorActivity extends Activity {
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
                     puzzleString = StorageHelper.readQRImage(bitmap);
-                } catch (Exception e) {}
+                } catch (Exception e) {
+                    AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.FILE_IMPORT_FAIL));
+                }
             }
 
             if (!puzzleString.equals("") && PuzzleShareHelper.importPuzzleString(puzzleString, false)) {
