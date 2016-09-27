@@ -150,6 +150,6 @@ public class Tile extends SugarRecord {
     }
 
     public String getName() {
-        return Text.get("TILE", getTileTypeId(), "_NAME");
+        return Text.get("TILE_", getTileTypeId(), "_NAME");
     }
 }
