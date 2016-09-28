@@ -137,7 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:background="@drawable/ui_button_city"
+                android:background="@color/city"
                 android:gravity="center_horizontal"
                 android:textSize="26sp"
                 android:padding="10dp"

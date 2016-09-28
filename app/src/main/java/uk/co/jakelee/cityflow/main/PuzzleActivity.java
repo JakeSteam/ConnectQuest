@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.support.v4.content.ContextCompat;
 import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
@@ -259,7 +260,7 @@ public class PuzzleActivity extends Activity {
     public void useBoostMove(View v) {
         if (!moveBoostActive && Boost.getOwnedCount(Constants.BOOST_MOVE) > 0) {
             moveBoostActive = true;
-            findViewById(R.id.moveBoost).setBackgroundResource(moveBoostActive ? R.drawable.ui_button_city : R.drawable.ui_button_grey);
+            findViewById(R.id.moveBoost).setBackgroundColor(ContextCompat.getColor(this, moveBoostActive ? R.color.city : R.color.ltltgrey));
             boostsUsed++;
         }
     }
@@ -267,7 +268,7 @@ public class PuzzleActivity extends Activity {
     public void useBoostTime(View v) {
         if (!timeBoostActive && Boost.getOwnedCount(Constants.BOOST_TIME) > 0) {
             timeBoostActive = true;
-            findViewById(R.id.timeBoost).setBackgroundResource(timeBoostActive ? R.drawable.ui_button_city : R.drawable.ui_button_grey);
+            findViewById(R.id.timeBoost).setBackgroundColor(ContextCompat.getColor(this, timeBoostActive ? R.color.city : R.color.ltltgrey));
             boostsUsed++;
         }
     }

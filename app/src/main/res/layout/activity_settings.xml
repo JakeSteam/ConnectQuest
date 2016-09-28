@@ -300,7 +300,7 @@
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/ui_button_grey"
+                        android:background="@color/ltltgrey"
                         android:padding="5dp"
                         android:gravity="center"
                         android:text="A"
@@ -310,7 +310,7 @@
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/ui_button_grey"
+                        android:background="@color/ltltgrey"
                         android:padding="5dp"
                         android:gravity="center"
                         android:text="Q"
@@ -320,7 +320,7 @@
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/ui_button_grey"
+                        android:background="@color/ltltgrey"
                         android:padding="5dp"
                         android:gravity="center"
                         android:text="L"
@@ -330,7 +330,7 @@
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/ui_button_grey"
+                        android:background="@color/ltltgrey"
                         android:padding="5dp"
                         android:gravity="center"
                         android:text="C"
@@ -369,7 +369,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
                         android:gravity="center"
-                        android:background="@drawable/ui_button_grey"
+                        android:background="@color/ltltgrey"
                         android:layout_span="2"
                         android:textColor="@color/black"
                         android:textSize="20sp"
@@ -385,7 +385,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
                         android:gravity="center"
-                        android:background="@drawable/ui_button_grey"
+                        android:background="@color/ltltgrey"
                         android:layout_span="2"
                         android:textColor="@color/black"
                         android:textSize="20sp"

@@ -100,7 +100,7 @@ public class DisplayHelper {
         RelativeLayout puzzleButton = (RelativeLayout) LayoutInflater.from(activity).inflate(R.layout.custom_puzzle_select_button, null);
 
         puzzleButton.setBackgroundResource(isSelected ? R.drawable.ui_level_selected : R.drawable.ui_level_unselected);
-        ((TextView)puzzleButton.findViewById(R.id.puzzleNumber)).setText(Integer.toString(puzzleNumber));
+        ((TextView)puzzleButton.findViewById(R.id.puzzleNumber)).setText(" " + puzzleNumber + " ");
         ((TextView)puzzleButton.findViewById(R.id.puzzleStatus)).setText(
                 !lastLevelCompleted ? R.string.icon_lock : hasAllStars ? R.string.icon_tick : hasCompleted ? R.string.icon_tick : R.string.icon_unlock);
         ((TextView)puzzleButton.findViewById(R.id.puzzleStatus)).setTextColor(ContextCompat.getColor(activity,

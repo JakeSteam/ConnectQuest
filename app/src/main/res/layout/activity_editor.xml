@@ -29,7 +29,7 @@
             android:onClick="openMenu"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:background="@drawable/ui_button_grey"/>
+            android:background="@color/ltltgrey"/>
 
         <uk.co.jakelee.cityflow.components.AutofitTextViewFont
             android:id="@+id/selectedTileText"
@@ -65,7 +65,7 @@
             android:gravity="center_horizontal"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:background="@drawable/ui_button_grey"/>
+            android:background="@color/ltltgrey"/>
 
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/zoomOut"
@@ -79,7 +79,7 @@
             android:gravity="center"
             android:layout_toRightOf="@+id/zoomIn"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/ui_button_grey"/>
+            android:background="@color/ltltgrey"/>
 
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/tileRotate"
@@ -93,7 +93,7 @@
             android:gravity="center"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:background="@drawable/ui_button_grey"/>
+            android:background="@color/ltltgrey"/>
 
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/tileChange"
@@ -107,7 +107,7 @@
             android:gravity="center"
             android:layout_toLeftOf="@id/tileRotate"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/ui_button_grey"/>
+            android:background="@color/ltltgrey"/>
     </RelativeLayout>
     <LinearLayout
         android:id="@+id/croutonview"
