@@ -56,13 +56,35 @@ public class Background extends SugarRecord {
         this.save();
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     public static Background get(int backgroundId) {
         return Select.from(Background.class).where(
                 Condition.prop("background_id").eq(backgroundId)).first();
     }
 
-    public static int getActiveBackground() {
+    public static int getActiveBackgroundColour() {
         return Color.parseColor("#" + Setting.getString(Constants.SETTING_BACKGROUND));
+    }
+
+    public int getBackgroundColour() {
+        return Color.parseColor("#" + getHex());
+    }
+
+    public static Background getActiveBackground() {
+        return Select.from(Background.class).where(
+                Condition.prop("active").eq(1)).first();
+    }
+
+    public static void setActiveBackground(int backgroundId) {
+        Background.executeQuery("UPDATE background SET active = 0");
+        Background.executeQuery("UPDATE background SET active = 1 WHERE background_id = " + backgroundId);
     }
 
     public String getName() {

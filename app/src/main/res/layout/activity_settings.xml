@@ -103,6 +103,25 @@
 
                 <TableRow>
                     <uk.co.jakelee.cityflow.components.TextViewFont
+                        android:id="@+id/backgroundPickerText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <ImageView
+                        android:id="@+id/backgroundPickerButton"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:onClick="openBackgroundPicker"/>
+                </TableRow>
+
+                <TableRow>
+                    <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/zenToggleText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -165,7 +184,8 @@
                         android:layout_marginTop="5dp"
                         android:textSize="20sp"
                         android:ellipsize="end"
-                        android:maxLines="3"/>
+                        android:maxLines="3"
+                        android:onClick="changeText"/>
                 </TableRow>
 
                 <TableRow>
@@ -302,6 +322,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/ltltgrey"
                         android:padding="5dp"
+                        android:layout_margin="5dp"
                         android:gravity="center"
                         android:text="A"
                         android:textColor="@color/black"
@@ -312,6 +333,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/ltltgrey"
                         android:padding="5dp"
+                        android:layout_margin="5dp"
                         android:gravity="center"
                         android:text="Q"
                         android:textColor="@color/black"
@@ -322,6 +344,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/ltltgrey"
                         android:padding="5dp"
+                        android:layout_margin="5dp"
                         android:gravity="center"
                         android:text="L"
                         android:textColor="@color/black"
@@ -332,6 +355,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/ltltgrey"
                         android:padding="5dp"
+                        android:layout_margin="5dp"
                         android:gravity="center"
                         android:text="C"
                         android:textColor="@color/black"
@@ -373,6 +397,7 @@
                         android:layout_span="2"
                         android:textColor="@color/black"
                         android:textSize="20sp"
+                        android:padding="8dp"
                         android:onClick="openSupportCode"/>
                 </TableRow>
 
@@ -381,14 +406,13 @@
                         android:id="@+id/creditsButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_margin="5dp"
                         android:gravity="center"
                         android:background="@color/ltltgrey"
                         android:layout_span="2"
                         android:textColor="@color/black"
                         android:textSize="20sp"
+                        android:padding="8dp"
                         android:onClick="openCredits"/>
                 </TableRow>
             </TableLayout>

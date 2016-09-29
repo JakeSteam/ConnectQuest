@@ -25,6 +25,46 @@ import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_BARK;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_BLUE_SKIES;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_BLUISH;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_CAMOUFLAGE;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_CLAY;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_CLAY_GREY;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_CLOUDY;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_DEEP_SEA;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_DESERT;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_DIRTY;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_EARTH;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_EGGSHELL;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_OVERCAST;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_PEACH;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_FAWN;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_FERN;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_GRASS;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_LIMESTONE;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_LIMEY;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_MUDDY;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_MUDDY_PINK;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_MUSHROOM;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_NIGHT;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_OLIVE;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_OMINOUS;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_PASSIONFRUIT;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_PETALS;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_PINK;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_PLAIN;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_PRETTY_IN_PINK;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_RAINFOREST;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_RICH_LIMEY;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_SALMON;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_SAND;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_SEDONA;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_STORMY_SKY;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_SUMMER;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_SUNRISE;
+import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_THE_END;
+
 public class PatchHelper extends AsyncTask<String, String, String> {
     public final static int NO_DATABASE = 0;
     public final static int V1_0_0 = 1;
@@ -123,7 +163,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     private void createAchievement() {
         List<Achievement> achievements = new ArrayList<>();
-        achievements.add(new Achievement("Turn It Up 1", 100, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQAw", Constants.BACKGROUND_NIGHT));
+        achievements.add(new Achievement("Turn It Up 1", 100, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQAw", BACKGROUND_NIGHT));
         achievements.add(new Achievement("Turn It Up 2", 1000, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQFw"));
         achievements.add(new Achievement("Turn It Up 3", 5000, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQGA"));
         achievements.add(new Achievement("Turn It Up 4", 10000, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQGQ"));
@@ -151,13 +191,45 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     private void createBackground() {
         List<Background> backgrounds = new ArrayList<>();
-        backgrounds.add(new Background(Constants.BACKGROUND_PLAIN, "FFFFFF", true, true)); // Unlocked by default
-        backgrounds.add(new Background(Constants.BACKGROUND_NIGHT, "000000")); // Unlocked from turning tile achievement
-        backgrounds.add(new Background(Constants.BACKGROUND_SUNRISE, "FFF0C0")); // Unlocked from opening credits
-        backgrounds.add(new Background(Constants.BACKGROUND_GRASS, "e1f7d5")); //
-        backgrounds.add(new Background(Constants.BACKGROUND_SALMON, "ffbdbd")); //
-        backgrounds.add(new Background(Constants.BACKGROUND_BLUISH, "c9c9ff")); //
-        backgrounds.add(new Background(Constants.BACKGROUND_PINK, "f1cbff")); //
+        backgrounds.add(new Background(BACKGROUND_PLAIN, "FFFFFF", true, true)); // Unlocked by default
+        backgrounds.add(new Background(BACKGROUND_NIGHT, "000000")); // Unlocked from turning tile achievement
+        backgrounds.add(new Background(BACKGROUND_SUNRISE, "FFF0C0")); // Unlocked from opening credits
+        backgrounds.add(new Background(BACKGROUND_GRASS, "e1f7d5")); //
+        backgrounds.add(new Background(BACKGROUND_SALMON, "ffbdbd")); //
+        backgrounds.add(new Background(BACKGROUND_BLUISH, "c9c9ff")); //
+        backgrounds.add(new Background(BACKGROUND_PINK, "f1cbff")); //
+        backgrounds.add(new Background(BACKGROUND_BARK, "756454")); //
+        backgrounds.add(new Background(BACKGROUND_EARTH, "483e34")); //
+        backgrounds.add(new Background(BACKGROUND_STORMY_SKY, "606060")); //
+        backgrounds.add(new Background(BACKGROUND_DEEP_SEA, "8f99a3")); //
+        backgrounds.add(new Background(BACKGROUND_LIMESTONE, "a0a0a0")); //
+        backgrounds.add(new Background(BACKGROUND_SAND, "cac9b4")); //
+        backgrounds.add(new Background(BACKGROUND_FERN, "9eac95")); //
+        backgrounds.add(new Background(BACKGROUND_OLIVE, "737663")); //
+        backgrounds.add(new Background(BACKGROUND_FAWN, "c4b49b")); //
+        backgrounds.add(new Background(BACKGROUND_SEDONA, "96744e")); //
+        backgrounds.add(new Background(BACKGROUND_EGGSHELL, "ece9e4")); //
+        backgrounds.add(new Background(BACKGROUND_CLAY, "e3e3e3")); //
+        backgrounds.add(new Background(BACKGROUND_CLAY_GREY, "c9c7ca")); //
+        backgrounds.add(new Background(BACKGROUND_MUDDY, "c1bab4")); //
+        backgrounds.add(new Background(BACKGROUND_MUDDY_PINK, "decfd2")); //
+        backgrounds.add(new Background(BACKGROUND_LIMEY, "e8e9e6")); //
+        backgrounds.add(new Background(BACKGROUND_RICH_LIMEY, "cbd5d2")); //
+        backgrounds.add(new Background(BACKGROUND_CAMOUFLAGE, "919f9e")); //
+        backgrounds.add(new Background(BACKGROUND_OMINOUS, "424a58")); //
+        backgrounds.add(new Background(BACKGROUND_CLOUDY, "b9c6d2")); //
+        backgrounds.add(new Background(BACKGROUND_BLUE_SKIES, "e4ebf3")); //
+        backgrounds.add(new Background(BACKGROUND_PETALS, "8eb9a8")); //
+        backgrounds.add(new Background(BACKGROUND_SUMMER, "fefbd0")); //
+        backgrounds.add(new Background(BACKGROUND_PEACH, "fdcfb7")); //
+        backgrounds.add(new Background(BACKGROUND_PASSIONFRUIT, "f4828c")); //
+        backgrounds.add(new Background(BACKGROUND_THE_END, "775c6a")); //
+        backgrounds.add(new Background(BACKGROUND_DESERT, "f7ecd6")); //
+        backgrounds.add(new Background(BACKGROUND_DIRTY, "ddb4a0")); //
+        backgrounds.add(new Background(BACKGROUND_OVERCAST, "d0c6c4")); //
+        backgrounds.add(new Background(BACKGROUND_PRETTY_IN_PINK, "f8e4e3")); //
+        backgrounds.add(new Background(BACKGROUND_RAINFOREST, "7ca0a0")); //
+        backgrounds.add(new Background(BACKGROUND_MUSHROOM, "8e857c")); //
         Background.saveInTx(backgrounds);
     }
 
@@ -187,6 +259,45 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SAVE_CONFLICT", "Save conflict detected! Currently resolving, this might take a few seconds, please be patient..."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SETTING_TOGGLE_ON", "Toggled %1$s on!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SETTING_TOGGLE_OFF", "Toggled %1$s off!"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_1_NAME", "Plain"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_2_NAME", "Night"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_3_NAME", "Sunrise"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_4_NAME", "Grass"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_5_NAME", "Salmon"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_6_NAME", "Bluish"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_7_NAME", "Pink"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_8_NAME", "Bark"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_9_NAME", "Earth"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_10_NAME", "Stormy Sky"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_11_NAME", "Deep Sea"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_12_NAME", "Limestone"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_13_NAME", "Sand"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_14_NAME", "Fern"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_15_NAME", "Olive"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_16_NAME", "Fawn"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_17_NAME", "Sedona"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_18_NAME", "Eggshell"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_19_NAME", "Clay"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_20_NAME", "Clay Grey"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_21_NAME", "Muddy"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_22_NAME", "Muddy Pink"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_23_NAME", "Limey"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_24_NAME", "Rich Limey"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_25_NAME", "Camouflage"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_26_NAME", "Ominous"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_27_NAME", "Cloudy"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_28_NAME", "Blue Skies"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_29_NAME", "Petals"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_30_NAME", "Summer"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_31_NAME", "Peach"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_32_NAME", "Passionfruit"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_33_NAME", "The End"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_34_NAME", "Desert"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_35_NAME", "Dirty"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_36_NAME", "Overcast"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_37_NAME", "Pretty In Pink"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_38_NAME", "Rainforest"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_39_NAME", "Mushroom"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "CLOUD_SAVE_DESC", "%1$d Stars | %2$d Coins | V%3$s"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_CREATED", "Created"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_IMPORTED", "Imported"));
@@ -352,6 +463,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_7_NAME", "Player Name"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_8_NAME", "Google Play Sign In"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_9_NAME", "Main Menu Cars"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_10_NAME", "Puzzle Background"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_1_NAME", "Boosts"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_2_NAME", "Upgrades"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_3_NAME", "Tiles"));
@@ -496,6 +608,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_127_NAME", "Desert Road Corner"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_128_NAME", "Desert Road T Junction"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_129_NAME", "Mountain (Stones)"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_BACKGROUND_SELECT_TITLE", "Background Select"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_COMPLETE_TITLE", "Complete\n100%"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_COMPLETE_TEXT", "Completed!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_TIME_TITLE", "Time\n%1$d%%"));

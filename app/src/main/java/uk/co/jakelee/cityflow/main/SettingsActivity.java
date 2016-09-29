@@ -2,7 +2,6 @@ package uk.co.jakelee.cityflow.main;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -17,6 +16,7 @@ import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
+import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Text;
@@ -55,6 +55,7 @@ public class SettingsActivity extends Activity {
         ((TextView) findViewById(R.id.musicToggleText)).setText(Text.get("SETTING_1_NAME"));
 
         ((TextView) findViewById(R.id.settingSectionGameplay)).setText(Text.get("SETTING_SECTION_GAMEPLAY"));
+        ((TextView) findViewById(R.id.backgroundPickerText)).setText(Text.get("SETTING_10_NAME"));
         ((TextView) findViewById(R.id.zenToggleText)).setText(Text.get("SETTING_5_NAME"));
         ((TextView) findViewById(R.id.hideBoostText)).setText(Text.get("SETTING_6_NAME"));
         ((TextView) findViewById(R.id.playerNameText)).setText(Text.get("SETTING_7_NAME"));
@@ -72,9 +73,6 @@ public class SettingsActivity extends Activity {
     }
 
     public void populateSettings() {
-        //Drawable tick = dh.createDrawable(R.drawable.ui_level_unselected_completed, 50, 50);
-        //Drawable cross = dh.createDrawable(R.drawable.ui_level_unselected, 50, 50);
-
         // Sound settings
         ((TextView) findViewById(R.id.musicToggleButton)).setText(Setting.getSafeBoolean(Constants.SETTING_MUSIC) ? R.string.icon_tick : R.string.icon_cross);
         ((TextView) findViewById(R.id.musicToggleButton)).setTextColor(ContextCompat.getColor(this, Setting.getSafeBoolean(Constants.SETTING_MUSIC) ? R.color.green : R.color.red));
@@ -83,6 +81,8 @@ public class SettingsActivity extends Activity {
         ((TextView) findViewById(R.id.soundToggleButton)).setTextColor(ContextCompat.getColor(this, Setting.getSafeBoolean(Constants.SETTING_SOUNDS) ? R.color.green : R.color.red));
 
         // Gameplay settings
+        findViewById(R.id.backgroundPickerButton).setBackgroundColor(Background.getActiveBackgroundColour());
+
         ((TextView) findViewById(R.id.zenToggleButton)).setText(Setting.getSafeBoolean(Constants.SETTING_ZEN_MODE) ? R.string.icon_tick : R.string.icon_cross);
         ((TextView) findViewById(R.id.zenToggleButton)).setTextColor(ContextCompat.getColor(this, Setting.getSafeBoolean(Constants.SETTING_ZEN_MODE) ? R.color.green : R.color.red));
 
@@ -154,6 +154,12 @@ public class SettingsActivity extends Activity {
     public void openCredits(View v) {
         Intent intent = new Intent(this, CreditsActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
+    }
+
+    public void openBackgroundPicker(View v) {
+        Intent intent = new Intent(getApplicationContext(), BackgroundPickerActivity.class)
+                .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
 

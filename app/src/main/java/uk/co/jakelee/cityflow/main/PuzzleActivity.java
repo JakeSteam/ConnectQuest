@@ -98,7 +98,7 @@ public class PuzzleActivity extends Activity {
     }
 
     public void updateUiElements() {
-        findViewById(R.id.tileContainer).setBackgroundColor(Background.getActiveBackground());
+        findViewById(R.id.tileContainer).setBackgroundColor(Background.getActiveBackgroundColour());
 
         int boostUndo = Boost.getOwnedCount(Constants.BOOST_UNDO);
         int boostTime = Boost.getOwnedCount(Constants.BOOST_TIME);
