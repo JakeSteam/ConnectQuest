@@ -13,6 +13,7 @@ import java.util.List;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.main.MainActivity;
 import uk.co.jakelee.cityflow.model.Achievement;
+import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
@@ -44,6 +45,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
     private void initialSetup() {
         setProgress("Achievements", 0);
         createAchievement();
+        setProgress("Backgrounds", 3);
+        createBackground();
         setProgress("Boosts", 5);
         createBoost();
         setProgress("Packs", 10);
@@ -120,7 +123,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     private void createAchievement() {
         List<Achievement> achievements = new ArrayList<>();
-        achievements.add(new Achievement("Turn It Up 1", 100, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQAw"));
+        achievements.add(new Achievement("Turn It Up 1", 100, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQAw", Constants.BACKGROUND_NIGHT));
         achievements.add(new Achievement("Turn It Up 2", 1000, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQFw"));
         achievements.add(new Achievement("Turn It Up 3", 5000, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQGA"));
         achievements.add(new Achievement("Turn It Up 4", 10000, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQGQ"));
@@ -144,6 +147,18 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         achievements.add(new Achievement("Complete Pack 2", 1, Constants.STATISTIC_COMPLETE_PACK_2, "CgkIgrzuo64REAIQKw"));
         achievements.add(new Achievement("Complete Pack 3", 1, Constants.STATISTIC_COMPLETE_PACK_3, "CgkIgrzuo64REAIQLA"));
         Achievement.saveInTx(achievements);
+    }
+
+    private void createBackground() {
+        List<Background> backgrounds = new ArrayList<>();
+        backgrounds.add(new Background(Constants.BACKGROUND_PLAIN, "FFFFFF", true, true)); // Unlocked by default
+        backgrounds.add(new Background(Constants.BACKGROUND_NIGHT, "000000")); // Unlocked from turning tile achievement
+        backgrounds.add(new Background(Constants.BACKGROUND_SUNRISE, "FFF0C0")); // Unlocked from opening credits
+        backgrounds.add(new Background(Constants.BACKGROUND_GRASS, "e1f7d5")); //
+        backgrounds.add(new Background(Constants.BACKGROUND_SALMON, "ffbdbd")); //
+        backgrounds.add(new Background(Constants.BACKGROUND_BLUISH, "c9c9ff")); //
+        backgrounds.add(new Background(Constants.BACKGROUND_PINK, "f1cbff")); //
+        Background.saveInTx(backgrounds);
     }
 
     private void createBoost() {
@@ -1090,6 +1105,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         settings.add(new Setting(Constants.SETTING_PLAYER_NAME, "New Player"));
         settings.add(new Setting(Constants.SETTING_SIGN_IN, true));
         settings.add(new Setting(Constants.SETTING_MAX_CARS, 5, 0, 75));
+        settings.add(new Setting(Constants.SETTING_BACKGROUND, "FFFFFF"));
         Setting.saveInTx(settings);
     }
 

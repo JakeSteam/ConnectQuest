@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.components.TextViewFont;
+import uk.co.jakelee.cityflow.helper.Constants;
+import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class CreditsActivity extends Activity {
@@ -19,6 +21,11 @@ public class CreditsActivity extends Activity {
 
         populateCredits();
         activateLinks();
+
+        Background background = Background.get(Constants.BACKGROUND_SUNRISE);
+        if (!background.isUnlocked()) {
+            background.setUnlocked(true);
+        }
     }
 
     private void populateCredits() {
