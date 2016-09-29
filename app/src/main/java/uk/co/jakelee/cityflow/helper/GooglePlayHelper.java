@@ -32,6 +32,7 @@ import uk.co.jakelee.cityflow.BuildConfig;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.main.MainActivity;
 import uk.co.jakelee.cityflow.model.Achievement;
+import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
@@ -157,6 +158,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
 
     private static void UpdateAchievement(Achievement achievement, int currentValue, int lastSentValue) {
         boolean hasChanged = (currentValue > lastSentValue);
+        boolean isAchieving = achievement.getMaximumValue() <= currentValue && achievement.getMaximumValue() >= lastSentValue;
         boolean isAchieved = (achievement.getMaximumValue() <= lastSentValue);
         if (hasChanged && !isAchieved && mGoogleApiClient.isConnected()) {
             int difference = currentValue - lastSentValue;
@@ -164,6 +166,10 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                 Games.Achievements.unlock(mGoogleApiClient, achievement.getRemoteID());
             } else {
                 Games.Achievements.increment(mGoogleApiClient, achievement.getRemoteID(), difference);
+            }
+
+            if (isAchieving && achievement.getColourID() > 0) {
+                Background.get(achievement.getColourID()).setUnlocked(true);
             }
         }
     }

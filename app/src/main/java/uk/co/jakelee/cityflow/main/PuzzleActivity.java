@@ -28,6 +28,7 @@ import uk.co.jakelee.cityflow.helper.ImageHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleHelper;
 import uk.co.jakelee.cityflow.helper.StorageHelper;
 import uk.co.jakelee.cityflow.helper.TileHelper;
+import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
@@ -88,7 +89,7 @@ public class PuzzleActivity extends Activity {
             }
         }).start();
 
-        updateBoostVisibility();
+        updateUiElements();
         populateText();
     }
 
@@ -96,7 +97,9 @@ public class PuzzleActivity extends Activity {
         ((TextView) findViewById(R.id.pauseScreenText)).setText(Text.get("WORD_PAUSED"));
     }
 
-    public void updateBoostVisibility() {
+    public void updateUiElements() {
+        findViewById(R.id.tileContainer).setBackgroundColor(Background.getActiveBackground());
+
         int boostUndo = Boost.getOwnedCount(Constants.BOOST_UNDO);
         int boostTime = Boost.getOwnedCount(Constants.BOOST_TIME);
         int boostMove = Boost.getOwnedCount(Constants.BOOST_MOVE);
@@ -237,7 +240,7 @@ public class PuzzleActivity extends Activity {
 
         if (undoing) {
             Boost.use(Constants.BOOST_UNDO);
-            updateBoostVisibility();
+            updateUiElements();
         }
 
         undoing = false;
@@ -284,7 +287,7 @@ public class PuzzleActivity extends Activity {
             ((TextView) findViewById(R.id.moveCounter)).setText(Integer.toString(++movesMade));
             ((TextView)findViewById(R.id.shuffleBoost)).setTextColor(Boost.getOwnedCount(Constants.BOOST_SHUFFLE) > 0 ? Color.BLACK : Color.LTGRAY);
 
-            updateBoostVisibility();
+            updateUiElements();
         }
     }
 

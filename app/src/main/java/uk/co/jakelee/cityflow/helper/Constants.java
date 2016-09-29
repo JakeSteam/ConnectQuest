@@ -58,6 +58,10 @@ public class Constants {
     public static final String LEADERBOARD_BOOSTS_USED = "CgkIgrzuo64REAIQEg";
 
     // Lookup constants
+    public static final int BACKGROUND_PLAIN = 1;
+    public static final int BACKGROUND_NIGHT = 2;
+    public static final int BACKGROUND_SUNRISE = 3;
+    public static final int BACKGROUND_GRASS = 4;
     public static final int BOOST_MIN = 1;
     public static final int BOOST_MAX = 4;
     public static final int BOOST_UNDO = 1;
@@ -128,6 +132,7 @@ public class Constants {
     public static final int SETTING_PLAYER_NAME = 7;
     public static final int SETTING_SIGN_IN = 8;
     public static final int SETTING_MAX_CARS = 9;
+    public static final int SETTING_BACKGROUND = 10;
     public static final int SKYSCRAPER_COMPLETE = 1;
     public static final int SKYSCRAPER_TIME = 2;
     public static final int SKYSCRAPER_MOVES = 3;

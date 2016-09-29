@@ -7,6 +7,7 @@ public class Achievement extends SugarRecord {
     private int maximumValue;
     private long statisticId;
     private String remoteID;
+    private int colourID;
 
     public Achievement() {
     }
@@ -16,6 +17,15 @@ public class Achievement extends SugarRecord {
         this.maximumValue = maximumValue;
         this.statisticId = statisticId;
         this.remoteID = remoteID;
+        this.colourID = 0;
+    }
+
+    public Achievement(String name, int maximumValue, long statisticId, String remoteID, int colourID) {
+        this.name = name;
+        this.maximumValue = maximumValue;
+        this.statisticId = statisticId;
+        this.remoteID = remoteID;
+        this.colourID = colourID;
     }
 
     public String getName() {
@@ -48,5 +58,13 @@ public class Achievement extends SugarRecord {
 
     public void setRemoteID(String remoteID) {
         this.remoteID = remoteID;
+    }
+
+    public int getColourID() {
+        return colourID;
+    }
+
+    public void setColourID(int colourID) {
+        this.colourID = colourID;
     }
 }
