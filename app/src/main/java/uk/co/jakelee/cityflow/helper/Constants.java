@@ -62,6 +62,9 @@ public class Constants {
     public static final int BACKGROUND_NIGHT = 2;
     public static final int BACKGROUND_SUNRISE = 3;
     public static final int BACKGROUND_GRASS = 4;
+    public static final int BACKGROUND_SALMON = 5;
+    public static final int BACKGROUND_BLUISH = 6;
+    public static final int BACKGROUND_PINK = 7;
     public static final int BOOST_MIN = 1;
     public static final int BOOST_MAX = 4;
     public static final int BOOST_UNDO = 1;

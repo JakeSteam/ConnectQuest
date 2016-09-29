@@ -154,7 +154,10 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         backgrounds.add(new Background(Constants.BACKGROUND_PLAIN, "FFFFFF", true, true)); // Unlocked by default
         backgrounds.add(new Background(Constants.BACKGROUND_NIGHT, "000000")); // Unlocked from turning tile achievement
         backgrounds.add(new Background(Constants.BACKGROUND_SUNRISE, "FFF0C0")); // Unlocked from opening credits
-        backgrounds.add(new Background(Constants.BACKGROUND_GRASS, "DBFFB3")); //
+        backgrounds.add(new Background(Constants.BACKGROUND_GRASS, "e1f7d5")); //
+        backgrounds.add(new Background(Constants.BACKGROUND_SALMON, "ffbdbd")); //
+        backgrounds.add(new Background(Constants.BACKGROUND_BLUISH, "c9c9ff")); //
+        backgrounds.add(new Background(Constants.BACKGROUND_PINK, "f1cbff")); //
         Background.saveInTx(backgrounds);
     }
 
