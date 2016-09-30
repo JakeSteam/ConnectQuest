@@ -377,6 +377,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_CARD_NOT_SAVED", "The card could not be saved, check storage permissions."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_CAMERA_IMPORT_FAIL", "The puzzle card could not be read, please try retaking the image, or improving lighting conditions."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_FILE_IMPORT_FAIL", "No puzzle could be imported from the image, please check that a puzzle card image has been selected."));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "ERROR_BACKGROUND_LOCKED", "You need to unlock this background first!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_0_NAME", "None"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_1_NAME", "Water"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "FLOW_2_NAME", "Road"));

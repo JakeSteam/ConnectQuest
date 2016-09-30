@@ -19,7 +19,8 @@ import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class BackgroundPickerActivity extends Activity {
-    private ImageView selectedBackground;
+    private ImageView selectedBackgroundTile;
+    private Background selectedBackground;
     private DisplayHelper dh;
 
     @Override
@@ -64,7 +65,8 @@ public class BackgroundPickerActivity extends Activity {
 
             if (background.isActive()) {
                 // backgroundView add colour filter
-                selectedBackground = backgroundView;
+                selectedBackgroundTile = backgroundView;
+                selectedBackground = background;
             }
 
             row.addView(backgroundView, layoutParams);
@@ -76,25 +78,31 @@ public class BackgroundPickerActivity extends Activity {
     }
 
     public void selectBackground(View v) {
-        // remove colour filter from selectedBackground (if != null)
+        // remove colour filter from selectedBackgroundTile (if != null)
         // set colour filter on v
-        selectedBackground = (ImageView)v;
+        selectedBackgroundTile = (ImageView)v;
+        selectedBackground = Background.get((int)v.getTag());
         updateBackgroundInfo();
     }
 
     private void updateBackgroundInfo() {
-        Background background = Background.get((int)selectedBackground.getTag());
 
-        ((TextView)findViewById(R.id.backgroundStatus)).setText(background.isUnlocked() ? R.string.icon_tick : R.string.icon_lock);
-        ((TextView)findViewById(R.id.backgroundStatus)).setTextColor(ContextCompat.getColor(this, background.isUnlocked() ? R.color.green : R.color.red));
+        ((TextView)findViewById(R.id.backgroundStatus)).setText(selectedBackground.isUnlocked() ? R.string.icon_tick : R.string.icon_lock);
+        ((TextView)findViewById(R.id.backgroundStatus)).setTextColor(ContextCompat.getColor(this, selectedBackground.isUnlocked() ? R.color.green : R.color.red));
 
-        ((TextView)findViewById(R.id.backgroundName)).setText(background.isUnlocked() ? background.getName() : "???");
-        ((TextView)findViewById(R.id.backgroundHint)).setText(background.isUnlocked() ? "" : background.getHint());
+        ((TextView)findViewById(R.id.backgroundName)).setText(selectedBackground.isUnlocked() ? selectedBackground.getName() : "???");
+        ((TextView)findViewById(R.id.backgroundHint)).setText(selectedBackground.isUnlocked() ? "" : selectedBackground.getHint());
+
+        ((TextView)findViewById(R.id.backgroundHint)).setText(selectedBackground.isUnlocked() ? "" : selectedBackground.getHint());
+
+        findViewById(R.id.save).setVisibility(selectedBackground.isUnlocked() ? View.VISIBLE : View.INVISIBLE);
     }
 
     public void saveBackground(View v) {
-        Background.setActiveBackground((int)selectedBackground.getTag());
-        this.finish();
+        if (selectedBackground.isUnlocked()) {
+            Background.setActiveBackground((int) selectedBackgroundTile.getTag());
+            this.finish();
+        } 
     }
 
     public void closePopup (View v) {
