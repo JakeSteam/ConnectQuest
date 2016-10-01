@@ -82,6 +82,11 @@ public class Background extends SugarRecord {
                 Condition.prop("active").eq(1)).first();
     }
 
+    public static int getUnlockedBackgroundCount() {
+        return (int) Select.from(Background.class).where(
+                Condition.prop("unlocked").eq(1)).count();
+    }
+
     public static void setActiveBackground(int backgroundId) {
         Background.executeQuery("UPDATE background SET active = 0");
         Background.executeQuery("UPDATE background SET active = 1 WHERE background_id = " + backgroundId);

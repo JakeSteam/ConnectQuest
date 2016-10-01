@@ -163,7 +163,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     private void createAchievement() {
         List<Achievement> achievements = new ArrayList<>();
-        achievements.add(new Achievement("Turn It Up 1", 100, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQAw", BACKGROUND_NIGHT));
+        achievements.add(new Achievement("Turn It Up 1", 100, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQAw"));
         achievements.add(new Achievement("Turn It Up 2", 1000, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQFw"));
         achievements.add(new Achievement("Turn It Up 3", 5000, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQGA"));
         achievements.add(new Achievement("Turn It Up 4", 10000, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQGQ"));
@@ -260,8 +260,11 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SETTING_TOGGLE_ON", "Toggled %1$s on!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "ALERT_SETTING_TOGGLE_OFF", "Toggled %1$s off!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_1_NAME", "Plain"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_1_HINT", "This is already unlocked!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_2_NAME", "Night"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_2_HINT", "Try completing puzzles, I guess. This is longer."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_3_NAME", "Sunrise"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_3_HINT", "Try completing puzzles, I guess. This is longer.Try completing puzzles, I guess. This is longer.Try completing puzzles, I guess. This is longer."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_4_NAME", "Grass"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_5_NAME", "Salmon"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_6_NAME", "Bluish"));
@@ -609,7 +612,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_127_NAME", "Desert Road Corner"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_128_NAME", "Desert Road T Junction"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_129_NAME", "Mountain (Stones)"));
-        texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_BACKGROUND_SELECT_TITLE", "Background Select"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_BACKGROUND_SELECT_TITLE", "%1$d/%2$d Unlocked"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_COMPLETE_TITLE", "Complete\n100%"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_COMPLETE_TEXT", "Completed!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "UI_SKYSCRAPER_TIME_TITLE", "Time\n%1$d%%"));

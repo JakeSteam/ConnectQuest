@@ -15,7 +15,6 @@ public class TextAwesome extends TextView {
 	public TextAwesome(Context context) {
 		super(context);
 		init();
-
 	}
 
 	public TextAwesome(Context context, AttributeSet attrs) {
@@ -24,14 +23,11 @@ public class TextAwesome extends TextView {
 	}
 
 	public void init() {
-
 		Typeface typeface = sTypefaceCache.get(NAME);
 
 		if (typeface == null) {
-
 			typeface = Typeface.createFromAsset(getContext().getAssets(), "fontawesome-webfont.ttf");
 			sTypefaceCache.put(NAME, typeface);
-
 		}
 
 		setTypeface(typeface);
