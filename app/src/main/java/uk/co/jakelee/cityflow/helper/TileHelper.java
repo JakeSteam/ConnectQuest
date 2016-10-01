@@ -64,7 +64,7 @@ public class TileHelper {
                 }
             });
 
-            Tile tile = tiles.get(j);
+            Tile tile = tiles.getInt(j);
             if (!checkTileFlow(tile)) {
                 newTilesX.add(tile.getX());
                 newTilesY.add(tile.getY());

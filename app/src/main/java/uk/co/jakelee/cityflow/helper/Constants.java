@@ -29,6 +29,7 @@ public class Constants {
 
     public static final long PUZZLE_DEFAULT_TIME = 3600000;
     public static final int PUZZLE_DEFAULT_MOVES = 100000;
+    public static final int AUTOSAVE_NEVER = 60;
 
     // Currency incomes
     public static final int CURRENCY_RECOMPLETE = 1;
@@ -168,6 +169,7 @@ public class Constants {
     public static final int SETTING_SIGN_IN = 8;
     public static final int SETTING_MAX_CARS = 9;
     public static final int SETTING_BACKGROUND = 10;
+    public static final int SETTING_AUTOSAVE_FREQUENCY = 11;
     public static final int SKYSCRAPER_COMPLETE = 1;
     public static final int SKYSCRAPER_TIME = 2;
     public static final int SKYSCRAPER_MOVES = 3;
@@ -182,6 +184,7 @@ public class Constants {
     public static final int STATISTIC_COMPLETE_PACK_3 = 8;
     public static final int STATISTIC_CURRENCY = 9;
     public static final int STATISTIC_TAPJOY_COINS = 10;
+    public static final int STATISTIC_LAST_AUTOSAVE = 11;
     public static final int STORE_CATEGORY_BOOSTS = 1;
     public static final int STORE_CATEGORY_UPGRADES = 2;
     public static final int STORE_CATEGORY_TILES = 3;

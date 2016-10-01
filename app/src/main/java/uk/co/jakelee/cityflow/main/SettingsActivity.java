@@ -14,11 +14,13 @@ import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
+import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.ShopItem;
+import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class SettingsActivity extends Activity {
@@ -66,6 +68,8 @@ public class SettingsActivity extends Activity {
         ((TextView) findViewById(R.id.settingSectionGoogle)).setText(Text.get("SETTING_SECTION_GOOGLE"));
         ((TextView) findViewById(R.id.signInButton)).setText(Text.get("GOOGLE_SIGN_IN"));
         ((TextView) findViewById(R.id.signOutButton)).setText(Text.get("GOOGLE_SIGN_OUT"));
+        ((TextView) findViewById(R.id.autosaveText)).setText(Text.get("SETTING_11_NAME"));
+        ((TextView) findViewById(R.id.lastAutosaveText)).setText(Text.get("STATISTIC_11_NAME"));
 
         ((TextView) findViewById(R.id.settingSectionOther)).setText(Text.get("SETTING_SECTION_OTHER"));
         ((TextView) findViewById(R.id.supportCodeButton)).setText(Text.get("DIALOG_SUPPORT_CODE"));
@@ -89,17 +93,14 @@ public class SettingsActivity extends Activity {
         ((TextView) findViewById(R.id.hideBoostButton)).setText(Setting.getSafeBoolean(Constants.SETTING_HIDE_UNSTOCKED_BOOSTS) ? R.string.icon_tick : R.string.icon_cross);
         ((TextView) findViewById(R.id.hideBoostButton)).setTextColor(ContextCompat.getColor(this, Setting.getSafeBoolean(Constants.SETTING_HIDE_UNSTOCKED_BOOSTS) ? R.color.green : R.color.red));
 
-        TextView playerName = (TextView) findViewById(R.id.playerNameDisplay);
-        playerName.setText(Setting.getString(Constants.SETTING_PLAYER_NAME));
+        ((TextView) findViewById(R.id.playerNameDisplay)).setText(Setting.getString(Constants.SETTING_PLAYER_NAME));
+        ((TextView) findViewById(R.id.minZoomButton)).setText(String.format("%.2f", Setting.getFloat(Constants.SETTING_MIN_ZOOM)));
+        ((TextView) findViewById(R.id.maxZoomButton)).setText(String.format("%.2f", Setting.getFloat(Constants.SETTING_MAX_ZOOM)));
+        ((TextView) findViewById(R.id.maxCarsButton)).setText(Integer.toString(Setting.getInt(Constants.SETTING_MAX_CARS)));
 
-        TextView minZoom = (TextView) findViewById(R.id.minZoomButton);
-        minZoom.setText(String.format("%.2f", Setting.getFloat(Constants.SETTING_MIN_ZOOM)));
-
-        TextView maxZoom = (TextView) findViewById(R.id.maxZoomButton);
-        maxZoom.setText(String.format("%.2f", Setting.getFloat(Constants.SETTING_MAX_ZOOM)));
-
-        TextView maxCars = (TextView) findViewById(R.id.maxCarsButton);
-        maxCars.setText(Integer.toString(Setting.getInt(Constants.SETTING_MAX_CARS)));
+        // Google Play settings
+        ((TextView) findViewById(R.id.autosaveDisplay)).setText(Integer.toString(Setting.getInt(Constants.SETTING_AUTOSAVE_FREQUENCY)));
+        ((TextView) findViewById(R.id.lastAutosaveDisplay)).setText(DateHelper.displayTime(Statistic.find(Constants.STATISTIC_LAST_AUTOSAVE).getLongValue(), DateHelper.datetime));
     }
 
     public void toggleSetting(View v) {
@@ -197,7 +198,7 @@ public class SettingsActivity extends Activity {
     }
 
     public void signIn(View v) {
-        if (GooglePlayHelper.mGoogleApiClient.isConnecting()) {
+        if (GooglePlayHelper.mGoogleApiClient.isConnecting() || GooglePlayHelper.mGoogleApiClient.isConnected()) {
             return;
         }
         GooglePlayHelper.mGoogleApiClient.connect();

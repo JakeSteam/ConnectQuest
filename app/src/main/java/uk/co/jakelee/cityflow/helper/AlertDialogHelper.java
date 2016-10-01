@@ -473,7 +473,7 @@ public class AlertDialogHelper {
         dialog.show();
     }
 
-    public static void changeSettingInt(final SettingsActivity activity, int settingId) {
+    public static void changeSettingInt(final SettingsActivity activity, final int settingId) {
         final Setting setting = Setting.get(settingId);
 
         final Dialog dialog = new Dialog(activity);
@@ -490,8 +490,12 @@ public class AlertDialogHelper {
         final TextView currentValue = (TextView)dialog.findViewById(R.id.currentValue);
 
         minValue.setText(Integer.toString(setting.getIntMin()));
-        maxValue.setText(Integer.toString(setting.getIntMax()));
-        currentValue.setText(Integer.toString(setting.getIntValue()));
+        maxValue.setText(settingId == Constants.SETTING_AUTOSAVE_FREQUENCY ?
+                Text.get("WORD_NEVER") :
+                Integer.toString(setting.getIntMax()));
+        currentValue.setText(settingId == Constants.SETTING_AUTOSAVE_FREQUENCY && setting.getIntValue() == Constants.AUTOSAVE_NEVER ?
+                Text.get("WORD_NEVER") :
+                Integer.toString(setting.getIntValue()));
 
         final SeekBar seekbar = (SeekBar) dialog.findViewById(R.id.seekbar);
         seekbar.setProgress(getProgressFromFloat((float) setting.getIntValue(), (float) setting.getIntMin(), (float) setting.getIntMax()));
@@ -501,7 +505,10 @@ public class AlertDialogHelper {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
-                currentValue.setText(Integer.toString(getIntFromProgress(seekbar.getProgress(), setting.getIntMin(), setting.getIntMax())));
+                int progressInt = getIntFromProgress(seekbar.getProgress(), setting.getIntMin(), setting.getIntMax());
+                currentValue.setText((settingId == Constants.SETTING_AUTOSAVE_FREQUENCY && progressInt == Constants.AUTOSAVE_NEVER) ?
+                    Text.get("WORD_NEVER") :
+                    Integer.toString(progressInt));
             }
         });
 

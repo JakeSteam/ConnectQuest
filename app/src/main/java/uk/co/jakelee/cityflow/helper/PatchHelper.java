@@ -314,6 +314,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_38_HINT", ""));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_39_NAME", "Mushroom"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_39_HINT", ""));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "CLOUD_AUTOSAVE_DESC", "(Auto) %1$d Stars | %2$d Coins | V%3$s"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "CLOUD_SAVE_DESC", "%1$d Stars | %2$d Coins | V%3$s"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_CREATED", "Created"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "CREATOR_IMPORTED", "Imported"));
@@ -481,6 +482,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_8_NAME", "Google Play Sign In"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_9_NAME", "Main Menu Cars"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_10_NAME", "Puzzle Background"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "SETTING_11_NAME", "Autosave Freq (Mins)"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_1_NAME", "Boosts"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_2_NAME", "Upgrades"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_CATEGORY_3_NAME", "Tiles"));
@@ -494,6 +496,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_MAX_PURCHASED", "Maximum Purchased"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_1_NAME", "Puzzles Completed"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_2_NAME", "Tiles Rotated"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_11_NAME", "Last Autosaved"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "SUCCESS_SUPPORT_CODE", "Successfully applied support code!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_0_NAME", "Invisible Tile"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_1_NAME", "Grass Road Corner"));
@@ -653,6 +656,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_FLOW", "Flow"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_HEIGHT", "Height"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_IMPORT", "Import"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_NEVER", "Never"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_NA", "N/A"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_NAME", "Name"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "WORD_OPEN", "Open"));
@@ -1232,6 +1236,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         settings.add(new Setting(Constants.SETTING_SIGN_IN, true));
         settings.add(new Setting(Constants.SETTING_MAX_CARS, 5, 0, 75));
         settings.add(new Setting(Constants.SETTING_BACKGROUND, "FFFFFF"));
+        settings.add(new Setting(Constants.SETTING_AUTOSAVE_FREQUENCY, 10, 0, 60));
         Setting.saveInTx(settings);
     }
 
@@ -1247,6 +1252,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_3, 0, 0));
         statistics.add(new Statistic(Constants.STATISTIC_CURRENCY, 100000));
         statistics.add(new Statistic(Constants.STATISTIC_TAPJOY_COINS, 0));
+        statistics.add(new Statistic(Constants.STATISTIC_LAST_AUTOSAVE, 0L));
         Statistic.saveInTx(statistics);
     }
 

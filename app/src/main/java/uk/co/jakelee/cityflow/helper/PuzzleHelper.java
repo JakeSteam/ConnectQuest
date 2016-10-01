@@ -22,7 +22,7 @@ import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
 public class PuzzleHelper {
-    public static Pair<Boolean, Boolean> processPuzzleCompletion(final Puzzle puzzle, final boolean isCompletingPack, long timeTaken, final int movesTaken, final int boostsUsed, PuzzleCustom puzzleCustom) {
+    public static Pair<Boolean, Boolean> processPuzzleCompletion(Context context, final Puzzle puzzle, final boolean isCompletingPack, long timeTaken, final int movesTaken, final int boostsUsed, PuzzleCustom puzzleCustom) {
         boolean newBestTime = false;
         boolean newBestMoves = false;
         if (timeTaken >= 0 && (timeTaken < puzzle.getBestTime() || puzzle.getBestTime() == 0)) {
@@ -55,7 +55,7 @@ public class PuzzleHelper {
         puzzle.save();
 
         if (puzzleCustom == null) {
-            performBackgroundTasks(puzzle, isCompletingPack, movesTaken, boostsUsed);
+            performBackgroundTasks(context, puzzle, isCompletingPack, movesTaken, boostsUsed);
         } else if (puzzleCustom.isOriginalAuthor() && movesTaken > 0) {
             puzzleCustom.setHasBeenTested(true);
             puzzleCustom.save();
@@ -64,7 +64,7 @@ public class PuzzleHelper {
         return new Pair<>(newBestTime, newBestMoves);
     }
 
-    public static void performBackgroundTasks(final Puzzle puzzle, final boolean isCompletingPack, final int movesTaken, final int boostsUsed) {
+    public static void performBackgroundTasks(final Context context, final Puzzle puzzle, final boolean isCompletingPack, final int movesTaken, final int boostsUsed) {
         new Thread(new Runnable() {
             public void run() {
                 Pack pack = Pack.getPack(puzzle.getPackId());
@@ -80,7 +80,7 @@ public class PuzzleHelper {
                 if (puzzle.hasCompletionStar() && puzzle.hasMovesStar() && puzzle.hasTimeStar()) {
                     GooglePlayHelper.UpdateEvent(Constants.EVENT_FULLY_COMPLETE_PUZZLE, 1); // Quests
                     Statistic.increaseByOne(Constants.STATISTIC_PUZZLES_COMPLETED_FULLY); // Achievements
-                    GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_PUZZLES_FULLY_COMPLETED, Statistic.get(Constants.STATISTIC_PUZZLES_COMPLETED_FULLY)); // Leaderboards
+                    GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_PUZZLES_FULLY_COMPLETED, Statistic.getInt(Constants.STATISTIC_PUZZLES_COMPLETED_FULLY)); // Leaderboards
                 }
 
                 // Update for quests
@@ -95,8 +95,12 @@ public class PuzzleHelper {
                 GooglePlayHelper.UpdateAchievements();
 
                 // Update for leaderboards
-                GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_PUZZLES_COMPLETED, Statistic.get(Constants.STATISTIC_PUZZLES_COMPLETED));
-                GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_BOOSTS_USED, Statistic.get(Constants.STATISTIC_BOOSTS_USED));
+                GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_PUZZLES_COMPLETED, Statistic.getInt(Constants.STATISTIC_PUZZLES_COMPLETED));
+                GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_BOOSTS_USED, Statistic.getInt(Constants.STATISTIC_BOOSTS_USED));
+
+                if (GooglePlayHelper.shouldAutosave()) {
+                    GooglePlayHelper.autosave(context);
+                }
             }
         }).start();
     }

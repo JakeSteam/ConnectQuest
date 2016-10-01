@@ -335,7 +335,7 @@ public class PuzzleActivity extends Activity {
 
         int originalStars = puzzle.getStarCount();
         int nextPuzzle = isCustom ? 0 : PuzzleHelper.getNextPuzzleId(puzzleId);
-        Pair<Boolean, Boolean> newBests = PuzzleHelper.processPuzzleCompletion(puzzle, nextPuzzle == 0, timeInMilliseconds, movesMade, boostsUsed, puzzleCustom);
+        Pair<Boolean, Boolean> newBests = PuzzleHelper.processPuzzleCompletion(getApplicationContext(), puzzle, nextPuzzle == 0, timeInMilliseconds, movesMade, boostsUsed, puzzleCustom);
         int stars = puzzle.getStarCount();
 
         if (isCustom) {

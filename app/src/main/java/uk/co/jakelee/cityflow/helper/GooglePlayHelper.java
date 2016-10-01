@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.util.Pair;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -42,6 +43,8 @@ import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
+
+import static uk.co.jakelee.cityflow.model.Statistic.find;
 
 public class GooglePlayHelper implements com.google.android.gms.common.api.ResultCallback {
     public static final int RC_ACHIEVEMENTS = 9002;
@@ -309,6 +312,52 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                 });
             }
         }).start();
+    }
+
+    public static void autosave(Context context) {
+        if (!IsConnected()) {
+            Log.d("GPH", "Not connected..!");
+            return;
+        }
+
+        Snapshots.OpenSnapshotResult result = Games.Snapshots.open(mGoogleApiClient, "autoSave", true).await();
+        byte[] data = createBackup();
+        String desc = String.format(Text.get("CLOUD_AUTOSAVE_DESC"),
+                PuzzleHelper.getTotalStars(),
+                Statistic.getCurrency(),
+                BuildConfig.VERSION_NAME);
+        Bitmap cover = BitmapFactory.decodeResource(context.getResources(), R.drawable.main_logo);
+
+        // Check the result of the open operation
+        if (result.getStatus().isSuccess()) {
+            Snapshot snapshot = result.getSnapshot();
+            snapshot.getSnapshotContents().writeBytes(data);
+
+            // Create the change operation
+            SnapshotMetadataChange metadataChange = new
+                    SnapshotMetadataChange.Builder()
+                    .setCoverImage(cover)
+                    .setDescription(desc)
+                    .build();
+
+            Games.Snapshots.commitAndClose(mGoogleApiClient, snapshot, metadataChange);
+
+            Statistic lastAutosave = Statistic.find(Constants.STATISTIC_LAST_AUTOSAVE);
+            lastAutosave.setLongValue(System.currentTimeMillis());
+            lastAutosave.save();
+        }
+    }
+
+    public static boolean shouldAutosave() {
+        Statistic lastAutosave = find(Constants.STATISTIC_LAST_AUTOSAVE);
+        int minutesBetweenSaves = Setting.getInt(Constants.SETTING_AUTOSAVE_FREQUENCY);
+
+        if (minutesBetweenSaves == Constants.AUTOSAVE_NEVER) {
+            return false;
+        }
+
+        long nextAutosave = lastAutosave.getLongValue() + DateHelper.minutesToMilliseconds(minutesBetweenSaves);
+        return nextAutosave <= System.currentTimeMillis();
     }
 
     private static void saveToCloud() {

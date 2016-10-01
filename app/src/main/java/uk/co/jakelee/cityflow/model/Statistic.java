@@ -13,6 +13,7 @@ public class Statistic extends SugarRecord {
     private String stringValue;
     private String intValue;
     private String boolValue;
+    private String longValue;
     private int lastSentValue;
 
     public Statistic() {
@@ -33,6 +34,12 @@ public class Statistic extends SugarRecord {
     public Statistic(int statisticId, boolean boolValue) {
         this.statisticId = statisticId;
         this.boolValue = EncryptHelper.encode(boolValue, statisticId);
+        this.lastSentValue = Constants.STATISTIC_UNTRACKED;
+    }
+
+    public Statistic(int statisticId, long longValue) {
+        this.statisticId = statisticId;
+        this.longValue = EncryptHelper.encode(longValue, statisticId);
         this.lastSentValue = Constants.STATISTIC_UNTRACKED;
     }
 
@@ -64,6 +71,14 @@ public class Statistic extends SugarRecord {
 
     public void setIntValue(int intValue) {
         this.intValue = EncryptHelper.encode(intValue, statisticId);
+    }
+
+    public long getLongValue() {
+        return EncryptHelper.decodeToLong(longValue, statisticId);
+    }
+
+    public void setLongValue(long longValue) {
+        this.longValue = EncryptHelper.encode(longValue, statisticId);
     }
 
     public boolean isBoolValue() {
@@ -106,7 +121,7 @@ public class Statistic extends SugarRecord {
         }
     }
 
-    public static int get(int statisticId) {
+    public static int getInt(int statisticId) {
         Statistic statToIncrease = Select.from(Statistic.class).where(
                 Condition.prop("statistic_id").eq(statisticId)).first();
 

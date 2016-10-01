@@ -50,7 +50,7 @@
 
                     <uk.co.jakelee.cityflow.components.TextAwesome
                         android:id="@+id/soundToggleButton"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:textSize="30sp"
@@ -72,7 +72,7 @@
 
                     <uk.co.jakelee.cityflow.components.TextAwesome
                         android:id="@+id/musicToggleButton"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:textSize="30sp"
@@ -115,7 +115,7 @@
 
                     <ImageView
                         android:id="@+id/backgroundPickerButton"
-                        android:layout_width="30dp"
+                        android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:onClick="openBackgroundPicker"/>
                 </TableRow>
@@ -134,7 +134,7 @@
 
                     <uk.co.jakelee.cityflow.components.TextAwesome
                         android:id="@+id/zenToggleButton"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:textSize="30sp"
@@ -156,7 +156,7 @@
 
                     <uk.co.jakelee.cityflow.components.TextAwesome
                         android:id="@+id/hideBoostButton"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:textSize="30sp"
@@ -177,7 +177,7 @@
 
                     <uk.co.jakelee.cityflow.components.AutofitTextViewFont
                         android:id="@+id/playerNameDisplay"
-                        android:layout_width="30dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
@@ -185,6 +185,7 @@
                         android:textSize="20sp"
                         android:ellipsize="end"
                         android:maxLines="3"
+                        android:background="@color/ltltgrey"
                         android:onClick="changeText"/>
                 </TableRow>
 
@@ -202,7 +203,7 @@
 
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/minZoomButton"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="30sp"
                         android:padding="10dp"
@@ -210,6 +211,7 @@
                         android:singleLine="true"
                         android:layout_gravity="center_horizontal"
                         android:onClick="changeFloat"
+                        android:background="@color/ltltgrey"
                         android:tag="3"/>
                 </TableRow>
 
@@ -227,7 +229,7 @@
 
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/maxZoomButton"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="30sp"
                         android:padding="10dp"
@@ -235,6 +237,7 @@
                         android:singleLine="true"
                         android:layout_gravity="center_horizontal"
                         android:onClick="changeFloat"
+                        android:background="@color/ltltgrey"
                         android:tag="4"/>
                 </TableRow>
 
@@ -252,7 +255,7 @@
 
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/maxCarsButton"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="30sp"
                         android:ellipsize="end"
@@ -286,81 +289,135 @@
                 </TableRow>
 
                 <TableRow>
-                    <uk.co.jakelee.cityflow.components.TextViewFont
-                        android:id="@+id/signInButton"
+                    <LinearLayout
+                        android:id="@+id/googlePlayFeatureButtons"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center_horizontal"
-                        android:onClick="signIn"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+                        <uk.co.jakelee.cityflow.components.TextViewFont
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/ltltgrey"
+                            android:padding="5dp"
+                            android:layout_margin="5dp"
+                            android:gravity="center"
+                            android:text="A"
+                            android:textColor="@color/black"
+                            android:textSize="22sp"
+                            android:onClick="openAchievements"/>
+                        <uk.co.jakelee.cityflow.components.TextViewFont
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/ltltgrey"
+                            android:padding="5dp"
+                            android:layout_margin="5dp"
+                            android:gravity="center"
+                            android:text="Q"
+                            android:textColor="@color/black"
+                            android:textSize="22sp"
+                            android:onClick="openQuests"/>
+                        <uk.co.jakelee.cityflow.components.TextViewFont
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/ltltgrey"
+                            android:padding="5dp"
+                            android:layout_margin="5dp"
+                            android:gravity="center"
+                            android:text="L"
+                            android:textColor="@color/black"
+                            android:textSize="22sp"
+                            android:onClick="openLeaderboards"/>
+                        <uk.co.jakelee.cityflow.components.TextViewFont
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/ltltgrey"
+                            android:padding="5dp"
+                            android:layout_margin="5dp"
+                            android:gravity="center"
+                            android:text="C"
+                            android:textColor="@color/black"
+                            android:textSize="22sp"
+                            android:onClick="openCloudSaves"/>
+                    </LinearLayout>
+                    <RelativeLayout android:gravity="center">
+                        <uk.co.jakelee.cityflow.components.TextViewFont
+                            android:id="@+id/signInButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:layout_margin="5dp"
+                            android:background="@color/ltltgrey"
+                            android:onClick="signIn"
+                            android:textColor="@color/black"
+                            android:textSize="22sp" />
+                        <uk.co.jakelee.cityflow.components.TextViewFont
+                            android:id="@+id/signOutButton"
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:layout_margin="5dp"
+                            android:background="@color/ltltgrey"
+                            android:gravity="center"
+                            android:onClick="signOut"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"/>
+                    </RelativeLayout>
                 </TableRow>
 
                 <TableRow>
                     <uk.co.jakelee.cityflow.components.TextViewFont
-                        android:id="@+id/signOutButton"
-                        android:visibility="gone"
+                        android:id="@+id/autosaveText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
-                        android:gravity="center_horizontal"
-                        android:onClick="signOut"
+                        android:gravity="left"
                         android:textColor="@color/black"
-                        android:textSize="20sp"/>
+                        android:textSize="20sp" />
+
+                    <uk.co.jakelee.cityflow.components.TextViewFont
+                        android:id="@+id/autosaveDisplay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="30sp"
+                        android:padding="10dp"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:layout_gravity="center_horizontal"
+                        android:onClick="changeInt"
+                        android:background="@color/ltltgrey"
+                        android:tag="11"/>
                 </TableRow>
 
-                <TableRow
-                    android:id="@+id/googlePlayFeatureButtons"
-                    android:visibility="gone">
+                <TableRow>
                     <uk.co.jakelee.cityflow.components.TextViewFont
-                        android:layout_width="wrap_content"
+                        android:id="@+id/lastAutosaveText"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/ltltgrey"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <uk.co.jakelee.cityflow.components.TextViewFont
+                        android:id="@+id/lastAutosaveDisplay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
                         android:padding="5dp"
                         android:layout_margin="5dp"
-                        android:gravity="center"
-                        android:text="A"
-                        android:textColor="@color/black"
-                        android:textSize="26sp"
-                        android:onClick="openAchievements"/>
-                    <uk.co.jakelee.cityflow.components.TextViewFont
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/ltltgrey"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:gravity="center"
-                        android:text="Q"
-                        android:textColor="@color/black"
-                        android:textSize="26sp"
-                        android:onClick="openQuests"/>
-                    <uk.co.jakelee.cityflow.components.TextViewFont
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/ltltgrey"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:gravity="center"
-                        android:text="L"
-                        android:textColor="@color/black"
-                        android:textSize="26sp"
-                        android:onClick="openLeaderboards"/>
-                    <uk.co.jakelee.cityflow.components.TextViewFont
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/ltltgrey"
-                        android:padding="5dp"
-                        android:layout_margin="5dp"
-                        android:gravity="center"
-                        android:text="C"
-                        android:textColor="@color/black"
-                        android:textSize="26sp"
-                        android:onClick="openCloudSaves"/>
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:layout_gravity="center_horizontal"/>
                 </TableRow>
             </TableLayout>
 

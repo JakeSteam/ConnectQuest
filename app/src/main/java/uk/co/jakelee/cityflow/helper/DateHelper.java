@@ -14,7 +14,7 @@ public class DateHelper {
     private static final int MINUTES_IN_HOUR = 60;
 
     public static String displayTime(Long timestamp, String timeFormat) {
-        if (timestamp == Constants.PUZZLE_DEFAULT_TIME) {
+        if (timestamp == Constants.PUZZLE_DEFAULT_TIME || timestamp == 0L) {
             return "N/A";
         }
         Date date = new Date(timestamp);
