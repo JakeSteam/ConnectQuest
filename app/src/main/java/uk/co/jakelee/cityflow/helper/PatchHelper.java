@@ -677,16 +677,12 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_1_NAME", "Make The Loop"));
         puzzles.add(new Puzzle(1, 1, 3364L, 1, 0L, 0));
-        /*tiles.add(new Tile(1, 45, 0, 2, 4));
+        tiles.add(new Tile(1, 45, 0, 2, 4));
         tiles.add(new Tile(1, 3, 1, 2, 2));
         tiles.add(new Tile(1, 1, 0, 1, 2));
         tiles.add(new Tile(1, 5, 1, 1, 3));
         tiles.add(new Tile(1, 1, 0, 0, 4));
-        tiles.add(new Tile(1, 1, 1, 0, 4));*/
-        tiles.add(new Tile(1, 1, 0, 1, 4));
-        tiles.add(new Tile(1, 1, 1, 1, 4));
         tiles.add(new Tile(1, 1, 1, 0, 4));
-        tiles.add(new Tile(1, 1, 0, 0, 4));
 
 
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "PUZZLE_2_NAME", "Multiple Flows"));

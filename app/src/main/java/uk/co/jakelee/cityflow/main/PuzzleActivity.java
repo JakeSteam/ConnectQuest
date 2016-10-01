@@ -10,6 +10,8 @@ import android.os.SystemClock;
 import android.support.v4.content.ContextCompat;
 import android.util.Pair;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -350,6 +352,7 @@ public class PuzzleActivity extends Activity {
     }
 
     public void populatePuzzleCompleteScreen(Puzzle puzzle, boolean isFirstComplete, int originalStars, int stars, boolean isCustom) {
+        Animation myFadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.visibility_fade);
         if (!isCustom) {
             List<TileType> tilesUnlocked = puzzle.getUnlockableTiles();
             findViewById(R.id.tilesContainer).setVisibility((tilesUnlocked.size() > 0 && isFirstComplete) ? View.VISIBLE : View.INVISIBLE);
@@ -387,6 +390,14 @@ public class PuzzleActivity extends Activity {
             ((TextView) findViewById(R.id.mainActionButton)).setText(isCustom ? R.string.icon_edit : R.string.icon_next);
         } else {
             findViewById(R.id.mainActionButton).setVisibility(View.GONE);
+        }
+
+        findViewById(R.id.skyscraperCompletionGold).startAnimation(myFadeInAnimation);
+        if (timeProgress == 100) {
+            findViewById(R.id.skyscraperTimeGold).startAnimation(myFadeInAnimation);
+        }
+        if (moveProgress == 100) {
+            findViewById(R.id.skyscraperMovesGold).startAnimation(myFadeInAnimation);
         }
     }
 
