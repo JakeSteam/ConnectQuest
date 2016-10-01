@@ -22,7 +22,7 @@ public class CreditsActivity extends Activity {
         populateCredits();
         activateLinks();
 
-        Background background = Background.get(Constants.BACKGROUND_SUNRISE);
+        Background background = Background.get(Constants.BACKGROUND_SUMMER);
         if (!background.isUnlocked()) {
             background.setUnlocked(true);
         }

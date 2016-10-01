@@ -84,7 +84,7 @@ public class BackgroundPickerActivity extends Activity {
 
     private void updateBackgroundInfo() {
         ((TextView)findViewById(R.id.backgroundStatus)).setText(selectedBackground.isActive() ? R.string.icon_tick : selectedBackground.isUnlocked() ? R.string.icon_unlock : R.string.icon_lock);
-        ((TextView)findViewById(R.id.backgroundStatus)).setTextColor(ContextCompat.getColor(this, selectedBackground.isUnlocked() ? R.color.green : R.color.red));
+        ((TextView)findViewById(R.id.backgroundStatus)).setTextColor(selectedBackground.isUnlocked() ? ContextCompat.getColor(this, R.color.green) : selectedBackground.getBackgroundColour());
 
         ((TextView)findViewById(R.id.backgroundName)).setText(selectedBackground.isUnlocked() ? selectedBackground.getName() : "???");
         ((TextView)findViewById(R.id.backgroundHint)).setText(selectedBackground.getHint());

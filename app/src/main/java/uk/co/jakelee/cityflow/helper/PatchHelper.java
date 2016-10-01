@@ -25,46 +25,6 @@ import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_BARK;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_BLUE_SKIES;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_BLUISH;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_CAMOUFLAGE;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_CLAY;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_CLAY_GREY;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_CLOUDY;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_DEEP_SEA;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_DESERT;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_DIRTY;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_EARTH;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_EGGSHELL;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_OVERCAST;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_PEACH;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_FAWN;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_FERN;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_GRASS;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_LIMESTONE;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_LIMEY;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_MUDDY;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_MUDDY_PINK;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_MUSHROOM;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_NIGHT;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_OLIVE;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_OMINOUS;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_PASSIONFRUIT;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_PETALS;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_PINK;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_PLAIN;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_PRETTY_IN_PINK;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_RAINFOREST;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_RICH_LIMEY;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_SALMON;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_SAND;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_SEDONA;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_STORMY_SKY;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_SUMMER;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_SUNRISE;
-import static uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_THE_END;
-
 public class PatchHelper extends AsyncTask<String, String, String> {
     public final static int NO_DATABASE = 0;
     public final static int V1_0_0 = 1;
@@ -163,73 +123,90 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     private void createAchievement() {
         List<Achievement> achievements = new ArrayList<>();
-        achievements.add(new Achievement("Turn It Up 1", 100, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQAw"));
-        achievements.add(new Achievement("Turn It Up 2", 1000, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQFw"));
-        achievements.add(new Achievement("Turn It Up 3", 5000, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQGA"));
-        achievements.add(new Achievement("Turn It Up 4", 10000, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQGQ"));
-        achievements.add(new Achievement("The Best Quest 1", 5, Constants.STATISTIC_QUESTS_COMPLETED, "CgkIgrzuo64REAIQGg"));
-        achievements.add(new Achievement("The Best Quest 2", 25, Constants.STATISTIC_QUESTS_COMPLETED, "CgkIgrzuo64REAIQGw"));
-        achievements.add(new Achievement("The Best Quest 3", 75, Constants.STATISTIC_QUESTS_COMPLETED, "CgkIgrzuo64REAIQHA"));
-        achievements.add(new Achievement("The Best Quest 4", 200, Constants.STATISTIC_QUESTS_COMPLETED, "CgkIgrzuo64REAIQHQ"));
-        achievements.add(new Achievement("Working Your Way Through 1", 20, Constants.STATISTIC_PUZZLES_COMPLETED, "CgkIgrzuo64REAIQHg"));
-        achievements.add(new Achievement("Working Your Way Through 2", 100, Constants.STATISTIC_PUZZLES_COMPLETED, "CgkIgrzuo64REAIQHw"));
-        achievements.add(new Achievement("Working Your Way Through 3", 250, Constants.STATISTIC_PUZZLES_COMPLETED, "CgkIgrzuo64REAIQIA"));
-        achievements.add(new Achievement("Working Your Way Through 4", 1500, Constants.STATISTIC_PUZZLES_COMPLETED, "CgkIgrzuo64REAIQIQ"));
-        achievements.add(new Achievement("Completionist 1", 20, Constants.STATISTIC_PUZZLES_COMPLETED_FULLY, "CgkIgrzuo64REAIQIg"));
-        achievements.add(new Achievement("Completionist 2", 100, Constants.STATISTIC_PUZZLES_COMPLETED_FULLY, "CgkIgrzuo64REAIQIw"));
-        achievements.add(new Achievement("Completionist 3", 250, Constants.STATISTIC_PUZZLES_COMPLETED_FULLY, "CgkIgrzuo64REAIQJA"));
-        achievements.add(new Achievement("Completionist 4", 1500, Constants.STATISTIC_PUZZLES_COMPLETED_FULLY, "CgkIgrzuo64REAIQJQ"));
-        achievements.add(new Achievement("Activate Boost 1", 15, Constants.STATISTIC_BOOSTS_USED, "CgkIgrzuo64REAIQJg"));
-        achievements.add(new Achievement("Activate Boost 2", 80, Constants.STATISTIC_BOOSTS_USED, "CgkIgrzuo64REAIQJw"));
-        achievements.add(new Achievement("Activate Boost 3", 260, Constants.STATISTIC_BOOSTS_USED, "CgkIgrzuo64REAIQKA"));
-        achievements.add(new Achievement("Activate Boost 4", 1000, Constants.STATISTIC_BOOSTS_USED, "CgkIgrzuo64REAIQKQ"));
-        achievements.add(new Achievement("Complete Pack 1", 1, Constants.STATISTIC_COMPLETE_PACK_1, "CgkIgrzuo64REAIQKg"));
-        achievements.add(new Achievement("Complete Pack 2", 1, Constants.STATISTIC_COMPLETE_PACK_2, "CgkIgrzuo64REAIQKw"));
-        achievements.add(new Achievement("Complete Pack 3", 1, Constants.STATISTIC_COMPLETE_PACK_3, "CgkIgrzuo64REAIQLA"));
+        achievements.add(new Achievement("Turn It Up 1", 100, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQAw", Constants.BACKGROUND_SUNRISE));
+        achievements.add(new Achievement("Turn It Up 2", 1000, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQFw", Constants.BACKGROUND_GRASS));
+        achievements.add(new Achievement("Turn It Up 3", 5000, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQGA", Constants.BACKGROUND_SALMON));
+        achievements.add(new Achievement("Turn It Up 4", 10000, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQGQ", Constants.BACKGROUND_BLUISH));
+        achievements.add(new Achievement("The Best Quest 1", 5, Constants.STATISTIC_QUESTS_COMPLETED, "CgkIgrzuo64REAIQGg", Constants.BACKGROUND_PINK));
+        achievements.add(new Achievement("The Best Quest 2", 25, Constants.STATISTIC_QUESTS_COMPLETED, "CgkIgrzuo64REAIQGw", Constants.BACKGROUND_BARK));
+        achievements.add(new Achievement("The Best Quest 3", 75, Constants.STATISTIC_QUESTS_COMPLETED, "CgkIgrzuo64REAIQHA", Constants.BACKGROUND_EARTH));
+        achievements.add(new Achievement("The Best Quest 4", 200, Constants.STATISTIC_QUESTS_COMPLETED, "CgkIgrzuo64REAIQHQ", Constants.BACKGROUND_STORMY_SKY));
+        achievements.add(new Achievement("Working Your Way Through 1", 20, Constants.STATISTIC_PUZZLES_COMPLETED, "CgkIgrzuo64REAIQHg", Constants.BACKGROUND_DEEP_SEA));
+        achievements.add(new Achievement("Working Your Way Through 2", 100, Constants.STATISTIC_PUZZLES_COMPLETED, "CgkIgrzuo64REAIQHw", Constants.BACKGROUND_LIMESTONE));
+        achievements.add(new Achievement("Working Your Way Through 3", 250, Constants.STATISTIC_PUZZLES_COMPLETED, "CgkIgrzuo64REAIQIA", Constants.BACKGROUND_SAND));
+        achievements.add(new Achievement("Working Your Way Through 4", 1500, Constants.STATISTIC_PUZZLES_COMPLETED, "CgkIgrzuo64REAIQIQ", Constants.BACKGROUND_FERN));
+        achievements.add(new Achievement("Completionist 1", 20, Constants.STATISTIC_PUZZLES_COMPLETED_FULLY, "CgkIgrzuo64REAIQIg", Constants.BACKGROUND_OLIVE));
+        achievements.add(new Achievement("Completionist 2", 100, Constants.STATISTIC_PUZZLES_COMPLETED_FULLY, "CgkIgrzuo64REAIQIw", Constants.BACKGROUND_FAWN));
+        achievements.add(new Achievement("Completionist 3", 250, Constants.STATISTIC_PUZZLES_COMPLETED_FULLY, "CgkIgrzuo64REAIQJA", Constants.BACKGROUND_SEDONA));
+        achievements.add(new Achievement("Completionist 4", 1500, Constants.STATISTIC_PUZZLES_COMPLETED_FULLY, "CgkIgrzuo64REAIQJQ", Constants.BACKGROUND_EGGSHELL));
+        achievements.add(new Achievement("Activate Boost 1", 15, Constants.STATISTIC_BOOSTS_USED, "CgkIgrzuo64REAIQJg", Constants.BACKGROUND_LIMEY));
+        achievements.add(new Achievement("Activate Boost 2", 80, Constants.STATISTIC_BOOSTS_USED, "CgkIgrzuo64REAIQJw", Constants.BACKGROUND_RICH_LIMEY));
+        achievements.add(new Achievement("Activate Boost 3", 260, Constants.STATISTIC_BOOSTS_USED, "CgkIgrzuo64REAIQKA", Constants.BACKGROUND_CAMOUFLAGE));
+        achievements.add(new Achievement("Activate Boost 4", 1000, Constants.STATISTIC_BOOSTS_USED, "CgkIgrzuo64REAIQKQ", Constants.BACKGROUND_OMINOUS));
+        achievements.add(new Achievement("Complete Pack 1", 1, Constants.STATISTIC_COMPLETE_PACK_1, "CgkIgrzuo64REAIQKg", Constants.BACKGROUND_CLOUDY));
+        achievements.add(new Achievement("Complete Pack 2", 1, Constants.STATISTIC_COMPLETE_PACK_2, "CgkIgrzuo64REAIQKw", Constants.BACKGROUND_BLUE_SKIES));
+        achievements.add(new Achievement("Complete Pack 3", 1, Constants.STATISTIC_COMPLETE_PACK_3, "CgkIgrzuo64REAIQLA", Constants.BACKGROUND_PETALS));
         Achievement.saveInTx(achievements);
     }
 
     private void createBackground() {
         List<Background> backgrounds = new ArrayList<>();
-        backgrounds.add(new Background(BACKGROUND_PLAIN, "FFFFFF", true, true)); // Unlocked by default
-        backgrounds.add(new Background(BACKGROUND_NIGHT, "000000")); // Unlocked from turning tile achievement
-        backgrounds.add(new Background(BACKGROUND_SUNRISE, "FFF0C0")); // Unlocked from opening credits
-        backgrounds.add(new Background(BACKGROUND_GRASS, "e1f7d5")); //
-        backgrounds.add(new Background(BACKGROUND_SALMON, "ffbdbd")); //
-        backgrounds.add(new Background(BACKGROUND_BLUISH, "c9c9ff")); //
-        backgrounds.add(new Background(BACKGROUND_PINK, "f1cbff")); //
-        backgrounds.add(new Background(BACKGROUND_BARK, "756454")); //
-        backgrounds.add(new Background(BACKGROUND_EARTH, "483e34")); //
-        backgrounds.add(new Background(BACKGROUND_STORMY_SKY, "606060")); //
-        backgrounds.add(new Background(BACKGROUND_DEEP_SEA, "8f99a3")); //
-        backgrounds.add(new Background(BACKGROUND_LIMESTONE, "a0a0a0")); //
-        backgrounds.add(new Background(BACKGROUND_SAND, "cac9b4")); //
-        backgrounds.add(new Background(BACKGROUND_FERN, "9eac95")); //
-        backgrounds.add(new Background(BACKGROUND_OLIVE, "737663")); //
-        backgrounds.add(new Background(BACKGROUND_FAWN, "c4b49b")); //
-        backgrounds.add(new Background(BACKGROUND_SEDONA, "96744e")); //
-        backgrounds.add(new Background(BACKGROUND_EGGSHELL, "ece9e4")); //
-        backgrounds.add(new Background(BACKGROUND_CLAY, "e3e3e3")); //
-        backgrounds.add(new Background(BACKGROUND_CLAY_GREY, "c9c7ca")); //
-        backgrounds.add(new Background(BACKGROUND_MUDDY, "c1bab4")); //
-        backgrounds.add(new Background(BACKGROUND_MUDDY_PINK, "decfd2")); //
-        backgrounds.add(new Background(BACKGROUND_LIMEY, "e8e9e6")); //
-        backgrounds.add(new Background(BACKGROUND_RICH_LIMEY, "cbd5d2")); //
-        backgrounds.add(new Background(BACKGROUND_CAMOUFLAGE, "919f9e")); //
-        backgrounds.add(new Background(BACKGROUND_OMINOUS, "424a58")); //
-        backgrounds.add(new Background(BACKGROUND_CLOUDY, "b9c6d2")); //
-        backgrounds.add(new Background(BACKGROUND_BLUE_SKIES, "e4ebf3")); //
-        backgrounds.add(new Background(BACKGROUND_PETALS, "8eb9a8")); //
-        backgrounds.add(new Background(BACKGROUND_SUMMER, "fefbd0")); //
-        backgrounds.add(new Background(BACKGROUND_PEACH, "fdcfb7")); //
-        backgrounds.add(new Background(BACKGROUND_PASSIONFRUIT, "f4828c")); //
-        backgrounds.add(new Background(BACKGROUND_THE_END, "775c6a")); //
-        backgrounds.add(new Background(BACKGROUND_DESERT, "f7ecd6")); //
-        backgrounds.add(new Background(BACKGROUND_DIRTY, "ddb4a0")); //
-        backgrounds.add(new Background(BACKGROUND_OVERCAST, "d0c6c4")); //
-        backgrounds.add(new Background(BACKGROUND_PRETTY_IN_PINK, "f8e4e3")); //
-        backgrounds.add(new Background(BACKGROUND_RAINFOREST, "7ca0a0")); //
-        backgrounds.add(new Background(BACKGROUND_MUSHROOM, "8e857c")); //
+        // Unlocked by default
+        backgrounds.add(new Background(Constants.BACKGROUND_PLAIN, "FFFFFF", true, true));
+
+        // Open credits
+        backgrounds.add(new Background(Constants.BACKGROUND_SUMMER, "fefbd0"));
+
+        // Tile turning achievements
+        backgrounds.add(new Background(Constants.BACKGROUND_SUNRISE, "FFF0C0"));
+        backgrounds.add(new Background(Constants.BACKGROUND_GRASS, "e1f7d5"));
+        backgrounds.add(new Background(Constants.BACKGROUND_SALMON, "ffbdbd"));
+        backgrounds.add(new Background(Constants.BACKGROUND_BLUISH, "c9c9ff"));
+
+        // Questing achievements
+        backgrounds.add(new Background(Constants.BACKGROUND_PINK, "f1cbff"));
+        backgrounds.add(new Background(Constants.BACKGROUND_BARK, "756454"));
+        backgrounds.add(new Background(Constants.BACKGROUND_EARTH, "483e34"));
+        backgrounds.add(new Background(Constants.BACKGROUND_STORMY_SKY, "606060"));
+
+        // Puzzles completed achievement
+        backgrounds.add(new Background(Constants.BACKGROUND_DEEP_SEA, "8f99a3"));
+        backgrounds.add(new Background(Constants.BACKGROUND_LIMESTONE, "a0a0a0"));
+        backgrounds.add(new Background(Constants.BACKGROUND_SAND, "cac9b4"));
+        backgrounds.add(new Background(Constants.BACKGROUND_FERN, "9eac95"));
+
+        // Puzzles fully completed achievement
+        backgrounds.add(new Background(Constants.BACKGROUND_OLIVE, "737663"));
+        backgrounds.add(new Background(Constants.BACKGROUND_FAWN, "c4b49b"));
+        backgrounds.add(new Background(Constants.BACKGROUND_SEDONA, "96744e"));
+        backgrounds.add(new Background(Constants.BACKGROUND_EGGSHELL, "ece9e4"));
+
+        // Boosts used achievement
+        backgrounds.add(new Background(Constants.BACKGROUND_LIMEY, "e8e9e6"));
+        backgrounds.add(new Background(Constants.BACKGROUND_RICH_LIMEY, "cbd5d2"));
+        backgrounds.add(new Background(Constants.BACKGROUND_CAMOUFLAGE, "919f9e"));
+        backgrounds.add(new Background(Constants.BACKGROUND_OMINOUS, "424a58"));
+
+        // Pack completion
+        backgrounds.add(new Background(Constants.BACKGROUND_CLOUDY, "b9c6d2"));
+        backgrounds.add(new Background(Constants.BACKGROUND_BLUE_SKIES, "e4ebf3"));
+        backgrounds.add(new Background(Constants.BACKGROUND_PETALS, "8eb9a8"));
+
+        // Unassigned
+        backgrounds.add(new Background(Constants.BACKGROUND_CLAY, "e3e3e3"));
+        backgrounds.add(new Background(Constants.BACKGROUND_CLAY_GREY, "c9c7ca"));
+        backgrounds.add(new Background(Constants.BACKGROUND_MUDDY, "c1bab4"));
+        backgrounds.add(new Background(Constants.BACKGROUND_MUDDY_PINK, "decfd2"));
+        backgrounds.add(new Background(Constants.BACKGROUND_PEACH, "fdcfb7"));
+        backgrounds.add(new Background(Constants.BACKGROUND_PASSIONFRUIT, "f4828c"));
+        backgrounds.add(new Background(Constants.BACKGROUND_THE_END, "775c6a"));
+        backgrounds.add(new Background(Constants.BACKGROUND_DESERT, "f7ecd6"));
+        backgrounds.add(new Background(Constants.BACKGROUND_DIRTY, "ddb4a0"));
+        backgrounds.add(new Background(Constants.BACKGROUND_OVERCAST, "d0c6c4"));
+        backgrounds.add(new Background(Constants.BACKGROUND_PRETTY_IN_PINK, "f8e4e3"));
+        backgrounds.add(new Background(Constants.BACKGROUND_RAINFOREST, "7ca0a0"));
+        backgrounds.add(new Background(Constants.BACKGROUND_MUSHROOM, "8e857c"));
+        backgrounds.add(new Background(Constants.BACKGROUND_NIGHT, "000000"));
         Background.saveInTx(backgrounds);
     }
 
