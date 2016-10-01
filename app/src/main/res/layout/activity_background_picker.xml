@@ -14,9 +14,11 @@
     <RelativeLayout
         android:id="@+id/popupWrapper"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_marginLeftPercent="10%"
         app:layout_marginRightPercent="10%"
+        app:layout_marginTopPercent="10%"
+        app:layout_marginBottomPercent="10%"
         android:padding="10dp"
         android:background="@color/city"
         android:layout_centerInParent="true"
@@ -81,12 +83,12 @@
             android:id="@+id/save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/backgroundHint"
             android:padding="10dp"
             android:background="@color/blue"
             android:textSize="24sp"
             android:onClick="saveBackground"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"/>
     </RelativeLayout>
 
     <uk.co.jakelee.cityflow.components.TextAwesome
