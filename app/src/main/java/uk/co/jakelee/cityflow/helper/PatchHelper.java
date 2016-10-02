@@ -289,11 +289,11 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_26_NAME", "Ominous"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_26_HINT", "Unlocked by completing achievement \"Activate Boost 4\"."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_27_NAME", "Cloudy"));
-        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_27_HINT", "Unlocked by competing Pack 1."));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_27_HINT", "Unlocked by completing Pack 1."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_28_NAME", "Blue Skies"));
-        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_28_HINT", "Unlocked by competing Pack 2."));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_28_HINT", "Unlocked by completing Pack 2."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_29_NAME", "Petals"));
-        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_29_HINT", "Unlocked by competing Pack 3."));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_29_HINT", "Unlocked by completing Pack 3."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_30_NAME", "Summer"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_30_HINT", "Unlocked by viewing the credits."));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "BACKGROUND_31_NAME", "Peach"));
@@ -502,7 +502,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_5_NAME", "Boosts Used"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_6_NAME", "Pack 1 Completed"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_7_NAME", "Pack 2 Completed"));
-        texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_8_NAME", "Pack 3 Complete"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_8_NAME", "Pack 3 Completed"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_9_NAME", "Coins"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_10_NAME", "TapJoy Coins"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_11_NAME", "Last Autosave"));

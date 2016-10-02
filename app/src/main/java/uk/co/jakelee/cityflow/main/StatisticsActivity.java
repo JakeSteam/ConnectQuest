@@ -8,9 +8,9 @@ import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.orm.query.Select;
-
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.components.TextViewFont;
@@ -36,11 +36,19 @@ public class StatisticsActivity extends Activity {
         LinearLayout container = (LinearLayout) findViewById(R.id.statisticsContainer);
         container.removeAllViews();
 
-        List<Statistic> statistics = Select.from(Statistic.class).orderBy("string_value DESC, int_value DESC, long_value DESC").list();
-        for (Statistic statistic : statistics) {
+        // Get sorted map of name + value
+        List<Statistic> statistics = Statistic.listAll(Statistic.class);
+        Map<String,String> statisticsInfo = new TreeMap<>();
+        for (int i = 0; i < statistics.size(); i++) {
+            Statistic statistic = statistics.get(i);
+            statisticsInfo.put(statistic.getName(), StatisticHelper.getStatisticString(statistic));
+        }
+
+        // Create row for each
+        for (Map.Entry<String, String> statistic : statisticsInfo.entrySet()) {
             TableRow tableRow = new TableRow(this);
-            tableRow.addView(createTextView(statistic.getName(), true));
-            tableRow.addView(createTextView(StatisticHelper.getStatisticString(statistic), false));
+            tableRow.addView(createTextView(statistic.getKey(), true));
+            tableRow.addView(createTextView(statistic.getValue(), false));
             container.addView(tableRow);
         }
     }
