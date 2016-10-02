@@ -85,7 +85,9 @@ public class SettingsActivity extends Activity {
         ((TextView) findViewById(R.id.soundToggleButton)).setTextColor(ContextCompat.getColor(this, Setting.getSafeBoolean(Constants.SETTING_SOUNDS) ? R.color.green : R.color.red));
 
         // Gameplay settings
-        findViewById(R.id.backgroundPickerButton).setBackgroundColor(Background.getActiveBackgroundColour());
+        Background background = Background.getActiveBackground();
+        ((TextView)findViewById(R.id.backgroundPickerButton)).setText(background.getName());
+        findViewById(R.id.backgroundPickerButton).setBackgroundColor(background.getBackgroundColour());
 
         ((TextView) findViewById(R.id.zenToggleButton)).setText(Setting.getSafeBoolean(Constants.SETTING_ZEN_MODE) ? R.string.icon_tick : R.string.icon_cross);
         ((TextView) findViewById(R.id.zenToggleButton)).setTextColor(ContextCompat.getColor(this, Setting.getSafeBoolean(Constants.SETTING_ZEN_MODE) ? R.color.green : R.color.red));
