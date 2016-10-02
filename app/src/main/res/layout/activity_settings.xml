@@ -309,53 +309,45 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:visibility="gone">
-                    <uk.co.jakelee.cityflow.components.TextViewFont
+                    <ImageView
                         android:layout_weight="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:background="@color/ltltgrey"
-                        android:padding="5dp"
+                        android:src="@drawable/ic_achievements"
+                        android:padding="2dp"
                         android:layout_margin="5dp"
                         android:gravity="center"
-                        android:text="A"
-                        android:textColor="@color/black"
-                        android:textSize="22sp"
                         android:onClick="openAchievements"/>
-                    <uk.co.jakelee.cityflow.components.TextViewFont
+                    <ImageView
                         android:layout_weight="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:background="@color/ltltgrey"
-                        android:padding="5dp"
+                        android:src="@drawable/ic_quests"
+                        android:padding="2dp"
                         android:layout_margin="5dp"
                         android:gravity="center"
-                        android:text="Q"
-                        android:textColor="@color/black"
-                        android:textSize="22sp"
                         android:onClick="openQuests"/>
-                    <uk.co.jakelee.cityflow.components.TextViewFont
+                    <ImageView
                         android:layout_weight="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:background="@color/ltltgrey"
-                        android:padding="5dp"
+                        android:src="@drawable/ic_leaderboards"
+                        android:padding="2dp"
                         android:layout_margin="5dp"
                         android:gravity="center"
-                        android:text="L"
-                        android:textColor="@color/black"
-                        android:textSize="22sp"
                         android:onClick="openLeaderboards"/>
-                    <uk.co.jakelee.cityflow.components.TextViewFont
+                    <ImageView
                         android:layout_weight="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:background="@color/ltltgrey"
-                        android:padding="5dp"
+                        android:src="@drawable/ic_saves"
+                        android:padding="2dp"
                         android:layout_margin="5dp"
                         android:gravity="center"
-                        android:text="C"
-                        android:textColor="@color/black"
-                        android:textSize="22sp"
                         android:onClick="openCloudSaves"/>
                 </LinearLayout>
 
