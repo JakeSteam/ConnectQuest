@@ -7,9 +7,11 @@ import com.orm.query.Select;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.EncryptHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
+import uk.co.jakelee.cityflow.helper.StatisticHelper;
 
 public class Statistic extends SugarRecord {
     private int statisticId;
+    private StatisticHelper.StatisticType statisticType;
     private String stringValue;
     private String intValue;
     private String boolValue;
@@ -21,30 +23,35 @@ public class Statistic extends SugarRecord {
 
     public Statistic(int statisticId, String stringValue) {
         this.statisticId = statisticId;
+        this.statisticType = StatisticHelper.StatisticType.typeString;
         this.stringValue = EncryptHelper.encode(stringValue, statisticId);
         this.lastSentValue = Constants.STATISTIC_UNTRACKED;
     }
 
     public Statistic(int statisticId, int intValue) {
         this.statisticId = statisticId;
+        this.statisticType = StatisticHelper.StatisticType.typeInt;
         this.intValue = EncryptHelper.encode(intValue, statisticId);
         this.lastSentValue = Constants.STATISTIC_UNTRACKED;
     }
 
     public Statistic(int statisticId, boolean boolValue) {
         this.statisticId = statisticId;
+        this.statisticType = StatisticHelper.StatisticType.typeBool;
         this.boolValue = EncryptHelper.encode(boolValue, statisticId);
         this.lastSentValue = Constants.STATISTIC_UNTRACKED;
     }
 
     public Statistic(int statisticId, long longValue) {
         this.statisticId = statisticId;
+        this.statisticType = StatisticHelper.StatisticType.typeLong;
         this.longValue = EncryptHelper.encode(longValue, statisticId);
         this.lastSentValue = Constants.STATISTIC_UNTRACKED;
     }
 
     public Statistic(int statisticId, int intValue, int lastSentValue) {
         this.statisticId = statisticId;
+        this.statisticType = StatisticHelper.StatisticType.typeInt;
         this.intValue = EncryptHelper.encode(intValue, statisticId);
         this.lastSentValue = lastSentValue;
     }
@@ -55,6 +62,14 @@ public class Statistic extends SugarRecord {
 
     public void setStatisticId(int statisticId) {
         this.statisticId = statisticId;
+    }
+
+    public StatisticHelper.StatisticType getStatisticType() {
+        return statisticType;
+    }
+
+    public void setStatisticType(StatisticHelper.StatisticType statisticType) {
+        this.statisticType = statisticType;
     }
 
     public String getStringValue() {

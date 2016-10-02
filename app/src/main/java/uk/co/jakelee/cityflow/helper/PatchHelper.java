@@ -365,6 +365,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_DELETE", "Delete"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_BUTTON_RESIZE", "Resize"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_RESIZE_CONFIRM", "Are you sure you want to resize the puzzle from %1$dx%2$d to %3$dx%4$d?"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_STATISTICS", "Statistics"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_SUPPORT_CODE", "Support Code"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_CREDITS", "Credits"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "DIALOG_PLAY", "Play Puzzle"));
@@ -496,7 +497,15 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "SHOP_MAX_PURCHASED", "Maximum Purchased"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_1_NAME", "Puzzles Completed"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_2_NAME", "Tiles Rotated"));
-        texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_11_NAME", "Last Autosaved"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_3_NAME", "Quests Completed"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_4_NAME", "Puzzles Fully Completed"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_5_NAME", "Boosts Used"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_6_NAME", "Pack 1 Completed"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_7_NAME", "Pack 2 Completed"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_8_NAME", "Pack 3 Complete"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_9_NAME", "Coins"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_10_NAME", "TapJoy Coins"));
+        texts.add(new Text(Constants.LANGUAGE_EN_GB, "STATISTIC_11_NAME", "Last Autosave"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "SUCCESS_SUPPORT_CODE", "Successfully applied support code!"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_0_NAME", "Invisible Tile"));
         texts.add(new Text(Constants.LANGUAGE_EN_GB, "TILE_1_NAME", "Grass Road Corner"));

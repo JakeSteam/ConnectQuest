@@ -15,7 +15,6 @@ import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
-import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Setting;
@@ -24,13 +23,11 @@ import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class SettingsActivity extends Activity {
-    private DisplayHelper dh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        dh = DisplayHelper.getInstance(this);
     }
 
     @Override
@@ -73,8 +70,9 @@ public class SettingsActivity extends Activity {
         ((TextView) findViewById(R.id.lastAutosaveText)).setText(Text.get("STATISTIC_11_NAME"));
 
         ((TextView) findViewById(R.id.settingSectionOther)).setText(Text.get("SETTING_SECTION_OTHER"));
-        ((TextView) findViewById(R.id.supportCodeButton)).setText(Text.get("DIALOG_SUPPORT_CODE"));
         ((TextView) findViewById(R.id.creditsButton)).setText(Text.get("DIALOG_CREDITS"));
+        ((TextView) findViewById(R.id.statisticsButton)).setText(Text.get("DIALOG_STATISTICS"));
+        ((TextView) findViewById(R.id.supportCodeButton)).setText(Text.get("DIALOG_SUPPORT_CODE"));
     }
 
     public void populateSettings() {
@@ -157,6 +155,12 @@ public class SettingsActivity extends Activity {
 
     public void openCredits(View v) {
         Intent intent = new Intent(this, CreditsActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
+    }
+
+    public void openStatistics(View v) {
+        Intent intent = new Intent(this, StatisticsActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }

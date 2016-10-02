@@ -1,0 +1,59 @@
+package uk.co.jakelee.cityflow.main;
+
+import android.app.Activity;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+
+import com.orm.query.Select;
+
+import java.util.List;
+
+import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.components.TextViewFont;
+import uk.co.jakelee.cityflow.helper.StatisticHelper;
+import uk.co.jakelee.cityflow.model.Statistic;
+
+public class StatisticsActivity extends Activity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_statistics);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        displayStatistics();
+    }
+
+    private void displayStatistics() {
+        LinearLayout container = (LinearLayout) findViewById(R.id.statisticsContainer);
+        container.removeAllViews();
+
+        List<Statistic> statistics = Select.from(Statistic.class).orderBy("string_value DESC, int_value DESC, long_value DESC").list();
+        for (Statistic statistic : statistics) {
+            TableRow tableRow = new TableRow(this);
+            tableRow.addView(createTextView(statistic.getName(), true));
+            tableRow.addView(createTextView(StatisticHelper.getStatisticString(statistic), false));
+            container.addView(tableRow);
+        }
+    }
+
+    private TextView createTextView(String text, boolean isHeader) {
+        TextViewFont textView = new TextViewFont(this);
+        textView.setTextColor(isHeader ? Color.BLACK : Color.DKGRAY);
+        textView.setTextSize(20);
+        textView.setText(text);
+        return textView;
+    }
+
+    public void closePopup (View v) {
+        this.finish();
+    }
+}
