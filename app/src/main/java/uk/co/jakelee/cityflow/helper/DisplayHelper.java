@@ -106,14 +106,12 @@ public class DisplayHelper {
         ((TextView)puzzleButton.findViewById(R.id.puzzleStatus)).setTextColor(ContextCompat.getColor(activity,
                 !lastLevelCompleted ? R.color.ltred : hasAllStars ? R.color.gold : hasCompleted ? R.color.dkgreen : R.color.ltgrey));
 
-        if (lastLevelCompleted) {
-            puzzleButton.setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View v) {
-                    activity.selectedPuzzle = puzzle;
-                    activity.populatePuzzles();
-                }
-            });
-        }
+        puzzleButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                activity.selectedPuzzle = puzzle;
+                activity.populatePuzzles();
+            }
+        });
         return puzzleButton;
     }
 

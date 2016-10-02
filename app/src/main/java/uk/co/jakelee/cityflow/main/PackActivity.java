@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -25,6 +24,7 @@ public class PackActivity extends Activity {
     private DisplayHelper dh;
     private Pack selectedPack;
     public Puzzle selectedPuzzle = new Puzzle();
+    private int lastCompletedPuzzle = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +42,12 @@ public class PackActivity extends Activity {
         ((TextView) findViewById(R.id.bestTime)).setText(Text.get("METRIC_BEST_TIME"));
         ((TextView) findViewById(R.id.bestMoves)).setText(Text.get("METRIC_BEST_MOVES"));
         ((TextView) findViewById(R.id.tilesEarned)).setText(Text.get("METRIC_TILES_EARNED"));
-        ((TextView) findViewById(R.id.puzzleButton)).setText(Text.get("WORD_START"));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        this.lastCompletedPuzzle = 0;
 
         selectedPuzzle = Puzzle.getPuzzle(selectedPuzzle.getPuzzleId());
         populatePuzzles();
@@ -64,28 +64,29 @@ public class PackActivity extends Activity {
         List<Puzzle> puzzles = selectedPack.getPuzzles();
         int numPuzzles = puzzles.size();
         TableRow row = new TableRow(this);
-        boolean lastLevelCompleted = true;
         for (int puzzleIndex = 1; puzzleIndex <= numPuzzles; puzzleIndex++) {
             Puzzle puzzle = puzzles.get(puzzleIndex - 1);
             if (selectedPuzzle == null || selectedPuzzle.getPuzzleId() == 0) {
                 selectedPuzzle = puzzle;
             }
+
+            if (puzzle.hasCompletionStar()) {
+                lastCompletedPuzzle = puzzle.getPuzzleId();
+            }
+
             boolean isSelected = selectedPuzzle.getPuzzleId() == puzzle.getPuzzleId();
-            row.addView(dh.createPuzzleSelectButton(this, puzzle.getPuzzleId(), puzzle, isSelected, lastLevelCompleted), layoutParams);
+            row.addView(dh.createPuzzleSelectButton(this, puzzle.getPuzzleId(), puzzle, isSelected, puzzle.getPuzzleId() <= lastCompletedPuzzle + 1), layoutParams);
 
             if (puzzleIndex % 4 == 0 || puzzleIndex == numPuzzles) {
                 puzzleContainer.addView(row);
                 row = new TableRow(this);
             }
-
-            lastLevelCompleted = puzzle.hasCompletionStar();
         }
 
         showPuzzleInfo();
     }
 
     public void showPuzzleInfo() {
-        final Activity activity = this;
         ((ImageView) findViewById(R.id.puzzleImage)).setImageDrawable(dh.getPuzzleDrawable(selectedPuzzle.getPuzzleId(), selectedPuzzle.hasCompletionStar()));
         findViewById(R.id.puzzleImageQuestion).setVisibility(selectedPuzzle.hasCompletionStar() ? View.INVISIBLE : View.VISIBLE);
         ((TextView) findViewById(R.id.puzzleName)).setText(selectedPuzzle.getName());
@@ -103,16 +104,18 @@ public class PackActivity extends Activity {
         ((TextView) findViewById(R.id.puzzleTilesUnlocked)).setText((selectedPuzzle.hasCompletionStar() ? numTiles : 0) + " / " + numTiles);
         ((TextView) findViewById(R.id.puzzleTilesUnlocked)).setTextColor(selectedPuzzle.hasCompletionStar() ? Color.YELLOW : Color.BLACK);
 
-        findViewById(R.id.puzzleButton).setTag(R.id.puzzleId, selectedPuzzle.getPuzzleId());
-        findViewById(R.id.puzzleButton).setTag(R.id.puzzleIsCustom, false);
-        findViewById(R.id.puzzleButton).setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(activity, PuzzleActivity.class);
-                intent.putExtra(Constants.INTENT_PUZZLE, (int) v.getTag(R.id.puzzleId));
-                intent.putExtra(Constants.INTENT_PUZZLE_TYPE, (boolean) v.getTag(R.id.puzzleIsCustom));
-                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(intent);
-            }
-        });
+        ((TextView) findViewById(R.id.puzzleButton)).setText(Text.get((selectedPuzzle.getPuzzleId() <= lastCompletedPuzzle + 1) ?
+                "WORD_START" :
+                "WORD_LOCKED"));
+    }
+
+    public void startPuzzle(View v) {
+        if (selectedPuzzle.getPuzzleId() <= lastCompletedPuzzle + 1) {
+            Intent intent = new Intent(getApplicationContext(), PuzzleActivity.class);
+            intent.putExtra(Constants.INTENT_PUZZLE, selectedPuzzle.getPuzzleId());
+            intent.putExtra(Constants.INTENT_PUZZLE_TYPE, false);
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
+        }
     }
 }
