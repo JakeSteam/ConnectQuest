@@ -121,6 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:padding="5dp"
+                    android:gravity="center_horizontal"
                     android:textSize="20sp"
                     android:ellipsize="end"
                     android:onClick="openBackgroundPicker"/>
@@ -188,6 +189,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:padding="5dp"
+                    android:gravity="center_horizontal"
                     android:textSize="20sp"
                     android:ellipsize="end"
                     android:maxLines="3"
@@ -207,18 +209,18 @@
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
-                <uk.co.jakelee.cityflow.components.TextViewFont
+                <uk.co.jakelee.cityflow.components.AutofitTextViewFont
                     android:id="@+id/minZoomButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="30sp"
                     android:layout_margin="5dp"
-                    android:padding="10dp"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"
                     android:ellipsize="end"
-                    android:maxLines="1"
-                    android:layout_gravity="center_horizontal"
-                    android:onClick="changeFloat"
+                    android:maxLines="3"
                     android:background="@color/ltltgrey"
+                    android:onClick="changeFloat"
                     android:tag="3"/>
             </TableRow>
 
@@ -238,14 +240,14 @@
                     android:id="@+id/maxZoomButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="30sp"
-                    android:padding="10dp"
                     android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"
                     android:ellipsize="end"
-                    android:singleLine="true"
-                    android:layout_gravity="center_horizontal"
-                    android:onClick="changeFloat"
+                    android:maxLines="3"
                     android:background="@color/ltltgrey"
+                    android:onClick="changeFloat"
                     android:tag="4"/>
             </TableRow>
 
@@ -265,12 +267,14 @@
                     android:id="@+id/maxCarsButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="30sp"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"
                     android:ellipsize="end"
-                    android:singleLine="true"
-                    android:layout_gravity="center_horizontal"
+                    android:maxLines="3"
+                    android:background="@color/ltltgrey"
                     android:onClick="changeInt"
-                    android:padding="10dp"
                     android:tag="9"/>
             </TableRow>
 
@@ -350,6 +354,7 @@
                         android:textSize="22sp"
                         android:onClick="openCloudSaves"/>
                 </LinearLayout>
+
                 <RelativeLayout android:gravity="center">
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/signInButton"
@@ -357,7 +362,7 @@
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:layout_margin="5dp"
-                        android:background="@color/ltltgrey"
+                        android:background="@color/orange"
                         android:onClick="signIn"
                         android:textColor="@color/black"
                         android:textSize="22sp" />
@@ -368,7 +373,7 @@
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:layout_margin="5dp"
-                        android:background="@color/ltltgrey"
+                        android:background="@color/orange"
                         android:gravity="center"
                         android:onClick="signOut"
                         android:textColor="@color/black"
@@ -392,13 +397,14 @@
                     android:id="@+id/autosaveDisplay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="30sp"
-                    android:padding="10dp"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"
                     android:ellipsize="end"
-                    android:singleLine="true"
-                    android:layout_gravity="center_horizontal"
-                    android:onClick="changeInt"
+                    android:maxLines="3"
                     android:background="@color/ltltgrey"
+                    android:onClick="changeInt"
                     android:tag="11"/>
             </TableRow>
 
@@ -468,7 +474,10 @@
                     android:id="@+id/creditsButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="15dp"
                     android:gravity="center"
                     android:background="@color/ltltgrey"
                     android:layout_span="2"
