@@ -47,6 +47,7 @@ public class SettingsActivity extends Activity {
         findViewById(R.id.signInButton).setVisibility(isConnected ? View.GONE : View.VISIBLE);
         findViewById(R.id.signOutButton).setVisibility(isConnected ? View.VISIBLE : View.GONE);
         findViewById(R.id.googlePlayFeatureButtons).setVisibility(isConnected ? View.VISIBLE : View.GONE);
+        findViewById(R.id.autosaveRow).setVisibility(isConnected ? View.VISIBLE : View.GONE);
 
         findViewById(R.id.maxCarsContainer).setVisibility(ShopItem.isPurchased(Constants.ITEM_MAX_CARS) ? View.VISIBLE : View.GONE);
     }

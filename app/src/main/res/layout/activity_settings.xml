@@ -385,7 +385,7 @@
                 </RelativeLayout>
             </TableRow>
 
-            <TableRow>
+            <TableRow android:id="@+id/autosaveRow">
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/autosaveText"
                     android:layout_width="match_parent"

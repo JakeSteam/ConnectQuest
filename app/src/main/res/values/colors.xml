@@ -11,6 +11,7 @@
     <color name="dkgreen">#699427</color>
     <color name="gold">#e6b800</color>
     <color name="red">#660000</color>
+    <color name="ltred">#eea7a7</color>
     <color name="blue">#1ea7e1</color>
     <color name="orange">#e86a17</color>
 </resources>

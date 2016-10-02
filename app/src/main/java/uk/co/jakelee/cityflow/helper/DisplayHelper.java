@@ -104,7 +104,7 @@ public class DisplayHelper {
         ((TextView)puzzleButton.findViewById(R.id.puzzleStatus)).setText(
                 !lastLevelCompleted ? R.string.icon_lock : hasAllStars ? R.string.icon_tick : hasCompleted ? R.string.icon_tick : R.string.icon_unlock);
         ((TextView)puzzleButton.findViewById(R.id.puzzleStatus)).setTextColor(ContextCompat.getColor(activity,
-                !lastLevelCompleted ? R.color.ltgrey : hasAllStars ? R.color.gold : hasCompleted ? R.color.dkgreen : R.color.ltgrey));
+                !lastLevelCompleted ? R.color.ltred : hasAllStars ? R.color.gold : hasCompleted ? R.color.dkgreen : R.color.ltgrey));
 
         if (lastLevelCompleted) {
             puzzleButton.setOnClickListener(new Button.OnClickListener() {
