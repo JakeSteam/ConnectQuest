@@ -206,7 +206,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         backgrounds.add(new Background(Constants.BACKGROUND_PRETTY_IN_PINK, "f8e4e3"));
         backgrounds.add(new Background(Constants.BACKGROUND_RAINFOREST, "7ca0a0"));
         backgrounds.add(new Background(Constants.BACKGROUND_MUSHROOM, "8e857c"));
-        backgrounds.add(new Background(Constants.BACKGROUND_NIGHT, "000000"));
+        backgrounds.add(new Background(Constants.BACKGROUND_NIGHT, "262626"));
         Background.saveInTx(backgrounds);
     }
 

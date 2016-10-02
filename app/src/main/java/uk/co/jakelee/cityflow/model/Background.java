@@ -6,8 +6,6 @@ import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
-import uk.co.jakelee.cityflow.helper.Constants;
-
 public class Background extends SugarRecord {
     private int backgroundId;
     private String hex;
@@ -70,7 +68,7 @@ public class Background extends SugarRecord {
     }
 
     public static int getActiveBackgroundColour() {
-        return Color.parseColor("#" + Setting.getString(Constants.SETTING_BACKGROUND));
+        return Color.parseColor("#" + Background.getActiveBackground().getHex());
     }
 
     public int getBackgroundColour() {
