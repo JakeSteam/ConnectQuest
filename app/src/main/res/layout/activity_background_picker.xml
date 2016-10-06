@@ -6,11 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".main.BackgroundPickerActivity">
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@color/black"
-        android:alpha="0.6"/>
     <RelativeLayout
         android:id="@+id/popupWrapper"
         android:layout_width="match_parent"

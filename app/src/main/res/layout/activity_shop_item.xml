@@ -6,12 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".main.ShopItemActivity">
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@color/black"
-        android:alpha="0.6"/>
-
     <RelativeLayout
         android:id="@+id/currencyCountWrapper"
         android:layout_width="match_parent"
