@@ -4,6 +4,8 @@ import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.Locale;
+
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.main.MainActivity;
 
@@ -63,9 +65,9 @@ public class Text extends SugarRecord{
 
     public static String get(String textId) {
         // Return selected language, fallback to english, fallback to text ID
-        int languageId = Constants.LANGUAGE_EN_GB;
+        int languageId = Constants.LANGUAGE_EN;
         if (MainActivity.prefs != null) {
-            languageId = MainActivity.prefs.getInt("language", Constants.LANGUAGE_EN_GB);
+            languageId = MainActivity.prefs.getInt("language", Constants.LANGUAGE_EN);
         }
 
         Text text = Select.from(Text.class).where(
@@ -78,8 +80,15 @@ public class Text extends SugarRecord{
 
         text = Select.from(Text.class).where(
                 Condition.prop("text_id").eq(textId),
-                Condition.prop("language").eq(Constants.LANGUAGE_EN_GB)).first();
+                Condition.prop("language").eq(Constants.LANGUAGE_EN)).first();
 
         return text != null ? text.getText() : textId;
+    }
+
+    public static int getDefaultLanguage() {
+        String languageCode = Locale.getDefault().getLanguage();
+        int language = Constants.LANGUAGE_EN;
+
+        return language;
     }
 }

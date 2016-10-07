@@ -151,8 +151,10 @@ public class Constants {
     public static final int ITEM_MAX_CARS = 20;
     public static final int ITEM_PACK_2 = 21;
     public static final int ITEM_PACK_3 = 22;
-    public static final int LANGUAGE_EN_GB = 1;
-    public static final int LANGUAGE_OTHER = 2;
+    public static final int LANGUAGE_MIN = 1;
+    public static final int LANGUAGE_MAX = 2;
+    public static final int LANGUAGE_EN = 1;
+    public static final int LANGUAGE_RU = 2;
     public static final int ROTATION_MIN = 1;
     public static final int ROTATION_MAX = 4;
     public static final int ROTATION_NORTH = 1;
@@ -170,6 +172,7 @@ public class Constants {
     public static final int SETTING_MAX_CARS = 9;
     public static final int SETTING_BACKGROUND = 10;
     public static final int SETTING_AUTOSAVE_FREQUENCY = 11;
+    public static final int SETTING_LANGUAGE = 12;
     public static final int SKYSCRAPER_COMPLETE = 1;
     public static final int SKYSCRAPER_TIME = 2;
     public static final int SKYSCRAPER_MOVES = 3;

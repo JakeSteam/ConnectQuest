@@ -105,6 +105,30 @@
 
             <TableRow>
                 <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/languagePickerText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <Spinner
+                    android:id="@+id/languagePicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:background="@color/white"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"/>
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/backgroundPickerText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

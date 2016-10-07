@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.gms.games.Games;
@@ -22,7 +25,10 @@ import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.Text;
 
+import static uk.co.jakelee.cityflow.main.MainActivity.prefs;
+
 public class SettingsActivity extends Activity {
+    private boolean initialisedSpinner = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +61,7 @@ public class SettingsActivity extends Activity {
         ((TextView) findViewById(R.id.musicToggleText)).setText(Text.get("SETTING_1_NAME"));
 
         ((TextView) findViewById(R.id.settingSectionGameplay)).setText(Text.get("SETTING_SECTION_GAMEPLAY"));
+        ((TextView) findViewById(R.id.languagePickerText)).setText(Text.get("SETTING_11_NAME"));
         ((TextView) findViewById(R.id.backgroundPickerText)).setText(Text.get("SETTING_10_NAME"));
         ((TextView) findViewById(R.id.zenToggleText)).setText(Text.get("SETTING_5_NAME"));
         ((TextView) findViewById(R.id.hideBoostText)).setText(Text.get("SETTING_6_NAME"));
@@ -102,6 +109,39 @@ public class SettingsActivity extends Activity {
         // Google Play settings
         ((TextView) findViewById(R.id.autosaveDisplay)).setText(Integer.toString(Setting.getInt(Constants.SETTING_AUTOSAVE_FREQUENCY)));
         ((TextView) findViewById(R.id.lastAutosaveDisplay)).setText(DateHelper.displayTime(Statistic.find(Constants.STATISTIC_LAST_AUTOSAVE).getLongValue(), DateHelper.datetime));
+
+        createDropdowns();
+    }
+
+    private void createDropdowns() {
+        int numLanguages = (Constants.LANGUAGE_MAX - Constants.LANGUAGE_MIN) + 1;
+        ArrayAdapter<String> envAdapter = new ArrayAdapter<>(this, R.layout.custom_spinner_item);
+        envAdapter.setDropDownViewResource(R.layout.custom_spinner_item);
+        for (int i = 1; i <= numLanguages; i++) {
+            envAdapter.add(Text.get("LANGUAGE_" + i + "_NAME"));
+        }
+
+        final Spinner spinner = (Spinner)findViewById(R.id.languagePicker);
+        int setting = Setting.get(Constants.SETTING_LANGUAGE).getIntValue();
+        spinner.setAdapter(envAdapter);
+        spinner.setSelection(setting - 1);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                if (!initialisedSpinner) {
+                    initialisedSpinner = true;
+                } else {
+                    Setting setting = Setting.get(Constants.SETTING_LANGUAGE);
+                    setting.setIntValue(position + 1);
+                    setting.save();
+                    prefs.edit().putInt("language", Setting.get(Constants.SETTING_LANGUAGE).getIntValue()).apply();
+
+                    populateText();
+                }
+            }
+
+            @Override public void onNothingSelected(AdapterView<?> parentView) {}
+        });
     }
 
     public void toggleSetting(View v) {

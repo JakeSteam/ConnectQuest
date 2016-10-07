@@ -41,8 +41,6 @@ public class MainActivity extends Activity implements
         gph = new GooglePlayHelper();
         dh = DisplayHelper.getInstance(this);
 
-        prefs.edit().putInt("language", Constants.LANGUAGE_EN_GB).apply();
-
         new PatchHelper(this).execute();
 
         ratingPrompt();
