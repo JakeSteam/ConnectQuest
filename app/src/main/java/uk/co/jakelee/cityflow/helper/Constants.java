@@ -173,6 +173,7 @@ public class Constants {
     public static final int SETTING_BACKGROUND = 10;
     public static final int SETTING_AUTOSAVE_FREQUENCY = 11;
     public static final int SETTING_LANGUAGE = 12;
+    public static final int SETTING_VIBRATION = 13;
     public static final int SKYSCRAPER_COMPLETE = 1;
     public static final int SKYSCRAPER_TIME = 2;
     public static final int SKYSCRAPER_MOVES = 3;

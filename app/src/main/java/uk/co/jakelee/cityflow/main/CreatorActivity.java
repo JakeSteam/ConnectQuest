@@ -24,6 +24,7 @@ import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.ErrorHelper;
+import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
 import uk.co.jakelee.cityflow.helper.StorageHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
@@ -168,6 +169,7 @@ public class CreatorActivity extends Activity {
             }
 
             if (!puzzleString.equals("") && PuzzleShareHelper.importPuzzleString(puzzleString, false)) {
+                GooglePlayHelper.UpdateEvent(Constants.EVENT_IMPORT_PUZZLE, 1);
                 AlertHelper.success(this, Text.get("ALERT_PUZZLE_IMPORTED"));
             } else if (requestCode == INTENT_CAMERA) {
                 AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.CAMERA_IMPORT_FAIL));

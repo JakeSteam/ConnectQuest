@@ -19,6 +19,7 @@ import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
+import uk.co.jakelee.cityflow.helper.PermissionHelper;
 import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.ShopItem;
@@ -61,13 +62,14 @@ public class SettingsActivity extends Activity {
         ((TextView) findViewById(R.id.musicToggleText)).setText(Text.get("SETTING_1_NAME"));
 
         ((TextView) findViewById(R.id.settingSectionGameplay)).setText(Text.get("SETTING_SECTION_GAMEPLAY"));
-        ((TextView) findViewById(R.id.languagePickerText)).setText(Text.get("SETTING_11_NAME"));
+        ((TextView) findViewById(R.id.languagePickerText)).setText(Text.get("SETTING_12_NAME"));
         ((TextView) findViewById(R.id.backgroundPickerText)).setText(Text.get("SETTING_10_NAME"));
         ((TextView) findViewById(R.id.zenToggleText)).setText(Text.get("SETTING_5_NAME"));
         ((TextView) findViewById(R.id.hideBoostText)).setText(Text.get("SETTING_6_NAME"));
         ((TextView) findViewById(R.id.playerNameText)).setText(Text.get("SETTING_7_NAME"));
         ((TextView) findViewById(R.id.minZoomText)).setText(Text.get("SETTING_3_NAME"));
         ((TextView) findViewById(R.id.maxZoomText)).setText(Text.get("SETTING_4_NAME"));
+        ((TextView) findViewById(R.id.vibrationToggleText)).setText(Text.get("SETTING_13_NAME"));
         ((TextView) findViewById(R.id.maxCarsText)).setText(Text.get("SETTING_9_NAME"));
 
         ((TextView) findViewById(R.id.settingSectionGoogle)).setText(Text.get("SETTING_SECTION_GOOGLE"));
@@ -100,6 +102,9 @@ public class SettingsActivity extends Activity {
 
         ((TextView) findViewById(R.id.hideBoostButton)).setText(Setting.getSafeBoolean(Constants.SETTING_HIDE_UNSTOCKED_BOOSTS) ? R.string.icon_tick : R.string.icon_cross);
         ((TextView) findViewById(R.id.hideBoostButton)).setTextColor(ContextCompat.getColor(this, Setting.getSafeBoolean(Constants.SETTING_HIDE_UNSTOCKED_BOOSTS) ? R.color.green : R.color.red));
+
+        ((TextView) findViewById(R.id.vibrationToggleButton)).setText(Setting.getSafeBoolean(Constants.SETTING_VIBRATION) ? R.string.icon_tick : R.string.icon_cross);
+        ((TextView) findViewById(R.id.vibrationToggleButton)).setTextColor(ContextCompat.getColor(this, Setting.getSafeBoolean(Constants.SETTING_VIBRATION) ? R.color.green : R.color.red));
 
         ((TextView) findViewById(R.id.playerNameDisplay)).setText(Setting.getString(Constants.SETTING_PLAYER_NAME));
         ((TextView) findViewById(R.id.minZoomButton)).setText(String.format("%.2f", Setting.getFloat(Constants.SETTING_MIN_ZOOM)));
@@ -158,6 +163,11 @@ public class SettingsActivity extends Activity {
                 break;
             case R.id.hideBoostButton:
                 settingID = Constants.SETTING_HIDE_UNSTOCKED_BOOSTS;
+                break;
+            case R.id.vibrationToggleButton:
+                if (PermissionHelper.confirmPermissions(this, PermissionHelper.VIBRATE)) {
+                    settingID = Constants.SETTING_VIBRATION;
+                }
                 break;
         }
 

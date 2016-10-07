@@ -1,12 +1,9 @@
 package uk.co.jakelee.cityflow.helper;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -30,11 +27,6 @@ import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
 
 public class StorageHelper {
-    private static final int REQUEST_EXTERNAL_STORAGE = 1;
-    private static String[] PERMISSIONS_STORAGE = {
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-    };
     private static final float screenshotScale = 0.1f;
     private static final int screenshotSize = 300;
 
@@ -102,7 +94,7 @@ public class StorageHelper {
     public static String saveCardImage(Activity activity, int puzzleId) {
         RelativeLayout card = (RelativeLayout)activity.findViewById(R.id.puzzleCard);
 
-        if (card == null || !confirmStoragePermissions(activity)) {
+        if (card == null || !PermissionHelper.confirmPermissions(activity, PermissionHelper.STORAGE)) {
             return "";
         }
 
@@ -181,19 +173,5 @@ public class StorageHelper {
 
         // crop bitmap to non-transparent area and return:
         return Bitmap.createBitmap(sourceBitmap, minX, minY, (maxX - minX) + 1, (maxY - minY) + 1);
-    }
-
-    private static boolean confirmStoragePermissions(Activity activity) {
-        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                    activity,
-                    PERMISSIONS_STORAGE,
-                    REQUEST_EXTERNAL_STORAGE
-            );
-            return false;
-        }
-        return true;
     }
 }

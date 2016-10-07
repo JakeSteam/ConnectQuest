@@ -491,6 +491,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_10_NAME", "Puzzle Background"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_11_NAME", "Autosave Freq (Mins)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_12_NAME", "Language"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_13_NAME", "Vibration"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_CATEGORY_1_NAME", "Boosts"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_CATEGORY_2_NAME", "Upgrades"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_CATEGORY_3_NAME", "Tiles"));
@@ -1255,6 +1256,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         settings.add(new Setting(Constants.SETTING_BACKGROUND, "FFFFFF"));
         settings.add(new Setting(Constants.SETTING_AUTOSAVE_FREQUENCY, 10, 0, 60));
         settings.add(new Setting(Constants.SETTING_LANGUAGE, Text.getDefaultLanguage(), Constants.LANGUAGE_MIN, Constants.LANGUAGE_MAX));
+        settings.add(new Setting(Constants.SETTING_VIBRATION, false));
         Setting.saveInTx(settings);
     }
 

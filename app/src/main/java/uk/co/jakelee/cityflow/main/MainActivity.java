@@ -53,6 +53,11 @@ public class MainActivity extends Activity implements
                 .build();
 
         Tapjoy.onActivityStart(this);
+
+        if (!GooglePlayHelper.IsConnected() && !GooglePlayHelper.mGoogleApiClient.isConnecting() &&
+                Setting.getSafeBoolean(Constants.SETTING_SIGN_IN) && GooglePlayHelper.AreGooglePlayServicesInstalled(this)) {
+            GooglePlayHelper.mGoogleApiClient.connect();
+        }
     }
 
     private void ratingPrompt() {
@@ -81,11 +86,6 @@ public class MainActivity extends Activity implements
     @Override
     protected void onResume() {
         super.onResume();
-
-        if (!GooglePlayHelper.IsConnected() && !GooglePlayHelper.mGoogleApiClient.isConnecting() &&
-                Setting.getSafeBoolean(Constants.SETTING_SIGN_IN) && GooglePlayHelper.AreGooglePlayServicesInstalled(this)) {
-            GooglePlayHelper.mGoogleApiClient.connect();
-        }
 
         createAnimations();
     }

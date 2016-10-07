@@ -1,12 +1,14 @@
 package uk.co.jakelee.cityflow.main;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.os.Vibrator;
 import android.support.v4.content.ContextCompat;
 import android.util.Pair;
 import android.view.View;
@@ -58,6 +60,7 @@ public class PuzzleActivity extends Activity {
     private boolean undoing = false;
     private boolean justUndone = false;
     private boolean exitedPuzzle = false;
+    private Vibrator vibrator;
 
     private boolean timeBoostActive = false;
     private boolean moveBoostActive = false;
@@ -93,6 +96,10 @@ public class PuzzleActivity extends Activity {
 
         updateUiElements();
         populateText();
+
+        if (Setting.getSafeBoolean(Constants.SETTING_VIBRATION)) {
+            vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+        }
     }
 
     private void populateText() {
@@ -229,6 +236,10 @@ public class PuzzleActivity extends Activity {
     }
 
     public void handleTileClick(ImageView image, Tile tile) {
+        if (vibrator != null) {
+            vibrator.vibrate(30);
+        }
+
         tile.rotate(undoing);
 
         changedTilesX.add(tile.getX());
