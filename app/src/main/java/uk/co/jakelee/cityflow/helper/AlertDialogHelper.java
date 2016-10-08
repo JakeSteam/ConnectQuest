@@ -30,7 +30,7 @@ import uk.co.jakelee.cityflow.model.Text;
 
 public class AlertDialogHelper {
     public static void confirmPuzzleDeletion(final CreatorActivity activity, final Puzzle puzzle) {
-        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
         alertDialog.setMessage(String.format(Text.get("ALERT_DELETE_PUZZLE"), puzzle.getName()));
 
         alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_DELETE"), new DialogInterface.OnClickListener() {
@@ -55,7 +55,7 @@ public class AlertDialogHelper {
     }
 
     public static void confirmPuzzleShuffle(final EditorActivity activity, final Puzzle puzzle) {
-        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
         alertDialog.setMessage(String.format(Text.get("ALERT_SHUFFLE_PUZZLE"), puzzle.getName()));
 
         alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_SHUFFLE"), new DialogInterface.OnClickListener() {
@@ -79,7 +79,7 @@ public class AlertDialogHelper {
     }
 
     public static void confirmCloudLoad(final Activity activity, int localStars, int localCurrency, int cloudStars, int cloudCurrency) {
-        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
         alertDialog.setMessage(String.format(Text.get("DIALOG_CLOUD_LOAD_CONFIRM"),
                 localStars,
                 localCurrency,
@@ -107,7 +107,7 @@ public class AlertDialogHelper {
     }
 
     public static void confirmCloudSave(final Activity activity, int localStars, int localCurrency, String desc, long saveTime, String deviceName) {
-        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
         alertDialog.setMessage(String.format(Text.get("DIALOG_CLOUD_SAVE_CONFIRM"),
                 desc,
                 DateHelper.displayTime(saveTime, DateHelper.datetime),
@@ -139,7 +139,7 @@ public class AlertDialogHelper {
     public static void enterSupportCode(final Context context, final Activity activity) {
         final EditText supportCodeBox = new EditText(context);
 
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
         alertDialog.setMessage(Text.get("DIALOG_SUPPORT_CODE"));
         alertDialog.setView(supportCodeBox);
 
@@ -174,7 +174,7 @@ public class AlertDialogHelper {
         editText.setText(Setting.getString(Constants.SETTING_PLAYER_NAME));
         editText.setFilters(new InputFilter[]{ FilterHelper.getFilter(Constants.PLAYER_NAME_MAX_LENGTH) });
 
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
         alertDialog.setMessage(String.format(Text.get("DIALOG_CHANGE_TEXT"), settingToToggle.getName(), Constants.PLAYER_NAME_MAX_LENGTH));
         alertDialog.setView(editText);
 
@@ -201,7 +201,7 @@ public class AlertDialogHelper {
         puzzleInfoInput.setSelectAllOnFocus(true);
         puzzleInfoInput.setFilters(new InputFilter[]{ FilterHelper.getFilter(changeDesc ? Constants.PUZZLE_DESC_MAX_LENGTH : Constants.PUZZLE_NAME_MAX_LENGTH) });
 
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
         alertDialog.setMessage(String.format(Text.get("DIALOG_CHANGE_TEXT"),
                 changeDesc ? Text.get("WORD_DESCRIPTION") : Text.get("WORD_NAME"),
                 changeDesc ? Constants.PUZZLE_DESC_MAX_LENGTH : Constants.PUZZLE_NAME_MAX_LENGTH));
@@ -392,7 +392,7 @@ public class AlertDialogHelper {
     }
 
     public static void confirmResize(final Activity activity, final int puzzleId, final int oldX, final int oldY, final int newX, final int newY) {
-        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.AppTheme_Dialog);
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
         alertDialog.setMessage(String.format(Text.get("DIALOG_RESIZE_CONFIRM"), oldX, oldY, newX, newY));
 
         alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_RESIZE"), new DialogInterface.OnClickListener() {

@@ -103,7 +103,7 @@ public class StorageHelper {
     public static String saveCardImage(Activity activity, int puzzleId) {
         RelativeLayout card = (RelativeLayout)activity.findViewById(R.id.puzzleCard);
 
-        if (card == null || !PermissionHelper.confirmPermissions(activity, PermissionHelper.WRITE_STORAGE)) {
+        if (card == null) {// || !PermissionHelper.confirmPermissions(activity, PermissionHelper.WRITE_STORAGE)) {
             return "";
         }
 

@@ -1,6 +1,6 @@
 package uk.co.jakelee.cityflow.main;
 
-import android.app.Activity;
+import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,18 +8,21 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.aitorvs.android.allowme.AllowMeActivity;
+
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.ErrorHelper;
+import uk.co.jakelee.cityflow.helper.PermissionHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
 import uk.co.jakelee.cityflow.helper.StorageHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Text;
 
-public class ExportActivity extends Activity {
+public class ExportActivity extends AllowMeActivity {
     private Puzzle puzzle;
     private PuzzleCustom puzzleCustom;
     private DisplayHelper dh;
@@ -53,6 +56,15 @@ public class ExportActivity extends Activity {
     }
 
     public void save(View view) {
+        PermissionHelper.runIfPossible(Manifest.permission.WRITE_EXTERNAL_STORAGE, new Runnable() {
+            @Override
+            public void run() {
+                save();
+            }
+        });
+    }
+
+    private void save() {
         String filename = StorageHelper.saveCardImage(this, puzzle.getPuzzleId());
         if (filename.equals("")) {
             AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.CARD_NOT_SAVED));
