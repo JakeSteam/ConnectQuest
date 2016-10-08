@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -71,9 +72,14 @@ public class StorageHelper {
         return bitmap;
     }
 
-    public static void saveCustomPuzzleImage(Activity activity, int puzzleId) {
+    public static void saveCustomPuzzleImage(Activity activity, int puzzleId, boolean forceSave) {
         ZoomableViewGroup tileContainer = (ZoomableViewGroup)activity.findViewById(R.id.tileContainer);
-        if (tileContainer == null) { return; }
+        String filename = "puzzle_" + puzzleId + ".png";
+        boolean existsAlready = activity.getFileStreamPath(filename).exists();
+        Log.d("Exists?", (existsAlready ? "Yep " : "Nope ") + puzzleId);
+        if (tileContainer == null || (!forceSave && existsAlready)) {
+            return;
+        }
 
         try {
             tileContainer.setBackgroundColor(Color.TRANSPARENT);
@@ -83,7 +89,8 @@ public class StorageHelper {
             b = resize(b);
             b = trim(b);
 
-            FileOutputStream fos = activity.openFileOutput("puzzle_" + puzzleId + ".png", Context.MODE_PRIVATE);
+            FileOutputStream fos = activity.openFileOutput(filename, Context.MODE_PRIVATE);
+            Log.d("Saved", "Puzzle image: " + puzzleId);
             b.compress(Bitmap.CompressFormat.PNG, 0, fos);
             fos.flush();
             fos.close();

@@ -333,12 +333,21 @@ public class PuzzleActivity extends Activity {
     }
 
     public void displayPuzzleComplete() {
-        Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
+        final Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
         findViewById(R.id.puzzleTimer).setVisibility(View.GONE);
         findViewById(R.id.zoomIn).setVisibility(View.GONE);
         findViewById(R.id.zoomOut).setVisibility(View.GONE);
         findViewById(R.id.moveCounter).setVisibility(View.GONE);
         findViewById(R.id.topUI).setVisibility(View.GONE);
+
+        if (isCustom) {
+            final Activity activity = this;
+            new Thread(new Runnable() {
+                public void run() {
+                    StorageHelper.saveCustomPuzzleImage(activity, puzzleId, puzzle.getCustomData().isOriginalAuthor() && !puzzle.getCustomData().hasBeenTested());
+                }
+            }).start();
+        }
 
         movesMade = PuzzleHelper.getAdjustedMoves(movesMade, moveBoostActive);
         timeInMilliseconds = PuzzleHelper.getAdjustedTime(timeLastMoved, startTime, timeBoostActive);
@@ -348,17 +357,6 @@ public class PuzzleActivity extends Activity {
         int nextPuzzle = isCustom ? 0 : PuzzleHelper.getNextPuzzleId(puzzleId);
         Pair<Boolean, Boolean> newBests = PuzzleHelper.processPuzzleCompletion(getApplicationContext(), puzzle, nextPuzzle == 0, timeInMilliseconds, movesMade, boostsUsed, puzzleCustom);
         int stars = puzzle.getStarCount();
-
-        if (isCustom) {
-            if (puzzle.getCustomData().isOriginalAuthor()) {
-                final Activity activity = this;
-                new Thread(new Runnable() {
-                    public void run() {
-                        StorageHelper.saveCustomPuzzleImage(activity, puzzleId);
-                    }
-                }).start();
-            }
-        }
         populatePuzzleCompleteScreen(puzzle, isFirstComplete, originalStars, stars, isCustom);
     }
 
