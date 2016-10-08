@@ -86,6 +86,7 @@ public class PuzzleShareHelper {
             puzzleCustom.setDescription(parts[partDesc]);
             puzzleCustom.setAuthor(parts[partAuthor]);
             puzzleCustom.setOriginalAuthor(isCopy);
+            puzzleCustom.setHasBeenTested(true);
             puzzleCustom.save();
 
             puzzle.setParMoves(Integer.parseInt(parts[partMoves]));

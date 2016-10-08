@@ -250,13 +250,13 @@ public class AlertDialogHelper {
         ((TextView)dialog.findViewById(R.id.maxWidth)).setText(Integer.toString(Constants.PUZZLE_X_MAX));
         ((TextView)dialog.findViewById(R.id.minHeight)).setText(Integer.toString(Constants.PUZZLE_Y_MIN));
         ((TextView)dialog.findViewById(R.id.maxHeight)).setText(Integer.toString(Constants.PUZZLE_Y_MAX));
-        ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Text.get("UI_PUZZLE_WIDTH"), Constants.PUZZLE_X_MIN));
-        ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Text.get("UI_PUZZLE_HEIGHT"), Constants.PUZZLE_Y_MIN));
+        ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Text.get("UI_PUZZLE_WIDTH"), Constants.PUZZLE_X_DEFAULT));
+        ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Text.get("UI_PUZZLE_HEIGHT"), Constants.PUZZLE_Y_DEFAULT));
         ((TextView)dialog.findViewById(R.id.environmentText)).setText(Text.get("WORD_AREA"));
 
         // Creating X slider
         final SeekBar sliderWidth = (SeekBar) dialog.findViewById(R.id.sliderWidth);
-        sliderWidth.setProgress(0);
+        sliderWidth.setProgress(getProgressFromFloat(Constants.PUZZLE_X_DEFAULT, Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX));
         sliderWidth.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override public void onStopTrackingTouch(SeekBar seekBar) {}
             @Override public void onStartTrackingTouch(SeekBar seekBar) {}
@@ -269,7 +269,7 @@ public class AlertDialogHelper {
 
         // Creating Y slider
         final SeekBar sliderHeight = (SeekBar) dialog.findViewById(R.id.sliderHeight);
-        sliderHeight.setProgress(0);
+        sliderHeight.setProgress(getProgressFromFloat(Constants.PUZZLE_Y_DEFAULT, Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX));
         sliderHeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override public void onStopTrackingTouch(SeekBar seekBar) {}
             @Override public void onStartTrackingTouch(SeekBar seekBar) {}

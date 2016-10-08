@@ -76,7 +76,6 @@ public class StorageHelper {
         ZoomableViewGroup tileContainer = (ZoomableViewGroup)activity.findViewById(R.id.tileContainer);
         String filename = "puzzle_" + puzzleId + ".png";
         boolean existsAlready = activity.getFileStreamPath(filename).exists();
-        Log.d("Exists?", (existsAlready ? "Yep " : "Nope ") + puzzleId);
         if (tileContainer == null || (!forceSave && existsAlready)) {
             return;
         }

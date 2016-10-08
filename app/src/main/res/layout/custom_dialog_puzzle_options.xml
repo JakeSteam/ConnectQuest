@@ -23,6 +23,7 @@
             android:id="@+id/currentWidth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:gravity="center_horizontal"
             android:textSize="18sp" />
 
@@ -30,6 +31,7 @@
             android:id="@+id/minWidth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/currentWidth"
             android:textSize="18sp" />
@@ -38,6 +40,7 @@
             android:id="@+id/maxWidth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:layout_alignParentRight="true"
             android:layout_below="@id/currentWidth"
             android:textSize="18sp" />
@@ -62,6 +65,7 @@
             android:id="@+id/currentHeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:gravity="center_horizontal"
             android:textSize="18sp" />
 
@@ -69,6 +73,7 @@
             android:id="@+id/minHeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/currentHeight"
             android:textSize="18sp" />
@@ -77,6 +82,7 @@
             android:id="@+id/maxHeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:layout_alignParentRight="true"
             android:layout_below="@id/currentHeight"
             android:textSize="18sp" />
@@ -103,6 +109,7 @@
             android:id="@+id/environmentText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:textSize="20sp" />
         <Spinner
             android:id="@+id/environmentPicker"
