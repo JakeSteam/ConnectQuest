@@ -1,6 +1,6 @@
 package uk.co.jakelee.cityflow.main;
 
-import android.app.Activity;
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.aitorvs.android.allowme.AllowMeActivity;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.quest.Quests;
 
@@ -28,7 +29,7 @@ import uk.co.jakelee.cityflow.model.Text;
 
 import static uk.co.jakelee.cityflow.main.MainActivity.prefs;
 
-public class SettingsActivity extends Activity {
+public class SettingsActivity extends AllowMeActivity {
     private boolean initialisedSpinner = false;
 
     @Override
@@ -120,7 +121,7 @@ public class SettingsActivity extends Activity {
 
     private void createDropdowns() {
         int numLanguages = (Constants.LANGUAGE_MAX - Constants.LANGUAGE_MIN) + 1;
-        ArrayAdapter<String> envAdapter = new ArrayAdapter<>(this, R.layout.custom_spinner_item);
+        ArrayAdapter<String> envAdapter = new ArrayAdapter<>(this, R.layout.custom_spinner);
         envAdapter.setDropDownViewResource(R.layout.custom_spinner_item);
         for (int i = 1; i <= numLanguages; i++) {
             envAdapter.add(Text.get("LANGUAGE_" + i + "_NAME"));
@@ -153,24 +154,29 @@ public class SettingsActivity extends Activity {
         int settingID = 0;
         switch (v.getId()) {
             case R.id.soundToggleButton:
-                settingID = Constants.SETTING_SOUNDS;
+                toggleSetting(Constants.SETTING_SOUNDS);
                 break;
             case R.id.musicToggleButton:
-                settingID = Constants.SETTING_MUSIC;
+                toggleSetting(Constants.SETTING_MUSIC);
                 break;
             case R.id.zenToggleButton:
-                settingID = Constants.SETTING_ZEN_MODE;
+                toggleSetting(Constants.SETTING_ZEN_MODE);
                 break;
             case R.id.hideBoostButton:
-                settingID = Constants.SETTING_HIDE_UNSTOCKED_BOOSTS;
+                toggleSetting(Constants.SETTING_HIDE_UNSTOCKED_BOOSTS);
                 break;
             case R.id.vibrationToggleButton:
-                if (PermissionHelper.confirmPermissions(this, PermissionHelper.VIBRATE)) {
-                    settingID = Constants.SETTING_VIBRATION;
-                }
+                PermissionHelper.runIfPossible(Manifest.permission.VIBRATE, new Runnable() {
+                    @Override
+                    public void run() {
+                        toggleSetting(Constants.SETTING_VIBRATION);
+                    }
+                });
                 break;
         }
+    }
 
+    private void toggleSetting(int settingID) {
         if (settingID > 0) {
             Setting settingToToggle = Setting.findById(Setting.class, settingID);
             settingToToggle.setBooleanValue(!settingToToggle.getBooleanValue());

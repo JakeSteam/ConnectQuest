@@ -64,6 +64,15 @@ public class ExportActivity extends AllowMeActivity {
         });
     }
 
+    public void share(View view) {
+        PermissionHelper.runIfPossible(Manifest.permission.WRITE_EXTERNAL_STORAGE, new Runnable() {
+            @Override
+            public void run() {
+                share();
+            }
+        });
+    }
+
     private void save() {
         String filename = StorageHelper.saveCardImage(this, puzzle.getPuzzleId());
         if (filename.equals("")) {
@@ -73,7 +82,7 @@ public class ExportActivity extends AllowMeActivity {
         }
     }
 
-    public void share(View view) {
+    private void share() {
         String filename = StorageHelper.saveCardImage(this, puzzle.getPuzzleId());
 
         if (filename.equals("")) {

@@ -1,6 +1,6 @@
 package uk.co.jakelee.cityflow.main;
 
-import android.app.Activity;
+import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -17,6 +17,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.aitorvs.android.allowme.AllowMeActivity;
+
 import java.util.List;
 
 import uk.co.jakelee.cityflow.R;
@@ -32,7 +34,7 @@ import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Text;
 
-public class CreatorActivity extends Activity {
+public class CreatorActivity extends AllowMeActivity {
     private boolean displayImported = false;
     final private static int INTENT_CAMERA = 1234;
     final private static int INTENT_FILE = 1235;
@@ -133,10 +135,6 @@ public class CreatorActivity extends Activity {
     }
 
     public void importFromCamera(View v) {
-        if (!PermissionHelper.confirmPermissions(this, PermissionHelper.CAMERA)) {
-            return;
-        }
-
         try {
             Intent intent = new Intent("com.google.zxing.client.android.SCAN");
             intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
@@ -150,10 +148,15 @@ public class CreatorActivity extends Activity {
     }
 
     public void importFromFile(View v) {
-        if (!PermissionHelper.confirmPermissions(this, PermissionHelper.READ_STORAGE)) {
-            return;
-        }
+        PermissionHelper.runIfPossible(Manifest.permission.READ_EXTERNAL_STORAGE, new Runnable() {
+            @Override
+            public void run() {
+                importFromFile();
+            }
+        });
+    }
 
+    private void importFromFile() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);

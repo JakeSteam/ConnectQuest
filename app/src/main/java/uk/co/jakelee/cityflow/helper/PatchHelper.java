@@ -331,6 +331,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_TECHNOLOGIES_TITLE", "Technologies"));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_TECHNOLOGIES_TEXT", "<a href='https://github.com/ACRA/acra'>ACRA</a>: Crash management.<br>" +
                 "<a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt</a>: Database / game save encrypting.<br>" +
+                "<a href='https://github.com/aitorvs/allowme'>AllowMe</a>: Permissions handling.<br>" +
                 "<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a>: Play Store rate prompting.<br>" +
                 "<a href='https://www.applovin.com/'>AppLovin</a>: Advertising.<br>" +
                 "<a href='https://github.com/grantland/android-autofittextview'>AutofitTextView</a>: Intelligently resizing textboxes.<br>" +
