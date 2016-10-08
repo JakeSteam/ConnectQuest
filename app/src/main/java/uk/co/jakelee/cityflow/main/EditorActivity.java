@@ -72,6 +72,7 @@ public class EditorActivity extends Activity {
         selectedTile = Tile.get(selectedTile.getId());
         int drawableId = ImageHelper.getTileDrawableId(this, selectedTile.getTileTypeId(), selectedTile.getRotation());
         Picasso.with(this).load(drawableId).into(selectedTileImage);
+        ((TextView)findViewById(R.id.selectedTileText)).setText(TileType.get(selectedTile.getTileTypeId()).getName());
     }
 
     public void fetchImages(List<Tile> tiles) {
@@ -138,10 +139,8 @@ public class EditorActivity extends Activity {
         selectedTileImage.setAlpha(0.75f);
         selectedTileImage.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
 
-        selectedTile = tile;
-
-        TileType tileType = TileType.get(tile.getTileTypeId());
-        ((TextView)findViewById(R.id.selectedTileText)).setText(tileType.getName());
+        selectedTile = Tile.get(tile.getId());
+        ((TextView)findViewById(R.id.selectedTileText)).setText(TileType.get(selectedTile.getTileTypeId()).getName());
     }
 
     public void rotateTile(View v) {
