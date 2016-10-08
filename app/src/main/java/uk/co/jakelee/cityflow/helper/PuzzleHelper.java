@@ -283,33 +283,36 @@ public class PuzzleHelper {
     public static void resizePuzzle(final int puzzleId, final int oldX, final int oldY, final int newX, final int newY) {
         List<Tile> tiles = new ArrayList<>();
 
+        // Increasing width
         if (oldX < newX) {
-            // Increasing width
             for (int x = newX; x > oldX; x--) {
-                for (int y = oldY; y > 0; y--) {
+                for (int y = newY; y > 0; y--) {
                     tiles.add(new Tile(puzzleId, 0, x - 1, y - 1, Constants.ROTATION_NORTH));
                 }
             }
-        } else if (oldX > newX) {
-            // Decreasing width
-            Tile.deleteAll(Tile.class, "puzzle_id = " + puzzleId + " AND x >= " + newX);
         }
 
+        // Increasing height
         if (oldY < newY) {
-            // Increasing height
             for (int y = newY; y > oldY; y--) {
-                for (int x = oldX; x > 0; x--) {
+                for (int x = oldY; x > 0; x--) {
                     tiles.add(new Tile(puzzleId, 0, x - 1, y - 1, Constants.ROTATION_NORTH));
                 }
             }
-        } else if (oldY > newY) {
-            // Decreasing height
-            Tile.deleteAll(Tile.class, "puzzle_id = " + puzzleId + " AND y >= " + newY);
         }
 
         if (tiles.size() > 0) {
             Tile.saveInTx(tiles);
         }
 
+        // Decreasing width
+        if (oldX > newX) {
+            Tile.deleteAll(Tile.class, "puzzle_id = " + puzzleId + " AND x >= " + newX);
+        }
+
+        // Decreasing height
+        if (oldY > newY) {
+            Tile.deleteAll(Tile.class, "puzzle_id = " + puzzleId + " AND y >= " + newY);
+        }
     }
 }

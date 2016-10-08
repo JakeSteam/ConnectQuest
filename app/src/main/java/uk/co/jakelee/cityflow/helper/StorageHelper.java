@@ -3,6 +3,7 @@ package uk.co.jakelee.cityflow.helper;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.provider.MediaStore;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -75,6 +76,7 @@ public class StorageHelper {
         if (tileContainer == null) { return; }
 
         try {
+            tileContainer.setBackgroundColor(Color.TRANSPARENT);
             tileContainer.setScaleFactor(screenshotScale);
             tileContainer.setDrawingCacheEnabled(true);
             Bitmap b = Bitmap.createBitmap(tileContainer.getDrawingCache());
@@ -94,7 +96,7 @@ public class StorageHelper {
     public static String saveCardImage(Activity activity, int puzzleId) {
         RelativeLayout card = (RelativeLayout)activity.findViewById(R.id.puzzleCard);
 
-        if (card == null || !PermissionHelper.confirmPermissions(activity, PermissionHelper.STORAGE)) {
+        if (card == null || !PermissionHelper.confirmPermissions(activity, PermissionHelper.WRITE_STORAGE)) {
             return "";
         }
 
@@ -108,7 +110,6 @@ public class StorageHelper {
         String contents = "";
 
         int[] intArray = new int[bMap.getWidth() * bMap.getHeight()];
-        //copy pixel data from the Bitmap into the 'intArray' array
         bMap.getPixels(intArray, 0, bMap.getWidth(), 0, 0, bMap.getWidth(), bMap.getHeight());
 
         LuminanceSource source = new RGBLuminanceSource(bMap.getWidth(), bMap.getHeight(), intArray);

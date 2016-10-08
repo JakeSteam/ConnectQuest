@@ -25,6 +25,7 @@ import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.ErrorHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
+import uk.co.jakelee.cityflow.helper.PermissionHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
 import uk.co.jakelee.cityflow.helper.StorageHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
@@ -132,6 +133,10 @@ public class CreatorActivity extends Activity {
     }
 
     public void importFromCamera(View v) {
+        if (!PermissionHelper.confirmPermissions(this, PermissionHelper.CAMERA)) {
+            return;
+        }
+
         try {
             Intent intent = new Intent("com.google.zxing.client.android.SCAN");
             intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
@@ -145,6 +150,10 @@ public class CreatorActivity extends Activity {
     }
 
     public void importFromFile(View v) {
+        if (!PermissionHelper.confirmPermissions(this, PermissionHelper.READ_STORAGE)) {
+            return;
+        }
+
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
