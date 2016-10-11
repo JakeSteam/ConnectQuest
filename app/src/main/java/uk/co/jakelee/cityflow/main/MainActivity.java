@@ -51,11 +51,18 @@ public class MainActivity extends Activity implements
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES)
                 .addApi(Drive.API).addScope(Drive.SCOPE_APPFOLDER)
                 .build();
+        tryGoogleLogin();
 
         Tapjoy.onActivityStart(this);
+    }
 
-        if (!GooglePlayHelper.IsConnected() && !GooglePlayHelper.mGoogleApiClient.isConnecting() &&
-                Setting.getSafeBoolean(Constants.SETTING_SIGN_IN) && GooglePlayHelper.AreGooglePlayServicesInstalled(this)) {
+    public void tryGoogleLogin() {
+        // If we've got all we need, and we need to sign in, or it is first run.
+        if (!GooglePlayHelper.IsConnected() &&
+
+                !GooglePlayHelper.mGoogleApiClient.isConnecting() &&
+                 GooglePlayHelper.AreGooglePlayServicesInstalled(this) &&
+                (Setting.getSafeBoolean(Constants.SETTING_SIGN_IN) || MainActivity.prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.NO_DATABASE)) {
             GooglePlayHelper.mGoogleApiClient.connect();
         }
     }

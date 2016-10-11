@@ -139,7 +139,7 @@ public class EditorActivity extends Activity {
         selectedTileImage.setAlpha(0.75f);
         selectedTileImage.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
 
-        selectedTile = Tile.get(tile.getId());
+        selectedTile = tile;
         ((TextView)findViewById(R.id.selectedTileText)).setText(TileType.get(selectedTile.getTileTypeId()).getName());
     }
 
