@@ -101,6 +101,13 @@ public class ShopActivity extends Activity {
         handler.post(everyFiveSeconds);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        handler.removeCallbacksAndMessages(null);
+    }
+
     private void populateText() {
         ((TextView) findViewById(R.id.freeCurrencyAdvert)).setText(Text.get("SHOP_ADVERT"));
         ((TextView) findViewById(R.id.freeCurrencyOffers)).setText(Text.get("SHOP_OFFERS"));

@@ -12,36 +12,41 @@
         android:layout_height="wrap_content"
         app:layout_marginLeftPercent="10%"
         app:layout_marginRightPercent="10%"
+        android:padding="5dp"
         android:background="@color/city"
         android:layout_centerInParent="true">
         <uk.co.jakelee.cityflow.components.TextViewFont
-            android:id="@+id/iapName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:text="Buy IAP"/>
-        <uk.co.jakelee.cityflow.components.TextViewFont
-            android:id="@+id/iapDesc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/iapName"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:text="Info about the IAPs, I guess?"/>
-        <uk.co.jakelee.cityflow.components.TextViewFont
-            android:id="@+id/purchaseButton"
+            android:id="@+id/iapTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_margin="5dp"
-            android:layout_below="@id/iapDesc"
-            android:background="@color/blue"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:textSize="32sp"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:onClick="buyIAP"
-            android:layout_centerInParent="true"
-            android:text="Buy"/>
+            android:text="IAPs"/>
+        <HorizontalScrollView
+            android:id="@+id/iapContainerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_below="@id/iapTitle">
+            <LinearLayout
+                android:id="@+id/iapContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"/>
+        </HorizontalScrollView>
+        <uk.co.jakelee.cityflow.components.TextViewFont
+            android:id="@+id/teaserText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iapContainerContainer"
+            android:layout_margin="5dp"
+            android:textSize="22sp"
+            android:textColor="@color/black"
+            android:text="Buy IAP, get a pack."/>
     </RelativeLayout>
     <uk.co.jakelee.cityflow.components.TextAwesome
         android:layout_width="wrap_content"

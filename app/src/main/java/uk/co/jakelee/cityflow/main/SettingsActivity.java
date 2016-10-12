@@ -269,6 +269,8 @@ public class SettingsActivity extends AllowMeActivity {
         Setting signIn = Setting.findById(Setting.class, Constants.SETTING_SIGN_IN);
         signIn.setBooleanValue(true);
         signIn.save();
+
+        populateSettings();
     }
 
     public void signOut(View v) {
@@ -282,5 +284,7 @@ public class SettingsActivity extends AllowMeActivity {
         Setting signIn = Setting.findById(Setting.class, Constants.SETTING_SIGN_IN);
         signIn.setBooleanValue(false);
         signIn.save();
+
+        populateSettings();
     }
 }

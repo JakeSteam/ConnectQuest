@@ -3,21 +3,31 @@ package uk.co.jakelee.cityflow.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.Constants;
 import com.anjlab.android.iab.v3.SkuDetails;
 import com.anjlab.android.iab.v3.TransactionDetails;
 
+import java.util.List;
+
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
-import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
-import uk.co.jakelee.cityflow.model.Pack;
+import uk.co.jakelee.cityflow.helper.DisplayHelper;
+import uk.co.jakelee.cityflow.helper.ErrorHelper;
+import uk.co.jakelee.cityflow.model.Iap;
+import uk.co.jakelee.cityflow.model.Text;
 
 public class IAPActivity extends Activity implements BillingProcessor.IBillingHandler {
-    private SkuDetails iapInfo;
-    BillingProcessor bp;
+    private BillingProcessor bp;
+    private DisplayHelper dh;
     boolean canBuyIAPs = false;
 
     @Override
@@ -25,38 +35,41 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_iap);
 
+        dh = DisplayHelper.getInstance(this);
         canBuyIAPs = BillingProcessor.isIabServiceAvailable(this);
         if (canBuyIAPs) {
             bp = new BillingProcessor(this, getPublicKey(), this);
-            iapInfo = bp.getPurchaseListingDetails("100_coins");
+        } else {
+            AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.NO_IAB));
         }
+
+        populateText();
+        populateIaps();
+    }
+
+    private void populateText() {
+        ((TextView)findViewById(R.id.iapTitle)).setText(Text.get("UI_IAP_TITLE"));
+        ((TextView)findViewById(R.id.teaserText)).setText(Text.get(Iap.hasPurchasedAnything() ? "UI_IAP_TEASER" : "UI_IAP_TIP"));
     }
 
     @Override
     public void onBillingInitialized() {
-        if (bp.isPurchased(GooglePlayHelper.IAPs.unlock_pack2.name()) && !Pack.getPack(2).isPurchased()) {
-            Pack pack1 = Pack.getPack(1);
-            pack1.setPurchased(true);
-            pack1.save();
-
-            AlertHelper.success(this, "Maybe restored coins?");
-        }
     }
 
     @Override
     public void onProductPurchased(String productId, TransactionDetails details) {
-        if (productId.equals(GooglePlayHelper.IAPs.unlock_pack2.name())) {
-            Pack pack1 = Pack.getPack(1);
-            pack1.setPurchased(true);
-            pack1.save();
+        bp.consumePurchase(productId);
+        Iap.get(productId).purchase();
+        AlertHelper.success(this, Text.get("ALERT_COINS_PURCHASED"));
 
-            AlertHelper.success(this, "Maybe purchased coins?");
-        }
+        populateText();
     }
 
     @Override
     public void onBillingError(int errorCode, Throwable error) {
-        AlertHelper.error(this, "Unknown billing error :(");
+        if (errorCode != Constants.BILLING_RESPONSE_RESULT_USER_CANCELED) {
+            AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.IAB_FAILED));
+        }
     }
 
     @Override
@@ -71,9 +84,9 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
 
     public void buyIAP(View v) {
         if (canBuyIAPs) {
-            bp.purchase(this, "100_coins");
+            bp.purchase(this, (String)v.getTag());
         } else {
-            AlertHelper.error(this, "Can't buy IAPs apparently.. logged in?");
+            AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.IAB_FAILED));
         }
     }
 
@@ -84,11 +97,33 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
         super.onDestroy();
     }
 
-    private void populateIapInfo() {
-        ((TextView)findViewById(R.id.iapName)).setText(iapInfo.title);
-        ((TextView)findViewById(R.id.iapDesc)).setText(iapInfo.description);
+    private void populateIaps() {
+        LinearLayout scrollView = (LinearLayout)findViewById(R.id.iapContainer);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(10, 10, 10, 10);
 
-        ((TextView)findViewById(R.id.purchaseButton)).setText(iapInfo.currency + iapInfo.priceValue);
+        LayoutInflater inflater = LayoutInflater.from(this);
+        List<Iap> iaps = Iap.listAll(Iap.class);
+
+        for (Iap iap : iaps) {
+            SkuDetails iapInfo = bp.getPurchaseListingDetails(iap.getIapCode());
+            RelativeLayout iapButton = (RelativeLayout) inflater.inflate(R.layout.custom_iap_button, null);
+            ((ImageView) iapButton.findViewById(R.id.itemImage)).setImageResource(dh.getIabDrawableID(iap.getIapCode()));
+
+            if (iapInfo != null) {
+                ((TextView) iapButton.findViewById(R.id.itemPrice)).setText(iapInfo.currency + " " + iapInfo.priceText);
+            } else {
+                ((TextView) iapButton.findViewById(R.id.itemPrice)).setText("£0.00");
+            }
+
+            iapButton.setTag(iap.getIapCode());
+            iapButton.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    buyIAP(v);
+                }
+            });
+            scrollView.addView(iapButton, layoutParams);
+        }
     }
 
     public void closePopup (View v) {

@@ -129,21 +129,6 @@ public class DisplayHelper {
         return itemButton;
     }
 
-    public ImageView createBoostIcon(int boostId, int width, int height) {
-        int padding = dpToPixel(3);
-        ImageView boostIcon = new ImageView(context);
-        boostIcon.setImageDrawable(createDrawable(getBoostDrawableID(boostId), width, height));
-        boostIcon.setTag(boostId);
-        boostIcon.setPadding(padding, padding, padding, padding);
-        boostIcon.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                // Display message with boost info
-            }
-        });
-
-        return boostIcon;
-    }
-
     public ImageView createTileIcon(int tileId, int width, int height) {
         int padding = dpToPixel(3);
         ImageView tileIcon = new ImageView(context);
@@ -183,12 +168,12 @@ public class DisplayHelper {
         return Drawable.createFromPath(pathName);
     }
 
-    public int getBoostDrawableID(int boost) {
-        return context.getResources().getIdentifier("boost_" + boost, "drawable", context.getPackageName());
-    }
-
     public int getTileDrawableID(int tile) {
         return context.getResources().getIdentifier("tile_" + tile + "_1", "drawable", context.getPackageName());
+    }
+
+    public int getIabDrawableID(String iabName) {
+        return context.getResources().getIdentifier("iab_" + iabName + "", "drawable", context.getPackageName());
     }
 
     public int getItemDrawableID(int item) {
