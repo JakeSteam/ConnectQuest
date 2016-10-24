@@ -25,6 +25,7 @@ public class PackActivity extends Activity {
     private Pack selectedPack;
     public Puzzle selectedPuzzle = new Puzzle();
     private int lastCompletedPuzzle = 0;
+    private int firstPackPuzzle = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,7 @@ public class PackActivity extends Activity {
         for (int puzzleIndex = 1; puzzleIndex <= numPuzzles; puzzleIndex++) {
             Puzzle puzzle = puzzles.get(puzzleIndex - 1);
             if (selectedPuzzle == null || selectedPuzzle.getPuzzleId() == 0) {
+                firstPackPuzzle = puzzle.getPuzzleId();
                 selectedPuzzle = puzzle;
             }
 
@@ -75,7 +77,7 @@ public class PackActivity extends Activity {
             }
 
             boolean isSelected = selectedPuzzle.getPuzzleId() == puzzle.getPuzzleId();
-            row.addView(dh.createPuzzleSelectButton(this, puzzle.getPuzzleId(), puzzle, isSelected, puzzle.getPuzzleId() <= lastCompletedPuzzle + 1), layoutParams);
+            row.addView(dh.createPuzzleSelectButton(this, puzzle.getPuzzleId(), puzzle, isSelected, puzzle.getPuzzleId() == firstPackPuzzle || puzzle.getPuzzleId() <= lastCompletedPuzzle + 1), layoutParams);
 
             if (puzzleIndex % 4 == 0 || puzzleIndex == numPuzzles) {
                 puzzleContainer.addView(row);
@@ -104,13 +106,13 @@ public class PackActivity extends Activity {
         ((TextView) findViewById(R.id.puzzleTilesUnlocked)).setText((selectedPuzzle.hasCompletionStar() ? numTiles : 0) + " / " + numTiles);
         ((TextView) findViewById(R.id.puzzleTilesUnlocked)).setTextColor(selectedPuzzle.hasCompletionStar() ? Color.YELLOW : Color.BLACK);
 
-        ((TextView) findViewById(R.id.puzzleButton)).setText(Text.get((selectedPuzzle.getPuzzleId() <= lastCompletedPuzzle + 1) ?
+        ((TextView) findViewById(R.id.puzzleButton)).setText(Text.get((selectedPuzzle.getPuzzleId() == firstPackPuzzle || selectedPuzzle.getPuzzleId() <= lastCompletedPuzzle + 1) ?
                 "WORD_START" :
                 "WORD_LOCKED"));
     }
 
     public void startPuzzle(View v) {
-        if (selectedPuzzle.getPuzzleId() <= lastCompletedPuzzle + 1) {
+        if (selectedPuzzle.getPuzzleId() == firstPackPuzzle || selectedPuzzle.getPuzzleId() <= lastCompletedPuzzle + 1) {
             Intent intent = new Intent(getApplicationContext(), PuzzleActivity.class);
             intent.putExtra(Constants.INTENT_PUZZLE, selectedPuzzle.getPuzzleId());
             intent.putExtra(Constants.INTENT_PUZZLE_TYPE, false);

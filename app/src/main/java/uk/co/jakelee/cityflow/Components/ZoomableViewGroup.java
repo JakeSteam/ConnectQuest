@@ -35,9 +35,6 @@ public class ZoomableViewGroup extends RelativeLayout {
     private float mFocusY;
     private float mFocusX;
 
-    private int MAX_ZOOM = 2;
-    private int MIN_ZOOM = 1;
-
     private float[] mInvalidateWorkingArray = new float[6];
     private float[] mDispatchTouchEventWorkingArray = new float[2];
     private float[] mOnTouchEventWorkingArray = new float[2];
@@ -132,9 +129,15 @@ public class ZoomableViewGroup extends RelativeLayout {
     public void setScaleFactor(float mScaleFactor) {
         float minZoom = Setting.getFloat(Constants.SETTING_MIN_ZOOM);
         float maxZoom = Setting.getFloat(Constants.SETTING_MAX_ZOOM);
-        this.mScaleFactor = Math.max(minZoom, Math.min(mScaleFactor, maxZoom));
-        mScaleMatrix.setScale(mScaleFactor, mScaleFactor,
-                mFocusX, mFocusY);
+
+        if (mScaleFactor > maxZoom) {
+            mScaleFactor = maxZoom;
+        } else if (mScaleFactor < minZoom) {
+            mScaleFactor = minZoom;
+        }
+
+        this.mScaleFactor = mScaleFactor;
+        mScaleMatrix.setScale(mScaleFactor, mScaleFactor, mFocusX, mFocusY);
         mScaleMatrix.invert(mScaleMatrixInverse);
         invalidate();
     }
@@ -149,6 +152,11 @@ public class ZoomableViewGroup extends RelativeLayout {
         mTranslateMatrixInverse.mapPoints(a);
         mScaleMatrixInverse.mapPoints(a);
         return a;
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        return false;
     }
 
     @Override

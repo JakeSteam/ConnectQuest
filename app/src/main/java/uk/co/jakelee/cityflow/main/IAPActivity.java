@@ -49,7 +49,7 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
 
     private void populateText() {
         ((TextView)findViewById(R.id.iapTitle)).setText(Text.get("UI_IAP_TITLE"));
-        ((TextView)findViewById(R.id.teaserText)).setText(Text.get(Iap.hasPurchasedAnything() ? "UI_IAP_TEASER" : "UI_IAP_TIP"));
+        ((TextView)findViewById(R.id.teaserText)).setText(Text.get(Iap.hasPurchasedAnything() ? "UI_IAP_TIP" : "UI_IAP_TEASER"));
     }
 
     @Override
@@ -113,7 +113,7 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
             if (iapInfo != null) {
                 ((TextView) iapButton.findViewById(R.id.itemPrice)).setText(iapInfo.currency + " " + iapInfo.priceText);
             } else {
-                ((TextView) iapButton.findViewById(R.id.itemPrice)).setText("£0.00");
+                ((TextView) iapButton.findViewById(R.id.itemPrice)).setText("£?.??");
             }
 
             iapButton.setTag(iap.getIapCode());

@@ -245,7 +245,9 @@ public class PuzzleActivity extends Activity {
         changedTilesX.add(tile.getX());
         changedTilesY.add(tile.getY());
         int drawableId = ImageHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());
-        Picasso.with(this).load(drawableId).into(image);
+        Picasso.with(this)
+                .load(drawableId)
+                .into(image);
 
         ((TextView) findViewById(R.id.moveCounter)).setText(Integer.toString(++movesMade));
 

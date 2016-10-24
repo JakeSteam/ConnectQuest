@@ -479,6 +479,12 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "PACK_1_NAME", "Tutorial"));
         texts.add(new Text(Constants.LANGUAGE_EN, "PACK_2_NAME", "The Big City"));
         texts.add(new Text(Constants.LANGUAGE_EN, "PACK_3_NAME", "Escape To The Country"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "PACK_4_NAME", "Forest Fun"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "PACK_5_NAME", "Mountain Climbing"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "PACK_6_NAME", "Desert Oasis"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "PACK_7_NAME", "Flowing Frenzy"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "PACK_8_NAME", "Heady Heights"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "PACK_9_NAME", "Contributor's Challenge"));
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_DEFAULT_NAME", "New Puzzle (%1$dx%2$d, %3$s)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_DEFAULT_DESC", "No description."));
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_EXPORT_START", "Beginning puzzle export process..."));

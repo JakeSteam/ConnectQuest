@@ -44,8 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:singleLine="false"/>
+                    android:textSize="24sp"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
@@ -131,7 +130,7 @@
                 android:textSize="26sp"/>
         </TableRow>
 
-        <TableRow>
+        <TableRow android:layout_marginTop="15dp">
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/puzzleButton"
                 android:layout_width="match_parent"
