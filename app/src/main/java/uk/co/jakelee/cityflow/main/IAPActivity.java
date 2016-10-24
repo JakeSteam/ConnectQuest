@@ -23,6 +23,7 @@ import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.ErrorHelper;
 import uk.co.jakelee.cityflow.model.Iap;
+import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class IAPActivity extends Activity implements BillingProcessor.IBillingHandler {
@@ -61,6 +62,10 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
         bp.consumePurchase(productId);
         Iap.get(productId).purchase();
         AlertHelper.success(this, Text.get("ALERT_COINS_PURCHASED"));
+
+        Pack iapUnlockedPack = Pack.getPack(9);
+        iapUnlockedPack.setPurchased(true);
+        iapUnlockedPack.save();
 
         populateText();
     }

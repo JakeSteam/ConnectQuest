@@ -152,6 +152,12 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         achievements.add(new Achievement("Complete Pack 1", 1, Constants.STATISTIC_COMPLETE_PACK_1, "CgkIgrzuo64REAIQKg", Constants.BACKGROUND_CLOUDY));
         achievements.add(new Achievement("Complete Pack 2", 1, Constants.STATISTIC_COMPLETE_PACK_2, "CgkIgrzuo64REAIQKw", Constants.BACKGROUND_BLUE_SKIES));
         achievements.add(new Achievement("Complete Pack 3", 1, Constants.STATISTIC_COMPLETE_PACK_3, "CgkIgrzuo64REAIQLA", Constants.BACKGROUND_PETALS));
+        achievements.add(new Achievement("Complete Pack 4", 1, Constants.STATISTIC_COMPLETE_PACK_4, "CgkIgrzuo64REAIQMA", Constants.BACKGROUND_CLAY));
+        achievements.add(new Achievement("Complete Pack 5", 1, Constants.STATISTIC_COMPLETE_PACK_5, "CgkIgrzuo64REAIQMQ", Constants.BACKGROUND_CLAY_GREY));
+        achievements.add(new Achievement("Complete Pack 6", 1, Constants.STATISTIC_COMPLETE_PACK_6, "CgkIgrzuo64REAIQMg", Constants.BACKGROUND_MUDDY));
+        achievements.add(new Achievement("Complete Pack 7", 1, Constants.STATISTIC_COMPLETE_PACK_7, "CgkIgrzuo64REAIQMw", Constants.BACKGROUND_MUDDY_PINK));
+        achievements.add(new Achievement("Complete Pack 8", 1, Constants.STATISTIC_COMPLETE_PACK_8, "CgkIgrzuo64REAIQNA", Constants.BACKGROUND_PEACH));
+        achievements.add(new Achievement("Complete Pack 9", 1, Constants.STATISTIC_COMPLETE_PACK_9, "CgkIgrzuo64REAIQNQ", Constants.BACKGROUND_PASSIONFRUIT));
         Achievement.saveInTx(achievements);
     }
 
@@ -197,14 +203,14 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         backgrounds.add(new Background(Constants.BACKGROUND_CLOUDY, "b9c6d2"));
         backgrounds.add(new Background(Constants.BACKGROUND_BLUE_SKIES, "e4ebf3"));
         backgrounds.add(new Background(Constants.BACKGROUND_PETALS, "8eb9a8"));
-
-        // Unassigned
         backgrounds.add(new Background(Constants.BACKGROUND_CLAY, "e3e3e3"));
         backgrounds.add(new Background(Constants.BACKGROUND_CLAY_GREY, "c9c7ca"));
         backgrounds.add(new Background(Constants.BACKGROUND_MUDDY, "c1bab4"));
         backgrounds.add(new Background(Constants.BACKGROUND_MUDDY_PINK, "decfd2"));
         backgrounds.add(new Background(Constants.BACKGROUND_PEACH, "fdcfb7"));
         backgrounds.add(new Background(Constants.BACKGROUND_PASSIONFRUIT, "f4828c"));
+
+        // Unassigned
         backgrounds.add(new Background(Constants.BACKGROUND_THE_END, "775c6a"));
         backgrounds.add(new Background(Constants.BACKGROUND_DESERT, "f7ecd6"));
         backgrounds.add(new Background(Constants.BACKGROUND_DIRTY, "ddb4a0"));
@@ -287,13 +293,13 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_18_NAME", "Eggshell"));
         texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_18_HINT", "Unlocked by completing achievement \"Completionist 4\"."));
         texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_19_NAME", "Clay"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_19_HINT", ""));
+        texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_19_HINT", "Unlocked by completing Pack 4."));
         texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_20_NAME", "Clay Grey"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_20_HINT", ""));
+        texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_20_HINT", "Unlocked by completing Pack 5."));
         texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_21_NAME", "Muddy"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_21_HINT", ""));
+        texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_21_HINT", "Unlocked by completing Pack 6."));
         texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_22_NAME", "Muddy Pink"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_22_HINT", ""));
+        texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_22_HINT", "Unlocked by completing Pack 7."));
         texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_23_NAME", "Limey"));
         texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_23_HINT", "Unlocked by completing achievement \"Activate Boost 1\"."));
         texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_24_NAME", "Rich Limey"));
@@ -311,9 +317,9 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_30_NAME", "Summer"));
         texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_30_HINT", "Unlocked by viewing the credits."));
         texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_31_NAME", "Peach"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_31_HINT", ""));
+        texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_31_HINT", "Unlocked by completing Pack 8."));
         texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_32_NAME", "Passionfruit"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_32_HINT", ""));
+        texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_32_HINT", "Unlocked by completing Pack 9."));
         texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_33_NAME", "The End"));
         texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_33_HINT", ""));
         texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_34_NAME", "Desert"));
@@ -485,6 +491,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "PACK_7_NAME", "Flowing Frenzy"));
         texts.add(new Text(Constants.LANGUAGE_EN, "PACK_8_NAME", "Heady Heights"));
         texts.add(new Text(Constants.LANGUAGE_EN, "PACK_9_NAME", "Contributor's Challenge"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "PACK_9_CHALLENGE", "Purchase any number of coins to unlock this pack."));
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_DEFAULT_NAME", "New Puzzle (%1$dx%2$d, %3$s)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_DEFAULT_DESC", "No description."));
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_EXPORT_START", "Beginning puzzle export process..."));
@@ -676,6 +683,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_SKYSCRAPER_MOVES_TEXT", "%1$d/%2$d\nmoves"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_PACK_OPEN", "Open Pack"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_PACK_PURCHASE", "Purchase Pack"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "UI_PACK_UNLOCKABLE", "Pack locked!\n\nFully complete pack \"%1$s\" (currently %2$d / %3$d stars) to unlock, or purchase for coins in the shop."));
+        texts.add(new Text(Constants.LANGUAGE_EN, "UI_PACK_UNLOCKED", "%1$d / %2$d Stars\n\nBest Time: %3$s\n\nBest Moves: %4$s"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_PUZZLE_BY", "By:"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_PUZZLE_NAME", "Name:"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_PUZZLE_DESC", "Desc:"));
@@ -708,9 +717,15 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     private void createPack() {
         List<Pack> packs = new ArrayList<>();
-        packs.add(new Pack(1, "", "CgkIgrzuo64REAIQEA", "CgkIgrzuo64REAIQEQ", 30));
-        packs.add(new Pack(2, "unlock_pack2", "CgkIgrzuo64REAIQEw", "CgkIgrzuo64REAIQFA", 30));
-        packs.add(new Pack(3, "unlock_pack3", "CgkIgrzuo64REAIQFQ", "CgkIgrzuo64REAIQFg", 30));
+        packs.add(new Pack(1, "CgkIgrzuo64REAIQEA", "CgkIgrzuo64REAIQEQ", 30, true));
+        packs.add(new Pack(2, "CgkIgrzuo64REAIQEw", "CgkIgrzuo64REAIQFA", 90, true));
+        packs.add(new Pack(3, "CgkIgrzuo64REAIQFQ", "CgkIgrzuo64REAIQFg", 90, true));
+        packs.add(new Pack(4, "CgkIgrzuo64REAIQNg", "CgkIgrzuo64REAIQNw", 90, true));
+        packs.add(new Pack(5, "CgkIgrzuo64REAIQOA", "CgkIgrzuo64REAIQOQ", 45, true));
+        packs.add(new Pack(6, "CgkIgrzuo64REAIQOg", "CgkIgrzuo64REAIQOw", 90, true));
+        packs.add(new Pack(7, "CgkIgrzuo64REAIQPA", "CgkIgrzuo64REAIQPQ", 90, true));
+        packs.add(new Pack(8, "CgkIgrzuo64REAIQPg", "CgkIgrzuo64REAIQPw", 90, true));
+        packs.add(new Pack(9, "CgkIgrzuo64REAIQQA", "CgkIgrzuo64REAIQQQ", 45, false));
         Pack.saveInTx(packs);
     }
 
@@ -1289,12 +1304,18 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         statistics.add(new Statistic(Constants.STATISTIC_QUESTS_COMPLETED, 0, 0));
         statistics.add(new Statistic(Constants.STATISTIC_PUZZLES_COMPLETED_FULLY, 0, 0));
         statistics.add(new Statistic(Constants.STATISTIC_BOOSTS_USED, 0, 0));
-        statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_1, 0, 0));
-        statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_2, 0, 0));
-        statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_3, 0, 0));
         statistics.add(new Statistic(Constants.STATISTIC_CURRENCY, 100000));
         statistics.add(new Statistic(Constants.STATISTIC_TAPJOY_COINS, 0));
         statistics.add(new Statistic(Constants.STATISTIC_LAST_AUTOSAVE, 0L));
+        statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_1, 0, 0));
+        statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_2, 0, 0));
+        statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_3, 0, 0));
+        statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_4, 0, 0));
+        statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_5, 0, 0));
+        statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_6, 0, 0));
+        statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_7, 0, 0));
+        statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_8, 0, 0));
+        statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_9, 0, 0));
         Statistic.saveInTx(statistics);
     }
 
@@ -1320,6 +1341,11 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         shopItems.add(new ShopItem(Constants.ITEM_TILE_3, Constants.STORE_CATEGORY_TILES, 500, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_PACK_2, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 2, 1000, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_PACK_3, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 3, 1000, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_PACK_4, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 4, 1300, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_PACK_5, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 5, 1300, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_PACK_6, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 6, 1300, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_PACK_7, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 7, 1800, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_PACK_8, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 8, 1800, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_MAX_CARS, Constants.STORE_CATEGORY_MISC, 400, 1, false));
         ShopItem.saveInTx(shopItems);
     }

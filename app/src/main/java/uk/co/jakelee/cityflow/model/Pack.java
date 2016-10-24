@@ -12,7 +12,6 @@ import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 
 public class Pack extends SugarRecord{
     private int packId;
-    private String iapCode;
     private String timeLeaderboard;
     private String movesLeaderboard;
     private String currentMoves;
@@ -20,13 +19,13 @@ public class Pack extends SugarRecord{
     private String currentStars;
     private String maxStars;
     private String purchased;
+    private String unlockable;
 
     public Pack() {
     }
 
-    public Pack(int packId, String iapCode, String timeLeaderboard, String movesLeaderboard, int maxStars) {
+    public Pack(int packId, String timeLeaderboard, String movesLeaderboard, int maxStars, boolean unlockable) {
         this.packId = packId;
-        this.iapCode = EncryptHelper.encode(iapCode, packId);
         this.timeLeaderboard = timeLeaderboard;
         this.movesLeaderboard = movesLeaderboard;
         this.purchased = EncryptHelper.encode(false, packId);
@@ -34,6 +33,7 @@ public class Pack extends SugarRecord{
         this.currentTime = EncryptHelper.encode(0, packId);
         this.currentStars = EncryptHelper.encode(0, packId);
         this.maxStars = EncryptHelper.encode(maxStars, packId);
+        this.unlockable = EncryptHelper.encode(unlockable, packId);
     }
 
     public int getPackId() {
@@ -42,14 +42,6 @@ public class Pack extends SugarRecord{
 
     public void setPackId(int packId) {
         this.packId = packId;
-    }
-
-    public String getIapCode() {
-        return EncryptHelper.decode(iapCode, packId);
-    }
-
-    public void setIapCode(String iapCode) {
-        this.iapCode = EncryptHelper.encode(iapCode, packId);
     }
 
     public String getTimeLeaderboard() {
@@ -108,6 +100,10 @@ public class Pack extends SugarRecord{
         this.maxStars = EncryptHelper.encode(maxStars, packId);
     }
 
+    public boolean isUnlockable() {
+        return EncryptHelper.decodeToBool(unlockable, packId);
+    }
+
     public static Pack getPack(int packId) {
         return Select.from(Pack.class).where(
                 Condition.prop("pack_id").eq(packId)).first();
@@ -148,6 +144,24 @@ public class Pack extends SugarRecord{
             case 3:
                 packCompleteStatistic = Constants.STATISTIC_COMPLETE_PACK_3;
                 break;
+            case 4:
+                packCompleteStatistic = Constants.STATISTIC_COMPLETE_PACK_4;
+                break;
+            case 5:
+                packCompleteStatistic = Constants.STATISTIC_COMPLETE_PACK_5;
+                break;
+            case 6:
+                packCompleteStatistic = Constants.STATISTIC_COMPLETE_PACK_6;
+                break;
+            case 7:
+                packCompleteStatistic = Constants.STATISTIC_COMPLETE_PACK_7;
+                break;
+            case 8:
+                packCompleteStatistic = Constants.STATISTIC_COMPLETE_PACK_8;
+                break;
+            case 9:
+                packCompleteStatistic = Constants.STATISTIC_COMPLETE_PACK_9;
+                break;
         }
         if (packCompleteStatistic > 0) {
             Statistic.increaseByOne(packCompleteStatistic);
@@ -186,5 +200,9 @@ public class Pack extends SugarRecord{
 
     public String getName() {
         return Text.get("PACK_", getPackId(), "_NAME");
+    }
+
+    public String getUnlockChallenge() {
+        return Text.get("PACK_", getPackId(), "_CHALLENGE");
     }
 }

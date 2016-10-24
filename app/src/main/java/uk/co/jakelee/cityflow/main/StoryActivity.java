@@ -70,7 +70,7 @@ public class StoryActivity extends Activity {
         ((TextView)findViewById(R.id.packName)).setText(pack.getName());
         ((TextView)findViewById(R.id.packPuzzleCount)).setText(Integer.toString(pack.getMaxStars() / 3) + " puzzles");
         if (pack.isUnlocked()) {
-            ((TextView)findViewById(R.id.packDescription)).setText(String.format("%1$d / %2$d Stars\n\nBest Time: %3$s\n\nBest Moves: %4$s",
+            ((TextView)findViewById(R.id.packDescription)).setText(String.format(Text.get("UI_PACK_UNLOCKED"),
                     pack.getCurrentStars(),
                     pack.getMaxStars(),
                     pack.getCurrentTime() > 0 ? DateHelper.getPuzzleTimeString(pack.getCurrentTime()) : "N/A",
@@ -84,9 +84,10 @@ public class StoryActivity extends Activity {
                     startActivity(intent);
                 }
             });
-        } else {
+            findViewById(R.id.actionButton).setVisibility(View.VISIBLE);
+        } else if (pack.isUnlockable()) {
             Pack previousPack = Pack.getPack(selectedPack - 1);
-            ((TextView)findViewById(R.id.packDescription)).setText(String.format("Pack locked!\n\nFully complete pack \"%1$s\" (currently %2$d / %3$d stars) to unlock, or purchase for coins in the shop.",
+            ((TextView)findViewById(R.id.packDescription)).setText(String.format(Text.get("UI_PACK_UNLOCKABLE"),
                     previousPack.getName(),
                     previousPack.getCurrentStars(),
                     previousPack.getMaxStars()));
@@ -100,6 +101,10 @@ public class StoryActivity extends Activity {
                     startActivity(intent);
                 }
             });
+            findViewById(R.id.actionButton).setVisibility(View.VISIBLE);
+        } else {
+            ((TextView)findViewById(R.id.packDescription)).setText(pack.getUnlockChallenge());
+            findViewById(R.id.actionButton).setVisibility(View.GONE);
         }
     }
 
