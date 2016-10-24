@@ -65,6 +65,7 @@ public class SettingsActivity extends AllowMeActivity {
         ((TextView) findViewById(R.id.soundToggleText)).setText(Text.get("SETTING_2_NAME"));
         ((TextView) findViewById(R.id.purchasingSoundToggleText)).setText(Text.get("SETTING_14_NAME"));
         ((TextView) findViewById(R.id.rotatingSoundToggleText)).setText(Text.get("SETTING_15_NAME"));
+        ((TextView) findViewById(R.id.settingsSoundToggleText)).setText(Text.get("SETTING_16_NAME"));
 
         ((TextView) findViewById(R.id.settingSectionGameplay)).setText(Text.get("SETTING_SECTION_GAMEPLAY"));
         ((TextView) findViewById(R.id.languagePickerText)).setText(Text.get("SETTING_12_NAME"));
@@ -127,6 +128,7 @@ public class SettingsActivity extends AllowMeActivity {
         createDropdown(R.id.languagePicker, Constants.LANGUAGE_MAX, Constants.LANGUAGE_MIN, "LANGUAGE_", "_NAME", Constants.SETTING_LANGUAGE, false);
         createDropdown(R.id.purchasingSoundPicker, SoundHelper.purchasingSounds.length, 1, "", "", Constants.SETTING_SOUND_PURCHASING, true);
         createDropdown(R.id.rotatingSoundPicker, SoundHelper.rotatingSounds.length, 1, "", "", Constants.SETTING_SOUND_ROTATING, true);
+        createDropdown(R.id.settingsSoundPicker, SoundHelper.settingSounds.length, 1, "", "", Constants.SETTING_SOUND_SETTINGS, true);
     }
 
     private void createDropdown(int spinnerId, int max, int min, String prefix, String suffix, int settingId, boolean pickingSoundEffect) {
@@ -202,6 +204,7 @@ public class SettingsActivity extends AllowMeActivity {
 
     private void toggleSetting(int settingID) {
         if (settingID > 0) {
+            SoundHelper.getInstance(this).playSound(SoundHelper.SOUNDS.settings);
             Setting settingToToggle = Setting.findById(Setting.class, settingID);
             settingToToggle.setBooleanValue(!settingToToggle.getBooleanValue());
             settingToToggle.save();

@@ -532,8 +532,9 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_11_NAME", "Autosave Freq (Mins)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_12_NAME", "Language"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_13_NAME", "Vibration"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_14_NAME", "Shop Purchase Sound"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_15_NAME", "Tile Rotating Sound"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_14_NAME", "Purchase Sound"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_15_NAME", "Tile Rotate Sound"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_16_NAME", "Setting Change Sound"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_CATEGORY_1_NAME", "Boosts"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_CATEGORY_2_NAME", "Upgrades"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_CATEGORY_3_NAME", "Tiles"));
@@ -1312,6 +1313,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         settings.add(new Setting(Constants.SETTING_VIBRATION, false));
         settings.add(new Setting(Constants.SETTING_SOUND_PURCHASING, 0, 0, SoundHelper.purchasingSounds.length));
         settings.add(new Setting(Constants.SETTING_SOUND_ROTATING, 0, 0, SoundHelper.rotatingSounds.length));
+        settings.add(new Setting(Constants.SETTING_SOUND_SETTINGS, 0, 0, SoundHelper.settingSounds.length));
         Setting.saveInTx(settings);
     }
 

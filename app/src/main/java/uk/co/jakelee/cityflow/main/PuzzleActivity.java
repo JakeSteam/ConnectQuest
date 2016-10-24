@@ -246,7 +246,7 @@ public class PuzzleActivity extends Activity {
         }
 
         if (playSounds) {
-            SoundHelper.playSound(this, SoundHelper.SOUNDS.rotating);
+            SoundHelper.getInstance(this).playSound(SoundHelper.SOUNDS.rotating);
         }
 
         tile.rotate(undoing);

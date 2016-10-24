@@ -58,7 +58,7 @@ public class ShopItemActivity extends Activity {
         if (purchaseResult != ErrorHelper.Error.NO_ERROR) {
             AlertHelper.error(this, ErrorHelper.get(purchaseResult));
         } else {
-            SoundHelper.playSound(this, SoundHelper.SOUNDS.purchasing);
+            SoundHelper.getInstance(this).playSound(SoundHelper.SOUNDS.purchasing);
             shopItem.purchase();
             AlertHelper.success(this, String.format(Text.get("SHOP_ITEM_PURCHASED"),
                     shopItem.getName(),
