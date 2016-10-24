@@ -21,6 +21,7 @@ import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.helper.PermissionHelper;
+import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.ShopItem;
@@ -30,7 +31,8 @@ import uk.co.jakelee.cityflow.model.Text;
 import static uk.co.jakelee.cityflow.main.MainActivity.prefs;
 
 public class SettingsActivity extends AllowMeActivity {
-    private boolean initialisedSpinner = false;
+    private int spinnersInitialised = 0;
+    private int totalSpinners = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +61,10 @@ public class SettingsActivity extends AllowMeActivity {
 
     public void populateText() {
         ((TextView) findViewById(R.id.settingSectionAudio)).setText(Text.get("SETTING_SECTION_AUDIO"));
-        ((TextView) findViewById(R.id.soundToggleText)).setText(Text.get("SETTING_2_NAME"));
         ((TextView) findViewById(R.id.musicToggleText)).setText(Text.get("SETTING_1_NAME"));
+        ((TextView) findViewById(R.id.soundToggleText)).setText(Text.get("SETTING_2_NAME"));
+        ((TextView) findViewById(R.id.purchasingSoundToggleText)).setText(Text.get("SETTING_14_NAME"));
+        ((TextView) findViewById(R.id.rotatingSoundToggleText)).setText(Text.get("SETTING_15_NAME"));
 
         ((TextView) findViewById(R.id.settingSectionGameplay)).setText(Text.get("SETTING_SECTION_GAMEPLAY"));
         ((TextView) findViewById(R.id.languagePickerText)).setText(Text.get("SETTING_12_NAME"));
@@ -120,44 +124,64 @@ public class SettingsActivity extends AllowMeActivity {
     }
 
     private void createDropdowns() {
-        int numLanguages = (Constants.LANGUAGE_MAX - Constants.LANGUAGE_MIN) + 1;
+        createDropdown(R.id.languagePicker, Constants.LANGUAGE_MAX, Constants.LANGUAGE_MIN, "LANGUAGE_", "_NAME", Constants.SETTING_LANGUAGE, false);
+        createDropdown(R.id.purchasingSoundPicker, SoundHelper.purchasingSounds.length, 1, "", "", Constants.SETTING_SOUND_PURCHASING, true);
+        createDropdown(R.id.rotatingSoundPicker, SoundHelper.rotatingSounds.length, 1, "", "", Constants.SETTING_SOUND_ROTATING, true);
+    }
+
+    private void createDropdown(int spinnerId, int max, int min, String prefix, String suffix, int settingId, boolean pickingSoundEffect) {
+        int numOptions = (max - min) + 1;
         ArrayAdapter<String> envAdapter = new ArrayAdapter<>(this, R.layout.custom_spinner);
         envAdapter.setDropDownViewResource(R.layout.custom_spinner_item);
-        for (int i = 1; i <= numLanguages; i++) {
-            envAdapter.add(Text.get("LANGUAGE_" + i + "_NAME"));
+        if (pickingSoundEffect) {
+            envAdapter.add("Random");
+            for (int i = 1; i <= numOptions; i++) {
+                envAdapter.add("Sound #" + i);
+            }
+        } else {
+            for (int i = 1; i <= numOptions; i++) {
+                envAdapter.add(Text.get(prefix + i + suffix));
+            }
         }
 
-        final Spinner spinner = (Spinner)findViewById(R.id.languagePicker);
-        int setting = Setting.get(Constants.SETTING_LANGUAGE).getIntValue();
+        final Spinner spinner = (Spinner)findViewById(spinnerId);
+        int setting = Setting.get(settingId).getIntValue();
         spinner.setAdapter(envAdapter);
-        spinner.setSelection(setting - 1);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinner.setSelection(pickingSoundEffect ? setting : setting - 1);
+        spinner.setOnItemSelectedListener(getListener(settingId));
+    }
+
+    private AdapterView.OnItemSelectedListener getListener(final int settingId) {
+        return new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                if (!initialisedSpinner) {
-                    initialisedSpinner = true;
+                if (spinnersInitialised < totalSpinners) {
+                    spinnersInitialised++;
                 } else {
-                    Setting setting = Setting.get(Constants.SETTING_LANGUAGE);
-                    setting.setIntValue(position + 1);
-                    setting.save();
-                    prefs.edit().putInt("language", Setting.get(Constants.SETTING_LANGUAGE).getIntValue()).apply();
+                    Setting setting = Setting.get(settingId);
 
-                    populateText();
+                    if (settingId == Constants.SETTING_LANGUAGE) {
+                        setting.setIntValue(position + 1);
+                        prefs.edit().putInt("language", setting.getIntValue()).apply();
+                        populateText();
+                    } else {
+                        setting.setIntValue(position);
+                        setting.save();
+                    }
                 }
             }
 
             @Override public void onNothingSelected(AdapterView<?> parentView) {}
-        });
+        };
     }
 
     public void toggleSetting(View v) {
-        int settingID = 0;
         switch (v.getId()) {
-            case R.id.soundToggleButton:
-                toggleSetting(Constants.SETTING_SOUNDS);
-                break;
             case R.id.musicToggleButton:
                 toggleSetting(Constants.SETTING_MUSIC);
+                break;
+            case R.id.soundToggleButton:
+                toggleSetting(Constants.SETTING_SOUNDS);
                 break;
             case R.id.zenToggleButton:
                 toggleSetting(Constants.SETTING_ZEN_MODE);

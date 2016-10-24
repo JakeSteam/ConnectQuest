@@ -61,11 +61,15 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
     public void onProductPurchased(String productId, TransactionDetails details) {
         bp.consumePurchase(productId);
         Iap.get(productId).purchase();
-        AlertHelper.success(this, Text.get("ALERT_COINS_PURCHASED"));
 
         Pack iapUnlockedPack = Pack.getPack(9);
-        iapUnlockedPack.setPurchased(true);
-        iapUnlockedPack.save();
+        if (iapUnlockedPack.isPurchased()) {
+            AlertHelper.success(this, Text.get("ALERT_COINS_PURCHASED_PACK"));
+            iapUnlockedPack.setPurchased(true);
+            iapUnlockedPack.save();
+        } else {
+            AlertHelper.success(this, Text.get("ALERT_COINS_PURCHASED"));
+        }
 
         populateText();
     }

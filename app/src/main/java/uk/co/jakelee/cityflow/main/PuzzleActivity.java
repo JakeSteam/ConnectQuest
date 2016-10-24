@@ -30,6 +30,7 @@ import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.ImageHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleHelper;
+import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.helper.StorageHelper;
 import uk.co.jakelee.cityflow.helper.TileHelper;
 import uk.co.jakelee.cityflow.model.Background;
@@ -60,6 +61,7 @@ public class PuzzleActivity extends Activity {
     private boolean undoing = false;
     private boolean justUndone = false;
     private boolean exitedPuzzle = false;
+    private boolean playSounds = false;
     private Vibrator vibrator;
 
     private boolean timeBoostActive = false;
@@ -99,6 +101,9 @@ public class PuzzleActivity extends Activity {
 
         if (Setting.getSafeBoolean(Constants.SETTING_VIBRATION)) {
             vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+        }
+        if (Setting.getSafeBoolean(Constants.SETTING_SOUNDS)) {
+            playSounds = true;
         }
     }
 
@@ -238,6 +243,10 @@ public class PuzzleActivity extends Activity {
     public void handleTileClick(ImageView image, Tile tile) {
         if (vibrator != null) {
             vibrator.vibrate(30);
+        }
+
+        if (playSounds) {
+            SoundHelper.playSound(this, SoundHelper.SOUNDS.rotating);
         }
 
         tile.rotate(undoing);

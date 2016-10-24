@@ -41,6 +41,28 @@
 
             <TableRow>
                 <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/musicToggleText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.cityflow.components.TextAwesome
+                    android:id="@+id/musicToggleButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="30sp"
+                    android:padding="10dp"
+                    android:onClick="toggleSetting"/>
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/soundToggleText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -63,7 +85,7 @@
 
             <TableRow>
                 <uk.co.jakelee.cityflow.components.TextViewFont
-                    android:id="@+id/musicToggleText"
+                    android:id="@+id/purchasingSoundToggleText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
@@ -73,14 +95,40 @@
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
-                <uk.co.jakelee.cityflow.components.TextAwesome
-                    android:id="@+id/musicToggleButton"
+                <Spinner
+                    android:id="@+id/purchasingSoundPicker"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textSize="30sp"
-                    android:padding="10dp"
-                    android:onClick="toggleSetting"/>
+                    android:textColor="@color/black"
+                    android:background="@color/ltltgrey"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"/>
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/rotatingSoundToggleText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <Spinner
+                    android:id="@+id/rotatingSoundPicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:background="@color/ltltgrey"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"/>
             </TableRow>
 
             <!-- Gameplay settings -->
@@ -444,11 +492,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:gravity="left|center_vertical"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
                     android:textSize="20sp"
                     android:ellipsize="end"
-                    android:maxLines="3"
-                    android:background="@color/black"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:background="@color/ltltgrey"
                     android:onClick="changeInt"
                     android:tag="11"/>
             </TableRow>

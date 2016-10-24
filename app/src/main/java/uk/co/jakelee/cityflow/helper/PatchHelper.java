@@ -242,6 +242,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_CARD_SAVED", "Card image saved to gallery!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_COINS_PURCHASED", "Successfully purchased %1$d coins!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_COINS_PURCHASED_PACK", "Successfully purchased %1$d coins, and unlocked an exclusive puzzle pack!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_CLOUD_BEGINNING", "Comparing local and cloud saves..."));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_CLOUD_SAVING", "Saving to cloud..."));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_CLOUD_SAVED", "Successfully saved game to cloud!"));
@@ -477,6 +478,16 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_21_DESC", "Instantly unlock pack 2, without collecting all stars."));
         texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_22_NAME", "Unlock Pack 3"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_22_DESC", "Instantly unlock pack 3, without collecting all stars."));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_23_NAME", "Unlock Pack 4"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_23_DESC", "Instantly unlock pack 4, without collecting all stars."));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_24_NAME", "Unlock Pack 5"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_24_DESC", "Instantly unlock pack 5, without collecting all stars."));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_25_NAME", "Unlock Pack 6"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_25_DESC", "Instantly unlock pack 6, without collecting all stars."));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_26_NAME", "Unlock Pack 7"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_26_DESC", "Instantly unlock pack 7, without collecting all stars."));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_27_NAME", "Unlock Pack 8"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_27_DESC", "Instantly unlock pack 8, without collecting all stars."));
         texts.add(new Text(Constants.LANGUAGE_EN, "LANGUAGE_1_NAME", "English"));
         texts.add(new Text(Constants.LANGUAGE_EN, "LANGUAGE_2_NAME", "Russian"));
         texts.add(new Text(Constants.LANGUAGE_EN, "METRIC_TILES_EARNED", "Tiles Earned"));
@@ -518,6 +529,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_11_NAME", "Autosave Freq (Mins)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_12_NAME", "Language"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_13_NAME", "Vibration"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_14_NAME", "Shop Purchase Sound"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_15_NAME", "Tile Rotating Sound"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_CATEGORY_1_NAME", "Boosts"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_CATEGORY_2_NAME", "Upgrades"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_CATEGORY_3_NAME", "Tiles"));
@@ -1294,6 +1307,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         settings.add(new Setting(Constants.SETTING_AUTOSAVE_FREQUENCY, 10, 0, 60));
         settings.add(new Setting(Constants.SETTING_LANGUAGE, Text.getDefaultLanguage(), Constants.LANGUAGE_MIN, Constants.LANGUAGE_MAX));
         settings.add(new Setting(Constants.SETTING_VIBRATION, false));
+        settings.add(new Setting(Constants.SETTING_SOUND_PURCHASING, 0, 0, SoundHelper.purchasingSounds.length));
+        settings.add(new Setting(Constants.SETTING_SOUND_ROTATING, 0, 0, SoundHelper.rotatingSounds.length));
         Setting.saveInTx(settings);
     }
 

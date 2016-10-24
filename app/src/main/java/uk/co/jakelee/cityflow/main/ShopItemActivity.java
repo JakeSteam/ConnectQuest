@@ -10,6 +10,7 @@ import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.ErrorHelper;
+import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Statistic;
@@ -57,6 +58,7 @@ public class ShopItemActivity extends Activity {
         if (purchaseResult != ErrorHelper.Error.NO_ERROR) {
             AlertHelper.error(this, ErrorHelper.get(purchaseResult));
         } else {
+            SoundHelper.playSound(this, SoundHelper.SOUNDS.purchasing);
             shopItem.purchase();
             AlertHelper.success(this, String.format(Text.get("SHOP_ITEM_PURCHASED"),
                     shopItem.getName(),

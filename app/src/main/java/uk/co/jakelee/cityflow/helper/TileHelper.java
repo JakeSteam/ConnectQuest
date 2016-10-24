@@ -55,23 +55,6 @@ public class TileHelper {
         final List<Integer> newTilesY = new ArrayList<>();
 
         final int tilesCount = tiles.size();
-        /*for (int i = 0; i < tilesCount; i++) {
-            final int j = i;
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    loadingView.setText("First scan checked: " + j + "/" + tilesCount);
-                }
-            });
-
-            Tile tile = tiles.getInt(j);
-            if (!checkTileFlow(tile)) {
-                newTilesX.add(tile.getX());
-                newTilesY.add(tile.getY());
-            }
-
-        }*/
-
         ExecutorService taskExecutor = Executors.newFixedThreadPool(20);
         for (int i = 0; i < tilesCount; i++) {
             final int j = i;
