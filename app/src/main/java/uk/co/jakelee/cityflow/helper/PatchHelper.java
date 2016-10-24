@@ -361,6 +361,9 @@ public class PatchHelper extends AsyncTask<String, String, String> {
                 "<a href='https://github.com/satyan/sugar'>Sugar</a>: Database ORM.<br>" +
                 "<a href='https://github.com/zxing/zxing'>ZXing</a>: QR Code reading / writing.<br>" +
                 ""));
+        texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_SOUNDS_TITLE", "Audio"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_SOUNDS_TEXT", "<a href='https://www.freesound.org/'>FreeSound</a>: Various sound effects<br>" +
+                ""));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_OTHER_TITLE", "Other"));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_OTHER_TEXT", "Of course, developing a game isn't just about technical resources. As such, there's a few people and communities who definitely need thanking.<br><br>" +
                 "<b>Britt</b>: Responsible for a few of the more... interesting ideas in the game, and providing motivation throughout. If she had her way, the game would be a lot more absurd..!<br><br>" +

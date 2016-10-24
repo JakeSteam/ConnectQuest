@@ -48,6 +48,20 @@
                 android:textColorLink="@color/blue"/>
 
             <uk.co.jakelee.cityflow.components.TextViewFont
+                android:id="@+id/soundsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="30sp"/>
+            <uk.co.jakelee.cityflow.components.TextViewFont
+                android:id="@+id/soundsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="19sp"
+                android:textColorLink="@color/blue"/>
+
+            <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/otherTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

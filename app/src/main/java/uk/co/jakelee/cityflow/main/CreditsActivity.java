@@ -35,6 +35,9 @@ public class CreditsActivity extends Activity {
         ((TextView)findViewById(R.id.technologiesTitle)).setText(Text.get("CREDITS_TECHNOLOGIES_TITLE"));
         ((TextView)findViewById(R.id.technologiesText)).setText(Text.get("CREDITS_TECHNOLOGIES_TEXT"));
 
+        ((TextView)findViewById(R.id.soundsTitle)).setText(Text.get("CREDITS_SOUNDS_TITLE"));
+        ((TextView)findViewById(R.id.soundsText)).setText(Text.get("CREDITS_SOUNDS_TEXT"));
+
         ((TextView)findViewById(R.id.otherTitle)).setText(Text.get("CREDITS_OTHER_TITLE"));
         ((TextView)findViewById(R.id.otherText)).setText(Text.get("CREDITS_OTHER_TEXT"));
     }
