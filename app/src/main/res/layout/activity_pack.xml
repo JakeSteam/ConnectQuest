@@ -69,7 +69,8 @@
                 <ImageView
                     android:id="@+id/puzzleImage"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"/>
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/puzzleImageQuestion"
                     android:layout_alignLeft="@id/puzzleImage"

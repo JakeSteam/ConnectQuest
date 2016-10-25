@@ -33,6 +33,7 @@ public class Pack extends SugarRecord{
         this.currentTime = EncryptHelper.encode(0, packId);
         this.currentStars = EncryptHelper.encode(0, packId);
         this.maxStars = EncryptHelper.encode(maxStars, packId);
+        this.purchased = EncryptHelper.encode(true, packId);
         this.unlockable = EncryptHelper.encode(unlockable, packId);
     }
 
