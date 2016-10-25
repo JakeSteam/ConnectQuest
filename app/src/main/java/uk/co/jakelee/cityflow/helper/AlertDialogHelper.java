@@ -322,7 +322,7 @@ public class AlertDialogHelper {
     }
 
     public static void resizePuzzle(final EditorActivity activity, final int puzzleId) {
-        Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
+        final Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
         final Pair<Integer, Integer> oldXY = TileHelper.getMaxXY(puzzle.getTiles());
 
         // Creating dialog
@@ -377,6 +377,7 @@ public class AlertDialogHelper {
                 if (newX <= 1 && newY <= 1) {
                     AlertHelper.error(activity, ErrorHelper.get(ErrorHelper.Error.PUZZLE_TOO_SMALL));
                 } else if ((oldXY.first + 1) != newX || (oldXY.second + 1) != newY) {
+                    puzzle.saveTileRotations();
                     confirmResize(activity, puzzleId, oldXY.first + 1, oldXY.second + 1, newX, newY);
                     dialog.dismiss();
                 } else {

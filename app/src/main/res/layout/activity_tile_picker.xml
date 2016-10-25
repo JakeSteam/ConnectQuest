@@ -39,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="20sp"
+                android:padding="5dp"
                 android:background="@color/blue"
                 android:layout_marginRight="40dp"
                 android:layout_marginLeft="5dp"
@@ -63,8 +64,10 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="20sp"
+                android:padding="5dp"
                 android:background="@color/blue"
-                android:layout_margin="5dp"/>
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"/>
         </TableRow>
         <TableRow
             android:id="@+id/heightContainer"
@@ -84,8 +87,10 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="20sp"
+                android:padding="5dp"
                 android:background="@color/blue"
-                android:layout_margin="5dp"/>
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"/>
         </TableRow>
         <ScrollView
             android:layout_width="match_parent"
