@@ -295,7 +295,7 @@ public class PuzzleHelper {
         // Increasing height
         if (oldY < newY) {
             for (int y = newY; y > oldY; y--) {
-                for (int x = oldY; x > 0; x--) {
+                for (int x = oldX; x > 0; x--) {
                     tiles.add(new Tile(puzzleId, 0, x - 1, y - 1, Constants.ROTATION_NORTH));
                 }
             }

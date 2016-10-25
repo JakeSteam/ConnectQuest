@@ -21,6 +21,7 @@ import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.ImageHelper;
 import uk.co.jakelee.cityflow.helper.TileHelper;
+import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Tile;
@@ -90,6 +91,7 @@ public class EditorActivity extends Activity {
         if (puzzleId == 0) { return; }
 
         ZoomableViewGroup tileContainer = (ZoomableViewGroup) findViewById(R.id.tileContainer);
+        tileContainer.setBackgroundColor(Background.getActiveBackgroundColour());
         tileContainer.removeAllViews();
         Pair<Integer, Integer> maxXY = TileHelper.getMaxXY(tiles);
         int leftOffset = (dh.getSizes(this).widthPixels / 3) - (maxXY.first * (dh.getTileWidth() / 2));
