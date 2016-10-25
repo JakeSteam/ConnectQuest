@@ -102,9 +102,8 @@ public class PuzzleActivity extends Activity {
         if (Setting.getSafeBoolean(Constants.SETTING_VIBRATION)) {
             vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
         }
-        if (Setting.getSafeBoolean(Constants.SETTING_SOUNDS)) {
-            playSounds = true;
-        }
+
+        playSounds = Setting.getSafeBoolean(Constants.SETTING_SOUNDS);
     }
 
     private void populateText() {

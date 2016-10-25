@@ -14,17 +14,28 @@
         android:textSize="25sp"
         android:textColor="@color/black"/>
 
+    <uk.co.jakelee.cityflow.components.TextViewFont
+        android:id="@+id/resizeHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:textSize="16sp"
+        android:textColor="@color/grey"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"/>
+
     <RelativeLayout
         android:id="@+id/widthWrapper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title">
+        android:layout_below="@id/resizeHint">
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/currentWidth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textColor="@color/black" />
 
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/minWidth"
@@ -32,7 +43,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/currentWidth"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textColor="@color/black" />
 
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/maxWidth"
@@ -40,10 +52,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_below="@id/currentWidth"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textColor="@color/black" />
 
         <SeekBar
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/sliderWidth"
             android:layout_height="wrap_content"
             android:layout_width="200dp"
@@ -63,7 +75,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textColor="@color/black" />
 
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/minHeight"
@@ -71,7 +84,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/currentHeight"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textColor="@color/black" />
 
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/maxHeight"
@@ -79,7 +93,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_below="@id/currentHeight"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textColor="@color/black" />
 
         <SeekBar
             xmlns:android="http://schemas.android.com/apk/res/android"

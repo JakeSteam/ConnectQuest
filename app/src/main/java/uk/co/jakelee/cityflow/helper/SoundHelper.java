@@ -15,7 +15,7 @@ public class SoundHelper {
     private MediaPlayer mediaPlayer;
     public enum SOUNDS {purchasing, rotating, settings};
     public static final int[] purchasingSounds = {R.raw.purchase1, R.raw.purchase2};
-    public static final int[] rotatingSounds = {R.raw.click1, R.raw.click2, R.raw.click3, R.raw.click4, R.raw.click5};
+    public static final int[] rotatingSounds = {R.raw.click1, R.raw.click2, R.raw.click3, R.raw.click4};
     public static final int[] settingSounds = {R.raw.setting1, R.raw.setting2};
 
     private SoundHelper(Context context) {

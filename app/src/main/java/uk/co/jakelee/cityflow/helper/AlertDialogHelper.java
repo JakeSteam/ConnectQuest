@@ -334,6 +334,7 @@ public class AlertDialogHelper {
         ((TextView)dialog.findViewById(R.id.close)).setText(Text.get("DIALOG_BUTTON_CLOSE"));
         ((TextView)dialog.findViewById(R.id.resizeButton)).setText(Text.get("DIALOG_BUTTON_RESIZE"));
         ((TextView)dialog.findViewById(R.id.title)).setText(String.format(Text.get("UI_PUZZLE_RESIZE"), puzzle.getName()));
+        ((TextView)dialog.findViewById(R.id.resizeHint)).setText(Text.get("UI_PUZZLE_RESIZE_HINT"));
         ((TextView)dialog.findViewById(R.id.minWidth)).setText(Integer.toString(Constants.PUZZLE_X_MIN));
         ((TextView)dialog.findViewById(R.id.maxWidth)).setText(Integer.toString(Constants.PUZZLE_X_MAX));
         ((TextView)dialog.findViewById(R.id.minHeight)).setText(Integer.toString(Constants.PUZZLE_Y_MIN));
@@ -375,8 +376,10 @@ public class AlertDialogHelper {
 
                 if (newX <= 1 && newY <= 1) {
                     AlertHelper.error(activity, ErrorHelper.get(ErrorHelper.Error.PUZZLE_TOO_SMALL));
-                } else if (oldXY.first != newX || oldXY.second != newY) {
+                } else if ((oldXY.first + 1) != newX || (oldXY.second + 1) != newY) {
                     confirmResize(activity, puzzleId, oldXY.first + 1, oldXY.second + 1, newX, newY);
+                    dialog.dismiss();
+                } else {
                     dialog.dismiss();
                 }
             }
