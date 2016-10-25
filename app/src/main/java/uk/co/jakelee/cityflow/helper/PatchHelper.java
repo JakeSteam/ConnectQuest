@@ -252,7 +252,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_COINS_EARNED_FREE", "Earned %1$d free coin(s), enjoy!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_PUZZLE_COPIED", "Successfully created \"%1$s\"!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_PUZZLE_IMPORTED", "Successfully imported the puzzle, enjoy!"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_SHUFFLE_PUZZLE", "Randomly shuffle all tiles?"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_SHUFFLE_PUZZLE", "Randomly rotate all tiles (keeping their position)?"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_DELETE_PUZZLE", "Delete puzzle \"%1$s\"?\n\nNote: This can't be undone!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_SAVE_CONFLICT", "Save conflict detected! Currently resolving, this might take a few seconds, please be patient..."));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_SETTING_TOGGLE_ON", "Toggled %1$s on!"));
@@ -394,7 +394,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_SUPPORT_CODE", "Support Code"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_CREDITS", "Credits"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_PLAY", "Play Puzzle"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_SHUFFLE_TILES", "Shuffle Tiles"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_SHUFFLE_TILES", "Rotate All Tiles"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_CHANGE_NAME", "Change Name"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_CHANGE_DESC", "Change Desc"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_CHANGE_WIDTH", "Change Width"));
