@@ -2,7 +2,6 @@ package uk.co.jakelee.cityflow.main;
 
 import android.Manifest;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +14,7 @@ import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
+import uk.co.jakelee.cityflow.helper.EncryptHelper;
 import uk.co.jakelee.cityflow.helper.ErrorHelper;
 import uk.co.jakelee.cityflow.helper.PermissionHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
@@ -27,6 +27,7 @@ public class ExportActivity extends AllowMeActivity {
     private Puzzle puzzle;
     private PuzzleCustom puzzleCustom;
     private DisplayHelper dh;
+    private String exportedText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,17 +46,17 @@ public class ExportActivity extends AllowMeActivity {
     private void populateCard() {
         ((TextView)findViewById(R.id.saveCard)).setText(Text.get("DIALOG_BUTTON_SAVE"));
         ((TextView)findViewById(R.id.shareCard)).setText(Text.get("DIALOG_BUTTON_SHARE"));
+        ((TextView)findViewById(R.id.shareText)).setText(Text.get("DIALOG_BUTTON_TEXT"));
 
         ((TextView)findViewById(R.id.puzzleName)).setText(puzzle.getName());
-        ((TextView)findViewById(R.id.puzzleAuthor)).setText("By: " + puzzleCustom.getAuthor());
+        ((TextView)findViewById(R.id.puzzleAuthor)).setText(puzzleCustom.getAuthor());
 
-        Drawable drawable = dh.getCustomPuzzleDrawable(puzzle.getPuzzleId());
-        ((ImageView)findViewById(R.id.puzzleImage)).setImageDrawable(drawable);
+        ((ImageView)findViewById(R.id.puzzleImage)).setImageDrawable(dh.getCustomPuzzleDrawable(puzzle.getPuzzleId()));
         ((TextView)findViewById(R.id.puzzleDesc)).setText(puzzleCustom.getDescription());
 
-        String export = PuzzleShareHelper.getPuzzleSQL(puzzle);
-        //String export = PuzzleShareHelper.getPuzzleString(puzzle);
-        StorageHelper.fillWithQrDrawable((ImageView)findViewById(R.id.puzzleQrCode), export);
+        //exportedText = PuzzleShareHelper.getPuzzleSQL(puzzle);
+        exportedText = PuzzleShareHelper.getPuzzleString(puzzle);
+        StorageHelper.fillWithQrDrawable((ImageView)findViewById(R.id.puzzleQrCode), exportedText);
     }
 
     public void save(View view) {
@@ -74,6 +75,14 @@ public class ExportActivity extends AllowMeActivity {
                 share();
             }
         });
+    }
+
+    public void shareText(View view) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, EncryptHelper.encode(exportedText));
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
     }
 
     private void save() {

@@ -31,7 +31,7 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginLeft="12dp"
                 android:textSize="26sp"
-                android:singleLine="true"
+                android:maxLines="1"
                 android:ellipsize="end"/>
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/puzzleAuthor"
@@ -42,7 +42,7 @@
                 android:layout_marginBottom="3dp"
                 android:textColor="@color/white"
                 android:textSize="22sp"
-                android:singleLine="true"
+                android:maxLines="1"
                 android:ellipsize="end"/>
         </LinearLayout>
 
@@ -88,7 +88,6 @@
                 android:id="@+id/puzzleDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="false"
                 android:textSize="18sp"/>
         </ScrollView>
     </android.support.percent.PercentRelativeLayout>
@@ -118,6 +117,16 @@
             android:background="@color/ltltgrey"
             android:textSize="30sp"
             android:onClick="share"/>
+        <uk.co.jakelee.cityflow.components.TextViewFont
+            android:id="@+id/shareText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:padding="6dp"
+            android:layout_margin="6dp"
+            android:background="@color/ltltgrey"
+            android:textSize="30sp"
+            android:onClick="shareText"/>
     </LinearLayout>
 
     <LinearLayout

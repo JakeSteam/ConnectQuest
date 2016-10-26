@@ -389,6 +389,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_BUTTON_CANCEL", "Cancel"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_BUTTON_DELETE", "Delete"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_BUTTON_RESIZE", "Resize"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_BUTTON_TEXT", "Text"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_RESIZE_CONFIRM", "Are you sure you want to resize the puzzle from %1$dx%2$d to %3$dx%4$d?"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_STATISTICS", "Statistics"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_SUPPORT_CODE", "Support Code"));
@@ -420,6 +421,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_CARD_NOT_SAVED", "The card could not be saved, check storage permissions."));
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_CAMERA_IMPORT_FAIL", "The puzzle card could not be read, please try retaking the image, or improving lighting conditions."));
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_FILE_IMPORT_FAIL", "No puzzle could be imported from the image, please check that a puzzle card image has been selected."));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_TEXT_IMPORT_FAIL", "No puzzle could be imported from the text, please check that it was copied correctly."));
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_BACKGROUND_LOCKED", "You need to unlock this background first!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_NO_IAB", "In app billing is not available on this device!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_IAB_FAILED", "Purchase failed! Please ensure you're logged in, and have a payment method configured."));

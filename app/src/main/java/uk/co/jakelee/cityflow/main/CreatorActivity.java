@@ -25,6 +25,7 @@ import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
+import uk.co.jakelee.cityflow.helper.EncryptHelper;
 import uk.co.jakelee.cityflow.helper.ErrorHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.helper.PermissionHelper;
@@ -36,8 +37,9 @@ import uk.co.jakelee.cityflow.model.Text;
 
 public class CreatorActivity extends AllowMeActivity {
     private boolean displayImported = false;
-    final private static int INTENT_CAMERA = 1234;
-    final private static int INTENT_FILE = 1235;
+    final public static int INTENT_CAMERA = 1234;
+    final public static int INTENT_FILE = 1235;
+    final public static int INTENT_TEXT = 1236;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,7 @@ public class CreatorActivity extends AllowMeActivity {
         ((TextView) findViewById(R.id.othersPuzzles)).setText(Text.get("CREATOR_IMPORTED"));
         ((TextView) findViewById(R.id.importFromCamera)).setText(Text.get("WORD_IMPORT"));
         ((TextView) findViewById(R.id.importFromFile)).setText(Text.get("WORD_IMPORT"));
+        ((TextView) findViewById(R.id.importFromText)).setText(Text.get("WORD_IMPORT"));
         ((TextView) findViewById(R.id.newPuzzle)).setText(Text.get("CREATOR_NEW_PUZZLE"));
     }
 
@@ -163,8 +166,12 @@ public class CreatorActivity extends AllowMeActivity {
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), INTENT_FILE);
     }
 
+    public void importFromText(View v) {
+        AlertDialogHelper.importPuzzleText(getApplicationContext(), this);
+    }
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK) {
@@ -178,15 +185,20 @@ public class CreatorActivity extends AllowMeActivity {
                 } catch (Exception e) {
                     AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.FILE_IMPORT_FAIL));
                 }
+            } else if (requestCode == INTENT_TEXT) {
+                puzzleString = EncryptHelper.decode(data.getStringExtra("PUZZLE_TEXT"));
             }
 
             if (!puzzleString.equals("") && PuzzleShareHelper.importPuzzleString(puzzleString, false)) {
                 GooglePlayHelper.UpdateEvent(Constants.EVENT_IMPORT_PUZZLE, 1);
                 AlertHelper.success(this, Text.get("ALERT_PUZZLE_IMPORTED"));
+                populatePuzzles();
             } else if (requestCode == INTENT_CAMERA) {
                 AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.CAMERA_IMPORT_FAIL));
             } else if (requestCode == INTENT_FILE) {
                 AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.FILE_IMPORT_FAIL));
+            } else if (requestCode == INTENT_TEXT) {
+                AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.TEXT_IMPORT_FAIL));
             }
         }
     }

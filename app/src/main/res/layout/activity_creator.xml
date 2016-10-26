@@ -73,14 +73,14 @@
                     android:gravity="center_horizontal"
                     android:orientation="horizontal"
                     android:layout_margin="3dp">
-                    <uk.co.jakelee.cityflow.components.TextViewFont
+                    <uk.co.jakelee.cityflow.components.AutofitTextViewFont
                         android:id="@+id/importFromCamera"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:padding="5dp"
                         android:gravity="center_horizontal"
-                        android:textSize="26sp"/>
+                        android:textSize="26sp" />
                     <uk.co.jakelee.cityflow.components.TextAwesome
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                     android:gravity="center_horizontal"
                     android:orientation="horizontal"
                     android:layout_margin="3dp">
-                    <uk.co.jakelee.cityflow.components.TextViewFont
+                    <uk.co.jakelee.cityflow.components.AutofitTextViewFont
                         android:id="@+id/importFromFile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -115,6 +115,32 @@
                         android:gravity="center_horizontal"
                         android:textSize="26sp"
                         android:text="@string/icon_gallery"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/ltltgrey"
+                    android:onClick="importFromText"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:layout_margin="3dp">
+                    <uk.co.jakelee.cityflow.components.AutofitTextViewFont
+                        android:id="@+id/importFromText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:padding="5dp"
+                        android:gravity="center_horizontal"
+                        android:textSize="26sp"/>
+                    <uk.co.jakelee.cityflow.components.TextAwesome
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:padding="5dp"
+                        android:gravity="center_horizontal"
+                        android:textSize="26sp"
+                        android:text="@string/icon_text"/>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout

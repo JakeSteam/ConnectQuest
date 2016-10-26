@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.text.InputFilter;
 import android.util.Pair;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -161,11 +160,31 @@ public class AlertDialogHelper {
             }
         });
 
-        final Dialog dialog = alertDialog.create();
-        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
-        dialog.show();
-        dialog.getWindow().getDecorView().setSystemUiVisibility(activity.getWindow().getDecorView().getSystemUiVisibility());
-        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+        alertDialog.show();
+    }
+
+    public static void importPuzzleText(final Context context, final CreatorActivity activity) {
+        final EditText puzzleBox = new EditText(context);
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
+        alertDialog.setMessage(Text.get("WORD_IMPORT"));
+        alertDialog.setView(puzzleBox);
+
+        alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_LOAD"), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                String puzzleString = puzzleBox.getText().toString().trim();
+                Intent intent = new Intent().putExtra("PUZZLE_TEXT", puzzleString);
+                activity.onActivityResult(CreatorActivity.INTENT_TEXT, Activity.RESULT_OK, intent);
+            }
+        });
+
+        alertDialog.setNegativeButton(Text.get("DIALOG_BUTTON_CANCEL"), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alertDialog.show();
     }
 
     public static void changeSettingText(final SettingsActivity activity, final int settingId) {
@@ -229,10 +248,7 @@ public class AlertDialogHelper {
             }
         });
 
-        Dialog dialog = alertDialog.create();
-        dialog.show();
-        dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
-        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        alertDialog.show();
     }
 
     public static void puzzleCreationOptions(final CreatorActivity activity) {
