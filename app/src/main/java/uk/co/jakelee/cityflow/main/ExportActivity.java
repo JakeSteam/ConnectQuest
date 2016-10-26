@@ -2,6 +2,7 @@ package uk.co.jakelee.cityflow.main;
 
 import android.Manifest;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -48,10 +49,12 @@ public class ExportActivity extends AllowMeActivity {
         ((TextView)findViewById(R.id.puzzleName)).setText(puzzle.getName());
         ((TextView)findViewById(R.id.puzzleAuthor)).setText("By: " + puzzleCustom.getAuthor());
 
-        ((ImageView)findViewById(R.id.puzzleImage)).setImageDrawable(dh.getCustomPuzzleDrawable(puzzle.getPuzzleId()));
+        Drawable drawable = dh.getCustomPuzzleDrawable(puzzle.getPuzzleId());
+        ((ImageView)findViewById(R.id.puzzleImage)).setImageDrawable(drawable);
         ((TextView)findViewById(R.id.puzzleDesc)).setText(puzzleCustom.getDescription());
 
-        String export = PuzzleShareHelper.getPuzzleString(puzzle);
+        String export = PuzzleShareHelper.getPuzzleSQL(puzzle);
+        //String export = PuzzleShareHelper.getPuzzleString(puzzle);
         StorageHelper.fillWithQrDrawable((ImageView)findViewById(R.id.puzzleQrCode), export);
     }
 

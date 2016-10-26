@@ -753,7 +753,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         List<Tile> tiles = new ArrayList<>();
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_1_NAME", "Make The Loop"));
-        puzzles.add(new Puzzle(1, 1, 3364L, 1, 0L, 0));
+        puzzles.add(new Puzzle(1, 1, 3399L, 1, 0L, 0));
         tiles.add(new Tile(1, 45, 0, 2, 4));
         tiles.add(new Tile(1, 3, 1, 2, 2));
         tiles.add(new Tile(1, 1, 0, 1, 2));
@@ -763,7 +763,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_2_NAME", "Multiple Flows"));
-        puzzles.add(new Puzzle(2, 1, 2269L, 6, 0L, 0));
+        puzzles.add(new Puzzle(2, 1, 2299L, 6, 0L, 0));
         tiles.add(new Tile(2, 3, 0, 2, 3));
         tiles.add(new Tile(2, 8, 1, 2, 2));
         tiles.add(new Tile(2, 8, 2, 2, 3));
@@ -775,7 +775,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(2, 43, 2, 0, 1));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_3_NAME", "Divide And Rejoin"));
-        puzzles.add(new Puzzle(3, 1, 3641L, 5, 0L, 0));
+        puzzles.add(new Puzzle(3, 1, 3699L, 5, 0L, 0));
         tiles.add(new Tile(3, 1, 0, 2, 4));
         tiles.add(new Tile(3, 5, 1, 2, 2));
         tiles.add(new Tile(3, 42, 2, 2, 3));
@@ -787,7 +787,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(3, 3, 2, 0, 4));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_4_NAME", "Convert And Cross"));
-        puzzles.add(new Puzzle(4, 1, 6605L, 8, 0L, 0));
+        puzzles.add(new Puzzle(4, 1, 6699L, 8, 0L, 0));
         tiles.add(new Tile(4, 3, 0, 2, 4));
         tiles.add(new Tile(4, 1, 1, 2, 3));
         tiles.add(new Tile(4, 45, 2, 2, 1));
@@ -802,7 +802,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(4, 8, 3, 0, 1));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_5_NAME", "Shop Alcove"));
-        puzzles.add(new Puzzle(5, 1, 7037L, 12, 0L, 0));
+        puzzles.add(new Puzzle(5, 1, 7099L, 12, 0L, 0));
         tiles.add(new Tile(5, 48, 0, 3, 3));
         tiles.add(new Tile(5, 47, 1, 3, 3));
         tiles.add(new Tile(5, 48, 2, 3, 2));
@@ -817,7 +817,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(5, 19, 2, 0, 3));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_6_NAME", "The Path To Roads"));
-        puzzles.add(new Puzzle(6, 1, 6028L, 3, 0L, 0));
+        puzzles.add(new Puzzle(6, 1, 6099L, 3, 0L, 0));
         tiles.add(new Tile(6, 19, 0, 2, 2));
         tiles.add(new Tile(6, 59, 1, 2, 1));
         tiles.add(new Tile(6, 23, 2, 2, 3));
@@ -829,7 +829,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(6, 32, 2, 0, 1));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_7_NAME", "Riverside Stones"));
-        puzzles.add(new Puzzle(7, 1, 7620L, 13, 0L, 0));
+        puzzles.add(new Puzzle(7, 1, 7699L, 13, 0L, 0));
         tiles.add(new Tile(7, 88, 0, 2, 3));
         tiles.add(new Tile(7, 88, 1, 2, 3));
         tiles.add(new Tile(7, 86, 2, 2, 1));
@@ -841,7 +841,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(7, 89, 2, 0, 2));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_8_NAME", "Crossover Chaos"));
-        puzzles.add(new Puzzle(8, 1, 17240L, 31, 0L, 0));
+        puzzles.add(new Puzzle(8, 1, 17299L, 31, 0L, 0));
         tiles.add(new Tile(8, 108, 0, 3, 3));
         tiles.add(new Tile(8, 103, 1, 3, 4));
         tiles.add(new Tile(8, 96, 2, 3, 3));
@@ -864,7 +864,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(8, 127, 4, 0, 1));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_9_NAME", "Forest Adventure"));
-        puzzles.add(new Puzzle(9, 1, 13369L, 18, 0L, 0));
+        puzzles.add(new Puzzle(9, 1, 13399L, 18, 0L, 0));
         tiles.add(new Tile(9, 71, 0, 3, 1));
         tiles.add(new Tile(9, 74, 1, 3, 1));
         tiles.add(new Tile(9, 76, 2, 3, 4));
@@ -883,7 +883,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(9, 75, 3, 0, 2));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_10_NAME", "A Scenic City"));
-        puzzles.add(new Puzzle(10, 1, 38468L, 26, 0L, 0));
+        puzzles.add(new Puzzle(10, 1, 38499L, 26, 0L, 0));
         tiles.add(new Tile(10, 50, 0, 4, 2));
         tiles.add(new Tile(10, 40, 1, 4, 3));
         tiles.add(new Tile(10, 50, 2, 4, 4));
@@ -916,7 +916,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         List<Tile> tiles = new ArrayList<>();
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_11_NAME", "One Shop Town"));
-        puzzles.add(new Puzzle(11, 2, 10000L, 20, 0L, 0));
+        puzzles.add(new Puzzle(11, 2, 3799L, 7, 0L, 0));
         tiles.add(new Tile(11, 19, 0, 0, 1));
         tiles.add(new Tile(11, 19, 0, 1, 3));
         tiles.add(new Tile(11, 21, 0, 2, 2));
@@ -928,7 +928,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(11, 21, 2, 2, 1));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_12_NAME", "Beware The Moat"));
-        puzzles.add(new Puzzle(12, 2, 10000L, 20, 0L, 0));
+        puzzles.add(new Puzzle(12, 2, 3999L, 10, 0L, 0));
         tiles.add(new Tile(12, 50, 0, 0, 2));
         tiles.add(new Tile(12, 40, 0, 1, 4));
         tiles.add(new Tile(12, 50, 0, 2, 3));
@@ -940,19 +940,19 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(12, 50, 2, 2, 1));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_13_NAME", "Pop To The Shops"));
-        puzzles.add(new Puzzle(13, 2, 10000L, 20, 0L, 0));
-        tiles.add(new Tile(13, 19, 0, 0, 1));
+        puzzles.add(new Puzzle(13, 2, 4899L, 9, 0L, 0));
+        tiles.add(new Tile(13, 19, 0, 0, 3));
         tiles.add(new Tile(13, 29, 0, 1, 1));
-        tiles.add(new Tile(13, 19, 0, 2, 2));
-        tiles.add(new Tile(13, 15, 1, 0, 3));
-        tiles.add(new Tile(13, 30, 1, 1, 4));
+        tiles.add(new Tile(13, 19, 0, 2, 4));
+        tiles.add(new Tile(13, 15, 1, 0, 2));
+        tiles.add(new Tile(13, 30, 1, 1, 1));
         tiles.add(new Tile(13, 15, 1, 2, 2));
         tiles.add(new Tile(13, 38, 2, 0, 4));
-        tiles.add(new Tile(13, 13, 2, 1, 2));
+        tiles.add(new Tile(13, 13, 2, 1, 1));
         tiles.add(new Tile(13, 38, 2, 2, 3));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_14_NAME", "Transition The Flows"));
-        puzzles.add(new Puzzle(14, 2, 10000L, 20, 0L, 0));
+        puzzles.add(new Puzzle(14, 2, 9099L, 14, 0L, 0));
         tiles.add(new Tile(14, 19, 0, 0, 2));
         tiles.add(new Tile(14, 14, 0, 1, 3));
         tiles.add(new Tile(14, 19, 0, 2, 4));
@@ -961,10 +961,10 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(14, 46, 1, 2, 1));
         tiles.add(new Tile(14, 18, 2, 0, 1));
         tiles.add(new Tile(14, 18, 2, 1, 1));
-        tiles.add(new Tile(14, 30, 2, 2, 3));
+        tiles.add(new Tile(14, 30, 2, 2, 1));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_15_NAME", "Height Matters!"));
-        puzzles.add(new Puzzle(15, 2, 10000L, 20, 0L, 0));
+        puzzles.add(new Puzzle(15, 2, 5299L, 13, 0L, 0));
         tiles.add(new Tile(15, 19, 0, 0, 3));
         tiles.add(new Tile(15, 20, 0, 1, 3));
         tiles.add(new Tile(15, 48, 0, 2, 1));
@@ -976,7 +976,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(15, 21, 2, 2, 2));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_16_NAME", "Make Your Own Solution"));
-        puzzles.add(new Puzzle(16, 2, 10000L, 20, 0L, 0));
+        puzzles.add(new Puzzle(16, 2, 6199L, 12, 0L, 0));
         tiles.add(new Tile(16, 41, 0, 0, 4));
         tiles.add(new Tile(16, 41, 0, 1, 2));
         tiles.add(new Tile(16, 41, 0, 2, 1));
@@ -988,7 +988,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(16, 41, 2, 2, 1));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_17_NAME", "Gridlock"));
-        puzzles.add(new Puzzle(17, 2, 10000L, 20, 0L, 0));
+        puzzles.add(new Puzzle(17, 2, 4399L, 12, 0L, 0));
         tiles.add(new Tile(17, 19, 0, 0, 4));
         tiles.add(new Tile(17, 17, 0, 1, 3));
         tiles.add(new Tile(17, 19, 0, 2, 2));
@@ -1000,7 +1000,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(17, 19, 2, 2, 3));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_18_NAME", "Tree Lined Swimway"));
-        puzzles.add(new Puzzle(18, 2, 10000L, 20, 0L, 0));
+        puzzles.add(new Puzzle(18, 2, 5099L, 12, 0L, 0));
         tiles.add(new Tile(18, 26, 0, 0, 2));
         tiles.add(new Tile(18, 41, 0, 1, 1));
         tiles.add(new Tile(18, 26, 0, 2, 4));
@@ -1012,19 +1012,19 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(18, 26, 2, 2, 2));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_19_NAME", "Competitive Business"));
-        puzzles.add(new Puzzle(19, 2, 10000L, 20, 0L, 0));
+        puzzles.add(new Puzzle(19, 2, 3899L, 7, 0L, 0));
         tiles.add(new Tile(19, 19, 0, 0, 4));
         tiles.add(new Tile(19, 18, 0, 1, 2));
-        tiles.add(new Tile(19, 13, 0, 2, 3));
+        tiles.add(new Tile(19, 13, 0, 2, 4));
         tiles.add(new Tile(19, 17, 1, 0, 1));
         tiles.add(new Tile(19, 14, 1, 1, 4));
         tiles.add(new Tile(19, 18, 1, 2, 2));
         tiles.add(new Tile(19, 19, 2, 0, 3));
         tiles.add(new Tile(19, 18, 2, 1, 1));
-        tiles.add(new Tile(19, 13, 2, 2, 4));
+        tiles.add(new Tile(19, 13, 2, 2, 3));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_20_NAME", "The Long Way Round"));
-        puzzles.add(new Puzzle(20, 2, 10000L, 20, 0L, 0));
+        puzzles.add(new Puzzle(20, 2, 7699L, 17, 0L, 0));
         tiles.add(new Tile(20, 19, 0, 0, 2));
         tiles.add(new Tile(20, 20, 0, 1, 2));
         tiles.add(new Tile(20, 48, 0, 2, 4));
@@ -1036,7 +1036,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(20, 48, 2, 2, 1));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_21_NAME", "It Never Ends"));
-        puzzles.add(new Puzzle(21, 2, 10000L, 20, 0L, 0));
+        puzzles.add(new Puzzle(21, 2, 9699L, 19, 0L, 0));
         tiles.add(new Tile(21, 19, 0, 0, 4));
         tiles.add(new Tile(21, 19, 0, 1, 2));
         tiles.add(new Tile(21, 24, 0, 2, 1));
@@ -1055,7 +1055,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(21, 19, 3, 3, 4));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_22_NAME", "Round And Round"));
-        puzzles.add(new Puzzle(22, 2, 10000L, 20, 0L, 0));
+        puzzles.add(new Puzzle(22, 2, 8299L, 15, 0L, 0));
         tiles.add(new Tile(22, 19, 0, 0, 4));
         tiles.add(new Tile(22, 19, 0, 1, 2));
         tiles.add(new Tile(22, 19, 0, 2, 3));
@@ -1074,7 +1074,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(22, 19, 3, 3, 3));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_23_NAME", "The High Road"));
-        puzzles.add(new Puzzle(23, 2, 10000L, 20, 0L, 0));
+        puzzles.add(new Puzzle(23, 2, 5499L, 11, 0L, 0));
         tiles.add(new Tile(23, 48, 0, 0, 2));
         tiles.add(new Tile(23, 47, 0, 1, 3));
         tiles.add(new Tile(23, 47, 0, 2, 1));
@@ -1093,7 +1093,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(23, 48, 3, 3, 2));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_24_NAME", "Better Go Slow!"));
-        puzzles.add(new Puzzle(24, 2, 10000L, 20, 0L, 0));
+        puzzles.add(new Puzzle(24, 2, 13499L, 21, 0L, 0));
         tiles.add(new Tile(24, 26, 0, 0, 3));
         tiles.add(new Tile(24, 27, 0, 1, 2));
         tiles.add(new Tile(24, 28, 0, 2, 1));
@@ -1109,10 +1109,10 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(24, 24, 3, 0, 1));
         tiles.add(new Tile(24, 22, 3, 1, 4));
         tiles.add(new Tile(24, 24, 3, 2, 3));
-        tiles.add(new Tile(24, 30, 3, 3, 2));
+        tiles.add(new Tile(24, 30, 3, 3, 1));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_25_NAME", "Coming Up For Air"));
-        puzzles.add(new Puzzle(25, 2, 10000L, 20, 0L, 0));
+        puzzles.add(new Puzzle(25, 2, 9699L, 16, 0L, 0));
         tiles.add(new Tile(25, 38, 0, 0, 2));
         tiles.add(new Tile(25, 38, 0, 1, 4));
         tiles.add(new Tile(25, 38, 0, 2, 1));
@@ -1131,7 +1131,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(25, 38, 3, 3, 4));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_26_NAME", "Gone Fishing"));
-        puzzles.add(new Puzzle(26, 2, 10000L, 20, 0L, 0));
+        puzzles.add(new Puzzle(26, 2, 14599L, 28, 0L, 0));
         tiles.add(new Tile(26, 18, 0, 0, 4));
         tiles.add(new Tile(26, 25, 0, 1, 2));
         tiles.add(new Tile(26, 25, 0, 2, 3));
@@ -1150,7 +1150,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(26, 23, 3, 3, 2));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_27_NAME", "Keep Going Left"));
-        puzzles.add(new Puzzle(27, 2, 10000L, 20, 0L, 0));
+        puzzles.add(new Puzzle(27, 2, 8199L, 14, 0L, 0));
         tiles.add(new Tile(27, 49, 0, 0, 1));
         tiles.add(new Tile(27, 27, 0, 1, 2));
         tiles.add(new Tile(27, 27, 0, 2, 4));
@@ -1169,7 +1169,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(27, 26, 3, 3, 2));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_28_NAME", "Don't Miss The Turning"));
-        puzzles.add(new Puzzle(28, 2, 10000L, 20, 0L, 0));
+        puzzles.add(new Puzzle(28, 2, 9199L, 19, 0L, 0));
         tiles.add(new Tile(28, 32, 0, 0, 4));
         tiles.add(new Tile(28, 38, 0, 1, 2));
         tiles.add(new Tile(28, 20, 0, 2, 1));
@@ -1188,16 +1188,16 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(28, 31, 3, 3, 4));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_29_NAME", "End Of The Line"));
-        puzzles.add(new Puzzle(29, 2, 10000L, 20, 0L, 0));
+        puzzles.add(new Puzzle(29, 2, 7999L, 15, 0L, 0));
         tiles.add(new Tile(29, 18, 0, 0, 2));
         tiles.add(new Tile(29, 14, 0, 1, 4));
         tiles.add(new Tile(29, 17, 0, 2, 1));
         tiles.add(new Tile(29, 29, 0, 3, 4));
         tiles.add(new Tile(29, 19, 0, 4, 2));
-        tiles.add(new Tile(29, 13, 0, 5, 3));
+        tiles.add(new Tile(29, 13, 0, 5, 4));
         tiles.add(new Tile(29, 23, 0, 6, 3));
         tiles.add(new Tile(29, 23, 0, 7, 1));
-        tiles.add(new Tile(29, 30, 1, 0, 4));
+        tiles.add(new Tile(29, 30, 1, 0, 2));
         tiles.add(new Tile(29, 18, 1, 1, 3));
         tiles.add(new Tile(29, 19, 1, 2, 2));
         tiles.add(new Tile(29, 31, 1, 3, 4));
@@ -1208,7 +1208,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(29, 38, 1, 8, 4));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_30_NAME", "A Summer Walk"));
-        puzzles.add(new Puzzle(30, 2, 10000L, 20, 0L, 0));
+        puzzles.add(new Puzzle(30, 2, 12199L, 25, 0L, 0));
         tiles.add(new Tile(30, 18, 0, 0, 2));
         tiles.add(new Tile(30, 25, 0, 1, 1));
         tiles.add(new Tile(30, 29, 0, 2, 4));
@@ -1218,7 +1218,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(30, 46, 1, 2, 1));
         tiles.add(new Tile(30, 23, 1, 3, 3));
         tiles.add(new Tile(30, 22, 2, 0, 2));
-        tiles.add(new Tile(30, 30, 2, 1, 3));
+        tiles.add(new Tile(30, 30, 2, 1, 4));
         tiles.add(new Tile(30, 25, 2, 2, 4));
         tiles.add(new Tile(30, 23, 2, 3, 4));
         tiles.add(new Tile(30, 23, 3, 0, 1));
@@ -1231,7 +1231,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(30, 23, 4, 3, 3));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_31_NAME", "Highs And Lows"));
-        puzzles.add(new Puzzle(31, 2, 10000L, 20, 0L, 0));
+        puzzles.add(new Puzzle(31, 2, 7199L, 15, 0L, 0));
         tiles.add(new Tile(31, 19, 0, 0, 4));
         tiles.add(new Tile(31, 25, 0, 1, 2));
         tiles.add(new Tile(31, 20, 0, 2, 3));
@@ -1242,7 +1242,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(31, 47, 1, 3, 1));
         tiles.add(new Tile(31, 38, 2, 0, 3));
         tiles.add(new Tile(31, 22, 2, 1, 2));
-        tiles.add(new Tile(31, 30, 2, 2, 2));
+        tiles.add(new Tile(31, 30, 2, 2, 1));
         tiles.add(new Tile(31, 20, 2, 3, 4));
         tiles.add(new Tile(31, 19, 3, 0, 1));
         tiles.add(new Tile(31, 25, 3, 1, 3));
@@ -1250,7 +1250,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(31, 19, 3, 3, 2));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_32_NAME", "Path Shortcut"));
-        puzzles.add(new Puzzle(32, 2, 28872L, 38, 0L, 0));
+        puzzles.add(new Puzzle(32, 2, 28899L, 38, 0L, 0));
         tiles.add(new Tile(32, 48, 0, 4, 3));
         tiles.add(new Tile(32, 48, 1, 4, 3));
         tiles.add(new Tile(32, 21, 2, 4, 2));
@@ -1283,7 +1283,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(32, 31, 5, 0, 1));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_33_NAME", "Curled"));
-        puzzles.add(new Puzzle(33, 2, 3056L, 8, 0L, 0));
+        puzzles.add(new Puzzle(33, 2, 3099L, 8, 0L, 0));
         tiles.add(new Tile(33, 41, 0, 2, 4));
         tiles.add(new Tile(33, 26, 1, 2, 3));
         tiles.add(new Tile(33, 49, 2, 2, 2));
@@ -1295,7 +1295,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(33, 49, 2, 0, 4));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_34_NAME", "Captive Audience"));
-        puzzles.add(new Puzzle(34, 2, 7838L, 8, 0L, 0));
+        puzzles.add(new Puzzle(34, 2, 7899L, 8, 0L, 0));
         tiles.add(new Tile(34, 80, 0, 3, 3));
         tiles.add(new Tile(34, 21, 1, 3, 1));
         tiles.add(new Tile(34, 19, 2, 3, 1));
@@ -1314,7 +1314,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(34, 21, 3, 0, 2));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_35_NAME", "Growth"));
-        puzzles.add(new Puzzle(35, 2, 5660L, 10, 0L, 0));
+        puzzles.add(new Puzzle(35, 2, 5699L, 10, 0L, 0));
         tiles.add(new Tile(35, 26, 0, 2, 1));
         tiles.add(new Tile(35, 27, 1, 2, 3));
         tiles.add(new Tile(35, 49, 2, 2, 2));
@@ -1326,7 +1326,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(35, 26, 2, 0, 3));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_36_NAME", "Water Wheels"));
-        puzzles.add(new Puzzle(36, 2, 13564L, 19, 0L, 0));
+        puzzles.add(new Puzzle(36, 2, 13599L, 19, 0L, 0));
         tiles.add(new Tile(36, 21, 0, 4, 3));
         tiles.add(new Tile(36, 31, 1, 4, 1));
         tiles.add(new Tile(36, 50, 2, 4, 3));
@@ -1354,7 +1354,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(36, 50, 4, 0, 4));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_37_NAME", "Nestled Away"));
-        puzzles.add(new Puzzle(37, 2, 10136L, 17, 0L, 0));
+        puzzles.add(new Puzzle(37, 2, 10199L, 17, 0L, 0));
         tiles.add(new Tile(37, 48, 0, 2, 3));
         tiles.add(new Tile(37, 47, 1, 2, 1));
         tiles.add(new Tile(37, 20, 2, 2, 3));
@@ -1375,7 +1375,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(37, 19, 5, 0, 4));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_38_NAME", "Figure Of 6"));
-        puzzles.add(new Puzzle(38, 2, 3027L, 7, 0L, 0));
+        puzzles.add(new Puzzle(38, 2, 3099L, 7, 0L, 0));
         tiles.add(new Tile(38, 19, 0, 2, 3));
         tiles.add(new Tile(38, 38, 1, 2, 2));
         tiles.add(new Tile(38, 17, 0, 1, 4));
@@ -1384,7 +1384,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(38, 23, 1, 0, 3));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_39_NAME", "Trees Ahoy"));
-        puzzles.add(new Puzzle(39, 2, 8547L, 14, 0L, 0));
+        puzzles.add(new Puzzle(39, 2, 8599L, 14, 0L, 0));
         tiles.add(new Tile(39, 18, 0, 3, 4));
         tiles.add(new Tile(39, 21, 1, 3, 2));
         tiles.add(new Tile(39, 18, 2, 3, 3));
@@ -1403,7 +1403,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(39, 49, 3, 0, 3));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_40_NAME", "Road To Nowhere"));
-        puzzles.add(new Puzzle(40, 2, 3941L, 11, 0L, 0));
+        puzzles.add(new Puzzle(40, 2, 3999L, 11, 0L, 0));
         tiles.add(new Tile(40, 80, 0, 2, 3));
         tiles.add(new Tile(40, 17, 1, 2, 1));
         tiles.add(new Tile(40, 19, 2, 2, 1));
@@ -1425,7 +1425,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         List<Tile> tiles = new ArrayList<>();
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_41_NAME", "Hi"));
-        puzzles.add(new Puzzle(41, 3, 3848L, 7, 0L, 0));
+        puzzles.add(new Puzzle(41, 3, 3899L, 7, 0L, 0));
         tiles.add(new Tile(41, 3, 0, 2, 1));
         tiles.add(new Tile(41, 5, 1, 2, 4));
         tiles.add(new Tile(41, 3, 2, 2, 2));
@@ -1437,7 +1437,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(41, 3, 2, 0, 3));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_42_NAME", "Prongs"));
-        puzzles.add(new Puzzle(42, 3, 6498L, 12, 0L, 0));
+        puzzles.add(new Puzzle(42, 3, 6499L, 12, 0L, 0));
         tiles.add(new Tile(42, 43, 0, 3, 3));
         tiles.add(new Tile(42, 3, 1, 3, 4));
         tiles.add(new Tile(42, 6, 2, 3, 4));
@@ -1452,7 +1452,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(42, 35, 2, 0, 4));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_43_NAME", "Circling"));
-        puzzles.add(new Puzzle(43, 3, 4822L, 10, 0L, 0));
+        puzzles.add(new Puzzle(43, 3, 4899L, 10, 0L, 0));
         tiles.add(new Tile(43, 1, 0, 2, 1));
         tiles.add(new Tile(43, 11, 1, 2, 3));
         tiles.add(new Tile(43, 39, 2, 2, 3));
@@ -1464,7 +1464,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(43, 39, 2, 0, 3));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_44_NAME", "Long Island"));
-        puzzles.add(new Puzzle(44, 3, 14349L, 26, 0L, 0));
+        puzzles.add(new Puzzle(44, 3, 14399L, 26, 0L, 0));
         tiles.add(new Tile(44, 6, 0, 1, 2));
         tiles.add(new Tile(44, 1, 1, 1, 4));
         tiles.add(new Tile(44, 79, 2, 1, 4));
@@ -1485,7 +1485,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(44, 42, 8, 0, 2));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_45_NAME", "Stand Up"));
-        puzzles.add(new Puzzle(45, 3, 6868L, 12, 0L, 0));
+        puzzles.add(new Puzzle(45, 3, 6899L, 12, 0L, 0));
         tiles.add(new Tile(45, 0, 0, 2, 1));
         tiles.add(new Tile(45, 0, 1, 2, 3));
         tiles.add(new Tile(45, 3, 2, 2, 4));
@@ -1503,7 +1503,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(45, 3, 4, 0, 4));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_46_NAME", "Country: Bullseye"));
-        puzzles.add(new Puzzle(46, 3, 8117L, 12, 0L, 0));
+        puzzles.add(new Puzzle(46, 3, 8199L, 12, 0L, 0));
         tiles.add(new Tile(46, 34, 0, 4, 3));
         tiles.add(new Tile(46, 12, 1, 4, 4));
         tiles.add(new Tile(46, 3, 2, 4, 2));
@@ -1531,7 +1531,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(46, 45, 4, 0, 1));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_47_NAME", "Waterworks"));
-        puzzles.add(new Puzzle(47, 3, 8822L, 19, 0L, 0));
+        puzzles.add(new Puzzle(47, 3, 8899L, 19, 0L, 0));
         tiles.add(new Tile(47, 8, 0, 3, 4));
         tiles.add(new Tile(47, 9, 1, 3, 1));
         tiles.add(new Tile(47, 8, 2, 3, 1));
@@ -1550,7 +1550,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(47, 8, 3, 0, 2));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_48_NAME", "The Moat"));
-        puzzles.add(new Puzzle(48, 3, 22121L, 39, 22121L, 39));
+        puzzles.add(new Puzzle(48, 3, 22199L, 39, 0L, 0));
         tiles.add(new Tile(48, 1, 0, 4, 2));
         tiles.add(new Tile(48, 1, 1, 4, 4));
         tiles.add(new Tile(48, 45, 2, 4, 4));
