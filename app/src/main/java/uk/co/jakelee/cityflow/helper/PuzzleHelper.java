@@ -155,7 +155,7 @@ public class PuzzleHelper {
         String tileString = "";
         for (TileType tile : tiles) {
             tileString += tile.getName() + ", ";
-            tilesContainer.addView(dh.createTileIcon(tile.getTypeId(), 50, 50));
+            tilesContainer.addView(dh.createTileIcon(tile, 50, 50));
         }
 
         if (tiles.size() > 0) {

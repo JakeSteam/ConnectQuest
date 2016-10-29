@@ -31,6 +31,7 @@ import uk.co.jakelee.cityflow.main.ShopActivity;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Tile;
+import uk.co.jakelee.cityflow.model.TileType;
 
 public class DisplayHelper {
     private final Context context;
@@ -129,17 +130,17 @@ public class DisplayHelper {
         return itemButton;
     }
 
-    public ImageView createTileIcon(int tileId, int width, int height) {
+    public ImageView createTileIcon(TileType tileType, int width, int height) {
         int padding = dpToPixel(3);
         ImageView tileIcon = new ImageView(context);
-        tileIcon.setImageDrawable(createDrawable(getTileDrawableID(tileId), width, height));
-        tileIcon.setTag(tileId);
+        if (tileType.getStatus() == Constants.TILE_STATUS_UNPURCHASED) {
+            tileIcon.setImageDrawable(createDrawable(R.drawable.tile_unbought, width, height));
+        } else if (tileType.getStatus() == Constants.TILE_STATUS_LOCKED){
+            tileIcon.setImageDrawable(createDrawable(R.drawable.tile_locked, width, height));
+        } else {
+            tileIcon.setImageDrawable(createDrawable(getTileDrawableID(tileType.getTypeId()), width, height));
+        }
         tileIcon.setPadding(padding, padding, padding, padding);
-        tileIcon.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                // Display message with tile info
-            }
-        });
 
         return tileIcon;
     }

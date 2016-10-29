@@ -19,8 +19,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
+import uk.co.jakelee.cityflow.model.Pack;
+import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
@@ -134,23 +137,22 @@ public class TilePickerActivity extends Activity {
         TableLayout tileContainer = (TableLayout)findViewById(R.id.tileContainer);
         tileContainer.removeAllViews();
 
-        String whereClause = String.format("%1$s AND %2$s AND %3$s AND status = %4$d ORDER BY environment_id ASC",
+        String whereClause = String.format("%1$s AND %2$s AND %3$s ORDER BY environment_id ASC",
                 getEnvironmentSQL(),
                 getFlowSQL(),
-                getHeightSQL(),
-                Constants.TILE_STATUS_UNLOCKED);
+                getHeightSQL());
         List<TileType> tileTypes = TileType.find(TileType.class, whereClause);
 
         int numTiles = tileTypes.size();
         TableRow row = new TableRow(this);
         for (int tileIndex = 1; tileIndex <= numTiles; tileIndex++) {
-            TileType tileType = tileTypes.get(tileIndex - 1);
+            final TileType tileType = tileTypes.get(tileIndex - 1);
 
-            ImageView tileImage = dh.createTileIcon(tileType.getTypeId(), 80, 80);
-            tileImage.setTag(tileType.getTypeId());
+            ImageView tileImage = dh.createTileIcon(tileType, 80, 80);
+            tileImage.setTag(tileType);
             tileImage.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    clickTile(v);
+                    selectTile((TileType)v.getTag());
                 }
             });
             row.addView(tileImage);
@@ -159,6 +161,28 @@ public class TilePickerActivity extends Activity {
                 tileContainer.addView(row);
                 row = new TableRow(this);
             }
+        }
+    }
+
+    public void selectTile(TileType tileType) {
+        switch (tileType.getStatus()) {
+            case Constants.TILE_STATUS_UNLOCKED:
+                tile.setTileTypeId(tileType.getTypeId());
+                tile.save();
+                this.finish();
+                break;
+            case Constants.TILE_STATUS_LOCKED:
+                Puzzle puzzle = tileType.getRequiredPuzzle();
+                Pack pack = Pack.getPack(puzzle.getPackId());
+                AlertHelper.info(this, String.format(Text.get("UI_TILE_UNLOCK_PUZZLE"),
+                        tileType.getName(),
+                        puzzle.getName(),
+                        pack.getName()));
+                break;
+            case Constants.TILE_STATUS_UNPURCHASED:
+                AlertHelper.info(this, String.format(Text.get("UI_TILE_UNLOCK_SHOP"),
+                        tileType.getName()));
+                break;
         }
     }
 
@@ -208,13 +232,6 @@ public class TilePickerActivity extends Activity {
 
         String heightListString = sb.toString().substring(0, sb.toString().length() - 1);
         return String.format("(height_north IN (%1$s) OR height_east IN (%1$s) OR height_south IN (%1$s) OR height_west IN (%1$s))", heightListString);
-    }
-
-    public void clickTile(View v) {
-        tile.setTileTypeId((int)v.getTag());
-        tile.save();
-
-        this.finish();
     }
 
     public void closePopup (View v) {
