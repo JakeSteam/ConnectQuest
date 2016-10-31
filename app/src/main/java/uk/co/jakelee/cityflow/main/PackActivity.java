@@ -112,12 +112,12 @@ public class PackActivity extends Activity {
     }
 
     public void startPuzzle(View v) {
-        //if (selectedPuzzle.getPuzzleId() == firstPackPuzzle || selectedPuzzle.getPuzzleId() <= lastCompletedPuzzle + 1) {
+        if (selectedPuzzle.getPuzzleId() == firstPackPuzzle || selectedPuzzle.getPuzzleId() <= lastCompletedPuzzle + 1) {
             Intent intent = new Intent(getApplicationContext(), PuzzleActivity.class);
             intent.putExtra(Constants.INTENT_PUZZLE, selectedPuzzle.getPuzzleId());
             intent.putExtra(Constants.INTENT_PUZZLE_TYPE, false);
             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
-        //}
+        }
     }
 }
