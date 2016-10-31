@@ -80,7 +80,7 @@
                         android:textColor="@color/black"
                         android:padding="5dp"
                         android:gravity="center_horizontal"
-                        android:textSize="26sp" />
+                        android:textSize="20sp" />
                     <uk.co.jakelee.cityflow.components.TextAwesome
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -106,14 +106,14 @@
                         android:textColor="@color/black"
                         android:padding="5dp"
                         android:gravity="center_horizontal"
-                        android:textSize="26sp"/>
+                        android:textSize="20sp"/>
                     <uk.co.jakelee.cityflow.components.TextAwesome
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:padding="5dp"
                         android:gravity="center_horizontal"
-                        android:textSize="26sp"
+                        android:textSize="23sp"
                         android:text="@string/icon_gallery"/>
                 </LinearLayout>
                 <LinearLayout
@@ -132,14 +132,14 @@
                         android:textColor="@color/black"
                         android:padding="5dp"
                         android:gravity="center_horizontal"
-                        android:textSize="26sp"/>
+                        android:textSize="20sp"/>
                     <uk.co.jakelee.cityflow.components.TextAwesome
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:padding="5dp"
                         android:gravity="center_horizontal"
-                        android:textSize="26sp"
+                        android:textSize="23sp"
                         android:text="@string/icon_text"/>
                 </LinearLayout>
             </LinearLayout>
@@ -165,7 +165,7 @@
                     android:textColor="@color/black"
                     android:padding="5dp"
                     android:gravity="center_horizontal"
-                    android:textSize="26sp"
+                    android:textSize="23sp"
                     android:text="@string/icon_add"/>
             </LinearLayout>
         </LinearLayout>

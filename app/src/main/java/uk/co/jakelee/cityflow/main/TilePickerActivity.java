@@ -134,7 +134,7 @@ public class TilePickerActivity extends Activity {
     }
 
     private void populateTilePicker() {
-        TableLayout tileContainer = (TableLayout)findViewById(R.id.tileContainer);
+        TableLayout tileContainer = (TableLayout) findViewById(R.id.tileContainer);
         tileContainer.removeAllViews();
 
         String whereClause = String.format("%1$s AND %2$s AND %3$s ORDER BY environment_id ASC",
@@ -152,7 +152,7 @@ public class TilePickerActivity extends Activity {
             tileImage.setTag(tileType);
             tileImage.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
-                    selectTile((TileType)v.getTag());
+                    selectTile((TileType) v.getTag());
                 }
             });
             row.addView(tileImage);
@@ -234,7 +234,7 @@ public class TilePickerActivity extends Activity {
         return String.format("(height_north IN (%1$s) OR height_east IN (%1$s) OR height_south IN (%1$s) OR height_west IN (%1$s))", heightListString);
     }
 
-    public void closePopup (View v) {
+    public void closePopup(View v) {
         this.finish();
     }
 }
