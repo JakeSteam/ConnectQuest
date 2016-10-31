@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.text.InputFilter;
 import android.util.Pair;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -211,7 +212,10 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.show();
+        AlertDialog alertToShow = alertDialog.create();
+        alertToShow.getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        alertToShow.show();
     }
 
     public static void changePuzzleInfo(final Activity activity, final PuzzleCustom puzzleCustom, final boolean changeDesc) {
@@ -248,7 +252,10 @@ public class AlertDialogHelper {
             }
         });
 
-        alertDialog.show();
+        AlertDialog alertToShow = alertDialog.create();
+        alertToShow.getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        alertToShow.show();
     }
 
     public static void puzzleCreationOptions(final CreatorActivity activity) {

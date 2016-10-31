@@ -479,6 +479,9 @@ public class PuzzleActivity extends Activity {
             }
         } else {
             int nextPuzzle = PuzzleHelper.getNextPuzzleId(puzzleId);
+            this.onStop();
+            this.finish();
+
             if (nextPuzzle > 0) {
                 Intent intent = new Intent(this, PuzzleActivity.class);
                 intent.putExtra(Constants.INTENT_PUZZLE, nextPuzzle);
@@ -486,8 +489,6 @@ public class PuzzleActivity extends Activity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }
-            this.onStop();
-            this.finish();
         }
     }
 }
