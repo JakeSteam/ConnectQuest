@@ -159,7 +159,8 @@ public class TileHelper {
         List<Tile> tileResults = Select.from(Tile.class).where(
                 Condition.prop("puzzle_id").eq(tile.getPuzzleId()),
                 Condition.prop("x").eq(x),
-                Condition.prop("y").eq(y)).list();
+                Condition.prop("y").eq(y),
+                Condition.prop("tile_type_id").gt(0)).list();
 
         if (tileResults.size() == 0) {
             return tileDefault;

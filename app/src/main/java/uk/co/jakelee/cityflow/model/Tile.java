@@ -146,7 +146,8 @@ public class Tile extends SugarRecord {
         return Select.from(Tile.class).where(
                 Condition.prop("puzzle_id").eq(puzzleId),
                 Condition.prop("x").eq(x),
-                Condition.prop("y").eq(y)).first();
+                Condition.prop("y").eq(y),
+                Condition.prop("tile_type_id").gt(0)).first();
     }
 
     public String getName() {

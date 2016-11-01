@@ -690,6 +690,10 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_127_NAME", "Desert Road Corner"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_128_NAME", "Desert Road T Junction"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_129_NAME", "Mountain (Stones)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_130_NAME", "City Path T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_131_NAME", "City High"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_132_NAME", "City Path/Road T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_133_NAME", "City Road Straight (Lights)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_BACKGROUND_SELECT_TITLE", "%1$d/%2$d Unlocked"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TITLE", "Purchase Coins"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TEASER", "First purchase of any pack unlocks a bonus puzzle pack!"));
@@ -1620,6 +1624,34 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(50, 1, 2, 0, 2));
         tiles.add(new Tile(50, 6, 3, 0, 1));
 
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_51_NAME", "Padded Protection"));
+        puzzles.add(new Puzzle(51, 3, 3907L, 10, 0L, 0));
+        tiles.add(new Tile(51, 34, 0, 4, 3));
+        tiles.add(new Tile(51, 34, 1, 4, 3));
+        tiles.add(new Tile(51, 34, 2, 4, 2));
+        tiles.add(new Tile(51, 34, 3, 4, 1));
+        tiles.add(new Tile(51, 34, 4, 4, 3));
+        tiles.add(new Tile(51, 34, 0, 3, 2));
+        tiles.add(new Tile(51, 39, 1, 3, 3));
+        tiles.add(new Tile(51, 37, 2, 3, 4));
+        tiles.add(new Tile(51, 39, 3, 3, 4));
+        tiles.add(new Tile(51, 34, 4, 3, 4));
+        tiles.add(new Tile(51, 12, 0, 2, 1));
+        tiles.add(new Tile(51, 11, 1, 2, 4));
+        tiles.add(new Tile(51, 12, 2, 2, 1));
+        tiles.add(new Tile(51, 11, 3, 2, 4));
+        tiles.add(new Tile(51, 12, 4, 2, 1));
+        tiles.add(new Tile(51, 44, 0, 1, 4));
+        tiles.add(new Tile(51, 1, 1, 1, 4));
+        tiles.add(new Tile(51, 10, 2, 1, 1));
+        tiles.add(new Tile(51, 1, 3, 1, 4));
+        tiles.add(new Tile(51, 43, 4, 1, 1));
+        tiles.add(new Tile(51, 6, 0, 0, 3));
+        tiles.add(new Tile(51, 6, 1, 0, 3));
+        tiles.add(new Tile(51, 6, 2, 0, 3));
+        tiles.add(new Tile(51, 6, 3, 0, 1));
+        tiles.add(new Tile(51, 6, 4, 0, 2));
+
         Puzzle.saveInTx(puzzles);
         Text.saveInTx(texts);
         Tile.saveInTx(tiles);
@@ -1841,7 +1873,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tileTypes.add(new TileType(128, Constants.ENVIRONMENT_DESERT, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 3));
         tileTypes.add(new TileType(129, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_ULTRA_LOW, 3));
         tileTypes.add(new TileType(130, Constants.ENVIRONMENT_CITY, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
-        tileTypes.add(new TileType(131, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+        tileTypes.add(new TileType(131, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 3));
         tileTypes.add(new TileType(132, Constants.ENVIRONMENT_CITY, Constants.FLOW_PATH, Constants.FLOW_ROAD, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
         tileTypes.add(new TileType(133, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
         TileType.saveInTx(tileTypes);
