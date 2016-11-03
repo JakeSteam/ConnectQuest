@@ -54,8 +54,8 @@ public class ExportActivity extends AllowMeActivity {
         ((ImageView)findViewById(R.id.puzzleImage)).setImageDrawable(dh.getCustomPuzzleDrawable(puzzle.getPuzzleId()));
         ((TextView)findViewById(R.id.puzzleDesc)).setText(puzzleCustom.getDescription());
 
-        //exportedText = PuzzleShareHelper.getPuzzleSQL(puzzle);
-        exportedText = PuzzleShareHelper.getPuzzleString(puzzle);
+        exportedText = PuzzleShareHelper.getPuzzleSQL(puzzle);
+        //exportedText = PuzzleShareHelper.getPuzzleString(puzzle);
         StorageHelper.fillWithQrDrawable((ImageView)findViewById(R.id.puzzleQrCode), exportedText);
     }
 
