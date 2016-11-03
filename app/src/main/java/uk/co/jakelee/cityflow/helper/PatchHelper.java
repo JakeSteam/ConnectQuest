@@ -407,6 +407,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "ENVIRONMENT_3_NAME", "Forest"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ENVIRONMENT_4_NAME", "Mountain"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ENVIRONMENT_5_NAME", "Desert"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ENVIRONMENT_6_NAME", "Golf"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_ADVERT_NOT_LOADED", "Failed to load ad! This might be due to a poor connection, or there might not be any ads available."));
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_ADVERT_NOT_VERIFIED", "Something went wrong, and the ad view couldn't be verified!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_FAILED_TO_CONNECT", "Couldn't log in. Please try again later."));
@@ -434,6 +435,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_6_NAME", "River"));
         texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_7_NAME", "Dirt"));
         texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_8_NAME", "Rail"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_9_NAME", "Golf"));
         texts.add(new Text(Constants.LANGUAGE_EN, "GOOGLE_SIGN_IN", "Sign In"));
         texts.add(new Text(Constants.LANGUAGE_EN, "GOOGLE_SIGN_OUT", "Sign Out"));
         texts.add(new Text(Constants.LANGUAGE_EN, "HEIGHT_0_NAME", "None"));
@@ -693,7 +695,29 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_130_NAME", "City Path T Junction"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_131_NAME", "City High"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_132_NAME", "City Path/Road T Junction"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_133_NAME", "City Road Straight (Lights)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_133_NAME", "City Road Straight (Lights 1)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_134_NAME", "Grass Road Corner (Tree)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_135_NAME", "City Road Straight (Lights 2)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_136_NAME", "City (Grass Tree)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_137_NAME", "City Slope"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_138_NAME", "Golf"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_139_NAME", "Golf Straight (Dip)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_140_NAME", "Golf Straight (Bump)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_141_NAME", "Golf Straight (Castle)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_142_NAME", "Golf Straight (Ditch)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_143_NAME", "Golf End"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_144_NAME", "Golf Interchange"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_145_NAME", "Golf Straight (Hill)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_146_NAME", "Golf End (Hole)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_147_NAME", "Golf Straight (Squared Blocks)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_148_NAME", "Golf Straight (Curved Blocks)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_149_NAME", "Golf Straight (Blocks)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_150_NAME", "Golf Straight (Strip)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_151_NAME", "Golf Corner (Curved)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_152_NAME", "Golf Corner"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_153_NAME", "Golf Straight"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_154_NAME", "Golf T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_155_NAME", "Golf Straight (Tunnel)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_BACKGROUND_SELECT_TITLE", "%1$d/%2$d Unlocked"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TITLE", "Purchase Coins"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TEASER", "First purchase of any pack unlocks a bonus puzzle pack!"));
@@ -1999,6 +2023,11 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tileTypes.add(new TileType(132, Constants.ENVIRONMENT_CITY, Constants.FLOW_PATH, Constants.FLOW_ROAD, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
         tileTypes.add(new TileType(133, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
         tileTypes.add(new TileType(134, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+        tileTypes.add(new TileType(135, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+        tileTypes.add(new TileType(136, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 136));
+        tileTypes.add(new TileType(137, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, 137));
+
+
         TileType.saveInTx(tileTypes);
     }
 }
