@@ -718,6 +718,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_153_NAME", "Golf Straight"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_154_NAME", "Golf T Junction"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_155_NAME", "Golf Straight (Tunnel)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_156_NAME", "Golf Straight (Shed)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_BACKGROUND_SELECT_TITLE", "%1$d/%2$d Unlocked"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TITLE", "Purchase Coins"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TEASER", "First purchase of any pack unlocks a bonus puzzle pack!"));
@@ -1798,6 +1799,47 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(56, 35, 3, 0, 2));
         tiles.add(new Tile(56, 8, 4, 0, 4));
 
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_57_NAME", "High Island"));
+        puzzles.add(new Puzzle(57, 3, 13539L, 20, 0L, 0));
+        tiles.add(new Tile(57, 1, 0, 4, 2));
+        tiles.add(new Tile(57, 2, 1, 4, 4));
+        tiles.add(new Tile(57, 2, 2, 4, 3));
+        tiles.add(new Tile(57, 1, 3, 4, 2));
+        tiles.add(new Tile(57, 2, 0, 3, 2));
+        tiles.add(new Tile(57, 39, 1, 3, 1));
+        tiles.add(new Tile(57, 39, 2, 3, 4));
+        tiles.add(new Tile(57, 33, 3, 3, 2));
+        tiles.add(new Tile(57, 10, 0, 2, 2));
+        tiles.add(new Tile(57, 11, 1, 2, 2));
+        tiles.add(new Tile(57, 37, 2, 2, 3));
+        tiles.add(new Tile(57, 9, 3, 2, 3));
+        tiles.add(new Tile(57, 5, 0, 1, 2));
+        tiles.add(new Tile(57, 134, 1, 1, 3));
+        tiles.add(new Tile(57, 11, 2, 1, 4));
+        tiles.add(new Tile(57, 33, 3, 1, 1));
+        tiles.add(new Tile(57, 1, 0, 0, 1));
+        tiles.add(new Tile(57, 2, 1, 0, 2));
+        tiles.add(new Tile(57, 5, 2, 0, 1));
+        tiles.add(new Tile(57, 1, 3, 0, 4));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_58_NAME", "Snaking Along"));
+        puzzles.add(new Puzzle(58, 3, 13144L, 17, 0L, 0));
+        tiles.add(new Tile(58, 3, 0, 0, 4));
+        tiles.add(new Tile(58, 2, 1, 0, 3));
+        tiles.add(new Tile(58, 11, 2, 0, 4));
+        tiles.add(new Tile(58, 37, 3, 0, 3));
+        tiles.add(new Tile(58, 37, 4, 0, 4));
+        tiles.add(new Tile(58, 11, 5, 0, 3));
+        tiles.add(new Tile(58, 33, 6, 0, 1));
+        tiles.add(new Tile(58, 9, 7, 0, 1));
+        tiles.add(new Tile(58, 9, 8, 0, 1));
+        tiles.add(new Tile(58, 33, 9, 0, 1));
+        tiles.add(new Tile(58, 10, 10, 0, 4));
+        tiles.add(new Tile(58, 2, 11, 0, 1));
+        tiles.add(new Tile(58, 11, 12, 0, 1));
+        tiles.add(new Tile(58, 37, 13, 0, 2));
+        tiles.add(new Tile(58, 36, 14, 0, 4));
+
         Puzzle.saveInTx(puzzles);
         Text.saveInTx(texts);
         Tile.saveInTx(tiles);
@@ -2026,7 +2068,25 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tileTypes.add(new TileType(135, Constants.ENVIRONMENT_CITY, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
         tileTypes.add(new TileType(136, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 136));
         tileTypes.add(new TileType(137, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, 137));
-
+        tileTypes.add(new TileType(138, Constants.ENVIRONMENT_GOLF, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 138));
+        tileTypes.add(new TileType(139, Constants.ENVIRONMENT_GOLF, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 139));
+        tileTypes.add(new TileType(140, Constants.ENVIRONMENT_GOLF, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 140));
+        tileTypes.add(new TileType(141, Constants.ENVIRONMENT_GOLF, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 141));
+        tileTypes.add(new TileType(142, Constants.ENVIRONMENT_GOLF, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 142));
+        tileTypes.add(new TileType(143, Constants.ENVIRONMENT_GOLF, Constants.FLOW_NONE, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 143));
+        tileTypes.add(new TileType(144, Constants.ENVIRONMENT_GOLF, Constants.FLOW_GOLF, Constants.HEIGHT_LOW, 144));
+        tileTypes.add(new TileType(145, Constants.ENVIRONMENT_GOLF, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 145));
+        tileTypes.add(new TileType(146, Constants.ENVIRONMENT_GOLF, Constants.FLOW_NONE, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 146));
+        tileTypes.add(new TileType(147, Constants.ENVIRONMENT_GOLF, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 147));
+        tileTypes.add(new TileType(148, Constants.ENVIRONMENT_GOLF, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 148));
+        tileTypes.add(new TileType(149, Constants.ENVIRONMENT_GOLF, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 149));
+        tileTypes.add(new TileType(150, Constants.ENVIRONMENT_GOLF, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 150));
+        tileTypes.add(new TileType(151, Constants.ENVIRONMENT_GOLF, Constants.FLOW_GOLF, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 151));
+        tileTypes.add(new TileType(152, Constants.ENVIRONMENT_GOLF, Constants.FLOW_GOLF, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 152));
+        tileTypes.add(new TileType(153, Constants.ENVIRONMENT_GOLF, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 153));
+        tileTypes.add(new TileType(154, Constants.ENVIRONMENT_GOLF, Constants.FLOW_GOLF, Constants.FLOW_GOLF, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 154));
+        tileTypes.add(new TileType(155, Constants.ENVIRONMENT_GOLF, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 155));
+        tileTypes.add(new TileType(156, Constants.ENVIRONMENT_GOLF, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 156));
 
         TileType.saveInTx(tileTypes);
     }

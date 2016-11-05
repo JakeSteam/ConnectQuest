@@ -224,6 +224,7 @@ public class PuzzleHelper {
             case Constants.ENVIRONMENT_FOREST: return 69;
             case Constants.ENVIRONMENT_MOUNTAIN: return 87;
             case Constants.ENVIRONMENT_DESERT: return 93;
+            case Constants.ENVIRONMENT_GOLF: return 138;
             default: return 0;
         }
     }
