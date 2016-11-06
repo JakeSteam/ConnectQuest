@@ -225,7 +225,7 @@ public class PuzzleHelper {
         List<Tile> tiles = new ArrayList<>();
         for (int x = 0; x < maxX; x++) {
             for (int y = 0; y < maxY; y++) {
-                List<Tile> potentialTiles = getPossibleTiles(newPuzzleId, tiles, x, y, maxX, maxY, environmentId);
+                List<Tile> potentialTiles = getPossibleTiles(newPuzzleId, tiles, x, y, maxX - 1, maxY - 1, environmentId);
                 if (potentialTiles.size() > 0) {
                     Tile selectedTile = potentialTiles.get(RandomHelper.getNumber(0, potentialTiles.size() - 1));
                     tiles.add(selectedTile);
@@ -250,10 +250,10 @@ public class PuzzleHelper {
 
         // Make list
         ArrayList<Tile> tiles = new ArrayList<>();
-        tiles.addAll(getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_NORTH, northFlow, eastFlow, southFlow, westFlow));
-        tiles.addAll(getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_EAST, westFlow, northFlow, eastFlow, southFlow));
-        tiles.addAll(getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_SOUTH, southFlow, westFlow, northFlow, eastFlow));
-        tiles.addAll(getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_WEST, eastFlow, southFlow, westFlow, northFlow));
+        tiles.addAll(getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_SOUTH, northFlow, eastFlow, southFlow, westFlow));
+        tiles.addAll(getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_WEST, westFlow, northFlow, eastFlow, southFlow));
+        tiles.addAll(getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_NORTH, southFlow, westFlow, northFlow, eastFlow));
+        tiles.addAll(getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_EAST, eastFlow, southFlow, westFlow, northFlow));
         return tiles;
     }
 
