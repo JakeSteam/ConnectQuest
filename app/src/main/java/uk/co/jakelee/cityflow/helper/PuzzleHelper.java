@@ -6,11 +6,9 @@ import android.util.Pair;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.orm.query.Condition;
-import com.orm.query.Select;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Pack;
@@ -21,6 +19,8 @@ import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
+
+import static com.orm.query.Select.from;
 
 public class PuzzleHelper {
     public static Pair<Boolean, Boolean> processPuzzleCompletion(Context context, final Puzzle puzzle, final boolean isCompletingPack, long timeTaken, final int movesTaken, final int boostsUsed, PuzzleCustom puzzleCustom) {
@@ -197,7 +197,7 @@ public class PuzzleHelper {
             return Constants.PUZZLE_CUSTOM_ID_OFFSET;
         }
 
-        return Select.from(Puzzle.class).orderBy("puzzle_id DESC").first().getPuzzleId() + 1;
+        return from(Puzzle.class).orderBy("puzzle_id DESC").first().getPuzzleId() + 1;
     }
 
     public static int createNewPuzzle(int maxX, int maxY, final int environmentId) {
@@ -223,28 +223,59 @@ public class PuzzleHelper {
         createBasicPuzzleCustomObject(newPuzzleId, maxX, maxY).save();
 
         List<Tile> tiles = new ArrayList<>();
-        tiles.add(new Tile(newPuzzleId, 1, 0, 0, Constants.ROTATION_NORTH));
-
-        // Foreach X and Y, generate tile (pick tiletype first), add to list
-        List<TileType> potentialTiles = getPossibleTiles(tiles, 0, 1, 2, 2, environmentId);
+        for (int x = 0; x < maxX; x++) {
+            for (int y = 0; y < maxY; y++) {
+                List<Tile> potentialTiles = getPossibleTiles(newPuzzleId, tiles, x, y, maxX, maxY, environmentId);
+                if (potentialTiles.size() > 0) {
+                    Tile selectedTile = potentialTiles.get(RandomHelper.getNumber(0, potentialTiles.size() - 1));
+                    tiles.add(selectedTile);
+                } else {
+                    // Default tile should be based on environment
+                    tiles.add(new Tile(newPuzzleId, 6, x, y, Constants.ROTATION_NORTH));
+                }
+            }
+        }
+        Tile.saveInTx(tiles);
         return newPuzzleId;
     }
 
-    private static List<TileType> getPossibleTiles(List<Tile> existingTiles, int tileX, int tileY, int maxX, int maxY, int environmentId) {
+    private static List<Tile> getPossibleTiles(int puzzleId, List<Tile> existingTiles, int tileX, int tileY, int maxX, int maxY, int environmentId) {
         Tile southTile = tileY == 0 ? new Tile() : existingTiles.get(existingTiles.size() - 1); // Get the south tile, or an empty one if we're starting a new column
         Tile westTile = tileX == 0 ? new Tile() : existingTiles.get(existingTiles.size() - maxY); // Get the west tile (#Y tiles previous), or empty if new row
 
         int northFlow = tileY == maxY ? 0 : -1;
         int eastFlow = tileX == maxX ? 0 : -1;
+        int southFlow = southTile.getFlow(Constants.SIDE_NORTH);
+        int westFlow = westTile.getFlow(Constants.SIDE_EAST);
 
-        // Still need to consider heights, and rotations!
-        return Select.from(TileType.class).where(
-                Condition.prop("environment_id").eq(environmentId),
-                northFlow >= 0 ? Condition.prop("flow_north").eq(northFlow) : Condition.prop("flow_north").gt(-1),
-                eastFlow >= 0 ? Condition.prop("flow_east").eq(eastFlow) : Condition.prop("flow_east").gt(-1),
-                Condition.prop("flow_south").eq(southTile.getFlow(Constants.SIDE_NORTH)),
-                Condition.prop("flow_west").eq(westTile.getFlow(Constants.SIDE_EAST))
-        ).list();
+        // Make list
+        ArrayList<Tile> tiles = new ArrayList<>();
+        tiles.addAll(getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_NORTH, northFlow, eastFlow, southFlow, westFlow));
+        tiles.addAll(getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_EAST, westFlow, northFlow, eastFlow, southFlow));
+        tiles.addAll(getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_SOUTH, southFlow, westFlow, northFlow, eastFlow));
+        tiles.addAll(getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_WEST, eastFlow, southFlow, westFlow, northFlow));
+        return tiles;
+    }
+
+    private static List<Tile> getPossibleTilesByRotation(int puzzleId, int x, int y, int environmentId, int rotation, int north, int east, int south, int west) {
+        String sql = String.format(Locale.getDefault(),
+                "SELECT * FROM tile_type WHERE environment_id = %1$d AND flow_north %2$s %3$d AND flow_east %4$s %5$d AND flow_south %6$s %7$d AND flow_west %8$s %9$d",
+                environmentId,
+                north >= 0 ? "=" : ">=",
+                north,
+                east >= 0 ? "=" : ">=",
+                east,
+                south >= 0 ? "=" : ">=",
+                south,
+                west >= 0 ? "=" : ">=",
+                west);
+        List<TileType> tileTypes = TileType.findWithQuery(TileType.class, sql);
+
+        List<Tile> tiles = new ArrayList<>();
+        for (TileType tile : tileTypes) {
+            tiles.add(new Tile(puzzleId, tile.getTypeId(), x, y, rotation));
+        }
+        return tiles;
     }
 
     public static int getDefaultTileId(int environmentId) {
