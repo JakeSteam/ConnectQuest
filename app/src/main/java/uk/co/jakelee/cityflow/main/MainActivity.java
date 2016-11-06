@@ -58,10 +58,9 @@ public class MainActivity extends Activity implements
 
     public void tryGoogleLogin() {
         // If we've got all we need, and we need to sign in, or it is first run.
-        if (!GooglePlayHelper.IsConnected() &&
-
+        if (GooglePlayHelper.AreGooglePlayServicesInstalled(this) &&
+                !GooglePlayHelper.IsConnected() &&
                 !GooglePlayHelper.mGoogleApiClient.isConnecting() &&
-                 GooglePlayHelper.AreGooglePlayServicesInstalled(this) &&
                 (Setting.getSafeBoolean(Constants.SETTING_SIGN_IN) || MainActivity.prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.NO_DATABASE)) {
             GooglePlayHelper.mGoogleApiClient.connect();
         }
@@ -141,32 +140,32 @@ public class MainActivity extends Activity implements
     }
 
     public void openStory(View view) {
-        Intent intent = new Intent(this, StoryActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(intent);
+        startActivity(new Intent(this,
+                StoryActivity.class)
+                .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
     }
 
     public void openCreator(View view) {
-        Intent intent = new Intent(this, CreatorActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(intent);
+        startActivity(new Intent(this,
+                CreatorActivity.class)
+                .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
     }
 
     public void openSettings(View view) {
-        Intent intent = new Intent(this, SettingsActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(intent);
+        startActivity(new Intent(this,
+                SettingsActivity.class)
+                .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
     }
 
     public void openShop(View view) {
-        Intent intent = new Intent(this, ShopActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(intent);
+        startActivity(new Intent(this,
+                ShopActivity.class)
+                .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
     }
 
     public void openQuestMenu(View view) {
-        Intent intent = new Intent(this, QuestActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(intent);
+        startActivity(new Intent(this,
+                QuestActivity.class)
+                .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
     }
 }

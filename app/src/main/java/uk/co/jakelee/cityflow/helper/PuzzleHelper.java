@@ -6,6 +6,7 @@ import android.util.Pair;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import java.util.ArrayList;
@@ -214,6 +215,36 @@ public class PuzzleHelper {
         Tile.saveInTx(tiles);
 
         return newPuzzleId;
+    }
+
+    public static int createGeneratedPuzzle(int maxX, int maxY, int environmentId) {
+        int newPuzzleId = getNextCustomPuzzleId();
+        createBasicPuzzleObject(newPuzzleId).save();
+        createBasicPuzzleCustomObject(newPuzzleId, maxX, maxY).save();
+
+        List<Tile> tiles = new ArrayList<>();
+        tiles.add(new Tile(newPuzzleId, 1, 0, 0, Constants.ROTATION_NORTH));
+
+        // Foreach X and Y, generate tile (pick tiletype first), add to list
+        List<TileType> potentialTiles = getPossibleTiles(tiles, 0, 1, 2, 2, environmentId);
+        return newPuzzleId;
+    }
+
+    private static List<TileType> getPossibleTiles(List<Tile> existingTiles, int tileX, int tileY, int maxX, int maxY, int environmentId) {
+        Tile southTile = tileY == 0 ? new Tile() : existingTiles.get(existingTiles.size() - 1); // Get the south tile, or an empty one if we're starting a new column
+        Tile westTile = tileX == 0 ? new Tile() : existingTiles.get(existingTiles.size() - maxY); // Get the west tile (#Y tiles previous), or empty if new row
+
+        int northFlow = tileY == maxY ? 0 : -1;
+        int eastFlow = tileX == maxX ? 0 : -1;
+
+        // Still need to consider heights, and rotations!
+        return Select.from(TileType.class).where(
+                Condition.prop("environment_id").eq(environmentId),
+                northFlow >= 0 ? Condition.prop("flow_north").eq(northFlow) : Condition.prop("flow_north").gt(-1),
+                eastFlow >= 0 ? Condition.prop("flow_east").eq(eastFlow) : Condition.prop("flow_east").gt(-1),
+                Condition.prop("flow_south").eq(southTile.getFlow(Constants.SIDE_NORTH)),
+                Condition.prop("flow_west").eq(westTile.getFlow(Constants.SIDE_EAST))
+        ).list();
     }
 
     public static int getDefaultTileId(int environmentId) {
