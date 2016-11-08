@@ -225,13 +225,12 @@ public class PuzzleHelper {
         List<Tile> tiles = new ArrayList<>();
         for (int x = 0; x < maxX; x++) {
             for (int y = 0; y < maxY; y++) {
-                List<Tile> potentialTiles = getPossibleTiles(newPuzzleId, tiles, x, y, maxX - 1, maxY - 1, Constants.ENVIRONMENT_CITY);
+                List<Tile> potentialTiles = getPossibleTiles(newPuzzleId, tiles, x, y, maxX - 1, maxY - 1, environmentId);
                 if (potentialTiles.size() > 0) {
                     Tile selectedTile = potentialTiles.get(RandomHelper.getNumber(0, potentialTiles.size() - 1));
                     tiles.add(selectedTile);
                 } else {
-                    // Default tile should be based on environment
-                    tiles.add(new Tile(newPuzzleId, 6, x, y, Constants.ROTATION_NORTH));
+                    tiles.add(new Tile(newPuzzleId, 0, x, y, Constants.ROTATION_NORTH));
                 }
             }
         }
@@ -250,34 +249,30 @@ public class PuzzleHelper {
 
         int nHeight = -1;
         int eHeight = -1;
-        int sHeight = southTile.getHeight(Constants.SIDE_NORTH);
-        int wHeight = westTile.getHeight(Constants.SIDE_EAST);
+        int sHeight = sFlow > -1 ? southTile.getHeight(Constants.SIDE_NORTH) : -1;
+        int wHeight = wFlow > -1 ? westTile.getHeight(Constants.SIDE_EAST) : -1;
 
         // Make list
-        List<Tile> tiles1 = getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_NORTH, nFlow, eFlow, sFlow, wFlow);
-        List<Tile> tiles2 = getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_WEST, wFlow, nFlow, eFlow, sFlow);
-        List<Tile> tiles3 = getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_SOUTH, sFlow, wFlow, nFlow, eFlow);
-        List<Tile> tiles4 = getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_EAST, eFlow, sFlow, wFlow, nFlow);
+        List<Tile> tiles = getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_NORTH, nFlow, eFlow, sFlow, wFlow, nHeight, eHeight, sHeight, wHeight);
+        tiles.addAll(getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_WEST, wFlow, nFlow, eFlow, sFlow, wHeight, nHeight, eHeight, sHeight));
+        tiles.addAll(getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_SOUTH, sFlow, wFlow, nFlow, eFlow, sHeight, wHeight, nHeight, eHeight));
+        tiles.addAll(getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_EAST, eFlow, sFlow, wFlow, nFlow, eHeight, sHeight, wHeight, nHeight));
 
-        tiles1.addAll(tiles2);
-        tiles1.addAll(tiles3);
-        tiles1.addAll(tiles4);
-
-        return tiles1;
+        return tiles;
     }
 
-    private static List<Tile> getPossibleTilesByRotation(int puzzleId, int x, int y, int environmentId, int rotation, int nFlow, int eFlow, int sFlow, int wFlow) {
+    private static List<Tile> getPossibleTilesByRotation(int puzzleId, int x, int y, int environmentId, int rotation, int nFlow, int eFlow, int sFlow, int wFlow, int nHeight, int eHeight, int sHeight, int wHeight) {
         String sql = String.format(Locale.getDefault(),
-                "SELECT * FROM tile_type WHERE environment_id = %1$d AND flow_north %2$s %3$d AND flow_east %4$s %5$d AND flow_south %6$s %7$d AND flow_west %8$s %9$d AND height_north = 4 AND height_east = 4 AND height_south = 4 AND height_west = 4",
+                "SELECT * FROM tile_type WHERE environment_id = %1$d AND flow_north %2$s %3$d AND flow_east %4$s %5$d AND flow_south %6$s %7$d AND flow_west %8$s %9$d AND height_north %10$s %11$d AND height_east %12$s %13$d AND height_south %14$s %15$d AND height_west %16$s %17$d",
                 environmentId,
-                nFlow >= 0 ? "=" : ">=",
-                nFlow,
-                eFlow >= 0 ? "=" : ">=",
-                eFlow,
-                sFlow >= 0 ? "=" : ">=",
-                sFlow,
-                wFlow >= 0 ? "=" : ">=",
-                wFlow);
+                nFlow >= 0 ? "=" : ">=", nFlow,
+                eFlow >= 0 ? "=" : ">=", eFlow,
+                sFlow >= 0 ? "=" : ">=", sFlow,
+                wFlow >= 0 ? "=" : ">=", wFlow,
+                nHeight >= 0 ? "=" : ">=", nHeight,
+                eHeight >= 0 ? "=" : ">=", eHeight,
+                sHeight >= 0 ? "=" : ">=", sHeight,
+                wHeight >= 0 ? "=" : ">=", wHeight);
         List<TileType> tileTypes = TileType.findWithQuery(TileType.class, sql);
 
         List<Tile> tiles = new ArrayList<>();

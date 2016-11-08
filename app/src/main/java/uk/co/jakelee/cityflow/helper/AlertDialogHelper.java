@@ -324,7 +324,8 @@ public class AlertDialogHelper {
                     AlertHelper.error(activity, ErrorHelper.get(ErrorHelper.Error.PUZZLE_TOO_SMALL));
                 } else {
                     int environmentId = spinner.getSelectedItemPosition();
-                    int newPuzzleId = PuzzleHelper.createNewPuzzle(xValue, yValue, environmentId);
+                    //int newPuzzleId = PuzzleHelper.createNewPuzzle(xValue, yValue, environmentId);
+                    int newPuzzleId = PuzzleHelper.createGeneratedPuzzle(xValue, yValue, environmentId);
 
                     Intent intent = new Intent(activity, EditorActivity.class)
                             .putExtra(Constants.INTENT_PUZZLE, newPuzzleId);

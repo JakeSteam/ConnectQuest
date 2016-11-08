@@ -115,6 +115,7 @@ public class Constants {
     public static final int ENVIRONMENT_MOUNTAIN = 4;
     public static final int ENVIRONMENT_DESERT = 5;
     public static final int ENVIRONMENT_GOLF = 6;
+    public static final int FLOW_ANY = -1;
     public static final int FLOW_MIN = 0;
     public static final int FLOW_MAX = 9;
     public static final int FLOW_NONE = 0;
@@ -127,6 +128,7 @@ public class Constants {
     public static final int FLOW_DIRT = 7;
     public static final int FLOW_RAIL = 8;
     public static final int FLOW_GOLF = 9;
+    public static final int HEIGHT_ANY = -1;
     public static final int HEIGHT_MIN = 0;
     public static final int HEIGHT_MAX = 4;
     public static final int HEIGHT_NO_CONNECT = 0;
