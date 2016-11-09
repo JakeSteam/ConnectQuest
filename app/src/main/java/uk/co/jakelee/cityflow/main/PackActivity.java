@@ -115,7 +115,7 @@ public class PackActivity extends Activity {
         if (selectedPuzzle.getPuzzleId() == firstPackPuzzle || selectedPuzzle.getPuzzleId() <= lastCompletedPuzzle + 1) {
             Intent intent = new Intent(getApplicationContext(), PuzzleActivity.class);
             intent.putExtra(Constants.INTENT_PUZZLE, selectedPuzzle.getPuzzleId());
-            intent.putExtra(Constants.INTENT_PUZZLE_TYPE, false);
+            intent.putExtra(Constants.INTENT_IS_CUSTOM, false);
             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
         }

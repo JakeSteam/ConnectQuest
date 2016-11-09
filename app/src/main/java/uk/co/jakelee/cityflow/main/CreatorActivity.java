@@ -107,7 +107,7 @@ public class CreatorActivity extends AllowMeActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent(getApplicationContext(), PuzzleActivity.class);
                         intent.putExtra(Constants.INTENT_PUZZLE, puzzle.getPuzzleId());
-                        intent.putExtra(Constants.INTENT_PUZZLE_TYPE, true);
+                        intent.putExtra(Constants.INTENT_IS_CUSTOM, true);
                         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(intent);
                     }

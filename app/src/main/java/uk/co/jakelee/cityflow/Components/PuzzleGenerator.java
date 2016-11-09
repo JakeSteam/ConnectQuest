@@ -14,6 +14,8 @@ import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.RandomHelper;
 import uk.co.jakelee.cityflow.main.EditorActivity;
+import uk.co.jakelee.cityflow.main.PuzzleActivity;
+import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
@@ -31,15 +33,17 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
     private int yValue;
     private int environmentId;
     private boolean autogenerate;
+    private boolean shuffleAndPlay;
     private int totalTiles;
 
-    public PuzzleGenerator(Activity activity, Dialog dialog, int xValue, int yValue, int environmentId, boolean autogenerate) {
+    public PuzzleGenerator(Activity activity, Dialog dialog, int xValue, int yValue, int environmentId, boolean autogenerate, boolean shuffleAndPlay) {
         this.activity = activity;
         this.dialog = dialog;
         this.xValue = xValue;
         this.yValue = yValue;
         this.environmentId = environmentId;
         this.autogenerate = autogenerate;
+        this.shuffleAndPlay = shuffleAndPlay;
 
         this.progressText = (TextView)dialog.findViewById(R.id.progressText);
         this.progressPercentage = (TextView)dialog.findViewById(R.id.progressPercentage);
@@ -49,9 +53,16 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
     protected void onPostExecute(Integer result) {
         dialog.dismiss();
 
-        activity.startActivity(new Intent(activity, EditorActivity.class)
-                .putExtra(Constants.INTENT_PUZZLE, result)
-                .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+        if (autogenerate && shuffleAndPlay) {
+            activity.startActivity(new Intent(activity, PuzzleActivity.class)
+                    .putExtra(Constants.INTENT_PUZZLE, result)
+                    .putExtra(Constants.INTENT_IS_CUSTOM, true)
+                    .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+        } else {
+            activity.startActivity(new Intent(activity, EditorActivity.class)
+                    .putExtra(Constants.INTENT_PUZZLE, result)
+                    .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+        }
     }
 
     @Override
@@ -114,7 +125,12 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
                 publishProgress(tiles.size());
             }
         }
-        Tile.saveInTx(tiles);
+        if (shuffleAndPlay) {
+            Puzzle.shuffle(tiles);
+            Tile.executeQuery("UPDATE tile SET default_rotation = rotation WHERE puzzle_id = " + newPuzzleId);
+        } else {
+            Tile.saveInTx(tiles);
+        }
         return newPuzzleId;
     }
 

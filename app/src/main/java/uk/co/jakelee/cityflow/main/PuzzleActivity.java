@@ -78,7 +78,7 @@ public class PuzzleActivity extends Activity {
 
         Intent intent = getIntent();
         puzzleId = intent.getIntExtra(Constants.INTENT_PUZZLE, 0);
-        isCustom = intent.getBooleanExtra(Constants.INTENT_PUZZLE_TYPE, true);
+        isCustom = intent.getBooleanExtra(Constants.INTENT_IS_CUSTOM, true);
         if(isCustom) {
             puzzleCustom = PuzzleCustom.get(puzzleId);
         }
@@ -463,7 +463,7 @@ public class PuzzleActivity extends Activity {
         this.finish();
         Intent intent = new Intent(this, PuzzleActivity.class);
         intent.putExtra(Constants.INTENT_PUZZLE, puzzleId);
-        intent.putExtra(Constants.INTENT_PUZZLE_TYPE, isCustom);
+        intent.putExtra(Constants.INTENT_IS_CUSTOM, isCustom);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
@@ -485,7 +485,7 @@ public class PuzzleActivity extends Activity {
             if (nextPuzzle > 0) {
                 Intent intent = new Intent(this, PuzzleActivity.class);
                 intent.putExtra(Constants.INTENT_PUZZLE, nextPuzzle);
-                intent.putExtra(Constants.INTENT_PUZZLE_TYPE, false);
+                intent.putExtra(Constants.INTENT_IS_CUSTOM, false);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }

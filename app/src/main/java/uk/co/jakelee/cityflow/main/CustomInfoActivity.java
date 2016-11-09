@@ -86,7 +86,7 @@ public class CustomInfoActivity extends Activity {
     public void playPuzzle(View v) {
         Intent intent = new Intent(getApplicationContext(), PuzzleActivity.class);
         intent.putExtra(Constants.INTENT_PUZZLE, puzzle.getPuzzleId());
-        intent.putExtra(Constants.INTENT_PUZZLE_TYPE, puzzle.getPackId() == 0);
+        intent.putExtra(Constants.INTENT_IS_CUSTOM, puzzle.getPackId() == 0);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
         this.finish();

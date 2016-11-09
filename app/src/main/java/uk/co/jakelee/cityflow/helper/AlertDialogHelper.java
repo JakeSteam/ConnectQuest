@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -278,12 +279,14 @@ public class AlertDialogHelper {
         ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Text.get("UI_PUZZLE_WIDTH"), Constants.PUZZLE_X_DEFAULT));
         ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Text.get("UI_PUZZLE_HEIGHT"), Constants.PUZZLE_Y_DEFAULT));
         ((TextView)dialog.findViewById(R.id.environmentText)).setText(Text.get("WORD_AREA"));
-        ((TextView)dialog.findViewById(R.id.autogenerateText)).setText(Text.get("UI_PUZZLE_AUTOGENERATE"));
+        ((TextView)dialog.findViewById(R.id.emptyText)).setText(Text.get("UI_PUZZLE_AUTOGENERATE"));
+        ((TextView)dialog.findViewById(R.id.shuffleText)).setText(Text.get("UI_PUZZLE_SHUFFLE_PLAY"));
 
-        dialog.findViewById(R.id.autogenerateWrapper).setOnClickListener(new View.OnClickListener() {
+        final CheckBox shuffleCheckbox = (CheckBox)dialog.findViewById(R.id.shuffleCheckbox);
+        ((CheckBox)dialog.findViewById(R.id.emptyCheckbox)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                ((CheckBox)view.findViewById(R.id.autogenerateCheckbox)).toggle();
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                shuffleCheckbox.setEnabled(!b);
             }
         });
 
@@ -329,13 +332,14 @@ public class AlertDialogHelper {
             public void onClick(View v) {
                 int xValue = getIntFromProgress(sliderWidth.getProgress(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX);
                 int yValue = getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX);
-                boolean autogenerate = !((CheckBox)dialog.findViewById(R.id.autogenerateCheckbox)).isChecked();
+                boolean autogenerate = !((CheckBox)dialog.findViewById(R.id.emptyCheckbox)).isChecked();
+                boolean shuffleAndPlay = ((CheckBox)dialog.findViewById(R.id.shuffleCheckbox)).isChecked();
 
                 if (xValue <= 1 && yValue <= 1) {
                     AlertHelper.error(activity, ErrorHelper.get(ErrorHelper.Error.PUZZLE_TOO_SMALL));
                 } else {
                     int environmentId = spinner.getSelectedItemPosition();
-                    puzzleLoadingProgress(activity, xValue, yValue, environmentId, autogenerate);
+                    puzzleLoadingProgress(activity, xValue, yValue, environmentId, autogenerate, shuffleAndPlay);
                     dialog.dismiss();
                 }
             }
@@ -350,7 +354,7 @@ public class AlertDialogHelper {
         dialog.show();
     }
 
-    private static void puzzleLoadingProgress(final Activity activity, int xValue, int yValue, int environmentId, boolean autogenerate) {
+    private static void puzzleLoadingProgress(final Activity activity, int xValue, int yValue, int environmentId, boolean autogenerate, boolean shuffleAndPlay) {
         final Dialog dialog = new Dialog(activity);
         dialog.setContentView(R.layout.custom_dialog_puzzle_loading);
         dialog.setCancelable(true);
@@ -362,7 +366,8 @@ public class AlertDialogHelper {
                 xValue,
                 yValue,
                 environmentId,
-                autogenerate).execute();
+                autogenerate,
+                shuffleAndPlay).execute();
     }
 
     public static void resizePuzzle(final EditorActivity activity, final int puzzleId) {

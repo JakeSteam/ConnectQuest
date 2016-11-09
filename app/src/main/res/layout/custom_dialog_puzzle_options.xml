@@ -122,20 +122,39 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/autogenerateWrapper"
+        android:id="@+id/emptyWrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/environmentWrapper"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <uk.co.jakelee.cityflow.components.TextViewFont
-            android:id="@+id/autogenerateText"
+            android:id="@+id/emptyText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="20sp"/>
         <CheckBox
-            android:id="@+id/autogenerateCheckbox"
+            android:id="@+id/emptyCheckbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/shuffleWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emptyWrapper"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <uk.co.jakelee.cityflow.components.TextViewFont
+            android:id="@+id/shuffleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+        <CheckBox
+            android:id="@+id/shuffleCheckbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -151,7 +170,7 @@
         android:padding="10dp"
         android:textColor="@color/black"
         android:gravity="center_horizontal"
-        android:layout_below="@id/autogenerateWrapper"/>
+        android:layout_below="@id/shuffleWrapper"/>
 
     <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/createButton"
@@ -165,6 +184,6 @@
         android:layout_toRightOf="@id/close"
         android:textColor="@color/black"
         android:gravity="center_horizontal"
-        android:layout_below="@id/autogenerateWrapper"/>
+        android:layout_below="@id/shuffleWrapper"/>
 
 </RelativeLayout>
