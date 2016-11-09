@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -113,14 +114,37 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
         createBasicPuzzleCustomObject(newPuzzleId, maxX, maxY).save();
 
         List<Tile> tiles = new ArrayList<>();
+        int prevX = 0;
+        int prevY = 0;
+        int failedAttempts = 0;
         for (int x = 0; x < maxX; x++) {
             for (int y = 0; y < maxY; y++) {
                 List<Tile> potentialTiles = getPossibleTiles(newPuzzleId, tiles, x, y, maxX - 1, maxY - 1, environmentId);
                 if (potentialTiles.size() > 0) {
                     Tile selectedTile = potentialTiles.get(RandomHelper.getNumber(0, potentialTiles.size() - 1));
                     tiles.add(selectedTile);
+                    prevX = x;
+                    prevY = y;
+                    failedAttempts = 0;
                 } else {
-                    tiles.add(new Tile(newPuzzleId, 0, x, y, Constants.ROTATION_NORTH));
+                    failedAttempts++;
+                    if (failedAttempts > 10) {
+                        tiles.add(new Tile(newPuzzleId, 0, x, y, Constants.ROTATION_NORTH));
+                        prevX = x;
+                        prevY = y;
+                    } else {
+                        tiles.remove(tiles.size() - 1);
+                        if (y == 0) {
+                            Log.d("Tiles", "X: " + x + ", Y: " + y + " (FAILED Y)");
+                            x--;
+                            y = maxY - 1;
+                        } else {
+                            Log.d("Tiles", "X: " + x + ", Y: " + y + " (FAILED)");
+                            y = prevY - 1;
+                        }
+                        //
+                        Log.d("Tiles", "X: " + x + ", Y: " + y + " (MODIFIED)");
+                    }
                 }
                 publishProgress(tiles.size());
             }
