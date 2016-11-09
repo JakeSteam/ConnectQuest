@@ -749,7 +749,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_PUZZLE_WIDTH", "Width: %1$d"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_PUZZLE_HEIGHT", "Height: %1$d"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_PUZZLE_OPTIONS", "Puzzle Options"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "UI_PUZZLE_AUTOGENERATE", "Generate Puzzle"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "UI_PUZZLE_AUTOGENERATE", "Empty Puzzle"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_PUZZLE_RESIZE", "Resize \"%1$s\""));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_PUZZLE_RESIZE_HINT", "Width = top left -> bottom right\nHeight = bottom left -> top right."));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_TILE_UNLOCK_PUZZLE", "To unlock \"%1$s\", complete puzzle \"%2$s\" in pack \"%3$s\"."));

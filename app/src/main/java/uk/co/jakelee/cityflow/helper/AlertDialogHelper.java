@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import uk.co.jakelee.cityflow.BuildConfig;
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.components.PuzzleGenerator;
 import uk.co.jakelee.cityflow.main.CreatorActivity;
 import uk.co.jakelee.cityflow.main.CustomInfoActivity;
 import uk.co.jakelee.cityflow.main.EditorActivity;
@@ -328,18 +329,20 @@ public class AlertDialogHelper {
             public void onClick(View v) {
                 int xValue = getIntFromProgress(sliderWidth.getProgress(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX);
                 int yValue = getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX);
-                boolean autogenerate = ((CheckBox)dialog.findViewById(R.id.autogenerateCheckbox)).isChecked();
+                boolean autogenerate = !((CheckBox)dialog.findViewById(R.id.autogenerateCheckbox)).isChecked();
 
                 if (xValue <= 1 && yValue <= 1) {
                     AlertHelper.error(activity, ErrorHelper.get(ErrorHelper.Error.PUZZLE_TOO_SMALL));
                 } else {
                     int environmentId = spinner.getSelectedItemPosition();
-                    int newPuzzleId = PuzzleHelper.createNewPuzzle(xValue, yValue, environmentId, autogenerate);
 
-                    activity.startActivity(new Intent(activity, EditorActivity.class)
-                            .putExtra(Constants.INTENT_PUZZLE, newPuzzleId)
-                            .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
-                    dialog.dismiss();
+                    new PuzzleGenerator(activity,
+                            ((TextView)dialog.findViewById(R.id.createButton)),
+                            dialog,
+                            xValue,
+                            yValue,
+                            environmentId,
+                            autogenerate).execute();
                 }
             }
         });
