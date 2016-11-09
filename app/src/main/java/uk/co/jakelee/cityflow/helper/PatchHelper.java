@@ -770,6 +770,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "WORD_START", "Start"));
         texts.add(new Text(Constants.LANGUAGE_EN, "WORD_UNLOCK", "Unlock"));
         texts.add(new Text(Constants.LANGUAGE_EN, "WORD_LOCKED", "Locked"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "WORD_LOADING", "Loading"));
         Text.saveInTx(texts);
     }
 

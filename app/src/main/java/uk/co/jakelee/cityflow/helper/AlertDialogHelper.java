@@ -335,14 +335,8 @@ public class AlertDialogHelper {
                     AlertHelper.error(activity, ErrorHelper.get(ErrorHelper.Error.PUZZLE_TOO_SMALL));
                 } else {
                     int environmentId = spinner.getSelectedItemPosition();
-
-                    new PuzzleGenerator(activity,
-                            ((TextView)dialog.findViewById(R.id.createButton)),
-                            dialog,
-                            xValue,
-                            yValue,
-                            environmentId,
-                            autogenerate).execute();
+                    puzzleLoadingProgress(activity, xValue, yValue, environmentId, autogenerate);
+                    dialog.dismiss();
                 }
             }
         });
@@ -354,6 +348,21 @@ public class AlertDialogHelper {
         });
 
         dialog.show();
+    }
+
+    private static void puzzleLoadingProgress(final Activity activity, int xValue, int yValue, int environmentId, boolean autogenerate) {
+        final Dialog dialog = new Dialog(activity);
+        dialog.setContentView(R.layout.custom_dialog_puzzle_loading);
+        dialog.setCancelable(true);
+        ((TextView)dialog.findViewById(R.id.title)).setText(Text.get("WORD_LOADING"));
+        dialog.show();
+
+        new PuzzleGenerator(activity,
+                dialog,
+                xValue,
+                yValue,
+                environmentId,
+                autogenerate).execute();
     }
 
     public static void resizePuzzle(final EditorActivity activity, final int puzzleId) {

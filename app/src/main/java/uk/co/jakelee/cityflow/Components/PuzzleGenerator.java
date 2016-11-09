@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.RandomHelper;
 import uk.co.jakelee.cityflow.main.EditorActivity;
@@ -24,26 +25,29 @@ import static uk.co.jakelee.cityflow.helper.PuzzleHelper.getNextCustomPuzzleId;
 public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
     private Activity activity;
     private TextView progressText;
-    private Dialog alertDialog;
+    private TextView progressPercentage;
+    private Dialog dialog;
     private int xValue;
     private int yValue;
     private int environmentId;
     private boolean autogenerate;
     private int totalTiles;
 
-    public PuzzleGenerator(Activity activity, TextView progressText, Dialog dialog, int xValue, int yValue, int environmentId, boolean autogenerate) {
+    public PuzzleGenerator(Activity activity, Dialog dialog, int xValue, int yValue, int environmentId, boolean autogenerate) {
         this.activity = activity;
-        this.progressText = progressText;
-        this.alertDialog = dialog;
+        this.dialog = dialog;
         this.xValue = xValue;
         this.yValue = yValue;
         this.environmentId = environmentId;
         this.autogenerate = autogenerate;
+
+        this.progressText = (TextView)dialog.findViewById(R.id.progressText);
+        this.progressPercentage = (TextView)dialog.findViewById(R.id.progressPercentage);
     }
 
     @Override
     protected void onPostExecute(Integer result) {
-        alertDialog.dismiss();
+        dialog.dismiss();
 
         activity.startActivity(new Intent(activity, EditorActivity.class)
                 .putExtra(Constants.INTENT_PUZZLE, result)
@@ -55,7 +59,9 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
 
     @Override
     protected void onProgressUpdate(Integer... values) {
-        progressText.setText(values[0] + " / " + totalTiles);
+        int percent = (int) (((double) values[0]) / ((double) totalTiles) * 100);
+        progressPercentage.setText(String.format(Locale.getDefault(), "%1$d%%", percent));
+        progressText.setText(String.format(Locale.getDefault(), "(%1$d/%2$d)", values[0], totalTiles));
     }
 
     @Override
@@ -123,8 +129,8 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
 
         int nHeight = -1;
         int eHeight = -1;
-        int sHeight = sFlow > -1 ? southTile.getHeight(Constants.SIDE_NORTH) : -1;
-        int wHeight = wFlow > -1 ? westTile.getHeight(Constants.SIDE_EAST) : -1;
+        int sHeight = sFlow > -1 && tileY > 0 ? southTile.getHeight(Constants.SIDE_NORTH) : -1;
+        int wHeight = wFlow > -1 && tileX > 0 ? westTile.getHeight(Constants.SIDE_EAST) : -1;
 
         // Make list
         List<Tile> tiles = getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_NORTH, nFlow, eFlow, sFlow, wFlow, nHeight, eHeight, sHeight, wHeight);
