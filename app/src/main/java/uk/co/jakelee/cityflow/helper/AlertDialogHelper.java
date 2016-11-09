@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -276,6 +277,14 @@ public class AlertDialogHelper {
         ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Text.get("UI_PUZZLE_WIDTH"), Constants.PUZZLE_X_DEFAULT));
         ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Text.get("UI_PUZZLE_HEIGHT"), Constants.PUZZLE_Y_DEFAULT));
         ((TextView)dialog.findViewById(R.id.environmentText)).setText(Text.get("WORD_AREA"));
+        ((TextView)dialog.findViewById(R.id.autogenerateText)).setText(Text.get("UI_PUZZLE_AUTOGENERATE"));
+
+        dialog.findViewById(R.id.autogenerateWrapper).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((CheckBox)view.findViewById(R.id.autogenerateCheckbox)).toggle();
+            }
+        });
 
         // Creating X slider
         final SeekBar sliderWidth = (SeekBar) dialog.findViewById(R.id.sliderWidth);
@@ -319,18 +328,17 @@ public class AlertDialogHelper {
             public void onClick(View v) {
                 int xValue = getIntFromProgress(sliderWidth.getProgress(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX);
                 int yValue = getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX);
+                boolean autogenerate = ((CheckBox)dialog.findViewById(R.id.autogenerateCheckbox)).isChecked();
 
                 if (xValue <= 1 && yValue <= 1) {
                     AlertHelper.error(activity, ErrorHelper.get(ErrorHelper.Error.PUZZLE_TOO_SMALL));
                 } else {
                     int environmentId = spinner.getSelectedItemPosition();
-                    //int newPuzzleId = PuzzleHelper.createNewPuzzle(xValue, yValue, environmentId);
-                    int newPuzzleId = PuzzleHelper.createGeneratedPuzzle(xValue, yValue, environmentId);
+                    int newPuzzleId = PuzzleHelper.createNewPuzzle(xValue, yValue, environmentId, autogenerate);
 
-                    Intent intent = new Intent(activity, EditorActivity.class)
-                            .putExtra(Constants.INTENT_PUZZLE, newPuzzleId);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    activity.startActivity(intent);
+                    activity.startActivity(new Intent(activity, EditorActivity.class)
+                            .putExtra(Constants.INTENT_PUZZLE, newPuzzleId)
+                            .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
                     dialog.dismiss();
                 }
             }

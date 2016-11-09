@@ -200,7 +200,15 @@ public class PuzzleHelper {
         return from(Puzzle.class).orderBy("puzzle_id DESC").first().getPuzzleId() + 1;
     }
 
-    public static int createNewPuzzle(int maxX, int maxY, final int environmentId) {
+    public static int createNewPuzzle(int maxX, int maxY, int environmentId, boolean autogenerate) {
+        if (autogenerate) {
+            return createFilledPuzzle(maxX, maxY, environmentId);
+        } else {
+            return createEmptyPuzzle(maxX, maxY, environmentId);
+        }
+    }
+
+    public static int createEmptyPuzzle(int maxX, int maxY, final int environmentId) {
         int newPuzzleId = getNextCustomPuzzleId();
         int defaultTileId = getDefaultTileId(environmentId);
         createBasicPuzzleObject(newPuzzleId).save();
@@ -217,7 +225,7 @@ public class PuzzleHelper {
         return newPuzzleId;
     }
 
-    public static int createGeneratedPuzzle(int maxX, int maxY, int environmentId) {
+    public static int createFilledPuzzle(int maxX, int maxY, int environmentId) {
         int newPuzzleId = getNextCustomPuzzleId();
         createBasicPuzzleObject(newPuzzleId).save();
         createBasicPuzzleCustomObject(newPuzzleId, maxX, maxY).save();

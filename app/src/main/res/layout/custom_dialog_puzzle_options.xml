@@ -121,6 +121,25 @@
             android:layout_margin="5dp"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/autogenerateWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/environmentWrapper"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <uk.co.jakelee.cityflow.components.TextViewFont
+            android:id="@+id/autogenerateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+        <CheckBox
+            android:id="@+id/autogenerateCheckbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
     <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/close"
         android:layout_width="wrap_content"
@@ -132,7 +151,7 @@
         android:padding="10dp"
         android:textColor="@color/black"
         android:gravity="center_horizontal"
-        android:layout_below="@id/environmentWrapper"/>
+        android:layout_below="@id/autogenerateWrapper"/>
 
     <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/createButton"
@@ -146,6 +165,6 @@
         android:layout_toRightOf="@id/close"
         android:textColor="@color/black"
         android:gravity="center_horizontal"
-        android:layout_below="@id/environmentWrapper"/>
+        android:layout_below="@id/autogenerateWrapper"/>
 
 </RelativeLayout>
