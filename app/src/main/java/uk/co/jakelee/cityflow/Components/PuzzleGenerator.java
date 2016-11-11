@@ -183,8 +183,8 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
 
     private static List<Tile> getPossibleTilesByRotation(int puzzleId, int x, int y, int environmentId, int rotation, int nFlow, int eFlow, int sFlow, int wFlow, int nHeight, int eHeight, int sHeight, int wHeight) {
         String sql = String.format(Locale.getDefault(),
-                "SELECT * FROM tile_type WHERE environment_id = %1$d AND flow_north %2$s %3$d AND flow_east %4$s %5$d AND flow_south %6$s %7$d AND flow_west %8$s %9$d AND height_north %10$s %11$d AND height_east %12$s %13$d AND height_south %14$s %15$d AND height_west %16$s %17$d",
-                environmentId,
+                "SELECT * FROM tile_type WHERE environment_id %1$s %2$d AND flow_north %3$s %4$d AND flow_east %5$s %6$d AND flow_south %7$s %8$d AND flow_west %9$s %10$d AND height_north %11$s %12$d AND height_east %13$s %14$d AND height_south %15$s %16$d AND height_west %17$s %18$d",
+                environmentId > 0 ? "=" : ">", environmentId,
                 nFlow >= 0 ? "=" : ">=", nFlow,
                 eFlow >= 0 ? "=" : ">=", eFlow,
                 sFlow >= 0 ? "=" : ">=", sFlow,
