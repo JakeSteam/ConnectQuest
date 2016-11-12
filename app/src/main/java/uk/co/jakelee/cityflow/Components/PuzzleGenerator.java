@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -117,33 +116,31 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
         int prevX = 0;
         int prevY = 0;
         int failedAttempts = 0;
+        int totalAttempts = 0;
         for (int x = 0; x < maxX; x++) {
             for (int y = 0; y < maxY; y++) {
                 List<Tile> potentialTiles = getPossibleTiles(newPuzzleId, tiles, x, y, maxX - 1, maxY - 1, environmentId);
                 if (potentialTiles.size() > 0) {
                     Tile selectedTile = potentialTiles.get(RandomHelper.getNumber(0, potentialTiles.size() - 1));
                     tiles.add(selectedTile);
-                    prevX = x;
                     prevY = y;
                     failedAttempts = 0;
                 } else {
                     failedAttempts++;
-                    if (failedAttempts > 10) {
+                    totalAttempts++;
+                    if (failedAttempts > 3 || totalAttempts > 10) {
                         tiles.add(new Tile(newPuzzleId, 0, x, y, Constants.ROTATION_NORTH));
-                        prevX = x;
                         prevY = y;
+                        failedAttempts = 0;
+                        totalAttempts = 0;
                     } else {
                         tiles.remove(tiles.size() - 1);
                         if (y == 0) {
-                            Log.d("Tiles", "X: " + x + ", Y: " + y + " (FAILED Y)");
                             x--;
                             y = maxY - 1;
                         } else {
-                            Log.d("Tiles", "X: " + x + ", Y: " + y + " (FAILED)");
                             y = prevY - 1;
                         }
-                        //
-                        Log.d("Tiles", "X: " + x + ", Y: " + y + " (MODIFIED)");
                     }
                 }
                 publishProgress(tiles.size());
@@ -169,8 +166,10 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
 
         int nHeight = -1;
         int eHeight = -1;
-        int sHeight = sFlow > -1 && tileY > 0 ? southTile.getHeight(Constants.SIDE_NORTH) : -1;
-        int wHeight = wFlow > -1 && tileX > 0 ? westTile.getHeight(Constants.SIDE_EAST) : -1;
+
+        // If there's no flow, then do any height we want
+        int sHeight = sFlow > 0 && tileY > 0 ? southTile.getHeight(Constants.SIDE_NORTH) : -1;
+        int wHeight = wFlow > 0 && tileX > 0 ? westTile.getHeight(Constants.SIDE_EAST) : -1;
 
         // Make list
         List<Tile> tiles = getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_NORTH, nFlow, eFlow, sFlow, wFlow, nHeight, eHeight, sHeight, wHeight);

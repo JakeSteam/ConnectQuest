@@ -727,6 +727,10 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_154_NAME", "Golf T Junction"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_155_NAME", "Golf Straight (Tunnel)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_156_NAME", "Golf Straight (Shed)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_157_NAME", "Desert Rail/Road T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_158_NAME", "Desert Road/Rail T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_159_NAME", "Desert Road/Rail Corner"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_160_NAME", "Desert Rail/Road Corner"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_BACKGROUND_SELECT_TITLE", "%1$d/%2$d Unlocked"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TITLE", "Purchase Coins"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TEASER", "First purchase of any pack unlocks a bonus puzzle pack!"));
@@ -2918,6 +2922,10 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tileTypes.add(new TileType(154, Constants.ENVIRONMENT_GOLF, Constants.FLOW_GOLF, Constants.FLOW_GOLF, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 154));
         tileTypes.add(new TileType(155, Constants.ENVIRONMENT_GOLF, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 155));
         tileTypes.add(new TileType(156, Constants.ENVIRONMENT_GOLF, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.FLOW_GOLF, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 156));
+        tileTypes.add(new TileType(157, Constants.ENVIRONMENT_DESERT, Constants.FLOW_RAIL, Constants.FLOW_ROAD, Constants.FLOW_RAIL, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 157));
+        tileTypes.add(new TileType(158, Constants.ENVIRONMENT_DESERT, Constants.FLOW_ROAD, Constants.FLOW_RAIL, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 158));
+        tileTypes.add(new TileType(159, Constants.ENVIRONMENT_DESERT, Constants.FLOW_ROAD, Constants.FLOW_RAIL, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 159));
+        tileTypes.add(new TileType(160, Constants.ENVIRONMENT_DESERT, Constants.FLOW_RAIL, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 160));
 
         TileType.saveInTx(tileTypes);
     }
