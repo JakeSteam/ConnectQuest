@@ -2,6 +2,8 @@ package uk.co.jakelee.cityflow.helper;
 
 
 public class Constants {
+    public static final boolean DEBUG_MODE = true;
+
     // Intents
     public static final String INTENT_PACK = "uk.co.jakelee.cityflow.pack";
     public static final String INTENT_PUZZLE = "uk.co.jakelee.cityflow.puzzle";

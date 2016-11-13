@@ -30,7 +30,6 @@ public class ExportActivity extends AllowMeActivity {
     private PuzzleCustom puzzleCustom;
     private DisplayHelper dh;
     private String exportedText;
-    private boolean debug = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +56,7 @@ public class ExportActivity extends AllowMeActivity {
         ((ImageView)findViewById(R.id.puzzleImage)).setImageDrawable(dh.getCustomPuzzleDrawable(puzzle.getPuzzleId()));
         ((TextView)findViewById(R.id.puzzleDesc)).setText(puzzleCustom.getDescription());
 
-        if (debug) {
+        if (Constants.DEBUG_MODE) {
             exportedText = PuzzleShareHelper.getPuzzleSQL(puzzle);
             Bitmap bitmap = BitmapFactory.decodeFile(getFilesDir() + "/puzzle_" + puzzle.getPuzzleId() + ".png");
             StorageHelper.insertImage(getContentResolver(), bitmap, "CityFlow_puzzle_" + puzzle.getPuzzleId() + "_" + System.currentTimeMillis() + ".png");
