@@ -59,7 +59,7 @@ public class ExportActivity extends AllowMeActivity {
 
         if (debug) {
             exportedText = PuzzleShareHelper.getPuzzleSQL(puzzle);
-            Bitmap bitmap = BitmapFactory.decodeFile("/data/data/uk.co.jakelee.cityflow/files/puzzle_" + puzzle.getPuzzleId() + ".png");
+            Bitmap bitmap = BitmapFactory.decodeFile(getFilesDir() + "/puzzle_" + puzzle.getPuzzleId() + ".png");
             StorageHelper.insertImage(getContentResolver(), bitmap, "CityFlow_puzzle_" + puzzle.getPuzzleId() + "_" + System.currentTimeMillis() + ".png");
         } else {
             exportedText = PuzzleShareHelper.getPuzzleString(puzzle);

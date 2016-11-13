@@ -165,7 +165,7 @@ public class DisplayHelper {
     }
 
     public Drawable getCustomPuzzleDrawable(int puzzleId) {
-        String pathName = "/data/data/uk.co.jakelee.cityflow/files/puzzle_" + puzzleId + ".png";
+        String pathName = context.getFilesDir() + "/puzzle_" + puzzleId + ".png";
         return Drawable.createFromPath(pathName);
     }
 
