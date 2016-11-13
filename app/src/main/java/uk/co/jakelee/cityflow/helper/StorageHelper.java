@@ -34,7 +34,7 @@ import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
 
 public class StorageHelper {
     private static final float screenshotScale = 0.1f;
-    private static final int screenshotSize = 300;
+    private static final int screenshotSize = 500;
 
     public final static int WHITE = 0xFFFFFFFF;
     public final static int BLACK = 0xFF000000;

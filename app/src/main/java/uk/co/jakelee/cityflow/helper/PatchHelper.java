@@ -105,6 +105,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         createPuzzlesPack3();
         createPuzzlesPack4();
         createPuzzlesPack5();
+        createPuzzlesPack6();
+        createPuzzlesPack7();
     }
 
     @Override
@@ -798,6 +800,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
     }
 
     private void createPuzzlesPack1() {
+        // Tutorial
         List<Puzzle> puzzles = new ArrayList<>();
         List<Text> texts = new ArrayList<>();
         List<Tile> tiles = new ArrayList<>();
@@ -961,6 +964,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
     }
 
     private void createPuzzlesPack2() {
+        // The Big City
         List<Puzzle> puzzles = new ArrayList<>();
         List<Text> texts = new ArrayList<>();
         List<Tile> tiles = new ArrayList<>();
@@ -1470,6 +1474,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
     }
 
     private void createPuzzlesPack3() {
+        // Escape To The Country
         List<Puzzle> puzzles = new ArrayList<>();
         List<Text> texts = new ArrayList<>();
         List<Tile> tiles = new ArrayList<>();
@@ -2159,6 +2164,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
     }
 
     private void createPuzzlesPack4() {
+        // Forest Fun
         List<Puzzle> puzzles = new ArrayList<>();
         List<Text> texts = new ArrayList<>();
         List<Tile> tiles = new ArrayList<>();
@@ -3010,6 +3016,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
     }
 
     private void createPuzzlesPack5() {
+        //Mountain Climbing
         List<Puzzle> puzzles = new ArrayList<>();
         List<Text> texts = new ArrayList<>();
         List<Tile> tiles = new ArrayList<>();
@@ -3100,6 +3107,148 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(103, 87, 4, 0, 2));
         tiles.add(new Tile(103, 86, 5, 0, 2));
         tiles.add(new Tile(103, 87, 6, 0, 2));
+
+        Puzzle.saveInTx(puzzles);
+        Text.saveInTx(texts);
+        Tile.saveInTx(tiles);
+    }
+
+    private void createPuzzlesPack6() {
+        // Desert Oasis
+    }
+
+    private void createPuzzlesPack7() {
+        // Round Of Golf
+        List<Puzzle> puzzles = new ArrayList<>();
+        List<Text> texts = new ArrayList<>();
+        List<Tile> tiles = new ArrayList<>();
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_146_NAME", "Hole 1"));
+        puzzles.add(new Puzzle(146, 7, 7821L, 9, 0L, 0));
+        tiles.add(new Tile(146, 151, 0, 2, 1));
+        tiles.add(new Tile(146, 140, 1, 2, 1));
+        tiles.add(new Tile(146, 154, 2, 2, 2));
+        tiles.add(new Tile(146, 152, 3, 2, 3));
+        tiles.add(new Tile(146, 141, 0, 1, 3));
+        tiles.add(new Tile(146, 138, 1, 1, 2));
+        tiles.add(new Tile(146, 143, 2, 1, 4));
+        tiles.add(new Tile(146, 143, 3, 1, 4));
+        tiles.add(new Tile(146, 151, 0, 0, 3));
+        tiles.add(new Tile(146, 142, 1, 0, 1));
+        tiles.add(new Tile(146, 148, 2, 0, 3));
+        tiles.add(new Tile(146, 146, 3, 0, 4));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_147_NAME", "Hole 2"));
+        puzzles.add(new Puzzle(147, 7, 23347L, 21, 0L, 0));
+        tiles.add(new Tile(147, 143, 0, 3, 2));
+        tiles.add(new Tile(147, 152, 1, 3, 3));
+        tiles.add(new Tile(147, 143, 2, 3, 3));
+        tiles.add(new Tile(147, 152, 3, 3, 4));
+        tiles.add(new Tile(147, 151, 0, 2, 2));
+        tiles.add(new Tile(147, 144, 1, 2, 1));
+        tiles.add(new Tile(147, 148, 2, 2, 1));
+        tiles.add(new Tile(147, 152, 3, 2, 2));
+        tiles.add(new Tile(147, 156, 0, 1, 1));
+        tiles.add(new Tile(147, 156, 1, 1, 2));
+        tiles.add(new Tile(147, 146, 2, 1, 4));
+        tiles.add(new Tile(147, 152, 3, 1, 2));
+        tiles.add(new Tile(147, 152, 0, 0, 4));
+        tiles.add(new Tile(147, 154, 1, 0, 4));
+        tiles.add(new Tile(147, 156, 2, 0, 2));
+        tiles.add(new Tile(147, 151, 3, 0, 2));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_148_NAME", "Hole 3"));
+        puzzles.add(new Puzzle(148, 7, 7925L, 10, 0L, 0));
+        tiles.add(new Tile(148, 146, 0, 2, 2));
+        tiles.add(new Tile(148, 147, 1, 2, 4));
+        tiles.add(new Tile(148, 142, 2, 2, 2));
+        tiles.add(new Tile(148, 151, 3, 2, 1));
+        tiles.add(new Tile(148, 138, 4, 2, 2));
+        tiles.add(new Tile(148, 143, 0, 1, 1));
+        tiles.add(new Tile(148, 141, 1, 1, 1));
+        tiles.add(new Tile(148, 142, 2, 1, 3));
+        tiles.add(new Tile(148, 144, 3, 1, 1));
+        tiles.add(new Tile(148, 143, 4, 1, 3));
+        tiles.add(new Tile(148, 138, 0, 0, 4));
+        tiles.add(new Tile(148, 138, 1, 0, 1));
+        tiles.add(new Tile(148, 138, 2, 0, 2));
+        tiles.add(new Tile(148, 152, 3, 0, 2));
+        tiles.add(new Tile(148, 143, 4, 0, 3));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_149_NAME", "Hole 4"));
+        puzzles.add(new Puzzle(149, 7, 31588L, 33, 0L, 0));
+        tiles.add(new Tile(149, 152, 0, 5, 2));
+        tiles.add(new Tile(149, 152, 1, 5, 4));
+        tiles.add(new Tile(149, 143, 2, 5, 4));
+        tiles.add(new Tile(149, 143, 3, 5, 2));
+        tiles.add(new Tile(149, 143, 4, 5, 3));
+        tiles.add(new Tile(149, 147, 0, 4, 3));
+        tiles.add(new Tile(149, 142, 1, 4, 3));
+        tiles.add(new Tile(149, 142, 2, 4, 3));
+        tiles.add(new Tile(149, 155, 3, 4, 2));
+        tiles.add(new Tile(149, 145, 4, 4, 3));
+        tiles.add(new Tile(149, 155, 0, 3, 2));
+        tiles.add(new Tile(149, 145, 1, 3, 2));
+        tiles.add(new Tile(149, 151, 2, 3, 2));
+        tiles.add(new Tile(149, 154, 3, 3, 3));
+        tiles.add(new Tile(149, 145, 4, 3, 1));
+        tiles.add(new Tile(149, 150, 0, 2, 1));
+        tiles.add(new Tile(149, 147, 1, 2, 3));
+        tiles.add(new Tile(149, 146, 2, 2, 1));
+        tiles.add(new Tile(149, 144, 3, 2, 3));
+        tiles.add(new Tile(149, 154, 4, 2, 4));
+        tiles.add(new Tile(149, 141, 0, 1, 1));
+        tiles.add(new Tile(149, 154, 1, 1, 3));
+        tiles.add(new Tile(149, 147, 2, 1, 4));
+        tiles.add(new Tile(149, 144, 3, 1, 3));
+        tiles.add(new Tile(149, 152, 4, 1, 1));
+        tiles.add(new Tile(149, 143, 0, 0, 3));
+        tiles.add(new Tile(149, 143, 1, 0, 1));
+        tiles.add(new Tile(149, 138, 2, 0, 2));
+        tiles.add(new Tile(149, 152, 3, 0, 3));
+        tiles.add(new Tile(149, 143, 4, 0, 2));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_150_NAME", "Hole 5"));
+        puzzles.add(new Puzzle(150, 7, 24151L, 22, 0L, 0));
+        tiles.add(new Tile(150, 138, 0, 3, 3));
+        tiles.add(new Tile(150, 138, 1, 3, 4));
+        tiles.add(new Tile(150, 152, 2, 3, 1));
+        tiles.add(new Tile(150, 151, 3, 3, 1));
+        tiles.add(new Tile(150, 143, 4, 3, 1));
+        tiles.add(new Tile(150, 143, 0, 2, 3));
+        tiles.add(new Tile(150, 147, 1, 2, 2));
+        tiles.add(new Tile(150, 151, 2, 2, 3));
+        tiles.add(new Tile(150, 152, 3, 2, 2));
+        tiles.add(new Tile(150, 154, 4, 2, 4));
+        tiles.add(new Tile(150, 138, 0, 1, 4));
+        tiles.add(new Tile(150, 143, 1, 1, 2));
+        tiles.add(new Tile(150, 145, 2, 1, 4));
+        tiles.add(new Tile(150, 148, 3, 1, 4));
+        tiles.add(new Tile(150, 154, 4, 1, 2));
+        tiles.add(new Tile(150, 138, 0, 0, 3));
+        tiles.add(new Tile(150, 146, 1, 0, 4));
+        tiles.add(new Tile(150, 156, 2, 0, 3));
+        tiles.add(new Tile(150, 140, 3, 0, 4));
+        tiles.add(new Tile(150, 151, 4, 0, 1));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_151_NAME", "Hole 6"));
+        puzzles.add(new Puzzle(151, 7, 11798L, 7, 0L, 0));
+        tiles.add(new Tile(151, 138, 0, 1, 2));
+        tiles.add(new Tile(151, 146, 1, 1, 1));
+        tiles.add(new Tile(151, 150, 2, 1, 2));
+        tiles.add(new Tile(151, 142, 3, 1, 1));
+        tiles.add(new Tile(151, 142, 4, 1, 3));
+        tiles.add(new Tile(151, 145, 5, 1, 4));
+        tiles.add(new Tile(151, 147, 6, 1, 3));
+        tiles.add(new Tile(151, 152, 7, 1, 3));
+        tiles.add(new Tile(151, 138, 0, 0, 1));
+        tiles.add(new Tile(151, 143, 1, 0, 3));
+        tiles.add(new Tile(151, 155, 2, 0, 2));
+        tiles.add(new Tile(151, 148, 3, 0, 2));
+        tiles.add(new Tile(151, 141, 4, 0, 1));
+        tiles.add(new Tile(151, 140, 5, 0, 2));
+        tiles.add(new Tile(151, 142, 6, 0, 1));
+        tiles.add(new Tile(151, 151, 7, 0, 4));
 
         Puzzle.saveInTx(puzzles);
         Text.saveInTx(texts);
