@@ -2,6 +2,8 @@ package uk.co.jakelee.cityflow.main;
 
 import android.Manifest;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -28,6 +30,7 @@ public class ExportActivity extends AllowMeActivity {
     private PuzzleCustom puzzleCustom;
     private DisplayHelper dh;
     private String exportedText;
+    private boolean debug = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +57,14 @@ public class ExportActivity extends AllowMeActivity {
         ((ImageView)findViewById(R.id.puzzleImage)).setImageDrawable(dh.getCustomPuzzleDrawable(puzzle.getPuzzleId()));
         ((TextView)findViewById(R.id.puzzleDesc)).setText(puzzleCustom.getDescription());
 
-        exportedText = PuzzleShareHelper.getPuzzleSQL(puzzle);
-        //exportedText = PuzzleShareHelper.getPuzzleString(puzzle);
-        StorageHelper.fillWithQrDrawable((ImageView)findViewById(R.id.puzzleQrCode), exportedText);
+        if (debug) {
+            exportedText = PuzzleShareHelper.getPuzzleSQL(puzzle);
+            Bitmap bitmap = BitmapFactory.decodeFile("/data/data/uk.co.jakelee.cityflow/files/puzzle_" + puzzle.getPuzzleId() + ".png");
+            StorageHelper.insertImage(getContentResolver(), bitmap, "CityFlow_puzzle_" + puzzle.getPuzzleId() + "_" + System.currentTimeMillis() + ".png");
+        } else {
+            exportedText = PuzzleShareHelper.getPuzzleString(puzzle);
+        }
+        StorageHelper.fillWithQrDrawable((ImageView) findViewById(R.id.puzzleQrCode), exportedText);
     }
 
     public void save(View view) {

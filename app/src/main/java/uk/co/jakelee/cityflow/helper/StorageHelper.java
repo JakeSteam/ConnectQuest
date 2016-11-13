@@ -1,9 +1,12 @@
 package uk.co.jakelee.cityflow.helper;
 
 import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.ImageView;
@@ -22,6 +25,7 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 
 import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -90,11 +94,10 @@ public class StorageHelper {
 
             FileOutputStream fos = activity.openFileOutput(filename, Context.MODE_PRIVATE);
             Log.d("Saved", "Puzzle image: " + puzzleId);
-            b.compress(Bitmap.CompressFormat.PNG, 0, fos);
+            b.compress(Bitmap.CompressFormat.PNG, 100, fos);
             fos.flush();
             fos.close();
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -108,8 +111,7 @@ public class StorageHelper {
 
         card.setDrawingCacheEnabled(true);
         Bitmap b = Bitmap.createBitmap(card.getDrawingCache());
-        return MediaStore.Images.Media.insertImage(activity.getContentResolver(), b , "CityFlow_puzzle_" + puzzleId + ".png", null);
-
+        return insertImage(activity.getContentResolver(), b, "CityFlow Puzzle Card");
     }
 
     public static String readQRImage(Bitmap bMap) {
@@ -180,5 +182,28 @@ public class StorageHelper {
 
         // crop bitmap to non-transparent area and return:
         return Bitmap.createBitmap(sourceBitmap, minX, minY, (maxX - minX) + 1, (maxY - minY) + 1);
+    }
+
+    public static String insertImage(ContentResolver cr, Bitmap source, String title) {
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.TITLE, title);
+        values.put(MediaStore.Images.Media.DISPLAY_NAME, title);
+        values.put(MediaStore.Images.Media.DESCRIPTION, title);
+        values.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
+        values.put(MediaStore.Images.Media.DATE_ADDED, System.currentTimeMillis());
+        values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
+
+        try {
+            if (source != null) {
+                Uri url = cr.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+                OutputStream imageOut = cr.openOutputStream(url);
+                source.compress(Bitmap.CompressFormat.PNG, 0, imageOut);
+                imageOut.close();
+                return url.toString();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }
