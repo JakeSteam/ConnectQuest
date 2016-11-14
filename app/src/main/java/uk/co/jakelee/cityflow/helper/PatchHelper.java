@@ -3426,13 +3426,13 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tileTypes.add(new TileType(83, Constants.ENVIRONMENT_FOREST, Constants.FLOW_NONE, Constants.FLOW_DIRT, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 3));
         tileTypes.add(new TileType(84, Constants.ENVIRONMENT_FOREST, Constants.FLOW_DIRT, Constants.FLOW_DIRT, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 3));
         tileTypes.add(new TileType(85, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 3));
-        tileTypes.add(new TileType(86, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_ULTRA_LOW, 3));
-        tileTypes.add(new TileType(87, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_ULTRA_LOW, 3));
-        tileTypes.add(new TileType(88, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_ULTRA_LOW, 3));
-        tileTypes.add(new TileType(89, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_RIVER, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_ULTRA_LOW, 3));
-        tileTypes.add(new TileType(90, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.HEIGHT_ULTRA_LOW, 3));
-        tileTypes.add(new TileType(91, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_RIVER, Constants.FLOW_RIVER, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.HEIGHT_ULTRA_LOW, 3));
-        tileTypes.add(new TileType(92, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_RIVER, Constants.HEIGHT_ULTRA_LOW, 3));
+        tileTypes.add(new TileType(86, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+        tileTypes.add(new TileType(87, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+        tileTypes.add(new TileType(88, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+        tileTypes.add(new TileType(89, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_RIVER, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+        tileTypes.add(new TileType(90, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+        tileTypes.add(new TileType(91, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_RIVER, Constants.FLOW_RIVER, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
+        tileTypes.add(new TileType(92, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_RIVER, Constants.HEIGHT_NORMAL, 3));
         tileTypes.add(new TileType(93, Constants.ENVIRONMENT_DESERT, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 3));
         tileTypes.add(new TileType(94, Constants.ENVIRONMENT_DESERT, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.HEIGHT_LOW, Constants.HEIGHT_LOW, Constants.HEIGHT_LOW, 3));
         tileTypes.add(new TileType(95, Constants.ENVIRONMENT_DESERT, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
@@ -3469,7 +3469,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tileTypes.add(new TileType(126, Constants.ENVIRONMENT_DESERT, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.HEIGHT_LOW, Constants.HEIGHT_LOW, Constants.HEIGHT_LOW, 3));
         tileTypes.add(new TileType(127, Constants.ENVIRONMENT_DESERT, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 3));
         tileTypes.add(new TileType(128, Constants.ENVIRONMENT_DESERT, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 3));
-        tileTypes.add(new TileType(129, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_ULTRA_LOW, 3));
+        tileTypes.add(new TileType(129, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
         tileTypes.add(new TileType(130, Constants.ENVIRONMENT_CITY, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
         tileTypes.add(new TileType(131, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 3));
         tileTypes.add(new TileType(132, Constants.ENVIRONMENT_CITY, Constants.FLOW_PATH, Constants.FLOW_ROAD, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 3));
@@ -3503,6 +3503,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tileTypes.add(new TileType(160, Constants.ENVIRONMENT_DESERT, Constants.FLOW_RAIL, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 160));
         tileTypes.add(new TileType(161, Constants.ENVIRONMENT_DESERT, Constants.FLOW_PATH, Constants.FLOW_RAIL, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 161));
         tileTypes.add(new TileType(162, Constants.ENVIRONMENT_DESERT, Constants.FLOW_RAIL, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_LOW, 162));
+        tileTypes.add(new TileType(163, Constants.ENVIRONMENT_DESERT, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 163));
+        tileTypes.add(new TileType(164, Constants.ENVIRONMENT_DESERT, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 164));
 
         TileType.saveInTx(tileTypes);
     }
