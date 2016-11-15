@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.text.InputFilter;
 import android.util.Pair;
 import android.view.View;
@@ -279,16 +280,9 @@ public class AlertDialogHelper {
         ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Text.get("UI_PUZZLE_WIDTH"), Constants.PUZZLE_X_DEFAULT));
         ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Text.get("UI_PUZZLE_HEIGHT"), Constants.PUZZLE_Y_DEFAULT));
         ((TextView)dialog.findViewById(R.id.environmentText)).setText(Text.get("WORD_AREA"));
+        ((TextView)dialog.findViewById(R.id.allAreasText)).setText(Text.get("UI_PUZZLE_ALL_AREAS"));
         ((TextView)dialog.findViewById(R.id.emptyText)).setText(Text.get("UI_PUZZLE_AUTOGENERATE"));
         ((TextView)dialog.findViewById(R.id.shuffleText)).setText(Text.get("UI_PUZZLE_SHUFFLE_PLAY"));
-
-        final CheckBox shuffleCheckbox = (CheckBox)dialog.findViewById(R.id.shuffleCheckbox);
-        ((CheckBox)dialog.findViewById(R.id.emptyCheckbox)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                shuffleCheckbox.setEnabled(!b);
-            }
-        });
 
         // Creating X slider
         final SeekBar sliderWidth = (SeekBar) dialog.findViewById(R.id.sliderWidth);
@@ -324,22 +318,39 @@ public class AlertDialogHelper {
             envAdapter.add(Text.get("ENVIRONMENT_" + i + "_NAME"));
         }
 
-        final Spinner spinner = (Spinner) dialog.findViewById(R.id.environmentPicker);
-        spinner.setAdapter(envAdapter);
+        // Disable "Blank puzzle" option if we're shuffle + playing
+        final CheckBox shuffleCheckbox = (CheckBox)dialog.findViewById(R.id.shuffleCheckbox);
+        ((CheckBox)dialog.findViewById(R.id.emptyCheckbox)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                shuffleCheckbox.setEnabled(!b);
+            }
+        });
+
+        // Disable area spinner if we're using all tiles
+        final Spinner environmentPicker = (Spinner)dialog.findViewById(R.id.environmentPicker);
+        ((CheckBox)dialog.findViewById(R.id.allAreasCheckbox)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                environmentPicker.setEnabled(!b);
+                environmentPicker.setBackgroundColor(ContextCompat.getColor(activity, b ? R.color.grey : R.color.blue));
+            }
+        });
+        environmentPicker.setAdapter(envAdapter);
 
         // Create button
         dialog.findViewById(R.id.createButton).setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 int xValue = getIntFromProgress(sliderWidth.getProgress(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX);
                 int yValue = getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX);
-                boolean autogenerate = !((CheckBox)dialog.findViewById(R.id.emptyCheckbox)).isChecked();
+                boolean blankPuzzle = ((CheckBox)dialog.findViewById(R.id.emptyCheckbox)).isChecked();
                 boolean shuffleAndPlay = ((CheckBox)dialog.findViewById(R.id.shuffleCheckbox)).isChecked();
 
                 if (xValue <= 1 && yValue <= 1) {
                     AlertHelper.error(activity, ErrorHelper.get(ErrorHelper.Error.PUZZLE_TOO_SMALL));
                 } else {
-                    int environmentId = spinner.getSelectedItemPosition();
-                    puzzleLoadingProgress(activity, xValue, yValue, environmentId, autogenerate, shuffleAndPlay);
+                    int environmentId = ((CheckBox)dialog.findViewById(R.id.allAreasCheckbox)).isChecked() ? -1 : environmentPicker.getSelectedItemPosition();
+                    puzzleLoadingProgress(activity, xValue, yValue, environmentId, blankPuzzle, shuffleAndPlay);
                     dialog.dismiss();
                 }
             }
@@ -354,7 +365,7 @@ public class AlertDialogHelper {
         dialog.show();
     }
 
-    private static void puzzleLoadingProgress(final Activity activity, int xValue, int yValue, int environmentId, boolean autogenerate, boolean shuffleAndPlay) {
+    private static void puzzleLoadingProgress(final Activity activity, int xValue, int yValue, int environmentId, boolean blankPuzzle, boolean shuffleAndPlay) {
         final Dialog dialog = new Dialog(activity);
         dialog.setContentView(R.layout.custom_dialog_puzzle_loading);
         dialog.setCancelable(true);
@@ -366,7 +377,7 @@ public class AlertDialogHelper {
                 xValue,
                 yValue,
                 environmentId,
-                autogenerate,
+                blankPuzzle,
                 shuffleAndPlay).execute();
     }
 

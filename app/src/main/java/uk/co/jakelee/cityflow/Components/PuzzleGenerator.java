@@ -32,17 +32,17 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
     private int xValue;
     private int yValue;
     private int environmentId;
-    private boolean autogenerate;
+    private boolean blankPuzzle;
     private boolean shuffleAndPlay;
     private int totalTiles;
 
-    public PuzzleGenerator(Activity activity, Dialog dialog, int xValue, int yValue, int environmentId, boolean autogenerate, boolean shuffleAndPlay) {
+    public PuzzleGenerator(Activity activity, Dialog dialog, int xValue, int yValue, int environmentId, boolean blankPuzzle, boolean shuffleAndPlay) {
         this.activity = activity;
         this.dialog = dialog;
         this.xValue = xValue;
         this.yValue = yValue;
         this.environmentId = environmentId;
-        this.autogenerate = autogenerate;
+        this.blankPuzzle = blankPuzzle;
         this.shuffleAndPlay = shuffleAndPlay;
 
         this.progressText = (TextView)dialog.findViewById(R.id.progressText);
@@ -53,7 +53,7 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
     protected void onPostExecute(Integer result) {
         dialog.dismiss();
 
-        if (autogenerate && shuffleAndPlay) {
+        if (!blankPuzzle && shuffleAndPlay) {
             activity.startActivity(new Intent(activity, PuzzleActivity.class)
                     .putExtra(Constants.INTENT_PUZZLE, result)
                     .putExtra(Constants.INTENT_IS_CUSTOM, true)
@@ -77,15 +77,15 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
 
     @Override
     protected Integer doInBackground(String... params) {
-        return createNewPuzzle(xValue, yValue, environmentId, autogenerate);
+        return createNewPuzzle(xValue, yValue, environmentId, blankPuzzle);
     }
 
-    private int createNewPuzzle(int maxX, int maxY, int environmentId, boolean autogenerate) {
+    private int createNewPuzzle(int maxX, int maxY, int environmentId, boolean blankPuzzle) {
         totalTiles = maxX * maxY;
-        if (autogenerate) {
-            return createFilledPuzzle(maxX, maxY, environmentId);
-        } else {
+        if (blankPuzzle) {
             return createEmptyPuzzle(maxX, maxY, environmentId);
+        } else {
+            return createFilledPuzzle(maxX, maxY, environmentId);
         }
     }
 
@@ -183,7 +183,7 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
     private static List<Tile> getPossibleTilesByRotation(int puzzleId, int x, int y, int environmentId, int rotation, int nFlow, int eFlow, int sFlow, int wFlow, int nHeight, int eHeight, int sHeight, int wHeight) {
         String sql = String.format(Locale.getDefault(),
                 "SELECT * FROM tile_type WHERE environment_id %1$s %2$d AND flow_north %3$s %4$d AND flow_east %5$s %6$d AND flow_south %7$s %8$d AND flow_west %9$s %10$d AND height_north %11$s %12$d AND height_east %13$s %14$d AND height_south %15$s %16$d AND height_west %17$s %18$d",
-                environmentId > 0 ? "=" : ">", environmentId,
+                environmentId > -1 ? "=" : ">", environmentId,
                 nFlow >= 0 ? "=" : ">=", nFlow,
                 eFlow >= 0 ? "=" : ">=", eFlow,
                 sFlow >= 0 ? "=" : ">=", sFlow,
