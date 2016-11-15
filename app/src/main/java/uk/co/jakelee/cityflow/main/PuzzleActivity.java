@@ -316,7 +316,7 @@ public class PuzzleActivity extends Activity {
 
     public void flowCheck() {
         List<Tile> allTiles = Puzzle.getPuzzle(puzzleId).getTiles();
-        Pair<List<Integer>, List<Integer>> badTiles = TileHelper.checkFirstPuzzleFlow(this, allTiles, (TextView)findViewById(R.id.puzzleLoadingIndicator));
+        Pair<List<Integer>, List<Integer>> badTiles = TileHelper.checkFirstPuzzleFlow(allTiles);
 
         while (badTiles.first.size() > 0 && badTiles.second.size() > 0 && !exitedPuzzle) {
             // Add any tiles that have changed to the array, so we recheck them
@@ -328,7 +328,7 @@ public class PuzzleActivity extends Activity {
             changedTilesY.clear();
 
             // Check the tiles, then save the results back to the bad tiles arrays
-            badTiles = TileHelper.checkPuzzleFlow(this, puzzleId, badTiles, (TextView)findViewById(R.id.puzzleLoadingIndicator));
+            badTiles = TileHelper.checkPuzzleFlow(puzzleId, badTiles, (TextView)findViewById(R.id.puzzleLoadingIndicator));
         }
 
         this.runOnUiThread(new Runnable() {

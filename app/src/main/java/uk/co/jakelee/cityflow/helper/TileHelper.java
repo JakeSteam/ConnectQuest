@@ -1,6 +1,5 @@
 package uk.co.jakelee.cityflow.helper;
 
-import android.app.Activity;
 import android.util.Pair;
 import android.widget.TextView;
 
@@ -32,7 +31,7 @@ public class TileHelper {
         return new Pair<>(maxX, maxY);
     }
 
-    public static Pair<List<Integer>, List<Integer>> checkPuzzleFlow(Activity activity, int puzzleId, Pair<List<Integer>, List<Integer>> badTiles, final TextView loadingView) {
+    public static Pair<List<Integer>, List<Integer>> checkPuzzleFlow(int puzzleId, Pair<List<Integer>, List<Integer>> badTiles, final TextView loadingView) {
         List<Long> checkedIds = new ArrayList<>();
         List<Integer> newTilesX = new ArrayList<>();
         List<Integer> newTilesY = new ArrayList<>();
@@ -50,7 +49,7 @@ public class TileHelper {
         return new Pair<>(newTilesX, newTilesY);
     }
 
-    public static Pair<List<Integer>, List<Integer>> checkFirstPuzzleFlow(Activity activity, final List<Tile> tiles, final TextView loadingView) {
+    public static Pair<List<Integer>, List<Integer>> checkFirstPuzzleFlow(final List<Tile> tiles) {
         final List<Integer> newTilesX = new ArrayList<>();
         final List<Integer> newTilesY = new ArrayList<>();
 
@@ -134,7 +133,7 @@ public class TileHelper {
         }
     }
 
-    public static Tile getTile(Tile tile, int side) {
+    private static Tile getTile(Tile tile, int side) {
         int x = tile.getX();
         int y = tile.getY();
         switch (side) {
