@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FilterHelper {
-    private final static String allowedCharacters = "[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789!&*(),.?:;+=_ \"%^'-]*";
+    private final static String allowedCharacters = "[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!&*(),.?:;+=_ \"%^'-]*";
 
     public static InputFilter getFilter(final int maxLength) {
         return new InputFilter() {

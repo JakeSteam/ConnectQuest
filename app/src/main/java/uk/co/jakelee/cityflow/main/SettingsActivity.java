@@ -82,7 +82,7 @@ public class SettingsActivity extends AllowMeActivity {
         ((TextView) findViewById(R.id.signInButton)).setText(Text.get("GOOGLE_SIGN_IN"));
         ((TextView) findViewById(R.id.signOutButton)).setText(Text.get("GOOGLE_SIGN_OUT"));
         ((TextView) findViewById(R.id.autosaveText)).setText(Text.get("SETTING_11_NAME"));
-        ((TextView) findViewById(R.id.lastAutosaveText)).setText(Text.get("STATISTIC_11_NAME"));
+        ((TextView) findViewById(R.id.lastAutosaveText)).setText(Text.get("STATISTIC_8_NAME"));
 
         ((TextView) findViewById(R.id.settingSectionOther)).setText(Text.get("SETTING_SECTION_OTHER"));
         ((TextView) findViewById(R.id.creditsButton)).setText(Text.get("DIALOG_CREDITS"));
