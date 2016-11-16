@@ -34,6 +34,8 @@ import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
+import static android.R.attr.topOffset;
+
 public class DisplayHelper {
     private final Context context;
     private static DisplayHelper dhInstance = null;
@@ -63,21 +65,20 @@ public class DisplayHelper {
         return displaymetrics;
     }
 
-    public Pair<Float, Integer> getScaleFactor(Activity activity, int xTiles, int yTiles) {
+    public Pair<Float, Integer> getDisplayValues(Activity activity, int xTiles, int yTiles) {
         int screenHeight = getSizes(activity).heightPixels;
         int screenWidth = getSizes(activity).widthPixels;
-        int tileHeight = getTileHeight();
-        int tileWidth = getTileWidth();
-        int puzzleHeight = yTiles * tileHeight;
-        int puzzleWidth = xTiles * tileWidth;
 
-        int topOffset = 0; //(screenHeight / 3) - (yTiles * (tileHeight / 2));
-        float xScaleFactor = (float)screenWidth / (float)(puzzleWidth);
-        float yScaleFactor = (float)screenHeight / (float)(puzzleHeight);
+        double totalTilesAmount = (xTiles + yTiles) / 2.0;
+        int puzzleHeight = (int)(totalTilesAmount * getTileHeight());
+        int puzzleWidth = (int)(totalTilesAmount * getTileWidth());
 
-        float scaleFactor = Math.min(xScaleFactor, yScaleFactor);
+        float xZoomFactor = screenWidth / (float)(puzzleWidth);
+        float yZoomFactor = screenHeight / (float)(puzzleHeight);
+        float zoomFactor = Math.min(xZoomFactor, yZoomFactor);
 
-        return new Pair<>(scaleFactor, topOffset);
+        int topOffset = puzzleHeight / 3;
+        return new Pair<>(zoomFactor, topOffset);
     }
 
     public ImageView createTileImageView(final Activity activity, final Tile tile, int drawableId) {

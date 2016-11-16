@@ -211,7 +211,7 @@ public class PuzzleActivity extends Activity {
         tileContainer.removeAllViews();
 
         Pair<Integer, Integer> maxXY = TileHelper.getMaxXY(tiles);
-        Pair<Float, Integer> displayValues = dh.getScaleFactor(this, maxXY.first + 1, maxXY.second + 1);
+        Pair<Float, Integer> displayValues = dh.getDisplayValues(this, maxXY.first + 1, maxXY.second + 1);
 
         tileContainer.setScaleFactor(displayValues.first, true);
         int topOffset = displayValues.second;
