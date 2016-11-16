@@ -815,7 +815,6 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(1, 1, 0, 0, 4));
         tiles.add(new Tile(1, 1, 1, 0, 4));
 
-
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_2_NAME", "Multiple Flows"));
         puzzles.add(new Puzzle(2, 1, 2299L, 6, 0L, 0));
         tiles.add(new Tile(2, 3, 0, 2, 3));
@@ -3116,6 +3115,163 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     private void createPuzzlesPack6() {
         // Desert Oasis
+        List<Puzzle> puzzles = new ArrayList<>();
+        List<Text> texts = new ArrayList<>();
+        List<Tile> tiles = new ArrayList<>();
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_116_NAME", "The Divide"));
+        puzzles.add(new Puzzle(116, 6, 12962L, 14, 0L, 0));
+        tiles.add(new Tile(116, 93, 0, 3, 4));
+        tiles.add(new Tile(116, 163, 1, 3, 1));
+        tiles.add(new Tile(116, 115, 2, 3, 4));
+        tiles.add(new Tile(116, 117, 3, 3, 4));
+        tiles.add(new Tile(116, 96, 4, 3, 2));
+        tiles.add(new Tile(116, 96, 0, 2, 1));
+        tiles.add(new Tile(116, 93, 1, 2, 1));
+        tiles.add(new Tile(116, 123, 2, 2, 4));
+        tiles.add(new Tile(116, 121, 3, 2, 1));
+        tiles.add(new Tile(116, 162, 4, 2, 3));
+        tiles.add(new Tile(116, 96, 0, 1, 3));
+        tiles.add(new Tile(116, 93, 1, 1, 4));
+        tiles.add(new Tile(116, 93, 2, 1, 2));
+        tiles.add(new Tile(116, 96, 3, 1, 1));
+        tiles.add(new Tile(116, 159, 4, 1, 2));
+        tiles.add(new Tile(116, 163, 0, 0, 1));
+        tiles.add(new Tile(116, 126, 1, 0, 2));
+        tiles.add(new Tile(116, 126, 2, 0, 4));
+        tiles.add(new Tile(116, 163, 3, 0, 4));
+        tiles.add(new Tile(116, 93, 4, 0, 4));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_117_NAME", "Isolation"));
+        puzzles.add(new Puzzle(117, 5, 31250L, 28, 0L, 0));
+        tiles.add(new Tile(117, 97, 0, 4, 1));
+        tiles.add(new Tile(117, 125, 1, 4, 2));
+        tiles.add(new Tile(117, 164, 2, 4, 4));
+        tiles.add(new Tile(117, 126, 3, 4, 3));
+        tiles.add(new Tile(117, 99, 4, 4, 3));
+        tiles.add(new Tile(117, 95, 0, 3, 1));
+        tiles.add(new Tile(117, 97, 1, 3, 3));
+        tiles.add(new Tile(117, 164, 2, 3, 3));
+        tiles.add(new Tile(117, 114, 3, 3, 4));
+        tiles.add(new Tile(117, 163, 4, 3, 1));
+        tiles.add(new Tile(117, 108, 0, 2, 4));
+        tiles.add(new Tile(117, 123, 1, 2, 1));
+        tiles.add(new Tile(117, 94, 2, 2, 1));
+        tiles.add(new Tile(117, 127, 3, 2, 3));
+        tiles.add(new Tile(117, 99, 4, 2, 1));
+        tiles.add(new Tile(117, 162, 0, 1, 2));
+        tiles.add(new Tile(117, 118, 1, 1, 2));
+        tiles.add(new Tile(117, 101, 2, 1, 4));
+        tiles.add(new Tile(117, 100, 3, 1, 2));
+        tiles.add(new Tile(117, 95, 4, 1, 4));
+        tiles.add(new Tile(117, 94, 0, 0, 3));
+        tiles.add(new Tile(117, 123, 1, 0, 4));
+        tiles.add(new Tile(117, 161, 2, 0, 2));
+        tiles.add(new Tile(117, 160, 3, 0, 2));
+        tiles.add(new Tile(117, 95, 4, 0, 1));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_118_NAME", "Curving Round"));
+        puzzles.add(new Puzzle(118, 6, 24248L, 26, 0L, 0));
+        tiles.add(new Tile(118, 94, 0, 3, 2));
+        tiles.add(new Tile(118, 164, 1, 3, 3));
+        tiles.add(new Tile(118, 163, 2, 3, 4));
+        tiles.add(new Tile(118, 162, 3, 3, 2));
+        tiles.add(new Tile(118, 108, 4, 3, 3));
+        tiles.add(new Tile(118, 93, 5, 3, 4));
+        tiles.add(new Tile(118, 94, 0, 2, 2));
+        tiles.add(new Tile(118, 126, 1, 2, 2));
+        tiles.add(new Tile(118, 123, 2, 2, 1));
+        tiles.add(new Tile(118, 118, 3, 2, 1));
+        tiles.add(new Tile(118, 121, 4, 2, 4));
+        tiles.add(new Tile(118, 123, 5, 2, 1));
+        tiles.add(new Tile(118, 93, 0, 1, 3));
+        tiles.add(new Tile(118, 126, 1, 1, 3));
+        tiles.add(new Tile(118, 97, 2, 1, 3));
+        tiles.add(new Tile(118, 125, 3, 1, 1));
+        tiles.add(new Tile(118, 97, 4, 1, 2));
+        tiles.add(new Tile(118, 97, 5, 1, 1));
+        tiles.add(new Tile(118, 94, 0, 0, 2));
+        tiles.add(new Tile(118, 164, 1, 0, 4));
+        tiles.add(new Tile(118, 119, 2, 0, 3));
+        tiles.add(new Tile(118, 120, 3, 0, 3));
+        tiles.add(new Tile(118, 98, 4, 0, 4));
+        tiles.add(new Tile(118, 96, 5, 0, 1));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_119_NAME", "Connections"));
+        puzzles.add(new Puzzle(119, 6, 18640L, 27, 0L, 0));
+        tiles.add(new Tile(119, 162, 0, 5, 3));
+        tiles.add(new Tile(119, 103, 1, 5, 4));
+        tiles.add(new Tile(119, 96, 2, 5, 3));
+        tiles.add(new Tile(119, 121, 0, 4, 4));
+        tiles.add(new Tile(119, 160, 1, 4, 1));
+        tiles.add(new Tile(119, 128, 2, 4, 2));
+        tiles.add(new Tile(119, 125, 0, 3, 3));
+        tiles.add(new Tile(119, 162, 1, 3, 3));
+        tiles.add(new Tile(119, 98, 2, 3, 4));
+        tiles.add(new Tile(119, 93, 0, 2, 1));
+        tiles.add(new Tile(119, 160, 1, 2, 4));
+        tiles.add(new Tile(119, 127, 2, 2, 1));
+        tiles.add(new Tile(119, 161, 0, 1, 3));
+        tiles.add(new Tile(119, 121, 1, 1, 3));
+        tiles.add(new Tile(119, 162, 2, 1, 1));
+        tiles.add(new Tile(119, 162, 0, 0, 2));
+        tiles.add(new Tile(119, 121, 1, 0, 4));
+        tiles.add(new Tile(119, 161, 2, 0, 4));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_120_NAME", "Rectangular"));
+        puzzles.add(new Puzzle(120, 6, 11085L, 15, 0L, 0));
+        tiles.add(new Tile(120, 159, 0, 2, 1));
+        tiles.add(new Tile(120, 128, 1, 2, 1));
+        tiles.add(new Tile(120, 98, 2, 2, 2));
+        tiles.add(new Tile(120, 128, 3, 2, 1));
+        tiles.add(new Tile(120, 160, 4, 2, 1));
+        tiles.add(new Tile(120, 108, 0, 1, 3));
+        tiles.add(new Tile(120, 128, 1, 1, 4));
+        tiles.add(new Tile(120, 120, 2, 1, 1));
+        tiles.add(new Tile(120, 122, 3, 1, 4));
+        tiles.add(new Tile(120, 157, 4, 1, 1));
+        tiles.add(new Tile(120, 94, 0, 0, 3));
+        tiles.add(new Tile(120, 96, 1, 0, 3));
+        tiles.add(new Tile(120, 94, 2, 0, 3));
+        tiles.add(new Tile(120, 159, 3, 0, 4));
+        tiles.add(new Tile(120, 103, 4, 0, 1));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_121_NAME", "High Life"));
+        puzzles.add(new Puzzle(121, 6, 11834L, 14, 0L, 0));
+        tiles.add(new Tile(121, 99, 0, 2, 2));
+        tiles.add(new Tile(121, 163, 1, 2, 2));
+        tiles.add(new Tile(121, 164, 2, 2, 1));
+        tiles.add(new Tile(121, 164, 3, 2, 1));
+        tiles.add(new Tile(121, 163, 4, 2, 1));
+        tiles.add(new Tile(121, 99, 0, 1, 4));
+        tiles.add(new Tile(121, 93, 1, 1, 4));
+        tiles.add(new Tile(121, 163, 2, 1, 1));
+        tiles.add(new Tile(121, 163, 3, 1, 2));
+        tiles.add(new Tile(121, 108, 4, 1, 2));
+        tiles.add(new Tile(121, 163, 0, 0, 1));
+        tiles.add(new Tile(121, 114, 1, 0, 4));
+        tiles.add(new Tile(121, 115, 2, 0, 4));
+        tiles.add(new Tile(121, 117, 3, 0, 3));
+        tiles.add(new Tile(121, 159, 4, 0, 4));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_122_NAME", "Train Station"));
+        puzzles.add(new Puzzle(122, 6, 11398L, 15, 0L, 0));
+        tiles.add(new Tile(122, 108, 0, 2, 1));
+        tiles.add(new Tile(122, 157, 1, 2, 2));
+        tiles.add(new Tile(122, 107, 2, 2, 3));
+        tiles.add(new Tile(122, 108, 3, 2, 3));
+        tiles.add(new Tile(122, 123, 0, 1, 2));
+        tiles.add(new Tile(122, 96, 1, 1, 2));
+        tiles.add(new Tile(122, 160, 2, 1, 2));
+        tiles.add(new Tile(122, 96, 3, 1, 1));
+        tiles.add(new Tile(122, 123, 0, 0, 2));
+        tiles.add(new Tile(122, 163, 1, 0, 1));
+        tiles.add(new Tile(122, 113, 2, 0, 3));
+        tiles.add(new Tile(122, 163, 3, 0, 1));
+
+        Puzzle.saveInTx(puzzles);
+        Text.saveInTx(texts);
+        Tile.saveInTx(tiles);
     }
 
     private void createPuzzlesPack7() {

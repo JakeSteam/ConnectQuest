@@ -94,8 +94,16 @@ public class EditorActivity extends Activity {
         tileContainer.setBackgroundColor(Background.getActiveBackgroundColour());
         tileContainer.removeAllViews();
         Pair<Integer, Integer> maxXY = TileHelper.getMaxXY(tiles);
-        int leftOffset = (dh.getSizes(this).widthPixels / 3) - (maxXY.first * (dh.getTileWidth() / 2));
-        int topOffset = (dh.getSizes(this).heightPixels / 3) - (maxXY.second * (dh.getTileHeight() / 2));
+
+        int screenHeight = dh.getSizes(this).heightPixels;
+        int screenWidth = dh.getSizes(this).widthPixels;
+        int tileHeight = dh.getTileHeight();
+        int tileWidth = dh.getTileWidth();
+        int xTiles = maxXY.first + 1;
+        int yTiles = maxXY.second + 1;
+
+        int leftOffset = (screenWidth / 3) - (xTiles * (tileWidth / 2));
+        int topOffset = (screenHeight / 3) - (yTiles * (tileHeight / 2));
 
         tileContainer.removeAllViews();
         for (final Tile tile : tiles) {
