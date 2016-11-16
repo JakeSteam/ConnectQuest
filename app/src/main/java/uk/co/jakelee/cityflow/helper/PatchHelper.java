@@ -735,6 +735,10 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_160_NAME", "Desert Rail/Road Corner"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_161_NAME", "Desert Path/Road Corner"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_162_NAME", "Desert Rail/Path Corner"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_163_NAME", "Desert High Road End"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_164_NAME", "Desert High Road Corner"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_165_NAME", "Desert High Rail Straight"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_166_NAME", "Desert High Rail End"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_BACKGROUND_SELECT_TITLE", "%1$d/%2$d Unlocked"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TITLE", "Purchase Coins"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TEASER", "First purchase of any pack unlocks a bonus puzzle pack!"));
@@ -3897,7 +3901,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tileTypes.add(new TileType(163, Constants.ENVIRONMENT_DESERT, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 163));
         tileTypes.add(new TileType(164, Constants.ENVIRONMENT_DESERT, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 164));
         tileTypes.add(new TileType(165, Constants.ENVIRONMENT_DESERT, Constants.FLOW_RAIL, Constants.FLOW_NONE, Constants.FLOW_RAIL, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 165));
-        tileTypes.add(new TileType(166, Constants.ENVIRONMENT_DESERT, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 166));
+        tileTypes.add(new TileType(166, Constants.ENVIRONMENT_DESERT, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_RAIL, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 166));
 
         TileType.saveInTx(tileTypes);
     }
