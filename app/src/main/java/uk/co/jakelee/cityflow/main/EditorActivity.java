@@ -93,22 +93,17 @@ public class EditorActivity extends Activity {
         ZoomableViewGroup tileContainer = (ZoomableViewGroup) findViewById(R.id.tileContainer);
         tileContainer.setBackgroundColor(Background.getActiveBackgroundColour());
         tileContainer.removeAllViews();
+
         Pair<Integer, Integer> maxXY = TileHelper.getMaxXY(tiles);
+        Pair<Float, Integer> displayValues = dh.getScaleFactor(this, maxXY.first + 1, maxXY.second + 1);
 
-        int screenHeight = dh.getSizes(this).heightPixels;
-        int screenWidth = dh.getSizes(this).widthPixels;
-        int tileHeight = dh.getTileHeight();
-        int tileWidth = dh.getTileWidth();
-        int xTiles = maxXY.first + 1;
-        int yTiles = maxXY.second + 1;
-
-        int leftOffset = (screenWidth / 3) - (xTiles * (tileWidth / 2));
-        int topOffset = (screenHeight / 3) - (yTiles * (tileHeight / 2));
+        tileContainer.setScaleFactor(displayValues.first, true);
+        int topOffset = displayValues.second;
 
         tileContainer.removeAllViews();
         for (final Tile tile : tiles) {
             ZoomableViewGroup.LayoutParams layoutParams = new ZoomableViewGroup.LayoutParams(ZoomableViewGroup.LayoutParams.WRAP_CONTENT, ZoomableViewGroup.LayoutParams.WRAP_CONTENT);
-            int leftPadding = leftOffset + (tile.getY() + tile.getX()) * (dh.getTileWidth()/2);
+            int leftPadding = (tile.getY() + tile.getX()) * (dh.getTileWidth()/2);
             int topPadding = topOffset + (tile.getX() + maxXY.second - tile.getY()) * (dh.getTileHeight()/2);
             layoutParams.setMargins(leftPadding, topPadding, 0, 0);
 
@@ -131,12 +126,12 @@ public class EditorActivity extends Activity {
 
     public void zoomIn(View v) {
         ZoomableViewGroup tileContainer = (ZoomableViewGroup) findViewById(R.id.tileContainer);
-        tileContainer.setScaleFactor(tileContainer.getScaleFactor() + 0.5f);
+        tileContainer.setScaleFactor(tileContainer.getScaleFactor() + 0.5f, false);
     }
 
     public void zoomOut(View v) {
         ZoomableViewGroup tileContainer = (ZoomableViewGroup) findViewById(R.id.tileContainer);
-        tileContainer.setScaleFactor(tileContainer.getScaleFactor() - 0.5f);
+        tileContainer.setScaleFactor(tileContainer.getScaleFactor() - 0.5f, false);
     }
 
     public void handleTileClick(ImageView image, Tile tile) {

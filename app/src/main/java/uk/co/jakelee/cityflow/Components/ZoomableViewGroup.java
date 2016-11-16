@@ -126,14 +126,16 @@ public class ZoomableViewGroup extends RelativeLayout {
         return mScaleFactor;
     }
 
-    public void setScaleFactor(float mScaleFactor) {
-        float minZoom = Setting.getFloat(Constants.SETTING_MIN_ZOOM);
-        float maxZoom = Setting.getFloat(Constants.SETTING_MAX_ZOOM);
+    public void setScaleFactor(float mScaleFactor, boolean force) {
+        if (!force) {
+            float minZoom = Setting.getFloat(Constants.SETTING_MIN_ZOOM);
+            float maxZoom = Setting.getFloat(Constants.SETTING_MAX_ZOOM);
 
-        if (mScaleFactor > maxZoom) {
-            mScaleFactor = maxZoom;
-        } else if (mScaleFactor < minZoom) {
-            mScaleFactor = minZoom;
+            if (mScaleFactor > maxZoom) {
+                mScaleFactor = maxZoom;
+            } else if (mScaleFactor < minZoom) {
+                mScaleFactor = minZoom;
+            }
         }
 
         this.mScaleFactor = mScaleFactor;
@@ -241,7 +243,7 @@ public class ZoomableViewGroup extends RelativeLayout {
                 mFocusX = detector.getFocusX();
                 mFocusY = detector.getFocusY();
             }
-            setScaleFactor(mScaleFactor);
+            setScaleFactor(mScaleFactor, false);
             requestLayout();
 
 

@@ -209,15 +209,18 @@ public class PuzzleActivity extends Activity {
 
         ZoomableViewGroup tileContainer = (ZoomableViewGroup) findViewById(R.id.tileContainer);
         tileContainer.removeAllViews();
+
         Pair<Integer, Integer> maxXY = TileHelper.getMaxXY(tiles);
-        int leftOffset = (dh.getSizes(this).widthPixels / 3) - (maxXY.first * (dh.getTileWidth() / 2));
-        int topOffset = (dh.getSizes(this).heightPixels / 3) - (maxXY.second * (dh.getTileHeight() / 2));
+        Pair<Float, Integer> displayValues = dh.getScaleFactor(this, maxXY.first + 1, maxXY.second + 1);
+
+        tileContainer.setScaleFactor(displayValues.first, true);
+        int topOffset = displayValues.second;
 
         tileContainer.removeAllViews();
         for (final Tile tile : tiles) {
             if (tile.getTileTypeId() > 0) {
                 ZoomableViewGroup.LayoutParams layoutParams = new ZoomableViewGroup.LayoutParams(ZoomableViewGroup.LayoutParams.WRAP_CONTENT, ZoomableViewGroup.LayoutParams.WRAP_CONTENT);
-                int leftPadding = leftOffset + (tile.getY() + tile.getX()) * (dh.getTileWidth() / 2);
+                int leftPadding = (tile.getY() + tile.getX()) * (dh.getTileWidth() / 2);
                 int topPadding = topOffset + (tile.getX() + maxXY.second - tile.getY()) * (dh.getTileHeight() / 2);
                 layoutParams.setMargins(leftPadding, topPadding, 0, 0);
 
@@ -231,12 +234,12 @@ public class PuzzleActivity extends Activity {
 
     public void zoomIn(View v) {
         ZoomableViewGroup tileContainer = (ZoomableViewGroup) findViewById(R.id.tileContainer);
-        tileContainer.setScaleFactor(tileContainer.getScaleFactor() + 0.5f);
+        tileContainer.setScaleFactor(tileContainer.getScaleFactor() + 0.5f, false);
     }
 
     public void zoomOut(View v) {
         ZoomableViewGroup tileContainer = (ZoomableViewGroup) findViewById(R.id.tileContainer);
-        tileContainer.setScaleFactor(tileContainer.getScaleFactor() - 0.5f);
+        tileContainer.setScaleFactor(tileContainer.getScaleFactor() - 0.5f, false);
     }
 
     public void handleTileClick(ImageView image, Tile tile) {

@@ -86,7 +86,7 @@ public class StorageHelper {
 
         try {
             tileContainer.setBackgroundColor(Color.TRANSPARENT);
-            tileContainer.setScaleFactor(screenshotScale);
+            tileContainer.setScaleFactor(screenshotScale, true);
             tileContainer.setDrawingCacheEnabled(true);
             Bitmap b = Bitmap.createBitmap(tileContainer.getDrawingCache());
             b = resize(b);

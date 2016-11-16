@@ -12,6 +12,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -60,6 +61,23 @@ public class DisplayHelper {
         DisplayMetrics displaymetrics = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         return displaymetrics;
+    }
+
+    public Pair<Float, Integer> getScaleFactor(Activity activity, int xTiles, int yTiles) {
+        int screenHeight = getSizes(activity).heightPixels;
+        int screenWidth = getSizes(activity).widthPixels;
+        int tileHeight = getTileHeight();
+        int tileWidth = getTileWidth();
+        int puzzleHeight = yTiles * tileHeight;
+        int puzzleWidth = xTiles * tileWidth;
+
+        int topOffset = 0; //(screenHeight / 3) - (yTiles * (tileHeight / 2));
+        float xScaleFactor = (float)screenWidth / (float)(puzzleWidth);
+        float yScaleFactor = (float)screenHeight / (float)(puzzleHeight);
+
+        float scaleFactor = Math.min(xScaleFactor, yScaleFactor);
+
+        return new Pair<>(scaleFactor, topOffset);
     }
 
     public ImageView createTileImageView(final Activity activity, final Tile tile, int drawableId) {
