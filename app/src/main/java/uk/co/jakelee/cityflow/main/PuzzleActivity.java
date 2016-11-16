@@ -63,6 +63,7 @@ public class PuzzleActivity extends Activity {
     private boolean exitedPuzzle = false;
     private boolean playSounds = false;
     private Vibrator vibrator;
+    private float optimumScale = 1.0f;
 
     private boolean timeBoostActive = false;
     private boolean moveBoostActive = false;
@@ -213,9 +214,10 @@ public class PuzzleActivity extends Activity {
         Pair<Integer, Integer> maxXY = TileHelper.getMaxXY(tiles);
         Pair<Float, Integer> displayValues = dh.getDisplayValues(this, maxXY.first + 1, maxXY.second + 1);
 
-        tileContainer.setScaleFactor(displayValues.first, true);
+        optimumScale = displayValues.first;
         int topOffset = displayValues.second;
 
+        tileContainer.setScaleFactor(optimumScale, true);
         tileContainer.removeAllViews();
         for (final Tile tile : tiles) {
             if (tile.getTileTypeId() > 0) {
@@ -357,7 +359,10 @@ public class PuzzleActivity extends Activity {
             final Activity activity = this;
             new Thread(new Runnable() {
                 public void run() {
-                    StorageHelper.saveCustomPuzzleImage(activity, puzzleId, puzzle.getCustomData().isOriginalAuthor() && !puzzle.getCustomData().hasBeenTested());
+                    StorageHelper.saveCustomPuzzleImage(activity,
+                            puzzleId,
+                            optimumScale,
+                            puzzle.getCustomData().isOriginalAuthor() && !puzzle.getCustomData().hasBeenTested());
                 }
             }).start();
         }

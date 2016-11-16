@@ -34,8 +34,6 @@ import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
-import static android.R.attr.topOffset;
-
 public class DisplayHelper {
     private final Context context;
     private static DisplayHelper dhInstance = null;
@@ -59,15 +57,16 @@ public class DisplayHelper {
         return dpToPixel(Constants.TILE_HEIGHT);
     }
 
-    public DisplayMetrics getSizes(Activity activity) {
+    private DisplayMetrics getSizes(Activity activity) {
         DisplayMetrics displaymetrics = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         return displaymetrics;
     }
 
     public Pair<Float, Integer> getDisplayValues(Activity activity, int xTiles, int yTiles) {
-        int screenHeight = getSizes(activity).heightPixels;
-        int screenWidth = getSizes(activity).widthPixels;
+        DisplayMetrics displayMetrics = getSizes(activity);
+        int screenHeight = displayMetrics.heightPixels;
+        int screenWidth = displayMetrics.widthPixels;
 
         double totalTilesAmount = (xTiles + yTiles) / 2.0;
         int puzzleHeight = (int)(totalTilesAmount * getTileHeight());

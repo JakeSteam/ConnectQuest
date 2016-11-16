@@ -3896,6 +3896,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tileTypes.add(new TileType(162, Constants.ENVIRONMENT_DESERT, Constants.FLOW_RAIL, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 162));
         tileTypes.add(new TileType(163, Constants.ENVIRONMENT_DESERT, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 163));
         tileTypes.add(new TileType(164, Constants.ENVIRONMENT_DESERT, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 164));
+        tileTypes.add(new TileType(165, Constants.ENVIRONMENT_DESERT, Constants.FLOW_RAIL, Constants.FLOW_NONE, Constants.FLOW_RAIL, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 165));
+        tileTypes.add(new TileType(166, Constants.ENVIRONMENT_DESERT, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 166));
 
         TileType.saveInTx(tileTypes);
     }

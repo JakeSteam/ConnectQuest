@@ -76,7 +76,7 @@ public class StorageHelper {
         return bitmap;
     }
 
-    public static void saveCustomPuzzleImage(Activity activity, int puzzleId, boolean forceSave) {
+    public static void saveCustomPuzzleImage(Activity activity, int puzzleId, float screenshotScale, boolean forceSave) {
         ZoomableViewGroup tileContainer = (ZoomableViewGroup)activity.findViewById(R.id.tileContainer);
         String filename = "puzzle_" + puzzleId + ".png";
         boolean existsAlready = activity.getFileStreamPath(filename).exists();
@@ -86,7 +86,7 @@ public class StorageHelper {
 
         try {
             tileContainer.setBackgroundColor(Color.TRANSPARENT);
-            tileContainer.setScaleFactor(screenshotScale, true);
+            tileContainer.setScaleFactor(screenshotScale / 3, true);
             tileContainer.setDrawingCacheEnabled(true);
             Bitmap b = Bitmap.createBitmap(tileContainer.getDrawingCache());
             b = resize(b);
