@@ -744,6 +744,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_169_NAME", "City (Brown House)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_170_NAME", "City (Cream House)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_171_NAME", "City (Red House)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_172_NAME", "Grass Straight (Trees)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_BACKGROUND_SELECT_TITLE", "%1$d/%2$d Unlocked"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TITLE", "Purchase Coins"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TEASER", "First purchase of any pack unlocks a bonus puzzle pack!"));
@@ -3912,6 +3913,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tileTypes.add(new TileType(169, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 169));
         tileTypes.add(new TileType(170, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 170));
         tileTypes.add(new TileType(171, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 171));
+        tileTypes.add(new TileType(172, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 172));
 
         TileType.saveInTx(tileTypes);
     }
