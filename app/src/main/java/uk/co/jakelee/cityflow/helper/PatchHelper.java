@@ -585,7 +585,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_10_NAME", "Grass Road Straight (Median)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_11_NAME", "Grass Road Slope"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_12_NAME", "Grass Slope"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_13_NAME", "City Red Shop"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_13_NAME", "City (Red Shop)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_14_NAME", "City Road Straight (Bus Stop)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_15_NAME", "City Road Straight"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_16_NAME", "City Road Interchange"));
@@ -602,7 +602,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_27_NAME", "City Grass Straight (Tree)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_28_NAME", "City Grass Straight"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_29_NAME", "City Road Straight (Crossing)"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_30_NAME", "City Green Shop"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_30_NAME", "City (Green Shop)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_31_NAME", "City (Fountain)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_32_NAME", "City (Grass)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_33_NAME", "Grass Road/Water Straight"));
@@ -739,6 +739,11 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_164_NAME", "Desert High Road Corner"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_165_NAME", "Desert High Rail Straight"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_166_NAME", "Desert High Rail End"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_167_NAME", "City (Red Shop 2)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_168_NAME", "City (Red Glass Shop)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_169_NAME", "City (Brown House)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_170_NAME", "City (Cream House)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_171_NAME", "City (Red House)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_BACKGROUND_SELECT_TITLE", "%1$d/%2$d Unlocked"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TITLE", "Purchase Coins"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TEASER", "First purchase of any pack unlocks a bonus puzzle pack!"));
@@ -3902,6 +3907,11 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tileTypes.add(new TileType(164, Constants.ENVIRONMENT_DESERT, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 164));
         tileTypes.add(new TileType(165, Constants.ENVIRONMENT_DESERT, Constants.FLOW_RAIL, Constants.FLOW_NONE, Constants.FLOW_RAIL, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 165));
         tileTypes.add(new TileType(166, Constants.ENVIRONMENT_DESERT, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_RAIL, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 166));
+        tileTypes.add(new TileType(167, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 167));
+        tileTypes.add(new TileType(168, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 168));
+        tileTypes.add(new TileType(169, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 169));
+        tileTypes.add(new TileType(170, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 170));
+        tileTypes.add(new TileType(171, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 171));
 
         TileType.saveInTx(tileTypes);
     }
