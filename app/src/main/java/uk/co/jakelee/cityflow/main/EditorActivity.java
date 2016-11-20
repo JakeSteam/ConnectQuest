@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,8 +19,6 @@ import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.ImageHelper;
-import uk.co.jakelee.cityflow.helper.TileHelper;
-import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Tile;
@@ -87,41 +84,10 @@ public class EditorActivity extends Activity {
         }
     }
 
+
     public void populateTiles(List<Tile> tiles) {
-        if (puzzleId == 0) { return; }
-
-        ZoomableViewGroup tileContainer = (ZoomableViewGroup) findViewById(R.id.tileContainer);
-        tileContainer.setBackgroundColor(Background.getActiveBackgroundColour());
-        tileContainer.removeAllViews();
-
-        Pair<Integer, Integer> maxXY = TileHelper.getMaxXY(tiles);
-        Pair<Float, Integer> displayValues = dh.getDisplayValues(this, maxXY.first + 1, maxXY.second + 1);
-
-        tileContainer.setScaleFactor(displayValues.first, true);
-        int topOffset = displayValues.second;
-
-        tileContainer.removeAllViews();
-        for (final Tile tile : tiles) {
-            ZoomableViewGroup.LayoutParams layoutParams = new ZoomableViewGroup.LayoutParams(ZoomableViewGroup.LayoutParams.WRAP_CONTENT, ZoomableViewGroup.LayoutParams.WRAP_CONTENT);
-            int leftPadding = (tile.getY() + tile.getX()) * (dh.getTileWidth()/2);
-            int topPadding = topOffset + (tile.getX() + maxXY.second - tile.getY()) * (dh.getTileHeight()/2);
-            layoutParams.setMargins(leftPadding, topPadding, 0, 0);
-
-            int drawableId = ImageHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());
-            ImageView image = dh.createTileImageView(this, tile, drawableId);
-
-            // Make sure we always have a tile selected
-            if (selectedTile == null || selectedTileImage == null) {
-                image.setAlpha(0.75f);
-                image.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
-                selectedTileImage = image;
-                selectedTile = tile;
-
-                ((TextView)findViewById(R.id.selectedTileText)).setText(tile.getName());
-            }
-
-            tileContainer.addView(image, layoutParams);
-        }
+        dh.setupTileDisplay(this, tiles, (ZoomableViewGroup)findViewById(R.id.tileContainer), puzzleId);
+        selectedTile = tiles.get(0);
     }
 
     public void zoomIn(View v) {

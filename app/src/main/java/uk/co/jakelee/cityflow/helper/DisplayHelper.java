@@ -23,8 +23,11 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.components.TextViewFont;
+import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
 import uk.co.jakelee.cityflow.main.EditorActivity;
 import uk.co.jakelee.cityflow.main.PackActivity;
 import uk.co.jakelee.cityflow.main.PuzzleActivity;
@@ -238,5 +241,43 @@ public class DisplayHelper {
         ImageView carView = createCarImageview(rotation);
         container.addView(carView);
         carView.startAnimation(AnimationHelper.move(metrics, rotation, duration));
+    }
+
+    public void setupTileDisplay(Activity activity, List<Tile> tiles, ZoomableViewGroup tileContainer, int puzzleId) {
+        if (puzzleId == 0) {
+            return;
+        }
+
+        tileContainer.removeAllViews();
+
+        Pair<Integer, Integer> maxXY = TileHelper.getMaxXY(tiles);
+        Pair<Float, Integer> displayValues = getDisplayValues(activity, maxXY.first + 1, maxXY.second + 1);
+
+        float optimumScale = displayValues.first;
+        int topOffset = displayValues.second;
+
+        tileContainer.setScaleFactor(optimumScale, true);
+        tileContainer.removeAllViews();
+        for (final Tile tile : tiles) {
+            ZoomableViewGroup.LayoutParams layoutParams = new ZoomableViewGroup.LayoutParams(ZoomableViewGroup.LayoutParams.WRAP_CONTENT, ZoomableViewGroup.LayoutParams.WRAP_CONTENT);
+            int leftPadding = (tile.getY() + tile.getX()) * (getTileWidth() / 2);
+            int topPadding = topOffset + (tile.getX() + maxXY.second - tile.getY()) * (getTileHeight() / 2);
+            layoutParams.setMargins(leftPadding, topPadding, 0, 0);
+
+            int drawableId = ImageHelper.getTileDrawableId(activity, tile.getTileTypeId(), tile.getRotation());
+            ImageView image = createTileImageView(activity, tile, drawableId);
+
+            /* Make sure we always have a tile selected
+            if (selectedTile == null || selectedTileImage == null) {
+                image.setAlpha(0.75f);
+                image.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+                selectedTileImage = image;
+                selectedTile = tile;
+
+                ((TextView)findViewById(R.id.selectedTileText)).setText(tile.getName());
+            }*/
+
+            tileContainer.addView(image, layoutParams);
+        }
     }
 }
