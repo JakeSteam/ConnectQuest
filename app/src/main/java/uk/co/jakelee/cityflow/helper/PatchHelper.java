@@ -394,12 +394,15 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_BUTTON_DELETE", "Delete"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_BUTTON_RESIZE", "Resize"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_BUTTON_TEXT", "Text"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_BUTTON_LEFT", "Left"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_BUTTON_RIGHT", "Right"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_RESIZE_CONFIRM", "Are you sure you want to resize the puzzle from %1$dx%2$d to %3$dx%4$d?"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_STATISTICS", "Statistics"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_SUPPORT_CODE", "Support Code"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_CREDITS", "Credits"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_PLAY", "Play Puzzle"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_SHUFFLE_TILES", "Rotate All Tiles"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_ROTATE_PUZZLE", "Rotate Puzzle"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_CHANGE_NAME", "Change Name"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_CHANGE_DESC", "Change Desc"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_CHANGE_WIDTH", "Change Width"));

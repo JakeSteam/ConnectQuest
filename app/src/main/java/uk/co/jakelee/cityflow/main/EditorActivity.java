@@ -158,6 +158,9 @@ public class EditorActivity extends Activity {
             case EditorMenuActivity.SAVE:
                 savePuzzle();
                 break;
+            case EditorMenuActivity.ROTATE:
+                AlertDialogHelper.rotatePuzzle(this, puzzleId);
+                break;
         }
     }
 

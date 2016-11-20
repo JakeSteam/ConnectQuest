@@ -16,6 +16,7 @@ public class EditorMenuActivity extends Activity {
     public final static int CHANGE_DESC = 4;
     public final static int CHANGE_SIZE = 5;
     public final static int SAVE = 6;
+    public final static int ROTATE = 7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +27,10 @@ public class EditorMenuActivity extends Activity {
 
     private void populateText() {
         ((TextView)findViewById(R.id.playPuzzle)).setText(Text.get("DIALOG_PLAY"));
-        ((TextView)findViewById(R.id.shufflePuzzle)).setText(Text.get("DIALOG_SHUFFLE_TILES"));
         ((TextView)findViewById(R.id.changePuzzleName)).setText(Text.get("DIALOG_CHANGE_NAME"));
         ((TextView)findViewById(R.id.changePuzzleDesc)).setText(Text.get("DIALOG_CHANGE_DESC"));
+        ((TextView)findViewById(R.id.shufflePuzzle)).setText(Text.get("DIALOG_SHUFFLE_TILES"));
+        ((TextView)findViewById(R.id.rotatePuzzle)).setText(Text.get("DIALOG_ROTATE_PUZZLE"));
         ((TextView)findViewById(R.id.changePuzzleSize)).setText(Text.get("DIALOG_BUTTON_RESIZE"));
         ((TextView)findViewById(R.id.savePuzzle)).setText(Text.get("DIALOG_SAVE_EXIT"));
     }
@@ -39,6 +41,10 @@ public class EditorMenuActivity extends Activity {
 
     public void shufflePuzzle(View v) {
         returnResult(SHUFFLE);
+    }
+
+    public void rotatePuzzle(View v) {
+        returnResult(ROTATE);
     }
 
     public void changePuzzleName(View v) {

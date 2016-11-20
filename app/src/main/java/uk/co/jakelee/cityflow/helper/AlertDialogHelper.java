@@ -485,6 +485,46 @@ public class AlertDialogHelper {
         });
     }
 
+    public static void rotatePuzzle(final Activity activity, final int puzzleId) {
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
+        alertDialog.setMessage(Text.get("DIALOG_ROTATE_CONFIRM"));
+
+        alertDialog.setNeutralButton(Text.get("DIALOG_BUTTON_CANCEL"), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alertDialog.setNegativeButton(Text.get("DIALOG_BUTTON_LEFT"), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                PuzzleHelper.rotatePuzzle(puzzleId, LEFT);
+
+                activity.finish();
+                activity.startActivity(new Intent(activity, EditorActivity.class)
+                        .putExtra(Constants.INTENT_PUZZLE, puzzleId)
+                        .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+            }
+        });
+
+        alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_RIGHT"), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                PuzzleHelper.rotatePuzzle(puzzleId, RIGHT);
+
+                activity.finish();
+                activity.startActivity(new Intent(activity, EditorActivity.class)
+                        .putExtra(Constants.INTENT_PUZZLE, puzzleId)
+                        .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+            }
+        });
+
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                alertDialog.show();
+            }
+        });
+    }
+
     public static void changeSettingFloat(final SettingsActivity activity, int settingId) {
         final Setting setting = Setting.get(settingId);
 
