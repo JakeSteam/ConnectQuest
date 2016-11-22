@@ -243,7 +243,7 @@ public class DisplayHelper {
         carView.startAnimation(AnimationHelper.move(metrics, rotation, duration));
     }
 
-    public void setupTileDisplay(Activity activity, List<Tile> tiles, ZoomableViewGroup tileContainer, int puzzleId) {
+    public void setupTileDisplay(Activity activity, List<Tile> tiles, ZoomableViewGroup tileContainer, int puzzleId, Tile selectedTile, ImageView selectedTileImage, boolean isEditor) {
         if (puzzleId == 0) {
             return;
         }
@@ -267,15 +267,15 @@ public class DisplayHelper {
             int drawableId = ImageHelper.getTileDrawableId(activity, tile.getTileTypeId(), tile.getRotation());
             ImageView image = createTileImageView(activity, tile, drawableId);
 
-            /* Make sure we always have a tile selected
-            if (selectedTile == null || selectedTileImage == null) {
+            //Make sure we always have a tile selected
+            if (isEditor && selectedTile == null || selectedTileImage == null) {
                 image.setAlpha(0.75f);
                 image.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
                 selectedTileImage = image;
                 selectedTile = tile;
 
-                ((TextView)findViewById(R.id.selectedTileText)).setText(tile.getName());
-            }*/
+                ((TextView)activity.findViewById(R.id.selectedTileText)).setText(tile.getName());
+            }
 
             tileContainer.addView(image, layoutParams);
         }

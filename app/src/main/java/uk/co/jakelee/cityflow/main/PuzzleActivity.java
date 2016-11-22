@@ -206,7 +206,7 @@ public class PuzzleActivity extends Activity {
     };
 
     public void populateTiles(List<Tile> tiles) {
-        dh.setupTileDisplay(this, tiles, (ZoomableViewGroup)findViewById(R.id.tileContainer), puzzleId);
+        dh.setupTileDisplay(this, tiles, (ZoomableViewGroup)findViewById(R.id.tileContainer), puzzleId, null, null, false);
     }
 
     public void zoomIn(View v) {

@@ -403,6 +403,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_PLAY", "Play Puzzle"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_SHUFFLE_TILES", "Rotate All Tiles"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_ROTATE_PUZZLE", "Rotate Puzzle"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_ROTATE_CONFIRM", "Which way would you like to rotate the puzzle?"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_CHANGE_NAME", "Change Name"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_CHANGE_DESC", "Change Desc"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_CHANGE_WIDTH", "Change Width"));
