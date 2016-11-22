@@ -497,7 +497,7 @@ public class AlertDialogHelper {
 
         alertDialog.setNegativeButton(Text.get("DIALOG_BUTTON_LEFT"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                PuzzleHelper.rotatePuzzle(puzzleId, LEFT);
+                PuzzleHelper.rotatePuzzle(puzzleId, false);
 
                 activity.finish();
                 activity.startActivity(new Intent(activity, EditorActivity.class)
@@ -508,7 +508,7 @@ public class AlertDialogHelper {
 
         alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_RIGHT"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                PuzzleHelper.rotatePuzzle(puzzleId, RIGHT);
+                PuzzleHelper.rotatePuzzle(puzzleId, true);
 
                 activity.finish();
                 activity.startActivity(new Intent(activity, EditorActivity.class)

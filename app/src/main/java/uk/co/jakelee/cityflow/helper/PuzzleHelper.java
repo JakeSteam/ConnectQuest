@@ -6,6 +6,9 @@ import android.util.Pair;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -262,6 +265,22 @@ public class PuzzleHelper {
         }
 
         return totalStars;
+    }
+
+    public static void rotatePuzzle(int puzzleId, boolean clockwise) {
+        List<Tile> tiles = Select.from(Tile.class).where(
+                Condition.prop("puzzle_id").eq(puzzleId)).list();
+        Pair<Integer, Integer> maxXY = TileHelper.getMaxXY(tiles);
+
+        for (Tile tile : tiles) {
+            int oldX = tile.getX();
+            int oldY = tile.getY();
+            tile.rotate(!clockwise);
+            tile.setDefaultRotation(tile.getRotation());
+            tile.setX(clockwise ? oldY : maxXY.second - oldY);
+            tile.setY(clockwise ? maxXY.first - oldX : oldX);
+            tile.save();
+        }
     }
 
     public static void resizePuzzle(final int puzzleId, final int oldX, final int oldY, final int newX, final int newY) {
