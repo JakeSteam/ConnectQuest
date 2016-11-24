@@ -119,7 +119,7 @@ public class Constants {
     public static final int ENVIRONMENT_GOLF = 6;
     public static final int FLOW_ANY = -1;
     public static final int FLOW_MIN = 0;
-    public static final int FLOW_MAX = 9;
+    public static final int FLOW_MAX = 10;
     public static final int FLOW_NONE = 0;
     public static final int FLOW_WATER = 1;
     public static final int FLOW_ROAD = 2;
@@ -130,6 +130,7 @@ public class Constants {
     public static final int FLOW_DIRT = 7;
     public static final int FLOW_RAIL = 8;
     public static final int FLOW_GOLF = 9;
+    public static final int FLOW_TOXIC = 10;
     public static final int HEIGHT_ANY = -1;
     public static final int HEIGHT_MIN = 0;
     public static final int HEIGHT_MAX = 4;

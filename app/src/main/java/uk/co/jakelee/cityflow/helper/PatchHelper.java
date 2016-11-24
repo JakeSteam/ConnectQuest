@@ -354,6 +354,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
                 "<a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt</a>: Database / game save encrypting.<br>" +
                 "<a href='https://github.com/aitorvs/allowme'>AllowMe</a>: Permissions handling.<br>" +
                 "<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a>: Play Store rate prompting.<br>" +
+                "<a href='http://www.antp.be/software/renamer'>Ant Renamer</a>: Bulk file operations.<br>" +
                 "<a href='https://www.applovin.com/'>AppLovin</a>: Advertising.<br>" +
                 "<a href='https://github.com/grantland/android-autofittextview'>AutofitTextView</a>: Intelligently resizing textboxes.<br>" +
                 "<a href='https://github.com/keyboardsurfer/Crouton'>Crouton</a>: On-screen alerts.<br>" +
@@ -444,6 +445,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_7_NAME", "Dirt"));
         texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_8_NAME", "Rail"));
         texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_9_NAME", "Golf"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_9_NAME", "Toxic"));
         texts.add(new Text(Constants.LANGUAGE_EN, "GOOGLE_SIGN_IN", "Sign In"));
         texts.add(new Text(Constants.LANGUAGE_EN, "GOOGLE_SIGN_OUT", "Sign Out"));
         texts.add(new Text(Constants.LANGUAGE_EN, "HEIGHT_0_NAME", "None"));
@@ -749,6 +751,15 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_170_NAME", "City (Cream House)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_171_NAME", "City (Red House)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_172_NAME", "Grass Straight (Trees)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_173_NAME", "Mountain Toxic End"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_174_NAME", "Mountain Toxic Corner"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_175_NAME", "Mountain Toxic Straight"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_176_NAME", "Mountain Toxic T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_177_NAME", "Mountain Toxic Interchange"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_178_NAME", "Mountain (Lilypad)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_179_NAME", "Mountain (Cacti)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_180_NAME", "Mountain (Rock)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_181_NAME", "Mountain (Mushroom)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_BACKGROUND_SELECT_TITLE", "%1$d/%2$d Unlocked"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TITLE", "Purchase Coins"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TEASER", "First purchase of any pack unlocks a bonus puzzle pack!"));
@@ -4325,7 +4336,15 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tileTypes.add(new TileType(170, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 170));
         tileTypes.add(new TileType(171, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 171));
         tileTypes.add(new TileType(172, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 172));
-
+        tileTypes.add(new TileType(173, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.FLOW_TOXIC, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 173));
+        tileTypes.add(new TileType(174, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_TOXIC, Constants.FLOW_TOXIC, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 174));
+        tileTypes.add(new TileType(175, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_TOXIC, Constants.FLOW_NONE, Constants.FLOW_TOXIC, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 175));
+        tileTypes.add(new TileType(176, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_TOXIC, Constants.FLOW_TOXIC, Constants.FLOW_TOXIC, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 176));
+        tileTypes.add(new TileType(177, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_TOXIC, Constants.HEIGHT_NORMAL, 177));
+        tileTypes.add(new TileType(178, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 178));
+        tileTypes.add(new TileType(179, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 179));
+        tileTypes.add(new TileType(180, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 180));
+        tileTypes.add(new TileType(181, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 181));
         TileType.saveInTx(tileTypes);
     }
 }

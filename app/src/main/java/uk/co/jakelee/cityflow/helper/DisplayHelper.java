@@ -274,7 +274,10 @@ public class DisplayHelper {
                 selectedTileImage = image;
                 selectedTile = tile;
 
-                ((TextView)activity.findViewById(R.id.selectedTileText)).setText(tile.getName());
+                TextView selectedTileText = (TextView)activity.findViewById(R.id.selectedTileText);
+                if (selectedTileText != null) {
+                    ((TextView) activity.findViewById(R.id.selectedTileText)).setText(tile.getName());
+                }
             }
 
             tileContainer.addView(image, layoutParams);
