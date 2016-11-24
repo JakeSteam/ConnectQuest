@@ -4731,6 +4731,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tileTypes.add(new TileType(179, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 179));
         tileTypes.add(new TileType(180, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 180));
         tileTypes.add(new TileType(181, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 181));
+        tileTypes.add(new TileType(182, Constants.ENVIRONMENT_GRASS, Constants.FLOW_RIVER, Constants.FLOW_RIVER, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 182));
+        tileTypes.add(new TileType(183, Constants.ENVIRONMENT_GRASS, Constants.FLOW_RIVER, Constants.HEIGHT_NORMAL, 183));
         TileType.saveInTx(tileTypes);
     }
 }
