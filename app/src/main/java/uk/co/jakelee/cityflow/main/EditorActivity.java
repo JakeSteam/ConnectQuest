@@ -19,6 +19,7 @@ import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.ImageHelper;
+import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Tile;
@@ -43,6 +44,8 @@ public class EditorActivity extends Activity {
         puzzle.resetTileRotations();
 
         drawPuzzle(puzzle.getTiles());
+
+        findViewById(R.id.tileContainer).setBackgroundColor(Background.getActiveBackgroundColour());
     }
 
     private void drawPuzzle(List<Tile> tiles) {
