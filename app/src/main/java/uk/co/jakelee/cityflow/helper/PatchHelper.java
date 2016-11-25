@@ -760,6 +760,9 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_179_NAME", "Mountain (Cacti)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_180_NAME", "Mountain (Rock)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_181_NAME", "Mountain (Mushroom)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_182_NAME", "Grass Water T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_183_NAME", "Grass Water Interchange"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_183_NAME", "Grass Water Corner (Tree)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_BACKGROUND_SELECT_TITLE", "%1$d/%2$d Unlocked"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TITLE", "Purchase Coins"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TEASER", "First purchase of any pack unlocks a bonus puzzle pack!"));
@@ -4731,8 +4734,9 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tileTypes.add(new TileType(179, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 179));
         tileTypes.add(new TileType(180, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 180));
         tileTypes.add(new TileType(181, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 181));
-        tileTypes.add(new TileType(182, Constants.ENVIRONMENT_GRASS, Constants.FLOW_RIVER, Constants.FLOW_RIVER, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 182));
-        tileTypes.add(new TileType(183, Constants.ENVIRONMENT_GRASS, Constants.FLOW_RIVER, Constants.HEIGHT_NORMAL, 183));
+        tileTypes.add(new TileType(182, Constants.ENVIRONMENT_GRASS, Constants.FLOW_WATER, Constants.FLOW_WATER, Constants.FLOW_WATER, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 182));
+        tileTypes.add(new TileType(183, Constants.ENVIRONMENT_GRASS, Constants.FLOW_WATER, Constants.HEIGHT_NORMAL, 183));
+        tileTypes.add(new TileType(184, Constants.ENVIRONMENT_GRASS, Constants.FLOW_WATER, Constants.FLOW_WATER, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 184));
         TileType.saveInTx(tileTypes);
     }
 }
