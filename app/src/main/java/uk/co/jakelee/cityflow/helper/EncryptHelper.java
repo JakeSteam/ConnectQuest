@@ -7,6 +7,7 @@ import com.scottyab.aescrypt.AESCrypt;
 import java.security.GeneralSecurityException;
 
 import uk.co.jakelee.cityflow.model.Statistic;
+import uk.co.jakelee.cityflow.model.SupportCode;
 
 public class EncryptHelper {
     private static final String encryptionPwd = "Please don't cheat! " + "It ruins the game for others, " + "and yourself!";
@@ -69,6 +70,10 @@ public class EncryptHelper {
                 }
             }
             successful = true;
+        }
+
+        if (successful) {
+            (new SupportCode(code)).save();
         }
         return successful;
     }

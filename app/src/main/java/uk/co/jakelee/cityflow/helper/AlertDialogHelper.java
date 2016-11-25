@@ -27,6 +27,7 @@ import uk.co.jakelee.cityflow.main.CreatorActivity;
 import uk.co.jakelee.cityflow.main.CustomInfoActivity;
 import uk.co.jakelee.cityflow.main.EditorActivity;
 import uk.co.jakelee.cityflow.main.SettingsActivity;
+import uk.co.jakelee.cityflow.model.SupportCode;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Setting;
@@ -151,7 +152,9 @@ public class AlertDialogHelper {
             public void onClick(DialogInterface dialog, int which) {
                 //String supportCode = EncryptHelper.encode("1571111687000|UPDATE setting SET boolean_value = 1");
                 String supportCode = supportCodeBox.getText().toString().trim();
-                if (EncryptHelper.applyCode(supportCode)) {
+                if (SupportCode.alreadyApplied(supportCode)) {
+                    AlertHelper.error(activity, ErrorHelper.get(ErrorHelper.Error.SUPPORT_CODE_USED));
+                } else if (EncryptHelper.applyCode(supportCode)) {
                     AlertHelper.success(activity, Text.get("SUCCESS_SUPPORT_CODE"));
                 } else {
                     AlertHelper.error(activity, ErrorHelper.get(ErrorHelper.Error.SUPPORT_CODE_INVALID));

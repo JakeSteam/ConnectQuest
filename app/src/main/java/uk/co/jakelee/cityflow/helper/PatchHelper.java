@@ -424,6 +424,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_NO_ERROR", ""));
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_NOT_ENOUGH_CURRENCY", "You can't afford this item!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_SUPPORT_CODE_INVALID", "Failed to apply support code! Please contact support."));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_SUPPORT_CODE_USED", "Support code already used!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_TECHNICAL", "An unknown technical error occurred! Try again?"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_CLOUD_ERROR", "An error occurred whilst handling the cloud save: %1$s"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_PUZZLE_NOT_TESTED", "The puzzle must be successfully completed before it can be exported!"));
