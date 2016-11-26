@@ -10,5 +10,6 @@
     android:ellipsize="marquee"
     android:textSize="20sp"
     android:textColor="@color/black"
+    android:background="@color/ltltgrey"
     android:padding="5dp"
     android:gravity="center_horizontal"/>

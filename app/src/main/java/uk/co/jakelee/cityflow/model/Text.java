@@ -97,4 +97,18 @@ public class Text extends SugarRecord{
             default: return Constants.LANGUAGE_EN;
         }
     }
+
+    public static String getLanguageFlag(int languageId) {
+        switch(languageId) {
+            case Constants.LANGUAGE_EN: return new String(Character.toChars(0x1F1EC)) + new String(Character.toChars(0x1F1E7));
+            case Constants.LANGUAGE_DE: return new String(Character.toChars(0x1F1E9)) + new String(Character.toChars(0x1F1EA));
+            case Constants.LANGUAGE_FR: return new String(Character.toChars(0x1F1EB)) + new String(Character.toChars(0x1F1F7));
+            case Constants.LANGUAGE_PL: return new String(Character.toChars(0x1F1F5)) + new String(Character.toChars(0x1F1F1));
+            case Constants.LANGUAGE_RU: return new String(Character.toChars(0x1F1F7)) + new String(Character.toChars(0x1F1FA));
+            case Constants.LANGUAGE_ES: return new String(Character.toChars(0x1F1EA)) + new String(Character.toChars(0x1F1F8));
+            case Constants.LANGUAGE_NL: return new String(Character.toChars(0x1F1F3)) + new String(Character.toChars(0x1F1F1));
+            case Constants.LANGUAGE_ZH: return new String(Character.toChars(0x1F1E8)) + new String(Character.toChars(0x1F1F3));
+            default: return "";
+        }
+    }
 }

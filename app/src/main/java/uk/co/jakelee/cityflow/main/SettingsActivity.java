@@ -133,7 +133,7 @@ public class SettingsActivity extends AllowMeActivity {
 
     private void createDropdown(int spinnerId, int max, int min, String prefix, String suffix, int settingId, boolean pickingSoundEffect) {
         int numOptions = (max - min) + 1;
-        ArrayAdapter<String> envAdapter = new ArrayAdapter<>(this, R.layout.custom_spinner);
+        ArrayAdapter<String> envAdapter = new ArrayAdapter<>(this, R.layout.custom_spinner_display);
         envAdapter.setDropDownViewResource(R.layout.custom_spinner_item);
         if (pickingSoundEffect) {
             envAdapter.add("Random");
@@ -142,7 +142,11 @@ public class SettingsActivity extends AllowMeActivity {
             }
         } else {
             for (int i = 1; i <= numOptions; i++) {
-                envAdapter.add(Text.get(prefix + i + suffix));
+                String text = Text.get(prefix + i + suffix);
+                if (settingId == Constants.SETTING_LANGUAGE) {
+                    text = Text.getLanguageFlag(i) + " " + text;
+                }
+                envAdapter.add(text);
             }
         }
 
