@@ -5,6 +5,7 @@ import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import uk.co.jakelee.cityflow.helper.Constants;
+import uk.co.jakelee.cityflow.helper.EncryptHelper;
 
 public class TileType extends SugarRecord {
     private int typeId;
@@ -17,8 +18,8 @@ public class TileType extends SugarRecord {
     private int heightEast;
     private int heightSouth;
     private int heightWest;
-    private int puzzleRequired;
-    private int status;
+    private String puzzleRequired;
+    private String status;
 
     public TileType() {
 
@@ -35,8 +36,8 @@ public class TileType extends SugarRecord {
         this.heightEast = height;
         this.heightSouth = height;
         this.heightWest = height;
-        this.puzzleRequired = puzzleRequired;
-        this.status = Constants.TILE_STATUS_UNLOCKED;
+        this.puzzleRequired = EncryptHelper.encode(puzzleRequired, typeId);
+        this.status = EncryptHelper.encode(Constants.TILE_STATUS_UNLOCKED, typeId);
     }
 
     public TileType(int typeId, int environmentId, int flowNorth, int flowEast, int flowSouth, int flowWest, int height, int puzzleRequired) {
@@ -50,8 +51,8 @@ public class TileType extends SugarRecord {
         this.heightEast = height;
         this.heightSouth = height;
         this.heightWest = height;
-        this.puzzleRequired = puzzleRequired;
-        this.status = Constants.TILE_STATUS_UNLOCKED;
+        this.puzzleRequired = EncryptHelper.encode(puzzleRequired, typeId);
+        this.status = EncryptHelper.encode(Constants.TILE_STATUS_UNLOCKED, typeId);
     }
 
     public TileType(int typeId, int environmentId, int flowNorth, int flowEast, int flowSouth, int flowWest, int heightNorth, int heightEast, int heightSouth, int heightWest, int puzzleRequired) {
@@ -65,8 +66,8 @@ public class TileType extends SugarRecord {
         this.heightEast = heightEast;
         this.heightSouth = heightSouth;
         this.heightWest = heightWest;
-        this.puzzleRequired = puzzleRequired;
-        this.status = Constants.TILE_STATUS_UNLOCKED;
+        this.puzzleRequired = EncryptHelper.encode(puzzleRequired, typeId);
+        this.status = EncryptHelper.encode(Constants.TILE_STATUS_UNLOCKED, typeId);
     }
 
     public int getTypeId() {
@@ -150,19 +151,19 @@ public class TileType extends SugarRecord {
     }
 
     public int getPuzzleRequired() {
-        return puzzleRequired;
+        return EncryptHelper.decodeToInt(puzzleRequired, typeId);
     }
 
     public void setPuzzleRequired(int puzzleRequired) {
-        this.puzzleRequired = puzzleRequired;
+        this.puzzleRequired = EncryptHelper.encode(puzzleRequired, typeId);
     }
 
     public int getStatus() {
-        return status;
+        return EncryptHelper.decodeToInt(status, typeId);
     }
 
     public void setStatus(int status) {
-        this.status = status;
+        this.status = EncryptHelper.encode(status, typeId);
     }
 
     public String getName() {

@@ -9,7 +9,6 @@ import android.widget.TextView;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
-import uk.co.jakelee.cityflow.helper.ErrorHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.ShopItem;
@@ -54,9 +53,9 @@ public class ShopItemActivity extends Activity {
     }
 
     public void buyItem(View view) {
-        ErrorHelper.Error purchaseResult = shopItem.canPurchase();
-        if (purchaseResult != ErrorHelper.Error.NO_ERROR) {
-            AlertHelper.error(this, ErrorHelper.get(purchaseResult));
+        AlertHelper.Error purchaseResult = shopItem.canPurchase();
+        if (purchaseResult != AlertHelper.Error.NO_ERROR) {
+            AlertHelper.error(this, AlertHelper.getError(purchaseResult));
         } else {
             SoundHelper.getInstance(this).playSound(SoundHelper.SOUNDS.purchasing);
             shopItem.purchase();

@@ -26,7 +26,6 @@ import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.EncryptHelper;
-import uk.co.jakelee.cityflow.helper.ErrorHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.helper.PermissionHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
@@ -183,7 +182,7 @@ public class CreatorActivity extends AllowMeActivity {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
                     puzzleString = StorageHelper.readQRImage(bitmap);
                 } catch (Exception e) {
-                    AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.FILE_IMPORT_FAIL));
+                    AlertHelper.error(this, AlertHelper.getError(AlertHelper.Error.FILE_IMPORT_FAIL));
                 }
             } else if (requestCode == INTENT_TEXT) {
                 puzzleString = EncryptHelper.decode(data.getStringExtra("PUZZLE_TEXT"));
@@ -194,11 +193,11 @@ public class CreatorActivity extends AllowMeActivity {
                 AlertHelper.success(this, Text.get("ALERT_PUZZLE_IMPORTED"));
                 populatePuzzles();
             } else if (requestCode == INTENT_CAMERA) {
-                AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.CAMERA_IMPORT_FAIL));
+                AlertHelper.error(this, AlertHelper.getError(AlertHelper.Error.CAMERA_IMPORT_FAIL));
             } else if (requestCode == INTENT_FILE) {
-                AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.FILE_IMPORT_FAIL));
+                AlertHelper.error(this, AlertHelper.getError(AlertHelper.Error.FILE_IMPORT_FAIL));
             } else if (requestCode == INTENT_TEXT) {
-                AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.TEXT_IMPORT_FAIL));
+                AlertHelper.error(this, AlertHelper.getError(AlertHelper.Error.TEXT_IMPORT_FAIL));
             }
         }
     }

@@ -161,15 +161,14 @@ public class SettingsActivity extends AllowMeActivity {
                     spinnersInitialised++;
                 } else {
                     Setting setting = Setting.get(settingId);
-
                     if (settingId == Constants.SETTING_LANGUAGE) {
                         setting.setIntValue(position + 1);
                         prefs.edit().putInt("language", setting.getIntValue()).apply();
                         populateText();
                     } else {
                         setting.setIntValue(position);
-                        setting.save();
                     }
+                    setting.save();
                 }
             }
 

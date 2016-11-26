@@ -21,7 +21,6 @@ import java.util.List;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
-import uk.co.jakelee.cityflow.helper.ErrorHelper;
 import uk.co.jakelee.cityflow.model.Iap;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Text;
@@ -41,7 +40,7 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
         if (canBuyIAPs) {
             bp = new BillingProcessor(this, getPublicKey(), this);
         } else {
-            AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.NO_IAB));
+            AlertHelper.error(this, AlertHelper.getError(AlertHelper.Error.NO_IAB));
         }
 
         populateText();
@@ -77,7 +76,7 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
     @Override
     public void onBillingError(int errorCode, Throwable error) {
         if (errorCode != Constants.BILLING_RESPONSE_RESULT_USER_CANCELED) {
-            AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.IAB_FAILED));
+            AlertHelper.error(this, AlertHelper.getError(AlertHelper.Error.IAB_FAILED));
         }
     }
 
@@ -95,7 +94,7 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
         if (canBuyIAPs) {
             bp.purchase(this, (String)v.getTag());
         } else {
-            AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.IAB_FAILED));
+            AlertHelper.error(this, AlertHelper.getError(AlertHelper.Error.IAB_FAILED));
         }
     }
 

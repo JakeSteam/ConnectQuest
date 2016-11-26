@@ -28,7 +28,6 @@ import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
-import uk.co.jakelee.cityflow.helper.ImageHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.helper.StorageHelper;
@@ -149,7 +148,7 @@ public class PuzzleActivity extends Activity {
 
     public void fetchImages(List<Tile> tiles) {
         for (Tile tile : tiles) {
-            List<Integer> ids = ImageHelper.getAllTileDrawableIds(this, tile.getTileTypeId());
+            List<Integer> ids = DisplayHelper.getAllTileDrawableIds(this, tile.getTileTypeId());
             for (Integer id : ids) {
                 Picasso.with(this)
                         .load(id)
@@ -232,7 +231,7 @@ public class PuzzleActivity extends Activity {
 
         changedTilesX.add(tile.getX());
         changedTilesY.add(tile.getY());
-        int drawableId = ImageHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());
+        int drawableId = DisplayHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());
         Picasso.with(this)
                 .load(drawableId)
                 .into(image);

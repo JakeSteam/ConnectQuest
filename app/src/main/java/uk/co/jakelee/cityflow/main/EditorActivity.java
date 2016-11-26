@@ -18,7 +18,6 @@ import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
 import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
-import uk.co.jakelee.cityflow.helper.ImageHelper;
 import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
@@ -71,14 +70,14 @@ public class EditorActivity extends Activity {
 
     private void redrawSelectedTile() {
         selectedTile = Tile.get(selectedTile.getId());
-        int drawableId = ImageHelper.getTileDrawableId(this, selectedTile.getTileTypeId(), selectedTile.getRotation());
+        int drawableId = DisplayHelper.getTileDrawableId(this, selectedTile.getTileTypeId(), selectedTile.getRotation());
         Picasso.with(this).load(drawableId).into(selectedTileImage);
         ((TextView)findViewById(R.id.selectedTileText)).setText(TileType.get(selectedTile.getTileTypeId()).getName());
     }
 
     public void fetchImages(List<Tile> tiles) {
         for (Tile tile : tiles) {
-            List<Integer> ids = ImageHelper.getAllTileDrawableIds(this, tile.getTileTypeId());
+            List<Integer> ids = DisplayHelper.getAllTileDrawableIds(this, tile.getTileTypeId());
             for (Integer id : ids) {
                 Picasso.with(this)
                         .load(id)
@@ -121,7 +120,7 @@ public class EditorActivity extends Activity {
         if (selectedTile != null && selectedTileImage != null) {
             selectedTile = Tile.get(selectedTile.getId());
             selectedTile.rotate(false);
-            int drawableId = ImageHelper.getTileDrawableId(this, selectedTile.getTileTypeId(), selectedTile.getRotation());
+            int drawableId = DisplayHelper.getTileDrawableId(this, selectedTile.getTileTypeId(), selectedTile.getRotation());
             Picasso.with(this).load(drawableId).into(selectedTileImage);
         }
     }

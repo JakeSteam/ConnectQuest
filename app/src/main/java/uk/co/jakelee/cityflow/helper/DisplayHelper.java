@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.jakelee.cityflow.R;
@@ -50,6 +51,24 @@ public class DisplayHelper {
             dhInstance = new DisplayHelper(ctx.getApplicationContext());
         }
         return dhInstance;
+    }
+
+    public static int getTileDrawableId(Context context, int tile, int rotation) {
+        String name = String.format(context.getString(R.string.tile_filename), tile, rotation);
+        return getDrawableId(context, name);
+    }
+
+    public static List<Integer> getAllTileDrawableIds(Context context, int tile) {
+        List<Integer> ids = new ArrayList<>();
+            ids.add(getDrawableId(context, "tile_" + tile + "_1"));
+            ids.add(getDrawableId(context, "tile_" + tile + "_2"));
+            ids.add(getDrawableId(context, "tile_" + tile + "_3"));
+            ids.add(getDrawableId(context, "tile_" + tile + "_4"));
+        return ids;
+    }
+
+    public static int getDrawableId(Context context, String name) {
+        return context.getResources().getIdentifier(name, "drawable", context.getPackageName());
     }
 
     public int getTileWidth() {
@@ -260,7 +279,7 @@ public class DisplayHelper {
             int topPadding = topOffset + (tile.getX() + maxXY.second - tile.getY()) * (getTileHeight() / 2);
             layoutParams.setMargins(leftPadding, topPadding, 0, 0);
 
-            int drawableId = ImageHelper.getTileDrawableId(activity, tile.getTileTypeId(), tile.getRotation());
+            int drawableId = getTileDrawableId(activity, tile.getTileTypeId(), tile.getRotation());
             ImageView image = createTileImageView(activity, tile, drawableId);
 
             //Make sure we always have a tile selected

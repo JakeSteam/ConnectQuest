@@ -53,18 +53,6 @@ public class Boost extends SugarRecord{
         this.used = EncryptHelper.encode(used, boostId);
     }
 
-    public String getName() {
-        return Text.get("BOOST_", getBoostId(), "_NAME");
-    }
-
-    public String getDescription() {
-        return Text.get("BOOST_", getBoostId(), "_DESC");
-    }
-
-    public String getUpgradeText() {
-        return Text.get("BOOST_", getBoostId(), "_UPGRADE");
-    }
-
     public static int getOwnedCount(int boostId) {
         return Select.from(Boost.class).where(
                 Condition.prop("boost_id").eq(boostId)).first().getOwned();

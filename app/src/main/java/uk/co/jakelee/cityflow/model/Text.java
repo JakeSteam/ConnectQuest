@@ -86,9 +86,15 @@ public class Text extends SugarRecord{
     }
 
     public static int getDefaultLanguage() {
-        String languageCode = Locale.getDefault().getLanguage();
-        int language = Constants.LANGUAGE_EN;
-
-        return language;
+        switch(Locale.getDefault().getLanguage()) {
+            case "de": return Constants.LANGUAGE_DE;
+            case "fr": return Constants.LANGUAGE_FR;
+            case "pl": return Constants.LANGUAGE_PL;
+            case "ru": return Constants.LANGUAGE_RU;
+            case "es": return Constants.LANGUAGE_ES;
+            case "nl": return Constants.LANGUAGE_NL;
+            case "zh": return Constants.LANGUAGE_ZH;
+            default: return Constants.LANGUAGE_EN;
+        }
     }
 }

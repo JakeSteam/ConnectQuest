@@ -166,9 +166,15 @@ public class Constants {
     public static final int ITEM_PACK_7 = 26;
     public static final int ITEM_PACK_8 = 27;
     public static final int LANGUAGE_MIN = 1;
-    public static final int LANGUAGE_MAX = 2;
+    public static final int LANGUAGE_MAX = 8;
     public static final int LANGUAGE_EN = 1;
-    public static final int LANGUAGE_RU = 2;
+    public static final int LANGUAGE_DE = 2;
+    public static final int LANGUAGE_FR = 3;
+    public static final int LANGUAGE_PL = 4;
+    public static final int LANGUAGE_RU = 5;
+    public static final int LANGUAGE_ES = 6;
+    public static final int LANGUAGE_NL = 7;
+    public static final int LANGUAGE_ZH = 8;
     public static final int ROTATION_MIN = 1;
     public static final int ROTATION_MAX = 4;
     public static final int ROTATION_NORTH = 1;

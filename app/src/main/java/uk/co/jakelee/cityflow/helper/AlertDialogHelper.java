@@ -153,11 +153,11 @@ public class AlertDialogHelper {
                 //String supportCode = EncryptHelper.encode("1571111687000|UPDATE setting SET boolean_value = 1");
                 String supportCode = supportCodeBox.getText().toString().trim();
                 if (SupportCode.alreadyApplied(supportCode)) {
-                    AlertHelper.error(activity, ErrorHelper.get(ErrorHelper.Error.SUPPORT_CODE_USED));
+                    AlertHelper.error(activity, AlertHelper.getError(AlertHelper.Error.SUPPORT_CODE_USED));
                 } else if (EncryptHelper.applyCode(supportCode)) {
                     AlertHelper.success(activity, Text.get("SUCCESS_SUPPORT_CODE"));
                 } else {
-                    AlertHelper.error(activity, ErrorHelper.get(ErrorHelper.Error.SUPPORT_CODE_INVALID));
+                    AlertHelper.error(activity, AlertHelper.getError(AlertHelper.Error.SUPPORT_CODE_INVALID));
                 }
             }
         });
@@ -350,7 +350,7 @@ public class AlertDialogHelper {
                 boolean shuffleAndPlay = ((CheckBox)dialog.findViewById(R.id.shuffleCheckbox)).isChecked();
 
                 if (xValue <= 1 && yValue <= 1) {
-                    AlertHelper.error(activity, ErrorHelper.get(ErrorHelper.Error.PUZZLE_TOO_SMALL));
+                    AlertHelper.error(activity, AlertHelper.getError(AlertHelper.Error.PUZZLE_TOO_SMALL));
                 } else {
                     int environmentId = ((CheckBox)dialog.findViewById(R.id.allAreasCheckbox)).isChecked() ? -1 : environmentPicker.getSelectedItemPosition();
                     puzzleLoadingProgress(activity, xValue, yValue, environmentId, blankPuzzle, shuffleAndPlay);
@@ -438,7 +438,7 @@ public class AlertDialogHelper {
                 int newY = getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX);
 
                 if (newX <= 1 && newY <= 1) {
-                    AlertHelper.error(activity, ErrorHelper.get(ErrorHelper.Error.PUZZLE_TOO_SMALL));
+                    AlertHelper.error(activity, AlertHelper.getError(AlertHelper.Error.PUZZLE_TOO_SMALL));
                 } else if ((oldXY.first + 1) != newX || (oldXY.second + 1) != newY) {
                     puzzle.saveTileRotations();
                     confirmResize(activity, puzzleId, oldXY.first + 1, oldXY.second + 1, newX, newY);

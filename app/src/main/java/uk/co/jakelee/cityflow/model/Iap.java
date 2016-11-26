@@ -6,18 +6,20 @@ import com.orm.query.Select;
 
 import java.util.List;
 
+import uk.co.jakelee.cityflow.helper.EncryptHelper;
+
 public class Iap extends SugarRecord{
     private String iapCode;
-    private int purchases;
-    private int coins;
+    private String purchases;
+    private String coins;
 
     public Iap() {
     }
 
     public Iap(String iapCode, int coins) {
         this.iapCode = iapCode;
-        this.purchases = 0;
-        this.coins = coins;
+        this.purchases = EncryptHelper.encode(0, 234);
+        this.coins = EncryptHelper.encode(coins, 456);
     }
 
     public String getIapCode() {
@@ -29,19 +31,19 @@ public class Iap extends SugarRecord{
     }
 
     public int getPurchases() {
-        return purchases;
+        return EncryptHelper.decodeToInt(purchases, 234);
     }
 
     public void setPurchases(int purchases) {
-        this.purchases = purchases;
+        this.purchases = EncryptHelper.encode(purchases, 234);
     }
 
     public int getCoins() {
-        return coins;
+        return EncryptHelper.decodeToInt(coins, 456);
     }
 
     public void setCoins(int coins) {
-        this.coins = coins;
+        this.coins = EncryptHelper.encode(coins, 456);
     }
 
     public static Iap get(String code) {

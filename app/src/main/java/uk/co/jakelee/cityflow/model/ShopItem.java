@@ -4,8 +4,9 @@ import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
-import uk.co.jakelee.cityflow.helper.ErrorHelper;
+import uk.co.jakelee.cityflow.helper.EncryptHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 
 public class ShopItem extends SugarRecord {
@@ -13,8 +14,8 @@ public class ShopItem extends SugarRecord {
     private int categoryId;
     private int subcategoryId;
     private int miscData;
-    private int price;
-    private int purchases;
+    private String price;
+    private String purchases;
     private int maxPurchases;
     private boolean applyMultiplier;
 
@@ -26,8 +27,8 @@ public class ShopItem extends SugarRecord {
         this.categoryId = categoryId;
         this.subcategoryId = 0;
         this.miscData = 0;
-        this.price = price;
-        this.purchases = 0;
+        this.price = EncryptHelper.encode(price, itemId);
+        this.purchases = EncryptHelper.encode(0, itemId);
         this.maxPurchases = maxPurchases;
         this.applyMultiplier = applyMultiplier;
     }
@@ -37,8 +38,8 @@ public class ShopItem extends SugarRecord {
         this.categoryId = categoryId;
         this.subcategoryId = boostId;
         this.miscData = boostQuantity;
-        this.price = price;
-        this.purchases = 0;
+        this.price = EncryptHelper.encode(price, itemId);
+        this.purchases = EncryptHelper.encode(0, itemId);
         this.maxPurchases = maxPurchases;
         this.applyMultiplier = applyMultiplier;
     }
@@ -77,21 +78,21 @@ public class ShopItem extends SugarRecord {
 
     public int getPrice() {
         if (!applyMultiplier()) {
-            return price;
+            return EncryptHelper.decodeToInt(price, itemId);
         }
-        return (purchases + 1) * price;
+        return (EncryptHelper.decodeToInt(purchases, itemId) + 1) * EncryptHelper.decodeToInt(price, itemId);
     }
 
     public void setPrice(int price) {
-        this.price = price;
+        this.price = EncryptHelper.encode(price, itemId);
     }
 
     public int getPurchases() {
-        return purchases;
+        return EncryptHelper.decodeToInt(purchases, itemId);
     }
 
     public void setPurchases(int purchases) {
-        this.purchases = purchases;
+        this.purchases = EncryptHelper.encode(purchases, itemId);
     }
 
     public int getMaxPurchases() {
@@ -165,20 +166,20 @@ public class ShopItem extends SugarRecord {
         }
     }
 
-    public ErrorHelper.Error canPurchase() {
+    public AlertHelper.Error canPurchase() {
         ShopItem item = Select.from(ShopItem.class).where(
                 Condition.prop("item_id").eq(getItemId())).first();
 
         Statistic currency = Statistic.find(Constants.STATISTIC_CURRENCY);
 
         if (item == null) {
-            return ErrorHelper.Error.TECHNICAL;
+            return AlertHelper.Error.TECHNICAL;
         } else if (item.atMaxPurchases()) {
-            return ErrorHelper.Error.MAX_PURCHASES;
+            return AlertHelper.Error.MAX_PURCHASES;
         } else if (item.getPrice() > currency.getIntValue()) {
-            return ErrorHelper.Error.NOT_ENOUGH_CURRENCY;
+            return AlertHelper.Error.NOT_ENOUGH_CURRENCY;
         }
-        return ErrorHelper.Error.NO_ERROR;
+        return AlertHelper.Error.NO_ERROR;
     }
 
     public static boolean isPurchased(int itemId) {

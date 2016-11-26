@@ -17,7 +17,6 @@ import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.EncryptHelper;
-import uk.co.jakelee.cityflow.helper.ErrorHelper;
 import uk.co.jakelee.cityflow.helper.PermissionHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
 import uk.co.jakelee.cityflow.helper.StorageHelper;
@@ -95,7 +94,7 @@ public class ExportActivity extends AllowMeActivity {
     private void save() {
         String filename = StorageHelper.saveCardImage(this, puzzle.getPuzzleId());
         if (filename.equals("")) {
-            AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.CARD_NOT_SAVED));
+            AlertHelper.error(this, AlertHelper.getError(AlertHelper.Error.CARD_NOT_SAVED));
         } else {
             AlertHelper.success(this, Text.get("ALERT_CARD_SAVED"));
         }
@@ -105,7 +104,7 @@ public class ExportActivity extends AllowMeActivity {
         String filename = StorageHelper.saveCardImage(this, puzzle.getPuzzleId());
 
         if (filename.equals("")) {
-            AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.CARD_NOT_SAVED));
+            AlertHelper.error(this, AlertHelper.getError(AlertHelper.Error.CARD_NOT_SAVED));
         } else {
             Uri bmpUri = Uri.parse(filename);
             Intent intent = new Intent(android.content.Intent.ACTION_SEND);

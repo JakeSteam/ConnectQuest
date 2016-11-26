@@ -69,7 +69,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
 
         mResolvingConnectionFailure = BaseGameUtils.resolveConnectionFailure(activity,
                 mGoogleApiClient, connectionResult,
-                RC_SIGN_IN, ErrorHelper.get(ErrorHelper.Error.FAILED_TO_CONNECT));
+                RC_SIGN_IN, AlertHelper.getError(AlertHelper.Error.FAILED_TO_CONNECT));
     }
 
     public static void ActivityResult(Activity activity, int requestCode, int resultCode) {
@@ -229,7 +229,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                     callingActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            AlertHelper.error(callingActivity, String.format(ErrorHelper.get(ErrorHelper.Error.CLOUD_ERROR), e.getMessage()));
+                            AlertHelper.error(callingActivity, String.format(AlertHelper.getError(AlertHelper.Error.CLOUD_ERROR), e.getMessage()));
                         }
                     });
                 }

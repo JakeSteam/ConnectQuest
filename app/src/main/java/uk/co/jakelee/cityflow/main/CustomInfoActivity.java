@@ -14,7 +14,6 @@ import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
-import uk.co.jakelee.cityflow.helper.ErrorHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
@@ -100,7 +99,7 @@ public class CustomInfoActivity extends Activity {
 
     public void exportPuzzle(View v) {
         if (puzzleCustom.isOriginalAuthor() && !puzzleCustom.hasBeenTested()) {
-            AlertHelper.error(this, ErrorHelper.get(ErrorHelper.Error.PUZZLE_NOT_TESTED));
+            AlertHelper.error(this, AlertHelper.getError(AlertHelper.Error.PUZZLE_NOT_TESTED));
             return;
         }
 
