@@ -1,6 +1,7 @@
 package uk.co.jakelee.cityflow.main;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -32,7 +33,7 @@ import static uk.co.jakelee.cityflow.main.MainActivity.prefs;
 
 public class SettingsActivity extends AllowMeActivity {
     private int spinnersInitialised = 0;
-    private int totalSpinners = 1;
+    private int totalSpinners = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +126,7 @@ public class SettingsActivity extends AllowMeActivity {
     }
 
     private void createDropdowns() {
+        spinnersInitialised = 0;
         createDropdown(R.id.languagePicker, Constants.LANGUAGE_MAX, Constants.LANGUAGE_MIN, "LANGUAGE_", "_NAME", Constants.SETTING_LANGUAGE, false);
         createDropdown(R.id.purchasingSoundPicker, SoundHelper.purchasingSounds.length, 1, "", "", Constants.SETTING_SOUND_PURCHASING, true);
         createDropdown(R.id.rotatingSoundPicker, SoundHelper.rotatingSounds.length, 1, "", "", Constants.SETTING_SOUND_ROTATING, true);
@@ -141,7 +143,7 @@ public class SettingsActivity extends AllowMeActivity {
                 envAdapter.add("Sound #" + i);
             }
         } else {
-            for (int i = 1; i <= numOptions; i++) {
+            for (int i = 0; i < numOptions; i++) {
                 String text = Text.get(prefix + i + suffix);
                 if (settingId == Constants.SETTING_LANGUAGE) {
                     text = Text.getLanguageFlag(i) + " " + text;
@@ -158,6 +160,7 @@ public class SettingsActivity extends AllowMeActivity {
     }
 
     private AdapterView.OnItemSelectedListener getListener(final int settingId) {
+        final Activity activity = this;
         return new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -165,14 +168,24 @@ public class SettingsActivity extends AllowMeActivity {
                     spinnersInitialised++;
                 } else {
                     Setting setting = Setting.get(settingId);
-                    if (settingId == Constants.SETTING_LANGUAGE) {
-                        setting.setIntValue(position + 1);
-                        prefs.edit().putInt("language", setting.getIntValue()).apply();
-                        populateText();
-                    } else {
-                        setting.setIntValue(position);
-                    }
+                    setting.setIntValue(position);
                     setting.save();
+
+                    switch (settingId) {
+                        case Constants.SETTING_LANGUAGE:
+                            prefs.edit().putInt("language", position).apply();
+                            populateText();
+                            break;
+                        case Constants.SETTING_SOUND_PURCHASING:
+                            SoundHelper.getInstance(activity).playSound(SoundHelper.SOUNDS.purchasing);
+                            break;
+                        case Constants.SETTING_SOUND_SETTINGS:
+                            SoundHelper.getInstance(activity).playSound(SoundHelper.SOUNDS.settings);
+                            break;
+                        case Constants.SETTING_SOUND_ROTATING:
+                            SoundHelper.getInstance(activity).playSound(SoundHelper.SOUNDS.rotating);
+                            break;
+                    }
                 }
             }
 

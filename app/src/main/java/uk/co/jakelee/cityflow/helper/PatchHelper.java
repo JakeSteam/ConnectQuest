@@ -506,14 +506,14 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_26_DESC", "Instantly unlock pack 7, without collecting all stars."));
         texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_27_NAME", "Unlock Pack 8"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_27_DESC", "Instantly unlock pack 8, without collecting all stars."));
-        texts.add(new Text(Constants.LANGUAGE_EN, "LANGUAGE_1_NAME", "English"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "LANGUAGE_0_NAME", "English"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "LANGUAGE_1_NAME", "Zhōngwén (Pīnyīn)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "LANGUAGE_2_NAME", "Deutsch"));
         texts.add(new Text(Constants.LANGUAGE_EN, "LANGUAGE_3_NAME", "Français"));
         texts.add(new Text(Constants.LANGUAGE_EN, "LANGUAGE_4_NAME", "Polski"));
         texts.add(new Text(Constants.LANGUAGE_EN, "LANGUAGE_5_NAME", "Pусский"));
         texts.add(new Text(Constants.LANGUAGE_EN, "LANGUAGE_6_NAME", "Español"));
         texts.add(new Text(Constants.LANGUAGE_EN, "LANGUAGE_7_NAME", "Nederlands"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "LANGUAGE_8_NAME", "Zhōngwén (Pīnyīn)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "METRIC_TILES_EARNED", "Tiles Earned"));
         texts.add(new Text(Constants.LANGUAGE_EN, "METRIC_BEST_TIME", "Best Time"));
         texts.add(new Text(Constants.LANGUAGE_EN, "METRIC_BEST_MOVES", "Best Moves"));
