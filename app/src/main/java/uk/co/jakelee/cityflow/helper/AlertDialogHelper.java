@@ -6,7 +6,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
 import android.text.InputFilter;
 import android.util.Pair;
 import android.view.View;
@@ -27,10 +26,10 @@ import uk.co.jakelee.cityflow.main.CreatorActivity;
 import uk.co.jakelee.cityflow.main.CustomInfoActivity;
 import uk.co.jakelee.cityflow.main.EditorActivity;
 import uk.co.jakelee.cityflow.main.SettingsActivity;
-import uk.co.jakelee.cityflow.model.SupportCode;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Setting;
+import uk.co.jakelee.cityflow.model.SupportCode;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class AlertDialogHelper {
@@ -283,7 +282,6 @@ public class AlertDialogHelper {
         ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Text.get("UI_PUZZLE_WIDTH"), Constants.PUZZLE_X_DEFAULT));
         ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Text.get("UI_PUZZLE_HEIGHT"), Constants.PUZZLE_Y_DEFAULT));
         ((TextView)dialog.findViewById(R.id.environmentText)).setText(Text.get("WORD_AREA"));
-        ((TextView)dialog.findViewById(R.id.allAreasText)).setText(Text.get("UI_PUZZLE_ALL_AREAS"));
         ((TextView)dialog.findViewById(R.id.emptyText)).setText(Text.get("UI_PUZZLE_AUTOGENERATE"));
         ((TextView)dialog.findViewById(R.id.shuffleText)).setText(Text.get("UI_PUZZLE_SHUFFLE_PLAY"));
 
@@ -318,7 +316,7 @@ public class AlertDialogHelper {
         ArrayAdapter<String> envAdapter = new ArrayAdapter<>(activity, R.layout.custom_spinner_item);
         envAdapter.setDropDownViewResource(R.layout.custom_spinner_item);
         for (int i = 0; i < numEnvironments; i++) {
-            envAdapter.add(Text.get("ENVIRONMENT_" + i + "_NAME"));
+            envAdapter.add(i == 0 ? Text.get("WORD_ALL") : Text.get("ENVIRONMENT_" + i + "_NAME"));
         }
 
         // Disable "Blank puzzle" option if we're shuffle + playing
@@ -332,14 +330,8 @@ public class AlertDialogHelper {
 
         // Disable area spinner if we're using all tiles
         final Spinner environmentPicker = (Spinner)dialog.findViewById(R.id.environmentPicker);
-        ((CheckBox)dialog.findViewById(R.id.allAreasCheckbox)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                environmentPicker.setEnabled(!b);
-                environmentPicker.setBackgroundColor(ContextCompat.getColor(activity, b ? R.color.grey : R.color.blue));
-            }
-        });
         environmentPicker.setAdapter(envAdapter);
+        environmentPicker.setSelection(1);
 
         // Create button
         dialog.findViewById(R.id.createButton).setOnClickListener(new Button.OnClickListener() {
@@ -352,7 +344,7 @@ public class AlertDialogHelper {
                 if (xValue <= 1 && yValue <= 1) {
                     AlertHelper.error(activity, AlertHelper.getError(AlertHelper.Error.PUZZLE_TOO_SMALL));
                 } else {
-                    int environmentId = ((CheckBox)dialog.findViewById(R.id.allAreasCheckbox)).isChecked() ? -1 : environmentPicker.getSelectedItemPosition();
+                    int environmentId = environmentPicker.getSelectedItemPosition();
                     puzzleLoadingProgress(activity, xValue, yValue, environmentId, blankPuzzle, shuffleAndPlay);
                     dialog.dismiss();
                 }

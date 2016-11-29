@@ -801,7 +801,6 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_PUZZLE_WIDTH", "Width: %1$d"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_PUZZLE_HEIGHT", "Height: %1$d"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_PUZZLE_OPTIONS", "Puzzle Options"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "UI_PUZZLE_ALL_AREAS", "Use All Tiles"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_PUZZLE_AUTOGENERATE", "Blank Puzzle"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_PUZZLE_SHUFFLE_PLAY", "Shuffle & Play"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_PUZZLE_RESIZE", "Resize \"%1$s\""));
