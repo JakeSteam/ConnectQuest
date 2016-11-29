@@ -171,7 +171,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             }
 
             if (isAchieving && achievement.getColourID() > 0) {
-                Background.get(achievement.getColourID()).unlock(true);
+                Background.get(achievement.getColourID()).unlock();
             }
         }
     }

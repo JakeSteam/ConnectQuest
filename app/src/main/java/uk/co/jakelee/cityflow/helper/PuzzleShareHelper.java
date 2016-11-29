@@ -25,7 +25,7 @@ public class PuzzleShareHelper {
     private static final int tileRotation = 3;
 
     public static String getPuzzleSQL(Puzzle puzzle) {
-        int currentPack = 5;
+        int currentPack = 7;
         PuzzleCustom puzzleCustom = puzzle.getCustomData();
         StringBuilder sb = new StringBuilder();
         sb.append("texts.add(new Text(Constants.LANGUAGE_EN, \"PUZZLE_PUZZLE_ID_NAME\", \"" + puzzleCustom.getName() + "\"));\n");
