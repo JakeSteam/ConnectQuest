@@ -17,4 +17,12 @@ public class TileFilter {
         this.spinnerId = spinnerId;
         this.preferenceKey = preferenceKey;
     }
+
+    public static TileFilter quickCreateFilter(int selectedId) {
+        ArrayList<Integer> selectedValues = new ArrayList<>();
+        selectedValues.add(selectedId);
+        TileFilter tileFilter = new TileFilter(0, 0, "", 0, "");
+        tileFilter.selected = selectedValues;
+        return tileFilter;
+    }
 }

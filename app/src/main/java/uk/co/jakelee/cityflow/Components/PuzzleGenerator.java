@@ -61,6 +61,7 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
         } else {
             activity.startActivity(new Intent(activity, EditorActivity.class)
                     .putExtra(Constants.INTENT_PUZZLE, result)
+                    .putExtra(Constants.INTENT_ENVIRONMENT, environmentId)
                     .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
         }
     }

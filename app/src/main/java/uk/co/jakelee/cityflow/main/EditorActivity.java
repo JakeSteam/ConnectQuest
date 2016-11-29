@@ -23,6 +23,7 @@ import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
+import uk.co.jakelee.cityflow.objects.TileFilter;
 
 public class EditorActivity extends Activity {
     private DisplayHelper dh;
@@ -38,6 +39,11 @@ public class EditorActivity extends Activity {
 
         Intent intent = getIntent();
         puzzleId = intent.getIntExtra(Constants.INTENT_PUZZLE, 0);
+
+        if (intent.getIntExtra(Constants.INTENT_ENVIRONMENT, 0) > 0) {
+            TileFilter tileFilter = TileFilter.quickCreateFilter(intent.getIntExtra(Constants.INTENT_ENVIRONMENT, 0));
+            getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE).edit().putString("tilePickerEnvironments", tileFilter.selected.toString()).apply();
+        }
 
         Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
         puzzle.resetTileRotations();
