@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.components.TextViewFont;
+import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Text;
@@ -24,7 +25,8 @@ public class CreditsActivity extends Activity {
 
         Background background = Background.get(Constants.BACKGROUND_SUMMER);
         if (!background.isUnlocked()) {
-            background.setUnlocked(true);
+            background.unlock();
+            AlertHelper.success(this, String.format(Text.get("ALERT_BACKGROUND_UNLOCK"), background.getName()));
         }
     }
 

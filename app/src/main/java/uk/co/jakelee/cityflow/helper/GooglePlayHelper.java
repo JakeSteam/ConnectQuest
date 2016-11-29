@@ -94,6 +94,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
 
         Statistic.increaseByX(Constants.STATISTIC_CURRENCY, questCoins);
         Statistic.increaseByOne(Constants.STATISTIC_QUESTS_COMPLETED);
+        GooglePlayHelper.UpdateEvent(Constants.EVENT_COMPLETE_QUEST, 1);
         return String.format(Text.get("QUEST_COMPLETED_TEXT"),
                 questDifficulty,
                 questName,
@@ -170,7 +171,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             }
 
             if (isAchieving && achievement.getColourID() > 0) {
-                Background.get(achievement.getColourID()).setUnlocked(true);
+                Background.get(achievement.getColourID()).unlock(true);
             }
         }
     }

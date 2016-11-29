@@ -49,8 +49,8 @@ public class Background extends SugarRecord {
         return unlocked;
     }
 
-    public void setUnlocked(boolean unlocked) {
-        this.unlocked = unlocked;
+    public void unlock() {
+        this.unlocked = true;
         this.save();
     }
 

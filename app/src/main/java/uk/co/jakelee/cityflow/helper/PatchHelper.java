@@ -214,15 +214,19 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         backgrounds.add(new Background(Constants.BACKGROUND_PEACH, "fdcfb7"));
         backgrounds.add(new Background(Constants.BACKGROUND_PASSIONFRUIT, "f4828c"));
 
-        // Unassigned
+        // Buying shop item
         backgrounds.add(new Background(Constants.BACKGROUND_THE_END, "775c6a"));
+
+        // IAP
         backgrounds.add(new Background(Constants.BACKGROUND_DESERT, "f7ecd6"));
-        backgrounds.add(new Background(Constants.BACKGROUND_DIRTY, "ddb4a0"));
+
+        // Unassigned
+        /*backgrounds.add(new Background(Constants.BACKGROUND_DIRTY, "ddb4a0"));
         backgrounds.add(new Background(Constants.BACKGROUND_OVERCAST, "d0c6c4"));
         backgrounds.add(new Background(Constants.BACKGROUND_PRETTY_IN_PINK, "f8e4e3"));
         backgrounds.add(new Background(Constants.BACKGROUND_RAINFOREST, "7ca0a0"));
         backgrounds.add(new Background(Constants.BACKGROUND_MUSHROOM, "8e857c"));
-        backgrounds.add(new Background(Constants.BACKGROUND_NIGHT, "262626"));
+        backgrounds.add(new Background(Constants.BACKGROUND_NIGHT, "262626"));*/
         Background.saveInTx(backgrounds);
     }
 
@@ -244,9 +248,10 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     private void createText() {
         List<Text> texts = new ArrayList<>();
+        texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_BACKGROUND_UNLOCK", "Unlocked '%1$s' background!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_CARD_SAVED", "Card image saved to gallery!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_COINS_PURCHASED", "Successfully purchased %1$d coins!"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_COINS_PURCHASED_PACK", "Successfully purchased %1$d coins, and unlocked an exclusive puzzle pack!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_COINS_PURCHASED_PACK", "Successfully purchased %1$d coins, and unlocked an exclusive puzzle pack & a new background!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_CLOUD_BEGINNING", "Comparing local and cloud saves..."));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_CLOUD_SAVING", "Saving to cloud..."));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_CLOUD_SAVED", "Successfully saved game to cloud!"));
@@ -566,6 +571,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_NUMBER_PURCHASES", "%1$s%2$s purchases"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_NUMBER_OWNED", "%1$s owned"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_ITEM_PURCHASED", "Successfully purchased %1$s for %2$d coins!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_ITEM_PURCHASED_BACKGROUND", "Successfully purchased %1$s for %2$d coins, and unlocked '%3$s'!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_MAX_PURCHASED", "Maximum Purchased"));
         texts.add(new Text(Constants.LANGUAGE_EN, "STATISTIC_1_NAME", "Puzzles Completed"));
         texts.add(new Text(Constants.LANGUAGE_EN, "STATISTIC_2_NAME", "Tiles Rotated"));

@@ -21,6 +21,7 @@ import java.util.List;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
+import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Iap;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Text;
@@ -64,6 +65,7 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
         Pack iapUnlockedPack = Pack.getPack(9);
         if (iapUnlockedPack.isPurchased()) {
             AlertHelper.success(this, Text.get("ALERT_COINS_PURCHASED_PACK"));
+            Background.get(uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_SUMMER).unlock();
             iapUnlockedPack.setPurchased(true);
             iapUnlockedPack.save();
         } else {

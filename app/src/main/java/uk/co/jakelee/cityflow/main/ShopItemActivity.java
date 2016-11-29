@@ -10,6 +10,7 @@ import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
+import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Statistic;
@@ -59,9 +60,20 @@ public class ShopItemActivity extends Activity {
         } else {
             SoundHelper.getInstance(this).playSound(SoundHelper.SOUNDS.purchasing);
             shopItem.purchase();
-            AlertHelper.success(this, String.format(Text.get("SHOP_ITEM_PURCHASED"),
-                    shopItem.getName(),
-                    shopItem.getPrice()));
+
+            Background background = Background.get(Constants.BACKGROUND_SUMMER);
+            if (!background.isUnlocked()) {
+                background.unlock();
+                AlertHelper.success(this, String.format(Text.get("SHOP_ITEM_PURCHASED_BACKGROUND"),
+                        shopItem.getName(),
+                        shopItem.getPrice(),
+                        background.getName()));
+            }
+             else {
+                AlertHelper.success(this, String.format(Text.get("SHOP_ITEM_PURCHASED"),
+                        shopItem.getName(),
+                        shopItem.getPrice()));
+            }
         }
 
         shopItem = ShopItem.get(shopItem.getItemId());
