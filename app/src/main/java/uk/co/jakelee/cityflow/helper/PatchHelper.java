@@ -562,6 +562,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_14_NAME", "Purchase Sound"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_15_NAME", "Tile Rotate Sound"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_16_NAME", "Setting Change Sound"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_17_NAME", "Main Music"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_18_NAME", "Puzzle Music"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_CATEGORY_1_NAME", "Boosts"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_CATEGORY_2_NAME", "Upgrades"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_CATEGORY_3_NAME", "Tiles"));

@@ -56,13 +56,15 @@ public class SoundHelper {
     }
 
     private void playSound(int soundID) {
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
-            mediaPlayer.release();
-        }
-        mediaPlayer = MediaPlayer.create(context, soundID);
-        if (mediaPlayer != null) {
-            mediaPlayer.start();
+        if (Setting.getSafeBoolean(Constants.SETTING_MUSIC)) {
+            if (mediaPlayer != null) {
+                mediaPlayer.stop();
+                mediaPlayer.release();
+            }
+            mediaPlayer = MediaPlayer.create(context, soundID);
+            if (mediaPlayer != null) {
+                mediaPlayer.start();
+            }
         }
     }
 }

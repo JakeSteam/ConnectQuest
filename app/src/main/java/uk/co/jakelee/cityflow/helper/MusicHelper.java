@@ -14,8 +14,8 @@ public class MusicHelper {
 
     private MediaPlayer mediaPlayer;
     public enum SONG {main, puzzle};
-    public static final int[] mainSongs = {R.raw.Main_Carefree, R.raw.Main_Carpe_Diem, R.raw.Main_Rainbows};
-    public static final int[] puzzleSongs = {R.raw.Puzzle_Faceoff, R.raw.Puzzle_Ghost_Dance, R.raw.Puzzle_Crypto};
+    public static final int[] mainSongs = {R.raw.main_carefree, R.raw.main_carpe_diem, R.raw.main_rainbows};
+    public static final int[] puzzleSongs = {R.raw.puzzle_faceoff, R.raw.puzzle_ghost_dance, R.raw.puzzle_crypto};
 
     private MusicHelper(Context context) {
         this.context = context;
@@ -51,13 +51,15 @@ public class MusicHelper {
     }
 
     private void playMusic(int songID) {
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
-            mediaPlayer.release();
-        }
-        mediaPlayer = MediaPlayer.create(context, songID);
-        if (mediaPlayer != null) {
-            mediaPlayer.start();
+        if (Setting.getSafeBoolean(Constants.SETTING_MUSIC)) {
+            if (mediaPlayer != null) {
+                mediaPlayer.stop();
+                mediaPlayer.release();
+            }
+            mediaPlayer = MediaPlayer.create(context, songID);
+            if (mediaPlayer != null) {
+                mediaPlayer.start();
+            }
         }
     }
 }

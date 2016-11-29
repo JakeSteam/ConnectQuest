@@ -21,6 +21,7 @@ import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
+import uk.co.jakelee.cityflow.helper.MusicHelper;
 import uk.co.jakelee.cityflow.helper.PermissionHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.model.Background;
@@ -33,7 +34,7 @@ import static uk.co.jakelee.cityflow.main.MainActivity.prefs;
 
 public class SettingsActivity extends AllowMeActivity {
     private int spinnersInitialised = 0;
-    private int totalSpinners = 4;
+    private int totalSpinners = 6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,8 @@ public class SettingsActivity extends AllowMeActivity {
         ((TextView) findViewById(R.id.purchasingSoundToggleText)).setText(Text.get("SETTING_14_NAME"));
         ((TextView) findViewById(R.id.rotatingSoundToggleText)).setText(Text.get("SETTING_15_NAME"));
         ((TextView) findViewById(R.id.settingsSoundToggleText)).setText(Text.get("SETTING_16_NAME"));
+        ((TextView) findViewById(R.id.mainMusicToggleText)).setText(Text.get("SETTING_17_NAME"));
+        ((TextView) findViewById(R.id.puzzleMusicToggleText)).setText(Text.get("SETTING_18_NAME"));
 
         ((TextView) findViewById(R.id.settingSectionGameplay)).setText(Text.get("SETTING_SECTION_GAMEPLAY"));
         ((TextView) findViewById(R.id.languagePickerText)).setText(Text.get("SETTING_12_NAME"));
@@ -131,13 +134,15 @@ public class SettingsActivity extends AllowMeActivity {
         createDropdown(R.id.purchasingSoundPicker, SoundHelper.purchasingSounds.length, 1, "", "", Constants.SETTING_SOUND_PURCHASING, true);
         createDropdown(R.id.rotatingSoundPicker, SoundHelper.rotatingSounds.length, 1, "", "", Constants.SETTING_SOUND_ROTATING, true);
         createDropdown(R.id.settingsSoundPicker, SoundHelper.settingSounds.length, 1, "", "", Constants.SETTING_SOUND_SETTINGS, true);
+        createDropdown(R.id.mainMusicPicker, MusicHelper.mainSongs.length, 1, "", "", Constants.SETTING_SONG_MAIN, true);
+        createDropdown(R.id.puzzleMusicPicker, MusicHelper.puzzleSongs.length, 1, "", "", Constants.SETTING_SONG_PUZZLE, true);
     }
 
-    private void createDropdown(int spinnerId, int max, int min, String prefix, String suffix, int settingId, boolean pickingSoundEffect) {
+    private void createDropdown(int spinnerId, int max, int min, String prefix, String suffix, int settingId, boolean pickingAudio) {
         int numOptions = (max - min) + 1;
         ArrayAdapter<String> envAdapter = new ArrayAdapter<>(this, R.layout.custom_spinner_display);
         envAdapter.setDropDownViewResource(R.layout.custom_spinner_item);
-        if (pickingSoundEffect) {
+        if (pickingAudio) {
             envAdapter.add("Random");
             for (int i = 1; i <= numOptions; i++) {
                 envAdapter.add("Sound #" + i);
@@ -155,7 +160,7 @@ public class SettingsActivity extends AllowMeActivity {
         final Spinner spinner = (Spinner)findViewById(spinnerId);
         int setting = Setting.get(settingId).getIntValue();
         spinner.setAdapter(envAdapter);
-        spinner.setSelection(pickingSoundEffect ? setting : setting - 1);
+        spinner.setSelection(pickingAudio ? setting : setting - 1);
         spinner.setOnItemSelectedListener(getListener(settingId));
     }
 
@@ -184,6 +189,12 @@ public class SettingsActivity extends AllowMeActivity {
                             break;
                         case Constants.SETTING_SOUND_ROTATING:
                             SoundHelper.getInstance(activity).playSound(SoundHelper.SOUNDS.rotating);
+                            break;
+                        case Constants.SETTING_SONG_MAIN:
+                            MusicHelper.getInstance(activity).playMusic(MusicHelper.SONG.main);
+                            break;
+                        case Constants.SETTING_SONG_PUZZLE:
+                            MusicHelper.getInstance(activity).playMusic(MusicHelper.SONG.puzzle);
                             break;
                     }
                 }
