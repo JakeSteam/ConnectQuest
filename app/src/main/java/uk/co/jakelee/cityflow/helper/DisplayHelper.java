@@ -98,7 +98,7 @@ public class DisplayHelper {
         float yZoomFactor = screenHeight / (float)(puzzleHeight);
         float zoomFactor = Math.min(xZoomFactor, yZoomFactor);
 
-        int topOffset = puzzleHeight / 3;
+        int topOffset = puzzleHeight / 2;
         return new Pair<>(zoomFactor, topOffset);
     }
 

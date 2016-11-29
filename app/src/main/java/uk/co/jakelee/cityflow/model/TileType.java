@@ -19,7 +19,7 @@ public class TileType extends SugarRecord {
     private int heightSouth;
     private int heightWest;
     private String puzzleRequired;
-    private String status;
+    private int status;
 
     public TileType() {
 
@@ -37,7 +37,7 @@ public class TileType extends SugarRecord {
         this.heightSouth = height;
         this.heightWest = height;
         this.puzzleRequired = EncryptHelper.encode(puzzleRequired, typeId);
-        this.status = EncryptHelper.encode(Constants.TILE_STATUS_UNLOCKED, typeId);
+        this.status = Constants.TILE_STATUS_UNLOCKED;
     }
 
     public TileType(int typeId, int environmentId, int flowNorth, int flowEast, int flowSouth, int flowWest, int height, int puzzleRequired) {
@@ -52,7 +52,7 @@ public class TileType extends SugarRecord {
         this.heightSouth = height;
         this.heightWest = height;
         this.puzzleRequired = EncryptHelper.encode(puzzleRequired, typeId);
-        this.status = EncryptHelper.encode(Constants.TILE_STATUS_UNLOCKED, typeId);
+        this.status = Constants.TILE_STATUS_UNLOCKED;
     }
 
     public TileType(int typeId, int environmentId, int flowNorth, int flowEast, int flowSouth, int flowWest, int heightNorth, int heightEast, int heightSouth, int heightWest, int puzzleRequired) {
@@ -67,7 +67,7 @@ public class TileType extends SugarRecord {
         this.heightSouth = heightSouth;
         this.heightWest = heightWest;
         this.puzzleRequired = EncryptHelper.encode(puzzleRequired, typeId);
-        this.status = EncryptHelper.encode(Constants.TILE_STATUS_UNLOCKED, typeId);
+        this.status = Constants.TILE_STATUS_UNLOCKED;
     }
 
     public int getTypeId() {
@@ -159,11 +159,11 @@ public class TileType extends SugarRecord {
     }
 
     public int getStatus() {
-        return EncryptHelper.decodeToInt(status, typeId);
+        return status;
     }
 
     public void setStatus(int status) {
-        this.status = EncryptHelper.encode(status, typeId);
+        this.status = status;
     }
 
     public String getName() {
