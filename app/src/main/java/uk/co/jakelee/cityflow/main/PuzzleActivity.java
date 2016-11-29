@@ -104,6 +104,9 @@ public class PuzzleActivity extends Activity {
         }
 
         playSounds = Setting.getSafeBoolean(Constants.SETTING_SOUNDS);
+        if (Setting.getSafeBoolean(Constants.SETTING_MUSIC)) {
+            SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.puzzle);
+        }
     }
 
     private void populateText() {
@@ -140,8 +143,11 @@ public class PuzzleActivity extends Activity {
     public void onStop() {
         super.onStop();
 
-        Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
-        puzzle.resetTileRotations();
+        if (Setting.getSafeBoolean(Constants.SETTING_MUSIC)) {
+            SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.main);
+        }
+
+        Puzzle.getPuzzle(puzzleId).resetTileRotations();
         exitedPuzzle = true;
         handler.removeCallbacksAndMessages(null);
     }
@@ -224,7 +230,7 @@ public class PuzzleActivity extends Activity {
         }
 
         if (playSounds) {
-            SoundHelper.getInstance(this).playSound(SoundHelper.SOUNDS.rotating);
+            SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.rotating);
         }
 
         tile.rotate(undoing);

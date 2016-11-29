@@ -23,6 +23,7 @@ import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.helper.PatchHelper;
+import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.model.Setting;
 
 public class MainActivity extends Activity implements
@@ -54,6 +55,10 @@ public class MainActivity extends Activity implements
         tryGoogleLogin();
 
         Tapjoy.onActivityStart(this);
+
+        if (Setting.getSafeBoolean(Constants.SETTING_MUSIC)) {
+            SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.main);
+        }
     }
 
     public void tryGoogleLogin() {

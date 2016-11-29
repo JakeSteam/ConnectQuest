@@ -58,7 +58,7 @@ public class ShopItemActivity extends Activity {
         if (purchaseResult != AlertHelper.Error.NO_ERROR) {
             AlertHelper.error(this, AlertHelper.getError(purchaseResult));
         } else {
-            SoundHelper.getInstance(this).playSound(SoundHelper.SOUNDS.purchasing);
+            SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.purchasing);
             shopItem.purchase();
 
             Background background = Background.get(Constants.BACKGROUND_SUMMER);

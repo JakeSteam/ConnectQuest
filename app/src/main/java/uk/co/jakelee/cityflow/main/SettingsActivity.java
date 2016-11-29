@@ -21,7 +21,6 @@ import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
-import uk.co.jakelee.cityflow.helper.MusicHelper;
 import uk.co.jakelee.cityflow.helper.PermissionHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.model.Background;
@@ -134,8 +133,8 @@ public class SettingsActivity extends AllowMeActivity {
         createDropdown(R.id.purchasingSoundPicker, SoundHelper.purchasingSounds.length, 1, "", "", Constants.SETTING_SOUND_PURCHASING, true);
         createDropdown(R.id.rotatingSoundPicker, SoundHelper.rotatingSounds.length, 1, "", "", Constants.SETTING_SOUND_ROTATING, true);
         createDropdown(R.id.settingsSoundPicker, SoundHelper.settingSounds.length, 1, "", "", Constants.SETTING_SOUND_SETTINGS, true);
-        createDropdown(R.id.mainMusicPicker, MusicHelper.mainSongs.length, 1, "", "", Constants.SETTING_SONG_MAIN, true);
-        createDropdown(R.id.puzzleMusicPicker, MusicHelper.puzzleSongs.length, 1, "", "", Constants.SETTING_SONG_PUZZLE, true);
+        createDropdown(R.id.mainMusicPicker, SoundHelper.mainSongs.length, 1, "", "", Constants.SETTING_SONG_MAIN, true);
+        createDropdown(R.id.puzzleMusicPicker, SoundHelper.puzzleSongs.length, 1, "", "", Constants.SETTING_SONG_PUZZLE, true);
     }
 
     private void createDropdown(int spinnerId, int max, int min, String prefix, String suffix, int settingId, boolean pickingAudio) {
@@ -182,19 +181,19 @@ public class SettingsActivity extends AllowMeActivity {
                             populateText();
                             break;
                         case Constants.SETTING_SOUND_PURCHASING:
-                            SoundHelper.getInstance(activity).playSound(SoundHelper.SOUNDS.purchasing);
+                            SoundHelper.getInstance(activity).playSound(SoundHelper.AUDIO.purchasing);
                             break;
                         case Constants.SETTING_SOUND_SETTINGS:
-                            SoundHelper.getInstance(activity).playSound(SoundHelper.SOUNDS.settings);
+                            SoundHelper.getInstance(activity).playSound(SoundHelper.AUDIO.settings);
                             break;
                         case Constants.SETTING_SOUND_ROTATING:
-                            SoundHelper.getInstance(activity).playSound(SoundHelper.SOUNDS.rotating);
+                            SoundHelper.getInstance(activity).playSound(SoundHelper.AUDIO.rotating);
                             break;
                         case Constants.SETTING_SONG_MAIN:
-                            MusicHelper.getInstance(activity).playMusic(MusicHelper.SONG.main);
+                            SoundHelper.getInstance(activity).playSound(SoundHelper.AUDIO.main);
                             break;
                         case Constants.SETTING_SONG_PUZZLE:
-                            MusicHelper.getInstance(activity).playMusic(MusicHelper.SONG.puzzle);
+                            SoundHelper.getInstance(activity).playSound(SoundHelper.AUDIO.puzzle);
                             break;
                     }
                 }
@@ -208,9 +207,13 @@ public class SettingsActivity extends AllowMeActivity {
         switch (v.getId()) {
             case R.id.musicToggleButton:
                 toggleSetting(Constants.SETTING_MUSIC);
+                SoundHelper.getInstance(this).stopAudio(true);
+                SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.main);
                 break;
             case R.id.soundToggleButton:
                 toggleSetting(Constants.SETTING_SOUNDS);
+                SoundHelper.getInstance(this).stopAudio(false);
+                SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.settings);
                 break;
             case R.id.zenToggleButton:
                 toggleSetting(Constants.SETTING_ZEN_MODE);
@@ -231,7 +234,7 @@ public class SettingsActivity extends AllowMeActivity {
 
     private void toggleSetting(int settingID) {
         if (settingID > 0) {
-            SoundHelper.getInstance(this).playSound(SoundHelper.SOUNDS.settings);
+            SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.settings);
             Setting settingToToggle = Setting.findById(Setting.class, settingID);
             settingToToggle.setBooleanValue(!settingToToggle.getBooleanValue());
             settingToToggle.save();

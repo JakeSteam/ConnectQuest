@@ -5095,8 +5095,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         settings.add(new Setting(Constants.SETTING_SOUND_PURCHASING, 0, 0, SoundHelper.purchasingSounds.length));
         settings.add(new Setting(Constants.SETTING_SOUND_ROTATING, 0, 0, SoundHelper.rotatingSounds.length));
         settings.add(new Setting(Constants.SETTING_SOUND_SETTINGS, 0, 0, SoundHelper.settingSounds.length));
-        settings.add(new Setting(Constants.SETTING_SONG_MAIN, 0, 0, MusicHelper.mainSongs.length));
-        settings.add(new Setting(Constants.SETTING_SONG_PUZZLE, 0, 0, MusicHelper.puzzleSongs.length));
+        settings.add(new Setting(Constants.SETTING_SONG_MAIN, 0, 0, SoundHelper.mainSongs.length));
+        settings.add(new Setting(Constants.SETTING_SONG_PUZZLE, 0, 0, SoundHelper.puzzleSongs.length));
         Setting.saveInTx(settings);
     }
 
