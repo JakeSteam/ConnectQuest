@@ -15,12 +15,23 @@
         app:layout_marginPercent="10%"
         android:background="@color/city"
         android:layout_centerInParent="true">
-        <TableLayout
-            android:id="@+id/statisticsContainer"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:stretchColumns="*"
-            android:shrinkColumns="*"/>
+            android:orientation="vertical">
+            <uk.co.jakelee.cityflow.components.TextViewFont
+                android:id="@+id/statisticsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="30sp"/>
+            <TableLayout
+                android:id="@+id/statisticsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*"
+                android:shrinkColumns="*"/>
+        </LinearLayout>
     </ScrollView>
 
     <uk.co.jakelee.cityflow.components.TextAwesome

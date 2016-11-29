@@ -16,6 +16,7 @@ import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.components.TextViewFont;
 import uk.co.jakelee.cityflow.helper.StatisticHelper;
 import uk.co.jakelee.cityflow.model.Statistic;
+import uk.co.jakelee.cityflow.model.Text;
 
 public class StatisticsActivity extends Activity {
 
@@ -36,6 +37,8 @@ public class StatisticsActivity extends Activity {
         LinearLayout container = (LinearLayout) findViewById(R.id.statisticsContainer);
         container.removeAllViews();
 
+        ((TextView)findViewById(R.id.statisticsTitle)).setText(Text.get("DIALOG_STATISTICS"));
+
         // Get sorted map of name + value
         List<Statistic> statistics = Statistic.listAll(Statistic.class);
         Map<String,String> statisticsInfo = new TreeMap<>();
@@ -55,7 +58,7 @@ public class StatisticsActivity extends Activity {
 
     private TextView createTextView(String text, boolean isHeader) {
         TextViewFont textView = new TextViewFont(this);
-        textView.setTextColor(isHeader ? Color.BLACK : Color.DKGRAY);
+        textView.setTextColor(isHeader ? Color.DKGRAY : Color.GRAY);
         textView.setTextSize(20);
         textView.setText(text);
         return textView;
