@@ -199,6 +199,8 @@ public class Constants {
     public static final int SETTING_SOUND_PURCHASING = 14;
     public static final int SETTING_SOUND_ROTATING = 15;
     public static final int SETTING_SOUND_SETTINGS = 16;
+    public static final int SETTING_SONG_MAIN = 17;
+    public static final int SETTING_SONG_PUZZLE = 18;
     public static final int SKYSCRAPER_COMPLETE = 1;
     public static final int SKYSCRAPER_TIME = 2;
     public static final int SKYSCRAPER_MOVES = 3;
