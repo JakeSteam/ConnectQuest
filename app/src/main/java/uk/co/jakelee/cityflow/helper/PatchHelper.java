@@ -442,6 +442,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_BACKGROUND_LOCKED", "You need to unlock this background first!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_NO_IAB", "In app billing is not available on this device!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_IAB_FAILED", "Purchase failed! Please ensure you're logged in, and have a payment method configured."));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_PUZZLE_SOLVED", "Puzzle already solved! Try shuffling the tiles first!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_0_NAME", "None"));
         texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_1_NAME", "Water"));
         texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_2_NAME", "Road"));

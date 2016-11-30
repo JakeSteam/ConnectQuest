@@ -25,6 +25,7 @@ import java.util.List;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
+import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
@@ -316,13 +317,14 @@ public class PuzzleActivity extends Activity {
             badTiles = TileHelper.checkPuzzleFlow(puzzleId, badTiles, (TextView)findViewById(R.id.puzzleLoadingIndicator));
         }
 
+        final Activity activity = this;
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 handler.removeCallbacksAndMessages(null);
-                if (exitedPuzzle || timeInMilliseconds == 0) {
-                    finish();
-                } else {
+                if (timeInMilliseconds == 0) {
+                    AlertHelper.error(activity, AlertHelper.getError(AlertHelper.Error.PUZZLE_SOLVED), true);
+                } else if (!exitedPuzzle) {
                     displayPuzzleComplete();
                 }
             }
