@@ -15,7 +15,7 @@ public class SoundHelper {
     private MediaPlayer soundPlayer;
     private MediaPlayer songPlayer;
     public static final int[] mainSongs = {R.raw.main_carefree, R.raw.main_carpe_diem, R.raw.main_rainbows};
-    public static final int[] puzzleSongs = {R.raw.puzzle_faceoff, R.raw.puzzle_ghost_dance, R.raw.puzzle_crypto};
+    public static final int[] puzzleSongs = {R.raw.puzzle_faceoff, R.raw.puzzle_ghost_dance};
 
     public enum AUDIO {purchasing, rotating, settings, main, puzzle};
     public static final int[] purchasingSounds = {R.raw.purchase1, R.raw.purchase2};
