@@ -31,7 +31,6 @@ public class MainActivity extends Activity implements
         GoogleApiClient.OnConnectionFailedListener,
         QuestUpdateListener {
     public static SharedPreferences prefs;
-    private GooglePlayHelper gph;
     private DisplayHelper dh;
 
     @Override
@@ -39,7 +38,6 @@ public class MainActivity extends Activity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         prefs = getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE);
-        gph = new GooglePlayHelper();
         dh = DisplayHelper.getInstance(this);
 
         new PatchHelper(this).execute();

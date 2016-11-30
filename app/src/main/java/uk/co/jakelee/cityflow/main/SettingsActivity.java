@@ -159,7 +159,7 @@ public class SettingsActivity extends AllowMeActivity {
         final Spinner spinner = (Spinner)findViewById(spinnerId);
         int setting = Setting.get(settingId).getIntValue();
         spinner.setAdapter(envAdapter);
-        spinner.setSelection(pickingAudio ? setting : setting - 1);
+        spinner.setSelection(setting);
         spinner.setOnItemSelectedListener(getListener(settingId));
     }
 

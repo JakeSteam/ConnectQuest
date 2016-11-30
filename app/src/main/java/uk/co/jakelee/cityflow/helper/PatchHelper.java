@@ -5098,6 +5098,10 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         settings.add(new Setting(Constants.SETTING_SONG_MAIN, 0, 0, SoundHelper.mainSongs.length));
         settings.add(new Setting(Constants.SETTING_SONG_PUZZLE, 0, 0, SoundHelper.puzzleSongs.length));
         Setting.saveInTx(settings);
+
+        if (Setting.getSafeBoolean(Constants.SETTING_MUSIC)) {
+            SoundHelper.getInstance(callingActivity).playSound(SoundHelper.AUDIO.main);
+        }
     }
 
     private void createStatistic() {

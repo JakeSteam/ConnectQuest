@@ -320,7 +320,9 @@ public class PuzzleActivity extends Activity {
             @Override
             public void run() {
                 handler.removeCallbacksAndMessages(null);
-                if (!exitedPuzzle) {
+                if (exitedPuzzle || timeInMilliseconds == 0) {
+                    finish();
+                } else {
                     displayPuzzleComplete();
                 }
             }
