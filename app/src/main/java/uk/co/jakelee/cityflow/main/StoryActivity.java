@@ -66,16 +66,25 @@ public class StoryActivity extends Activity {
 
     private void displayPackInfo() {
         final Pack pack = Pack.getPack(selectedPack);
+        boolean isUnlocked = pack.isUnlocked();
+        boolean isUnlockable = pack.isUnlockable();
 
         ((TextView)findViewById(R.id.packName)).setText(pack.getName());
         ((TextView)findViewById(R.id.packPuzzleCount)).setText(Integer.toString(pack.getMaxStars() / 3) + " puzzles");
-        if (pack.isUnlocked()) {
-            ((TextView)findViewById(R.id.packDescription)).setText(String.format(Text.get("UI_PACK_UNLOCKED"),
+
+        findViewById(R.id.unlockedPackContainer).setVisibility(isUnlocked ? View.VISIBLE : View.INVISIBLE);
+        findViewById(R.id.unlockablePackContainer).setVisibility(!isUnlocked && isUnlockable ? View.VISIBLE : View.INVISIBLE);
+        findViewById(R.id.lockedPackContainer).setVisibility(!isUnlocked && !isUnlockable ? View.VISIBLE : View.INVISIBLE);
+
+        ((TextView)findViewById(R.id.actionButton)).setText(Text.get(isUnlocked ? "WORD_OPEN" : "WORD_UNLOCK"));
+        findViewById(R.id.actionButton).setVisibility(isUnlocked || isUnlockable ? View.VISIBLE : View.GONE);
+
+        if (isUnlocked) {
+            ((TextView)findViewById(R.id.unlockedPackDescription)).setText(String.format(Text.get("UI_PACK_UNLOCKED"),
                     pack.getCurrentStars(),
                     pack.getMaxStars(),
                     pack.getCurrentTime() > 0 ? DateHelper.getPuzzleTimeString(pack.getCurrentTime()) : "N/A",
                     pack.getCurrentMoves() > 0 ? Integer.toString(pack.getCurrentMoves()) : "N/A"));
-            ((TextView)findViewById(R.id.actionButton)).setText(Text.get("WORD_OPEN"));
             findViewById(R.id.actionButton).setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(getApplicationContext(), PackActivity.class);
@@ -84,14 +93,10 @@ public class StoryActivity extends Activity {
                     startActivity(intent);
                 }
             });
-            findViewById(R.id.actionButton).setVisibility(View.VISIBLE);
         } else if (pack.isUnlockable()) {
             Pack previousPack = Pack.getPack(selectedPack - 1);
-            ((TextView)findViewById(R.id.packDescription)).setText(String.format(Text.get("UI_PACK_UNLOCKABLE"),
-                    previousPack.getName(),
-                    previousPack.getCurrentStars(),
-                    previousPack.getMaxStars()));
-            ((TextView)findViewById(R.id.actionButton)).setText(Text.get("WORD_UNLOCK"));
+            ((TextView)findViewById(R.id.unlockablePackHeader)).setText(Text.get("UI_PACK_UNLOCKABLE_HEADER"));
+            ((TextView)findViewById(R.id.unlockablePackInstruction)).setText(String.format(Text.get("UI_PACK_UNLOCKABLE_INSTRUCTION"), previousPack.getName(), previousPack.getCurrentStars(), previousPack.getMaxStars()));
             findViewById(R.id.actionButton).setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     ShopItem packItem = ShopItem.getPackItem(pack.getPackId());
@@ -101,10 +106,8 @@ public class StoryActivity extends Activity {
                     startActivity(intent);
                 }
             });
-            findViewById(R.id.actionButton).setVisibility(View.VISIBLE);
         } else {
-            ((TextView)findViewById(R.id.packDescription)).setText(pack.getUnlockChallenge());
-            findViewById(R.id.actionButton).setVisibility(View.GONE);
+            ((TextView)findViewById(R.id.lockedPackDescription)).setText(pack.getUnlockChallenge());
         }
     }
 

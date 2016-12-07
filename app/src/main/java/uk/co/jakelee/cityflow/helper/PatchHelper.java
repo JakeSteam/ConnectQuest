@@ -792,7 +792,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_SKYSCRAPER_MOVES_TEXT", "%1$d/%2$d\nmoves"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_PACK_OPEN", "Open Pack"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_PACK_PURCHASE", "Purchase Pack"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "UI_PACK_UNLOCKABLE", "Pack locked!\n\nFully complete pack \"%1$s\" (currently %2$d / %3$d stars) to unlock, or purchase for coins in the shop."));
+        texts.add(new Text(Constants.LANGUAGE_EN, "UI_PACK_UNLOCKABLE_HEADER", "Pack locked!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "UI_PACK_UNLOCKABLE_INSTRUCTION", "Fully complete pack \"%1$s\" (currently %2$d / %3$d stars) to unlock, or purchase for coins in the shop."));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_PACK_UNLOCKED", "%1$d / %2$d Stars\n\nBest Time: %3$s\n\nBest Moves: %4$s"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_PUZZLE_BY", "By:"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_PUZZLE_NAME", "Name:"));

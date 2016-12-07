@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">City Flow</string>
-    <string name="crash_message">Oh no, City Flow has crashed! Please email a crash report using your email client of choice. Sorry!</string>
 
     <string name="tile_filename">tile_%1$d_%2$d</string>
     <string name="icon_play">&#xf04b;</string>
@@ -27,4 +26,10 @@
     <string name="icon_lock">&#xf023;</string>
     <string name="icon_unlock">&#xf09c;</string>
     <string name="icon_text">&#xf031;</string>
+
+    <string name="rate_dialog_cancel">Later</string>
+    <string name="rate_dialog_message">If you\'re enjoying City Flow, would you mind leaving a rating? It really helps the game out, and lets me know all the development hours were worth it! Thanks!</string>
+    <string name="rate_dialog_no">No! >:(</string>
+    <string name="rate_dialog_ok">Okay! :)</string>
+    <string name="rate_dialog_title">Leave a rating</string>
 </resources>
