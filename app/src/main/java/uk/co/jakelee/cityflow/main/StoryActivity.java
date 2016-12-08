@@ -14,10 +14,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.games.Games;
+
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
+import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Text;
@@ -80,11 +83,9 @@ public class StoryActivity extends Activity {
         findViewById(R.id.actionButton).setVisibility(isUnlocked || isUnlockable ? View.VISIBLE : View.GONE);
 
         if (isUnlocked) {
-            ((TextView)findViewById(R.id.unlockedPackDescription)).setText(String.format(Text.get("UI_PACK_UNLOCKED"),
-                    pack.getCurrentStars(),
-                    pack.getMaxStars(),
-                    pack.getCurrentTime() > 0 ? DateHelper.getPuzzleTimeString(pack.getCurrentTime()) : "N/A",
-                    pack.getCurrentMoves() > 0 ? Integer.toString(pack.getCurrentMoves()) : "N/A"));
+            ((TextView)findViewById(R.id.unlockedPackStars)).setText(String.format(Text.get("UI_PACK_UNLOCKED_STARS"), pack.getCurrentStars(), pack.getMaxStars()));
+            ((TextView)findViewById(R.id.unlockedPackTime)).setText(String.format(Text.get("UI_PACK_UNLOCKED_TIME"), pack.getCurrentTime() > 0 ? DateHelper.getPuzzleTimeString(pack.getCurrentTime()) : "N/A"));
+            ((TextView)findViewById(R.id.unlockedPackMoves)).setText(String.format(Text.get("UI_PACK_UNLOCKED_MOVES"), pack.getCurrentMoves() > 0 ? Integer.toString(pack.getCurrentMoves()) : "N/A"));
             findViewById(R.id.actionButton).setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(getApplicationContext(), PackActivity.class);
@@ -148,13 +149,14 @@ public class StoryActivity extends Activity {
         }
     }
 
-    /*public void openLeaderboard(View v) {
+    public void openLeaderboard(View v) {
         if (GooglePlayHelper.IsConnected()) {
-            if (v.getId() == R.id.timeLeaderboard && !selectedPack.getTimeLeaderboard().equals("")) {
-                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, selectedPack.getTimeLeaderboard()), GooglePlayHelper.RC_LEADERBOARDS);
-            } else if (v.getId() == R.id.movesLeaderboard && !selectedPack.getMovesLeaderboard().equals("")) {
-                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, selectedPack.getMovesLeaderboard()), GooglePlayHelper.RC_LEADERBOARDS);
+            Pack pack = Pack.getPack(selectedPack);
+            if (v.getId() == R.id.unlockedPackTime && !pack.getTimeLeaderboard().equals("")) {
+                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, pack.getTimeLeaderboard()), GooglePlayHelper.RC_LEADERBOARDS);
+            } else if (v.getId() == R.id.unlockedPackMoves && !pack.getMovesLeaderboard().equals("")) {
+                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, pack.getMovesLeaderboard()), GooglePlayHelper.RC_LEADERBOARDS);
             }
         }
-    }*/
+    }
 }

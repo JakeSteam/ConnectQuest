@@ -86,16 +86,16 @@
             <uk.co.jakelee.cityflow.components.AutofitTextViewFont
                 android:id="@+id/unlockablePackHeader"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:padding="10dp"
                 android:gravity="center"
-                android:textSize="40sp"
+                android:textSize="30sp"
                 android:textColor="@color/dkgrey"/>
             <uk.co.jakelee.cityflow.components.AutofitTextViewFont
                 android:id="@+id/unlockablePackInstruction"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:padding="10dp"
                 android:gravity="center"
@@ -106,17 +106,38 @@
             android:id="@+id/unlockedPackContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_below="@id/packName"
-            android:layout_above="@id/actionButton">
+            android:layout_above="@id/actionButton"
+            android:orientation="vertical">
             <uk.co.jakelee.cityflow.components.AutofitTextViewFont
-                android:id="@+id/unlockedPackDescription"
+                android:id="@+id/unlockedPackStars"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="10dp"
-                android:gravity="center"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:gravity="center_horizontal"
                 android:textSize="20sp"
                 android:textColor="@color/dkgrey"/>
+            <uk.co.jakelee.cityflow.components.AutofitTextViewFont
+                android:id="@+id/unlockedPackTime"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:textSize="20sp"
+                android:textColor="@color/dkgrey"
+                android:onClick="openLeaderboard"
+                android:gravity="center_horizontal"/>
+            <uk.co.jakelee.cityflow.components.AutofitTextViewFont
+                android:id="@+id/unlockedPackMoves"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:textSize="20sp"
+                android:textColor="@color/dkgrey"
+                android:onClick="openLeaderboard"
+                android:gravity="center_horizontal"/>
         </LinearLayout>
     </android.support.percent.PercentRelativeLayout>
 
