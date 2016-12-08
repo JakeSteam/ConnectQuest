@@ -24,6 +24,10 @@ public class AlertHelper {
         display(activity, text, R.layout.custom_crouton_success, false);
     }
 
+    public static void info(Activity activity, String text, boolean infinite) {
+        display(activity, text, R.layout.custom_crouton_info, infinite);
+    }
+
     public static void info(Activity activity, String text) {
         display(activity, text, R.layout.custom_crouton_info, false);
     }

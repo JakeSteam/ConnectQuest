@@ -104,6 +104,12 @@ public class PuzzleHelper {
                 if (GooglePlayHelper.shouldAutosave()) {
                     GooglePlayHelper.autosave(context);
                 }
+
+                Setting tutorialStage = Setting.get(Constants.SETTING_TUTORIAL_STAGE);
+                if (tutorialStage.getIntValue() <= Constants.TUTORIAL_MAX) {
+                    tutorialStage.setIntValue(tutorialStage.getIntValue() + 1);
+                    tutorialStage.save();
+                }
             }
         }).start();
     }

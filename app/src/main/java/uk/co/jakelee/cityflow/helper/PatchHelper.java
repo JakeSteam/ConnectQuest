@@ -780,6 +780,19 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_182_NAME", "Grass Water T Junction"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_183_NAME", "Grass Water Interchange"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_184_NAME", "Grass Water Corner (Tree)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_1", "Rotate tiles to form a consistent flow, with no loose ends. Tap to rotate!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_2", "Completing a puzzle will usually unlock a new tile in the level creator, there's hundreds!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_3", "Completing all the puzzles in a pack in fewer moves & less time than the par will unlock the next pack for free."));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_4", "Flows can transition and cross over, it all still counts as flowing!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_5", "Puzzles also have different heights, and can be set in different environments. What's your favourite?"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_6", "Bored of packs? Over 186^225 (over 1 novensexagintacentillion!) different puzzles can be generated in the \"Build\" area!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_7", "Not a fan of the music / sounds? Customise them in the settings menu!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_8", "You're probably reading these okay, but the language can be changed in the settings too. Almost all translations are fan-submitted, feel free to help out!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_9", "Want free coins? Completing quests & levels or watching adverts & offers are all good earners!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_10", "Decorative tiles can be rotated in any direction, since they have no flow."));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_11", "Share your puzzles at reddit.com/r/CityFlow, or any of the social media sites (links in settings)!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_12", "New packs, tiles, game options, and boosts can be purchased in the shop."));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_13", "Can't fully complete a pack to unlock the next one? Use your hard earned coins to buy it instead!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_BACKGROUND_SELECT_TITLE", "%1$d/%2$d Unlocked"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TITLE", "Purchase Coins"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TEASER", "First purchase of any pack unlocks a bonus puzzle pack!"));
@@ -5686,6 +5699,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         settings.add(new Setting(Constants.SETTING_SOUND_SETTINGS, 0, 0, SoundHelper.settingSounds.length));
         settings.add(new Setting(Constants.SETTING_SONG_MAIN, 0, 0, SoundHelper.mainSongs.length));
         settings.add(new Setting(Constants.SETTING_SONG_PUZZLE, 0, 0, SoundHelper.puzzleSongs.length));
+        settings.add(new Setting(Constants.SETTING_TUTORIAL_STAGE, 1, Constants.TUTORIAL_MIN, Constants.TUTORIAL_MAX));
         Setting.saveInTx(settings);
 
         if (Setting.getSafeBoolean(Constants.SETTING_MUSIC)) {

@@ -23,6 +23,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.keyboardsurfer.android.widget.crouton.Crouton;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
@@ -107,6 +108,15 @@ public class PuzzleActivity extends Activity {
         playSounds = Setting.getSafeBoolean(Constants.SETTING_SOUNDS);
         if (Setting.getSafeBoolean(Constants.SETTING_MUSIC)) {
             SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.puzzle);
+        }
+
+        displayTutorial();
+    }
+
+    private void displayTutorial() {
+        int tutorialStage = Setting.getInt(Constants.SETTING_TUTORIAL_STAGE);
+        if (tutorialStage <= Constants.TUTORIAL_MAX) {
+            AlertHelper.info(this, Text.get("TUTORIAL_" + tutorialStage), true);
         }
     }
 
@@ -325,6 +335,7 @@ public class PuzzleActivity extends Activity {
                 if (timeInMilliseconds == 0) {
                     AlertHelper.error(activity, AlertHelper.getError(AlertHelper.Error.PUZZLE_SOLVED), true);
                 } else if (!exitedPuzzle) {
+                    Crouton.cancelAllCroutons();
                     displayPuzzleComplete();
                 }
             }
@@ -420,6 +431,7 @@ public class PuzzleActivity extends Activity {
         findViewById(R.id.pauseScreen).setVisibility(View.VISIBLE);
         timePaused = System.currentTimeMillis();
         handler.removeCallbacksAndMessages(null);
+        Crouton.cancelAllCroutons();
     }
 
     public void resumePuzzle(View v) {
