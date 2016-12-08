@@ -276,7 +276,7 @@
                     android:shadowRadius="1.6"/>
             </TableRow>
 
-            <TableRow>
+            <TableRow android:id="@+id/zenModeContainer">
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/zenToggleText"
                     android:layout_width="match_parent"

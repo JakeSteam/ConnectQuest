@@ -513,6 +513,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_26_DESC", "Instantly unlock pack 7, without collecting all stars."));
         texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_27_NAME", "Unlock Pack 8"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_27_DESC", "Instantly unlock pack 8, without collecting all stars."));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_28_NAME", "Zen Mode"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_28_DESC", "Hide puzzle timer and move counter, for a more relaxing experience!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "LANGUAGE_0_NAME", "English"));
         texts.add(new Text(Constants.LANGUAGE_EN, "LANGUAGE_1_NAME", "Zhōngwén (Pīnyīn)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "LANGUAGE_2_NAME", "Deutsch"));
@@ -5757,6 +5759,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         shopItems.add(new ShopItem(Constants.ITEM_PACK_7, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 7, 1800, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_PACK_8, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 8, 1800, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_MAX_CARS, Constants.STORE_CATEGORY_MISC, 400, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_ZEN_MODE, Constants.STORE_CATEGORY_MISC, 100, 1, false));
         ShopItem.saveInTx(shopItems);
     }
 

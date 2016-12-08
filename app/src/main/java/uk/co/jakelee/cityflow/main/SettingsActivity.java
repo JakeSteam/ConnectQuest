@@ -58,6 +58,7 @@ public class SettingsActivity extends AllowMeActivity {
         findViewById(R.id.autosaveRow).setVisibility(isConnected ? View.VISIBLE : View.GONE);
 
         findViewById(R.id.maxCarsContainer).setVisibility(ShopItem.isPurchased(Constants.ITEM_MAX_CARS) ? View.VISIBLE : View.GONE);
+        findViewById(R.id.zenModeContainer).setVisibility(ShopItem.isPurchased(Constants.ITEM_ZEN_MODE) ? View.VISIBLE : View.GONE);
     }
 
     public void populateText() {

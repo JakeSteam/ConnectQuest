@@ -167,6 +167,7 @@ public class Constants {
     public static final int ITEM_PACK_6 = 25;
     public static final int ITEM_PACK_7 = 26;
     public static final int ITEM_PACK_8 = 27;
+    public static final int ITEM_ZEN_MODE = 28;
     public static final int LANGUAGE_MIN = 0;
     public static final int LANGUAGE_MAX = 7;
     public static final int LANGUAGE_EN = 0;
