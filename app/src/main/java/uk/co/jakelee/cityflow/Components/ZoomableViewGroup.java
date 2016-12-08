@@ -158,7 +158,16 @@ public class ZoomableViewGroup extends RelativeLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return false;
+        if (ev.getAction() == MotionEvent.ACTION_DOWN || ev.getAction() == MotionEvent.ACTION_UP) {
+            mLastTouchX = ev.getX();
+            mLastTouchY = ev.getY();
+        }
+
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            mActivePointerId = ev.getPointerId(0);
+        }
+
+        return ev.getAction() == MotionEvent.ACTION_MOVE;
     }
 
     @Override
@@ -188,6 +197,7 @@ public class ZoomableViewGroup extends RelativeLayout {
             case MotionEvent.ACTION_MOVE: {
                 // Find the index of the active pointer and fetch its position
                 final int pointerIndex = ev.findPointerIndex(mActivePointerId);
+
                 final float x = ev.getX(pointerIndex);
                 final float y = ev.getY(pointerIndex);
 
@@ -231,7 +241,7 @@ public class ZoomableViewGroup extends RelativeLayout {
                 break;
             }
         }
-        return true;
+        return ev.getAction() != MotionEvent.ACTION_MOVE;
     }
 
     private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
