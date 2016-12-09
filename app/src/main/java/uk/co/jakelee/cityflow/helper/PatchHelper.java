@@ -544,7 +544,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "QUEST_UPCOMING", "Upcoming"));
         texts.add(new Text(Constants.LANGUAGE_EN, "QUEST_COMPLETED", "Completed"));
         texts.add(new Text(Constants.LANGUAGE_EN, "QUEST_FAILED", "Failed"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "QUEST_COMPLETED_TEXT", "Completed the %1$s quest \"%1$s\" and earned %3$d coins!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "QUEST_COMPLETED_TEXT", "Completed the %1$s quest \"%2$s\" and earned %3$d coins!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_SECTION_AUDIO", "Audio Settings"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_SECTION_GAMEPLAY", "Game Settings"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_SECTION_GOOGLE", "Google Settings"));

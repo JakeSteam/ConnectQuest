@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -25,6 +26,7 @@ import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.helper.PatchHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.model.Setting;
+import uk.co.jakelee.cityflow.model.Text;
 
 public class MainActivity extends Activity implements
         GoogleApiClient.ConnectionCallbacks,
@@ -97,6 +99,7 @@ public class MainActivity extends Activity implements
         super.onResume();
 
         createAnimations();
+        ((TextView)findViewById(R.id.languageFlag)).setText(Text.getLanguageFlag(prefs.getInt("language", Constants.LANGUAGE_EN)));
     }
 
     private void createAnimations() {
