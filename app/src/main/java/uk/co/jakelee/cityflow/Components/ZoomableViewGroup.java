@@ -158,12 +158,13 @@ public class ZoomableViewGroup extends RelativeLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        if (ev.getAction() == MotionEvent.ACTION_DOWN || ev.getAction() == MotionEvent.ACTION_POINTER_UP) {
-            mLastTouchX = ev.getX();
-            mLastTouchY = ev.getY();
-        }
-
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            mOnTouchEventWorkingArray[0] = ev.getX();
+            mOnTouchEventWorkingArray[1] = ev.getY();
+            mOnTouchEventWorkingArray = scaledPointsToScreenPoints(mOnTouchEventWorkingArray);
+
+            mLastTouchX = mOnTouchEventWorkingArray[0];
+            mLastTouchY = mOnTouchEventWorkingArray[1];
             mActivePointerId = ev.getPointerId(0);
         }
 
