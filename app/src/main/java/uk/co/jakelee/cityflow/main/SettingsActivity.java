@@ -181,7 +181,7 @@ public class SettingsActivity extends AllowMeActivity {
                             getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE).edit()
                                     .putInt("language", position).apply();
                             if (!TextHelper.isPackInstalled(position)) {
-                                AlertHelper.info(activity, "Installing language: " + Text.get("LANGUAGE_" + position + "_NAME"));
+                                AlertHelper.info(activity, String.format(Text.get("ALERT_LANGUAGE_INSTALL"), Text.get("LANGUAGE_" + position + "_NAME")));
                                 TextHelper.installLanguagePack(position);
                             }
                             populateText();
@@ -277,7 +277,7 @@ public class SettingsActivity extends AllowMeActivity {
     }
 
     public void resetGameLanguage() {
-        AlertHelper.success(this, Text.get("ALERT_RESET_DIALOG"));
+        AlertHelper.success(this, Text.get("ALERT_RESET_LANGUAGE"));
 
         getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE).edit()
                 .putInt("language", Constants.LANGUAGE_EN).apply();
@@ -289,6 +289,7 @@ public class SettingsActivity extends AllowMeActivity {
         Text.deleteAll(Text.class, "language <> " + Constants.LANGUAGE_EN);
 
         populateText();
+        createDropdowns();
     }
 
     public void openCredits(View v) {

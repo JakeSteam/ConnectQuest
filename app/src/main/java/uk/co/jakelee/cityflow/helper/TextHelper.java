@@ -11,6 +11,8 @@ import java.util.Locale;
 
 import uk.co.jakelee.cityflow.model.Text;
 
+import static com.orm.query.Select.from;
+
 public class TextHelper {
     public static int getDefaultLanguage() {
         switch(Locale.getDefault().getLanguage()) {
@@ -35,33 +37,54 @@ public class TextHelper {
             case Constants.LANGUAGE_ES: return new String(Character.toChars(0x1F1EA)) + new String(Character.toChars(0x1F1F8));
             case Constants.LANGUAGE_NL: return new String(Character.toChars(0x1F1F3)) + new String(Character.toChars(0x1F1F1));
             case Constants.LANGUAGE_ZH: return new String(Character.toChars(0x1F1E8)) + new String(Character.toChars(0x1F1F3));
+            case Constants.LANGUAGE_SV: return new String(Character.toChars(0x1F1F8)) + new String(Character.toChars(0x1F1EA));
             default: return "";
         }
     }
 
     public static void installLanguagePack(int languageId) {
         switch(languageId) {
-            case Constants.LANGUAGE_EN: installEnglishText();
-            case Constants.LANGUAGE_DE: installGermanText();
-            case Constants.LANGUAGE_FR: installFrenchText();
-            case Constants.LANGUAGE_PL: installPolishText();
-            case Constants.LANGUAGE_RU: installRussianText();
-            case Constants.LANGUAGE_ES: installSpanishText();
-            case Constants.LANGUAGE_NL: installDutchText();
-            case Constants.LANGUAGE_ZH: installChineseText();
+            case Constants.LANGUAGE_EN:
+                installEnglishText();
+                break;
+            case Constants.LANGUAGE_DE:
+                installGermanText();
+                break;
+            case Constants.LANGUAGE_FR:
+                installFrenchText();
+                break;
+            case Constants.LANGUAGE_PL:
+                installPolishText();
+                break;
+            case Constants.LANGUAGE_RU:
+                installRussianText();
+                break;
+            case Constants.LANGUAGE_ES:
+                installSpanishText();
+                break;
+            case Constants.LANGUAGE_NL:
+                installDutchText();
+                break;
+            case Constants.LANGUAGE_ZH:
+                installChineseText();
+                break;
+            case Constants.LANGUAGE_SV:
+                installSwedishText();
+                break;
         }
     }
 
     public static boolean isPackInstalled(int languageId) {
-        Text text = Select.from(Text.class).where(
+        Text text = from(Text.class).where(
                 Condition.prop("language").eq(languageId),
                 Condition.prop("text_id").eq("INSTALL_CHECK")).first();
         return text != null;
     }
 
     public static int getNonEnglishTextCount() {
-        return (int) Select.from(Text.class).where(
-                Condition.prop("language").notEq(Constants.LANGUAGE_EN)).count();
+        List<Text> texts = Select.from(Text.class).where(
+                Condition.prop("language").notEq(Constants.LANGUAGE_EN)).list();
+        return texts.size();
     }
 
     private static void installEnglishText() {
@@ -70,8 +93,9 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "INSTALL_CHECK", ""));
 
         // Added post-translation
-        texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_RESET_LANGUAGE", "Reset Language"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_LANGUAGE_INSTALL", "Installing language pack: %1$s"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_RESET_LANGUAGE", "Game language set to English!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_RESET_LANGUAGE", "Reset Language"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_RESET_LANGUAGE_CONFIRM", "Reset language back to English, uninstalling the %1$d translations currently installed?\n\nReinstall packs by changing language!"));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_BACKGROUND_UNLOCK", "Unlocked '%1$s' background!"));
@@ -348,6 +372,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "LANGUAGE_5_NAME", "Pусский"));
         texts.add(new Text(Constants.LANGUAGE_EN, "LANGUAGE_6_NAME", "Español"));
         texts.add(new Text(Constants.LANGUAGE_EN, "LANGUAGE_7_NAME", "Nederlands"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "LANGUAGE_8_NAME", "Svenska"));
         texts.add(new Text(Constants.LANGUAGE_EN, "METRIC_TILES_EARNED", "Tiles Earned"));
         texts.add(new Text(Constants.LANGUAGE_EN, "METRIC_BEST_TIME", "Best Time"));
         texts.add(new Text(Constants.LANGUAGE_EN, "METRIC_BEST_MOVES", "Best Moves"));
@@ -674,8 +699,6 @@ public class TextHelper {
     }
 
     private static void installGermanText() {
-        Log.d("Languages", "Installing German text pack");
-
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_DE, "INSTALL_CHECK", ""));
 
@@ -684,18 +707,14 @@ public class TextHelper {
     }
 
     private static void installDutchText() {
-        Log.d("Languages", "Installing Dutch text pack");
-
         List<Text> texts = new ArrayList<>();
-        texts.add(new Text(Constants.LANGUAGE_DE, "INSTALL_CHECK", ""));
+        texts.add(new Text(Constants.LANGUAGE_NL, "INSTALL_CHECK", ""));
 
-        texts.add(new Text(Constants.LANGUAGE_DE, "SETTING_SECTION_GAMEPLAY", "DUTCH TEXT"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "SETTING_SECTION_GAMEPLAY", "DUTCH TEXT"));
         Text.saveInTx(texts);
     }
 
     private static void installFrenchText() {
-        Log.d("Languages", "Installing French text pack");
-
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_FR, "INSTALL_CHECK", ""));
 
@@ -704,8 +723,6 @@ public class TextHelper {
     }
 
     private static void installPolishText() {
-        Log.d("Languages", "Installing Polish text pack");
-
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_PL, "INSTALL_CHECK", ""));
 
@@ -714,8 +731,6 @@ public class TextHelper {
     }
 
     private static void installRussianText() {
-        Log.d("Languages", "Installing Russian text pack");
-
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_RU, "INSTALL_CHECK", ""));
 
@@ -724,8 +739,6 @@ public class TextHelper {
     }
 
     private static void installSpanishText() {
-        Log.d("Languages", "Installing Spanish text pack");
-
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_ES, "INSTALL_CHECK", ""));
 
@@ -734,12 +747,18 @@ public class TextHelper {
     }
 
     private static void installChineseText() {
-        Log.d("Languages", "Installing Chinese text pack");
-
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_ZH, "INSTALL_CHECK", ""));
 
         texts.add(new Text(Constants.LANGUAGE_ZH, "SETTING_SECTION_GAMEPLAY", "CHINESE TEXT"));
+        Text.saveInTx(texts);
+    }
+
+    private static void installSwedishText() {
+        List<Text> texts = new ArrayList<>();
+        texts.add(new Text(Constants.LANGUAGE_SV, "INSTALL_CHECK", ""));
+
+        texts.add(new Text(Constants.LANGUAGE_SV, "SETTING_SECTION_GAMEPLAY", "SWEDISH TEXT"));
         Text.saveInTx(texts);
     }
 }

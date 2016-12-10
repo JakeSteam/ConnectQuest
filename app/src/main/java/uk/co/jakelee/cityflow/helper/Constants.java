@@ -169,7 +169,7 @@ public class Constants {
     public static final int ITEM_PACK_8 = 27;
     public static final int ITEM_ZEN_MODE = 28;
     public static final int LANGUAGE_MIN = 0;
-    public static final int LANGUAGE_MAX = 7;
+    public static final int LANGUAGE_MAX = 8;
     public static final int LANGUAGE_EN = 0;
     public static final int LANGUAGE_ZH = 1;
     public static final int LANGUAGE_DE = 2;
@@ -178,6 +178,7 @@ public class Constants {
     public static final int LANGUAGE_RU = 5;
     public static final int LANGUAGE_ES = 6;
     public static final int LANGUAGE_NL = 7;
+    public static final int LANGUAGE_SV = 8;
     public static final int ROTATION_MIN = 1;
     public static final int ROTATION_MAX = 4;
     public static final int ROTATION_NORTH = 1;
