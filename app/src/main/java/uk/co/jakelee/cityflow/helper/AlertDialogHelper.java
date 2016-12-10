@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
@@ -216,6 +217,7 @@ public class AlertDialogHelper {
     public static void changeSettingText(final SettingsActivity activity, final int settingId) {
         final Setting settingToToggle = Setting.findById(Setting.class, settingId);
         final EditText editText = new EditText(activity.getApplicationContext());
+        editText.setInputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS);
         editText.setText(Setting.getString(Constants.SETTING_PLAYER_NAME));
         editText.setFilters(new InputFilter[]{ FilterHelper.getFilter(Constants.PLAYER_NAME_MAX_LENGTH) });
 
