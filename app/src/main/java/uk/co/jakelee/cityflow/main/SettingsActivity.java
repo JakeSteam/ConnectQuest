@@ -23,13 +23,12 @@ import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.helper.PermissionHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
+import uk.co.jakelee.cityflow.helper.TextHelper;
 import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.Text;
-
-import static uk.co.jakelee.cityflow.main.MainActivity.prefs;
 
 public class SettingsActivity extends AllowMeActivity {
     private int spinnersInitialised = 0;
@@ -91,6 +90,7 @@ public class SettingsActivity extends AllowMeActivity {
         ((TextView) findViewById(R.id.settingSectionOther)).setText(Text.get("SETTING_SECTION_OTHER"));
         ((TextView) findViewById(R.id.creditsButton)).setText(Text.get("DIALOG_CREDITS"));
         ((TextView) findViewById(R.id.statisticsButton)).setText(Text.get("DIALOG_STATISTICS"));
+        ((TextView) findViewById(R.id.resetLanguageButton)).setText(Text.get("DIALOG_RESET_LANGUAGE"));
         ((TextView) findViewById(R.id.supportCodeButton)).setText(Text.get("DIALOG_SUPPORT_CODE"));
     }
 
@@ -151,7 +151,7 @@ public class SettingsActivity extends AllowMeActivity {
             for (int i = 0; i < numOptions; i++) {
                 String text = Text.get(prefix + i + suffix);
                 if (settingId == Constants.SETTING_LANGUAGE) {
-                    text = Text.getLanguageFlag(i) + " " + text;
+                    text = TextHelper.getLanguageFlag(i) + " " + text;
                 }
                 envAdapter.add(text);
             }
@@ -178,7 +178,12 @@ public class SettingsActivity extends AllowMeActivity {
 
                     switch (settingId) {
                         case Constants.SETTING_LANGUAGE:
-                            prefs.edit().putInt("language", position).apply();
+                            getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE).edit()
+                                    .putInt("language", position).apply();
+                            if (!TextHelper.isPackInstalled(position)) {
+                                AlertHelper.info(activity, "Installing language: " + Text.get("LANGUAGE_" + position + "_NAME"));
+                                TextHelper.installLanguagePack(position);
+                            }
                             populateText();
                             break;
                         case Constants.SETTING_SOUND_PURCHASING:
@@ -265,6 +270,25 @@ public class SettingsActivity extends AllowMeActivity {
 
     public void openSupportCode(View v) {
         AlertDialogHelper.enterSupportCode(getApplicationContext(), this);
+    }
+
+    public void resetLanguage(View v) {
+        AlertDialogHelper.resetGameLanguage(this);
+    }
+
+    public void resetGameLanguage() {
+        AlertHelper.success(this, Text.get("ALERT_RESET_DIALOG"));
+
+        getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE).edit()
+                .putInt("language", Constants.LANGUAGE_EN).apply();
+
+        Setting language = Setting.get(Constants.SETTING_LANGUAGE);
+        language.setIntValue(Constants.LANGUAGE_EN);
+        language.save();
+
+        Text.deleteAll(Text.class, "language <> " + Constants.LANGUAGE_EN);
+
+        populateText();
     }
 
     public void openCredits(View v) {

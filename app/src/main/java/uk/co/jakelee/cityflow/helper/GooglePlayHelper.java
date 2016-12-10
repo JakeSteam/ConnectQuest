@@ -389,9 +389,11 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
 
     public static byte[] createBackup() {
         Gson gson = new Gson();
-        String backupString;
+        String backupString = "";
 
-        backupString = MainActivity.prefs.getInt("databaseVersion", PatchHelper.V1_0_0) + GooglePlayHelper.SAVE_DELIMITER;
+        if (MainActivity.prefs != null) {
+            backupString = MainActivity.prefs.getInt("databaseVersion", PatchHelper.V1_0_0) + GooglePlayHelper.SAVE_DELIMITER;
+        }
         backupString += PuzzleHelper.getTotalStars() + GooglePlayHelper.SAVE_DELIMITER;
         backupString += Statistic.getCurrency() + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(Boost.listAll(Boost.class)) + GooglePlayHelper.SAVE_DELIMITER;
@@ -410,7 +412,10 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         Gson gson = new Gson();
 
         String[] splitData = splitBackupData(backupData);
-        MainActivity.prefs.edit().putInt("databaseVersion", Integer.parseInt(splitData[0])).apply();
+
+        if (MainActivity.prefs != null) {
+            MainActivity.prefs.edit().putInt("databaseVersion", Integer.parseInt(splitData[0])).apply();
+        }
 
         // Skipping [1] and [2], as they're used for comparing saves
 

@@ -25,8 +25,8 @@ import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.helper.PatchHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
+import uk.co.jakelee.cityflow.helper.TextHelper;
 import uk.co.jakelee.cityflow.model.Setting;
-import uk.co.jakelee.cityflow.model.Text;
 
 public class MainActivity extends Activity implements
         GoogleApiClient.ConnectionCallbacks,
@@ -66,7 +66,7 @@ public class MainActivity extends Activity implements
         if (GooglePlayHelper.AreGooglePlayServicesInstalled(this) &&
                 !GooglePlayHelper.IsConnected() &&
                 !GooglePlayHelper.mGoogleApiClient.isConnecting() &&
-                (Setting.getSafeBoolean(Constants.SETTING_SIGN_IN) || MainActivity.prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.NO_DATABASE)) {
+                (Setting.getSafeBoolean(Constants.SETTING_SIGN_IN) || prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.NO_DATABASE)) {
             GooglePlayHelper.mGoogleApiClient.connect();
         }
     }
@@ -99,7 +99,7 @@ public class MainActivity extends Activity implements
         super.onResume();
 
         createAnimations();
-        ((TextView)findViewById(R.id.languageFlag)).setText(Text.getLanguageFlag(prefs.getInt("language", Constants.LANGUAGE_EN)));
+        ((TextView)findViewById(R.id.languageFlag)).setText(TextHelper.getLanguageFlag(prefs.getInt("language", Constants.LANGUAGE_EN)));
     }
 
     private void createAnimations() {

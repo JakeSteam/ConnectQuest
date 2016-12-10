@@ -33,6 +33,25 @@ import uk.co.jakelee.cityflow.model.SupportCode;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class AlertDialogHelper {
+    public static void resetGameLanguage(final SettingsActivity activity) {
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
+        alertDialog.setMessage(String.format(Text.get("DIALOG_RESET_LANGUAGE_CONFIRM"), TextHelper.getNonEnglishTextCount()));
+
+        alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_DELETE"), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                activity.resetGameLanguage();
+            }
+        });
+
+        alertDialog.setNegativeButton(Text.get("DIALOG_BUTTON_CANCEL"), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alertDialog.show();
+    }
+
     public static void confirmPuzzleDeletion(final CreatorActivity activity, final Puzzle puzzle) {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
         alertDialog.setMessage(String.format(Text.get("ALERT_DELETE_PUZZLE"), puzzle.getName()));
