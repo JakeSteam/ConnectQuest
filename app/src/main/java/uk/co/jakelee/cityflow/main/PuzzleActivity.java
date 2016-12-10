@@ -64,6 +64,7 @@ public class PuzzleActivity extends Activity {
     private boolean exitedPuzzle = false;
     private boolean playSounds = false;
     private Vibrator vibrator;
+    private Picasso picasso;
     private float optimumScale = 1.0f;
 
     private boolean timeBoostActive = false;
@@ -84,17 +85,18 @@ public class PuzzleActivity extends Activity {
         if(isCustom) {
             puzzleCustom = PuzzleCustom.get(puzzleId);
         }
+        picasso = Picasso.with(this);
 
         startCountdownTimer();
         Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
         puzzle.resetTileRotations();
-        List<Tile> tiles = puzzle.getTiles();
+        final List<Tile> tiles = puzzle.getTiles();
         populateTiles(tiles);
-        fetchImages(tiles);
 
         new Thread(new Runnable() {
             public void run() {
                 flowCheck();
+                prefetchImages(tiles);
             }
         }).start();
 
@@ -163,14 +165,15 @@ public class PuzzleActivity extends Activity {
         handler.removeCallbacksAndMessages(null);
     }
 
-    public void fetchImages(List<Tile> tiles) {
+    public void prefetchImages(List<Tile> tiles) {
+        List<Integer> ids = new ArrayList<>();
         for (Tile tile : tiles) {
-            List<Integer> ids = DisplayHelper.getAllTileDrawableIds(this, tile.getTileTypeId());
-            for (Integer id : ids) {
-                Picasso.with(this)
-                        .load(id)
-                        .fetch();
-            }
+            ids.addAll(DisplayHelper.getAllTileDrawableIds(this, tile.getTileTypeId()));
+        }
+
+        for (Integer id : ids) {
+            picasso.load(id)
+                    .fetch();
         }
     }
 
@@ -236,6 +239,15 @@ public class PuzzleActivity extends Activity {
     }
 
     public void handleTileClick(ImageView image, Tile tile) {
+        tile.rotate(undoing);
+
+        changedTilesX.add(tile.getX());
+        changedTilesY.add(tile.getY());
+        int drawableId = DisplayHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());
+        picasso.load(drawableId)
+                .placeholder(R.drawable.tile_0_1)
+                .into(image);
+
         if (vibrator != null) {
             vibrator.vibrate(30);
         }
@@ -243,15 +255,6 @@ public class PuzzleActivity extends Activity {
         if (playSounds) {
             SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.rotating);
         }
-
-        tile.rotate(undoing);
-
-        changedTilesX.add(tile.getX());
-        changedTilesY.add(tile.getY());
-        int drawableId = DisplayHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());
-        Picasso.with(this)
-                .load(drawableId)
-                .into(image);
 
         ((TextView) findViewById(R.id.moveCounter)).setText(Integer.toString(++movesMade));
 
@@ -324,7 +327,7 @@ public class PuzzleActivity extends Activity {
             changedTilesY.clear();
 
             // Check the tiles, then save the results back to the bad tiles arrays
-            badTiles = TileHelper.checkPuzzleFlow(puzzleId, badTiles, (TextView)findViewById(R.id.puzzleLoadingIndicator));
+            badTiles = TileHelper.checkPuzzleFlow(puzzleId, badTiles);
         }
 
         final Activity activity = this;

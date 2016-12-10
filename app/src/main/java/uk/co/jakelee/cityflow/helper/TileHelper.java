@@ -1,7 +1,6 @@
 package uk.co.jakelee.cityflow.helper;
 
 import android.util.Pair;
-import android.widget.TextView;
 
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -31,7 +30,7 @@ public class TileHelper {
         return new Pair<>(maxX, maxY);
     }
 
-    public static Pair<List<Integer>, List<Integer>> checkPuzzleFlow(int puzzleId, Pair<List<Integer>, List<Integer>> badTiles, final TextView loadingView) {
+    public static Pair<List<Integer>, List<Integer>> checkPuzzleFlow(int puzzleId, Pair<List<Integer>, List<Integer>> badTiles) {
         List<Long> checkedIds = new ArrayList<>();
         List<Integer> newTilesX = new ArrayList<>();
         List<Integer> newTilesY = new ArrayList<>();

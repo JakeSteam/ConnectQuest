@@ -12,7 +12,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -118,7 +117,6 @@ public class DisplayHelper {
                         // We don't care about this / subsequent touch events
                         return false;
                     } else {
-                        Log.d("Event", event.toString());
                         if (event.getAction() == MotionEvent.ACTION_UP) {
                             if (activity.getClass().equals(PuzzleActivity.class)) {
                                 ((PuzzleActivity)activity).handleTileClick(image, tile);
