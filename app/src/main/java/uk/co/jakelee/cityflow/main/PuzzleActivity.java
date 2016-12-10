@@ -95,8 +95,8 @@ public class PuzzleActivity extends Activity {
 
         new Thread(new Runnable() {
             public void run() {
-                flowCheck();
                 prefetchImages(tiles);
+                flowCheck();
             }
         }).start();
 
@@ -117,7 +117,7 @@ public class PuzzleActivity extends Activity {
 
     private void displayTutorial() {
         int tutorialStage = Setting.getInt(Constants.SETTING_TUTORIAL_STAGE);
-        if (tutorialStage <= Constants.TUTORIAL_MAX) {
+        if (tutorialStage <= Constants.TUTORIAL_MAX && !isCustom) {
             AlertHelper.info(this, Text.get("TUTORIAL_" + tutorialStage), true);
         }
     }

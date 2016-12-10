@@ -76,6 +76,7 @@ public class SoundHelper {
             songPlayer = MediaPlayer.create(context, soundID);
             if (songPlayer != null) {
                 songPlayer.start();
+                songPlayer.setLooping(true);
             }
         } else if (!isMusic && Setting.getSafeBoolean(Constants.SETTING_SOUNDS)) {
             stopAudio(false);
@@ -88,10 +89,10 @@ public class SoundHelper {
 
     public void stopAudio(boolean stopMusic) {
         if (stopMusic && songPlayer != null) {
-            songPlayer.reset();
+            songPlayer.release();
         }
         if (!stopMusic && soundPlayer != null) {
-            soundPlayer.reset();
+            soundPlayer.release();
         }
     }
 }
