@@ -36,7 +36,7 @@ public class EditorActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
-        SoundHelper.keepPlayingMusic = true;
+        SoundHelper.getInstance(this).resumeMusic();
         dh = DisplayHelper.getInstance(this);
 
         Intent intent = getIntent();

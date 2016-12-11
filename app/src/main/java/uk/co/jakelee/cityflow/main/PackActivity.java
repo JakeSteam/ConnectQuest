@@ -32,7 +32,7 @@ public class PackActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pack);
-        SoundHelper.keepPlayingMusic = true;
+        SoundHelper.getInstance(this).resumeMusic();
         dh = DisplayHelper.getInstance(this);
 
         Intent intent = getIntent();

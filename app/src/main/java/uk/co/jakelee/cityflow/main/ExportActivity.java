@@ -35,7 +35,7 @@ public class ExportActivity extends AllowMeActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_export);
-        SoundHelper.keepPlayingMusic = true;
+        SoundHelper.getInstance(this).resumeMusic();
         dh = DisplayHelper.getInstance(this);
 
         Intent intent = getIntent();

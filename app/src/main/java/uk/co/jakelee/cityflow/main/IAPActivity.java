@@ -36,7 +36,7 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_iap);
-        SoundHelper.keepPlayingMusic = true;
+        SoundHelper.getInstance(this).resumeMusic();
 
         dh = DisplayHelper.getInstance(this);
         canBuyIAPs = BillingProcessor.isIabServiceAvailable(this);

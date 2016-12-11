@@ -44,7 +44,7 @@ public class TilePickerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tile_picker);
-        SoundHelper.keepPlayingMusic = true;
+        SoundHelper.getInstance(this).resumeMusic();
         dh = DisplayHelper.getInstance(this);
         prefs = getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE);
 

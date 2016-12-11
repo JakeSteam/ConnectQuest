@@ -91,7 +91,7 @@ public class SoundHelper {
 
     public void stopAudio(boolean stopMusic) {
         if (stopMusic && songPlayer != null) {
-            songPlayer.release();
+            songPlayer.pause();
         }
         if (!stopMusic && soundPlayer != null) {
             soundPlayer.release();
@@ -103,5 +103,12 @@ public class SoundHelper {
             SoundHelper.getInstance(activity).stopAudio(true);
         }
         SoundHelper.keepPlayingMusic = false;
+    }
+
+    public void resumeMusic() {
+        if (songPlayer != null) {
+            songPlayer.start();
+        }
+        SoundHelper.keepPlayingMusic = true;
     }
 }

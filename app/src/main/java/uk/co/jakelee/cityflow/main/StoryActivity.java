@@ -38,7 +38,7 @@ public class StoryActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_story);
-        SoundHelper.keepPlayingMusic = true;
+        SoundHelper.getInstance(this).resumeMusic();
         dh = DisplayHelper.getInstance(this);
         numPacks = Pack.listAll(Pack.class).size();
 

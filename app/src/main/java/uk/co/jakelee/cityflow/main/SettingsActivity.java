@@ -39,7 +39,7 @@ public class SettingsActivity extends AllowMeActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        SoundHelper.keepPlayingMusic = true;
+        SoundHelper.getInstance(this).resumeMusic();
     }
 
     @Override

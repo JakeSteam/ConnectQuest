@@ -25,7 +25,7 @@ public class BackgroundPickerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_background_picker);
-        SoundHelper.keepPlayingMusic = true;
+        SoundHelper.getInstance(this).resumeMusic();
 
         ((TextView)findViewById(R.id.save)).setText(Text.get("DIALOG_BUTTON_SAVE"));
 

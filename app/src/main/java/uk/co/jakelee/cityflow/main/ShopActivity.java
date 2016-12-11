@@ -55,7 +55,7 @@ public class ShopActivity extends Activity {
         Intent intent = getIntent();
         preselectedItem = intent.getIntExtra(Constants.INTENT_ITEM, 0);
 
-        SoundHelper.keepPlayingMusic = true;
+        SoundHelper.getInstance(this).resumeMusic();
     }
 
     @Override
