@@ -14,6 +14,7 @@ import java.util.TreeMap;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.components.TextViewFont;
+import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.helper.StatisticHelper;
 import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.Text;
@@ -24,6 +25,7 @@ public class StatisticsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
+        SoundHelper.keepPlayingMusic = true;
     }
 
     @Override
@@ -31,6 +33,13 @@ public class StatisticsActivity extends Activity {
         super.onResume();
 
         displayStatistics();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        SoundHelper.stopIfExiting(this);
     }
 
     private void displayStatistics() {

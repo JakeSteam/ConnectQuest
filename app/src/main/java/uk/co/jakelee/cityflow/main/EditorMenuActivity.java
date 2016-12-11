@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class EditorMenuActivity extends Activity {
@@ -22,7 +23,15 @@ public class EditorMenuActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor_menu);
+        SoundHelper.keepPlayingMusic = true;
         populateText();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        SoundHelper.stopIfExiting(this);
     }
 
     private void populateText() {

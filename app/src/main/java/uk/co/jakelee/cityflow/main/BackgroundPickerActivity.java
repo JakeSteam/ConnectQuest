@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Text;
 
@@ -24,8 +25,11 @@ public class BackgroundPickerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_background_picker);
+        SoundHelper.keepPlayingMusic = true;
 
         ((TextView)findViewById(R.id.save)).setText(Text.get("DIALOG_BUTTON_SAVE"));
+
+
     }
 
     @Override
@@ -37,6 +41,13 @@ public class BackgroundPickerActivity extends Activity {
         ((TextView)findViewById(R.id.backgroundSelectTitle)).setText(String.format(Text.get("UI_BACKGROUND_SELECT_TITLE"),
                 Background.getUnlockedBackgroundCount(),
                 Background.listAll(Background.class).size()));
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        SoundHelper.stopIfExiting(this);
     }
 
     private void displayBackgrounds() {

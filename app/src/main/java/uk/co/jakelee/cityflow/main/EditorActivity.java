@@ -18,6 +18,7 @@ import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
 import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
+import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
@@ -35,6 +36,7 @@ public class EditorActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
+        SoundHelper.keepPlayingMusic = true;
         dh = DisplayHelper.getInstance(this);
 
         Intent intent = getIntent();
@@ -68,10 +70,11 @@ public class EditorActivity extends Activity {
     }
 
     @Override
-    public void onStop() {
+    protected void onStop() {
         super.onStop();
 
         Puzzle.getPuzzle(puzzleId).resetTileRotations();
+        SoundHelper.stopIfExiting(this);
     }
 
     private void redrawSelectedTile() {

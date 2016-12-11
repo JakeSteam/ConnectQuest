@@ -22,6 +22,7 @@ import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
+import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Text;
@@ -43,6 +44,7 @@ public class TilePickerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tile_picker);
+        SoundHelper.keepPlayingMusic = true;
         dh = DisplayHelper.getInstance(this);
         prefs = getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE);
 
@@ -72,6 +74,7 @@ public class TilePickerActivity extends Activity {
         for (TileFilter filter : filters) {
             prefs.edit().putString(filter.preferenceKey, filter.selected.toString()).apply();
         }
+        SoundHelper.stopIfExiting(this);
     }
 
     private void populateText() {

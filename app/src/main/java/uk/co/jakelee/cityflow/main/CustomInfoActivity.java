@@ -15,6 +15,7 @@ import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
+import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Setting;
@@ -43,6 +44,13 @@ public class CustomInfoActivity extends Activity {
 
         populateText();
         redisplayInfo();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        SoundHelper.stopIfExiting(this);
     }
 
     private void populateText() {

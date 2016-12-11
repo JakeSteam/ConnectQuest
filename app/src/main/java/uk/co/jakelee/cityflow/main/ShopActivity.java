@@ -26,6 +26,7 @@ import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
+import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.model.ShopCategory;
 import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Statistic;
@@ -53,6 +54,8 @@ public class ShopActivity extends Activity {
 
         Intent intent = getIntent();
         preselectedItem = intent.getIntExtra(Constants.INTENT_ITEM, 0);
+
+        SoundHelper.keepPlayingMusic = true;
     }
 
     @Override
@@ -63,10 +66,12 @@ public class ShopActivity extends Activity {
 
     @Override
     protected void onStop() {
+        super.onStop();
+
         Tapjoy.onActivityStop(this);
         handler.removeCallbacksAndMessages(null);
 
-        super.onStop();
+        SoundHelper.stopIfExiting(this);
     }
 
     @Override

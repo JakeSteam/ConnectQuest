@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -59,6 +60,7 @@ public class MainActivity extends Activity implements
         if (Setting.getSafeBoolean(Constants.SETTING_MUSIC)) {
             SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.main);
         }
+        SoundHelper.keepPlayingMusic = true;
     }
 
     public void tryGoogleLogin() {
@@ -100,6 +102,9 @@ public class MainActivity extends Activity implements
 
         createAnimations();
         ((TextView)findViewById(R.id.languageFlag)).setText(TextHelper.getLanguageFlag(prefs.getInt("language", Constants.LANGUAGE_EN)));
+
+        Log.d("Settings Music", "Set to true");
+        SoundHelper.keepPlayingMusic = true;
     }
 
     private void createAnimations() {
@@ -118,6 +123,7 @@ public class MainActivity extends Activity implements
         super.onStop();
 
         Tapjoy.onActivityStop(this);
+        SoundHelper.stopIfExiting(this);
     }
 
     @Override

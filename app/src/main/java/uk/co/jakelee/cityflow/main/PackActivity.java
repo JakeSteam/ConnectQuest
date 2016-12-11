@@ -16,6 +16,7 @@ import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
+import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Text;
@@ -31,6 +32,7 @@ public class PackActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pack);
+        SoundHelper.keepPlayingMusic = true;
         dh = DisplayHelper.getInstance(this);
 
         Intent intent = getIntent();
@@ -52,6 +54,13 @@ public class PackActivity extends Activity {
 
         selectedPuzzle = Puzzle.getPuzzle(selectedPuzzle.getPuzzleId());
         populatePuzzles();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        SoundHelper.stopIfExiting(this);
     }
 
     public void populatePuzzles() {

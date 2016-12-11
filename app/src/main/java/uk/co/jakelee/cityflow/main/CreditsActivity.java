@@ -11,6 +11,7 @@ import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.components.TextViewFont;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
+import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Text;
 
@@ -19,6 +20,7 @@ public class CreditsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credits);
+        SoundHelper.keepPlayingMusic = true;
 
         populateCredits();
         activateLinks();
@@ -28,6 +30,13 @@ public class CreditsActivity extends Activity {
             background.unlock();
             AlertHelper.success(this, String.format(Text.get("ALERT_BACKGROUND_UNLOCK"), background.getName()));
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        SoundHelper.stopIfExiting(this);
     }
 
     private void populateCredits() {

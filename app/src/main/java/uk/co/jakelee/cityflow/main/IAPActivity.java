@@ -21,6 +21,7 @@ import java.util.List;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
+import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Iap;
 import uk.co.jakelee.cityflow.model.Pack;
@@ -35,6 +36,7 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_iap);
+        SoundHelper.keepPlayingMusic = true;
 
         dh = DisplayHelper.getInstance(this);
         canBuyIAPs = BillingProcessor.isIabServiceAvailable(this);
@@ -46,6 +48,13 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
 
         populateText();
         populateIaps();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        SoundHelper.stopIfExiting(this);
     }
 
     private void populateText() {

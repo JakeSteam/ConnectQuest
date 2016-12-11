@@ -77,6 +77,7 @@ public class PuzzleActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_puzzle);
+        SoundHelper.keepPlayingMusic = true;
         dh = DisplayHelper.getInstance(this);
 
         Intent intent = getIntent();
@@ -163,6 +164,7 @@ public class PuzzleActivity extends Activity {
         Puzzle.getPuzzle(puzzleId).resetTileRotations();
         exitedPuzzle = true;
         handler.removeCallbacksAndMessages(null);
+        SoundHelper.stopIfExiting(this);
     }
 
     public void prefetchImages(List<Tile> tiles) {

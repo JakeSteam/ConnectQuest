@@ -29,6 +29,7 @@ import uk.co.jakelee.cityflow.helper.EncryptHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.helper.PermissionHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
+import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.helper.StorageHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
@@ -44,6 +45,7 @@ public class CreatorActivity extends AllowMeActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creator);
+        SoundHelper.keepPlayingMusic = true;
     }
 
     @Override
@@ -52,6 +54,13 @@ public class CreatorActivity extends AllowMeActivity {
 
         populateText();
         populatePuzzles();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        SoundHelper.stopIfExiting(this);
     }
 
     private void populateText() {

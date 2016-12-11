@@ -23,6 +23,7 @@ public class ShopItemActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_item);
+        SoundHelper.keepPlayingMusic = true;
 
         Intent intent = getIntent();
         shopItem = ShopItem.get(intent.getIntExtra(Constants.INTENT_ITEM, 0));
@@ -30,6 +31,13 @@ public class ShopItemActivity extends Activity {
         if (shopItem != null) {
             populateItemInfo();
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        SoundHelper.stopIfExiting(this);
     }
 
     private void populateItemInfo() {

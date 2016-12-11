@@ -38,6 +38,8 @@ public class SettingsActivity extends AllowMeActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        SoundHelper.keepPlayingMusic = true;
     }
 
     @Override
@@ -47,6 +49,13 @@ public class SettingsActivity extends AllowMeActivity {
         updateVisibilities();
         populateText();
         populateSettings();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        SoundHelper.stopIfExiting(this);
     }
 
     public void updateVisibilities() {

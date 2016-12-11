@@ -11,6 +11,7 @@ import com.google.android.gms.games.quest.Quests;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
+import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class QuestActivity extends Activity {
@@ -19,7 +20,15 @@ public class QuestActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quest);
+        SoundHelper.keepPlayingMusic = true;
         populateText();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        SoundHelper.stopIfExiting(this);
     }
 
     private void populateText() {

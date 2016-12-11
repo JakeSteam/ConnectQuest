@@ -1,5 +1,6 @@
 package uk.co.jakelee.cityflow.helper;
 
+import android.app.Activity;
 import android.content.Context;
 import android.media.MediaPlayer;
 
@@ -11,6 +12,7 @@ import uk.co.jakelee.cityflow.model.Setting;
 public class SoundHelper {
     private static SoundHelper soundHelper = null;
     private final Context context;
+    public static boolean keepPlayingMusic = false;
 
     private MediaPlayer soundPlayer;
     private MediaPlayer songPlayer;
@@ -94,5 +96,12 @@ public class SoundHelper {
         if (!stopMusic && soundPlayer != null) {
             soundPlayer.release();
         }
+    }
+
+    public static void stopIfExiting(Activity activity) {
+        if (!SoundHelper.keepPlayingMusic) {
+            SoundHelper.getInstance(activity).stopAudio(true);
+        }
+        SoundHelper.keepPlayingMusic = false;
     }
 }
