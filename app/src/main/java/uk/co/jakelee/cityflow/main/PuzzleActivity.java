@@ -77,6 +77,11 @@ public class PuzzleActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_puzzle);
+
+        playSounds = Setting.getSafeBoolean(Constants.SETTING_SOUNDS);
+        if (Setting.getSafeBoolean(Constants.SETTING_MUSIC)) {
+            SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.puzzle);
+        }
         SoundHelper.getInstance(this).resumeMusic();
         dh = DisplayHelper.getInstance(this);
 
@@ -106,11 +111,6 @@ public class PuzzleActivity extends Activity {
 
         if (Setting.getSafeBoolean(Constants.SETTING_VIBRATION)) {
             vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
-        }
-
-        playSounds = Setting.getSafeBoolean(Constants.SETTING_SOUNDS);
-        if (Setting.getSafeBoolean(Constants.SETTING_MUSIC)) {
-            SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.puzzle);
         }
 
         displayTutorial();
@@ -156,10 +156,6 @@ public class PuzzleActivity extends Activity {
     @Override
     public void onStop() {
         super.onStop();
-
-        if (Setting.getSafeBoolean(Constants.SETTING_MUSIC)) {
-            SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.main);
-        }
 
         Puzzle.getPuzzle(puzzleId).resetTileRotations();
         exitedPuzzle = true;
