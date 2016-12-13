@@ -63,7 +63,8 @@
                 android:id="@+id/importPuzzle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:baselineAligned="false">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -87,7 +88,7 @@
                         android:textColor="@color/black"
                         android:padding="5dp"
                         android:gravity="center_horizontal"
-                        android:textSize="26sp"
+                        android:textSize="23sp"
                         android:text="@string/icon_camera"/>
                 </LinearLayout>
                 <LinearLayout
