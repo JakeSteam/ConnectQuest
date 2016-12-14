@@ -12,11 +12,11 @@
         android:layout_height="match_parent">
         <TableLayout
             android:background="@color/city"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:shrinkColumns="1"
-            android:stretchColumns="1"
+            android:shrinkColumns="*"
+            android:stretchColumns="*"
             app:layout_marginPercent="7%">
 
             <!-- Sound settings -->
@@ -33,27 +33,29 @@
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:paddingBottom="5dp"
-                    android:layout_span="2"
                     android:textColor="@color/black"
                     android:background="@color/green"
-                    android:textSize="28sp" />
+                    android:textSize="28sp"
+                    android:layout_span="2"/>
             </TableRow>
 
             <TableRow>
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/musicToggleText"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="5dp"
                     android:gravity="left|center_vertical"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"/>
 
                 <uk.co.jakelee.cityflow.components.TextAwesome
                     android:id="@+id/musicToggleButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textSize="30sp"
@@ -64,7 +66,8 @@
             <TableRow>
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/soundToggleText"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -75,7 +78,8 @@
 
                 <uk.co.jakelee.cityflow.components.TextAwesome
                     android:id="@+id/soundToggleButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textSize="30sp"
@@ -86,7 +90,8 @@
             <TableRow>
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/mainMusicToggleText"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -97,7 +102,8 @@
 
                 <Spinner
                     android:id="@+id/mainMusicPicker"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:background="@color/ltltgrey"
@@ -110,7 +116,8 @@
             <TableRow>
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/puzzleMusicToggleText"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -121,7 +128,8 @@
 
                 <Spinner
                     android:id="@+id/puzzleMusicPicker"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:background="@color/ltltgrey"
@@ -134,7 +142,8 @@
             <TableRow>
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/purchasingSoundToggleText"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -145,7 +154,8 @@
 
                 <Spinner
                     android:id="@+id/purchasingSoundPicker"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:background="@color/ltltgrey"
@@ -158,7 +168,8 @@
             <TableRow>
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/rotatingSoundToggleText"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -169,7 +180,8 @@
 
                 <Spinner
                     android:id="@+id/rotatingSoundPicker"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:background="@color/ltltgrey"
@@ -182,7 +194,8 @@
             <TableRow>
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/settingsSoundToggleText"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -193,7 +206,8 @@
 
                 <Spinner
                     android:id="@+id/settingsSoundPicker"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:background="@color/ltltgrey"
@@ -226,7 +240,8 @@
             <TableRow>
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/languagePickerText"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -237,7 +252,8 @@
 
                 <Spinner
                     android:id="@+id/languagePicker"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:background="@color/ltltgrey"
@@ -250,7 +266,8 @@
             <TableRow>
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/backgroundPickerText"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -261,7 +278,8 @@
 
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/backgroundPickerButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:padding="5dp"
@@ -279,7 +297,8 @@
             <TableRow android:id="@+id/zenModeContainer">
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/zenToggleText"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -290,7 +309,8 @@
 
                 <uk.co.jakelee.cityflow.components.TextAwesome
                     android:id="@+id/zenToggleButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textSize="30sp"
@@ -301,7 +321,8 @@
             <TableRow>
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/hideBoostText"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -312,7 +333,8 @@
 
                 <uk.co.jakelee.cityflow.components.TextAwesome
                     android:id="@+id/hideBoostButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textSize="30sp"
@@ -323,7 +345,8 @@
             <TableRow>
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/playerNameText"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -334,7 +357,8 @@
 
                 <uk.co.jakelee.cityflow.components.AutofitTextViewFont
                     android:id="@+id/playerNameDisplay"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:padding="5dp"
@@ -350,7 +374,8 @@
             <TableRow>
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/minZoomText"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -361,7 +386,8 @@
 
                 <uk.co.jakelee.cityflow.components.AutofitTextViewFont
                     android:id="@+id/minZoomButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:padding="5dp"
@@ -378,7 +404,8 @@
             <TableRow>
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/maxZoomText"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -389,7 +416,8 @@
 
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/maxZoomButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:padding="5dp"
@@ -406,7 +434,8 @@
             <TableRow>
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/vibrationToggleText"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -417,7 +446,8 @@
 
                 <uk.co.jakelee.cityflow.components.TextAwesome
                     android:id="@+id/vibrationToggleButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textSize="30sp"
@@ -428,7 +458,8 @@
             <TableRow android:id="@+id/maxCarsContainer">
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/maxCarsText"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -439,7 +470,8 @@
 
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/maxCarsButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:padding="5dp"
@@ -475,7 +507,8 @@
             <TableRow>
                 <LinearLayout
                     android:id="@+id/googlePlayFeatureButtons"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:visibility="gone">
@@ -550,7 +583,8 @@
             <TableRow android:id="@+id/autosaveRow">
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/autosaveText"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -561,7 +595,8 @@
 
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/autosaveDisplay"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:padding="5dp"
@@ -578,7 +613,8 @@
             <TableRow>
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/lastAutosaveText"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -589,13 +625,14 @@
 
                 <uk.co.jakelee.cityflow.components.TextViewFont
                     android:id="@+id/lastAutosaveDisplay"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:padding="5dp"
                     android:layout_margin="5dp"
                     android:ellipsize="end"
-                    android:singleLine="true"
+                    android:maxLines="1"
                     android:layout_gravity="center_horizontal"/>
             </TableRow>
 
@@ -686,6 +723,7 @@
     <LinearLayout
         android:id="@+id/croutonview"
         android:layout_width="match_parent"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true">
