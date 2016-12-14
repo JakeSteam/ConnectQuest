@@ -15,6 +15,7 @@ import com.aitorvs.android.allowme.AllowMeActivity;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.quest.Quests;
 
+import uk.co.jakelee.cityflow.BuildConfig;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
@@ -101,6 +102,8 @@ public class SettingsActivity extends AllowMeActivity {
         ((TextView) findViewById(R.id.statisticsButton)).setText(Text.get("DIALOG_STATISTICS"));
         ((TextView) findViewById(R.id.resetLanguageButton)).setText(Text.get("DIALOG_RESET_LANGUAGE"));
         ((TextView) findViewById(R.id.supportCodeButton)).setText(Text.get("DIALOG_SUPPORT_CODE"));
+
+        ((TextView) findViewById(R.id.versionText)).setText("V" + BuildConfig.VERSION_NAME + " (" + BuildConfig.VERSION_CODE + ")");
     }
 
     public void populateSettings() {

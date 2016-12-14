@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.BinaryBitmap;
+import com.google.zxing.DecodeHintType;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.LuminanceSource;
 import com.google.zxing.MultiFormatReader;
@@ -33,7 +34,6 @@ import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
 
 public class StorageHelper {
-    private static final float screenshotScale = 0.1f;
     private static final int screenshotSize = 500;
 
     public final static int WHITE = 0xFFFFFFFF;
@@ -54,7 +54,7 @@ public class StorageHelper {
         BitMatrix result;
         try {
             Map<EncodeHintType, Object> hints = new EnumMap<>(EncodeHintType.class);
-            hints.put(EncodeHintType.MARGIN, 1);
+            hints.put(EncodeHintType.MARGIN, 4);
             result = new MultiFormatWriter().encode(str, BarcodeFormat.QR_CODE, WIDTH, HEIGHT, hints);
         } catch (IllegalArgumentException iae) {
             // Unsupported format
@@ -125,10 +125,14 @@ public class StorageHelper {
 
         MultiFormatReader reader = new MultiFormatReader();
         try {
-            Result result = reader.decode(bitmap);
+            Map<DecodeHintType, Object> hints = new EnumMap<>(DecodeHintType.class);
+            //hints.put(DecodeHintType.TRY_HARDER, true);
+            //hints.put(DecodeHintType.POSSIBLE_FORMATS, EnumSet.of(BarcodeFormat.QR_CODE));
+            //hints.put(DecodeHintType.PURE_BARCODE, false);
+            Result result = reader.decode(bitmap, hints);
             contents = result.getText();
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         return contents;
     }

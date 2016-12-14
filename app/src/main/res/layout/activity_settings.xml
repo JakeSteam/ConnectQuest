@@ -706,10 +706,7 @@
                     android:id="@+id/supportCodeButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_margin="5dp"
                     android:gravity="center"
                     android:background="@color/ltltgrey"
                     android:layout_span="2"
@@ -717,6 +714,22 @@
                     android:textSize="20sp"
                     android:padding="8dp"
                     android:onClick="openSupportCode"/>
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/versionText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:layout_span="2"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:padding="8dp"/>
             </TableRow>
         </TableLayout>
     </ScrollView>
