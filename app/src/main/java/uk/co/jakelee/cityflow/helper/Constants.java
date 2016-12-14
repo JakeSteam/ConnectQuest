@@ -2,7 +2,7 @@ package uk.co.jakelee.cityflow.helper;
 
 
 public class Constants {
-    public static final boolean DEBUG_MODE = true;
+    public static final boolean DEBUG_MODE = false;
 
     // Intents
     public static final String INTENT_PACK = "uk.co.jakelee.cityflow.pack";

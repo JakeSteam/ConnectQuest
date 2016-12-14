@@ -152,9 +152,9 @@ public class SettingsActivity extends AllowMeActivity {
         ArrayAdapter<String> envAdapter = new ArrayAdapter<>(this, R.layout.custom_spinner_display);
         envAdapter.setDropDownViewResource(R.layout.custom_spinner_item);
         if (pickingAudio) {
-            envAdapter.add("Random");
+            envAdapter.add(Text.get("WORD_RANDOM"));
             for (int i = 1; i <= numOptions; i++) {
-                envAdapter.add("Sound #" + i);
+                envAdapter.add("#" + i);
             }
         } else {
             for (int i = 0; i < numOptions; i++) {

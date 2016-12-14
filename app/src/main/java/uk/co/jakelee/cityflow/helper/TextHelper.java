@@ -99,6 +99,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_RESET_LANGUAGE_CONFIRM", "Reset language back to English, uninstalling the %1$d translations currently installed?\n\nReinstall packs by changing language!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_185_NAME", "Desert (Plant)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_186_NAME", "Desert (Flower)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "WORD_RANDOM", "Random"));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_BACKGROUND_UNLOCK", "Unlocked '%1$s' background!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_CARD_SAVED", "Card image saved to gallery!"));
