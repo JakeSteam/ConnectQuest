@@ -34,6 +34,20 @@
                 android:textColorLink="@color/blue"/>
 
             <uk.co.jakelee.cityflow.components.TextViewFont
+                android:id="@+id/localisationTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="30sp"/>
+            <uk.co.jakelee.cityflow.components.TextViewFont
+                android:id="@+id/localisationText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="19sp"
+                android:textColorLink="@color/blue"/>
+
+            <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/technologiesTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

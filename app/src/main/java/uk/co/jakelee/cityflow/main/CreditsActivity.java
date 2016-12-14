@@ -43,6 +43,9 @@ public class CreditsActivity extends Activity {
         ((TextView)findViewById(R.id.graphicsTitle)).setText(Text.get("CREDITS_GRAPHICS_TITLE"));
         ((TextView)findViewById(R.id.graphicsText)).setText(Text.get("CREDITS_GRAPHICS_TEXT"));
 
+        ((TextView)findViewById(R.id.localisationTitle)).setText(Text.get("CREDITS_LOCAL_TITLE"));
+        ((TextView)findViewById(R.id.localisationText)).setText(Text.get("CREDITS_LOCAL_TEXT"));
+
         ((TextView)findViewById(R.id.technologiesTitle)).setText(Text.get("CREDITS_TECHNOLOGIES_TITLE"));
         ((TextView)findViewById(R.id.technologiesText)).setText(Text.get("CREDITS_TECHNOLOGIES_TEXT"));
 

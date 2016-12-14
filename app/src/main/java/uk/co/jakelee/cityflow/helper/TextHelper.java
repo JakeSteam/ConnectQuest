@@ -100,6 +100,9 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_185_NAME", "Desert (Plant)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_186_NAME", "Desert (Flower)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "WORD_RANDOM", "Random"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_LOCAL_TITLE", "Localisation"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_LOCAL_TEXT", "<b>Translator's names</b> will go here, obviously not yet!<br>" +
+                ""));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_BACKGROUND_UNLOCK", "Unlocked '%1$s' background!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_CARD_SAVED", "Card image saved to gallery!"));
@@ -208,8 +211,7 @@ public class TextHelper {
                 "<a href='http://kenney.nl/'>Kenney</a>: Base tilesets, majority of UI elements.<br>" +
                 ""));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_TECHNOLOGIES_TITLE", "Technologies"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_TECHNOLOGIES_TEXT", "<a href='https://github.com/ACRA/acra'>ACRA</a>: Crash management.<br>" +
-                "<a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt</a>: Database / game save encrypting.<br>" +
+        texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_TECHNOLOGIES_TEXT", "<a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt</a>: Database / game save encrypting.<br>" +
                 "<a href='https://github.com/aitorvs/allowme'>AllowMe</a>: Permissions handling.<br>" +
                 "<a href='https://github.com/hotchemi/Android-Rate'>Android-Rate</a>: Play Store rate prompting.<br>" +
                 "<a href='http://www.antp.be/software/renamer'>Ant Renamer</a>: Bulk file operations.<br>" +
@@ -230,6 +232,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_OTHER_TITLE", "Other"));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_OTHER_TEXT", "Of course, developing a game isn't just about technical resources. As such, there's a few people and communities who definitely need thanking.<br><br>" +
                 "<b>Britt</b>: Responsible for a few of the more... interesting ideas in the game, and providing motivation throughout. If she had her way, the game would be a lot more absurd..!<br><br>" +
+                "<b>Elizabeth</b>: My girlfriend put up with waaaaaay too many hours spent working on City Flow. Oops.<br><br>" +
                 "<b>Tash</b>: An absurd amount of design work. Basically, anywhere the game looks rather nice, she's the one to thank!<br><br>" +
                 "<b>/r/AndroidGaming</b>: Always providing tons of feedback, beta testing, and just generally being an excellent place for gamers + developers to meet. <br><br>" +
                 "<b>/r/CityFlow</b>: There's a lot of crossover between the mentioned subreddits, but I really appreciate everyone who contributes an opinion on the game.<br><br>" +
