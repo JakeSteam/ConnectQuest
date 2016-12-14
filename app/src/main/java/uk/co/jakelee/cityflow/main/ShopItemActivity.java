@@ -23,7 +23,7 @@ public class ShopItemActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_item);
-        SoundHelper.getInstance(this).resumeMusic();
+        SoundHelper.getInstance(this).playOrResumeMusic(SoundHelper.AUDIO.main);
 
         Intent intent = getIntent();
         shopItem = ShopItem.get(intent.getIntExtra(Constants.INTENT_ITEM, 0));

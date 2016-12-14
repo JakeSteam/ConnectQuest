@@ -20,7 +20,7 @@ public class QuestActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quest);
-        SoundHelper.getInstance(this).resumeMusic();
+        SoundHelper.getInstance(this).playOrResumeMusic(SoundHelper.AUDIO.main);
         populateText();
     }
 

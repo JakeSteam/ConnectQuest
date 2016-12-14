@@ -79,10 +79,7 @@ public class PuzzleActivity extends Activity {
         setContentView(R.layout.activity_puzzle);
 
         playSounds = Setting.getSafeBoolean(Constants.SETTING_SOUNDS);
-        if (Setting.getSafeBoolean(Constants.SETTING_MUSIC)) {
-            SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.puzzle);
-        }
-        SoundHelper.getInstance(this).resumeMusic();
+        SoundHelper.getInstance(this).playOrResumeMusic(SoundHelper.AUDIO.puzzle);
         dh = DisplayHelper.getInstance(this);
 
         Intent intent = getIntent();

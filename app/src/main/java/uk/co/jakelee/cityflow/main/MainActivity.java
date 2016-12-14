@@ -59,7 +59,7 @@ public class MainActivity extends Activity implements
         if (Setting.getSafeBoolean(Constants.SETTING_MUSIC)) {
             SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.main);
         }
-        SoundHelper.getInstance(this).resumeMusic();
+        SoundHelper.getInstance(this).playOrResumeMusic(SoundHelper.AUDIO.main);
     }
 
     public void tryGoogleLogin() {
@@ -102,7 +102,7 @@ public class MainActivity extends Activity implements
         createAnimations();
         ((TextView)findViewById(R.id.languageFlag)).setText(TextHelper.getLanguageFlag(prefs.getInt("language", Constants.LANGUAGE_EN)));
 
-        SoundHelper.getInstance(this).resumeMusic();
+        SoundHelper.getInstance(this).playOrResumeMusic(SoundHelper.AUDIO.main);
     }
 
     private void createAnimations() {

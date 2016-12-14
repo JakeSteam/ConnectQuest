@@ -12,7 +12,8 @@ import uk.co.jakelee.cityflow.model.Setting;
 public class SoundHelper {
     private static SoundHelper soundHelper = null;
     private final Context context;
-    public static boolean keepPlayingMusic = false;
+    private static boolean keepPlayingMusic = false;
+    private AUDIO currentTrack;
 
     private MediaPlayer soundPlayer;
     private MediaPlayer songPlayer;
@@ -65,7 +66,7 @@ public class SoundHelper {
         }
 
         Setting selectedAudio = Setting.get(settingId);
-        if (selectedAudio.getIntValue() > 0) {
+        if (selectedAudio != null && selectedAudio.getIntValue() > 0) {
             playSound(sounds[selectedAudio.getIntValue() - 1], isMusic);
         } else {
             playSound(sounds[new Random().nextInt(sounds.length)], isMusic);
@@ -105,10 +106,15 @@ public class SoundHelper {
         SoundHelper.keepPlayingMusic = false;
     }
 
-    public void resumeMusic() {
-        if (songPlayer != null) {
+    public void playOrResumeMusic(AUDIO musicRequest) {
+        if (songPlayer != null && currentTrack != null && musicRequest == currentTrack) {
+            // If we're already playing that track
             songPlayer.start();
+        } else {
+            // Change track / start a song
+            playSound(musicRequest);
         }
+        currentTrack = musicRequest;
         SoundHelper.keepPlayingMusic = true;
     }
 }
