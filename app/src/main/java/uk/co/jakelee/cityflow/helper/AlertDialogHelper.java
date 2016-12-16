@@ -390,13 +390,14 @@ public class AlertDialogHelper {
         ((TextView)dialog.findViewById(R.id.title)).setText(Text.get("WORD_LOADING"));
         dialog.show();
 
-        new PuzzleGenerator(activity,
+        PuzzleGenerator puzzleGenerator = new PuzzleGenerator(activity,
                 dialog,
                 xValue,
                 yValue,
                 environmentId,
                 blankPuzzle,
-                shuffleAndPlay).execute();
+                shuffleAndPlay);
+        puzzleGenerator.execute("");
     }
 
     public static void resizePuzzle(final EditorActivity activity, final int puzzleId) {

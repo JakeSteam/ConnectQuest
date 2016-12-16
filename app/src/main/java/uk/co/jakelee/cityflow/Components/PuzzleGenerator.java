@@ -2,6 +2,7 @@ package uk.co.jakelee.cityflow.components;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import uk.co.jakelee.cityflow.helper.RandomHelper;
 import uk.co.jakelee.cityflow.main.EditorActivity;
 import uk.co.jakelee.cityflow.main.PuzzleActivity;
 import uk.co.jakelee.cityflow.model.Puzzle;
+import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
@@ -35,6 +37,7 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
     private boolean blankPuzzle;
     private boolean shuffleAndPlay;
     private int totalTiles;
+    private boolean cancelReceived = false;
 
     public PuzzleGenerator(Activity activity, Dialog dialog, int xValue, int yValue, int environmentId, boolean blankPuzzle, boolean shuffleAndPlay) {
         this.activity = activity;
@@ -51,23 +54,32 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
 
     @Override
     protected void onPostExecute(Integer result) {
-        dialog.dismiss();
+        if (dialog.isShowing()) {
+            dialog.dismiss();
 
-        if (!blankPuzzle && shuffleAndPlay) {
-            activity.startActivity(new Intent(activity, PuzzleActivity.class)
-                    .putExtra(Constants.INTENT_PUZZLE, result)
-                    .putExtra(Constants.INTENT_IS_CUSTOM, true)
-                    .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
-        } else {
-            activity.startActivity(new Intent(activity, EditorActivity.class)
-                    .putExtra(Constants.INTENT_PUZZLE, result)
-                    .putExtra(Constants.INTENT_ENVIRONMENT, environmentId)
-                    .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+            if (!blankPuzzle && shuffleAndPlay) {
+                activity.startActivity(new Intent(activity, PuzzleActivity.class)
+                        .putExtra(Constants.INTENT_PUZZLE, result)
+                        .putExtra(Constants.INTENT_IS_CUSTOM, true)
+                        .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+            } else {
+                activity.startActivity(new Intent(activity, EditorActivity.class)
+                        .putExtra(Constants.INTENT_PUZZLE, result)
+                        .putExtra(Constants.INTENT_ENVIRONMENT, environmentId)
+                        .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+            }
         }
     }
 
     @Override
-    protected void onPreExecute() {}
+    protected void onPreExecute() {
+        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+                cancel();
+            }
+        });
+    }
 
     @Override
     protected void onProgressUpdate(Integer... values) {
@@ -79,6 +91,10 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
     @Override
     protected Integer doInBackground(String... params) {
         return createNewPuzzle(xValue, yValue, environmentId, blankPuzzle);
+    }
+
+    public void cancel() {
+        cancelReceived = true;
     }
 
     private int createNewPuzzle(int maxX, int maxY, int environmentId, boolean blankPuzzle) {
@@ -93,33 +109,47 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
     private int createEmptyPuzzle(int maxX, int maxY, final int environmentId) {
         int newPuzzleId = getNextCustomPuzzleId();
         int defaultTileId = getDefaultTileId(environmentId);
-        createBasicPuzzleObject(newPuzzleId).save();
-        createBasicPuzzleCustomObject(newPuzzleId, maxX, maxY).save();
+        Puzzle newPuzzle = createBasicPuzzleObject(newPuzzleId);
+        PuzzleCustom puzzleCustom = createBasicPuzzleCustomObject(newPuzzleId, maxX, maxY);
+
+        newPuzzle.save();
+        puzzleCustom.save();
 
         List<Tile> tiles = new ArrayList<>();
         for (int x = 0; x < maxX; x++) {
             for (int y = 0; y < maxY; y++) {
+                if (cancelReceived) {
+                    newPuzzle.safelyDelete();
+                    return 0;
+                }
+
                 tiles.add(new Tile(newPuzzleId, defaultTileId, x, y, Constants.ROTATION_NORTH));
                 publishProgress(tiles.size());
             }
         }
         Tile.saveInTx(tiles);
-
         return newPuzzleId;
     }
 
     private int createFilledPuzzle(int maxX, int maxY, int environmentId) {
         int newPuzzleId = getNextCustomPuzzleId();
-        createBasicPuzzleObject(newPuzzleId).save();
-        createBasicPuzzleCustomObject(newPuzzleId, maxX, maxY).save();
+        Puzzle newPuzzle = createBasicPuzzleObject(newPuzzleId);
+        PuzzleCustom puzzleCustom = createBasicPuzzleCustomObject(newPuzzleId, maxX, maxY);
+
+        newPuzzle.save();
+        puzzleCustom.save();
 
         List<Tile> tiles = new ArrayList<>();
-        int prevX = 0;
         int prevY = 0;
         int failedAttempts = 0;
         int totalAttempts = 0;
         for (int x = 0; x < maxX; x++) {
             for (int y = 0; y < maxY; y++) {
+                if (cancelReceived) {
+                    newPuzzle.safelyDelete();
+                    return 0;
+                }
+
                 List<Tile> potentialTiles = getPossibleTiles(newPuzzleId, tiles, x, y, maxX - 1, maxY - 1, environmentId);
                 if (potentialTiles.size() > 0) {
                     Tile selectedTile = potentialTiles.get(RandomHelper.getNumber(0, potentialTiles.size() - 1));
