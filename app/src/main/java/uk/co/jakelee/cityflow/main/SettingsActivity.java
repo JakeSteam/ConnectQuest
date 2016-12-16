@@ -199,6 +199,7 @@ public class SettingsActivity extends AllowMeActivity {
                                 TextHelper.installLanguagePack(position);
                             }
                             populateText();
+                            populateSettings();
                             break;
                         case Constants.SETTING_SOUND_PURCHASING:
                             SoundHelper.getInstance(activity).playSound(SoundHelper.AUDIO.purchasing);
