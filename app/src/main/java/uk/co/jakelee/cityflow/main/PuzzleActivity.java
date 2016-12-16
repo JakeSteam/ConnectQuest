@@ -510,4 +510,8 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     public Activity getActivity() {
         return this;
     }
+
+    public boolean displayEmptyTile() {
+        return false;
+    }
 }

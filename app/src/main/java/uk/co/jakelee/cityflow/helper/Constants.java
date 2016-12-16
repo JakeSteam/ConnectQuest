@@ -234,6 +234,7 @@ public class Constants {
     public static final int SIDE_EAST = 2;
     public static final int SIDE_SOUTH = 3;
     public static final int SIDE_WEST = 4;
+    public static final int TILE_EMPTY = 0;
     public static final int TILE_STATUS_UNLOCKED = 0;
     public static final int TILE_STATUS_LOCKED = 1;
     public static final int TILE_STATUS_UNPURCHASED = 2;

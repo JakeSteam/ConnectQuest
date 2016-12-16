@@ -93,7 +93,6 @@ public class DisplayHelper {
         image.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                Log.d("Clicked", event.toString());
                 boolean needsProcessing = false;
                 try {
                     if (event.getAction() == MotionEvent.ACTION_CANCEL) {
@@ -282,6 +281,11 @@ public class DisplayHelper {
         tileContainer.setScaleFactor(optimumScale, true);
         tileContainer.removeAllViews();
         for (final Tile tile : tiles) {
+            if (!puzzleDisplayer.displayEmptyTile() && tile.getTileTypeId() == Constants.TILE_EMPTY) {
+                continue;
+            }
+
+            Log.d("Tile", "Processing tile " + tile.getX() + " " + tile.getY());
             ZoomableViewGroup.LayoutParams layoutParams = new ZoomableViewGroup.LayoutParams(ZoomableViewGroup.LayoutParams.WRAP_CONTENT, ZoomableViewGroup.LayoutParams.WRAP_CONTENT);
             int leftPadding = leftOffset + (tile.getY() + tile.getX()) * (getTileWidth() / 2);
             int topPadding = topOffset + (tile.getX() + maxXY.second - tile.getY()) * (getTileHeight() / 2);
@@ -297,7 +301,7 @@ public class DisplayHelper {
                 selectedTileImage = image;
                 selectedTile = tile;
 
-                TextView selectedTileText = (TextView)puzzleDisplayer.getActivity().findViewById(R.id.selectedTileText);
+                TextView selectedTileText = (TextView) puzzleDisplayer.getActivity().findViewById(R.id.selectedTileText);
                 if (selectedTileText != null) {
                     ((TextView) puzzleDisplayer.getActivity().findViewById(R.id.selectedTileText)).setText(tile.getName());
                 }

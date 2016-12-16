@@ -204,4 +204,8 @@ public class EditorActivity extends Activity implements PuzzleDisplayer {
     public Activity getActivity() {
         return this;
     }
+
+    public boolean displayEmptyTile() {
+        return true;
+    }
 }
