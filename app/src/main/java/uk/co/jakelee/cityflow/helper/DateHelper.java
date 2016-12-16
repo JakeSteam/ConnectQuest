@@ -3,6 +3,7 @@ package uk.co.jakelee.cityflow.helper;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class DateHelper {
     public static final String date = "yyyy/MM/dd";
@@ -65,6 +66,6 @@ public class DateHelper {
         if (timeTaken == 0 || timeTaken == Constants.PUZZLE_DEFAULT_TIME) {
             return "N/A";
         }
-        return String.format("%.2fs", (double)timeTaken/1000);
+        return String.format(Locale.ENGLISH, "%.2fs", (double)timeTaken/1000);
     }
 }

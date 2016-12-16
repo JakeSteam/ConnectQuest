@@ -20,6 +20,8 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 import uk.co.jakelee.cityflow.BuildConfig;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.components.PuzzleGenerator;
@@ -36,7 +38,7 @@ import uk.co.jakelee.cityflow.model.Text;
 public class AlertDialogHelper {
     public static void resetGameLanguage(final SettingsActivity activity) {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
-        alertDialog.setMessage(String.format(Text.get("DIALOG_RESET_LANGUAGE_CONFIRM"), TextHelper.getNonEnglishTextCount()));
+        alertDialog.setMessage(String.format(Locale.ENGLISH, Text.get("DIALOG_RESET_LANGUAGE_CONFIRM"), TextHelper.getNonEnglishTextCount()));
 
         alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_DELETE"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
@@ -55,7 +57,7 @@ public class AlertDialogHelper {
 
     public static void confirmPuzzleDeletion(final CreatorActivity activity, final Puzzle puzzle) {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
-        alertDialog.setMessage(String.format(Text.get("ALERT_DELETE_PUZZLE"), puzzle.getName()));
+        alertDialog.setMessage(String.format(Locale.ENGLISH, Text.get("ALERT_DELETE_PUZZLE"), puzzle.getName()));
 
         alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_DELETE"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
@@ -80,7 +82,7 @@ public class AlertDialogHelper {
 
     public static void confirmPuzzleShuffle(final EditorActivity activity, final Puzzle puzzle) {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
-        alertDialog.setMessage(String.format(Text.get("ALERT_SHUFFLE_PUZZLE"), puzzle.getName()));
+        alertDialog.setMessage(String.format(Locale.ENGLISH, Text.get("ALERT_SHUFFLE_PUZZLE"), puzzle.getName()));
 
         alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_SHUFFLE"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
@@ -104,7 +106,7 @@ public class AlertDialogHelper {
 
     public static void confirmCloudLoad(final Activity activity, int localStars, int localCurrency, int cloudStars, int cloudCurrency) {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
-        alertDialog.setMessage(String.format(Text.get("DIALOG_CLOUD_LOAD_CONFIRM"),
+        alertDialog.setMessage(String.format(Locale.ENGLISH, Text.get("DIALOG_CLOUD_LOAD_CONFIRM"),
                 localStars,
                 localCurrency,
                 cloudStars,
@@ -132,7 +134,7 @@ public class AlertDialogHelper {
 
     public static void confirmCloudSave(final Activity activity, int localStars, int localCurrency, String desc, long saveTime, String deviceName) {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
-        alertDialog.setMessage(String.format(Text.get("DIALOG_CLOUD_SAVE_CONFIRM"),
+        alertDialog.setMessage(String.format(Locale.ENGLISH, Text.get("DIALOG_CLOUD_SAVE_CONFIRM"),
                 desc,
                 DateHelper.displayTime(saveTime, DateHelper.datetime),
                 deviceName,
@@ -222,7 +224,7 @@ public class AlertDialogHelper {
         editText.setFilters(new InputFilter[]{ FilterHelper.getFilter(Constants.PLAYER_NAME_MAX_LENGTH) });
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
-        alertDialog.setMessage(String.format(Text.get("DIALOG_CHANGE_TEXT"), settingToToggle.getName(), Constants.PLAYER_NAME_MAX_LENGTH));
+        alertDialog.setMessage(String.format(Locale.ENGLISH, Text.get("DIALOG_CHANGE_TEXT"), settingToToggle.getName(), Constants.PLAYER_NAME_MAX_LENGTH));
         alertDialog.setView(editText);
 
         alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_CHANGE"), new DialogInterface.OnClickListener() {
@@ -252,7 +254,7 @@ public class AlertDialogHelper {
         puzzleInfoInput.setFilters(new InputFilter[]{ FilterHelper.getFilter(changeDesc ? Constants.PUZZLE_DESC_MAX_LENGTH : Constants.PUZZLE_NAME_MAX_LENGTH) });
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
-        alertDialog.setMessage(String.format(Text.get("DIALOG_CHANGE_TEXT"),
+        alertDialog.setMessage(String.format(Locale.ENGLISH, Text.get("DIALOG_CHANGE_TEXT"),
                 changeDesc ? Text.get("WORD_DESCRIPTION") : Text.get("WORD_NAME"),
                 changeDesc ? Constants.PUZZLE_DESC_MAX_LENGTH : Constants.PUZZLE_NAME_MAX_LENGTH));
         alertDialog.setView(puzzleInfoInput);
@@ -300,8 +302,8 @@ public class AlertDialogHelper {
         ((TextView)dialog.findViewById(R.id.maxWidth)).setText(Integer.toString(Constants.PUZZLE_X_MAX));
         ((TextView)dialog.findViewById(R.id.minHeight)).setText(Integer.toString(Constants.PUZZLE_Y_MIN));
         ((TextView)dialog.findViewById(R.id.maxHeight)).setText(Integer.toString(Constants.PUZZLE_Y_MAX));
-        ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Text.get("UI_PUZZLE_WIDTH"), Constants.PUZZLE_X_DEFAULT));
-        ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Text.get("UI_PUZZLE_HEIGHT"), Constants.PUZZLE_Y_DEFAULT));
+        ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_WIDTH"), Constants.PUZZLE_X_DEFAULT));
+        ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_HEIGHT"), Constants.PUZZLE_Y_DEFAULT));
         ((TextView)dialog.findViewById(R.id.environmentText)).setText(Text.get("WORD_AREA"));
         ((TextView)dialog.findViewById(R.id.emptyText)).setText(Text.get("UI_PUZZLE_AUTOGENERATE"));
         ((TextView)dialog.findViewById(R.id.shuffleText)).setText(Text.get("UI_PUZZLE_SHUFFLE_PLAY"));
@@ -315,7 +317,7 @@ public class AlertDialogHelper {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
-                ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Text.get("UI_PUZZLE_WIDTH"), getIntFromProgress(sliderWidth.getProgress(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX)));
+                ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_WIDTH"), getIntFromProgress(sliderWidth.getProgress(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX)));
             }
         });
 
@@ -328,7 +330,7 @@ public class AlertDialogHelper {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
-                ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Text.get("UI_PUZZLE_HEIGHT"), getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX)));
+                ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_HEIGHT"), getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX)));
             }
         });
 
@@ -409,14 +411,14 @@ public class AlertDialogHelper {
         // Filling in all the text fields
         ((TextView)dialog.findViewById(R.id.close)).setText(Text.get("DIALOG_BUTTON_CLOSE"));
         ((TextView)dialog.findViewById(R.id.resizeButton)).setText(Text.get("DIALOG_BUTTON_RESIZE"));
-        ((TextView)dialog.findViewById(R.id.title)).setText(String.format(Text.get("UI_PUZZLE_RESIZE"), puzzle.getName()));
+        ((TextView)dialog.findViewById(R.id.title)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_RESIZE"), puzzle.getName()));
         ((TextView)dialog.findViewById(R.id.resizeHint)).setText(Text.get("UI_PUZZLE_RESIZE_HINT"));
         ((TextView)dialog.findViewById(R.id.minWidth)).setText(Integer.toString(Constants.PUZZLE_X_MIN));
         ((TextView)dialog.findViewById(R.id.maxWidth)).setText(Integer.toString(Constants.PUZZLE_X_MAX));
         ((TextView)dialog.findViewById(R.id.minHeight)).setText(Integer.toString(Constants.PUZZLE_Y_MIN));
         ((TextView)dialog.findViewById(R.id.maxHeight)).setText(Integer.toString(Constants.PUZZLE_Y_MAX));
-        ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Text.get("UI_PUZZLE_WIDTH"), oldXY.first + 1));
-        ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Text.get("UI_PUZZLE_HEIGHT"), oldXY.second + 1));
+        ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_WIDTH"), oldXY.first + 1));
+        ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_HEIGHT"), oldXY.second + 1));
 
         // Creating X slider
         final SeekBar sliderWidth = (SeekBar) dialog.findViewById(R.id.sliderWidth);
@@ -427,7 +429,7 @@ public class AlertDialogHelper {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
-                ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Text.get("UI_PUZZLE_WIDTH"), getIntFromProgress(sliderWidth.getProgress(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX)));
+                ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_WIDTH"), getIntFromProgress(sliderWidth.getProgress(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX)));
             }
         });
 
@@ -440,7 +442,7 @@ public class AlertDialogHelper {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
-                ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Text.get("UI_PUZZLE_HEIGHT"), getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX)));
+                ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_HEIGHT"), getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX)));
             }
         });
 
@@ -473,7 +475,7 @@ public class AlertDialogHelper {
 
     public static void confirmResize(final Activity activity, final int puzzleId, final int oldX, final int oldY, final int newX, final int newY) {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
-        alertDialog.setMessage(String.format(Text.get("DIALOG_RESIZE_CONFIRM"), oldX, oldY, newX, newY));
+        alertDialog.setMessage(String.format(Locale.ENGLISH, Text.get("DIALOG_RESIZE_CONFIRM"), oldX, oldY, newX, newY));
 
         alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_RESIZE"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
@@ -546,7 +548,7 @@ public class AlertDialogHelper {
 
         final Dialog dialog = new Dialog(activity);
         dialog.setContentView(R.layout.custom_dialog_slider);
-        dialog.setTitle(String.format(Text.get("DIALOG_CHANGE_SLIDER"), setting.getName()));
+        dialog.setTitle(String.format(Locale.ENGLISH, Text.get("DIALOG_CHANGE_SLIDER"), setting.getName()));
         dialog.setCancelable(true);
 
         ((TextView)dialog.findViewById(R.id.close)).setText(Text.get("DIALOG_BUTTON_CLOSE"));
@@ -557,9 +559,9 @@ public class AlertDialogHelper {
         TextView maxValue = (TextView)dialog.findViewById(R.id.maxValue);
         final TextView currentValue = (TextView)dialog.findViewById(R.id.currentValue);
 
-        minValue.setText(String.format("%.2f", setting.getFloatMin()));
-        maxValue.setText(String.format("%.2f", setting.getFloatMax()));
-        currentValue.setText(String.format("%.2f", setting.getFloatValue()));
+        minValue.setText(String.format(Locale.ENGLISH, "%.2f", setting.getFloatMin()));
+        maxValue.setText(String.format(Locale.ENGLISH, "%.2f", setting.getFloatMax()));
+        currentValue.setText(String.format(Locale.ENGLISH, "%.2f", setting.getFloatValue()));
 
         final SeekBar seekbar = (SeekBar) dialog.findViewById(R.id.seekbar);
         seekbar.setProgress(getProgressFromFloat(setting.getFloatValue(), setting.getFloatMin(), setting.getFloatMax()));
@@ -569,7 +571,7 @@ public class AlertDialogHelper {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
-                currentValue.setText(String.format("%.2f",
+                currentValue.setText(String.format(Locale.ENGLISH, "%.2f",
                         getFloatFromProgress(seekbar.getProgress(), setting.getFloatMin(), setting.getFloatMax())));
             }
         });
@@ -598,7 +600,7 @@ public class AlertDialogHelper {
 
         final Dialog dialog = new Dialog(activity);
         dialog.setContentView(R.layout.custom_dialog_slider);
-        dialog.setTitle(String.format(Text.get("DIALOG_CHANGE_SLIDER"), setting.getName()));
+        dialog.setTitle(String.format(Locale.ENGLISH, Text.get("DIALOG_CHANGE_SLIDER"), setting.getName()));
         dialog.setCancelable(true);
 
         ((TextView)dialog.findViewById(R.id.close)).setText(Text.get("DIALOG_BUTTON_CLOSE"));

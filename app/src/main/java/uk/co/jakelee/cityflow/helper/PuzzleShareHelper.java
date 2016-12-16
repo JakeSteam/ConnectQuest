@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
@@ -34,7 +35,7 @@ public class PuzzleShareHelper {
                 puzzle.getBestMoves()));
         List<Tile> tiles = puzzle.getTiles();
         for (Tile tile : tiles) {
-            sb.append(String.format("tiles.add(new Tile(PUZZLE_ID, %1$d, %2$d, %3$d, %4$d));\n",
+            sb.append(String.format(Locale.ENGLISH, "tiles.add(new Tile(PUZZLE_ID, %1$d, %2$d, %3$d, %4$d));\n",
                     tile.getTileTypeId(),
                     tile.getX(),
                     tile.getY(),

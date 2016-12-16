@@ -11,6 +11,7 @@ import com.orm.query.Select;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Pack;
@@ -75,7 +76,7 @@ public class PuzzleHelper {
                     pack.increaseCompletedCount();
                 }
                 pack.refreshMetrics();
-                TileType.executeQuery(String.format("UPDATE tile_type SET status = %1$d WHERE puzzle_required = %2$d",
+                TileType.executeQuery(String.format(Locale.ENGLISH, "UPDATE tile_type SET status = %1$d WHERE puzzle_required = %2$d",
                         Constants.TILE_STATUS_UNLOCKED,
                         puzzle.getPuzzleId()));
                 puzzle.getUnlockableTiles();
@@ -168,7 +169,7 @@ public class PuzzleHelper {
         }
 
         if (tiles.size() > 0) {
-            tileString = String.format(Text.get("UI_TILE_UNLOCK"), tileString.substring(0, tileString.length() - 2));
+            tileString = String.format(Locale.ENGLISH, Text.get("UI_TILE_UNLOCK"), tileString.substring(0, tileString.length() - 2));
         } else {
             tileString = Text.get("UI_TILE_NO_UNLOCK");
         }
@@ -244,7 +245,7 @@ public class PuzzleHelper {
         PuzzleCustom puzzleCustom = new PuzzleCustom();
 
         puzzleCustom.setPuzzleId(puzzleId);
-        puzzleCustom.setName(String.format(Text.get("PUZZLE_DEFAULT_NAME"),
+        puzzleCustom.setName(String.format(Locale.ENGLISH, Text.get("PUZZLE_DEFAULT_NAME"),
                 maxX,
                 maxY,
                 DateHelper.displayTime(System.currentTimeMillis(), DateHelper.date)));

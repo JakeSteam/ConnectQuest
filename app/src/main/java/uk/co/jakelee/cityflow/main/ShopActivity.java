@@ -18,6 +18,7 @@ import com.tapjoy.TJPlacementListener;
 import com.tapjoy.Tapjoy;
 
 import java.util.List;
+import java.util.Locale;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AdvertHelper;
@@ -96,7 +97,7 @@ public class ShopActivity extends Activity {
                     public void onGetCurrencyBalanceResponse(String currencyName, int balance) {
                         if (AdvertHelper.synchroniseCoins(activity, balance)) {
                             populateText();
-                        };
+                        }
                     }
                     @Override public void onGetCurrencyBalanceResponseFailure(String error) {}
                 });
@@ -194,7 +195,7 @@ public class ShopActivity extends Activity {
 
     public void advertWatched() {
         Statistic.addCurrency(Constants.CURRENCY_ADVERT);
-        AlertHelper.success(this, String.format(Text.get("ALERT_COINS_EARNED_FREE"), Constants.CURRENCY_ADVERT));
+        AlertHelper.success(this, String.format(Locale.ENGLISH, Text.get("ALERT_COINS_EARNED_FREE"), Constants.CURRENCY_ADVERT));
         GooglePlayHelper.UpdateEvent(Constants.EVENT_WATCH_ADVERT, 1);
 
         populateText();

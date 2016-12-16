@@ -46,9 +46,9 @@ public class ShopItemActivity extends Activity {
 
         if (shopItem.getCategoryId() == Constants.STORE_CATEGORY_BOOSTS && shopItem.getSubcategoryId() > 0) {
             Boost boost = Boost.get(shopItem.getSubcategoryId());
-            ((TextView) findViewById(R.id.itemPurchases)).setText(String.format(Text.get("SHOP_NUMBER_OWNED"), boost.getOwned()));
+            ((TextView) findViewById(R.id.itemPurchases)).setText(String.format(Locale.ENGLISH, Text.get("SHOP_NUMBER_OWNED"), boost.getOwned()));
         } else {
-            ((TextView) findViewById(R.id.itemPurchases)).setText(String.format(Text.get("SHOP_NUMBER_PURCHASES"),
+            ((TextView) findViewById(R.id.itemPurchases)).setText(String.format(Locale.ENGLISH, Text.get("SHOP_NUMBER_PURCHASES"),
                     shopItem.getPurchases(),
                     shopItem.getMaxPurchases() > 0 ? "/" + shopItem.getMaxPurchases() : ""));
         }
@@ -56,7 +56,7 @@ public class ShopItemActivity extends Activity {
         if (shopItem.getMaxPurchases() > 0 && shopItem.getPurchases() >= shopItem.getMaxPurchases()) {
             ((TextView)findViewById(R.id.purchaseButton)).setText(Text.get("SHOP_MAX_PURCHASED"));
         } else {
-            ((TextView)findViewById(R.id.purchaseButton)).setText(String.format(Text.get("SHOP_PURCHASE_TEXT"), shopItem.getPrice()));
+            ((TextView)findViewById(R.id.purchaseButton)).setText(String.format(Locale.ENGLISH, Text.get("SHOP_PURCHASE_TEXT"), shopItem.getPrice()));
         }
         ((TextView) findViewById(R.id.currencyCountText)).setText(Integer.toString(Statistic.getCurrency()));
     }
@@ -72,13 +72,13 @@ public class ShopItemActivity extends Activity {
             Background background = Background.get(Constants.BACKGROUND_SUMMER);
             if (!background.isUnlocked()) {
                 background.unlock();
-                AlertHelper.success(this, String.format(Text.get("SHOP_ITEM_PURCHASED_BACKGROUND"),
+                AlertHelper.success(this, String.format(Locale.ENGLISH, Text.get("SHOP_ITEM_PURCHASED_BACKGROUND"),
                         shopItem.getName(),
                         shopItem.getPrice(),
                         background.getName()));
             }
              else {
-                AlertHelper.success(this, String.format(Text.get("SHOP_ITEM_PURCHASED"),
+                AlertHelper.success(this, String.format(Locale.ENGLISH, Text.get("SHOP_ITEM_PURCHASED"),
                         shopItem.getName(),
                         shopItem.getPrice()));
             }

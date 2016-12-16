@@ -20,7 +20,7 @@ public class SoundHelper {
     public static final int[] mainSongs = {R.raw.main_carefree, R.raw.main_carpe_diem, R.raw.main_rainbows};
     public static final int[] puzzleSongs = {R.raw.puzzle_faceoff, R.raw.puzzle_ghost_dance, R.raw.puzzle_dreamy_flashback, R.raw.puzzle_bright_wish};
 
-    public enum AUDIO {purchasing, rotating, settings, main, puzzle};
+    public enum AUDIO {purchasing, rotating, settings, main, puzzle}
     public static final int[] purchasingSounds = {R.raw.purchase1, R.raw.purchase2};
     public static final int[] rotatingSounds = {R.raw.click1, R.raw.click2, R.raw.click3, R.raw.click4, R.raw.click5, R.raw.click6, R.raw.click7, R.raw.click8, R.raw.click9, R.raw.click10};
     public static final int[] settingSounds = {R.raw.setting1, R.raw.setting2};

@@ -87,9 +87,9 @@ public class StoryActivity extends Activity {
         findViewById(R.id.actionButton).setVisibility(isUnlocked || isUnlockable ? View.VISIBLE : View.GONE);
 
         if (isUnlocked) {
-            ((TextView)findViewById(R.id.unlockedPackStars)).setText(String.format(Text.get("UI_PACK_UNLOCKED_STARS"), pack.getCurrentStars(), pack.getMaxStars()));
-            ((TextView)findViewById(R.id.unlockedPackTime)).setText(String.format(Text.get("UI_PACK_UNLOCKED_TIME"), pack.getCurrentTime() > 0 ? DateHelper.getPuzzleTimeString(pack.getCurrentTime()) : "N/A"));
-            ((TextView)findViewById(R.id.unlockedPackMoves)).setText(String.format(Text.get("UI_PACK_UNLOCKED_MOVES"), pack.getCurrentMoves() > 0 ? Integer.toString(pack.getCurrentMoves()) : "N/A"));
+            ((TextView)findViewById(R.id.unlockedPackStars)).setText(String.format(Locale.ENGLISH, Text.get("UI_PACK_UNLOCKED_STARS"), pack.getCurrentStars(), pack.getMaxStars()));
+            ((TextView)findViewById(R.id.unlockedPackTime)).setText(String.format(Locale.ENGLISH, Text.get("UI_PACK_UNLOCKED_TIME"), pack.getCurrentTime() > 0 ? DateHelper.getPuzzleTimeString(pack.getCurrentTime()) : "N/A"));
+            ((TextView)findViewById(R.id.unlockedPackMoves)).setText(String.format(Locale.ENGLISH, Text.get("UI_PACK_UNLOCKED_MOVES"), pack.getCurrentMoves() > 0 ? Integer.toString(pack.getCurrentMoves()) : "N/A"));
             findViewById(R.id.actionButton).setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(getApplicationContext(), PackActivity.class);
@@ -101,7 +101,7 @@ public class StoryActivity extends Activity {
         } else if (pack.isUnlockable()) {
             Pack previousPack = Pack.getPack(selectedPack - 1);
             ((TextView)findViewById(R.id.unlockablePackHeader)).setText(Text.get("UI_PACK_UNLOCKABLE_HEADER"));
-            ((TextView)findViewById(R.id.unlockablePackInstruction)).setText(String.format(Text.get("UI_PACK_UNLOCKABLE_INSTRUCTION"), previousPack.getName(), previousPack.getCurrentStars(), previousPack.getMaxStars()));
+            ((TextView)findViewById(R.id.unlockablePackInstruction)).setText(String.format(Locale.ENGLISH, Text.get("UI_PACK_UNLOCKABLE_INSTRUCTION"), previousPack.getName(), previousPack.getCurrentStars(), previousPack.getMaxStars()));
             findViewById(R.id.actionButton).setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     ShopItem packItem = ShopItem.getPackItem(pack.getPackId());

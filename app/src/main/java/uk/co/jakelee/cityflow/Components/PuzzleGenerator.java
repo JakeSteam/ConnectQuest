@@ -72,8 +72,8 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
     @Override
     protected void onProgressUpdate(Integer... values) {
         int percent = (int) (((double) values[0]) / ((double) totalTiles) * 100);
-        progressPercentage.setText(String.format(Locale.getDefault(), "%1$d%%", percent));
-        progressText.setText(String.format(Locale.getDefault(), "(%1$d/%2$d)", values[0], totalTiles));
+        progressPercentage.setText(String.format(Locale.ENGLISH, "%1$d%%", percent));
+        progressText.setText(String.format(Locale.ENGLISH, "(%1$d/%2$d)", values[0], totalTiles));
     }
 
     @Override
@@ -182,7 +182,7 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
     }
 
     private static List<Tile> getPossibleTilesByRotation(int puzzleId, int x, int y, int environmentId, int rotation, int nFlow, int eFlow, int sFlow, int wFlow, int nHeight, int eHeight, int sHeight, int wHeight) {
-        String sql = String.format(Locale.getDefault(),
+        String sql = String.format(Locale.ENGLISH,
                 "SELECT * FROM tile_type WHERE environment_id %1$s %2$d AND flow_north %3$s %4$d AND flow_east %5$s %6$d AND flow_south %7$s %8$d AND flow_west %9$s %10$d AND height_north %11$s %12$d AND height_east %13$s %14$d AND height_south %15$s %16$d AND height_west %17$s %18$d AND status = %19$d " +
                         (x == 0 && y == 0 ? "AND (flow_north > 0 OR flow_east > 0 OR flow_south > 0 OR flow_west > 0)" : ""),
                 environmentId > 0 ? "=" : ">=", environmentId,

@@ -95,7 +95,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         Statistic.increaseByX(Constants.STATISTIC_CURRENCY, questCoins);
         Statistic.increaseByOne(Constants.STATISTIC_QUESTS_COMPLETED);
         GooglePlayHelper.UpdateEvent(Constants.EVENT_COMPLETE_QUEST, 1);
-        return String.format(Text.get("QUEST_COMPLETED_TEXT"),
+        return String.format(Locale.ENGLISH, Text.get("QUEST_COMPLETED_TEXT"),
                 questDifficulty,
                 questName,
                 questCoins);
@@ -287,7 +287,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         new Thread(new Runnable() {
             public void run() {
                 byte[] data = createBackup();
-                String desc = String.format(Text.get("CLOUD_SAVE_DESC"),
+                String desc = String.format(Locale.ENGLISH, Text.get("CLOUD_SAVE_DESC"),
                         PuzzleHelper.getTotalStars(),
                         Statistic.getCurrency(),
                         BuildConfig.VERSION_NAME);
@@ -321,7 +321,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
 
         Snapshots.OpenSnapshotResult result = Games.Snapshots.open(mGoogleApiClient, "autoSave", true).await();
         byte[] data = createBackup();
-        String desc = String.format(Text.get("CLOUD_AUTOSAVE_DESC"),
+        String desc = String.format(Locale.ENGLISH, Text.get("CLOUD_AUTOSAVE_DESC"),
                 PuzzleHelper.getTotalStars(),
                 Statistic.getCurrency(),
                 BuildConfig.VERSION_NAME);

@@ -15,6 +15,7 @@ import com.tapjoy.TJPlacement;
 import com.tapjoy.TJPlacementListener;
 import com.tapjoy.Tapjoy;
 
+import java.util.Locale;
 import java.util.Map;
 
 import uk.co.jakelee.cityflow.main.ShopActivity;
@@ -73,7 +74,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
     public static boolean synchroniseCoins(Activity activity, int remoteCoins) {
         int coinsEarned = synchroniseCoins(remoteCoins);
         if (coinsEarned > 0) {
-            AlertHelper.success(activity, String.format(Text.get("ALERT_COINS_EARNED_FREE"), coinsEarned));
+            AlertHelper.success(activity, String.format(Locale.ENGLISH, Text.get("ALERT_COINS_EARNED_FREE"), coinsEarned));
             if (coinsEarned == Constants.CURRENCY_ADVERT) {
                 GooglePlayHelper.UpdateEvent(Constants.EVENT_WATCH_ADVERT, 1);
                 return true;

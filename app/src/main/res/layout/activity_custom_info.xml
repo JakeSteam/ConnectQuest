@@ -34,7 +34,6 @@
                 android:textColor="@color/blue"
                 android:paddingRight="35dp"
                 android:textSize="20sp"
-                android:singleLine="false"
                 android:maxLines="2"
                 android:ellipsize="end"/>
         </TableRow>
@@ -55,7 +54,6 @@
                 android:textColor="@color/blue"
                 android:paddingRight="35dp"
                 android:textSize="20sp"
-                android:singleLine="false"
                 android:maxLines="2"
                 android:ellipsize="end"/>
         </TableRow>

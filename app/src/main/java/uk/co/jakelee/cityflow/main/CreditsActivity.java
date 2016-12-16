@@ -28,7 +28,7 @@ public class CreditsActivity extends Activity {
         Background background = Background.get(Constants.BACKGROUND_SUMMER);
         if (!background.isUnlocked()) {
             background.unlock();
-            AlertHelper.success(this, String.format(Text.get("ALERT_BACKGROUND_UNLOCK"), background.getName()));
+            AlertHelper.success(this, String.format(Locale.ENGLISH, Text.get("ALERT_BACKGROUND_UNLOCK"), background.getName()));
         }
     }
 

@@ -15,6 +15,8 @@ import com.aitorvs.android.allowme.AllowMeActivity;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.quest.Quests;
 
+import java.util.Locale;
+
 import uk.co.jakelee.cityflow.BuildConfig;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
@@ -129,8 +131,8 @@ public class SettingsActivity extends AllowMeActivity {
         ((TextView) findViewById(R.id.vibrationToggleButton)).setTextColor(ContextCompat.getColor(this, Setting.getSafeBoolean(Constants.SETTING_VIBRATION) ? R.color.green : R.color.red));
 
         ((TextView) findViewById(R.id.playerNameDisplay)).setText(Setting.getString(Constants.SETTING_PLAYER_NAME));
-        ((TextView) findViewById(R.id.minZoomButton)).setText(String.format("%.2f", Setting.getFloat(Constants.SETTING_MIN_ZOOM)));
-        ((TextView) findViewById(R.id.maxZoomButton)).setText(String.format("%.2f", Setting.getFloat(Constants.SETTING_MAX_ZOOM)));
+        ((TextView) findViewById(R.id.minZoomButton)).setText(String.format(Locale.ENGLISH, "%.2f", Setting.getFloat(Constants.SETTING_MIN_ZOOM)));
+        ((TextView) findViewById(R.id.maxZoomButton)).setText(String.format(Locale.ENGLISH, "%.2f", Setting.getFloat(Constants.SETTING_MAX_ZOOM)));
         ((TextView) findViewById(R.id.maxCarsButton)).setText(Integer.toString(Setting.getInt(Constants.SETTING_MAX_CARS)));
 
         // Google Play settings
@@ -193,7 +195,7 @@ public class SettingsActivity extends AllowMeActivity {
                             getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE).edit()
                                     .putInt("language", position).apply();
                             if (!TextHelper.isPackInstalled(position)) {
-                                AlertHelper.info(activity, String.format(Text.get("ALERT_LANGUAGE_INSTALL"), Text.get("LANGUAGE_" + position + "_NAME")));
+                                AlertHelper.info(activity, String.format(Locale.ENGLISH, Text.get("ALERT_LANGUAGE_INSTALL"), Text.get("LANGUAGE_" + position + "_NAME")));
                                 TextHelper.installLanguagePack(position);
                             }
                             populateText();
@@ -257,7 +259,7 @@ public class SettingsActivity extends AllowMeActivity {
             settingToToggle.setBooleanValue(!settingToToggle.getBooleanValue());
             settingToToggle.save();
 
-            AlertHelper.success(this, String.format(Text.get(settingToToggle.getBooleanValue() ? "ALERT_SETTING_TOGGLE_ON" : "ALERT_SETTING_TOGGLE_OFF"),
+            AlertHelper.success(this, String.format(Locale.ENGLISH, Text.get(settingToToggle.getBooleanValue() ? "ALERT_SETTING_TOGGLE_ON" : "ALERT_SETTING_TOGGLE_OFF"),
                     settingToToggle.getName()));
 
             populateSettings();

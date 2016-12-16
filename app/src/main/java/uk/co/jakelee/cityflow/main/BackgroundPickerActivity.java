@@ -38,7 +38,7 @@ public class BackgroundPickerActivity extends Activity {
 
         displayBackgrounds();
         updateBackgroundInfo();
-        ((TextView)findViewById(R.id.backgroundSelectTitle)).setText(String.format(Text.get("UI_BACKGROUND_SELECT_TITLE"),
+        ((TextView)findViewById(R.id.backgroundSelectTitle)).setText(String.format(Locale.ENGLISH, Text.get("UI_BACKGROUND_SELECT_TITLE"),
                 Background.getUnlockedBackgroundCount(),
                 Background.listAll(Background.class).size()));
     }

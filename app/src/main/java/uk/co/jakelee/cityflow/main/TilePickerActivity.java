@@ -177,13 +177,13 @@ public class TilePickerActivity extends Activity {
             case Constants.TILE_STATUS_LOCKED:
                 Puzzle puzzle = tileType.getRequiredPuzzle();
                 Pack pack = Pack.getPack(puzzle.getPackId());
-                AlertHelper.info(this, String.format(Text.get("UI_TILE_UNLOCK_PUZZLE"),
+                AlertHelper.info(this, String.format(Locale.ENGLISH, Text.get("UI_TILE_UNLOCK_PUZZLE"),
                         tileType.getName(),
                         puzzle.getName(),
                         pack.getName()));
                 break;
             case Constants.TILE_STATUS_UNPURCHASED:
-                AlertHelper.info(this, String.format(Text.get("UI_TILE_UNLOCK_SHOP"),
+                AlertHelper.info(this, String.format(Locale.ENGLISH, Text.get("UI_TILE_UNLOCK_SHOP"),
                         tileType.getName()));
                 break;
         }
