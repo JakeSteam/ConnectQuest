@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
@@ -160,7 +159,6 @@ public class ZoomableViewGroup extends RelativeLayout {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         // Consume all touches, unless they are action_up, or a small move.
-        Log.d("Touch", "Time: " + (ev.getEventTime() - ev.getDownTime()) + ". Event ID: " + ev.getAction());
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
             mOnTouchEventWorkingArray[0] = ev.getX();
             mOnTouchEventWorkingArray[1] = ev.getY();
@@ -170,18 +168,6 @@ public class ZoomableViewGroup extends RelativeLayout {
             mLastTouchY = mOnTouchEventWorkingArray[1];
             mActivePointerId = ev.getPointerId(0);
             return false;
-        } else if (ev.getAction() == MotionEvent.ACTION_MOVE) {
-            final int pointerIndex = ev.findPointerIndex(mActivePointerId);
-
-            final float x = ev.getX(pointerIndex);
-            final float y = ev.getY(pointerIndex);
-
-            final float dx = x - mLastTouchX;
-            final float dy = y - mLastTouchY;
-
-            float totalDistance = dx + dy;
-            Log.d("Distance", totalDistance + "");
-            return totalDistance > 8 || totalDistance < -8;
         }
         return ev.getAction() != MotionEvent.ACTION_UP;
     }
@@ -230,11 +216,6 @@ public class ZoomableViewGroup extends RelativeLayout {
                     mLastTouchY = y;
                     invalidate();
 
-                    float totalDistance = dx + dy;
-                    Log.d("Distance", totalDistance + "");
-                    if (totalDistance < 500) {
-                        //return true;
-                    }
                     break;
                 }
 
