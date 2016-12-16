@@ -1,0 +1,137 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:layout_gravity="center"
+    style="@style/Theme.AlertDialog">
+
+    <uk.co.jakelee.cityflow.components.TextViewFont
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="@color/black"/>
+
+    <uk.co.jakelee.cityflow.components.TextViewFont
+        android:id="@+id/resizeHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:textSize="16sp"
+        android:textColor="@color/grey"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"/>
+
+    <RelativeLayout
+        android:id="@+id/widthWrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/resizeHint">
+        <uk.co.jakelee.cityflow.components.TextViewFont
+            android:id="@+id/currentWidth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="18sp"
+            android:textColor="@color/black" />
+
+        <uk.co.jakelee.cityflow.components.TextViewFont
+            android:id="@+id/minWidth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/currentWidth"
+            android:textSize="18sp"
+            android:textColor="@color/black" />
+
+        <uk.co.jakelee.cityflow.components.TextViewFont
+            android:id="@+id/maxWidth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/currentWidth"
+            android:textSize="18sp"
+            android:textColor="@color/black" />
+
+        <SeekBar
+            android:id="@+id/sliderWidth"
+            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_margin="10dp"
+            android:layout_toRightOf="@id/minWidth"
+            android:layout_toLeftOf="@id/maxWidth"
+            android:layout_below="@id/currentWidth"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/heightWrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widthWrapper">
+        <uk.co.jakelee.cityflow.components.TextViewFont
+            android:id="@+id/currentHeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="18sp"
+            android:textColor="@color/black" />
+
+        <uk.co.jakelee.cityflow.components.TextViewFont
+            android:id="@+id/minHeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/currentHeight"
+            android:textSize="18sp"
+            android:textColor="@color/black" />
+
+        <uk.co.jakelee.cityflow.components.TextViewFont
+            android:id="@+id/maxHeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/currentHeight"
+            android:textSize="18sp"
+            android:textColor="@color/black" />
+
+        <SeekBar
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/sliderHeight"
+            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_margin="10dp"
+            android:layout_toRightOf="@id/minHeight"
+            android:layout_toLeftOf="@id/maxHeight"
+            android:layout_below="@id/currentHeight"/>
+    </RelativeLayout>
+
+    <uk.co.jakelee.cityflow.components.TextViewFont
+        android:id="@+id/close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        android:textSize="25sp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="10dp"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/heightWrapper"/>
+
+    <uk.co.jakelee.cityflow.components.TextViewFont
+        android:id="@+id/resizeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:textSize="25sp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="10dp"
+        android:padding="10dp"
+        android:layout_toRightOf="@id/close"
+        android:textColor="@color/black"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/heightWrapper"/>
+
+</RelativeLayout>

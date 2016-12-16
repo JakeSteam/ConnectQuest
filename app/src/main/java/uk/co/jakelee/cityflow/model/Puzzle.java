@@ -6,26 +6,35 @@ import com.orm.query.Select;
 
 import java.util.List;
 
+import uk.co.jakelee.cityflow.helper.Constants;
+import uk.co.jakelee.cityflow.helper.EncryptHelper;
+import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
+import uk.co.jakelee.cityflow.helper.RandomHelper;
+
 public class Puzzle extends SugarRecord {
     private int puzzleId;
-    private int chapter;
-    private int type;
-    private int complexity;
-    private long bestTime;
-    private int bestMoves;
-    private int bestRating;
+    private int packId;
+    private String parTime;
+    private String parMoves;
+    private String bestTime;
+    private String bestMoves;
+    private String completionStar;
+    private String timeStar;
+    private String movesStar;
 
     public Puzzle() {
     }
 
-    public Puzzle(int puzzleId, int chapter, int type, int complexity, long bestTime, int bestMoves, int bestRating) {
+    public Puzzle(int puzzleId, int packId, long parTime, int parMoves, long bestTime, int bestMoves) {
         this.puzzleId = puzzleId;
-        this.chapter = chapter;
-        this.type = type;
-        this.complexity = complexity;
-        this.bestTime = bestTime;
-        this.bestMoves = bestMoves;
-        this.bestRating = bestRating;
+        this.packId = packId;
+        this.parTime = EncryptHelper.encode(parTime, puzzleId);
+        this.parMoves = EncryptHelper.encode(parMoves, puzzleId);
+        this.bestTime = EncryptHelper.encode(bestTime, puzzleId);
+        this.bestMoves = EncryptHelper.encode(bestMoves, puzzleId);
+        this.completionStar = EncryptHelper.encode(false, puzzleId + 1000);
+        this.timeStar = EncryptHelper.encode(false, puzzleId + 2000);
+        this.movesStar = EncryptHelper.encode(false, puzzleId + 3000);
     }
 
     public int getPuzzleId() {
@@ -36,57 +45,161 @@ public class Puzzle extends SugarRecord {
         this.puzzleId = puzzleId;
     }
 
-    public int getchapter() {
-        return chapter;
+    public int getPackId() {
+        return packId;
     }
 
-    public void setchapter(int chapter) {
-        this.chapter = chapter;
+    public void setPackId(int packId) {
+        this.packId = packId;
     }
 
-    public int getType() {
-        return type;
+    public long getParTime() {
+        return EncryptHelper.decodeToLong(parTime, puzzleId);
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setParTime(long parTime) {
+        this.parTime = EncryptHelper.encode(parTime, puzzleId);
     }
 
-    public int getComplexity() {
-        return complexity;
+    public int getParMoves() {
+        return EncryptHelper.decodeToInt(parMoves, puzzleId);
     }
 
-    public void setComplexity(int complexity) {
-        this.complexity = complexity;
+    public void setParMoves(int parMoves) {
+        this.parMoves = EncryptHelper.encode(parMoves, puzzleId);
     }
 
     public long getBestTime() {
-        return bestTime;
+        return EncryptHelper.decodeToLong(bestTime, puzzleId);
     }
 
     public void setBestTime(long bestTime) {
-        this.bestTime = bestTime;
+        this.bestTime = EncryptHelper.encode(bestTime, puzzleId);
     }
 
     public int getBestMoves() {
-        return bestMoves;
+        return EncryptHelper.decodeToInt(bestMoves, puzzleId);
+    }
+
+    public String getBestMovesText() {
+        int unfiltered = EncryptHelper.decodeToInt(bestMoves, puzzleId);
+        if (unfiltered == 0 || unfiltered == Constants.PUZZLE_DEFAULT_MOVES) {
+            return Text.get("WORD_NA");
+        }
+        return Integer.toString(unfiltered);
     }
 
     public void setBestMoves(int bestMoves) {
-        this.bestMoves = bestMoves;
+        this.bestMoves = EncryptHelper.encode(bestMoves, puzzleId);
     }
 
-    public int getBestRating() {
-        return bestRating;
+    public boolean hasCompletionStar() {
+        return EncryptHelper.decodeToBool(completionStar, puzzleId + 1000);
     }
 
-    public void setBestRating(int bestRating) {
-        this.bestRating = bestRating;
+    public void setCompletionStar(boolean completionStar) {
+        this.completionStar = EncryptHelper.encode(completionStar, puzzleId + 1000);
+    }
+
+    public boolean hasTimeStar() {
+        return EncryptHelper.decodeToBool(timeStar, puzzleId + 2000);
+    }
+
+    public void setTimeStar(boolean timeStar) {
+        this.timeStar = EncryptHelper.encode(timeStar, puzzleId + 2000);
+    }
+
+    public boolean hasMovesStar() {
+        return EncryptHelper.decodeToBool(movesStar, puzzleId + 3000);
+    }
+
+    public void setMovesStar(boolean movesStar) {
+        this.movesStar = EncryptHelper.encode(movesStar, puzzleId + 3000);
+    }
+
+    public String getName() {
+        if (packId == 0) {
+            return getCustomData().getName();
+        }
+        return Text.get("PUZZLE_", getPuzzleId(), "_NAME");
+    }
+
+    public void safelyDelete() {
+        PuzzleCustom puzzleCustom = getCustomData();
+        if (puzzleCustom != null) {
+            puzzleCustom.delete();
+        }
+        Tile.deleteAll(Tile.class, "puzzle_id = " + puzzleId);
+        delete();
     }
 
     public List<Tile> getTiles() {
-        List<Tile> tiles = Tile.listAll(Tile.class);
         return Select.from(Tile.class).where(
-                Condition.prop("puzzle_id").eq(this.getPuzzleId())).list();
+                Condition.prop("puzzle_id").eq(this.getPuzzleId()))
+                .orderBy("y DESC, x ASC").list();
+    }
+
+    public List<TileType> getUnlockableTiles() {
+        return Select.from(TileType.class).where(
+                Condition.prop("puzzle_required").eq(puzzleId)).list();
+    }
+
+    public static Puzzle getPuzzle(int puzzleId) {
+        return Select.from(Puzzle.class).where(Condition.prop("puzzle_id").eq(puzzleId)).first();
+    }
+
+    public static void shuffle(List<Tile> tiles) {
+        for (Tile tile : tiles) {
+            tile.setRotation(RandomHelper.getNumber(Constants.ROTATION_MIN, Constants.ROTATION_MAX));
+        }
+        Tile.saveInTx(tiles);
+    }
+
+    public int getStarCount() {
+        int stars = 0;
+        if (hasCompletionStar()) {
+            stars++;
+        }
+        if (hasMovesStar()) {
+            stars++;
+        }
+        if (hasTimeStar()) {
+            stars++;
+        }
+        return stars;
+    }
+
+    public static List<Puzzle> getCustomPuzzles(boolean displayOthers) {
+        int authorSelection = displayOthers ? 0 : 1;
+        return Select.from(Puzzle.class).where("puzzle_id IN (SELECT puzzle_id FROM puzzle_custom WHERE original_author = " + authorSelection + " ORDER BY date_added DESC)").list();
+    }
+
+    public PuzzleCustom getCustomData() {
+        return Select.from(PuzzleCustom.class).where(Condition.prop("puzzle_id").eq(puzzleId)).first();
+    }
+
+    public void resetTileRotations() {
+        Tile.executeQuery("UPDATE tile SET rotation = default_rotation WHERE puzzle_id = " + puzzleId);
+    }
+
+    public void saveTileRotations() {
+        Tile.executeQuery("UPDATE tile SET default_rotation = rotation WHERE puzzle_id = " + puzzleId);
+        resetMetrics();
+
+        PuzzleCustom puzzleCustom = getCustomData();
+        puzzleCustom.setHasBeenTested(false);
+        puzzleCustom.save();
+    }
+
+    public void resetMetrics() {
+        setParMoves(Constants.PUZZLE_DEFAULT_MOVES);
+        setBestMoves(Constants.PUZZLE_DEFAULT_MOVES);
+        setParTime(Constants.PUZZLE_DEFAULT_TIME);
+        setBestTime(Constants.PUZZLE_DEFAULT_TIME);
+        save();
+    }
+
+    public String getShareText() {
+        return PuzzleShareHelper.getPuzzleString(this);
     }
 }

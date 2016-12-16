@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green"
+    tools:context=".main.SettingsActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableLayout
+            android:background="@color/city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:shrinkColumns="*"
+            android:stretchColumns="*"
+            app:layout_marginPercent="7%">
+
+            <!-- Sound settings -->
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/settingSectionAudio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-5dp"
+                    android:layout_marginLeft="-10dp"
+                    android:layout_marginRight="-10dp"
+                    android:layout_marginBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black"
+                    android:background="@color/green"
+                    android:textSize="28sp"
+                    android:layout_span="2"/>
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/musicToggleText"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"/>
+
+                <uk.co.jakelee.cityflow.components.TextAwesome
+                    android:id="@+id/musicToggleButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="30sp"
+                    android:padding="10dp"
+                    android:onClick="toggleSetting"/>
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/soundToggleText"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.cityflow.components.TextAwesome
+                    android:id="@+id/soundToggleButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="30sp"
+                    android:padding="10dp"
+                    android:onClick="toggleSetting"/>
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/mainMusicToggleText"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <Spinner
+                    android:id="@+id/mainMusicPicker"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:background="@color/ltltgrey"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"/>
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/puzzleMusicToggleText"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <Spinner
+                    android:id="@+id/puzzleMusicPicker"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:background="@color/ltltgrey"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"/>
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/purchasingSoundToggleText"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <Spinner
+                    android:id="@+id/purchasingSoundPicker"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:background="@color/ltltgrey"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"/>
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/rotatingSoundToggleText"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <Spinner
+                    android:id="@+id/rotatingSoundPicker"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:background="@color/ltltgrey"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"/>
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/settingsSoundToggleText"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <Spinner
+                    android:id="@+id/settingsSoundPicker"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:background="@color/ltltgrey"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"/>
+            </TableRow>
+
+            <!-- Gameplay settings -->
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/settingSectionGameplay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="-10dp"
+                    android:layout_marginRight="-10dp"
+                    android:layout_marginBottom="5dp"
+                    android:paddingTop="15dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="5dp"
+                    android:layout_span="2"
+                    android:textColor="@color/black"
+                    android:background="@color/green"
+                    android:textSize="28sp" />
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/languagePickerText"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <Spinner
+                    android:id="@+id/languagePicker"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:background="@color/ltltgrey"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"/>
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/backgroundPickerText"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/backgroundPickerButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"
+                    android:ellipsize="end"
+                    android:onClick="openBackgroundPicker"
+                    android:textColor="@color/black"
+                    android:shadowColor="@color/white"
+                    android:shadowDx="1.5"
+                    android:shadowDy="1.3"
+                    android:shadowRadius="1.6"/>
+            </TableRow>
+
+            <TableRow android:id="@+id/zenModeContainer">
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/zenToggleText"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.cityflow.components.TextAwesome
+                    android:id="@+id/zenToggleButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="30sp"
+                    android:padding="10dp"
+                    android:onClick="toggleSetting"/>
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/hideBoostText"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.cityflow.components.TextAwesome
+                    android:id="@+id/hideBoostButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="30sp"
+                    android:padding="10dp"
+                    android:onClick="toggleSetting"/>
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/playerNameText"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.cityflow.components.AutofitTextViewFont
+                    android:id="@+id/playerNameDisplay"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:textColor="@color/black"
+                    android:background="@color/ltltgrey"
+                    android:onClick="changeText"/>
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/minZoomText"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.cityflow.components.AutofitTextViewFont
+                    android:id="@+id/minZoomButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:background="@color/ltltgrey"
+                    android:onClick="changeFloat"
+                    android:tag="3"/>
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/maxZoomText"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/maxZoomButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:background="@color/ltltgrey"
+                    android:onClick="changeFloat"
+                    android:tag="4"/>
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/vibrationToggleText"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.cityflow.components.TextAwesome
+                    android:id="@+id/vibrationToggleButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="30sp"
+                    android:padding="10dp"
+                    android:onClick="toggleSetting"/>
+            </TableRow>
+
+            <TableRow android:id="@+id/maxCarsContainer">
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/maxCarsText"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/maxCarsButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:background="@color/ltltgrey"
+                    android:onClick="changeInt"
+                    android:tag="9"/>
+            </TableRow>
+
+            <!-- Google settings -->
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/settingSectionGoogle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="-10dp"
+                    android:layout_marginRight="-10dp"
+                    android:layout_marginBottom="5dp"
+                    android:paddingTop="15dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="5dp"
+                    android:layout_span="2"
+                    android:textColor="@color/black"
+                    android:background="@color/green"
+                    android:textSize="28sp" />
+            </TableRow>
+
+            <TableRow>
+                <LinearLayout
+                    android:id="@+id/googlePlayFeatureButtons"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+                    <ImageView
+                        android:layout_weight="1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@color/ltltgrey"
+                        android:src="@drawable/ic_achievements"
+                        android:padding="2dp"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:onClick="openAchievements"/>
+                    <ImageView
+                        android:layout_weight="1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@color/ltltgrey"
+                        android:src="@drawable/ic_quests"
+                        android:padding="2dp"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:onClick="openQuests"/>
+                    <ImageView
+                        android:layout_weight="1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@color/ltltgrey"
+                        android:src="@drawable/ic_leaderboards"
+                        android:padding="2dp"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:onClick="openLeaderboards"/>
+                    <ImageView
+                        android:layout_weight="1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@color/ltltgrey"
+                        android:src="@drawable/ic_saves"
+                        android:padding="2dp"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:onClick="openCloudSaves"/>
+                </LinearLayout>
+
+                <RelativeLayout android:gravity="center">
+                    <uk.co.jakelee.cityflow.components.TextViewFont
+                        android:id="@+id/signInButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@color/orange"
+                        android:onClick="signIn"
+                        android:textColor="@color/black"
+                        android:textSize="22sp" />
+                    <uk.co.jakelee.cityflow.components.TextViewFont
+                        android:id="@+id/signOutButton"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@color/orange"
+                        android:gravity="center"
+                        android:onClick="signOut"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"/>
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow android:id="@+id/autosaveRow">
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/autosaveText"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/autosaveDisplay"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:background="@color/ltltgrey"
+                    android:onClick="changeInt"
+                    android:tag="11"/>
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/lastAutosaveText"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/lastAutosaveDisplay"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:layout_gravity="center_horizontal"/>
+            </TableRow>
+
+            <!-- Other settings -->
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/settingSectionOther"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="-10dp"
+                    android:layout_marginRight="-10dp"
+                    android:layout_marginBottom="5dp"
+                    android:paddingTop="15dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="5dp"
+                    android:layout_span="2"
+                    android:textColor="@color/black"
+                    android:background="@color/green"
+                    android:textSize="28sp" />
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/creditsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:background="@color/ltltgrey"
+                    android:layout_span="2"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:padding="8dp"
+                    android:onClick="openCredits"/>
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/statisticsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:background="@color/ltltgrey"
+                    android:layout_span="2"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:padding="8dp"
+                    android:onClick="openStatistics"/>
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/resetLanguageButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:background="@color/ltltgrey"
+                    android:layout_span="2"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:padding="8dp"
+                    android:onClick="resetLanguage"/>
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/supportCodeButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:background="@color/ltltgrey"
+                    android:layout_span="2"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:padding="8dp"
+                    android:onClick="openSupportCode"/>
+            </TableRow>
+
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/versionText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:layout_span="2"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:padding="8dp"/>
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+    <LinearLayout
+        android:id="@+id/croutonview"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+    </LinearLayout>
+</android.support.percent.PercentRelativeLayout>

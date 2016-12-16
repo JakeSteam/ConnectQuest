@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".main.EditorActivity">
+
+    <RelativeLayout
+        android:id="@+id/topMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:layout_alignParentTop="true">
+        <uk.co.jakelee.cityflow.components.TextAwesome
+            android:id="@+id/openMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:textColor="@color/dkgreen"
+            android:text="@string/icon_settings"
+            android:layout_margin="5dp"
+            android:paddingTop="5dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="5dp"
+            android:gravity="center"
+            android:onClick="openMenu"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:background="@color/ltltgrey"/>
+
+        <uk.co.jakelee.cityflow.components.AutofitTextViewFont
+            android:id="@+id/selectedTileText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:maxLines="1"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:gravity="center"
+            android:layout_alignTop="@id/openMenu"
+            android:layout_alignBottom="@+id/openMenu"
+            android:layout_centerHorizontal="true"
+            android:layout_toLeftOf="@id/openMenu" />
+    </RelativeLayout>
+
+    <uk.co.jakelee.cityflow.components.ZoomableViewGroup
+        android:id="@+id/tileContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/topMenu"
+        android:orientation="vertical" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/green">
+        <uk.co.jakelee.cityflow.components.TextAwesome
+            android:id="@+id/zoomIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:textColor="@color/dkgreen"
+            android:text="@string/icon_zoomin"
+            android:onClick="zoomIn"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:gravity="center_horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@color/ltltgrey"/>
+
+        <uk.co.jakelee.cityflow.components.TextAwesome
+            android:id="@+id/zoomOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:textColor="@color/dkgreen"
+            android:text="@string/icon_zoomout"
+            android:onClick="zoomOut"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/zoomIn"
+            android:layout_alignParentBottom="true"
+            android:background="@color/ltltgrey"/>
+
+        <uk.co.jakelee.cityflow.components.TextAwesome
+            android:id="@+id/tileRotate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:textColor="@color/dkgreen"
+            android:text="@string/icon_rotate"
+            android:onClick="rotateTile"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@color/ltltgrey"/>
+
+        <uk.co.jakelee.cityflow.components.TextAwesome
+            android:id="@+id/tileChange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:textColor="@color/dkgreen"
+            android:text="@string/icon_picktile"
+            android:onClick="pickTile"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:gravity="center"
+            android:layout_toLeftOf="@id/tileRotate"
+            android:layout_alignParentBottom="true"
+            android:background="@color/ltltgrey"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/croutonview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+    </LinearLayout>
+</RelativeLayout>

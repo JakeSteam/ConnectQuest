@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:layout_gravity="center"
+    style="@style/Theme.AlertDialog">
+
+    <uk.co.jakelee.cityflow.components.TextViewFont
+        android:id="@+id/settingName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="@color/black"/>
+
+    <uk.co.jakelee.cityflow.components.TextViewFont
+        android:id="@+id/currentValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/settingName"
+        android:gravity="center_horizontal"
+        android:textSize="18sp" />
+
+    <uk.co.jakelee.cityflow.components.TextViewFont
+        android:id="@+id/minValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/currentValue"
+        android:layout_alignParentLeft="true"
+        android:textSize="18sp" />
+
+    <uk.co.jakelee.cityflow.components.TextViewFont
+        android:id="@+id/maxValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/currentValue"
+        android:layout_alignParentRight="true"
+        android:textSize="18sp" />
+
+    <SeekBar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/seekbar"
+        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_margin="10dp"
+        android:layout_toRightOf="@id/minValue"
+        android:layout_toLeftOf="@id/maxValue"
+        android:layout_below="@id/currentValue"/>
+
+    <uk.co.jakelee.cityflow.components.TextViewFont
+        android:id="@+id/close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        android:textSize="25sp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="5dp"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/seekbar"/>
+
+    <uk.co.jakelee.cityflow.components.TextViewFont
+        android:id="@+id/saveValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:textSize="25sp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="5dp"
+        android:padding="10dp"
+        android:layout_toRightOf="@id/close"
+        android:textColor="@color/black"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/seekbar"/>
+
+</RelativeLayout>
