@@ -111,27 +111,33 @@ public class DisplayHelper {
         image.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                boolean needsProcessing = false;
                 try {
+                    if (event.getAction() == MotionEvent.ACTION_CANCEL) {
+                        needsProcessing = true;
+                    }
                     Bitmap bmp = Bitmap.createBitmap(v.getDrawingCache());
                     int color = bmp.getPixel((int) event.getX(), (int) event.getY());
                     if (color == Color.TRANSPARENT) {
-                        // We don't care about this / subsequent touch events
                         return false;
                     } else {
-                        Log.d("Received", event.toString());
                         if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
-                            if (activity.getClass().equals(PuzzleActivity.class)) {
-                                ((PuzzleActivity) activity).handleTileClick(image, tile);
-                            } else if (activity.getClass().equals(EditorActivity.class)) {
-                                ((EditorActivity) activity).handleTileClick(image, tile);
-                            }
+                            needsProcessing = true;
                         }
-                        // We care about subsequent events, even if it was a touch down
-                        return true;
                     }
                 } catch (Exception e) {
-                    return false;
+                    Log.d("Event", event.toString());
                 }
+
+                if (needsProcessing) {
+                    Log.d("Time", "is " + (event.getEventTime() - event.getDownTime()));
+                    if (activity.getClass().equals(PuzzleActivity.class)) {
+                        ((PuzzleActivity) activity).handleTileClick(image, tile);
+                    } else if (activity.getClass().equals(EditorActivity.class)) {
+                        ((EditorActivity) activity).handleTileClick(image, tile);
+                    }
+                }
+                return true;
             }});
         return image;
     }

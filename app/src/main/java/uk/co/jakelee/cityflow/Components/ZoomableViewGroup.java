@@ -168,7 +168,13 @@ public class ZoomableViewGroup extends RelativeLayout {
             mLastTouchY = mOnTouchEventWorkingArray[1];
             mActivePointerId = ev.getPointerId(0);
             return false;
+        } else if (ev.getAction() == MotionEvent.ACTION_MOVE) {
+            /*long eventTime = ev.getEventTime() - ev.getDownTime();
+            Log.d("ZVGTime", "is " + eventTime);
+
+            return eventTime > 100;*/
         }
+
         return ev.getAction() != MotionEvent.ACTION_UP && ev.getAction() != MotionEvent.ACTION_CANCEL;
     }
 
