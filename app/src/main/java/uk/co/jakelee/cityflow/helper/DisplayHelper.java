@@ -119,10 +119,12 @@ public class DisplayHelper {
                         return false;
                     } else {
                         Log.d("Received", event.toString());
-                        if (activity.getClass().equals(PuzzleActivity.class)) {
-                            ((PuzzleActivity)activity).handleTileClick(image, tile);
-                        } else if (activity.getClass().equals(EditorActivity.class)) {
-                            ((EditorActivity)activity).handleTileClick(image, tile);
+                        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                            if (activity.getClass().equals(PuzzleActivity.class)) {
+                                ((PuzzleActivity) activity).handleTileClick(image, tile);
+                            } else if (activity.getClass().equals(EditorActivity.class)) {
+                                ((EditorActivity) activity).handleTileClick(image, tile);
+                            }
                         }
                         // We care about subsequent events, even if it was a touch down
                         return true;
