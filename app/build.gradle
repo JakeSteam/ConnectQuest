@@ -10,6 +10,7 @@ android {
         targetSdkVersion 24
         versionCode 5
         versionName "0.9.1"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -30,6 +31,7 @@ ext {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':BaseGameUtils')
+    compile 'com.android.support:multidex:1.0.1'
     compile 'com.github.satyan:sugar:1.5'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.thomashaertel:multispinner:0.1.1'
@@ -38,6 +40,7 @@ dependencies {
     compile "com.android.support:design:$supportLibraryVersion"
     compile "com.android.support:percent:$supportLibraryVersion"
     compile 'com.google.android.gms:play-services-ads:9.4.0'
+    compile 'com.google.android.gms:play-services:9.6.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.github.hotchemi:android-rate:1.0.1'
     compile 'me.grantland:autofittextview:0.2.1'

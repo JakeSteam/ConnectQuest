@@ -189,7 +189,7 @@ public class CreatorActivity extends AllowMeActivity {
             } else if (requestCode == INTENT_FILE) {
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
-                    puzzleString = StorageHelper.readQRImage(bitmap);
+                    puzzleString = StorageHelper.readQRImage(this, bitmap);
                 } catch (Exception e) {
                     AlertHelper.error(this, AlertHelper.getError(AlertHelper.Error.FILE_IMPORT_FAIL));
                 }
