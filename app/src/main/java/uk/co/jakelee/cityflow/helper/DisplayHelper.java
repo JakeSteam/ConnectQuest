@@ -281,14 +281,8 @@ public class DisplayHelper {
         Pair<Float, Pair<Integer, Boolean>> displayValues = getDisplayValues(activity, maxXY.first + 1, maxXY.second + 1);
         float optimumScale = displayValues.first;
 
-        int topOffset, leftOffset;
-        if (!displayValues.second.second) {
-            topOffset = displayValues.second.first;
-            leftOffset = 0;
-        } else {
-            topOffset = 0;
-            leftOffset = displayValues.second.first;
-        }
+        int topOffset = displayValues.second.second ? 0 : displayValues.second.first;
+        int leftOffset = displayValues.second.second ? displayValues.second.first : 0;
 
         tileContainer.setScaleFactor(optimumScale, true);
         tileContainer.removeAllViews();
