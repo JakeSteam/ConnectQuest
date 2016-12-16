@@ -86,23 +86,6 @@ public class DisplayHelper {
         return displaymetrics;
     }
 
-    public Pair<Float, Integer> getDisplayValues(Activity activity, int xTiles, int yTiles) {
-        DisplayMetrics displayMetrics = getSizes(activity);
-        int screenHeight = displayMetrics.heightPixels;
-        int screenWidth = displayMetrics.widthPixels;
-
-        double totalTilesAmount = (xTiles + yTiles) / 2.0;
-        int puzzleHeight = (int)(totalTilesAmount * getTileHeight());
-        int puzzleWidth = (int)(totalTilesAmount * getTileWidth());
-
-        float xZoomFactor = screenWidth / (float)(puzzleWidth);
-        float yZoomFactor = screenHeight / (float)(puzzleHeight);
-        float zoomFactor = Math.min(xZoomFactor, yZoomFactor);
-
-        int topOffset = puzzleHeight / 2;
-        return new Pair<>(zoomFactor, topOffset);
-    }
-
     public ImageView createTileImageView(final Activity activity, final Tile tile, int drawableId) {
         final ImageView image = new ImageView(activity);
         Picasso.with(context).load(drawableId).into(image);
@@ -272,20 +255,46 @@ public class DisplayHelper {
         carView.startAnimation(AnimationHelper.move(metrics, rotation, duration));
     }
 
+    public Pair<Float, Pair<Integer, Boolean>> getDisplayValues(Activity activity, int xTiles, int yTiles) {
+        DisplayMetrics displayMetrics = getSizes(activity);
+        int screenHeight = displayMetrics.heightPixels;
+        int screenWidth = displayMetrics.widthPixels;
+
+        double totalTilesAmount = (xTiles + yTiles) / 2.0;
+        int puzzleHeight = (int)(totalTilesAmount * getTileHeight());
+        int puzzleWidth = (int)(totalTilesAmount * getTileWidth());
+
+        float xZoomFactor = screenWidth / (float)(puzzleWidth);
+        float yZoomFactor = (screenHeight / (float)(puzzleHeight)) / 2;
+        float zoomFactor = Math.min(xZoomFactor, yZoomFactor);
+
+        int offset = puzzleHeight / 2;
+        return new Pair<>(zoomFactor, new Pair<>(offset, yZoomFactor < xZoomFactor));
+    }
+
     public ImageView setupTileDisplay(Activity activity, List<Tile> tiles, ZoomableViewGroup tileContainer, int puzzleId, Tile selectedTile, ImageView selectedTileImage, boolean isEditor) {
         tileContainer.removeAllViews();
 
         Pair<Integer, Integer> maxXY = TileHelper.getMaxXY(tiles);
-        Pair<Float, Integer> displayValues = getDisplayValues(activity, maxXY.first + 1, maxXY.second + 1);
 
+        // <scaleFactor, <offset, isLeftOffset>>
+        Pair<Float, Pair<Integer, Boolean>> displayValues = getDisplayValues(activity, maxXY.first + 1, maxXY.second + 1);
         float optimumScale = displayValues.first;
-        int topOffset = displayValues.second;
+
+        int topOffset, leftOffset;
+        if (!displayValues.second.second) {
+            topOffset = displayValues.second.first;
+            leftOffset = 0;
+        } else {
+            topOffset = 0;
+            leftOffset = displayValues.second.first;
+        }
 
         tileContainer.setScaleFactor(optimumScale, true);
         tileContainer.removeAllViews();
         for (final Tile tile : tiles) {
             ZoomableViewGroup.LayoutParams layoutParams = new ZoomableViewGroup.LayoutParams(ZoomableViewGroup.LayoutParams.WRAP_CONTENT, ZoomableViewGroup.LayoutParams.WRAP_CONTENT);
-            int leftPadding = (tile.getY() + tile.getX()) * (getTileWidth() / 2);
+            int leftPadding = leftOffset + (tile.getY() + tile.getX()) * (getTileWidth() / 2);
             int topPadding = topOffset + (tile.getX() + maxXY.second - tile.getY()) * (getTileHeight() / 2);
             layoutParams.setMargins(leftPadding, topPadding, 0, 0);
 
