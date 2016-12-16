@@ -24,14 +24,17 @@ import com.google.zxing.Result;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.EnumMap;
+import java.util.EnumSet;
 import java.util.Map;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
+import uk.co.jakelee.cityflow.model.Puzzle;
 
 public class StorageHelper {
     private static final int screenshotSize = 500;
@@ -55,6 +58,7 @@ public class StorageHelper {
         try {
             Map<EncodeHintType, Object> hints = new EnumMap<>(EncodeHintType.class);
             hints.put(EncodeHintType.MARGIN, 4);
+            hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
             result = new MultiFormatWriter().encode(str, BarcodeFormat.QR_CODE, WIDTH, HEIGHT, hints);
         } catch (IllegalArgumentException iae) {
             // Unsupported format
@@ -104,6 +108,7 @@ public class StorageHelper {
 
     public static String saveCardImage(Activity activity, int puzzleId) {
         RelativeLayout card = (RelativeLayout)activity.findViewById(R.id.puzzleCard);
+        String puzzleName = Puzzle.getPuzzle(puzzleId).getCustomData().getName();
 
         if (card == null) {
             return "";
@@ -111,7 +116,7 @@ public class StorageHelper {
 
         card.setDrawingCacheEnabled(true);
         Bitmap b = Bitmap.createBitmap(card.getDrawingCache());
-        return insertImage(activity.getContentResolver(), b, "CityFlow Puzzle Card");
+        return insertImage(activity.getContentResolver(), b, puzzleName + " - CityFlow Puzzle Card");
     }
 
     public static String readQRImage(Bitmap bMap) {
@@ -126,9 +131,8 @@ public class StorageHelper {
         MultiFormatReader reader = new MultiFormatReader();
         try {
             Map<DecodeHintType, Object> hints = new EnumMap<>(DecodeHintType.class);
-            //hints.put(DecodeHintType.TRY_HARDER, true);
-            //hints.put(DecodeHintType.POSSIBLE_FORMATS, EnumSet.of(BarcodeFormat.QR_CODE));
-            //hints.put(DecodeHintType.PURE_BARCODE, false);
+            hints.put(DecodeHintType.TRY_HARDER, true);
+            hints.put(DecodeHintType.POSSIBLE_FORMATS, EnumSet.of(BarcodeFormat.QR_CODE));
             Result result = reader.decode(bitmap, hints);
             contents = result.getText();
         } catch (Exception e) {
