@@ -169,7 +169,7 @@ public class ZoomableViewGroup extends RelativeLayout {
             mActivePointerId = ev.getPointerId(0);
             return false;
         }
-        return ev.getAction() != MotionEvent.ACTION_UP;
+        return ev.getAction() != MotionEvent.ACTION_UP && ev.getAction() != MotionEvent.ACTION_CANCEL;
     }
 
     @Override

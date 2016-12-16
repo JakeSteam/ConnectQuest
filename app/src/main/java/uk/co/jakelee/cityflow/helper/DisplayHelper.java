@@ -119,7 +119,7 @@ public class DisplayHelper {
                         return false;
                     } else {
                         Log.d("Received", event.toString());
-                        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                        if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
                             if (activity.getClass().equals(PuzzleActivity.class)) {
                                 ((PuzzleActivity) activity).handleTileClick(image, tile);
                             } else if (activity.getClass().equals(EditorActivity.class)) {
