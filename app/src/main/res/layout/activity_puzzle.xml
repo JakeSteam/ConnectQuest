@@ -326,19 +326,22 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
                         android:gravity="center"
+                        android:layout_centerHorizontal="true"
                         android:textSize="20sp"/>
                     <ImageView
                         android:id="@+id/skyscraperCompletion"
                         android:layout_below="@id/skyscraperCompletionTitle"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"/>
                     <ImageView
                         android:id="@+id/skyscraperCompletionGold"
                         android:layout_below="@id/skyscraperCompletionTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/building_1_100_gold"
-                        android:visibility="invisible"/>
+                        android:visibility="invisible"
+                        android:layout_centerHorizontal="true"/>
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/skyscraperCompletionText"
                         android:layout_below="@id/skyscraperCompletion"
@@ -346,7 +349,8 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
                         android:gravity="center"
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:layout_centerHorizontal="true"/>
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="0dp"
@@ -358,19 +362,22 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
                         android:gravity="center"
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:layout_centerHorizontal="true"/>
                     <ImageView
                         android:id="@+id/skyscraperTime"
                         android:layout_below="@id/skyscraperTimeTitle"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"/>
                     <ImageView
                         android:id="@+id/skyscraperTimeGold"
                         android:layout_below="@id/skyscraperTimeTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/building_2_100_gold"
-                        android:visibility="invisible"/>
+                        android:visibility="invisible"
+                        android:layout_centerHorizontal="true"/>
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/skyscraperTimeText"
                         android:layout_below="@id/skyscraperTime"
@@ -378,7 +385,8 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
                         android:gravity="center"
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:layout_centerHorizontal="true"/>
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="0dp"
@@ -390,20 +398,22 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
                         android:gravity="center"
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:layout_centerHorizontal="true"/>
                     <ImageView
                         android:id="@+id/skyscraperMoves"
                         android:layout_below="@id/skyscraperMovesTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/building_1_80"/>
+                        android:layout_centerHorizontal="true"/>
                     <ImageView
                         android:id="@+id/skyscraperMovesGold"
                         android:layout_below="@id/skyscraperMovesTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/building_3_100_gold"
-                        android:visibility="invisible"/>
+                        android:visibility="invisible"
+                        android:layout_centerHorizontal="true"/>
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/skyscraperMovesText"
                         android:layout_below="@id/skyscraperMoves"
@@ -411,7 +421,8 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
                         android:gravity="center"
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:layout_centerHorizontal="true"/>
                 </RelativeLayout>
             </LinearLayout>
             <LinearLayout
