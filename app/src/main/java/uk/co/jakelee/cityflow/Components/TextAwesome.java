@@ -20,7 +20,7 @@ public class TextAwesome extends TextView {
 		super(context, attrs, defStyle);
 
 		if (mTypeface == null) {
-			mTypeface = Typeface.createFromAsset(context.getAssets(), "fontawesome-webfont.ttf");
+			mTypeface = Typeface.createFromAsset(context.getAssets(), "city_flow.ttf");
 		}
 		setTypeface(mTypeface);
 	}

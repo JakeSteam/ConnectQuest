@@ -218,7 +218,6 @@ public class TextHelper {
                 "<a href='https://www.applovin.com/'>AppLovin</a>: Advertising.<br>" +
                 "<a href='https://github.com/grantland/android-autofittextview'>AutofitTextView</a>: Intelligently resizing textboxes.<br>" +
                 "<a href='https://github.com/keyboardsurfer/Crouton'>Crouton</a>: On-screen alerts.<br>" +
-                "<a href='https://github.com/bperin/FontAwesomeAndroid'>FontAwesomeAndroid</a>: FontAwesome support.<br>" +
                 "<a href='https://github.com/google/gson'>GSON</a>: Cloud saves + puzzle sharing.<br>" +
                 "<a href='https://github.com/anjlab/android-inapp-billing-v3'>IAB</a>: In-app billing.<br>" +
                 "<a href='https://github.com/thomashaertel/MultiSpinner'>Multispinner</a>: Multi-selectable options list.<br>" +

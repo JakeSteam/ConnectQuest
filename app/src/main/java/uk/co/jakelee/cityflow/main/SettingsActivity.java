@@ -105,7 +105,7 @@ public class SettingsActivity extends AllowMeActivity {
         ((TextView) findViewById(R.id.resetLanguageButton)).setText(Text.get("DIALOG_RESET_LANGUAGE"));
         ((TextView) findViewById(R.id.supportCodeButton)).setText(Text.get("DIALOG_SUPPORT_CODE"));
 
-        ((TextView) findViewById(R.id.versionText)).setText("V" + BuildConfig.VERSION_NAME + " (" + BuildConfig.VERSION_CODE + ")");
+        ((TextView) findViewById(R.id.versionText)).setText("V" + BuildConfig.VERSION_CODE + ": " + BuildConfig.VERSION_NAME + "");
     }
 
     public void populateSettings() {

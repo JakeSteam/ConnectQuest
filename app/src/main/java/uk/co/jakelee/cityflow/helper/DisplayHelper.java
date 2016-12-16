@@ -12,7 +12,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -285,7 +284,6 @@ public class DisplayHelper {
                 continue;
             }
 
-            Log.d("Tile", "Processing tile " + tile.getX() + " " + tile.getY());
             ZoomableViewGroup.LayoutParams layoutParams = new ZoomableViewGroup.LayoutParams(ZoomableViewGroup.LayoutParams.WRAP_CONTENT, ZoomableViewGroup.LayoutParams.WRAP_CONTENT);
             int leftPadding = leftOffset + (tile.getY() + tile.getX()) * (getTileWidth() / 2);
             int topPadding = topOffset + (tile.getX() + maxXY.second - tile.getY()) * (getTileHeight() / 2);
