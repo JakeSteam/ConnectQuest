@@ -19,6 +19,7 @@ import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
+import uk.co.jakelee.cityflow.interfaces.PuzzleDisplayer;
 import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
@@ -26,7 +27,7 @@ import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 import uk.co.jakelee.cityflow.objects.TileFilter;
 
-public class EditorActivity extends Activity {
+public class EditorActivity extends Activity implements PuzzleDisplayer {
     private DisplayHelper dh;
     private int puzzleId;
     private ImageView selectedTileImage;
@@ -198,5 +199,9 @@ public class EditorActivity extends Activity {
         intent.putExtra(Constants.INTENT_IS_CUSTOM, true);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
+    }
+
+    public Activity getActivity() {
+        return this;
     }
 }

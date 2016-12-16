@@ -35,6 +35,7 @@ import uk.co.jakelee.cityflow.helper.PuzzleHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.helper.StorageHelper;
 import uk.co.jakelee.cityflow.helper.TileHelper;
+import uk.co.jakelee.cityflow.interfaces.PuzzleDisplayer;
 import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.Puzzle;
@@ -45,7 +46,7 @@ import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
-public class PuzzleActivity extends Activity {
+public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     private static final Handler handler = new Handler();
     private DisplayHelper dh;
     private int puzzleId;
@@ -504,5 +505,9 @@ public class PuzzleActivity extends Activity {
                 startActivity(intent);
             }
         }
+    }
+
+    public Activity getActivity() {
+        return this;
     }
 }

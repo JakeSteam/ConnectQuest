@@ -30,9 +30,8 @@ import java.util.List;
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.components.TextViewFont;
 import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
-import uk.co.jakelee.cityflow.main.EditorActivity;
+import uk.co.jakelee.cityflow.interfaces.PuzzleDisplayer;
 import uk.co.jakelee.cityflow.main.PackActivity;
-import uk.co.jakelee.cityflow.main.PuzzleActivity;
 import uk.co.jakelee.cityflow.main.ShopActivity;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.ShopItem;
@@ -86,8 +85,8 @@ public class DisplayHelper {
         return displaymetrics;
     }
 
-    public ImageView createTileImageView(final Activity activity, final Tile tile, int drawableId) {
-        final ImageView image = new ImageView(activity);
+    public ImageView createTileImageView(final PuzzleDisplayer puzzleDisplayer, final Tile tile, int drawableId) {
+        final ImageView image = new ImageView(puzzleDisplayer.getActivity());
         Picasso.with(context).load(drawableId).into(image);
 
         image.setDrawingCacheEnabled(true);
@@ -116,11 +115,7 @@ public class DisplayHelper {
                 }
 
                 if (needsProcessing) {
-                    if (activity.getClass().equals(PuzzleActivity.class)) {
-                        ((PuzzleActivity) activity).handleTileClick(image, tile);
-                    } else if (activity.getClass().equals(EditorActivity.class)) {
-                        ((EditorActivity) activity).handleTileClick(image, tile);
-                    }
+                    puzzleDisplayer.handleTileClick(image, tile);
                 }
                 return true;
             }});
@@ -272,13 +267,13 @@ public class DisplayHelper {
         return new Pair<>(zoomFactor, new Pair<>(offset, yZoomFactor < xZoomFactor));
     }
 
-    public ImageView setupTileDisplay(Activity activity, List<Tile> tiles, ZoomableViewGroup tileContainer, int puzzleId, Tile selectedTile, ImageView selectedTileImage, boolean isEditor) {
+    public ImageView setupTileDisplay(PuzzleDisplayer puzzleDisplayer, List<Tile> tiles, ZoomableViewGroup tileContainer, int puzzleId, Tile selectedTile, ImageView selectedTileImage, boolean isEditor) {
         tileContainer.removeAllViews();
 
         Pair<Integer, Integer> maxXY = TileHelper.getMaxXY(tiles);
 
         // <scaleFactor, <offset, isLeftOffset>>
-        Pair<Float, Pair<Integer, Boolean>> displayValues = getDisplayValues(activity, maxXY.first + 1, maxXY.second + 1);
+        Pair<Float, Pair<Integer, Boolean>> displayValues = getDisplayValues(puzzleDisplayer.getActivity(), maxXY.first + 1, maxXY.second + 1);
         float optimumScale = displayValues.first;
 
         int topOffset = displayValues.second.second ? 0 : displayValues.second.first;
@@ -292,8 +287,8 @@ public class DisplayHelper {
             int topPadding = topOffset + (tile.getX() + maxXY.second - tile.getY()) * (getTileHeight() / 2);
             layoutParams.setMargins(leftPadding, topPadding, 0, 0);
 
-            int drawableId = getTileDrawableId(activity, tile.getTileTypeId(), tile.getRotation());
-            ImageView image = createTileImageView(activity, tile, drawableId);
+            int drawableId = getTileDrawableId(puzzleDisplayer.getActivity(), tile.getTileTypeId(), tile.getRotation());
+            ImageView image = createTileImageView(puzzleDisplayer, tile, drawableId);
 
             //Make sure we always have a tile selected
             if (isEditor && (selectedTile == null || selectedTileImage == null)) {
@@ -302,9 +297,9 @@ public class DisplayHelper {
                 selectedTileImage = image;
                 selectedTile = tile;
 
-                TextView selectedTileText = (TextView)activity.findViewById(R.id.selectedTileText);
+                TextView selectedTileText = (TextView)puzzleDisplayer.getActivity().findViewById(R.id.selectedTileText);
                 if (selectedTileText != null) {
-                    ((TextView) activity.findViewById(R.id.selectedTileText)).setText(tile.getName());
+                    ((TextView) puzzleDisplayer.getActivity().findViewById(R.id.selectedTileText)).setText(tile.getName());
                 }
             }
 
