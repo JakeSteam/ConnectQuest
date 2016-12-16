@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import com.google.android.gms.games.Games;
 
+import java.util.Locale;
+
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;

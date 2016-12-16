@@ -111,26 +111,28 @@ public class DisplayHelper {
         image.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                Log.d("Clicked", event.toString());
                 boolean needsProcessing = false;
                 try {
                     if (event.getAction() == MotionEvent.ACTION_CANCEL) {
-                        needsProcessing = true;
-                    }
-                    Bitmap bmp = Bitmap.createBitmap(v.getDrawingCache());
-                    int color = bmp.getPixel((int) event.getX(), (int) event.getY());
-                    if (color == Color.TRANSPARENT) {
-                        return false;
+                        long time = event.getEventTime() - event.getDownTime();
+                        needsProcessing = time < 50;
                     } else {
-                        if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
-                            needsProcessing = true;
+                        Bitmap bmp = Bitmap.createBitmap(v.getDrawingCache());
+                        int color = bmp.getPixel((int) event.getX(), (int) event.getY());
+                        if (color == Color.TRANSPARENT) {
+                            return false;
+                        } else {
+                            if (event.getAction() == MotionEvent.ACTION_UP) {
+                                needsProcessing = true;
+                            }
                         }
                     }
                 } catch (Exception e) {
-                    Log.d("Event", event.toString());
+                   e.printStackTrace();
                 }
 
                 if (needsProcessing) {
-                    Log.d("Time", "is " + (event.getEventTime() - event.getDownTime()));
                     if (activity.getClass().equals(PuzzleActivity.class)) {
                         ((PuzzleActivity) activity).handleTileClick(image, tile);
                     } else if (activity.getClass().equals(EditorActivity.class)) {

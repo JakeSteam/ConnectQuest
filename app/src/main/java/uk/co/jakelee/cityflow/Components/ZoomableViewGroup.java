@@ -158,7 +158,7 @@ public class ZoomableViewGroup extends RelativeLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        // Consume all touches, unless they are action_up, or a small move.
+        // Consume all touches, unless they are action_up, or a small move (a cancel, apparently).
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
             mOnTouchEventWorkingArray[0] = ev.getX();
             mOnTouchEventWorkingArray[1] = ev.getY();
@@ -168,11 +168,6 @@ public class ZoomableViewGroup extends RelativeLayout {
             mLastTouchY = mOnTouchEventWorkingArray[1];
             mActivePointerId = ev.getPointerId(0);
             return false;
-        } else if (ev.getAction() == MotionEvent.ACTION_MOVE) {
-            /*long eventTime = ev.getEventTime() - ev.getDownTime();
-            Log.d("ZVGTime", "is " + eventTime);
-
-            return eventTime > 100;*/
         }
 
         return ev.getAction() != MotionEvent.ACTION_UP && ev.getAction() != MotionEvent.ACTION_CANCEL;
