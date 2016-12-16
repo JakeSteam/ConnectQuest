@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
@@ -158,6 +159,8 @@ public class ZoomableViewGroup extends RelativeLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+        // Consume all touches, unless they are action_up, or a small move.
+        Log.d("Touch", "Time: " + (ev.getEventTime() - ev.getDownTime()) + ". Event ID: " + ev.getAction());
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
             mOnTouchEventWorkingArray[0] = ev.getX();
             mOnTouchEventWorkingArray[1] = ev.getY();
@@ -166,9 +169,21 @@ public class ZoomableViewGroup extends RelativeLayout {
             mLastTouchX = mOnTouchEventWorkingArray[0];
             mLastTouchY = mOnTouchEventWorkingArray[1];
             mActivePointerId = ev.getPointerId(0);
-        }
+            return false;
+        } else if (ev.getAction() == MotionEvent.ACTION_MOVE) {
+            final int pointerIndex = ev.findPointerIndex(mActivePointerId);
 
-        return ev.getAction() == MotionEvent.ACTION_MOVE;
+            final float x = ev.getX(pointerIndex);
+            final float y = ev.getY(pointerIndex);
+
+            final float dx = x - mLastTouchX;
+            final float dy = y - mLastTouchY;
+
+            float totalDistance = dx + dy;
+            Log.d("Distance", totalDistance + "");
+            return totalDistance > 8 || totalDistance < -8;
+        }
+        return ev.getAction() != MotionEvent.ACTION_UP;
     }
 
     @Override
@@ -213,40 +228,27 @@ public class ZoomableViewGroup extends RelativeLayout {
 
                     mLastTouchX = x;
                     mLastTouchY = y;
-
                     invalidate();
-                    break;
-                }
 
-                case MotionEvent.ACTION_UP: {
-                    mActivePointerId = INVALID_POINTER_ID;
-                    break;
-                }
-
-                case MotionEvent.ACTION_CANCEL: {
-                    mActivePointerId = INVALID_POINTER_ID;
-                    break;
-                }
-
-                case MotionEvent.ACTION_POINTER_UP: {
-                    // Extract the index of the pointer that left the touch sensor
-                    final int pointerIndex = (action & MotionEvent.ACTION_POINTER_INDEX_MASK) >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
-                    final int pointerId = ev.getPointerId(pointerIndex);
-                    if (pointerId == mActivePointerId) {
-                        // This was our active pointer going up. Choose a new
-                        // active pointer and adjust accordingly.
-                        final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
-                        mLastTouchX = ev.getX(newPointerIndex);
-                        mLastTouchY = ev.getY(newPointerIndex);
-                        mActivePointerId = ev.getPointerId(newPointerIndex);
+                    float totalDistance = dx + dy;
+                    Log.d("Distance", totalDistance + "");
+                    if (totalDistance < 500) {
+                        //return true;
                     }
+                    break;
+                }
+
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                case MotionEvent.ACTION_POINTER_UP: {
+                    mActivePointerId = INVALID_POINTER_ID;
                     break;
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return ev.getAction() != MotionEvent.ACTION_MOVE;
+        return true;
     }
 
     private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
