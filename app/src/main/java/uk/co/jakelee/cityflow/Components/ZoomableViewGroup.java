@@ -124,14 +124,17 @@ public class ZoomableViewGroup extends RelativeLayout {
     }
 
     public void reset(float screenshotScale) {
-        int break1 = 0;
-        setScaleFactor(screenshotScale, true);
         mPosX = 0.0f;
         mPosY = 0.0f;
         mFocusX = 0.0f;
         mFocusY = 0.0f;
+        mLastTouchX = 0.0f;
+        mLastTouchY = 0.0f;
+
+        float values[] = new float[]{1,0,0,0,1,0,0,0,1};
+        mTranslateMatrix.setValues(values);
+        mTranslateMatrixInverse.setValues(values);
         setScaleFactor(screenshotScale, true);
-        int break2 = 0;
     }
 
     public float getScaleFactor() {
