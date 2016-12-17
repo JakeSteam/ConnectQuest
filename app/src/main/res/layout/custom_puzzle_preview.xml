@@ -21,7 +21,7 @@
         android:layout_margin="3dp"
         android:padding="7dp"
         android:textSize="26sp"
-        android:text="&#xf1f8;"
+        android:text="@string/icon_delete"
         android:background="@color/orange"
         android:textColor="@color/black"/>
     <uk.co.jakelee.cityflow.components.TextAwesome
@@ -33,7 +33,7 @@
         android:layout_margin="3dp"
         android:padding="7dp"
         android:textSize="26sp"
-        android:text="&#xf141;"
+        android:text="@string/icon_ellipsis"
         android:background="@color/ltltgrey"
         android:textColor="@color/black"/>
     <uk.co.jakelee.cityflow.components.TextAwesome

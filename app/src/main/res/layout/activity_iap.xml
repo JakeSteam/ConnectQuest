@@ -51,7 +51,7 @@
     <uk.co.jakelee.cityflow.components.TextAwesome
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="&#xf00d;"
+        android:text="@string/icon_cross"
         android:textColor="@color/red"
         android:layout_alignTop="@id/popupWrapper"
         android:layout_alignRight="@id/popupWrapper"

@@ -76,8 +76,8 @@ public class StorageHelper {
         return bitmap;
     }
 
-    public static void saveCustomPuzzleImage(Activity activity, int puzzleId, float screenshotScale, boolean forceSave) {
-        ZoomableViewGroup tileContainer = (ZoomableViewGroup)activity.findViewById(R.id.tileContainer);
+    public static void saveCustomPuzzleImage(Activity activity, int puzzleId, final float screenshotScale, boolean forceSave) {
+        final ZoomableViewGroup tileContainer = (ZoomableViewGroup)activity.findViewById(R.id.tileContainer);
         String filename = "puzzle_" + puzzleId + ".png";
         boolean existsAlready = activity.getFileStreamPath(filename).exists();
         if (tileContainer == null || (!forceSave && existsAlready)) {
@@ -100,7 +100,12 @@ public class StorageHelper {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        tileContainer.setScaleFactor(screenshotScale, true);
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                tileContainer.setScaleFactor(screenshotScale, true);
+            }
+        });
     }
 
     public static String saveCardImage(Activity activity, int puzzleId) {
