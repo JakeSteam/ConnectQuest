@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
@@ -24,8 +25,8 @@ public class ZoomableViewGroup extends RelativeLayout {
     private Matrix mScaleMatrix = new Matrix();
     private Matrix mScaleMatrixInverse = new Matrix();
 
-    private float mPosX;
-    private float mPosY;
+    public float mPosX;
+    public float mPosY;
     private Matrix mTranslateMatrix = new Matrix();
     private Matrix mTranslateMatrixInverse = new Matrix();
 
@@ -120,6 +121,12 @@ public class ZoomableViewGroup extends RelativeLayout {
         location[0] *= mScaleFactor;
         location[1] *= mScaleFactor;
         return super.invalidateChildInParent(location, dirty);
+    }
+
+    public void reset(float screenshotScale) {
+        mPosX = 0.0f;
+        mPosY = 0.0f;
+        setScaleFactor(screenshotScale, true);
     }
 
     public float getScaleFactor() {
@@ -230,6 +237,8 @@ public class ZoomableViewGroup extends RelativeLayout {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        Log.d("Pos", "X: " + mPosX + " Y: " + mPosY);
         return true;
     }
 

@@ -86,7 +86,7 @@ public class StorageHelper {
 
         try {
             tileContainer.setBackgroundColor(Color.TRANSPARENT);
-            tileContainer.setScaleFactor(screenshotScale / 3, true);
+            tileContainer.reset(screenshotScale);
             tileContainer.setDrawingCacheEnabled(true);
             Bitmap b = Bitmap.createBitmap(tileContainer.getDrawingCache());
             b = resize(b);
@@ -100,12 +100,6 @@ public class StorageHelper {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                tileContainer.setScaleFactor(screenshotScale, true);
-            }
-        });
     }
 
     public static String saveCardImage(Activity activity, int puzzleId) {

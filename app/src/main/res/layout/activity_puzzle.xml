@@ -308,7 +308,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@color/black"
-                android:alpha="0.7" />
+                android:alpha="0.7"
+                android:onClick="suppressClick"/>
             <LinearLayout
                 android:id="@+id/skyscraperContainer"
                 android:layout_width="match_parent"

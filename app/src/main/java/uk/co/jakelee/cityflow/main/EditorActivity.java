@@ -98,7 +98,7 @@ public class EditorActivity extends Activity implements PuzzleDisplayer {
 
 
     public void populateTiles(List<Tile> tiles) {
-        selectedTileImage = dh.setupTileDisplay(this, tiles, (ZoomableViewGroup)findViewById(R.id.tileContainer), puzzleId, selectedTile, selectedTileImage, true);
+        selectedTileImage = dh.setupTileDisplay(this, tiles, (ZoomableViewGroup)findViewById(R.id.tileContainer), puzzleId, selectedTile, selectedTileImage, true).first;
         selectedTile = tiles.get(0);
     }
 

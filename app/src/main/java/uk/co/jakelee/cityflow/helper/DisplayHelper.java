@@ -265,7 +265,7 @@ public class DisplayHelper {
         return new Pair<>(zoomFactor, new Pair<>(offset, yZoomFactor < xZoomFactor));
     }
 
-    public ImageView setupTileDisplay(PuzzleDisplayer puzzleDisplayer, List<Tile> tiles, ZoomableViewGroup tileContainer, int puzzleId, Tile selectedTile, ImageView selectedTileImage, boolean isEditor) {
+    public Pair<ImageView, Float> setupTileDisplay(PuzzleDisplayer puzzleDisplayer, List<Tile> tiles, ZoomableViewGroup tileContainer, int puzzleId, Tile selectedTile, ImageView selectedTileImage, boolean isEditor) {
         tileContainer.removeAllViews();
 
         Pair<Integer, Integer> maxXY = TileHelper.getMaxXY(tiles);
@@ -308,6 +308,6 @@ public class DisplayHelper {
             tileContainer.addView(image, layoutParams);
         }
 
-        return selectedTileImage;
+        return new Pair<>(selectedTileImage, optimumScale);
     }
 }
