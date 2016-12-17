@@ -218,8 +218,7 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
             handler.post(updateTimerThread);
         }
 
-        findViewById(R.id.zoomIn).setVisibility(View.VISIBLE);
-        findViewById(R.id.zoomOut).setVisibility(View.VISIBLE);
+        findViewById(R.id.controlWrapper).setVisibility(View.VISIBLE);
         findViewById(R.id.topUI).setVisibility(View.VISIBLE);
 
         startTime = SystemClock.uptimeMillis();
@@ -246,6 +245,10 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     public void zoomOut(View v) {
         ZoomableViewGroup tileContainer = (ZoomableViewGroup) findViewById(R.id.tileContainer);
         tileContainer.setScaleFactor(tileContainer.getScaleFactor() - 0.5f, false);
+    }
+
+    public void reset(View v) {
+        ((ZoomableViewGroup) findViewById(R.id.tileContainer)).reset(optimumScale);
     }
 
     public void handleTileClick(ImageView image, Tile tile) {
@@ -358,7 +361,7 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     public void displayPuzzleComplete() {
         final Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
         findViewById(R.id.puzzleTimer).setVisibility(View.GONE);
-        findViewById(R.id.zoomIn).setVisibility(View.GONE);
+        findViewById(R.id.controlWrapper).setVisibility(View.GONE);
         findViewById(R.id.zoomOut).setVisibility(View.GONE);
         findViewById(R.id.moveCounter).setVisibility(View.GONE);
         findViewById(R.id.topUI).setVisibility(View.GONE);

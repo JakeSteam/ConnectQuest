@@ -103,8 +103,23 @@
             android:background="@color/ltltgrey"/>
 
         <uk.co.jakelee.cityflow.components.TextAwesome
-            android:id="@+id/tileChange"
+            android:id="@+id/centrePuzzle"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:textColor="@color/dkgreen"
+            android:text="@string/icon_centre"
+            android:onClick="reset"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:gravity="center"
+            android:layout_toLeftOf="@id/tileRotate"
+            android:layout_alignParentBottom="true"
+            android:background="@color/ltltgrey"/>
+
+        <uk.co.jakelee.cityflow.components.TextAwesome
+            android:id="@+id/tileChange"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="50sp"
             android:textColor="@color/dkgreen"
@@ -113,7 +128,8 @@
             android:layout_margin="5dp"
             android:padding="5dp"
             android:gravity="center"
-            android:layout_toLeftOf="@id/tileRotate"
+            android:layout_toLeftOf="@id/centrePuzzle"
+            android:layout_toRightOf="@id/zoomOut"
             android:layout_alignParentBottom="true"
             android:background="@color/ltltgrey"/>
     </RelativeLayout>

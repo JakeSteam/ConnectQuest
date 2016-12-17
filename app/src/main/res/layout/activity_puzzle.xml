@@ -165,42 +165,58 @@
         android:shadowRadius="1.6"
         android:layout_alignParentBottom="true"/>
 
-    <uk.co.jakelee.cityflow.components.TextAwesome
-        android:id="@+id/zoomIn"
+    <LinearLayout
+        android:id="@+id/controlWrapper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:textColor="@color/black"
-        android:text="@string/icon_zoomin"
-        android:onClick="zoomIn"
-        android:layout_margin="5dp"
-        android:gravity="center_horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:shadowColor="@color/white"
-        android:shadowDx="1.5"
-        android:shadowDy="1.3"
-        android:shadowRadius="1.6"
-        android:visibility="invisible"/>
+        android:orientation="horizontal"
+        android:visibility="invisible"
+        android:layout_alignParentBottom="true">
+        <uk.co.jakelee.cityflow.components.TextAwesome
+            android:id="@+id/zoomIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:textColor="@color/black"
+            android:text="@string/icon_zoomin"
+            android:onClick="zoomIn"
+            android:layout_margin="5dp"
+            android:gravity="center_horizontal"
+            android:shadowColor="@color/white"
+            android:shadowDx="1.5"
+            android:shadowDy="1.3"
+            android:shadowRadius="1.6"/>
 
-    <uk.co.jakelee.cityflow.components.TextAwesome
-        android:id="@+id/zoomOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:textColor="@color/black"
-        android:text="@string/icon_zoomout"
-        android:onClick="zoomOut"
-        android:layout_margin="5dp"
-        android:gravity="center_horizontal"
-        android:textAlignment="center"
-        android:layout_toRightOf="@+id/zoomIn"
-        android:layout_alignParentBottom="true"
-        android:shadowColor="@color/white"
-        android:shadowDx="1.5"
-        android:shadowDy="1.3"
-        android:shadowRadius="1.6"
-        android:visibility="invisible"/>
+        <uk.co.jakelee.cityflow.components.TextAwesome
+            android:id="@+id/zoomOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:textColor="@color/black"
+            android:text="@string/icon_zoomout"
+            android:onClick="zoomOut"
+            android:layout_margin="5dp"
+            android:gravity="center_horizontal"
+            android:shadowColor="@color/white"
+            android:shadowDx="1.5"
+            android:shadowDy="1.3"
+            android:shadowRadius="1.6"/>
+
+        <uk.co.jakelee.cityflow.components.TextAwesome
+            android:id="@+id/centrePuzzle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:textColor="@color/black"
+            android:text="@string/icon_centre"
+            android:onClick="reset"
+            android:layout_margin="5dp"
+            android:gravity="center_horizontal"
+            android:shadowColor="@color/white"
+            android:shadowDx="1.5"
+            android:shadowDy="1.3"
+            android:shadowRadius="1.6"/>
+    </LinearLayout>
 
     <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/moveCounter"

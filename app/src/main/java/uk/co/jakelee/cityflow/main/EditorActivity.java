@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ public class EditorActivity extends Activity implements PuzzleDisplayer {
     private int puzzleId;
     private ImageView selectedTileImage;
     private Tile selectedTile;
+    private float optimumScale = 1.0f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +100,9 @@ public class EditorActivity extends Activity implements PuzzleDisplayer {
 
 
     public void populateTiles(List<Tile> tiles) {
-        selectedTileImage = dh.setupTileDisplay(this, tiles, (ZoomableViewGroup)findViewById(R.id.tileContainer), puzzleId, selectedTile, selectedTileImage, true).first;
+        Pair<ImageView, Float> tileDisplayResults = dh.setupTileDisplay(this, tiles, (ZoomableViewGroup)findViewById(R.id.tileContainer), puzzleId, selectedTile, selectedTileImage, true);
+        selectedTileImage = tileDisplayResults.first;
+        optimumScale = tileDisplayResults.second;
         selectedTile = tiles.get(0);
     }
 
@@ -110,6 +114,10 @@ public class EditorActivity extends Activity implements PuzzleDisplayer {
     public void zoomOut(View v) {
         ZoomableViewGroup tileContainer = (ZoomableViewGroup) findViewById(R.id.tileContainer);
         tileContainer.setScaleFactor(tileContainer.getScaleFactor() - 0.5f, false);
+    }
+
+    public void reset(View v) {
+        ((ZoomableViewGroup) findViewById(R.id.tileContainer)).reset(optimumScale);
     }
 
     public void handleTileClick(ImageView image, Tile tile) {
