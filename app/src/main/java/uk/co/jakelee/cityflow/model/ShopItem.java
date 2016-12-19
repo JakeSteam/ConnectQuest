@@ -33,11 +33,11 @@ public class ShopItem extends SugarRecord {
         this.applyMultiplier = applyMultiplier;
     }
 
-    public ShopItem(int itemId, int categoryId, int boostId, int boostQuantity, int price, int maxPurchases, boolean applyMultiplier) {
+    public ShopItem(int itemId, int categoryId, int subcategoryId, int miscData, int price, int maxPurchases, boolean applyMultiplier) {
         this.itemId = itemId;
         this.categoryId = categoryId;
-        this.subcategoryId = boostId;
-        this.miscData = boostQuantity;
+        this.subcategoryId = subcategoryId;
+        this.miscData = miscData;
         this.price = EncryptHelper.encode(price, itemId);
         this.purchases = EncryptHelper.encode(0, itemId);
         this.maxPurchases = maxPurchases;
@@ -157,7 +157,7 @@ public class ShopItem extends SugarRecord {
             boost.save();
         } else if (getCategoryId() == Constants.STORE_CATEGORY_TILES) {
             TileType tileType = TileType.get(getSubcategoryId());
-            tileType.setPuzzleRequired(1);
+            tileType.setStatus(Constants.TILE_STATUS_UNLOCKED);
             tileType.save();
         } else if (getSubcategoryId() == Constants.STORE_SUBCATEGORY_PACK) {
             Pack targetPack = Pack.getPack(getMiscData());

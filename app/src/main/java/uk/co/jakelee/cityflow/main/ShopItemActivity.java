@@ -17,6 +17,7 @@ import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.Text;
+import uk.co.jakelee.cityflow.model.Tile;
 
 public class ShopItemActivity extends Activity {
     private ShopItem shopItem;
@@ -43,8 +44,13 @@ public class ShopItemActivity extends Activity {
     }
 
     private void populateItemInfo() {
-        ((TextView)findViewById(R.id.itemName)).setText(shopItem.getName());
-        ((TextView)findViewById(R.id.itemDesc)).setText(shopItem.getDescription());
+        if (shopItem.getCategoryId() == Constants.STORE_CATEGORY_TILES) {
+            ((TextView) findViewById(R.id.itemName)).setText(Tile.get(shopItem.getSubcategoryId()).getName());
+            ((TextView)findViewById(R.id.itemDesc)).setText("");
+        } else {
+            ((TextView) findViewById(R.id.itemName)).setText(shopItem.getName());
+            ((TextView)findViewById(R.id.itemDesc)).setText(shopItem.getDescription());
+        }
 
         if (shopItem.getCategoryId() == Constants.STORE_CATEGORY_BOOSTS && shopItem.getSubcategoryId() > 0) {
             Boost boost = Boost.get(shopItem.getSubcategoryId());
@@ -75,13 +81,13 @@ public class ShopItemActivity extends Activity {
             if (!background.isUnlocked()) {
                 background.unlock();
                 AlertHelper.success(this, String.format(Locale.ENGLISH, Text.get("SHOP_ITEM_PURCHASED_BACKGROUND"),
-                        shopItem.getName(),
+                        shopItem.getCategoryId() == Constants.STORE_CATEGORY_TILES ? Tile.get(shopItem.getSubcategoryId()).getName() : shopItem.getName(),
                         shopItem.getPrice(),
                         background.getName()));
             }
              else {
                 AlertHelper.success(this, String.format(Locale.ENGLISH, Text.get("SHOP_ITEM_PURCHASED"),
-                        shopItem.getName(),
+                        shopItem.getCategoryId() == Constants.STORE_CATEGORY_TILES ? Tile.get(shopItem.getSubcategoryId()).getName() : shopItem.getName(),
                         shopItem.getPrice()));
             }
         }

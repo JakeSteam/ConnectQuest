@@ -148,9 +148,6 @@ public class Constants {
     public static final int ITEM_BOOST_TIME_UPGRADE = 5;
     public static final int ITEM_BOOST_MOVES_UPGRADE = 6;
     public static final int ITEM_BOOST_SHUFFLE_UPGRADE = 7;
-    public static final int ITEM_TILE_1 = 8;
-    public static final int ITEM_TILE_2 = 9;
-    public static final int ITEM_TILE_3 = 10;
     public static final int ITEM_BOOST_UNDO_10 = 12;
     public static final int ITEM_BOOST_TIME_10 = 13;
     public static final int ITEM_BOOST_MOVES_10 = 14;
@@ -168,6 +165,14 @@ public class Constants {
     public static final int ITEM_PACK_7 = 26;
     public static final int ITEM_PACK_8 = 27;
     public static final int ITEM_ZEN_MODE = 28;
+    public static final int ITEM_TILE_0 = 29;
+    public static final int ITEM_TILE_10 = 30;
+    public static final int ITEM_TILE_58 = 31;
+    public static final int ITEM_TILE_78 = 32;
+    public static final int ITEM_TILE_116 = 33;
+    public static final int ITEM_TILE_134 = 34;
+    public static final int ITEM_TILE_157 = 35;
+    public static final int ITEM_TILE_172 = 36;
     public static final int LANGUAGE_MIN = 0;
     public static final int LANGUAGE_MAX = 8;
     public static final int LANGUAGE_EN = 0;
@@ -238,6 +243,8 @@ public class Constants {
     public static final int TILE_STATUS_UNLOCKED = 0;
     public static final int TILE_STATUS_LOCKED = 1;
     public static final int TILE_STATUS_UNPURCHASED = 2;
+    public static final int TILE_UNPURCHASED = -1;
+    public static final int TILE_UNLOCKED = 0;
     public static final int TUTORIAL_MIN = 1;
     public static final int TUTORIAL_MAX = 13;
 }
