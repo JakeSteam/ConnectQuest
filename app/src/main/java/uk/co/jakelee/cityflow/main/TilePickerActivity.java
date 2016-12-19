@@ -141,11 +141,10 @@ public class TilePickerActivity extends Activity {
         TableLayout tileContainer = (TableLayout) findViewById(R.id.tileContainer);
         tileContainer.removeAllViews();
 
-        String whereClause = String.format("%1$s AND %2$s AND %3$s AND status = %4$s ORDER BY environment_id ASC",
+        String whereClause = String.format("%1$s AND %2$s AND %3$s ORDER BY environment_id ASC",
                 getEnvironmentSQL(),
                 getFlowSQL(),
-                getHeightSQL(),
-                Constants.TILE_STATUS_UNLOCKED);
+                getHeightSQL());
         List<TileType> tileTypes = TileType.find(TileType.class, whereClause);
 
         int numTiles = tileTypes.size();

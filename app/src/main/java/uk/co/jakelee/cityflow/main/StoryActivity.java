@@ -14,15 +14,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.android.gms.games.Games;
-
 import java.util.Locale;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
-import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.ShopItem;
@@ -152,17 +149,6 @@ public class StoryActivity extends Activity {
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((LinearLayout) object);
-        }
-    }
-
-    public void openLeaderboard(View v) {
-        if (GooglePlayHelper.IsConnected()) {
-            Pack pack = Pack.getPack(selectedPack);
-            if (v.getId() == R.id.unlockedPackTime && !pack.getTimeLeaderboard().equals("")) {
-                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, pack.getTimeLeaderboard()), GooglePlayHelper.RC_LEADERBOARDS);
-            } else if (v.getId() == R.id.unlockedPackMoves && !pack.getMovesLeaderboard().equals("")) {
-                startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, pack.getMovesLeaderboard()), GooglePlayHelper.RC_LEADERBOARDS);
-            }
         }
     }
 }

@@ -104,6 +104,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_LOCAL_TITLE", "Localisation"));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_LOCAL_TEXT", "<b>Translator's names</b> will go here, obviously not yet!<br>" +
                 ""));
+        texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_LEADERBOARD_CONFIRM", "Which pack leaderboard would you like to open?"));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_BACKGROUND_UNLOCK", "Unlocked '%1$s' background!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_CARD_SAVED", "Card image saved to gallery!"));

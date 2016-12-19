@@ -260,7 +260,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         packs.add(new Pack(3, "CgkIgrzuo64REAIQFQ", "CgkIgrzuo64REAIQFg", 90, true));
         packs.add(new Pack(4, "CgkIgrzuo64REAIQNg", "CgkIgrzuo64REAIQNw", 90, true));
         packs.add(new Pack(5, "CgkIgrzuo64REAIQOA", "CgkIgrzuo64REAIQOQ", 45, true));
-        packs.add(new Pack(6, "CgkIgrzuo64REAIQOg", "CgkIgrzuo64REAIQOw", 96, true));
+        packs.add(new Pack(6, "CgkIgrzuo64REAIQOg", "CgkIgrzuo64REAIQOw", 84, true));
         packs.add(new Pack(7, "CgkIgrzuo64REAIQPA", "CgkIgrzuo64REAIQPQ", 90, true));
         packs.add(new Pack(8, "CgkIgrzuo64REAIQPg", "CgkIgrzuo64REAIQPw", 90, true));
         packs.add(new Pack(9, "CgkIgrzuo64REAIQQA", "CgkIgrzuo64REAIQQQ", 45, false));
@@ -6284,7 +6284,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tileTypes.add(new TileType(84, Constants.ENVIRONMENT_FOREST, Constants.FLOW_DIRT, Constants.FLOW_DIRT, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 88));
         tileTypes.add(new TileType(85, Constants.ENVIRONMENT_CITY, Constants.FLOW_NONE, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_HIGH, 17));
         tileTypes.add(new TileType(86, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 114));
-        tileTypes.add(new TileType(87, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL,113 ));
+        tileTypes.add(new TileType(87, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 113));
         tileTypes.add(new TileType(88, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_NONE, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
         tileTypes.add(new TileType(89, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_RIVER, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 105));
         tileTypes.add(new TileType(90, Constants.ENVIRONMENT_MOUNTAIN, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.FLOW_RIVER, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 106));

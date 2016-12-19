@@ -71,6 +71,7 @@ public class PuzzleHelper {
     public static void performBackgroundTasks(final Context context, final Puzzle puzzle, final boolean isCompletingPack, final int movesTaken, final int boostsUsed) {
         new Thread(new Runnable() {
             public void run() {
+                puzzle.unlockRelatedTiles();
                 Pack pack = Pack.getPack(puzzle.getPackId());
                 if (isCompletingPack) {
                     pack.increaseCompletedCount();

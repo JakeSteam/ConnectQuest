@@ -5,7 +5,6 @@ import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import uk.co.jakelee.cityflow.helper.Constants;
-import uk.co.jakelee.cityflow.helper.EncryptHelper;
 
 public class TileType extends SugarRecord {
     private int typeId;
@@ -18,7 +17,7 @@ public class TileType extends SugarRecord {
     private int heightEast;
     private int heightSouth;
     private int heightWest;
-    private String puzzleRequired;
+    private int puzzleRequired;
     private int status;
 
     public TileType() {
@@ -36,7 +35,7 @@ public class TileType extends SugarRecord {
         this.heightEast = height;
         this.heightSouth = height;
         this.heightWest = height;
-        this.puzzleRequired = EncryptHelper.encode(puzzleRequired, typeId);
+        this.puzzleRequired = puzzleRequired;
 
         switch (puzzleRequired) {
             case Constants.TILE_UNPURCHASED:
@@ -62,7 +61,7 @@ public class TileType extends SugarRecord {
         this.heightEast = height;
         this.heightSouth = height;
         this.heightWest = height;
-        this.puzzleRequired = EncryptHelper.encode(puzzleRequired, typeId);
+        this.puzzleRequired = puzzleRequired;
         this.status = puzzleRequired == 0 ? Constants.TILE_STATUS_UNLOCKED : Constants.TILE_STATUS_LOCKED;
     }
 
@@ -77,7 +76,7 @@ public class TileType extends SugarRecord {
         this.heightEast = heightEast;
         this.heightSouth = heightSouth;
         this.heightWest = heightWest;
-        this.puzzleRequired = EncryptHelper.encode(puzzleRequired, typeId);
+        this.puzzleRequired = puzzleRequired;
         this.status = puzzleRequired == 0 ? Constants.TILE_STATUS_UNLOCKED : Constants.TILE_STATUS_LOCKED;
     }
 
@@ -162,11 +161,11 @@ public class TileType extends SugarRecord {
     }
 
     public int getPuzzleRequired() {
-        return EncryptHelper.decodeToInt(puzzleRequired, typeId);
+        return puzzleRequired;
     }
 
     public void setPuzzleRequired(int puzzleRequired) {
-        this.puzzleRequired = EncryptHelper.encode(puzzleRequired, typeId);
+        this.puzzleRequired = puzzleRequired;
     }
 
     public int getStatus() {

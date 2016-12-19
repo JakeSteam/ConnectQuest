@@ -13,9 +13,11 @@ import android.widget.TextView;
 import java.util.List;
 
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
+import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
@@ -37,11 +39,13 @@ public class PackActivity extends Activity {
 
         Intent intent = getIntent();
         selectedPack = Pack.getPack(intent.getIntExtra(Constants.INTENT_PACK, 0));
-
-        populateText();
     }
 
     private void populateText() {
+        ((TextView) findViewById(R.id.packName)).setText(selectedPack.getName());
+        ((TextView) findViewById(R.id.totalMoves)).setText("" + selectedPack.getCurrentMoves());
+        ((TextView) findViewById(R.id.totalTime)).setText(DateHelper.displayTime((long) selectedPack.getCurrentTime(), DateHelper.time));
+        ((TextView) findViewById(R.id.totalStars)).setText(selectedPack.getCurrentStars() + "/" + selectedPack.getMaxStars());
         ((TextView) findViewById(R.id.bestTime)).setText(Text.get("METRIC_BEST_TIME"));
         ((TextView) findViewById(R.id.bestMoves)).setText(Text.get("METRIC_BEST_MOVES"));
         ((TextView) findViewById(R.id.tilesEarned)).setText(Text.get("METRIC_TILES_EARNED"));
@@ -54,6 +58,7 @@ public class PackActivity extends Activity {
 
         selectedPuzzle = Puzzle.getPuzzle(selectedPuzzle.getPuzzleId());
         populatePuzzles();
+        populateText();
     }
 
     @Override
@@ -127,6 +132,12 @@ public class PackActivity extends Activity {
             intent.putExtra(Constants.INTENT_IS_CUSTOM, false);
             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
+        }
+    }
+
+    public void openLeaderboard(View v) {
+        if (GooglePlayHelper.IsConnected() && selectedPack.getTimeLeaderboard() != null && selectedPack.getMovesLeaderboard() != null) {
+            AlertDialogHelper.openPackLeaderboard(this, selectedPack.getTimeLeaderboard(), selectedPack.getMovesLeaderboard());
         }
     }
 }

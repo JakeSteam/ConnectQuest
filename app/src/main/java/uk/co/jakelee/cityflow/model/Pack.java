@@ -115,11 +115,6 @@ public class Pack extends SugarRecord{
                 Condition.prop("pack_id").eq(packId)).list();
     }
 
-    public int getFirstPuzzleId() {
-        return Select.from(Puzzle.class).where(
-                Condition.prop("pack_id").eq(packId)).first().getPuzzleId();
-    }
-
     public boolean isUnlocked() {
         return isPurchased() || isPreviousPackComplete();
     }

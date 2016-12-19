@@ -144,6 +144,10 @@ public class Puzzle extends SugarRecord {
                 Condition.prop("puzzle_required").eq(puzzleId)).list();
     }
 
+    public void unlockRelatedTiles() {
+        TileType.executeQuery("UPDATE tiletype SET status = " + Constants.TILE_STATUS_UNLOCKED + " WHERE puzzle_id = " + puzzleId);
+    }
+
     public static Puzzle getPuzzle(int puzzleId) {
         return Select.from(Puzzle.class).where(Condition.prop("puzzle_id").eq(puzzleId)).first();
     }

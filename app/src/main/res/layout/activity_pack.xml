@@ -7,36 +7,102 @@
     android:background="@color/green"
     tools:context=".main.PackActivity">
 
-    <ScrollView
-        app:layout_heightPercent="39%"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="7dp"
-        android:background="@color/city"
-        android:fadeScrollbars="false">
-        <TableLayout
-            android:id="@+id/puzzleContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:stretchColumns="*"/>
-    </ScrollView>
+   <TableLayout
+       android:id="@+id/packInfo"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:stretchColumns="*"
+       android:paddingLeft="5dp"
+       android:paddingTop="5dp"
+       android:paddingRight="5dp"
+       android:layout_marginLeft="5dp"
+       android:layout_marginTop="5dp"
+       android:layout_marginRight="5dp">
+       <RelativeLayout>
+           <ImageView
+               android:id="@+id/leaderboards"
+               android:layout_width="45dp"
+               android:layout_height="45dp"
+               android:src="@drawable/ic_leaderboards"
+               android:layout_alignParentRight="true"
+               android:background="@color/city"
+               android:padding="4dp"
+               android:onClick="openLeaderboard"/>
+           <uk.co.jakelee.cityflow.components.AutofitTextViewFont
+               android:id="@+id/packName"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center_vertical"
+               android:layout_toLeftOf="@id/leaderboards"
+               android:textColor="@color/black"
+               android:maxLines="1"
+               android:textSize="26sp" />
+       </RelativeLayout>
+       <TableRow>
+           <LinearLayout android:orientation="horizontal">
+               <uk.co.jakelee.cityflow.components.TextAwesome
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="22sp"
+                   android:textColor="@color/black"
+                   android:text="#"/>
+               <uk.co.jakelee.cityflow.components.TextViewFont
+                   android:id="@+id/totalMoves"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="18sp"
+                   android:textColor="@color/black"
+                   android:paddingLeft="3dp"/>
+           </LinearLayout>
+           <LinearLayout android:orientation="horizontal">
+               <uk.co.jakelee.cityflow.components.TextAwesome
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="20sp"
+                   android:textColor="@color/black"
+                   android:text="@string/icon_time"/>
+               <uk.co.jakelee.cityflow.components.TextViewFont
+                   android:id="@+id/totalTime"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="18sp"
+                   android:textColor="@color/black"
+                   android:paddingLeft="3dp"/>
+           </LinearLayout>
+           <LinearLayout android:orientation="horizontal">
+               <uk.co.jakelee.cityflow.components.TextAwesome
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="20sp"
+                   android:textColor="@color/black"
+                   android:text="@string/icon_star_filled"/>
+               <uk.co.jakelee.cityflow.components.TextViewFont
+                   android:id="@+id/totalStars"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="18sp"
+                   android:textColor="@color/black"
+                   android:paddingLeft="3dp"/>
+           </LinearLayout>
+       </TableRow>
+
+   </TableLayout>
 
     <TableLayout
-        app:layout_marginTopPercent="41%"
+        android:id="@+id/puzzleInfo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:layout_margin="7dp"
+        android:layout_alignParentBottom="true"
         android:stretchColumns="0"
         android:shrinkColumns="0">
 
-        <TableRow
-            android:layout_height="0dp"
-            android:layout_weight="1">
+        <TableRow>
             <LinearLayout
                 android:orientation="vertical">
                 <uk.co.jakelee.cityflow.components.TextViewFont
@@ -87,13 +153,13 @@
         </TableRow>
 
         <TableRow>
-            <uk.co.jakelee.cityflow.components.TextViewFont
+            <uk.co.jakelee.cityflow.components.AutofitTextViewFont
                 android:id="@+id/bestTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="26sp"/>
-            <uk.co.jakelee.cityflow.components.TextViewFont
+            <uk.co.jakelee.cityflow.components.AutofitTextViewFont
                 android:id="@+id/puzzleBestTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -102,13 +168,13 @@
         </TableRow>
 
         <TableRow>
-            <uk.co.jakelee.cityflow.components.TextViewFont
+            <uk.co.jakelee.cityflow.components.AutofitTextViewFont
                 android:id="@+id/bestMoves"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="26sp"/>
-            <uk.co.jakelee.cityflow.components.TextViewFont
+            <uk.co.jakelee.cityflow.components.AutofitTextViewFont
                 android:id="@+id/puzzleBestMoves"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -117,13 +183,13 @@
         </TableRow>
 
         <TableRow>
-            <uk.co.jakelee.cityflow.components.TextViewFont
+            <uk.co.jakelee.cityflow.components.AutofitTextViewFont
                 android:id="@+id/tilesEarned"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="26sp"/>
-            <uk.co.jakelee.cityflow.components.TextViewFont
+            <uk.co.jakelee.cityflow.components.AutofitTextViewFont
                 android:id="@+id/puzzleTilesUnlocked"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -145,6 +211,23 @@
                 android:onClick="startPuzzle"/>
         </TableRow>
     </TableLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="7dp"
+        android:layout_above="@id/puzzleInfo"
+        android:layout_below="@id/packInfo"
+        android:background="@color/city"
+        android:fadeScrollbars="false">
+        <TableLayout
+            android:id="@+id/puzzleContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*"/>
+    </ScrollView>
+
+
     <LinearLayout
         android:id="@+id/croutonview"
         android:layout_width="match_parent"

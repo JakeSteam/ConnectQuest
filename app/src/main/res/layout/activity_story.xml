@@ -124,7 +124,6 @@
                 android:layout_margin="10dp"
                 android:textSize="20sp"
                 android:textColor="@color/dkgrey"
-                android:onClick="openLeaderboard"
                 android:gravity="center_horizontal"/>
             <uk.co.jakelee.cityflow.components.AutofitTextViewFont
                 android:id="@+id/unlockedPackMoves"
@@ -134,7 +133,6 @@
                 android:layout_margin="10dp"
                 android:textSize="20sp"
                 android:textColor="@color/dkgrey"
-                android:onClick="openLeaderboard"
                 android:gravity="center_horizontal"/>
         </LinearLayout>
     </android.support.percent.PercentRelativeLayout>

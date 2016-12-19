@@ -20,6 +20,8 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.gms.games.Games;
+
 import java.util.Locale;
 
 import uk.co.jakelee.cityflow.BuildConfig;
@@ -533,6 +535,36 @@ public class AlertDialogHelper {
                 activity.startActivity(new Intent(activity, EditorActivity.class)
                         .putExtra(Constants.INTENT_PUZZLE, puzzleId)
                         .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+            }
+        });
+
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                alertDialog.show();
+            }
+        });
+    }
+
+    public static void openPackLeaderboard(final Activity activity, final String timeLeaderboard, final String movesLeaderboard) {
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
+        alertDialog.setMessage(Text.get("DIALOG_LEADERBOARD_CONFIRM"));
+
+        alertDialog.setNeutralButton(Text.get("DIALOG_BUTTON_CANCEL"), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alertDialog.setNegativeButton(Text.get("METRIC_BEST_TIME"), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                activity.startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, timeLeaderboard), GooglePlayHelper.RC_LEADERBOARDS);
+            }
+        });
+
+        alertDialog.setPositiveButton(Text.get("METRIC_BEST_MOVES"), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                activity.startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, movesLeaderboard), GooglePlayHelper.RC_LEADERBOARDS);
             }
         });
 
