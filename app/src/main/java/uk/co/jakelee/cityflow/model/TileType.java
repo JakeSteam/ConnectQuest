@@ -62,7 +62,18 @@ public class TileType extends SugarRecord {
         this.heightSouth = height;
         this.heightWest = height;
         this.puzzleRequired = puzzleRequired;
-        this.status = puzzleRequired == 0 ? Constants.TILE_STATUS_UNLOCKED : Constants.TILE_STATUS_LOCKED;
+
+        switch (puzzleRequired) {
+            case Constants.TILE_UNPURCHASED:
+                this.status = Constants.TILE_STATUS_UNPURCHASED;
+                break;
+            case Constants.TILE_UNLOCKED:
+                this.status = Constants.TILE_STATUS_UNLOCKED;
+                break;
+            default:
+                this.status = Constants.TILE_STATUS_LOCKED;
+                break;
+        }
     }
 
     public TileType(int typeId, int environmentId, int flowNorth, int flowEast, int flowSouth, int flowWest, int heightNorth, int heightEast, int heightSouth, int heightWest, int puzzleRequired) {
@@ -77,7 +88,18 @@ public class TileType extends SugarRecord {
         this.heightSouth = heightSouth;
         this.heightWest = heightWest;
         this.puzzleRequired = puzzleRequired;
-        this.status = puzzleRequired == 0 ? Constants.TILE_STATUS_UNLOCKED : Constants.TILE_STATUS_LOCKED;
+
+        switch (puzzleRequired) {
+            case Constants.TILE_UNPURCHASED:
+                this.status = Constants.TILE_STATUS_UNPURCHASED;
+                break;
+            case Constants.TILE_UNLOCKED:
+                this.status = Constants.TILE_STATUS_UNLOCKED;
+                break;
+            default:
+                this.status = Constants.TILE_STATUS_LOCKED;
+                break;
+        }
     }
 
     public int getTypeId() {

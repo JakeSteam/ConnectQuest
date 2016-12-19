@@ -145,7 +145,7 @@ public class Puzzle extends SugarRecord {
     }
 
     public void unlockRelatedTiles() {
-        TileType.executeQuery("UPDATE tiletype SET status = " + Constants.TILE_STATUS_UNLOCKED + " WHERE puzzle_id = " + puzzleId);
+        TileType.executeQuery("UPDATE tile_type SET status = " + Constants.TILE_STATUS_UNLOCKED + " WHERE puzzle_required = " + puzzleId);
     }
 
     public static Puzzle getPuzzle(int puzzleId) {

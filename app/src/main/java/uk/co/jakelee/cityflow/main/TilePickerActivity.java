@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -26,6 +27,7 @@ import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
+import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
@@ -141,10 +143,12 @@ public class TilePickerActivity extends Activity {
         TableLayout tileContainer = (TableLayout) findViewById(R.id.tileContainer);
         tileContainer.removeAllViews();
 
-        String whereClause = String.format("%1$s AND %2$s AND %3$s ORDER BY environment_id ASC",
+        boolean displayLockedTiles = Setting.getSafeBoolean(Constants.SETTING_HIDE_LOCKED_TILES);
+        String whereClause = String.format("%1$s AND %2$s AND %3$s %4$s environment_id ASC",
                 getEnvironmentSQL(),
                 getFlowSQL(),
-                getHeightSQL());
+                getHeightSQL(),
+                displayLockedTiles ? "ORDER BY status ASC," : "AND status = " + Constants.TILE_STATUS_UNLOCKED + " ORDER BY");
         List<TileType> tileTypes = TileType.find(TileType.class, whereClause);
 
         int numTiles = tileTypes.size();
@@ -152,7 +156,7 @@ public class TilePickerActivity extends Activity {
         for (int tileIndex = 1; tileIndex <= numTiles; tileIndex++) {
             final TileType tileType = tileTypes.get(tileIndex - 1);
 
-            ImageView tileImage = dh.createTileIcon(tileType, 80, 80);
+            ImageView tileImage = dh.createTileIcon(tileType, 80, 80, true);
             tileImage.setTag(tileType);
             tileImage.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
@@ -165,6 +169,13 @@ public class TilePickerActivity extends Activity {
                 tileContainer.addView(row);
                 row = new TableRow(this);
             }
+        }
+
+        Setting setting = Setting.get(Constants.SETTING_HIDE_LOCKED_TILES);
+        if (setting != null) {
+            ((TextView) findViewById(R.id.hideLockedTilesText)).setText(setting.getName());
+            ((TextView) findViewById(R.id.hideLockedTiles)).setText(!setting.getBooleanValue() ? R.string.icon_tick : R.string.icon_cross);
+            ((TextView) findViewById(R.id.hideLockedTiles)).setTextColor(ContextCompat.getColor(this, !setting.getBooleanValue() ? R.color.green : R.color.red));
         }
     }
 
@@ -236,6 +247,19 @@ public class TilePickerActivity extends Activity {
 
         String heightListString = sb.toString().substring(0, sb.toString().length() - 1);
         return String.format("(height_north IN (%1$s) OR height_east IN (%1$s) OR height_south IN (%1$s) OR height_west IN (%1$s))", heightListString);
+    }
+
+    public void hideLockedTilesToggle(View v) {
+        Setting setting = Setting.get(Constants.SETTING_HIDE_LOCKED_TILES);
+        if (setting != null) {
+            SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.settings);
+            setting.setBooleanValue(!setting.getBooleanValue());
+            setting.save();
+
+            AlertHelper.success(this, String.format(Locale.ENGLISH, Text.get(!setting.getBooleanValue() ? "ALERT_SETTING_TOGGLE_ON" : "ALERT_SETTING_TOGGLE_OFF"),
+                    setting.getName()));
+        }
+        populateTilePicker();
     }
 
     public void closePopup(View v) {

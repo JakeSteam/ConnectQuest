@@ -10,7 +10,6 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.os.Vibrator;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.animation.Animation;
@@ -234,7 +233,6 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
 
     public void populateTiles(List<Tile> tiles) {
         optimumScale = dh.setupTileDisplay(this, tiles, (ZoomableViewGroup)findViewById(R.id.tileContainer), puzzleId, null, null, false).second;
-        Log.d("Scale", "Optimum is " + optimumScale);
     }
 
     public void zoomIn(View v) {

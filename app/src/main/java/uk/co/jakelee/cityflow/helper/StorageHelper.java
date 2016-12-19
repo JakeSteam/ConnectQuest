@@ -93,7 +93,6 @@ public class StorageHelper {
             b = trim(b);
 
             FileOutputStream fos = activity.openFileOutput(filename, Context.MODE_PRIVATE);
-            Log.d("Saved", "Puzzle image: " + puzzleId);
             b.compress(Bitmap.CompressFormat.PNG, 100, fos);
             fos.flush();
             fos.close();

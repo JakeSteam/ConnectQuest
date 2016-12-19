@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
@@ -245,8 +244,6 @@ public class ZoomableViewGroup extends RelativeLayout {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        Log.d("Pos", "X: " + mPosX + " Y: " + mPosY);
         return true;
     }
 

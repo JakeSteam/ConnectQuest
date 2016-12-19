@@ -209,6 +209,7 @@ public class Constants {
     public static final int SETTING_SONG_MAIN = 17;
     public static final int SETTING_SONG_PUZZLE = 18;
     public static final int SETTING_TUTORIAL_STAGE = 19;
+    public static final int SETTING_HIDE_LOCKED_TILES = 20;
     public static final int SKYSCRAPER_COMPLETE = 1;
     public static final int SKYSCRAPER_TIME = 2;
     public static final int SKYSCRAPER_MOVES = 3;
