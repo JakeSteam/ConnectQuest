@@ -22,14 +22,15 @@
     <string name="icon_gallery">&#xe811;</string>
     <string name="icon_tick">&#xe812;</string>
     <string name="icon_lock">&#xe813;</string>
-    <string name="icon_text">&#xe814;</string>
-    <string name="icon_unlock">&#xe815;</string>
+    <string name="icon_unlock">&#xe814;</string>
+    <string name="icon_text">&#xe815;</string>
     <string name="icon_ellipsis">&#xe816;</string>
     <string name="icon_delete">&#xe817;</string>
     <string name="icon_copy">&#xe818;</string>
     <string name="icon_export">&#xe819;</string>
     <string name="icon_time">&#xe81A;</string>
     <string name="icon_centre">&#xe81B;</string>
+    <string name="icon_buy_currency">&#xe81C;</string>
 
     <string name="rate_dialog_cancel">Later</string>
     <string name="rate_dialog_message">If you\'re enjoying City Flow, would you mind leaving a rating? It really helps the game out, and lets me know all the development hours were worth it! Thanks!</string>

@@ -100,6 +100,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_185_NAME", "Desert (Plant)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_186_NAME", "Desert (Flower)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "WORD_RANDOM", "Random"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_BANNER", "Free Coins!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_LOCAL_TITLE", "Localisation"));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_LOCAL_TEXT", "<b>Translator's names</b> will go here, obviously not yet!<br>" +
                 ""));

@@ -83,11 +83,10 @@
             android:orientation="vertical"
             android:layout_below="@id/packName"
             android:layout_above="@id/actionButton">
-            <uk.co.jakelee.cityflow.components.AutofitTextViewFont
+            <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/unlockablePackHeader"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:gravity="center"
                 android:textSize="30sp"
@@ -95,8 +94,7 @@
             <uk.co.jakelee.cityflow.components.AutofitTextViewFont
                 android:id="@+id/unlockablePackInstruction"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="match_parent"
                 android:padding="10dp"
                 android:gravity="center"
                 android:textSize="20sp"
