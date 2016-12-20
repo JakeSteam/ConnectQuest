@@ -286,8 +286,8 @@
                     android:gravity="center_horizontal"
                     android:textSize="36sp"
                     android:text="@string/icon_cross"
-                    android:padding="12dp"
-                    android:layout_margin="6dp"
+                    android:padding="10dp"
+                    android:layout_margin="5dp"
                     android:onClick="closePuzzle"/>
                 <uk.co.jakelee.cityflow.components.TextAwesome
                     android:layout_width="wrap_content"
@@ -297,8 +297,8 @@
                     android:gravity="center_horizontal"
                     android:textSize="36sp"
                     android:text="@string/icon_restart"
-                    android:padding="12dp"
-                    android:layout_margin="6dp"
+                    android:padding="10dp"
+                    android:layout_margin="5dp"
                     android:onClick="restartPuzzle"/>
                 <uk.co.jakelee.cityflow.components.TextAwesome
                     android:id="@+id/resumeButton"
@@ -309,8 +309,8 @@
                     android:gravity="center_horizontal"
                     android:textSize="36sp"
                     android:text="@string/icon_play"
-                    android:padding="12dp"
-                    android:layout_margin="6dp"
+                    android:padding="10dp"
+                    android:layout_margin="5dp"
                     android:onClick="resumePuzzle"/>
             </LinearLayout>
         </RelativeLayout>
@@ -321,6 +321,7 @@
             android:layout_height="match_parent"
             android:visibility="invisible">
             <ImageView
+                android:id="@+id/endGameBackground"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@color/black"
@@ -457,8 +458,8 @@
                     android:gravity="center_horizontal"
                     android:textSize="36sp"
                     android:text="@string/icon_cross"
-                    android:padding="12dp"
-                    android:layout_margin="6dp"
+                    android:padding="10dp"
+                    android:layout_margin="5dp"
                     android:onClick="closePuzzle"/>
                 <uk.co.jakelee.cityflow.components.TextAwesome
                     android:id="@+id/restartButton"
@@ -469,9 +470,20 @@
                     android:gravity="center_horizontal"
                     android:textSize="36sp"
                     android:text="@string/icon_restart"
-                    android:padding="12dp"
-                    android:layout_margin="6dp"
+                    android:padding="10dp"
+                    android:layout_margin="5dp"
                     android:onClick="restartPuzzle"/>
+                <uk.co.jakelee.cityflow.components.TextAwesome
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:background="@color/city"
+                    android:gravity="center_horizontal"
+                    android:textSize="36sp"
+                    android:text="@string/icon_visibility"
+                    android:padding="10dp"
+                    android:layout_margin="5dp"
+                    android:onClick="toggleEndDisplay"/>
                 <uk.co.jakelee.cityflow.components.TextAwesome
                     android:id="@+id/mainActionButton"
                     android:layout_width="match_parent"
@@ -480,8 +492,8 @@
                     android:background="@color/blue"
                     android:gravity="center_horizontal"
                     android:textSize="36sp"
-                    android:padding="12dp"
-                    android:layout_margin="6dp"
+                    android:padding="10dp"
+                    android:layout_margin="5dp"
                     android:onClick="mainAction"/>
             </LinearLayout>
             <LinearLayout

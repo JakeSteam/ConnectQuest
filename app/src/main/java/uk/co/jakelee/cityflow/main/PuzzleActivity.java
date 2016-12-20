@@ -66,6 +66,7 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     private boolean justUndone = false;
     private boolean exitedPuzzle = false;
     private boolean playSounds = false;
+    private boolean currentlyPeeking = false;
     private Vibrator vibrator;
     private Picasso picasso;
     private float optimumScale = 1.0f;
@@ -485,6 +486,14 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
         intent.putExtra(Constants.INTENT_IS_CUSTOM, isCustom);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
+    }
+
+    public void toggleEndDisplay(View v) {
+        currentlyPeeking = !currentlyPeeking;
+        findViewById(R.id.endGameBackground).setAlpha(currentlyPeeking ? 0f : 0.7f);
+        findViewById(R.id.skyscraperContainer).setVisibility(currentlyPeeking ? View.INVISIBLE : View.VISIBLE);
+        findViewById(R.id.tilesContainer).setVisibility(currentlyPeeking ? View.INVISIBLE : View.VISIBLE);
+        findViewById(R.id.currencyContainer).setVisibility(currentlyPeeking ? View.INVISIBLE : View.VISIBLE);
     }
 
     public void mainAction(View v) {
