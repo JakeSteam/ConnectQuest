@@ -38,6 +38,7 @@ import uk.co.jakelee.cityflow.helper.TileHelper;
 import uk.co.jakelee.cityflow.interfaces.PuzzleDisplayer;
 import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Boost;
+import uk.co.jakelee.cityflow.model.Iap;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Setting;
@@ -396,8 +397,8 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
         }
 
         int currencyEarned = PuzzleHelper.getCurrencyEarned(puzzleCustom, isFirstComplete, originalStars, stars);
-        Statistic.addCurrency(currencyEarned);
-        ((TextView)findViewById(R.id.currencyEarned)).setText(String.format(Locale.ENGLISH, Text.get("ALERT_COINS_EARNED"), currencyEarned));
+        Statistic.addCurrency((Iap.hasCoinDoubler() ? 2 : 1 ) * currencyEarned);
+        ((TextView)findViewById(R.id.currencyEarned)).setText(String.format(Locale.ENGLISH, Text.get("ALERT_COINS_EARNED"), (Iap.hasCoinDoubler() ? 2 : 1 ) * currencyEarned));
 
         findViewById(R.id.endGame).setVisibility(View.VISIBLE);
 

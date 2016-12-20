@@ -19,6 +19,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import uk.co.jakelee.cityflow.main.ShopActivity;
+import uk.co.jakelee.cityflow.model.Iap;
 import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.Text;
 
@@ -88,7 +89,7 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         int difference = remoteCoins - localCoins.getIntValue();
 
         if (difference > 0) {
-            Statistic.addCurrency(difference);
+            Statistic.addCurrency((Iap.hasCoinDoubler() ? 2 : 1 ) * difference);
             localCoins.setIntValue(remoteCoins);
             localCoins.save();
             return difference;

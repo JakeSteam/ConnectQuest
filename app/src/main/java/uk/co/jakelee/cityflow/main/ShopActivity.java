@@ -28,6 +28,7 @@ import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
+import uk.co.jakelee.cityflow.model.Iap;
 import uk.co.jakelee.cityflow.model.ShopCategory;
 import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Statistic;
@@ -195,7 +196,7 @@ public class ShopActivity extends Activity {
     }
 
     public void advertWatched() {
-        Statistic.addCurrency(Constants.CURRENCY_ADVERT);
+        Statistic.addCurrency((Iap.hasCoinDoubler() ? 2 : 1 ) * Constants.CURRENCY_ADVERT);
         AlertHelper.success(this, String.format(Locale.ENGLISH, Text.get("ALERT_COINS_EARNED_FREE"), Constants.CURRENCY_ADVERT));
         GooglePlayHelper.UpdateEvent(Constants.EVENT_WATCH_ADVERT, 1);
 

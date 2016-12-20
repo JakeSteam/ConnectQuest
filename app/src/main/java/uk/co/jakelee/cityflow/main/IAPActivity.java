@@ -68,7 +68,10 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
 
     @Override
     public void onProductPurchased(String productId, TransactionDetails details) {
-        bp.consumePurchase(productId);
+        if (Iap.get(productId).getCoins() > 0) {
+            bp.consumePurchase(productId);
+        }
+
         Iap.get(productId).purchase();
 
         Pack iapUnlockedPack = Pack.getPack(9);
@@ -127,20 +130,24 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
         for (Iap iap : iaps) {
             SkuDetails iapInfo = bp.getPurchaseListingDetails(iap.getIapCode());
             RelativeLayout iapButton = (RelativeLayout) inflater.inflate(R.layout.custom_iap_button, null);
-            ((ImageView) iapButton.findViewById(R.id.itemImage)).setImageResource(dh.getIabDrawableID(iap.getIapCode()));
 
-            if (iapInfo != null) {
+            ((ImageView) iapButton.findViewById(R.id.itemImage)).setImageResource(dh.getIabDrawableID(iap.getIapCode()));
+            ((TextView) iapButton.findViewById(R.id.itemName)).setText(iap.getName());
+
+            if (iapInfo != null && (iap.getPurchases() < iap.getMaxPurchases() || iap.getMaxPurchases() == 0)) {
                 ((TextView) iapButton.findViewById(R.id.itemPrice)).setText(iapInfo.currency + " " + iapInfo.priceText);
+                iapButton.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        buyIAP(v);
+                    }
+                });
+                iapButton.setTag(iap.getIapCode());
+            } else if (iapInfo != null) {
+                ((TextView) iapButton.findViewById(R.id.itemPrice)).setText(Text.get("WORD_NA"));
             } else {
-                ((TextView) iapButton.findViewById(R.id.itemPrice)).setText("£?.??");
+                ((TextView) iapButton.findViewById(R.id.itemPrice)).setText("?.??");
             }
 
-            iapButton.setTag(iap.getIapCode());
-            iapButton.setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View v) {
-                    buyIAP(v);
-                }
-            });
             scrollView.addView(iapButton, layoutParams);
         }
     }

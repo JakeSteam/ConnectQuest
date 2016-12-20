@@ -11,14 +11,16 @@ import uk.co.jakelee.cityflow.helper.EncryptHelper;
 public class Iap extends SugarRecord{
     private String iapCode;
     private String purchases;
+    private String maxPurchases;
     private String coins;
 
     public Iap() {
     }
 
-    public Iap(String iapCode, int coins) {
+    public Iap(String iapCode, int coins, int maxPurchases) {
         this.iapCode = iapCode;
         this.purchases = EncryptHelper.encode(0, 234);
+        this.maxPurchases = EncryptHelper.encode(maxPurchases, 333);
         this.coins = EncryptHelper.encode(coins, 456);
     }
 
@@ -38,6 +40,14 @@ public class Iap extends SugarRecord{
         this.purchases = EncryptHelper.encode(purchases, 234);
     }
 
+    public int getMaxPurchases() {
+        return EncryptHelper.decodeToInt(maxPurchases, 333);
+    }
+
+    public void setMaxPurchases(int maxPurchases) {
+        this.maxPurchases = EncryptHelper.encode(maxPurchases, 333);
+    }
+
     public int getCoins() {
         return EncryptHelper.decodeToInt(coins, 456);
     }
@@ -51,8 +61,27 @@ public class Iap extends SugarRecord{
                 Condition.prop("iap_code").eq(code)).first();
     }
 
+    public String getName() {
+        String coinString = Text.get("STATISTIC_6_NAME");
+        String allString = Text.get("WORD_ALL");
+        if (getCoins() > 0) {
+            return getCoins() + " " + coinString;
+        } else {
+            return "2x " + allString + "\n" + coinString;
+        }
+    }
+
+    public static boolean hasCoinDoubler() {
+        Iap iap = Iap.get("x2_doubler");
+        return iap != null && iap.getPurchases() > 0;
+    }
+
     public void purchase() {
-        Statistic.addCurrency(getCoins());
+        if (getCoins() > 0) {
+            Statistic.addCurrency(getCoins());
+        }
+        setPurchases(getPurchases() + 1);
+        save();
     }
 
     public static boolean hasPurchasedAnything() {

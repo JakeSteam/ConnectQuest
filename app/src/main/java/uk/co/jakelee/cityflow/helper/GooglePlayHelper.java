@@ -36,6 +36,7 @@ import uk.co.jakelee.cityflow.main.MainActivity;
 import uk.co.jakelee.cityflow.model.Achievement;
 import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Boost;
+import uk.co.jakelee.cityflow.model.Iap;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
@@ -151,7 +152,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             for (Achievement achievement : achievements) {
                 UpdateAchievement(achievement, currentValue, lastSentValue);
                 if (achievement.getMaximumValue() <= currentValue) {
-                    Statistic.addCurrency(Constants.CURRENCY_ACHIEVEMENT);
+                    Statistic.addCurrency((Iap.hasCoinDoubler() ? 2 : 1 ) * Constants.CURRENCY_ACHIEVEMENT);
                 }
             }
 

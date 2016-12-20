@@ -105,8 +105,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "WORD_SKIP", "Skip"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_BANNER", "Free Coins!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_LOCAL_TITLE", "Localisation"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_LOCAL_TEXT", "<b>Translator's names</b> will go here, obviously not yet!<br>" +
-                ""));
+        texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_LOCAL_TEXT", "<b>Translator's names</b> will go here, obviously not yet!<br>" + ""));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_LEADERBOARD_CONFIRM", "Which pack leaderboard would you like to open?"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_19_NAME", "Tutorial"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_20_NAME", "Hide Locked Tiles"));
@@ -662,7 +661,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_13", "Can't fully complete a pack to unlock the next one? Use your hard earned coins to buy it instead!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_BACKGROUND_SELECT_TITLE", "%1$d/%2$d Unlocked"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TITLE", "Purchase Coins"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TEASER", "First purchase of any pack unlocks a bonus puzzle pack!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TEASER", "First purchase unlocks a bonus puzzle pack!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_IAP_TIP", "Larger packs are better value, and keep an eye out for seasonal price reductions!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_SKYSCRAPER_COMPLETE_TITLE", "Complete\n100%"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_SKYSCRAPER_COMPLETE_TEXT", "Completed!"));
