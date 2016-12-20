@@ -513,6 +513,36 @@
                     android:onClick="tutorialAction"/>
             </TableRow>
 
+            <TableRow>
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/millisForDragText"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <uk.co.jakelee.cityflow.components.TextViewFont
+                    android:id="@+id/millisForDrag"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:textColor="@color/black"
+                    android:background="@color/ltltgrey"
+                    android:onClick="changeInt"
+                    android:tag="21"/>
+            </TableRow>
+
             <!-- Google settings -->
             <TableRow>
                 <uk.co.jakelee.cityflow.components.TextViewFont

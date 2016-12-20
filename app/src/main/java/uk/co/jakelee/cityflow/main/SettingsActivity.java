@@ -94,6 +94,7 @@ public class SettingsActivity extends AllowMeActivity {
         ((TextView) findViewById(R.id.maxCarsText)).setText(Text.get("SETTING_9_NAME"));
         ((TextView) findViewById(R.id.tutorialActionText)).setText(Setting.get(Constants.SETTING_TUTORIAL_STAGE).getName());
         ((TextView) findViewById(R.id.tutorialAction)).setText(Text.get(Setting.getInt(Constants.SETTING_TUTORIAL_STAGE) <= Constants.TUTORIAL_MAX ? "WORD_SKIP" : "WORD_START"));
+        ((TextView) findViewById(R.id.millisForDragText)).setText(Text.get("SETTING_21_NAME"));
 
         ((TextView) findViewById(R.id.settingSectionGoogle)).setText(Text.get("SETTING_SECTION_GOOGLE"));
         ((TextView) findViewById(R.id.signInButton)).setText(Text.get("GOOGLE_SIGN_IN"));
@@ -136,6 +137,7 @@ public class SettingsActivity extends AllowMeActivity {
         ((TextView) findViewById(R.id.minZoomButton)).setText(String.format(Locale.ENGLISH, "%.2f", Setting.getFloat(Constants.SETTING_MIN_ZOOM)));
         ((TextView) findViewById(R.id.maxZoomButton)).setText(String.format(Locale.ENGLISH, "%.2f", Setting.getFloat(Constants.SETTING_MAX_ZOOM)));
         ((TextView) findViewById(R.id.maxCarsButton)).setText(Integer.toString(Setting.getInt(Constants.SETTING_MAX_CARS)));
+        ((TextView) findViewById(R.id.millisForDrag)).setText(Integer.toString(Setting.getInt(Constants.SETTING_MINIMUM_MILLIS_DRAG)));
 
         // Google Play settings
         ((TextView) findViewById(R.id.autosaveDisplay)).setText(Integer.toString(Setting.getInt(Constants.SETTING_AUTOSAVE_FREQUENCY)));

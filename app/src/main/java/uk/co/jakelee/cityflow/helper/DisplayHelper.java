@@ -33,6 +33,7 @@ import uk.co.jakelee.cityflow.interfaces.PuzzleDisplayer;
 import uk.co.jakelee.cityflow.main.PackActivity;
 import uk.co.jakelee.cityflow.main.ShopActivity;
 import uk.co.jakelee.cityflow.model.Puzzle;
+import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
@@ -84,7 +85,7 @@ public class DisplayHelper {
         return displaymetrics;
     }
 
-    public ImageView createTileImageView(final PuzzleDisplayer puzzleDisplayer, final Tile tile, int drawableId) {
+    public ImageView createTileImageView(final PuzzleDisplayer puzzleDisplayer, final Tile tile, int drawableId, final int dragDelay) {
         final ImageView image = new ImageView(puzzleDisplayer.getActivity());
         Picasso.with(context).load(drawableId).into(image);
 
@@ -96,7 +97,7 @@ public class DisplayHelper {
                 try {
                     if (event.getAction() == MotionEvent.ACTION_CANCEL) {
                         long time = event.getEventTime() - event.getDownTime();
-                        needsProcessing = time < 50;
+                        needsProcessing = time < dragDelay;
                     } else {
                         Bitmap bmp = Bitmap.createBitmap(v.getDrawingCache());
                         int color = bmp.getPixel((int) event.getX(), (int) event.getY());
@@ -268,6 +269,8 @@ public class DisplayHelper {
     public Pair<ImageView, Float> setupTileDisplay(PuzzleDisplayer puzzleDisplayer, List<Tile> tiles, ZoomableViewGroup tileContainer, int puzzleId, Tile selectedTile, ImageView selectedTileImage, boolean isEditor) {
         tileContainer.removeAllViews();
 
+        Setting minimumMillisForDrag = Setting.get(Constants.SETTING_MINIMUM_MILLIS_DRAG);
+        int dragDelay = minimumMillisForDrag != null ? minimumMillisForDrag.getIntValue() : 200;
         Pair<Integer, Integer> maxXY = TileHelper.getMaxXY(tiles);
 
         // <scaleFactor, <offset, isLeftOffset>>
@@ -290,7 +293,7 @@ public class DisplayHelper {
             layoutParams.setMargins(leftPadding, topPadding, 0, 0);
 
             int drawableId = getTileDrawableId(puzzleDisplayer.getActivity(), tile.getTileTypeId(), tile.getRotation());
-            ImageView image = createTileImageView(puzzleDisplayer, tile, drawableId);
+            ImageView image = createTileImageView(puzzleDisplayer, tile, drawableId, dragDelay);
 
             //Make sure we always have a tile selected
             if (isEditor && (selectedTile == null || selectedTileImage == null)) {

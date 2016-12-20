@@ -6125,6 +6125,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         settings.add(new Setting(Constants.SETTING_SONG_PUZZLE, 0, 0, SoundHelper.puzzleSongs.length));
         settings.add(new Setting(Constants.SETTING_TUTORIAL_STAGE, 1, Constants.TUTORIAL_MIN, Constants.TUTORIAL_MAX));
         settings.add(new Setting(Constants.SETTING_HIDE_LOCKED_TILES, false));
+        settings.add(new Setting(Constants.SETTING_MINIMUM_MILLIS_DRAG, 50, 30, 1000));
         Setting.saveInTx(settings);
     }
 
