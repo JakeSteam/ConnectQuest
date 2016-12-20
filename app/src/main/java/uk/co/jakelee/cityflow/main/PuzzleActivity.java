@@ -458,7 +458,7 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
 
     @Override
     public void onBackPressed() {
-        if (timePaused > 0) {
+        if (timePaused > 0 || timeInMilliseconds == 0) {
             this.finish();
         } else {
             pause();
