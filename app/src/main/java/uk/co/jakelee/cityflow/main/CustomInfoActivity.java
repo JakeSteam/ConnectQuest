@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -80,13 +80,18 @@ public class CustomInfoActivity extends Activity {
         ((TextView) findViewById(R.id.puzzleBestMovesText)).setText(Text.get("UI_PUZZLE_BEST_MOVES"));
         ((TextView) findViewById(R.id.puzzleBestTimeText)).setText(Text.get("UI_PUZZLE_BEST_TIME"));
 
-        if (!puzzleCustom.isOriginalAuthor()) {
-            findViewById(R.id.starWrapper).setVisibility(View.VISIBLE);
+        if (puzzleCustom.isOriginalAuthor()) {
             ((TextView) findViewById(R.id.puzzleName)).setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+            ((TextView) findViewById(R.id.puzzleName)).setTextColor(ContextCompat.getColor(this, R.color.blue));
             ((TextView) findViewById(R.id.puzzleDesc)).setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
-            ((ImageView) findViewById(R.id.puzzleStarComplete)).setImageResource(puzzle.hasCompletionStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
-            ((ImageView) findViewById(R.id.puzzleStarMoves)).setImageResource(puzzle.hasMovesStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
-            ((ImageView) findViewById(R.id.puzzleStarTime)).setImageResource(puzzle.hasTimeStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
+            ((TextView) findViewById(R.id.puzzleDesc)).setTextColor(ContextCompat.getColor(this, R.color.blue));
+        } else {
+            findViewById(R.id.starWrapper).setVisibility(View.VISIBLE);
+            ((TextView) findViewById(R.id.puzzleName)).setTextColor(Color.BLACK);
+            ((TextView) findViewById(R.id.puzzleDesc)).setTextColor(Color.BLACK);
+            ((TextView) findViewById(R.id.starCompletion)).setText(puzzle.hasCompletionStar() ? R.string.icon_star_filled : R.string.icon_star_unfilled);
+            ((TextView) findViewById(R.id.starTime)).setText(puzzle.hasTimeStar() ? R.string.icon_star_filled : R.string.icon_star_unfilled);
+            ((TextView) findViewById(R.id.starMoves)).setText(puzzle.hasMovesStar() ? R.string.icon_star_filled : R.string.icon_star_unfilled);
             ((TextView) findViewById(R.id.puzzleStarsText)).setText(Text.get("UI_PUZZLE_STARS"));
         }
         ((TextView) findViewById(R.id.exportButton)).setTextColor((puzzleCustom.hasBeenTested() || !puzzleCustom.isOriginalAuthor()) ? Color.BLACK : Color.LTGRAY);

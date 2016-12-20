@@ -114,21 +114,27 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
-                    <ImageView
+                    <uk.co.jakelee.cityflow.components.TextAwesome
                         android:id="@+id/starCompletion"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ui_star_unachieved"/>
-                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"
+                        android:textSize="22sp"/>
+                    <uk.co.jakelee.cityflow.components.TextAwesome
                         android:id="@+id/starTime"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ui_star_unachieved"/>
-                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"
+                        android:textSize="22sp"/>
+                    <uk.co.jakelee.cityflow.components.TextAwesome
                         android:id="@+id/starMoves"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/ui_star_unachieved"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"
+                        android:textSize="22sp"/>
                 </LinearLayout>
             </LinearLayout>
             <RelativeLayout>

@@ -106,9 +106,10 @@ public class PackActivity extends Activity {
         ((ImageView) findViewById(R.id.puzzleImage)).setImageDrawable(dh.getPuzzleDrawable(selectedPuzzle.getPuzzleId(), selectedPuzzle.hasCompletionStar()));
         findViewById(R.id.puzzleImageQuestion).setVisibility(selectedPuzzle.hasCompletionStar() ? View.INVISIBLE : View.VISIBLE);
         ((TextView) findViewById(R.id.puzzleName)).setText(selectedPuzzle.getName());
-        ((ImageView) findViewById(R.id.starCompletion)).setImageResource(selectedPuzzle.hasCompletionStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
-        ((ImageView) findViewById(R.id.starTime)).setImageResource(selectedPuzzle.hasTimeStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
-        ((ImageView) findViewById(R.id.starMoves)).setImageResource(selectedPuzzle.hasMovesStar() ? R.drawable.ui_star_achieved : R.drawable.ui_star_unachieved);
+
+        ((TextView) findViewById(R.id.starCompletion)).setText(selectedPuzzle.hasCompletionStar() ? R.string.icon_star_filled : R.string.icon_star_unfilled);
+        ((TextView) findViewById(R.id.starTime)).setText(selectedPuzzle.hasTimeStar() ? R.string.icon_star_filled : R.string.icon_star_unfilled);
+        ((TextView) findViewById(R.id.starMoves)).setText(selectedPuzzle.hasMovesStar() ? R.string.icon_star_filled : R.string.icon_star_unfilled);
 
         ((TextView) findViewById(R.id.puzzleBestTime)).setText(DateHelper.getPuzzleTimeString(selectedPuzzle.getBestTime()));
         ((TextView) findViewById(R.id.puzzleBestTime)).setTextColor(selectedPuzzle.hasTimeStar() ? Color.YELLOW : Color.BLACK);
