@@ -219,12 +219,14 @@
         android:layout_above="@id/puzzleInfo"
         android:layout_below="@id/packInfo"
         android:background="@color/city"
+        android:scrollbarThumbVertical="@color/black"
         android:fadeScrollbars="false">
         <TableLayout
             android:id="@+id/puzzleContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:stretchColumns="*"/>
+            android:stretchColumns="*"
+            android:layout_marginRight="7dp"/>
     </ScrollView>
 
 

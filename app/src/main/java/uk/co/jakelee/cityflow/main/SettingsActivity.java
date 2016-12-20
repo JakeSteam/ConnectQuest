@@ -92,6 +92,8 @@ public class SettingsActivity extends AllowMeActivity {
         ((TextView) findViewById(R.id.maxZoomText)).setText(Text.get("SETTING_4_NAME"));
         ((TextView) findViewById(R.id.vibrationToggleText)).setText(Text.get("SETTING_13_NAME"));
         ((TextView) findViewById(R.id.maxCarsText)).setText(Text.get("SETTING_9_NAME"));
+        ((TextView) findViewById(R.id.tutorialActionText)).setText(Setting.get(Constants.SETTING_TUTORIAL_STAGE).getName());
+        ((TextView) findViewById(R.id.tutorialAction)).setText(Text.get(Setting.getInt(Constants.SETTING_TUTORIAL_STAGE) <= Constants.TUTORIAL_MAX ? "WORD_SKIP" : "WORD_START"));
 
         ((TextView) findViewById(R.id.settingSectionGoogle)).setText(Text.get("SETTING_SECTION_GOOGLE"));
         ((TextView) findViewById(R.id.signInButton)).setText(Text.get("GOOGLE_SIGN_IN"));
@@ -305,6 +307,19 @@ public class SettingsActivity extends AllowMeActivity {
 
         populateText();
         createDropdowns();
+    }
+
+    public void tutorialAction(View v) {
+        Setting setting = Setting.get(Constants.SETTING_TUTORIAL_STAGE);
+        if (setting.getIntValue() <= Constants.TUTORIAL_MAX) {
+            setting.setIntValue(Constants.TUTORIAL_MAX + 1) ;
+            AlertHelper.success(this, Text.get("ALERT_TUTORIAL_SKIPPED"));
+        } else {
+            setting.setIntValue(Constants.TUTORIAL_MIN);
+            AlertHelper.success(this, Text.get("ALERT_TUTORIAL_RESTARTED"));
+        }
+        setting.save();
+        populateSettings();
     }
 
     public void openCredits(View v) {

@@ -95,11 +95,14 @@ public class TextHelper {
         // Added post-translation
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_LANGUAGE_INSTALL", "Installing language pack: %1$s"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_RESET_LANGUAGE", "Game language set to English!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_TUTORIAL_SKIPPED", "Tutorial skipped!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_TUTORIAL_RESTARTED", "Tutorial restarted!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_RESET_LANGUAGE", "Reset Language"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_RESET_LANGUAGE_CONFIRM", "Reset language back to English, uninstalling the %1$d translations currently installed?\n\nReinstall packs by changing language!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_185_NAME", "Desert (Plant)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_186_NAME", "Desert (Flower)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "WORD_RANDOM", "Random"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "WORD_SKIP", "Skip"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_BANNER", "Free Coins!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_LOCAL_TITLE", "Localisation"));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_LOCAL_TEXT", "<b>Translator's names</b> will go here, obviously not yet!<br>" +
