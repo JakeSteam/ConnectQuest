@@ -305,7 +305,8 @@ public class SettingsActivity extends AllowMeActivity {
         language.setIntValue(Constants.LANGUAGE_EN);
         language.save();
 
-        Text.deleteAll(Text.class, "language <> " + Constants.LANGUAGE_EN);
+        Text.deleteAll(Text.class);
+        TextHelper.installLanguagePack(Constants.LANGUAGE_EN);
 
         populateText();
         createDropdowns();

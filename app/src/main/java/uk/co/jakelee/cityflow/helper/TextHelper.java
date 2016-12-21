@@ -216,7 +216,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "CREATOR_NEW_PUZZLE", "New Puzzle"));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_GRAPHICS_TITLE", "Graphics"));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_GRAPHICS_TEXT", "<a href='http://www.dafont.com/claudep.d857'>Claude P</a>: Main font (Yagiuhf No 2).<br>" +
-                "<a href='http://fontawesome.io/'>FontAwesome</a>: Button icons.<br>" +
+                "<a href='http://fontello.com/'>Fontello</a>: Most icons.<br>" +
                 "<a href='http://kenney.nl/'>Kenney</a>: Base tilesets, majority of UI elements.<br>" +
                 ""));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_TECHNOLOGIES_TITLE", "Technologies"));
@@ -236,6 +236,7 @@ public class TextHelper {
                 ""));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_SOUNDS_TITLE", "Audio"));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_SOUNDS_TEXT", "<a href='https://www.freesound.org/'>FreeSound</a>: Various sound effects<br>" +
+                "<a href='http://incompetech.com'>Incompetech (Kevin MacLeod)</a>: Bright Wish / Carefree / Carpe Diem / Dreamy Flashback / Faceoff / Ghost Dance / Rainbows - Licensed under <a href='http://creativecommons.org/licenses/by/3.0/'>Creative Commons: By Attribution 3.0</a>.<br>" +
                 ""));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_OTHER_TITLE", "Other"));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_OTHER_TEXT", "Of course, developing a game isn't just about technical resources. As such, there's a few people and communities who definitely need thanking.<br><br>" +
