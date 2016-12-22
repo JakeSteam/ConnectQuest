@@ -1,6 +1,7 @@
 package uk.co.jakelee.cityflow.helper;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -29,7 +30,8 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class PatchHelper extends AsyncTask<String, String, String> {
     public final static int NO_DATABASE = 0;
-    public final static int V1_0_0 = 1;
+    public final static int V0_9_1 = 1;
+    public final static int V0_9_2 = 2;
     private Activity callingActivity;
     private TextView progressText;
     private ProgressBar progressBar;
@@ -44,7 +46,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         this.callingActivity = activity;
     }
 
-    private void initialSetup() {
+    private void createDatabase() {
         setProgress("Achievements", 0);
         createAchievement();
         setProgress("Backgrounds", 3);
@@ -90,19 +92,47 @@ public class PatchHelper extends AsyncTask<String, String, String> {
     protected String doInBackground(String... params) {
         // Should inform the user that they've just updated if a patch has been installed
         String action = "";
-        if (callingActivity.getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE)
-                .getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.NO_DATABASE) {
-            initialSetup();
+        SharedPreferences prefs = callingActivity.getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE);
+        if (prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.NO_DATABASE) {
+            createDatabase();
+            prefs.edit().putInt("databaseVersion", PatchHelper.V0_9_1).apply();
 
             new Thread(new Runnable() {
                 public void run() {
                     createOtherPuzzles();
                 }
             }).start();
-            callingActivity.getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE).edit()
-                    .putInt("databaseVersion", PatchHelper.V1_0_0).apply();
+        }
+
+        if (prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.V0_9_1) {
+            patch091to092();
+            prefs.edit().putInt("databaseVersion", PatchHelper.V0_9_2).apply();
         }
         return action;
+    }
+    
+    private void patch091to092() {
+        setProgress("Patch 0.9.2", 80);
+        Puzzle.executeQuery("UPDATE puzzle SET best_moves = 7 WHERE puzzle_id = 6");
+        Puzzle.executeQuery("UPDATE puzzle SET best_time = 17499 WHERE puzzle_id = 10");
+
+        ShopItem.deleteAll(ShopItem.class);
+        createStoreItem();
+
+        TileType.deleteAll(TileType.class);
+        createTileType();
+
+        Pack.executeQuery("UPDATE pack SET max_stars = 84 WHERE pack_id = 6");
+
+        if (Setting.get(Constants.SETTING_HIDE_LOCKED_TILES) == null) {
+            List<Setting> settings = new ArrayList<>();
+            settings.add(new Setting(Constants.SETTING_HIDE_LOCKED_TILES, false));
+            settings.add(new Setting(Constants.SETTING_MINIMUM_MILLIS_DRAG, 150, 30, 1000));
+            Setting.saveInTx(settings);
+        }
+
+        Iap.deleteAll(Iap.class);
+        createIap();
     }
 
     private void createOtherPuzzles() {

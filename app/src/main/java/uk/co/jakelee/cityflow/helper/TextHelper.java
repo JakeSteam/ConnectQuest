@@ -105,7 +105,16 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "WORD_SKIP", "Skip"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_BANNER", "Free Coins!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_LOCAL_TITLE", "Localisation"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_LOCAL_TEXT", "<b>Translator's names</b> will go here, obviously not yet!<br>" + ""));
+        texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_LOCAL_TEXT", "<b>Chinese</b>: Dalziel45<br>" +
+                "<b>Dutch</b>: Finniespin<br>" +
+                "<b>French</b>: Vincent<br>" +
+                "<b>German</b>: Chey<br>" +
+                "<b>Polish</b>: Repcak<br>" +
+                "<b>Russian</b>: e11even<br>" +
+                "<b>Spanish</b>: Azath<br>" +
+                "<b>Swedish</b>: Marcus<br>" +
+                "<b>Additional</b>: Blackoutchimp, Flagus, Newbstier, R Flikkema.<br>" +
+                ""));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_LEADERBOARD_CONFIRM", "Which pack leaderboard would you like to open?"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_19_NAME", "Tutorial"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_20_NAME", "Hide Locked Tiles"));
