@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Text;
 
 import static com.orm.query.Select.from;
@@ -81,6 +82,16 @@ public class TextHelper {
         return text != null;
     }
 
+    public static void reinstallCurrentPack() {
+        int currentPack = Setting.getInt(Constants.SETTING_LANGUAGE);
+        deleteLanguagePack(currentPack);
+        installLanguagePack(currentPack);
+    }
+
+    public static void deleteLanguagePack(int packId) {
+        Text.deleteAll(Text.class, "language = " + packId);
+    }
+
     public static int getNonEnglishTextCount() {
         List<Text> texts = Select.from(Text.class).where(
                 Condition.prop("language").notEq(Constants.LANGUAGE_EN)).list();
@@ -104,23 +115,11 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "WORD_RANDOM", "Random"));
         texts.add(new Text(Constants.LANGUAGE_EN, "WORD_SKIP", "Skip"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_BANNER", "Free Coins!"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_LOCAL_TITLE", "Localisation"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_LOCAL_TEXT", "<b>Chinese</b>: Dalziel45<br>" +
-                "<b>Dutch</b>: Finniespin<br>" +
-                "<b>French</b>: Vincent<br>" +
-                "<b>German</b>: Chey<br>" +
-                "<b>Polish</b>: Repcak<br>" +
-                "<b>Russian</b>: e11even<br>" +
-                "<b>Spanish</b>: Azath<br>" +
-                "<b>Swedish</b>: Marcus<br>" +
-                "<b>Additional</b>: Blackoutchimp, Flagus, Newbstier, R Flikkema.<br>" +
-                ""));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_LEADERBOARD_CONFIRM", "Which pack leaderboard would you like to open?"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_19_NAME", "Tutorial"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_20_NAME", "Hide Locked Tiles"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_21_NAME", "Max Millis In Click"));
-
-
+        texts.add(new Text(Constants.LANGUAGE_EN, "QUEST_SCHEDULE", "Schedule (Reddit)"));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_BACKGROUND_UNLOCK", "Unlocked '%1$s' background!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_CARD_SAVED", "Card image saved to gallery!"));
@@ -227,6 +226,17 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_GRAPHICS_TEXT", "<a href='http://www.dafont.com/claudep.d857'>Claude P</a>: Main font (Yagiuhf No 2).<br>" +
                 "<a href='http://fontello.com/'>Fontello</a>: Most icons.<br>" +
                 "<a href='http://kenney.nl/'>Kenney</a>: Base tilesets, majority of UI elements.<br>" +
+                ""));
+        texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_LOCAL_TITLE", "Localisation"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_LOCAL_TEXT", "<b>Chinese</b>: Dalziel45<br>" +
+                "<b>Dutch</b>: Finniespin<br>" +
+                "<b>French</b>: Vincent<br>" +
+                "<b>German</b>: Chey<br>" +
+                "<b>Polish</b>: Repcak<br>" +
+                "<b>Russian</b>: e11even<br>" +
+                "<b>Spanish</b>: Azath<br>" +
+                "<b>Swedish</b>: Marcus<br>" +
+                "<b>Additional</b>: Blackoutchimp, Flagus, Newbstier, R Flikkema.<br>" +
                 ""));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_TECHNOLOGIES_TITLE", "Technologies"));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_TECHNOLOGIES_TEXT", "<a href='https://github.com/scottyab/AESCrypt-Android'>AESCrypt</a>: Database / game save encrypting.<br>" +

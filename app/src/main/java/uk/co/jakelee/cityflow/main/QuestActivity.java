@@ -1,6 +1,8 @@
 package uk.co.jakelee.cityflow.main;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -37,6 +39,7 @@ public class QuestActivity extends Activity {
         ((TextView)findViewById(R.id.upcomingQuests)).setText(Text.get("QUEST_UPCOMING"));
         ((TextView)findViewById(R.id.completedQuests)).setText(Text.get("QUEST_COMPLETED"));
         ((TextView)findViewById(R.id.failedQuests)).setText(Text.get("QUEST_FAILED"));
+        ((TextView)findViewById(R.id.redditSchedule)).setText(Text.get("QUEST_SCHEDULE"));
     }
 
     public void currentQuests(View view) {
@@ -67,6 +70,11 @@ public class QuestActivity extends Activity {
         if (GooglePlayHelper.mGoogleApiClient.isConnected()) {
             startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, new int[]{Quests.SELECT_UPCOMING}), GooglePlayHelper.RC_QUESTS);
         }
+    }
+
+    public void redditSchedule(View view) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.reddit.com/r/CityFlow/comments/5f4va6/quest_list/"));
+        startActivity(browserIntent);
     }
 
     public void closePopup (View v) {

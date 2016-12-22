@@ -90,11 +90,12 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     @Override
     protected String doInBackground(String... params) {
-        // Should inform the user that they've just updated if a patch has been installed
-        String action = "";
+        boolean isInitialInstall = false;
+        boolean languagePackModified = false;
         SharedPreferences prefs = callingActivity.getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE);
         if (prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.NO_DATABASE) {
             createDatabase();
+            isInitialInstall = true;
             prefs.edit().putInt("databaseVersion", PatchHelper.V0_9_1).apply();
 
             new Thread(new Runnable() {
@@ -106,9 +107,14 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
         if (prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.V0_9_1) {
             patch091to092();
+            languagePackModified = true;
             prefs.edit().putInt("databaseVersion", PatchHelper.V0_9_2).apply();
         }
-        return action;
+
+        if (languagePackModified && !isInitialInstall) {
+            TextHelper.reinstallCurrentPack();
+        }
+        return "";
     }
     
     private void patch091to092() {

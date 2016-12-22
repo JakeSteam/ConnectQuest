@@ -394,7 +394,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         String backupString = "";
 
         if (MainActivity.prefs != null) {
-            backupString = MainActivity.prefs.getInt("databaseVersion", PatchHelper.V1_0_0) + GooglePlayHelper.SAVE_DELIMITER;
+            backupString = MainActivity.prefs.getInt("databaseVersion", PatchHelper.V0_9_1) + GooglePlayHelper.SAVE_DELIMITER;
         }
         backupString += PuzzleHelper.getTotalStars() + GooglePlayHelper.SAVE_DELIMITER;
         backupString += Statistic.getCurrency() + GooglePlayHelper.SAVE_DELIMITER;
