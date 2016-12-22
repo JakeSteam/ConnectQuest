@@ -41,7 +41,9 @@ import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Setting;
+import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Statistic;
+import uk.co.jakelee.cityflow.model.SupportCode;
 import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
@@ -398,12 +400,16 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         }
         backupString += PuzzleHelper.getTotalStars() + GooglePlayHelper.SAVE_DELIMITER;
         backupString += Statistic.getCurrency() + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Background.listAll(Boost.class)) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(Boost.listAll(Boost.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(Iap.listAll(Iap.class)) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(Pack.listAll(Pack.class)) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(Puzzle.listAll(Puzzle.class)) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(PuzzleCustom.listAll(PuzzleCustom.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(ShopItem.listAll(ShopItem.class)) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(Setting.listAll(Setting.class)) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(Statistic.listAll(Statistic.class)) + GooglePlayHelper.SAVE_DELIMITER;
+        backupString += gson.toJson(SupportCode.listAll(SupportCode.class)) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(Tile.listAll(Tile.class)) + GooglePlayHelper.SAVE_DELIMITER;
         backupString += gson.toJson(TileType.listAll(TileType.class)) + GooglePlayHelper.SAVE_DELIMITER;
 
@@ -412,7 +418,6 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
 
     public static void applyBackup(String backupData) {
         Gson gson = new Gson();
-
         String[] splitData = splitBackupData(backupData);
 
         if (MainActivity.prefs != null) {
@@ -420,51 +425,75 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         }
 
         // Skipping [1] and [2], as they're used for comparing saves
+        int fieldNumber = 3;
+        if (splitData.length > fieldNumber) {
+            Background[] backgrounds = gson.fromJson(splitData[fieldNumber++], Background[].class);
+            Background.deleteAll(Background.class);
+            Background.saveInTx(backgrounds);
+        }
 
-        if (splitData.length > 3) {
-            Boost[] boosts = gson.fromJson(splitData[3], Boost[].class);
+        if (splitData.length > fieldNumber) {
+            Boost[] boosts = gson.fromJson(splitData[fieldNumber++], Boost[].class);
             Boost.deleteAll(Boost.class);
             Boost.saveInTx(boosts);
         }
 
-        if (splitData.length > 4) {
-            Pack[] packs = gson.fromJson(splitData[4], Pack[].class);
+        if (splitData.length > fieldNumber) {
+            Iap[] iaps = gson.fromJson(splitData[fieldNumber++], Iap[].class);
+            Iap.deleteAll(Boost.class);
+            Iap.saveInTx(iaps);
+        }
+
+        if (splitData.length > fieldNumber) {
+            Pack[] packs = gson.fromJson(splitData[fieldNumber++], Pack[].class);
             Pack.deleteAll(Pack.class);
             Pack.saveInTx(packs);
         }
         
-        if (splitData.length > 5) {
-            Puzzle[] puzzles = gson.fromJson(splitData[5], Puzzle[].class);
+        if (splitData.length > fieldNumber) {
+            Puzzle[] puzzles = gson.fromJson(splitData[fieldNumber++], Puzzle[].class);
             Puzzle.deleteAll(Puzzle.class);
             Puzzle.saveInTx(puzzles);
         }
         
-        if (splitData.length > 6) {
-            PuzzleCustom[] puzzleCustoms = gson.fromJson(splitData[6], PuzzleCustom[].class);
+        if (splitData.length > fieldNumber) {
+            PuzzleCustom[] puzzleCustoms = gson.fromJson(splitData[fieldNumber++], PuzzleCustom[].class);
             PuzzleCustom.deleteAll(PuzzleCustom.class);
             PuzzleCustom.saveInTx(puzzleCustoms);
         }
+
+        if (splitData.length > fieldNumber) {
+            ShopItem[] shopItems = gson.fromJson(splitData[fieldNumber++], ShopItem[].class);
+            ShopItem.deleteAll(ShopItem.class);
+            ShopItem.saveInTx(shopItems);
+        }
         
-        if (splitData.length > 7) {
-            Setting[] settings = gson.fromJson(splitData[7], Setting[].class);
+        if (splitData.length > fieldNumber) {
+            Setting[] settings = gson.fromJson(splitData[fieldNumber++], Setting[].class);
             Setting.deleteAll(Setting.class);
             Setting.saveInTx(settings);
         }
         
-        if (splitData.length > 8) {
-            Statistic[] statistics = gson.fromJson(splitData[8], Statistic[].class);
+        if (splitData.length > fieldNumber) {
+            Statistic[] statistics = gson.fromJson(splitData[fieldNumber++], Statistic[].class);
             Statistic.deleteAll(Statistic.class);
             Statistic.saveInTx(statistics);
         }
 
-        if (splitData.length > 9) {
-            Tile[] tiles = gson.fromJson(splitData[9], Tile[].class);
+        if (splitData.length > fieldNumber) {
+            SupportCode[] supportCodes = gson.fromJson(splitData[fieldNumber++], SupportCode[].class);
+            SupportCode.deleteAll(SupportCode.class);
+            SupportCode.saveInTx(supportCodes);
+        }
+
+        if (splitData.length > fieldNumber) {
+            Tile[] tiles = gson.fromJson(splitData[fieldNumber++], Tile[].class);
             Tile.deleteAll(Tile.class);
             Tile.saveInTx(tiles);
         }
 
-        if (splitData.length > 10) {
-            TileType[] tileTypes = gson.fromJson(splitData[10], TileType[].class);
+        if (splitData.length > fieldNumber) {
+            TileType[] tileTypes = gson.fromJson(splitData[fieldNumber++], TileType[].class);
             TileType.deleteAll(TileType.class);
             TileType.saveInTx(tileTypes);
         }

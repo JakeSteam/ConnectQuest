@@ -122,6 +122,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_21_NAME", "Max Millis In Click"));
         texts.add(new Text(Constants.LANGUAGE_EN, "QUEST_SCHEDULE", "Schedule (Reddit)"));
 
+
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_BACKGROUND_UNLOCK", "Unlocked '%1$s' background!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_CARD_SAVED", "Card image saved to gallery!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_COINS_PURCHASED", "Successfully purchased %1$d coins!"));
