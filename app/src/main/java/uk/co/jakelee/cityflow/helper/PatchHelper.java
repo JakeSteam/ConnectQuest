@@ -132,13 +132,15 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
         Pack.executeQuery("UPDATE pack SET max_stars = 84 WHERE pack_id = 6");
 
-        if (Setting.get(Constants.SETTING_HIDE_LOCKED_TILES) == null) {
-            List<Setting> settings = new ArrayList<>();
-            settings.add(new Setting(Constants.SETTING_TUTORIAL_STAGE, 1, Constants.TUTORIAL_MIN, Constants.TUTORIAL_MAX));
-            settings.add(new Setting(Constants.SETTING_HIDE_LOCKED_TILES, false));
-            settings.add(new Setting(Constants.SETTING_MINIMUM_MILLIS_DRAG, 150, 30, 1000));
-            Setting.saveInTx(settings);
-        }
+        List<Setting> settings = new ArrayList<>();
+        settings.add(new Setting(Constants.SETTING_TUTORIAL_STAGE, 1, Constants.TUTORIAL_MIN, Constants.TUTORIAL_MAX));
+        settings.add(new Setting(Constants.SETTING_HIDE_LOCKED_TILES, false));
+        settings.add(new Setting(Constants.SETTING_MINIMUM_MILLIS_DRAG, 150, 30, 1000));
+        Setting.saveInTx(settings);
+
+        Setting coins = Setting.get(Constants.STATISTIC_CURRENCY);
+        coins.setIntValue(123);
+        coins.save();
 
         Iap.deleteAll(Iap.class);
         createIap();
@@ -6177,7 +6179,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         statistics.add(new Statistic(Constants.STATISTIC_QUESTS_COMPLETED, 0, 0));
         statistics.add(new Statistic(Constants.STATISTIC_PUZZLES_COMPLETED_FULLY, 0, 0));
         statistics.add(new Statistic(Constants.STATISTIC_BOOSTS_USED, 0, 0));
-        statistics.add(new Statistic(Constants.STATISTIC_CURRENCY, 100000));
+        statistics.add(new Statistic(Constants.STATISTIC_CURRENCY, 123));
         statistics.add(new Statistic(Constants.STATISTIC_TAPJOY_COINS, 0));
         statistics.add(new Statistic(Constants.STATISTIC_LAST_AUTOSAVE, 0L));
         statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_1, 0, 0));
