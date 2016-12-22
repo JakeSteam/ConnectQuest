@@ -35,13 +35,13 @@ public class EditorMenuActivity extends Activity {
     }
 
     private void populateText() {
-        ((TextView)findViewById(R.id.playPuzzle)).setText(Text.get("DIALOG_PLAY"));
-        ((TextView)findViewById(R.id.changePuzzleName)).setText(Text.get("DIALOG_CHANGE_NAME"));
-        ((TextView)findViewById(R.id.changePuzzleDesc)).setText(Text.get("DIALOG_CHANGE_DESC"));
-        ((TextView)findViewById(R.id.shufflePuzzle)).setText(Text.get("DIALOG_SHUFFLE_TILES"));
-        ((TextView)findViewById(R.id.rotatePuzzle)).setText(Text.get("DIALOG_ROTATE_PUZZLE"));
-        ((TextView)findViewById(R.id.changePuzzleSize)).setText(Text.get("DIALOG_BUTTON_RESIZE"));
-        ((TextView)findViewById(R.id.savePuzzle)).setText(Text.get("DIALOG_SAVE_EXIT"));
+        ((TextView) findViewById(R.id.playPuzzle)).setText(Text.get("DIALOG_PLAY"));
+        ((TextView) findViewById(R.id.changePuzzleName)).setText(Text.get("DIALOG_CHANGE_NAME"));
+        ((TextView) findViewById(R.id.changePuzzleDesc)).setText(Text.get("DIALOG_CHANGE_DESC"));
+        ((TextView) findViewById(R.id.shufflePuzzle)).setText(Text.get("DIALOG_SHUFFLE_TILES"));
+        ((TextView) findViewById(R.id.rotatePuzzle)).setText(Text.get("DIALOG_ROTATE_PUZZLE"));
+        ((TextView) findViewById(R.id.changePuzzleSize)).setText(Text.get("DIALOG_BUTTON_RESIZE"));
+        ((TextView) findViewById(R.id.savePuzzle)).setText(Text.get("DIALOG_SAVE_EXIT"));
     }
 
     public void playPuzzle(View v) {
@@ -78,7 +78,7 @@ public class EditorMenuActivity extends Activity {
         finish();
     }
 
-    public void closePopup (View v) {
+    public void closePopup(View v) {
         this.finish();
     }
 }

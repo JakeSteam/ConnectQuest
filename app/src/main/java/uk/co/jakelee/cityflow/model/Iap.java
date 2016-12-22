@@ -8,7 +8,7 @@ import java.util.List;
 
 import uk.co.jakelee.cityflow.helper.EncryptHelper;
 
-public class Iap extends SugarRecord{
+public class Iap extends SugarRecord {
     private String iapCode;
     private String purchases;
     private String maxPurchases;
@@ -22,6 +22,28 @@ public class Iap extends SugarRecord{
         this.purchases = EncryptHelper.encode(0, 234);
         this.maxPurchases = EncryptHelper.encode(maxPurchases, 333);
         this.coins = EncryptHelper.encode(coins, 456);
+    }
+
+    public static Iap get(String code) {
+        return Select.from(Iap.class).where(
+                Condition.prop("iap_code").eq(code)).first();
+    }
+
+    public static boolean hasCoinDoubler() {
+        Iap iap = Iap.get("x2_doubler");
+        return iap != null && iap.getPurchases() > 0;
+    }
+
+    public static boolean hasPurchasedAnything() {
+        boolean hasPurchased = false;
+        List<Iap> iaps = Iap.listAll(Iap.class);
+        for (Iap iap : iaps) {
+            if (iap.getPurchases() > 0) {
+                hasPurchased = true;
+                break;
+            }
+        }
+        return hasPurchased;
     }
 
     public String getIapCode() {
@@ -56,11 +78,6 @@ public class Iap extends SugarRecord{
         this.coins = EncryptHelper.encode(coins, 456);
     }
 
-    public static Iap get(String code) {
-        return Select.from(Iap.class).where(
-                Condition.prop("iap_code").eq(code)).first();
-    }
-
     public String getName() {
         String coinString = Text.get("STATISTIC_6_NAME");
         String allString = Text.get("WORD_ALL");
@@ -71,28 +88,11 @@ public class Iap extends SugarRecord{
         }
     }
 
-    public static boolean hasCoinDoubler() {
-        Iap iap = Iap.get("x2_doubler");
-        return iap != null && iap.getPurchases() > 0;
-    }
-
     public void purchase() {
         if (getCoins() > 0) {
             Statistic.addCurrency(getCoins());
         }
         setPurchases(getPurchases() + 1);
         save();
-    }
-
-    public static boolean hasPurchasedAnything() {
-        boolean hasPurchased = false;
-        List<Iap> iaps = Iap.listAll(Iap.class);
-        for (Iap iap : iaps) {
-            if (iap.getPurchases() > 0) {
-                hasPurchased = true;
-                break;
-            }
-        }
-        return hasPurchased;
     }
 }

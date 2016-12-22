@@ -100,7 +100,7 @@ public class MainActivity extends Activity implements
         super.onResume();
 
         createAnimations();
-        ((TextView)findViewById(R.id.languageFlag)).setText(TextHelper.getLanguageFlag(prefs.getInt("language", Constants.LANGUAGE_EN)));
+        ((TextView) findViewById(R.id.languageFlag)).setText(TextHelper.getLanguageFlag(prefs.getInt("language", Constants.LANGUAGE_EN)));
 
         SoundHelper.getInstance(this).playOrResumeMusic(SoundHelper.AUDIO.main);
     }

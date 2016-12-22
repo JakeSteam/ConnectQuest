@@ -85,7 +85,7 @@ public class PuzzleShareHelper {
             Puzzle puzzle = PuzzleHelper.createBasicPuzzleObject(puzzleId);
             PuzzleCustom puzzleCustom = PuzzleHelper.createBasicPuzzleCustomObject(puzzleId);
 
-            puzzleCustom.setName(parts[partName] + (isCopy ? " (Copy)":""));
+            puzzleCustom.setName(parts[partName] + (isCopy ? " (Copy)" : ""));
             puzzleCustom.setDescription(parts[partDesc]);
             puzzleCustom.setAuthor(parts[partAuthor]);
             puzzleCustom.setOriginalAuthor(isCopy);

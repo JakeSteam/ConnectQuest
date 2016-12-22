@@ -75,20 +75,20 @@ public class StoryActivity extends Activity {
         boolean isUnlocked = pack.isUnlocked();
         boolean isUnlockable = pack.isUnlockable();
 
-        ((TextView)findViewById(R.id.packName)).setText(pack.getName());
-        ((TextView)findViewById(R.id.packPuzzleCount)).setText(Integer.toString(pack.getMaxStars() / 3) + " puzzles");
+        ((TextView) findViewById(R.id.packName)).setText(pack.getName());
+        ((TextView) findViewById(R.id.packPuzzleCount)).setText(Integer.toString(pack.getMaxStars() / 3) + " puzzles");
 
         findViewById(R.id.unlockedPackContainer).setVisibility(isUnlocked ? View.VISIBLE : View.INVISIBLE);
         findViewById(R.id.unlockablePackContainer).setVisibility(!isUnlocked && isUnlockable ? View.VISIBLE : View.INVISIBLE);
         findViewById(R.id.lockedPackContainer).setVisibility(!isUnlocked && !isUnlockable ? View.VISIBLE : View.INVISIBLE);
 
-        ((TextView)findViewById(R.id.actionButton)).setText(Text.get(isUnlocked ? "WORD_OPEN" : "WORD_UNLOCK"));
+        ((TextView) findViewById(R.id.actionButton)).setText(Text.get(isUnlocked ? "WORD_OPEN" : "WORD_UNLOCK"));
         findViewById(R.id.actionButton).setVisibility(isUnlocked || isUnlockable ? View.VISIBLE : View.GONE);
 
         if (isUnlocked) {
-            ((TextView)findViewById(R.id.unlockedPackStars)).setText(String.format(Locale.ENGLISH, Text.get("UI_PACK_UNLOCKED_STARS"), pack.getCurrentStars(), pack.getMaxStars()));
-            ((TextView)findViewById(R.id.unlockedPackTime)).setText(String.format(Locale.ENGLISH, Text.get("UI_PACK_UNLOCKED_TIME"), pack.getCurrentTime() > 0 ? DateHelper.getPuzzleTimeString(pack.getCurrentTime()) : "N/A"));
-            ((TextView)findViewById(R.id.unlockedPackMoves)).setText(String.format(Locale.ENGLISH, Text.get("UI_PACK_UNLOCKED_MOVES"), pack.getCurrentMoves() > 0 ? Integer.toString(pack.getCurrentMoves()) : "N/A"));
+            ((TextView) findViewById(R.id.unlockedPackStars)).setText(String.format(Locale.ENGLISH, Text.get("UI_PACK_UNLOCKED_STARS"), pack.getCurrentStars(), pack.getMaxStars()));
+            ((TextView) findViewById(R.id.unlockedPackTime)).setText(String.format(Locale.ENGLISH, Text.get("UI_PACK_UNLOCKED_TIME"), pack.getCurrentTime() > 0 ? DateHelper.getPuzzleTimeString(pack.getCurrentTime()) : "N/A"));
+            ((TextView) findViewById(R.id.unlockedPackMoves)).setText(String.format(Locale.ENGLISH, Text.get("UI_PACK_UNLOCKED_MOVES"), pack.getCurrentMoves() > 0 ? Integer.toString(pack.getCurrentMoves()) : "N/A"));
             findViewById(R.id.actionButton).setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(getApplicationContext(), PackActivity.class);
@@ -99,8 +99,8 @@ public class StoryActivity extends Activity {
             });
         } else if (pack.isUnlockable()) {
             Pack previousPack = Pack.getPack(selectedPack - 1);
-            ((TextView)findViewById(R.id.unlockablePackHeader)).setText(Text.get("UI_PACK_UNLOCKABLE_HEADER"));
-            ((TextView)findViewById(R.id.unlockablePackInstruction)).setText(String.format(Locale.ENGLISH, Text.get("UI_PACK_UNLOCKABLE_INSTRUCTION"), previousPack.getName(), previousPack.getCurrentStars(), previousPack.getMaxStars()));
+            ((TextView) findViewById(R.id.unlockablePackHeader)).setText(Text.get("UI_PACK_UNLOCKABLE_HEADER"));
+            ((TextView) findViewById(R.id.unlockablePackInstruction)).setText(String.format(Locale.ENGLISH, Text.get("UI_PACK_UNLOCKABLE_INSTRUCTION"), previousPack.getName(), previousPack.getCurrentStars(), previousPack.getMaxStars()));
             findViewById(R.id.actionButton).setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     ShopItem packItem = ShopItem.getPackItem(pack.getPackId());
@@ -111,7 +111,7 @@ public class StoryActivity extends Activity {
                 }
             });
         } else {
-            ((TextView)findViewById(R.id.lockedPackDescription)).setText(pack.getUnlockChallenge());
+            ((TextView) findViewById(R.id.lockedPackDescription)).setText(pack.getUnlockChallenge());
         }
     }
 

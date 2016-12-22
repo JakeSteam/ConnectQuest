@@ -86,7 +86,7 @@ public class EncryptHelper {
         long codedTime;
         try {
             codedTime = Long.parseLong(parts[0]);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
 

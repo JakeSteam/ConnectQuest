@@ -76,6 +76,13 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
 
     private List<Integer> changedTilesX = new ArrayList<>();
     private List<Integer> changedTilesY = new ArrayList<>();
+    private Runnable updateTimerThread = new Runnable() {
+        public void run() {
+            timeInMilliseconds = (SystemClock.uptimeMillis() - startTime) - timeSpentPaused;
+            ((TextView) (findViewById(R.id.puzzleTimer))).setText(DateHelper.getPuzzleTimeString(timeInMilliseconds));
+            handler.postDelayed(this, 20);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +95,7 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
         Intent intent = getIntent();
         puzzleId = intent.getIntExtra(Constants.INTENT_PUZZLE, 0);
         isCustom = intent.getBooleanExtra(Constants.INTENT_IS_CUSTOM, true);
-        if(isCustom) {
+        if (isCustom) {
             puzzleCustom = PuzzleCustom.get(puzzleId);
         }
         picasso = Picasso.with(this);
@@ -155,15 +162,15 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
             findViewById(R.id.shuffleBoost).setVisibility(boostShuffle > 0 ? View.VISIBLE : View.INVISIBLE);
         }
 
-        ((TextView)findViewById(R.id.undoBoost)).setTextColor(boostUndo > 0 ? Color.BLACK : Color.LTGRAY);
-        ((TextView)findViewById(R.id.timeBoost)).setTextColor(boostTime > 0 ? Color.BLACK : Color.LTGRAY);
-        ((TextView)findViewById(R.id.moveBoost)).setTextColor(boostMove > 0 ? Color.BLACK : Color.LTGRAY);
-        ((TextView)findViewById(R.id.shuffleBoost)).setTextColor(boostShuffle > 0 ? Color.BLACK : Color.LTGRAY);
+        ((TextView) findViewById(R.id.undoBoost)).setTextColor(boostUndo > 0 ? Color.BLACK : Color.LTGRAY);
+        ((TextView) findViewById(R.id.timeBoost)).setTextColor(boostTime > 0 ? Color.BLACK : Color.LTGRAY);
+        ((TextView) findViewById(R.id.moveBoost)).setTextColor(boostMove > 0 ? Color.BLACK : Color.LTGRAY);
+        ((TextView) findViewById(R.id.shuffleBoost)).setTextColor(boostShuffle > 0 ? Color.BLACK : Color.LTGRAY);
 
-        ((TextView)findViewById(R.id.undoCount)).setText(Integer.toString(boostUndo));
-        ((TextView)findViewById(R.id.timeCount)).setText(Integer.toString(boostTime));
-        ((TextView)findViewById(R.id.moveCount)).setText(Integer.toString(boostMove));
-        ((TextView)findViewById(R.id.shuffleCount)).setText(Integer.toString(boostShuffle));
+        ((TextView) findViewById(R.id.undoCount)).setText(Integer.toString(boostUndo));
+        ((TextView) findViewById(R.id.timeCount)).setText(Integer.toString(boostTime));
+        ((TextView) findViewById(R.id.moveCount)).setText(Integer.toString(boostMove));
+        ((TextView) findViewById(R.id.shuffleCount)).setText(Integer.toString(boostShuffle));
     }
 
     @Override
@@ -192,7 +199,7 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     }
 
     public void startCountdownTimer() {
-        final TextView countdownTimer = (TextView)findViewById(R.id.initialCountdownText);
+        final TextView countdownTimer = (TextView) findViewById(R.id.initialCountdownText);
         new CountDownTimer(4000, 100) {
             public void onTick(long millisUntilFinished) {
                 int timeLeft = (int) Math.ceil(millisUntilFinished / 1000);
@@ -225,16 +232,8 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
         startTime = SystemClock.uptimeMillis();
     }
 
-    private Runnable updateTimerThread = new Runnable() {
-        public void run() {
-            timeInMilliseconds = (SystemClock.uptimeMillis() - startTime) - timeSpentPaused;
-            ((TextView)(findViewById(R.id.puzzleTimer))).setText(DateHelper.getPuzzleTimeString(timeInMilliseconds));
-            handler.postDelayed(this, 20);
-        }
-    };
-
     public void populateTiles(List<Tile> tiles) {
-        optimumScale = dh.setupTileDisplay(this, tiles, (ZoomableViewGroup)findViewById(R.id.tileContainer), puzzleId, null, null, false).second;
+        optimumScale = dh.setupTileDisplay(this, tiles, (ZoomableViewGroup) findViewById(R.id.tileContainer), puzzleId, null, null, false).second;
     }
 
     public void zoomIn(View v) {
@@ -320,7 +319,7 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
             Boost.use(Constants.BOOST_SHUFFLE);
 
             ((TextView) findViewById(R.id.moveCounter)).setText(Integer.toString(++movesMade));
-            ((TextView)findViewById(R.id.shuffleBoost)).setTextColor(Boost.getOwnedCount(Constants.BOOST_SHUFFLE) > 0 ? Color.BLACK : Color.LTGRAY);
+            ((TextView) findViewById(R.id.shuffleBoost)).setTextColor(Boost.getOwnedCount(Constants.BOOST_SHUFFLE) > 0 ? Color.BLACK : Color.LTGRAY);
 
             updateUiElements();
         }
@@ -398,8 +397,8 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
         }
 
         int currencyEarned = PuzzleHelper.getCurrencyEarned(puzzleCustom, isFirstComplete, originalStars, stars);
-        Statistic.addCurrency((Iap.hasCoinDoubler() ? 2 : 1 ) * currencyEarned);
-        ((TextView)findViewById(R.id.currencyEarned)).setText(String.format(Locale.ENGLISH, Text.get("ALERT_COINS_EARNED"), (Iap.hasCoinDoubler() ? 2 : 1 ) * currencyEarned));
+        Statistic.addCurrency((Iap.hasCoinDoubler() ? 2 : 1) * currencyEarned);
+        ((TextView) findViewById(R.id.currencyEarned)).setText(String.format(Locale.ENGLISH, Text.get("ALERT_COINS_EARNED"), (Iap.hasCoinDoubler() ? 2 : 1) * currencyEarned));
 
         findViewById(R.id.endGame).setVisibility(View.VISIBLE);
 

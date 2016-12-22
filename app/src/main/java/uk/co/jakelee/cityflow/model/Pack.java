@@ -10,7 +10,7 @@ import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.EncryptHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 
-public class Pack extends SugarRecord{
+public class Pack extends SugarRecord {
     private int packId;
     private String timeLeaderboard;
     private String movesLeaderboard;
@@ -35,6 +35,11 @@ public class Pack extends SugarRecord{
         this.maxStars = EncryptHelper.encode(maxStars, packId);
         this.purchased = EncryptHelper.encode(false, packId);
         this.unlockable = EncryptHelper.encode(unlockable, packId);
+    }
+
+    public static Pack getPack(int packId) {
+        return Select.from(Pack.class).where(
+                Condition.prop("pack_id").eq(packId)).first();
     }
 
     public int getPackId() {
@@ -105,11 +110,6 @@ public class Pack extends SugarRecord{
         return EncryptHelper.decodeToBool(unlockable, packId);
     }
 
-    public static Pack getPack(int packId) {
-        return Select.from(Pack.class).where(
-                Condition.prop("pack_id").eq(packId)).first();
-    }
-
     public List<Puzzle> getPuzzles() {
         return Select.from(Puzzle.class).where(
                 Condition.prop("pack_id").eq(packId)).list();
@@ -130,7 +130,7 @@ public class Pack extends SugarRecord{
 
     public void increaseCompletedCount() {
         int packCompleteStatistic = 0;
-        switch(packId) {
+        switch (packId) {
             case 1:
                 packCompleteStatistic = Constants.STATISTIC_COMPLETE_PACK_1;
                 break;

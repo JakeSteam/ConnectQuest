@@ -38,8 +38,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     public PatchHelper(Activity activity) {
         this.callingActivity = activity;
-        this.progressText = (TextView)activity.findViewById(R.id.progressText);
-        this.progressBar = (ProgressBar)activity.findViewById(R.id.progressBar);
+        this.progressText = (TextView) activity.findViewById(R.id.progressText);
+        this.progressBar = (ProgressBar) activity.findViewById(R.id.progressBar);
     }
 
     public PatchHelper(Activity activity, boolean runningCloudImport) {
@@ -118,7 +118,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         }
         return "";
     }
-    
+
     private void patch091to092() {
         setProgress("Patch 0.9.2", 80);
         Puzzle.executeQuery("UPDATE puzzle SET par_moves = 7 WHERE puzzle_id = 6");
@@ -170,11 +170,12 @@ public class PatchHelper extends AsyncTask<String, String, String> {
     }
 
     @Override
-    protected void onPreExecute() {}
+    protected void onPreExecute() {
+    }
 
     @Override
     protected void onProgressUpdate(String... values) {
-            progressText.setText("Installing:\n" + values[0]);
+        progressText.setText("Installing:\n" + values[0]);
     }
 
     private void createAchievement() {

@@ -34,13 +34,12 @@ import uk.co.jakelee.cityflow.model.TileType;
 import uk.co.jakelee.cityflow.objects.TileFilter;
 
 public class TilePickerActivity extends Activity {
-    private DisplayHelper dh;
-    private Tile tile;
-    private SharedPreferences prefs;
     private final String environmentsPreferenceID = "tilePickerEnvironments";
     private final String flowsPreferenceID = "tilePickerFlows";
     private final String heightsPreferenceID = "tilePickerHeights";
-
+    private DisplayHelper dh;
+    private Tile tile;
+    private SharedPreferences prefs;
     private ArrayList<TileFilter> filters = new ArrayList<>();
 
     @Override

@@ -48,8 +48,56 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
         this.blankPuzzle = blankPuzzle;
         this.shuffleAndPlay = shuffleAndPlay;
 
-        this.progressText = (TextView)dialog.findViewById(R.id.progressText);
-        this.progressPercentage = (TextView)dialog.findViewById(R.id.progressPercentage);
+        this.progressText = (TextView) dialog.findViewById(R.id.progressText);
+        this.progressPercentage = (TextView) dialog.findViewById(R.id.progressPercentage);
+    }
+
+    private static List<Tile> getPossibleTiles(int puzzleId, List<Tile> existingTiles, int tileX, int tileY, int maxX, int maxY, int environmentId) {
+        Tile southTile = tileY == 0 ? new Tile() : existingTiles.get(existingTiles.size() - 1); // Get the south tile, or an empty one if we're starting a new column
+        Tile westTile = tileX == 0 ? new Tile() : existingTiles.get(existingTiles.size() - (maxY + 1)); // Get the west tile (#Y tiles previous), or empty if new row
+
+        int nFlow = tileY == maxY ? 0 : -1;
+        int eFlow = tileX == maxX ? 0 : -1;
+        int sFlow = southTile.getFlow(Constants.SIDE_NORTH);
+        int wFlow = westTile.getFlow(Constants.SIDE_EAST);
+
+        int nHeight = -1;
+        int eHeight = -1;
+
+        // If there's no flow, then do any height we want
+        int sHeight = sFlow > 0 && tileY > 0 ? southTile.getHeight(Constants.SIDE_NORTH) : -1;
+        int wHeight = wFlow > 0 && tileX > 0 ? westTile.getHeight(Constants.SIDE_EAST) : -1;
+
+        // Make list
+        List<Tile> tiles = getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_NORTH, nFlow, eFlow, sFlow, wFlow, nHeight, eHeight, sHeight, wHeight);
+        tiles.addAll(getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_WEST, wFlow, nFlow, eFlow, sFlow, wHeight, nHeight, eHeight, sHeight));
+        tiles.addAll(getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_SOUTH, sFlow, wFlow, nFlow, eFlow, sHeight, wHeight, nHeight, eHeight));
+        tiles.addAll(getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_EAST, eFlow, sFlow, wFlow, nFlow, eHeight, sHeight, wHeight, nHeight));
+
+        return tiles;
+    }
+
+    private static List<Tile> getPossibleTilesByRotation(int puzzleId, int x, int y, int environmentId, int rotation, int nFlow, int eFlow, int sFlow, int wFlow, int nHeight, int eHeight, int sHeight, int wHeight) {
+        String sql = String.format(Locale.ENGLISH,
+                "SELECT * FROM tile_type WHERE environment_id %1$s %2$d AND flow_north %3$s %4$d AND flow_east %5$s %6$d AND flow_south %7$s %8$d AND flow_west %9$s %10$d AND height_north %11$s %12$d AND height_east %13$s %14$d AND height_south %15$s %16$d AND height_west %17$s %18$d AND status = %19$d " +
+                        (x == 0 && y == 0 ? "AND (flow_north > 0 OR flow_east > 0 OR flow_south > 0 OR flow_west > 0)" : ""),
+                environmentId > 0 ? "=" : ">=", environmentId,
+                nFlow >= 0 ? "=" : ">=", nFlow,
+                eFlow >= 0 ? "=" : ">=", eFlow,
+                sFlow >= 0 ? "=" : ">=", sFlow,
+                wFlow >= 0 ? "=" : ">=", wFlow,
+                nHeight >= 0 ? "=" : ">=", nHeight,
+                eHeight >= 0 ? "=" : ">=", eHeight,
+                sHeight >= 0 ? "=" : ">=", sHeight,
+                wHeight >= 0 ? "=" : ">=", wHeight,
+                Constants.TILE_STATUS_UNLOCKED);
+        List<TileType> tileTypes = TileType.findWithQuery(TileType.class, sql);
+
+        List<Tile> tiles = new ArrayList<>();
+        for (TileType tile : tileTypes) {
+            tiles.add(new Tile(puzzleId, tile.getTypeId(), x, y, rotation));
+        }
+        return tiles;
     }
 
     @Override
@@ -184,53 +232,5 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
             Tile.saveInTx(tiles);
         }
         return newPuzzleId;
-    }
-
-    private static List<Tile> getPossibleTiles(int puzzleId, List<Tile> existingTiles, int tileX, int tileY, int maxX, int maxY, int environmentId) {
-        Tile southTile = tileY == 0 ? new Tile() : existingTiles.get(existingTiles.size() - 1); // Get the south tile, or an empty one if we're starting a new column
-        Tile westTile = tileX == 0 ? new Tile() : existingTiles.get(existingTiles.size() - (maxY + 1)); // Get the west tile (#Y tiles previous), or empty if new row
-
-        int nFlow = tileY == maxY ? 0 : -1;
-        int eFlow = tileX == maxX ? 0 : -1;
-        int sFlow = southTile.getFlow(Constants.SIDE_NORTH);
-        int wFlow = westTile.getFlow(Constants.SIDE_EAST);
-
-        int nHeight = -1;
-        int eHeight = -1;
-
-        // If there's no flow, then do any height we want
-        int sHeight = sFlow > 0 && tileY > 0 ? southTile.getHeight(Constants.SIDE_NORTH) : -1;
-        int wHeight = wFlow > 0 && tileX > 0 ? westTile.getHeight(Constants.SIDE_EAST) : -1;
-
-        // Make list
-        List<Tile> tiles = getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_NORTH, nFlow, eFlow, sFlow, wFlow, nHeight, eHeight, sHeight, wHeight);
-        tiles.addAll(getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_WEST, wFlow, nFlow, eFlow, sFlow, wHeight, nHeight, eHeight, sHeight));
-        tiles.addAll(getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_SOUTH, sFlow, wFlow, nFlow, eFlow, sHeight, wHeight, nHeight, eHeight));
-        tiles.addAll(getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_EAST, eFlow, sFlow, wFlow, nFlow, eHeight, sHeight, wHeight, nHeight));
-
-        return tiles;
-    }
-
-    private static List<Tile> getPossibleTilesByRotation(int puzzleId, int x, int y, int environmentId, int rotation, int nFlow, int eFlow, int sFlow, int wFlow, int nHeight, int eHeight, int sHeight, int wHeight) {
-        String sql = String.format(Locale.ENGLISH,
-                "SELECT * FROM tile_type WHERE environment_id %1$s %2$d AND flow_north %3$s %4$d AND flow_east %5$s %6$d AND flow_south %7$s %8$d AND flow_west %9$s %10$d AND height_north %11$s %12$d AND height_east %13$s %14$d AND height_south %15$s %16$d AND height_west %17$s %18$d AND status = %19$d " +
-                        (x == 0 && y == 0 ? "AND (flow_north > 0 OR flow_east > 0 OR flow_south > 0 OR flow_west > 0)" : ""),
-                environmentId > 0 ? "=" : ">=", environmentId,
-                nFlow >= 0 ? "=" : ">=", nFlow,
-                eFlow >= 0 ? "=" : ">=", eFlow,
-                sFlow >= 0 ? "=" : ">=", sFlow,
-                wFlow >= 0 ? "=" : ">=", wFlow,
-                nHeight >= 0 ? "=" : ">=", nHeight,
-                eHeight >= 0 ? "=" : ">=", eHeight,
-                sHeight >= 0 ? "=" : ">=", sHeight,
-                wHeight >= 0 ? "=" : ">=", wHeight,
-                Constants.TILE_STATUS_UNLOCKED);
-        List<TileType> tileTypes = TileType.findWithQuery(TileType.class, sql);
-
-        List<Tile> tiles = new ArrayList<>();
-        for (TileType tile : tileTypes) {
-            tiles.add(new Tile(puzzleId, tile.getTypeId(), x, y, rotation));
-        }
-        return tiles;
     }
 }

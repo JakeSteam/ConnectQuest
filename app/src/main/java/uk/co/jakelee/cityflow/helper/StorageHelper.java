@@ -8,7 +8,6 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.util.SparseArray;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -33,12 +32,11 @@ import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
 import uk.co.jakelee.cityflow.model.Puzzle;
 
 public class StorageHelper {
-    private static final int screenshotSize = 500;
-
     public final static int WHITE = 0xFFFFFFFF;
     public final static int BLACK = 0xFF000000;
     public final static int WIDTH = 400;
     public final static int HEIGHT = 400;
+    private static final int screenshotSize = 500;
 
     public static void fillWithQrDrawable(ImageView imageView, String text) {
         try {
@@ -77,7 +75,7 @@ public class StorageHelper {
     }
 
     public static void saveCustomPuzzleImage(Activity activity, int puzzleId, final float screenshotScale, boolean forceSave) {
-        final ZoomableViewGroup tileContainer = (ZoomableViewGroup)activity.findViewById(R.id.tileContainer);
+        final ZoomableViewGroup tileContainer = (ZoomableViewGroup) activity.findViewById(R.id.tileContainer);
         String filename = "puzzle_" + puzzleId + ".png";
         boolean existsAlready = activity.getFileStreamPath(filename).exists();
         if (tileContainer == null || (!forceSave && existsAlready)) {
@@ -102,7 +100,7 @@ public class StorageHelper {
     }
 
     public static String saveCardImage(Activity activity, int puzzleId) {
-        RelativeLayout card = (RelativeLayout)activity.findViewById(R.id.puzzleCard);
+        RelativeLayout card = (RelativeLayout) activity.findViewById(R.id.puzzleCard);
         String puzzleName = Puzzle.getPuzzle(puzzleId).getCustomData().getName();
 
         if (card == null) {
@@ -143,39 +141,36 @@ public class StorageHelper {
         int finalWidth = maxWidth;
         int finalHeight = maxHeight;
         if (ratioMax > 1) {
-            finalWidth = (int) ((float)maxHeight * ratioBitmap);
+            finalWidth = (int) ((float) maxHeight * ratioBitmap);
         } else {
-            finalHeight = (int) ((float)maxWidth / ratioBitmap);
+            finalHeight = (int) ((float) maxWidth / ratioBitmap);
         }
         image = Bitmap.createScaledBitmap(image, finalWidth, finalHeight, true);
         return image;
     }
 
-    private static Bitmap trim(Bitmap sourceBitmap)
-    {
+    private static Bitmap trim(Bitmap sourceBitmap) {
         int minX = sourceBitmap.getWidth();
         int minY = sourceBitmap.getHeight();
         int maxX = -1;
         int maxY = -1;
-        for(int y = 0; y < sourceBitmap.getHeight(); y++)
-        {
-            for(int x = 0; x < sourceBitmap.getWidth(); x++)
-            {
+        for (int y = 0; y < sourceBitmap.getHeight(); y++) {
+            for (int x = 0; x < sourceBitmap.getWidth(); x++) {
                 int alpha = (sourceBitmap.getPixel(x, y) >> 24) & 255;
-                if(alpha > 0)   // pixel is not 100% transparent
+                if (alpha > 0)   // pixel is not 100% transparent
                 {
-                    if(x < minX)
+                    if (x < minX)
                         minX = x;
-                    if(x > maxX)
+                    if (x > maxX)
                         maxX = x;
-                    if(y < minY)
+                    if (y < minY)
                         minY = y;
-                    if(y > maxY)
+                    if (y > maxY)
                         maxY = y;
                 }
             }
         }
-        if((maxX < minX) || (maxY < minY))
+        if ((maxX < minX) || (maxY < minY))
             return null; // Bitmap is entirely transparent
 
         // crop bitmap to non-transparent area and return:

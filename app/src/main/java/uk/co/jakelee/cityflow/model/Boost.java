@@ -6,19 +6,50 @@ import com.orm.query.Select;
 
 import uk.co.jakelee.cityflow.helper.EncryptHelper;
 
-public class Boost extends SugarRecord{
+public class Boost extends SugarRecord {
     private int boostId;
     private String level;
     private String owned;
     private String used;
 
-    public Boost() {}
+    public Boost() {
+    }
 
     public Boost(int boostId, int level, int owned, int used) {
         this.boostId = boostId;
         this.level = EncryptHelper.encode(level, boostId);
         this.owned = EncryptHelper.encode(owned, boostId);
         this.used = EncryptHelper.encode(used, boostId);
+    }
+
+    public static int getOwnedCount(int boostId) {
+        return Select.from(Boost.class).where(
+                Condition.prop("boost_id").eq(boostId)).first().getOwned();
+    }
+
+    public static void add(int boostId) {
+        Boost boost = Select.from(Boost.class).where(
+                Condition.prop("boost_id").eq(boostId)).first();
+
+        if (boost != null) {
+            boost.setOwned(boost.getOwned() + 1);
+            boost.save();
+        }
+    }
+
+    public static void use(int boostId) {
+        Boost boost = Select.from(Boost.class).where(
+                Condition.prop("boost_id").eq(boostId)).first();
+
+        if (boost != null && boost.getOwned() > 0) {
+            boost.use();
+            boost.save();
+        }
+    }
+
+    public static Boost get(int boostId) {
+        return Select.from(Boost.class).where(
+                Condition.prop("boost_id").eq(boostId)).first();
     }
 
     public int getBoostId() {
@@ -53,39 +84,9 @@ public class Boost extends SugarRecord{
         this.used = EncryptHelper.encode(used, boostId);
     }
 
-    public static int getOwnedCount(int boostId) {
-        return Select.from(Boost.class).where(
-                Condition.prop("boost_id").eq(boostId)).first().getOwned();
-    }
-
-    public static void add(int boostId) {
-        Boost boost = Select.from(Boost.class).where(
-                Condition.prop("boost_id").eq(boostId)).first();
-
-        if (boost != null) {
-            boost.setOwned(boost.getOwned() + 1);
-            boost.save();
-        }
-    }
-
-    public static void use(int boostId) {
-        Boost boost = Select.from(Boost.class).where(
-                Condition.prop("boost_id").eq(boostId)).first();
-
-        if (boost != null && boost.getOwned() > 0) {
-            boost.use();
-            boost.save();
-        }
-    }
-
     public void use() {
         setOwned(getOwned() - 1);
         setUsed(getUsed() + 1);
         save();
-    }
-
-    public static Boost get(int boostId) {
-        return Select.from(Boost.class).where(
-                Condition.prop("boost_id").eq(boostId)).first();
     }
 }

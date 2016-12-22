@@ -28,7 +28,7 @@ public class BackgroundPickerActivity extends Activity {
         setContentView(R.layout.activity_background_picker);
         SoundHelper.getInstance(this).playOrResumeMusic(SoundHelper.AUDIO.main);
 
-        ((TextView)findViewById(R.id.save)).setText(Text.get("DIALOG_BUTTON_SAVE"));
+        ((TextView) findViewById(R.id.save)).setText(Text.get("DIALOG_BUTTON_SAVE"));
 
 
     }
@@ -39,7 +39,7 @@ public class BackgroundPickerActivity extends Activity {
 
         displayBackgrounds();
         updateBackgroundInfo();
-        ((TextView)findViewById(R.id.backgroundSelectTitle)).setText(String.format(Locale.ENGLISH, Text.get("UI_BACKGROUND_SELECT_TITLE"),
+        ((TextView) findViewById(R.id.backgroundSelectTitle)).setText(String.format(Locale.ENGLISH, Text.get("UI_BACKGROUND_SELECT_TITLE"),
                 Background.getUnlockedBackgroundCount(),
                 Background.listAll(Background.class).size()));
     }
@@ -88,18 +88,18 @@ public class BackgroundPickerActivity extends Activity {
     }
 
     public void selectBackground(View v) {
-        selectedBackgroundTile = (TextView)v;
-        selectedBackground = Background.get((int)v.getTag());
+        selectedBackgroundTile = (TextView) v;
+        selectedBackground = Background.get((int) v.getTag());
 
         updateBackgroundInfo();
     }
 
     private void updateBackgroundInfo() {
-        ((TextView)findViewById(R.id.backgroundStatus)).setText(selectedBackground.isActive() ? R.string.icon_tick : selectedBackground.isUnlocked() ? R.string.icon_unlock : R.string.icon_lock);
-        ((TextView)findViewById(R.id.backgroundStatus)).setTextColor(selectedBackground.isUnlocked() ? ContextCompat.getColor(this, R.color.green) : selectedBackground.getBackgroundColour());
+        ((TextView) findViewById(R.id.backgroundStatus)).setText(selectedBackground.isActive() ? R.string.icon_tick : selectedBackground.isUnlocked() ? R.string.icon_unlock : R.string.icon_lock);
+        ((TextView) findViewById(R.id.backgroundStatus)).setTextColor(selectedBackground.isUnlocked() ? ContextCompat.getColor(this, R.color.green) : selectedBackground.getBackgroundColour());
 
-        ((TextView)findViewById(R.id.backgroundName)).setText(selectedBackground.isUnlocked() ? selectedBackground.getName() : "???");
-        ((TextView)findViewById(R.id.backgroundHint)).setText(selectedBackground.getHint());
+        ((TextView) findViewById(R.id.backgroundName)).setText(selectedBackground.isUnlocked() ? selectedBackground.getName() : "???");
+        ((TextView) findViewById(R.id.backgroundHint)).setText(selectedBackground.getHint());
 
         findViewById(R.id.save).setVisibility(selectedBackground.isUnlocked() ? View.VISIBLE : View.INVISIBLE);
     }
@@ -111,7 +111,7 @@ public class BackgroundPickerActivity extends Activity {
         }
     }
 
-    public void closePopup (View v) {
+    public void closePopup(View v) {
         this.finish();
     }
 }

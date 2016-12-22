@@ -1,59 +1,59 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout"
+    style="@style/Theme.AlertDialog"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="15dp"
     android:layout_gravity="center"
-    style="@style/Theme.AlertDialog">
+    android:orientation="vertical"
+    android:padding="15dp">
 
     <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:textSize="25sp" />
 
     <RelativeLayout
         android:id="@+id/widthWrapper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/title">
+
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/currentWidth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:gravity="center_horizontal"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/minWidth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/currentWidth"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/maxWidth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:layout_alignParentRight="true"
             android:layout_below="@id/currentWidth"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
-        <SeekBar
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <SeekBar xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/sliderWidth"
-            android:layout_height="wrap_content"
             android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/currentWidth"
             android:layout_margin="10dp"
-            android:layout_toRightOf="@id/minWidth"
             android:layout_toLeftOf="@id/maxWidth"
-            android:layout_below="@id/currentWidth"/>
+            android:layout_toRightOf="@id/minWidth" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -61,41 +61,41 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/widthWrapper">
+
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/currentHeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:gravity="center_horizontal"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/minHeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/currentHeight"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/maxHeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:layout_alignParentRight="true"
             android:layout_below="@id/currentHeight"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
-        <SeekBar
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <SeekBar xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/sliderHeight"
-            android:layout_height="wrap_content"
             android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/currentHeight"
             android:layout_margin="10dp"
-            android:layout_toRightOf="@id/minHeight"
             android:layout_toLeftOf="@id/maxHeight"
-            android:layout_below="@id/currentHeight"/>
+            android:layout_toRightOf="@id/minHeight" />
     </RelativeLayout>
 
     <LinearLayout
@@ -105,20 +105,22 @@
         android:layout_below="@id/heightWrapper"
         android:gravity="center_vertical"
         android:orientation="horizontal">
+
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/environmentText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="20sp" />
+
         <Spinner
             android:id="@+id/environmentPicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="22sp"
+            android:layout_margin="5dp"
             android:background="@color/blue"
-            android:layout_margin="5dp"/>
+            android:textColor="@color/black"
+            android:textSize="22sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -128,16 +130,18 @@
         android:layout_below="@id/environmentWrapper"
         android:gravity="center_vertical"
         android:orientation="horizontal">
+
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/emptyText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
+
         <CheckBox
             android:id="@+id/emptyCheckbox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <LinearLayout
@@ -147,43 +151,45 @@
         android:layout_below="@id/emptyWrapper"
         android:gravity="center_vertical"
         android:orientation="horizontal">
+
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/shuffleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
+
         <CheckBox
             android:id="@+id/shuffleCheckbox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/orange"
-        android:textSize="25sp"
-        android:layout_marginTop="25dp"
+        android:layout_below="@id/shuffleWrapper"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="25dp"
+        android:background="@color/orange"
+        android:gravity="center_horizontal"
         android:padding="10dp"
         android:textColor="@color/black"
-        android:gravity="center_horizontal"
-        android:layout_below="@id/shuffleWrapper"/>
+        android:textSize="25sp" />
 
     <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/createButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue"
-        android:textSize="25sp"
-        android:layout_marginTop="25dp"
+        android:layout_below="@id/shuffleWrapper"
         android:layout_marginLeft="10dp"
-        android:padding="10dp"
+        android:layout_marginTop="25dp"
         android:layout_toRightOf="@id/close"
-        android:textColor="@color/black"
+        android:background="@color/blue"
         android:gravity="center_horizontal"
-        android:layout_below="@id/shuffleWrapper"/>
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textSize="25sp" />
 
 </RelativeLayout>

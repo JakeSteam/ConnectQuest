@@ -102,6 +102,11 @@ public class TileType extends SugarRecord {
         }
     }
 
+    public static TileType get(int tileTypeId) {
+        return Select.from(TileType.class).where(
+                Condition.prop("type_id").eq(tileTypeId)).first();
+    }
+
     public int getTypeId() {
         return typeId;
     }
@@ -200,11 +205,6 @@ public class TileType extends SugarRecord {
 
     public String getName() {
         return Text.get("TILE_", getTypeId(), "_NAME");
-    }
-
-    public static TileType get(int tileTypeId) {
-        return Select.from(TileType.class).where(
-                Condition.prop("type_id").eq(tileTypeId)).first();
     }
 
     public Puzzle getRequiredPuzzle() {

@@ -27,6 +27,18 @@ public class Tile extends SugarRecord {
         this.defaultRotation = rotation;
     }
 
+    public static Tile get(long tileId) {
+        return Tile.findById(Tile.class, tileId);
+    }
+
+    public static Tile get(int puzzleId, int x, int y) {
+        return Select.from(Tile.class).where(
+                Condition.prop("puzzle_id").eq(puzzleId),
+                Condition.prop("x").eq(x),
+                Condition.prop("y").eq(y),
+                Condition.prop("tile_type_id").gt(0)).first();
+    }
+
     public int getPuzzleId() {
         return puzzleId;
     }
@@ -136,18 +148,6 @@ public class Tile extends SugarRecord {
             height = type.getHeightWest();
         }
         return height;
-    }
-
-    public static Tile get(long tileId) {
-        return Tile.findById(Tile.class, tileId);
-    }
-
-    public static Tile get(int puzzleId, int x, int y) {
-        return Select.from(Tile.class).where(
-                Condition.prop("puzzle_id").eq(puzzleId),
-                Condition.prop("x").eq(x),
-                Condition.prop("y").eq(y),
-                Condition.prop("tile_type_id").gt(0)).first();
     }
 
     public String getName() {

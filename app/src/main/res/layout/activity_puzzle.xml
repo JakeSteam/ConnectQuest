@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".main.PuzzleActivity">
 
     <uk.co.jakelee.cityflow.components.ZoomableViewGroup
@@ -18,141 +18,146 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:visibility="invisible">
+
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/undoBoost"
             android:layout_width="wrap_content"
-            app:layout_widthPercent="18%"
-            app:layout_heightPercent="15%"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:textColor="@color/ltgrey"
-            android:text="@string/icon_restart"
-            android:gravity="center"
-            android:clickable="true"
-android:onClick="useBoostUndo"
-            android:padding="5dp"
             android:layout_margin="2dp"
-            android:background="@color/ltltgrey"/>
+            android:background="@color/ltltgrey"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="useBoostUndo"
+            android:padding="5dp"
+            android:text="@string/icon_restart"
+            android:textColor="@color/ltgrey"
+            android:textSize="30sp"
+            app:layout_heightPercent="15%"
+            app:layout_widthPercent="18%" />
+
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/undoCount"
             android:layout_width="wrap_content"
-            app:layout_widthPercent="18%"
-            app:layout_marginTopPercent="9%"
-            android:layout_alignLeft="@id/undoBoost"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:text="0"
+            android:layout_alignLeft="@id/undoBoost"
+            android:layout_margin="2dp"
             android:gravity="center"
             android:padding="5dp"
-            android:layout_margin="2dp"/>
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_marginTopPercent="9%"
+            app:layout_widthPercent="18%" />
 
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/timeBoost"
             android:layout_width="wrap_content"
-            app:layout_widthPercent="18%"
-            app:layout_heightPercent="15%"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:textColor="@color/ltgrey"
-            android:layout_toRightOf="@id/undoBoost"
-            android:text="@string/icon_time"
-            android:gravity="center"
-            android:clickable="true"
-android:onClick="useBoostTime"
-            android:padding="5dp"
             android:layout_margin="2dp"
-            android:background="@color/ltltgrey"/>
+            android:layout_toRightOf="@id/undoBoost"
+            android:background="@color/ltltgrey"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="useBoostTime"
+            android:padding="5dp"
+            android:text="@string/icon_time"
+            android:textColor="@color/ltgrey"
+            android:textSize="30sp"
+            app:layout_heightPercent="15%"
+            app:layout_widthPercent="18%" />
+
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/timeCount"
             android:layout_width="wrap_content"
-            app:layout_widthPercent="18%"
-            app:layout_marginTopPercent="9%"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/timeBoost"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:text="0"
+            android:layout_margin="2dp"
             android:gravity="center"
             android:padding="5dp"
-            android:layout_margin="2dp"/>
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_marginTopPercent="9%"
+            app:layout_widthPercent="18%" />
 
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/moveBoost"
             android:layout_width="wrap_content"
-            app:layout_widthPercent="18%"
-            app:layout_heightPercent="15%"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:textColor="@color/ltgrey"
-            android:layout_toRightOf="@id/timeBoost"
-            android:text="-1"
-            android:gravity="center"
-            android:clickable="true"
-android:onClick="useBoostMove"
-            android:padding="5dp"
             android:layout_margin="2dp"
-            android:background="@color/ltltgrey"/>
+            android:layout_toRightOf="@id/timeBoost"
+            android:background="@color/ltltgrey"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="useBoostMove"
+            android:padding="5dp"
+            android:text="-1"
+            android:textColor="@color/ltgrey"
+            android:textSize="30sp"
+            app:layout_heightPercent="15%"
+            app:layout_widthPercent="18%" />
+
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/moveCount"
             android:layout_width="wrap_content"
-            app:layout_widthPercent="18%"
-            app:layout_marginTopPercent="9%"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/moveBoost"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:text="0"
+            android:layout_margin="2dp"
             android:gravity="center"
             android:padding="5dp"
-            android:layout_margin="2dp"/>
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_marginTopPercent="9%"
+            app:layout_widthPercent="18%" />
 
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/shuffleBoost"
             android:layout_width="wrap_content"
-            app:layout_widthPercent="18%"
-            app:layout_heightPercent="15%"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:textColor="@color/ltgrey"
-            android:layout_toRightOf="@id/moveBoost"
-            android:text="@string/icon_shuffle"
-            android:gravity="center"
-            android:clickable="true"
-android:onClick="useBoostShuffle"
-            android:padding="5dp"
             android:layout_margin="2dp"
-            android:background="@color/ltltgrey"/>
+            android:layout_toRightOf="@id/moveBoost"
+            android:background="@color/ltltgrey"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="useBoostShuffle"
+            android:padding="5dp"
+            android:text="@string/icon_shuffle"
+            android:textColor="@color/ltgrey"
+            android:textSize="30sp"
+            app:layout_heightPercent="15%"
+            app:layout_widthPercent="18%" />
+
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/shuffleCount"
             android:layout_width="wrap_content"
-            app:layout_widthPercent="18%"
-            app:layout_marginTopPercent="9%"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/shuffleBoost"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:text="0"
+            android:layout_margin="2dp"
             android:gravity="center"
             android:padding="5dp"
-            android:layout_margin="2dp"/>
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_marginTopPercent="9%"
+            app:layout_widthPercent="18%" />
 
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/pauseButton"
             android:layout_width="wrap_content"
-            app:layout_widthPercent="20%"
-            app:layout_heightPercent="15%"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:textColor="@color/black"
             android:layout_alignParentRight="true"
-            android:text="@string/icon_pause"
-            android:gravity="center"
-            android:padding="5dp"
             android:layout_margin="2dp"
+            android:background="@color/ltltgrey"
             android:clickable="true"
-android:onClick="pausePuzzle"
-            android:background="@color/ltltgrey"/>
+            android:gravity="center"
+            android:onClick="pausePuzzle"
+            android:padding="5dp"
+            android:text="@string/icon_pause"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_heightPercent="15%"
+            app:layout_widthPercent="20%" />
 
     </android.support.percent.PercentRelativeLayout>
 
@@ -160,107 +165,110 @@ android:onClick="pausePuzzle"
         android:id="@+id/puzzleTimer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="55sp"
-        android:textColor="@color/black"
-        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
         android:layout_marginBottom="45dp"
+        android:gravity="center_horizontal"
         android:shadowColor="@color/white"
         android:shadowDx="1.5"
         android:shadowDy="1.3"
         android:shadowRadius="1.6"
-        android:layout_alignParentBottom="true"/>
+        android:textColor="@color/black"
+        android:textSize="55sp" />
 
     <LinearLayout
         android:id="@+id/controlWrapper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:visibility="invisible"
-        android:layout_alignParentBottom="true">
+        android:visibility="invisible">
+
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/zoomIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="40sp"
-            android:textColor="@color/black"
-            android:text="@string/icon_zoomin"
-            android:clickable="true"
-android:onClick="zoomIn"
             android:layout_margin="5dp"
+            android:clickable="true"
             android:gravity="center_horizontal"
+            android:onClick="zoomIn"
             android:shadowColor="@color/white"
             android:shadowDx="1.5"
             android:shadowDy="1.3"
-            android:shadowRadius="1.6"/>
+            android:shadowRadius="1.6"
+            android:text="@string/icon_zoomin"
+            android:textColor="@color/black"
+            android:textSize="40sp" />
 
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/zoomOut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="40sp"
-            android:textColor="@color/black"
-            android:text="@string/icon_zoomout"
-            android:clickable="true"
-android:onClick="zoomOut"
             android:layout_margin="5dp"
+            android:clickable="true"
             android:gravity="center_horizontal"
+            android:onClick="zoomOut"
             android:shadowColor="@color/white"
             android:shadowDx="1.5"
             android:shadowDy="1.3"
-            android:shadowRadius="1.6"/>
+            android:shadowRadius="1.6"
+            android:text="@string/icon_zoomout"
+            android:textColor="@color/black"
+            android:textSize="40sp" />
 
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/centrePuzzle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="40sp"
-            android:textColor="@color/black"
-            android:text="@string/icon_centre"
-            android:clickable="true"
-android:onClick="reset"
             android:layout_margin="5dp"
+            android:clickable="true"
             android:gravity="center_horizontal"
+            android:onClick="reset"
             android:shadowColor="@color/white"
             android:shadowDx="1.5"
             android:shadowDy="1.3"
-            android:shadowRadius="1.6"/>
+            android:shadowRadius="1.6"
+            android:text="@string/icon_centre"
+            android:textColor="@color/black"
+            android:textSize="40sp" />
     </LinearLayout>
 
     <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/moveCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="50sp"
-        android:textColor="@color/black"
-        android:text="0"
-        android:padding="10dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:padding="10dp"
         android:shadowColor="@color/white"
         android:shadowDx="1.5"
         android:shadowDy="1.3"
         android:shadowRadius="1.6"
-        android:visibility="invisible"/>
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="50sp"
+        android:visibility="invisible" />
 
     <RelativeLayout
         android:id="@+id/blockingMessage"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:id="@+id/initialCountdown"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/initialCountdownText"
-                android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:textSize="160sp"
-                android:textColor="@color/white"
-                android:background="@color/black"
+                android:layout_height="match_parent"
                 android:alpha="0.6"
-                android:gravity="center"
+                android:background="@color/black"
                 android:clickable="true"
-android:onClick="suppressClick"/>
+                android:gravity="center"
+                android:onClick="suppressClick"
+                android:textColor="@color/white"
+                android:textSize="160sp" />
         </LinearLayout>
 
         <RelativeLayout
@@ -268,63 +276,69 @@ android:onClick="suppressClick"/>
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="true"
-android:onClick="resumePuzzle"
+            android:onClick="resumePuzzle"
             android:visibility="gone">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@color/black"
-                android:alpha="0.6" />
+                android:alpha="0.6"
+                android:src="@color/black" />
+
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/pauseScreenText"
-                android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:textSize="60sp"
+                android:layout_height="match_parent"
+                android:gravity="center"
                 android:textColor="@color/white"
-                android:gravity="center"/>
+                android:textSize="60sp" />
+
             <LinearLayout
                 android:id="@+id/pauseButtons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:orientation="horizontal">
+
                 <uk.co.jakelee.cityflow.components.TextAwesome
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:layout_margin="5dp"
                     android:background="@color/city"
+                    android:clickable="true"
                     android:gravity="center_horizontal"
-                    android:textSize="36sp"
+                    android:onClick="closePuzzle"
+                    android:padding="10dp"
                     android:text="@string/icon_cross"
-                    android:padding="10dp"
-                    android:layout_margin="5dp"
-                    android:clickable="true"
-android:onClick="closePuzzle"/>
+                    android:textColor="@color/black"
+                    android:textSize="36sp" />
+
                 <uk.co.jakelee.cityflow.components.TextAwesome
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:background="@color/city"
-                    android:gravity="center_horizontal"
-                    android:textSize="36sp"
-                    android:text="@string/icon_restart"
-                    android:padding="10dp"
                     android:layout_margin="5dp"
+                    android:background="@color/city"
                     android:clickable="true"
-android:onClick="restartPuzzle"/>
+                    android:gravity="center_horizontal"
+                    android:onClick="restartPuzzle"
+                    android:padding="10dp"
+                    android:text="@string/icon_restart"
+                    android:textColor="@color/black"
+                    android:textSize="36sp" />
+
                 <uk.co.jakelee.cityflow.components.TextAwesome
                     android:id="@+id/resumeButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:background="@color/blue"
-                    android:gravity="center_horizontal"
-                    android:textSize="36sp"
-                    android:text="@string/icon_play"
-                    android:padding="10dp"
                     android:layout_margin="5dp"
+                    android:background="@color/blue"
                     android:clickable="true"
-android:onClick="resumePuzzle"/>
+                    android:gravity="center_horizontal"
+                    android:onClick="resumePuzzle"
+                    android:padding="10dp"
+                    android:text="@string/icon_play"
+                    android:textColor="@color/black"
+                    android:textSize="36sp" />
             </LinearLayout>
         </RelativeLayout>
 
@@ -333,14 +347,16 @@ android:onClick="resumePuzzle"/>
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="invisible">
+
             <ImageView
                 android:id="@+id/endGameBackground"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@color/black"
                 android:alpha="0.7"
                 android:clickable="true"
-android:onClick="suppressClick"/>
+                android:onClick="suppressClick"
+                android:src="@color/black" />
+
             <LinearLayout
                 android:id="@+id/skyscraperContainer"
                 android:layout_width="match_parent"
@@ -348,224 +364,249 @@ android:onClick="suppressClick"/>
                 android:layout_alignParentTop="true"
                 android:orientation="horizontal"
                 android:padding="15dp">
+
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1">
+
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/skyscraperCompletionTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:gravity="center"
                         android:layout_centerHorizontal="true"
-                        android:textSize="20sp"/>
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
                     <ImageView
                         android:id="@+id/skyscraperCompletion"
-                        android:layout_below="@id/skyscraperCompletionTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"/>
+                        android:layout_below="@id/skyscraperCompletionTitle"
+                        android:layout_centerHorizontal="true" />
+
                     <ImageView
                         android:id="@+id/skyscraperCompletionGold"
-                        android:layout_below="@id/skyscraperCompletionTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/skyscraperCompletionTitle"
+                        android:layout_centerHorizontal="true"
                         android:src="@drawable/building_1_100_gold"
-                        android:visibility="invisible"
-                        android:layout_centerHorizontal="true"/>
+                        android:visibility="invisible" />
+
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/skyscraperCompletionText"
-                        android:layout_below="@id/skyscraperCompletion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
+                        android:layout_below="@id/skyscraperCompletion"
+                        android:layout_centerHorizontal="true"
                         android:gravity="center"
-                        android:textSize="20sp"
-                        android:layout_centerHorizontal="true"/>
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1">
+
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/skyscraperTimeTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
+                        android:layout_centerHorizontal="true"
                         android:gravity="center"
-                        android:textSize="20sp"
-                        android:layout_centerHorizontal="true"/>
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
                     <ImageView
                         android:id="@+id/skyscraperTime"
-                        android:layout_below="@id/skyscraperTimeTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"/>
+                        android:layout_below="@id/skyscraperTimeTitle"
+                        android:layout_centerHorizontal="true" />
+
                     <ImageView
                         android:id="@+id/skyscraperTimeGold"
-                        android:layout_below="@id/skyscraperTimeTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/skyscraperTimeTitle"
+                        android:layout_centerHorizontal="true"
                         android:src="@drawable/building_2_100_gold"
-                        android:visibility="invisible"
-                        android:layout_centerHorizontal="true"/>
+                        android:visibility="invisible" />
+
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/skyscraperTimeText"
-                        android:layout_below="@id/skyscraperTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
+                        android:layout_below="@id/skyscraperTime"
+                        android:layout_centerHorizontal="true"
                         android:gravity="center"
-                        android:textSize="20sp"
-                        android:layout_centerHorizontal="true"/>
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1">
+
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/skyscraperMovesTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
+                        android:layout_centerHorizontal="true"
                         android:gravity="center"
-                        android:textSize="20sp"
-                        android:layout_centerHorizontal="true"/>
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
                     <ImageView
                         android:id="@+id/skyscraperMoves"
-                        android:layout_below="@id/skyscraperMovesTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"/>
+                        android:layout_below="@id/skyscraperMovesTitle"
+                        android:layout_centerHorizontal="true" />
+
                     <ImageView
                         android:id="@+id/skyscraperMovesGold"
-                        android:layout_below="@id/skyscraperMovesTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/skyscraperMovesTitle"
+                        android:layout_centerHorizontal="true"
                         android:src="@drawable/building_3_100_gold"
-                        android:visibility="invisible"
-                        android:layout_centerHorizontal="true"/>
+                        android:visibility="invisible" />
+
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/skyscraperMovesText"
-                        android:layout_below="@id/skyscraperMoves"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
+                        android:layout_below="@id/skyscraperMoves"
+                        android:layout_centerHorizontal="true"
                         android:gravity="center"
-                        android:textSize="20sp"
-                        android:layout_centerHorizontal="true"/>
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
                 </RelativeLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/actionButtons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:orientation="horizontal">
+
                 <uk.co.jakelee.cityflow.components.TextAwesome
                     android:id="@+id/exitButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:background="@color/city"
-                    android:gravity="center_horizontal"
-                    android:textSize="36sp"
-                    android:text="@string/icon_cross"
-                    android:padding="10dp"
                     android:layout_margin="5dp"
+                    android:background="@color/city"
                     android:clickable="true"
-android:onClick="closePuzzle"/>
+                    android:gravity="center_horizontal"
+                    android:onClick="closePuzzle"
+                    android:padding="10dp"
+                    android:text="@string/icon_cross"
+                    android:textColor="@color/black"
+                    android:textSize="36sp" />
+
                 <uk.co.jakelee.cityflow.components.TextAwesome
                     android:id="@+id/restartButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:background="@color/city"
-                    android:gravity="center_horizontal"
-                    android:textSize="36sp"
-                    android:text="@string/icon_restart"
-                    android:padding="10dp"
                     android:layout_margin="5dp"
+                    android:background="@color/city"
                     android:clickable="true"
-android:onClick="restartPuzzle"/>
+                    android:gravity="center_horizontal"
+                    android:onClick="restartPuzzle"
+                    android:padding="10dp"
+                    android:text="@string/icon_restart"
+                    android:textColor="@color/black"
+                    android:textSize="36sp" />
+
                 <uk.co.jakelee.cityflow.components.TextAwesome
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:background="@color/city"
-                    android:gravity="center_horizontal"
-                    android:textSize="36sp"
-                    android:text="@string/icon_visibility"
-                    android:padding="10dp"
                     android:layout_margin="5dp"
+                    android:background="@color/city"
                     android:clickable="true"
-android:onClick="toggleEndDisplay"/>
+                    android:gravity="center_horizontal"
+                    android:onClick="toggleEndDisplay"
+                    android:padding="10dp"
+                    android:text="@string/icon_visibility"
+                    android:textColor="@color/black"
+                    android:textSize="36sp" />
+
                 <uk.co.jakelee.cityflow.components.TextAwesome
                     android:id="@+id/mainActionButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:background="@color/blue"
-                    android:gravity="center_horizontal"
-                    android:textSize="36sp"
-                    android:padding="10dp"
                     android:layout_margin="5dp"
+                    android:background="@color/blue"
                     android:clickable="true"
-android:onClick="mainAction"/>
+                    android:gravity="center_horizontal"
+                    android:onClick="mainAction"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="36sp" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/tilesContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
                 android:layout_above="@id/actionButtons"
                 android:layout_centerHorizontal="true"
-                android:layout_margin="3dp"/>
+                android:layout_margin="3dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" />
+
             <LinearLayout
                 android:id="@+id/currencyContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
                 android:layout_above="@id/tilesContainer"
-                android:layout_margin="3dp">
+                android:layout_centerHorizontal="true"
+                android:layout_margin="3dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/ui_currency"
-                    android:padding="7dp"/>
+                    android:padding="7dp"
+                    android:src="@drawable/ui_currency" />
+
                 <uk.co.jakelee.cityflow.components.AutofitTextViewFont
                     android:id="@+id/currencyEarned"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:gravity="center_vertical"
-                    android:textSize="18sp"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
                 <uk.co.jakelee.cityflow.components.TextAwesome
                     android:id="@+id/shopButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:background="@color/blue"
-                    android:gravity="center_horizontal"
-                    android:textSize="26sp"
-                    android:text="@string/icon_shop"
-                    android:padding="10dp"
                     android:layout_margin="6dp"
+                    android:background="@color/blue"
                     android:clickable="true"
-android:onClick="openShop"/>
+                    android:gravity="center_horizontal"
+                    android:onClick="openShop"
+                    android:padding="10dp"
+                    android:text="@string/icon_shop"
+                    android:textColor="@color/black"
+                    android:textSize="26sp" />
             </LinearLayout>
         </RelativeLayout>
 
     </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/croutonview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
-    </LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"></LinearLayout>
 </RelativeLayout>

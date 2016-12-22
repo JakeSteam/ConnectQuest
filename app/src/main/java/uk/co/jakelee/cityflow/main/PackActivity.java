@@ -24,9 +24,9 @@ import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class PackActivity extends Activity {
+    public Puzzle selectedPuzzle = new Puzzle();
     private DisplayHelper dh;
     private Pack selectedPack;
-    public Puzzle selectedPuzzle = new Puzzle();
     private int lastCompletedPuzzle = 0;
     private int firstPackPuzzle = 0;
 

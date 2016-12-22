@@ -1,94 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.percent.PercentRelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="6dp"
     android:layout_gravity="center"
+    android:layout_margin="6dp"
     tools:context=".main.ExportActivity">
 
     <android.support.percent.PercentRelativeLayout
         android:id="@+id/puzzleCard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_marginTopPercent="20%"
+        android:background="@color/green"
         app:layout_heightPercent="60%"
-        android:background="@color/green">
+        app:layout_marginTopPercent="20%">
+
         <LinearLayout
             android:id="@+id/puzzleTextBar"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:background="@color/blue"
             android:orientation="vertical">
+
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/puzzleName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:layout_marginTop="3dp"
                 android:layout_marginLeft="12dp"
-                android:textSize="26sp"
+                android:layout_marginTop="3dp"
+                android:ellipsize="end"
                 android:maxLines="1"
-                android:ellipsize="end"/>
+                android:textColor="@color/black"
+                android:textSize="26sp" />
+
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/puzzleAuthor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:layout_marginRight="12dp"
                 android:layout_marginBottom="3dp"
-                android:textColor="@color/white"
-                android:textSize="22sp"
+                android:layout_marginRight="12dp"
+                android:ellipsize="end"
                 android:maxLines="1"
-                android:ellipsize="end"/>
+                android:textColor="@color/white"
+                android:textSize="22sp" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/puzzleQrCode"
             android:layout_width="180dp"
             android:layout_height="180dp"
-            android:layout_marginTop="15dp"
+            android:layout_below="@id/puzzleTextBar"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:padding="5dp"
+            android:layout_marginTop="15dp"
             android:background="@color/blue"
-            android:layout_below="@id/puzzleTextBar" />
+            android:padding="5dp" />
 
         <ImageView
             android:id="@+id/gameLogo"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_alignBottom="@id/puzzleQrCode"
             android:layout_marginRight="15dp"
-            android:src="@drawable/main_logo"
             android:layout_toRightOf="@id/puzzleQrCode"
-            android:layout_alignBottom="@id/puzzleQrCode"/>
+            android:src="@drawable/main_logo" />
 
         <ImageView
             android:id="@+id/puzzleImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
-            android:padding="5dp"
             android:layout_above="@id/gameLogo"
             android:layout_alignTop="@id/puzzleQrCode"
+            android:layout_marginRight="15dp"
             android:layout_toRightOf="@id/puzzleQrCode"
-            android:background="@color/dkgrey"/>
+            android:background="@color/dkgrey"
+            android:padding="5dp" />
 
         <ScrollView
-            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/puzzleQrCode"
             android:layout_alignLeft="@id/puzzleQrCode"
-            android:layout_alignRight="@id/puzzleImage">
+            android:layout_alignRight="@id/puzzleImage"
+            android:layout_below="@id/puzzleQrCode"
+            android:layout_margin="10dp">
+
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/puzzleDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
         </ScrollView>
     </android.support.percent.PercentRelativeLayout>
 
@@ -97,46 +100,48 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/puzzleCard"
         android:gravity="center_horizontal">
+
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/saveCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:padding="6dp"
             android:layout_margin="6dp"
             android:background="@color/ltltgrey"
-            android:textSize="30sp"
             android:clickable="true"
-android:onClick="save"/>
+            android:onClick="save"
+            android:padding="6dp"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/shareCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:padding="6dp"
             android:layout_margin="6dp"
             android:background="@color/ltltgrey"
-            android:textSize="30sp"
             android:clickable="true"
-android:onClick="share"/>
+            android:onClick="share"
+            android:padding="6dp"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/shareText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:padding="6dp"
             android:layout_margin="6dp"
             android:background="@color/ltltgrey"
-            android:textSize="30sp"
             android:clickable="true"
-android:onClick="shareText"/>
+            android:onClick="shareText"
+            android:padding="6dp"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/croutonview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
-    </LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"></LinearLayout>
 </android.support.percent.PercentRelativeLayout>

@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_gravity="bottom"
     android:background="#ff99cc00"
     android:gravity="center"
     android:orientation="horizontal"
-    android:padding="10dp"
-    android:layout_gravity="bottom"
-    android:layout_alignParentBottom="true">
+    android:padding="10dp">
 
     <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/text"

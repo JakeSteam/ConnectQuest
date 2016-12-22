@@ -34,12 +34,12 @@ public class QuestActivity extends Activity {
     }
 
     private void populateText() {
-        ((TextView)findViewById(R.id.currentQuests)).setText(Text.get("QUEST_CURRENT"));
-        ((TextView)findViewById(R.id.availableQuests)).setText(Text.get("QUEST_AVAILABLE"));
-        ((TextView)findViewById(R.id.upcomingQuests)).setText(Text.get("QUEST_UPCOMING"));
-        ((TextView)findViewById(R.id.completedQuests)).setText(Text.get("QUEST_COMPLETED"));
-        ((TextView)findViewById(R.id.failedQuests)).setText(Text.get("QUEST_FAILED"));
-        ((TextView)findViewById(R.id.redditSchedule)).setText(Text.get("QUEST_SCHEDULE"));
+        ((TextView) findViewById(R.id.currentQuests)).setText(Text.get("QUEST_CURRENT"));
+        ((TextView) findViewById(R.id.availableQuests)).setText(Text.get("QUEST_AVAILABLE"));
+        ((TextView) findViewById(R.id.upcomingQuests)).setText(Text.get("QUEST_UPCOMING"));
+        ((TextView) findViewById(R.id.completedQuests)).setText(Text.get("QUEST_COMPLETED"));
+        ((TextView) findViewById(R.id.failedQuests)).setText(Text.get("QUEST_FAILED"));
+        ((TextView) findViewById(R.id.redditSchedule)).setText(Text.get("QUEST_SCHEDULE"));
     }
 
     public void currentQuests(View view) {
@@ -77,7 +77,7 @@ public class QuestActivity extends Activity {
         startActivity(browserIntent);
     }
 
-    public void closePopup (View v) {
+    public void closePopup(View v) {
         this.finish();
     }
 }

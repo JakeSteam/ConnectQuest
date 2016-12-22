@@ -136,7 +136,7 @@ public class CustomInfoActivity extends Activity {
         }
     }
 
-    public void closePopup (View v) {
+    public void closePopup(View v) {
         this.finish();
     }
 }

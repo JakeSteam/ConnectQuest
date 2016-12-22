@@ -107,18 +107,16 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
 
     private static int getQuestReward(String questDifficulty) {
         switch (questDifficulty) {
-            case "Easy": return Constants.CURRENCY_QUEST_EASY;
-            case "Medium": return Constants.CURRENCY_QUEST_MEDIUM;
-            case "Hard": return Constants.CURRENCY_QUEST_HARD;
-            case "Elite": return Constants.CURRENCY_QUEST_ELITE;
+            case "Easy":
+                return Constants.CURRENCY_QUEST_EASY;
+            case "Medium":
+                return Constants.CURRENCY_QUEST_MEDIUM;
+            case "Hard":
+                return Constants.CURRENCY_QUEST_HARD;
+            case "Elite":
+                return Constants.CURRENCY_QUEST_ELITE;
         }
         return 0;
-    }
-
-    public void onResult(com.google.android.gms.common.api.Result result) {
-        Quests.LoadQuestsResult r = (Quests.LoadQuestsResult)result;
-        QuestBuffer qb = r.getQuests();
-        qb.close();
     }
 
     public static void UpdateEvent(String eventId, int quantity) {
@@ -154,7 +152,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             for (Achievement achievement : achievements) {
                 UpdateAchievement(achievement, currentValue, lastSentValue);
                 if (achievement.getMaximumValue() <= currentValue) {
-                    Statistic.addCurrency((Iap.hasCoinDoubler() ? 2 : 1 ) * Constants.CURRENCY_ACHIEVEMENT);
+                    Statistic.addCurrency((Iap.hasCoinDoubler() ? 2 : 1) * Constants.CURRENCY_ACHIEVEMENT);
                 }
             }
 
@@ -449,13 +447,13 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             Pack.deleteAll(Pack.class);
             Pack.saveInTx(packs);
         }
-        
+
         if (splitData.length > fieldNumber) {
             Puzzle[] puzzles = gson.fromJson(splitData[fieldNumber++], Puzzle[].class);
             Puzzle.deleteAll(Puzzle.class);
             Puzzle.saveInTx(puzzles);
         }
-        
+
         if (splitData.length > fieldNumber) {
             PuzzleCustom[] puzzleCustoms = gson.fromJson(splitData[fieldNumber++], PuzzleCustom[].class);
             PuzzleCustom.deleteAll(PuzzleCustom.class);
@@ -467,13 +465,13 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             ShopItem.deleteAll(ShopItem.class);
             ShopItem.saveInTx(shopItems);
         }
-        
+
         if (splitData.length > fieldNumber) {
             Setting[] settings = gson.fromJson(splitData[fieldNumber++], Setting[].class);
             Setting.deleteAll(Setting.class);
             Setting.saveInTx(settings);
         }
-        
+
         if (splitData.length > fieldNumber) {
             Statistic[] statistics = gson.fromJson(splitData[fieldNumber++], Statistic[].class);
             Statistic.deleteAll(Statistic.class);
@@ -534,5 +532,11 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         }
 
         return splitData;
+    }
+
+    public void onResult(com.google.android.gms.common.api.Result result) {
+        Quests.LoadQuestsResult r = (Quests.LoadQuestsResult) result;
+        QuestBuffer qb = r.getQuests();
+        qb.close();
     }
 }

@@ -42,6 +42,54 @@ public class Setting extends SugarRecord {
         this.stringValue = stringValue;
     }
 
+    public static boolean isTrue(int settingId) {
+        Setting setting = Select.from(Setting.class).where(
+                Condition.prop("setting_id").eq(settingId)).first();
+
+        return setting != null && setting.getBooleanValue();
+    }
+
+    public static Setting get(int settingId) {
+        return Select.from(Setting.class).where(
+                Condition.prop("setting_id").eq(settingId)).first();
+    }
+
+    public static int getInt(int settingId) {
+        Setting setting = Select.from(Setting.class).where(
+                Condition.prop("setting_id").eq(settingId)).first();
+
+        if (setting != null) {
+            return setting.getIntValue();
+        }
+        return 0;
+    }
+
+    public static float getFloat(int settingId) {
+        Setting setting = Select.from(Setting.class).where(
+                Condition.prop("setting_id").eq(settingId)).first();
+
+        if (setting != null) {
+            return setting.getFloatValue();
+        }
+        return 0f;
+    }
+
+    public static String getString(int settingId) {
+        Setting setting = Select.from(Setting.class).where(
+                Condition.prop("setting_id").eq(settingId)).first();
+
+        if (setting != null) {
+            return setting.getStringValue();
+        }
+        return "";
+    }
+
+    public static boolean getSafeBoolean(int settingId) {
+        Setting setting = Setting.get(settingId);
+
+        return setting != null && setting.getBooleanValue();
+    }
+
     public int getSettingId() {
         return settingId;
     }
@@ -112,54 +160,6 @@ public class Setting extends SugarRecord {
 
     public void setStringValue(String stringValue) {
         this.stringValue = stringValue;
-    }
-
-    public static boolean isTrue(int settingId) {
-        Setting setting = Select.from(Setting.class).where(
-                Condition.prop("setting_id").eq(settingId)).first();
-
-        return setting != null && setting.getBooleanValue();
-    }
-
-    public static Setting get(int settingId)  {
-        return Select.from(Setting.class).where(
-                Condition.prop("setting_id").eq(settingId)).first();
-    }
-
-    public static int getInt(int settingId) {
-        Setting setting = Select.from(Setting.class).where(
-                Condition.prop("setting_id").eq(settingId)).first();
-
-        if (setting != null) {
-            return setting.getIntValue();
-        }
-        return 0;
-    }
-
-    public static float getFloat(int settingId) {
-        Setting setting = Select.from(Setting.class).where(
-                Condition.prop("setting_id").eq(settingId)).first();
-
-        if (setting != null) {
-            return setting.getFloatValue();
-        }
-        return 0f;
-    }
-
-    public static String getString(int settingId) {
-        Setting setting = Select.from(Setting.class).where(
-                Condition.prop("setting_id").eq(settingId)).first();
-
-        if (setting != null) {
-            return setting.getStringValue();
-        }
-        return "";
-    }
-
-    public static boolean getSafeBoolean(int settingId) {
-        Setting setting = Setting.get(settingId);
-
-        return setting != null && setting.getBooleanValue();
     }
 
     public String getName() {

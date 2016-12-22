@@ -44,6 +44,24 @@ public class ShopItem extends SugarRecord {
         this.applyMultiplier = applyMultiplier;
     }
 
+    public static ShopItem get(int itemId) {
+        return Select.from(ShopItem.class).where(
+                Condition.prop("item_id").eq(itemId)).first();
+    }
+
+    public static ShopItem getPackItem(int packId) {
+        return Select.from(ShopItem.class).where(
+                Condition.prop("category_id").eq(Constants.STORE_CATEGORY_MISC),
+                Condition.prop("subcategory_id").eq(Constants.STORE_SUBCATEGORY_PACK),
+                Condition.prop("misc_data").eq(packId)).first();
+    }
+
+    public static boolean isPurchased(int itemId) {
+        ShopItem item = Select.from(ShopItem.class).where(
+                Condition.prop("item_id").eq(itemId)).first();
+        return !(item == null || item.getPurchases() <= 0);
+    }
+
     public int getItemId() {
         return itemId;
     }
@@ -123,18 +141,6 @@ public class ShopItem extends SugarRecord {
         return Text.get("ITEM_", getItemId(), "_DESC");
     }
 
-    public static ShopItem get(int itemId)  {
-        return Select.from(ShopItem.class).where(
-                Condition.prop("item_id").eq(itemId)).first();
-    }
-
-    public static ShopItem getPackItem(int packId) {
-        return Select.from(ShopItem.class).where(
-                Condition.prop("category_id").eq(Constants.STORE_CATEGORY_MISC),
-                Condition.prop("subcategory_id").eq(Constants.STORE_SUBCATEGORY_PACK),
-                Condition.prop("misc_data").eq(packId)).first();
-    }
-
     public void purchase() {
         ShopItem item = ShopItem.get(getItemId());
         Statistic currency = Statistic.find(Constants.STATISTIC_CURRENCY);
@@ -180,11 +186,5 @@ public class ShopItem extends SugarRecord {
             return AlertHelper.Error.NOT_ENOUGH_CURRENCY;
         }
         return AlertHelper.Error.NO_ERROR;
-    }
-
-    public static boolean isPurchased(int itemId) {
-        ShopItem item = Select.from(ShopItem.class).where(
-                Condition.prop("item_id").eq(itemId)).first();
-        return !(item == null || item.getPurchases() <= 0);
     }
 }

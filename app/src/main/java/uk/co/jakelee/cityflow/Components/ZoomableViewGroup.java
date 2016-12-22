@@ -17,15 +17,13 @@ import uk.co.jakelee.cityflow.model.Setting;
 public class ZoomableViewGroup extends RelativeLayout {
 
     private static final int INVALID_POINTER_ID = 1;
+    public float mPosX;
+    public float mPosY;
     private int mActivePointerId = INVALID_POINTER_ID;
-
     private float mScaleFactor = 1;
     private ScaleGestureDetector mScaleDetector;
     private Matrix mScaleMatrix = new Matrix();
     private Matrix mScaleMatrixInverse = new Matrix();
-
-    public float mPosX;
-    public float mPosY;
     private Matrix mTranslateMatrix = new Matrix();
     private Matrix mTranslateMatrixInverse = new Matrix();
 
@@ -62,7 +60,7 @@ public class ZoomableViewGroup extends RelativeLayout {
         for (int i = 0; i < childCount; i++) {
             View child = getChildAt(i);
             if (child.getVisibility() != GONE) {
-                child.layout(child.getLeft(), child.getTop(), child.getLeft() + child.getMeasuredWidth(), child.getTop()  + child.getMeasuredHeight());
+                child.layout(child.getLeft(), child.getTop(), child.getLeft() + child.getMeasuredWidth(), child.getTop() + child.getMeasuredHeight());
             }
         }
     }
@@ -130,7 +128,7 @@ public class ZoomableViewGroup extends RelativeLayout {
         mLastTouchX = 0.0f;
         mLastTouchY = 0.0f;
 
-        float values[] = new float[]{1,0,0,0,1,0,0,0,1};
+        float values[] = new float[]{1, 0, 0, 0, 1, 0, 0, 0, 1};
         mTranslateMatrix.setValues(values);
         mTranslateMatrixInverse.setValues(values);
         setScaleFactor(screenshotScale, true);
@@ -164,7 +162,7 @@ public class ZoomableViewGroup extends RelativeLayout {
         return a;
     }
 
-    private float[] screenPointsToScaledPoints(float[] a){
+    private float[] screenPointsToScaledPoints(float[] a) {
         mTranslateMatrixInverse.mapPoints(a);
         mScaleMatrixInverse.mapPoints(a);
         return a;

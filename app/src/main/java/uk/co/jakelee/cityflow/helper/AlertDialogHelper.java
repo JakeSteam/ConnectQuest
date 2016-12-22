@@ -223,7 +223,7 @@ public class AlertDialogHelper {
         final EditText editText = new EditText(activity.getApplicationContext());
         editText.setInputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS);
         editText.setText(Setting.getString(Constants.SETTING_PLAYER_NAME));
-        editText.setFilters(new InputFilter[]{ FilterHelper.getFilter(Constants.PLAYER_NAME_MAX_LENGTH) });
+        editText.setFilters(new InputFilter[]{FilterHelper.getFilter(Constants.PLAYER_NAME_MAX_LENGTH)});
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
         alertDialog.setMessage(String.format(Locale.ENGLISH, Text.get("DIALOG_CHANGE_TEXT"), settingToToggle.getName(), Constants.PLAYER_NAME_MAX_LENGTH));
@@ -253,7 +253,7 @@ public class AlertDialogHelper {
         final EditText puzzleInfoInput = new EditText(activity.getApplicationContext());
         puzzleInfoInput.setText(changeDesc ? puzzleCustom.getDescription() : puzzleCustom.getName());
         puzzleInfoInput.setSelectAllOnFocus(true);
-        puzzleInfoInput.setFilters(new InputFilter[]{ FilterHelper.getFilter(changeDesc ? Constants.PUZZLE_DESC_MAX_LENGTH : Constants.PUZZLE_NAME_MAX_LENGTH) });
+        puzzleInfoInput.setFilters(new InputFilter[]{FilterHelper.getFilter(changeDesc ? Constants.PUZZLE_DESC_MAX_LENGTH : Constants.PUZZLE_NAME_MAX_LENGTH)});
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
         alertDialog.setMessage(String.format(Locale.ENGLISH, Text.get("DIALOG_CHANGE_TEXT"),
@@ -272,7 +272,7 @@ public class AlertDialogHelper {
                 puzzleCustom.save();
 
                 if (activity instanceof CustomInfoActivity) {
-                    ((CustomInfoActivity)activity).redisplayInfo();
+                    ((CustomInfoActivity) activity).redisplayInfo();
                 }
             }
         });
@@ -297,29 +297,34 @@ public class AlertDialogHelper {
         dialog.setCancelable(true);
 
         // Filling in all the text fields
-        ((TextView)dialog.findViewById(R.id.close)).setText(Text.get("DIALOG_BUTTON_CLOSE"));
-        ((TextView)dialog.findViewById(R.id.createButton)).setText(Text.get("DIALOG_BUTTON_CREATE"));
-        ((TextView)dialog.findViewById(R.id.title)).setText(Text.get("UI_PUZZLE_OPTIONS"));
-        ((TextView)dialog.findViewById(R.id.minWidth)).setText(Integer.toString(Constants.PUZZLE_X_MIN));
-        ((TextView)dialog.findViewById(R.id.maxWidth)).setText(Integer.toString(Constants.PUZZLE_X_MAX));
-        ((TextView)dialog.findViewById(R.id.minHeight)).setText(Integer.toString(Constants.PUZZLE_Y_MIN));
-        ((TextView)dialog.findViewById(R.id.maxHeight)).setText(Integer.toString(Constants.PUZZLE_Y_MAX));
-        ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_WIDTH"), Constants.PUZZLE_X_DEFAULT));
-        ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_HEIGHT"), Constants.PUZZLE_Y_DEFAULT));
-        ((TextView)dialog.findViewById(R.id.environmentText)).setText(Text.get("WORD_AREA"));
-        ((TextView)dialog.findViewById(R.id.emptyText)).setText(Text.get("UI_PUZZLE_AUTOGENERATE"));
-        ((TextView)dialog.findViewById(R.id.shuffleText)).setText(Text.get("UI_PUZZLE_SHUFFLE_PLAY"));
+        ((TextView) dialog.findViewById(R.id.close)).setText(Text.get("DIALOG_BUTTON_CLOSE"));
+        ((TextView) dialog.findViewById(R.id.createButton)).setText(Text.get("DIALOG_BUTTON_CREATE"));
+        ((TextView) dialog.findViewById(R.id.title)).setText(Text.get("UI_PUZZLE_OPTIONS"));
+        ((TextView) dialog.findViewById(R.id.minWidth)).setText(Integer.toString(Constants.PUZZLE_X_MIN));
+        ((TextView) dialog.findViewById(R.id.maxWidth)).setText(Integer.toString(Constants.PUZZLE_X_MAX));
+        ((TextView) dialog.findViewById(R.id.minHeight)).setText(Integer.toString(Constants.PUZZLE_Y_MIN));
+        ((TextView) dialog.findViewById(R.id.maxHeight)).setText(Integer.toString(Constants.PUZZLE_Y_MAX));
+        ((TextView) dialog.findViewById(R.id.currentWidth)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_WIDTH"), Constants.PUZZLE_X_DEFAULT));
+        ((TextView) dialog.findViewById(R.id.currentHeight)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_HEIGHT"), Constants.PUZZLE_Y_DEFAULT));
+        ((TextView) dialog.findViewById(R.id.environmentText)).setText(Text.get("WORD_AREA"));
+        ((TextView) dialog.findViewById(R.id.emptyText)).setText(Text.get("UI_PUZZLE_AUTOGENERATE"));
+        ((TextView) dialog.findViewById(R.id.shuffleText)).setText(Text.get("UI_PUZZLE_SHUFFLE_PLAY"));
 
         // Creating X slider
         final SeekBar sliderWidth = (SeekBar) dialog.findViewById(R.id.sliderWidth);
         sliderWidth.setProgress(getProgressFromFloat(Constants.PUZZLE_X_DEFAULT, Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX));
         sliderWidth.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
-            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
-                ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_WIDTH"), getIntFromProgress(sliderWidth.getProgress(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX)));
+                ((TextView) dialog.findViewById(R.id.currentWidth)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_WIDTH"), getIntFromProgress(sliderWidth.getProgress(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX)));
             }
         });
 
@@ -327,12 +332,17 @@ public class AlertDialogHelper {
         final SeekBar sliderHeight = (SeekBar) dialog.findViewById(R.id.sliderHeight);
         sliderHeight.setProgress(getProgressFromFloat(Constants.PUZZLE_Y_DEFAULT, Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX));
         sliderHeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
-            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
-                ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_HEIGHT"), getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX)));
+                ((TextView) dialog.findViewById(R.id.currentHeight)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_HEIGHT"), getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX)));
             }
         });
 
@@ -345,8 +355,8 @@ public class AlertDialogHelper {
         }
 
         // Disable "Blank puzzle" option if we're shuffle + playing
-        final CheckBox shuffleCheckbox = (CheckBox)dialog.findViewById(R.id.shuffleCheckbox);
-        ((CheckBox)dialog.findViewById(R.id.emptyCheckbox)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        final CheckBox shuffleCheckbox = (CheckBox) dialog.findViewById(R.id.shuffleCheckbox);
+        ((CheckBox) dialog.findViewById(R.id.emptyCheckbox)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 shuffleCheckbox.setEnabled(!b);
@@ -354,7 +364,7 @@ public class AlertDialogHelper {
         });
 
         // Disable area spinner if we're using all tiles
-        final Spinner environmentPicker = (Spinner)dialog.findViewById(R.id.environmentPicker);
+        final Spinner environmentPicker = (Spinner) dialog.findViewById(R.id.environmentPicker);
         environmentPicker.setAdapter(envAdapter);
         environmentPicker.setSelection(1);
 
@@ -363,8 +373,8 @@ public class AlertDialogHelper {
             public void onClick(View v) {
                 int xValue = getIntFromProgress(sliderWidth.getProgress(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX);
                 int yValue = getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX);
-                boolean blankPuzzle = ((CheckBox)dialog.findViewById(R.id.emptyCheckbox)).isChecked();
-                boolean shuffleAndPlay = ((CheckBox)dialog.findViewById(R.id.shuffleCheckbox)).isChecked();
+                boolean blankPuzzle = ((CheckBox) dialog.findViewById(R.id.emptyCheckbox)).isChecked();
+                boolean shuffleAndPlay = ((CheckBox) dialog.findViewById(R.id.shuffleCheckbox)).isChecked();
 
                 if (xValue <= 1 && yValue <= 1) {
                     AlertHelper.error(activity, AlertHelper.getError(AlertHelper.Error.PUZZLE_TOO_SMALL));
@@ -389,7 +399,7 @@ public class AlertDialogHelper {
         final Dialog dialog = new Dialog(activity);
         dialog.setContentView(R.layout.custom_dialog_puzzle_loading);
         dialog.setCancelable(true);
-        ((TextView)dialog.findViewById(R.id.title)).setText(Text.get("WORD_LOADING"));
+        ((TextView) dialog.findViewById(R.id.title)).setText(Text.get("WORD_LOADING"));
         dialog.show();
 
         PuzzleGenerator puzzleGenerator = new PuzzleGenerator(activity,
@@ -412,27 +422,32 @@ public class AlertDialogHelper {
         dialog.setCancelable(true);
 
         // Filling in all the text fields
-        ((TextView)dialog.findViewById(R.id.close)).setText(Text.get("DIALOG_BUTTON_CLOSE"));
-        ((TextView)dialog.findViewById(R.id.resizeButton)).setText(Text.get("DIALOG_BUTTON_RESIZE"));
-        ((TextView)dialog.findViewById(R.id.title)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_RESIZE"), puzzle.getName()));
-        ((TextView)dialog.findViewById(R.id.resizeHint)).setText(Text.get("UI_PUZZLE_RESIZE_HINT"));
-        ((TextView)dialog.findViewById(R.id.minWidth)).setText(Integer.toString(Constants.PUZZLE_X_MIN));
-        ((TextView)dialog.findViewById(R.id.maxWidth)).setText(Integer.toString(Constants.PUZZLE_X_MAX));
-        ((TextView)dialog.findViewById(R.id.minHeight)).setText(Integer.toString(Constants.PUZZLE_Y_MIN));
-        ((TextView)dialog.findViewById(R.id.maxHeight)).setText(Integer.toString(Constants.PUZZLE_Y_MAX));
-        ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_WIDTH"), oldXY.first + 1));
-        ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_HEIGHT"), oldXY.second + 1));
+        ((TextView) dialog.findViewById(R.id.close)).setText(Text.get("DIALOG_BUTTON_CLOSE"));
+        ((TextView) dialog.findViewById(R.id.resizeButton)).setText(Text.get("DIALOG_BUTTON_RESIZE"));
+        ((TextView) dialog.findViewById(R.id.title)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_RESIZE"), puzzle.getName()));
+        ((TextView) dialog.findViewById(R.id.resizeHint)).setText(Text.get("UI_PUZZLE_RESIZE_HINT"));
+        ((TextView) dialog.findViewById(R.id.minWidth)).setText(Integer.toString(Constants.PUZZLE_X_MIN));
+        ((TextView) dialog.findViewById(R.id.maxWidth)).setText(Integer.toString(Constants.PUZZLE_X_MAX));
+        ((TextView) dialog.findViewById(R.id.minHeight)).setText(Integer.toString(Constants.PUZZLE_Y_MIN));
+        ((TextView) dialog.findViewById(R.id.maxHeight)).setText(Integer.toString(Constants.PUZZLE_Y_MAX));
+        ((TextView) dialog.findViewById(R.id.currentWidth)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_WIDTH"), oldXY.first + 1));
+        ((TextView) dialog.findViewById(R.id.currentHeight)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_HEIGHT"), oldXY.second + 1));
 
         // Creating X slider
         final SeekBar sliderWidth = (SeekBar) dialog.findViewById(R.id.sliderWidth);
         sliderWidth.setProgress(getProgressFromFloat(oldXY.first + 1, Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX));
         sliderWidth.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
-            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
-                ((TextView)dialog.findViewById(R.id.currentWidth)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_WIDTH"), getIntFromProgress(sliderWidth.getProgress(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX)));
+                ((TextView) dialog.findViewById(R.id.currentWidth)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_WIDTH"), getIntFromProgress(sliderWidth.getProgress(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX)));
             }
         });
 
@@ -440,12 +455,17 @@ public class AlertDialogHelper {
         final SeekBar sliderHeight = (SeekBar) dialog.findViewById(R.id.sliderHeight);
         sliderHeight.setProgress(getProgressFromFloat(oldXY.second + 1, Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX));
         sliderHeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
-            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
-                ((TextView)dialog.findViewById(R.id.currentHeight)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_HEIGHT"), getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX)));
+                ((TextView) dialog.findViewById(R.id.currentHeight)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_HEIGHT"), getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX)));
             }
         });
 
@@ -584,13 +604,13 @@ public class AlertDialogHelper {
         dialog.setTitle(String.format(Locale.ENGLISH, Text.get("DIALOG_CHANGE_SLIDER"), setting.getName()));
         dialog.setCancelable(true);
 
-        ((TextView)dialog.findViewById(R.id.close)).setText(Text.get("DIALOG_BUTTON_CLOSE"));
-        ((TextView)dialog.findViewById(R.id.saveValue)).setText(Text.get("DIALOG_BUTTON_SAVE"));
-        ((TextView)dialog.findViewById(R.id.settingName)).setText(setting.getName());
+        ((TextView) dialog.findViewById(R.id.close)).setText(Text.get("DIALOG_BUTTON_CLOSE"));
+        ((TextView) dialog.findViewById(R.id.saveValue)).setText(Text.get("DIALOG_BUTTON_SAVE"));
+        ((TextView) dialog.findViewById(R.id.settingName)).setText(setting.getName());
 
-        TextView minValue = (TextView)dialog.findViewById(R.id.minValue);
-        TextView maxValue = (TextView)dialog.findViewById(R.id.maxValue);
-        final TextView currentValue = (TextView)dialog.findViewById(R.id.currentValue);
+        TextView minValue = (TextView) dialog.findViewById(R.id.minValue);
+        TextView maxValue = (TextView) dialog.findViewById(R.id.maxValue);
+        final TextView currentValue = (TextView) dialog.findViewById(R.id.currentValue);
 
         minValue.setText(String.format(Locale.ENGLISH, "%.2f", setting.getFloatMin()));
         maxValue.setText(String.format(Locale.ENGLISH, "%.2f", setting.getFloatMax()));
@@ -599,8 +619,13 @@ public class AlertDialogHelper {
         final SeekBar seekbar = (SeekBar) dialog.findViewById(R.id.seekbar);
         seekbar.setProgress(getProgressFromFloat(setting.getFloatValue(), setting.getFloatMin(), setting.getFloatMax()));
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
-            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
@@ -636,13 +661,13 @@ public class AlertDialogHelper {
         dialog.setTitle(String.format(Locale.ENGLISH, Text.get("DIALOG_CHANGE_SLIDER"), setting.getName()));
         dialog.setCancelable(true);
 
-        ((TextView)dialog.findViewById(R.id.close)).setText(Text.get("DIALOG_BUTTON_CLOSE"));
-        ((TextView)dialog.findViewById(R.id.saveValue)).setText(Text.get("DIALOG_BUTTON_SAVE"));
-        ((TextView)dialog.findViewById(R.id.settingName)).setText(setting.getName());
+        ((TextView) dialog.findViewById(R.id.close)).setText(Text.get("DIALOG_BUTTON_CLOSE"));
+        ((TextView) dialog.findViewById(R.id.saveValue)).setText(Text.get("DIALOG_BUTTON_SAVE"));
+        ((TextView) dialog.findViewById(R.id.settingName)).setText(setting.getName());
 
-        TextView minValue = (TextView)dialog.findViewById(R.id.minValue);
-        TextView maxValue = (TextView)dialog.findViewById(R.id.maxValue);
-        final TextView currentValue = (TextView)dialog.findViewById(R.id.currentValue);
+        TextView minValue = (TextView) dialog.findViewById(R.id.minValue);
+        TextView maxValue = (TextView) dialog.findViewById(R.id.maxValue);
+        final TextView currentValue = (TextView) dialog.findViewById(R.id.currentValue);
 
         minValue.setText(Integer.toString(setting.getIntMin()));
         maxValue.setText(settingId == Constants.SETTING_AUTOSAVE_FREQUENCY ?
@@ -655,15 +680,20 @@ public class AlertDialogHelper {
         final SeekBar seekbar = (SeekBar) dialog.findViewById(R.id.seekbar);
         seekbar.setProgress(getProgressFromFloat((float) setting.getIntValue(), (float) setting.getIntMin(), (float) setting.getIntMax()));
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
-            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
                 int progressInt = getIntFromProgress(seekbar.getProgress(), setting.getIntMin(), setting.getIntMax());
                 currentValue.setText((settingId == Constants.SETTING_AUTOSAVE_FREQUENCY && progressInt == Constants.AUTOSAVE_NEVER) ?
-                    Text.get("WORD_NEVER") :
-                    Integer.toString(progressInt));
+                        Text.get("WORD_NEVER") :
+                        Integer.toString(progressInt));
             }
         });
 

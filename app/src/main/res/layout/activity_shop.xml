@@ -10,46 +10,50 @@
         android:id="@+id/shopTopBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/ltltgrey"
         android:layout_margin="7dp"
+        android:background="@color/ltltgrey"
         android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <uk.co.jakelee.cityflow.components.AutofitTextViewFont
                 android:id="@+id/currencyCountText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:textColor="@color/black"
                 android:maxLines="1"
                 android:padding="10dp"
-                android:textSize="30sp"/>
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/currencyCountText"
-                android:layout_alignTop="@id/currencyCountText"
                 android:layout_alignBottom="@id/currencyCountText"
+                android:layout_alignTop="@id/currencyCountText"
+                android:layout_toLeftOf="@id/currencyCountText"
                 android:src="@drawable/ui_currency" />
+
             <uk.co.jakelee.cityflow.components.TextAwesome
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/currencyCountText"
+                android:clickable="true"
                 android:gravity="center"
+                android:onClick="buyCoins"
+                android:padding="5dp"
                 android:text="@string/icon_buy_currency"
                 android:textColor="@color/dkgrey"
-                android:clickable="true"
-android:onClick="buyCoins"
-                android:textSize="34sp"
-                android:padding="5dp"/>
+                android:textSize="34sp" />
         </RelativeLayout>
+
         <LinearLayout
             android:id="@+id/tabContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-        </LinearLayout>
+            android:orientation="horizontal"></LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -59,36 +63,40 @@ android:onClick="buyCoins"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:orientation="vertical">
+
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/freeCoinsBanner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/freeCurrencyAdvert"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="6dp"
-                android:textSize="26sp"
                 android:layout_margin="4dp"
                 android:background="@color/blue"
                 android:clickable="true"
-android:onClick="launchAdvert"/>
+                android:onClick="launchAdvert"
+                android:padding="6dp"
+                android:textSize="26sp" />
+
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/freeCurrencyOffers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="6dp"
-                android:textSize="26sp"
                 android:layout_margin="4dp"
                 android:background="@color/blue"
                 android:clickable="true"
-android:onClick="launchOffers"/>
+                android:onClick="launchOffers"
+                android:padding="6dp"
+                android:textSize="26sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -96,25 +104,25 @@ android:onClick="launchOffers"/>
         android:id="@+id/itemContainerWrapper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/freeCurrencyWrapper"
+        android:layout_below="@id/shopTopBar"
+        android:layout_marginBottom="4dp"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="7dp"
-        android:layout_marginBottom="4dp"
-        android:layout_below="@id/shopTopBar"
-        android:layout_above="@id/freeCurrencyWrapper"
         android:background="@color/city"
         android:fadeScrollbars="false">
+
         <TableLayout
             android:id="@+id/itemContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:stretchColumns="*"/>
+            android:stretchColumns="*" />
     </ScrollView>
 
     <LinearLayout
         android:id="@+id/croutonview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
-    </LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"></LinearLayout>
 </android.support.percent.PercentRelativeLayout>

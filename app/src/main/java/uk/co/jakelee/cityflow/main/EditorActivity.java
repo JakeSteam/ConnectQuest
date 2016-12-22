@@ -84,7 +84,7 @@ public class EditorActivity extends Activity implements PuzzleDisplayer {
         selectedTile = Tile.get(selectedTile.getId());
         int drawableId = DisplayHelper.getTileDrawableId(this, selectedTile.getTileTypeId(), selectedTile.getRotation());
         Picasso.with(this).load(drawableId).into(selectedTileImage);
-        ((TextView)findViewById(R.id.selectedTileText)).setText(TileType.get(selectedTile.getTileTypeId()).getName());
+        ((TextView) findViewById(R.id.selectedTileText)).setText(TileType.get(selectedTile.getTileTypeId()).getName());
     }
 
     public void fetchImages(List<Tile> tiles) {
@@ -100,7 +100,7 @@ public class EditorActivity extends Activity implements PuzzleDisplayer {
 
 
     public void populateTiles(List<Tile> tiles) {
-        Pair<ImageView, Float> tileDisplayResults = dh.setupTileDisplay(this, tiles, (ZoomableViewGroup)findViewById(R.id.tileContainer), puzzleId, selectedTile, selectedTileImage, true);
+        Pair<ImageView, Float> tileDisplayResults = dh.setupTileDisplay(this, tiles, (ZoomableViewGroup) findViewById(R.id.tileContainer), puzzleId, selectedTile, selectedTileImage, true);
         selectedTileImage = tileDisplayResults.first;
         optimumScale = tileDisplayResults.second;
         selectedTile = tiles.get(0);
@@ -131,7 +131,7 @@ public class EditorActivity extends Activity implements PuzzleDisplayer {
         selectedTileImage.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
 
         selectedTile = tile;
-        ((TextView)findViewById(R.id.selectedTileText)).setText(TileType.get(selectedTile.getTileTypeId()).getName());
+        ((TextView) findViewById(R.id.selectedTileText)).setText(TileType.get(selectedTile.getTileTypeId()).getName());
     }
 
     public void rotateTile(View v) {

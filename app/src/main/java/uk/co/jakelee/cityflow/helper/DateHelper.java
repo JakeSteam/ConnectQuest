@@ -24,23 +24,23 @@ public class DateHelper {
     }
 
     public static String getHoursMinsRemaining(Long timestamp) {
-        int minutes = (int) ((timestamp / (1000*60)) % 60);
-        int hours   = (int) ((timestamp / (1000*60*60)) % 24);
+        int minutes = (int) ((timestamp / (1000 * 60)) % 60);
+        int hours = (int) ((timestamp / (1000 * 60 * 60)) % 24);
 
         return hours + " hr " + minutes + " min";
     }
 
     public static String getMinsSecsRemaining(Long timestamp) {
-        int seconds = (int) (timestamp / 1000) % 60 ;
-        int minutes = (int) ((timestamp / (1000*60)) % 60);
+        int seconds = (int) (timestamp / 1000) % 60;
+        int minutes = (int) ((timestamp / (1000 * 60)) % 60);
 
         return minutes + " min " + seconds + " s";
     }
 
     public static String getHoursMinsSecsRemaining(Long timestamp) {
-        int seconds = (int) (timestamp / 1000) % 60 ;
-        int minutes = (int) ((timestamp / (1000*60)) % 60);
-        int hours   = (int) ((timestamp / (1000*60*60)) % 24);
+        int seconds = (int) (timestamp / 1000) % 60;
+        int minutes = (int) ((timestamp / (1000 * 60)) % 60);
+        int hours = (int) ((timestamp / (1000 * 60 * 60)) % 24);
 
         return hours + " hr " + minutes + " min " + seconds + " s";
     }
@@ -59,13 +59,13 @@ public class DateHelper {
     }
 
     public static int getMinutesInMilliseconds(long milliseconds) {
-        return (int) (milliseconds / (1000*60));
+        return (int) (milliseconds / (1000 * 60));
     }
 
     public static String getPuzzleTimeString(long timeTaken) {
         if (timeTaken == 0 || timeTaken == Constants.PUZZLE_DEFAULT_TIME) {
             return "N/A";
         }
-        return String.format(Locale.ENGLISH, "%.2fs", (double)timeTaken/1000);
+        return String.format(Locale.ENGLISH, "%.2fs", (double) timeTaken / 1000);
     }
 }

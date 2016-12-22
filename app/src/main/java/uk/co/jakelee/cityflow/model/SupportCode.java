@@ -16,16 +16,16 @@ public class SupportCode extends SugarRecord {
         this.supportCode = EncryptHelper.encode(supportCode);
     }
 
+    public static boolean alreadyApplied(String supportCode) {
+        return Select.from(SupportCode.class).where(
+                Condition.prop("support_code").eq(EncryptHelper.encode(supportCode))).count() > 0;
+    }
+
     public String getSupportCode() {
         return EncryptHelper.decode(supportCode);
     }
 
     public void setSupportCode(String supportCode) {
         this.supportCode = EncryptHelper.encode(supportCode);
-    }
-
-    public static boolean alreadyApplied(String supportCode) {
-        return Select.from(SupportCode.class).where(
-                Condition.prop("support_code").eq(EncryptHelper.encode(supportCode))).count() > 0;
     }
 }

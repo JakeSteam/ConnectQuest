@@ -39,8 +39,8 @@ import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
 public class DisplayHelper {
-    private final Context context;
     private static DisplayHelper dhInstance = null;
+    private final Context context;
 
     public DisplayHelper(Context context) {
         this.context = context;
@@ -60,10 +60,10 @@ public class DisplayHelper {
 
     public static List<Integer> getAllTileDrawableIds(Context context, int tile) {
         List<Integer> ids = new ArrayList<>();
-            ids.add(getDrawableId(context, "tile_" + tile + "_1"));
-            ids.add(getDrawableId(context, "tile_" + tile + "_2"));
-            ids.add(getDrawableId(context, "tile_" + tile + "_3"));
-            ids.add(getDrawableId(context, "tile_" + tile + "_4"));
+        ids.add(getDrawableId(context, "tile_" + tile + "_1"));
+        ids.add(getDrawableId(context, "tile_" + tile + "_2"));
+        ids.add(getDrawableId(context, "tile_" + tile + "_3"));
+        ids.add(getDrawableId(context, "tile_" + tile + "_4"));
         return ids;
     }
 
@@ -110,14 +110,15 @@ public class DisplayHelper {
                         }
                     }
                 } catch (Exception e) {
-                   e.printStackTrace();
+                    e.printStackTrace();
                 }
 
                 if (needsProcessing) {
                     puzzleDisplayer.handleTileClick(image, tile);
                 }
                 return true;
-            }});
+            }
+        });
         return image;
     }
 
@@ -128,10 +129,10 @@ public class DisplayHelper {
         RelativeLayout puzzleButton = (RelativeLayout) LayoutInflater.from(activity).inflate(R.layout.custom_puzzle_select_button, null);
 
         puzzleButton.setBackgroundColor(ContextCompat.getColor(activity, isSelected ? R.color.green : R.color.ltltgrey));
-        ((TextView)puzzleButton.findViewById(R.id.puzzleNumber)).setText(" " + puzzleNumber + " ");
-        ((TextView)puzzleButton.findViewById(R.id.puzzleStatus)).setText(
+        ((TextView) puzzleButton.findViewById(R.id.puzzleNumber)).setText(" " + puzzleNumber + " ");
+        ((TextView) puzzleButton.findViewById(R.id.puzzleStatus)).setText(
                 !lastLevelCompleted ? R.string.icon_lock : hasAllStars ? R.string.icon_tick : hasCompleted ? R.string.icon_tick : R.string.icon_unlock);
-        ((TextView)puzzleButton.findViewById(R.id.puzzleStatus)).setTextColor(ContextCompat.getColor(activity,
+        ((TextView) puzzleButton.findViewById(R.id.puzzleStatus)).setTextColor(ContextCompat.getColor(activity,
                 !lastLevelCompleted ? R.color.ltred : hasAllStars ? R.color.gold : hasCompleted ? R.color.dkgreen : R.color.ltgrey));
 
         puzzleButton.setOnClickListener(new Button.OnClickListener() {
@@ -146,8 +147,8 @@ public class DisplayHelper {
     public RelativeLayout createItemSelectButton(final ShopActivity activity, final ShopItem item) {
         LayoutInflater inflater = LayoutInflater.from(activity);
         RelativeLayout itemButton = (RelativeLayout) inflater.inflate(R.layout.custom_item_select_button, null);
-        ((ImageView)itemButton.findViewById(R.id.itemImage)).setImageResource(getItemDrawableID(item.getItemId()));
-        ((TextView)itemButton.findViewById(R.id.itemPrice)).setText(item.atMaxPurchases() ? "N/A" : Integer.toString(item.getPrice()));
+        ((ImageView) itemButton.findViewById(R.id.itemImage)).setImageResource(getItemDrawableID(item.getItemId()));
+        ((TextView) itemButton.findViewById(R.id.itemPrice)).setText(item.atMaxPurchases() ? "N/A" : Integer.toString(item.getPrice()));
 
         itemButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -162,7 +163,7 @@ public class DisplayHelper {
         ImageView tileIcon = new ImageView(context);
         if (displayStatus && tileType.getStatus() == Constants.TILE_STATUS_UNPURCHASED) {
             tileIcon.setImageDrawable(createDrawable(R.drawable.tile_unbought, width, height));
-        } else if (displayStatus && tileType.getStatus() == Constants.TILE_STATUS_LOCKED){
+        } else if (displayStatus && tileType.getStatus() == Constants.TILE_STATUS_LOCKED) {
             tileIcon.setImageDrawable(createDrawable(R.drawable.tile_locked, width, height));
         } else {
             tileIcon.setImageDrawable(createDrawable(getTileDrawableID(tileType.getTypeId()), width, height));
@@ -172,10 +173,10 @@ public class DisplayHelper {
         return tileIcon;
     }
 
-    public int dpToPixel(float dp){
+    public int dpToPixel(float dp) {
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
-        float px = dp * ((float)metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+        float px = dp * ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
         return (int) px;
     }
 
@@ -255,11 +256,11 @@ public class DisplayHelper {
         int screenWidth = displayMetrics.widthPixels;
 
         double totalTilesAmount = (xTiles + yTiles) / 2.0;
-        int puzzleHeight = (int)(totalTilesAmount * getTileHeight());
-        int puzzleWidth = (int)(totalTilesAmount * getTileWidth());
+        int puzzleHeight = (int) (totalTilesAmount * getTileHeight());
+        int puzzleWidth = (int) (totalTilesAmount * getTileWidth());
 
-        float xZoomFactor = screenWidth / (float)(puzzleWidth);
-        float yZoomFactor = (screenHeight / (float)(puzzleHeight)) / 2;
+        float xZoomFactor = screenWidth / (float) (puzzleWidth);
+        float yZoomFactor = (screenHeight / (float) (puzzleHeight)) / 2;
         float zoomFactor = Math.min(xZoomFactor, yZoomFactor);
 
         int offset = puzzleHeight / 2;

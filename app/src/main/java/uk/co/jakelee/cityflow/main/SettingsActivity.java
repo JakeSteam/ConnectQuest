@@ -122,7 +122,7 @@ public class SettingsActivity extends AllowMeActivity {
 
         // Gameplay settings
         Background background = Background.getActiveBackground();
-        ((TextView)findViewById(R.id.backgroundPickerButton)).setText(background.getName());
+        ((TextView) findViewById(R.id.backgroundPickerButton)).setText(background.getName());
         findViewById(R.id.backgroundPickerButton).setBackgroundColor(background.getBackgroundColour());
 
         ((TextView) findViewById(R.id.zenToggleButton)).setText(Setting.getSafeBoolean(Constants.SETTING_ZEN_MODE) ? R.string.icon_tick : R.string.icon_cross);
@@ -177,7 +177,7 @@ public class SettingsActivity extends AllowMeActivity {
             }
         }
 
-        final Spinner spinner = (Spinner)findViewById(spinnerId);
+        final Spinner spinner = (Spinner) findViewById(spinnerId);
         int setting = Setting.get(settingId).getIntValue();
         spinner.setAdapter(envAdapter);
         spinner.setSelection(setting);
@@ -226,7 +226,9 @@ public class SettingsActivity extends AllowMeActivity {
                 }
             }
 
-            @Override public void onNothingSelected(AdapterView<?> parentView) {}
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
         };
     }
 
@@ -282,11 +284,11 @@ public class SettingsActivity extends AllowMeActivity {
     }
 
     public void changeFloat(View v) {
-        AlertDialogHelper.changeSettingFloat(this, Integer.parseInt((String)v.getTag()));
+        AlertDialogHelper.changeSettingFloat(this, Integer.parseInt((String) v.getTag()));
     }
 
     public void changeInt(View v) {
-        AlertDialogHelper.changeSettingInt(this, Integer.parseInt((String)v.getTag()));
+        AlertDialogHelper.changeSettingInt(this, Integer.parseInt((String) v.getTag()));
     }
 
     public void openSupportCode(View v) {
@@ -317,7 +319,7 @@ public class SettingsActivity extends AllowMeActivity {
     public void tutorialAction(View v) {
         Setting setting = Setting.get(Constants.SETTING_TUTORIAL_STAGE);
         if (setting.getIntValue() <= Constants.TUTORIAL_MAX) {
-            setting.setIntValue(Constants.TUTORIAL_MAX + 1) ;
+            setting.setIntValue(Constants.TUTORIAL_MAX + 1);
             AlertHelper.success(this, Text.get("ALERT_TUTORIAL_SKIPPED"));
         } else {
             setting.setIntValue(Constants.TUTORIAL_MIN);

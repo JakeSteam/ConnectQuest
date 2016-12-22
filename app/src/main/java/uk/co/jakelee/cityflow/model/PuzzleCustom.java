@@ -26,6 +26,11 @@ public class PuzzleCustom extends SugarRecord {
         this.hasBeenTested = hasBeenTested;
     }
 
+    static public PuzzleCustom get(int puzzleId) {
+        return Select.from(PuzzleCustom.class).where(
+                Condition.prop("puzzle_id").eq(puzzleId)).first();
+    }
+
     public int getPuzzleId() {
         return puzzleId;
     }
@@ -80,10 +85,5 @@ public class PuzzleCustom extends SugarRecord {
 
     public void setHasBeenTested(boolean hasBeenTested) {
         this.hasBeenTested = hasBeenTested;
-    }
-
-    static public PuzzleCustom get(int puzzleId) {
-        return Select.from(PuzzleCustom.class).where(
-                Condition.prop("puzzle_id").eq(puzzleId)).first();
     }
 }

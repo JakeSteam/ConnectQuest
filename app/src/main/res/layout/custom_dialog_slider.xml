@@ -1,18 +1,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout"
+    style="@style/Theme.AlertDialog"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="15dp"
     android:layout_gravity="center"
-    style="@style/Theme.AlertDialog">
+    android:orientation="vertical"
+    android:padding="15dp">
 
     <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/settingName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:textSize="25sp" />
 
     <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/currentValue"
@@ -26,53 +26,52 @@
         android:id="@+id/minValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/currentValue"
         android:layout_alignParentLeft="true"
+        android:layout_below="@id/currentValue"
         android:textSize="18sp" />
 
     <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/maxValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/currentValue"
         android:layout_alignParentRight="true"
+        android:layout_below="@id/currentValue"
         android:textSize="18sp" />
 
-    <SeekBar
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <SeekBar xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/seekbar"
-        android:layout_height="wrap_content"
         android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/currentValue"
         android:layout_margin="10dp"
-        android:layout_toRightOf="@id/minValue"
         android:layout_toLeftOf="@id/maxValue"
-        android:layout_below="@id/currentValue"/>
+        android:layout_toRightOf="@id/minValue" />
 
     <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/orange"
-        android:textSize="25sp"
-        android:layout_marginTop="25dp"
+        android:layout_below="@id/seekbar"
         android:layout_marginRight="5dp"
+        android:layout_marginTop="25dp"
+        android:background="@color/orange"
+        android:gravity="center_horizontal"
         android:padding="10dp"
         android:textColor="@color/black"
-        android:gravity="center_horizontal"
-        android:layout_below="@id/seekbar"/>
+        android:textSize="25sp" />
 
     <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/saveValue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue"
-        android:textSize="25sp"
-        android:layout_marginTop="25dp"
+        android:layout_below="@id/seekbar"
         android:layout_marginLeft="5dp"
-        android:padding="10dp"
+        android:layout_marginTop="25dp"
         android:layout_toRightOf="@id/close"
-        android:textColor="@color/black"
+        android:background="@color/blue"
         android:gravity="center_horizontal"
-        android:layout_below="@id/seekbar"/>
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textSize="25sp" />
 
 </RelativeLayout>

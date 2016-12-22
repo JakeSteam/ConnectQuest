@@ -46,10 +46,10 @@ public class ShopItemActivity extends Activity {
     private void populateItemInfo() {
         if (shopItem.getCategoryId() == Constants.STORE_CATEGORY_TILES) {
             ((TextView) findViewById(R.id.itemName)).setText(Tile.get(shopItem.getSubcategoryId()).getName());
-            ((TextView)findViewById(R.id.itemDesc)).setText("");
+            ((TextView) findViewById(R.id.itemDesc)).setText("");
         } else {
             ((TextView) findViewById(R.id.itemName)).setText(shopItem.getName());
-            ((TextView)findViewById(R.id.itemDesc)).setText(shopItem.getDescription());
+            ((TextView) findViewById(R.id.itemDesc)).setText(shopItem.getDescription());
         }
 
         if (shopItem.getCategoryId() == Constants.STORE_CATEGORY_BOOSTS && shopItem.getSubcategoryId() > 0) {
@@ -62,9 +62,9 @@ public class ShopItemActivity extends Activity {
         }
 
         if (shopItem.getMaxPurchases() > 0 && shopItem.getPurchases() >= shopItem.getMaxPurchases()) {
-            ((TextView)findViewById(R.id.purchaseButton)).setText(Text.get("SHOP_MAX_PURCHASED"));
+            ((TextView) findViewById(R.id.purchaseButton)).setText(Text.get("SHOP_MAX_PURCHASED"));
         } else {
-            ((TextView)findViewById(R.id.purchaseButton)).setText(String.format(Locale.ENGLISH, Text.get("SHOP_PURCHASE_TEXT"), shopItem.getPrice()));
+            ((TextView) findViewById(R.id.purchaseButton)).setText(String.format(Locale.ENGLISH, Text.get("SHOP_PURCHASE_TEXT"), shopItem.getPrice()));
         }
         ((TextView) findViewById(R.id.currencyCountText)).setText(Integer.toString(Statistic.getCurrency()));
     }
@@ -84,8 +84,7 @@ public class ShopItemActivity extends Activity {
                         shopItem.getCategoryId() == Constants.STORE_CATEGORY_TILES ? Tile.get(shopItem.getSubcategoryId()).getName() : shopItem.getName(),
                         shopItem.getPrice(),
                         background.getName()));
-            }
-             else {
+            } else {
                 AlertHelper.success(this, String.format(Locale.ENGLISH, Text.get("SHOP_ITEM_PURCHASED"),
                         shopItem.getCategoryId() == Constants.STORE_CATEGORY_TILES ? Tile.get(shopItem.getSubcategoryId()).getName() : shopItem.getName(),
                         shopItem.getPrice()));
@@ -96,7 +95,7 @@ public class ShopItemActivity extends Activity {
         populateItemInfo();
     }
 
-    public void closePopup (View v) {
+    public void closePopup(View v) {
         this.finish();
     }
 }
