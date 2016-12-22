@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">City Flow</string>
-
-    <string name="tile_filename">tile_%1$d_%2$d</string>
     <string name="icon_play">&#xe800;</string>
     <string name="icon_edit">&#xe801;</string>
     <string name="icon_next">&#xe802;</string>

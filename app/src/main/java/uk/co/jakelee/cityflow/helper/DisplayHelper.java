@@ -25,6 +25,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.components.TextViewFont;
@@ -54,7 +55,7 @@ public class DisplayHelper {
     }
 
     public static int getTileDrawableId(Context context, int tile, int rotation) {
-        String name = String.format(context.getString(R.string.tile_filename), tile, rotation);
+        String name = String.format(Locale.ENGLISH, "tile_%1$d_%2$d", tile, rotation);
         return getDrawableId(context, name);
     }
 
@@ -296,7 +297,7 @@ public class DisplayHelper {
             int drawableId = getTileDrawableId(puzzleDisplayer.getActivity(), tile.getTileTypeId(), tile.getRotation());
             ImageView image = createTileImageView(puzzleDisplayer, tile, drawableId, dragDelay);
 
-            //Make sure we always have a tile selected
+            // Make sure we always have a tile selected
             if (isEditor && (selectedTile == null || selectedTileImage == null)) {
                 image.setAlpha(0.75f);
                 image.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
