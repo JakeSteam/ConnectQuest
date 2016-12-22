@@ -3,6 +3,7 @@ package uk.co.jakelee.cityflow.main;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -92,6 +93,8 @@ public class SettingsActivity extends AllowMeActivity {
         ((TextView) findViewById(R.id.maxZoomText)).setText(Text.get("SETTING_4_NAME"));
         ((TextView) findViewById(R.id.vibrationToggleText)).setText(Text.get("SETTING_13_NAME"));
         ((TextView) findViewById(R.id.maxCarsText)).setText(Text.get("SETTING_9_NAME"));
+        ((TextView) findViewById(R.id.tutorialActionText)).setText(Setting.get(Constants.SETTING_TUTORIAL_STAGE).getName());
+        ((TextView) findViewById(R.id.millisForDragText)).setText(Text.get("SETTING_21_NAME"));
 
         ((TextView) findViewById(R.id.settingSectionGoogle)).setText(Text.get("SETTING_SECTION_GOOGLE"));
         ((TextView) findViewById(R.id.signInButton)).setText(Text.get("GOOGLE_SIGN_IN"));
@@ -103,9 +106,10 @@ public class SettingsActivity extends AllowMeActivity {
         ((TextView) findViewById(R.id.creditsButton)).setText(Text.get("DIALOG_CREDITS"));
         ((TextView) findViewById(R.id.statisticsButton)).setText(Text.get("DIALOG_STATISTICS"));
         ((TextView) findViewById(R.id.resetLanguageButton)).setText(Text.get("DIALOG_RESET_LANGUAGE"));
+        ((TextView) findViewById(R.id.improveLanguageButton)).setText(Text.get("DIALOG_IMPROVE_LANGUAGE"));
         ((TextView) findViewById(R.id.supportCodeButton)).setText(Text.get("DIALOG_SUPPORT_CODE"));
 
-        ((TextView) findViewById(R.id.versionText)).setText("V" + BuildConfig.VERSION_NAME + " (" + BuildConfig.VERSION_CODE + ")");
+        ((TextView) findViewById(R.id.versionText)).setText("V" + BuildConfig.VERSION_CODE + ": " + BuildConfig.VERSION_NAME + "");
     }
 
     public void populateSettings() {
@@ -118,7 +122,7 @@ public class SettingsActivity extends AllowMeActivity {
 
         // Gameplay settings
         Background background = Background.getActiveBackground();
-        ((TextView)findViewById(R.id.backgroundPickerButton)).setText(background.getName());
+        ((TextView) findViewById(R.id.backgroundPickerButton)).setText(background.getName());
         findViewById(R.id.backgroundPickerButton).setBackgroundColor(background.getBackgroundColour());
 
         ((TextView) findViewById(R.id.zenToggleButton)).setText(Setting.getSafeBoolean(Constants.SETTING_ZEN_MODE) ? R.string.icon_tick : R.string.icon_cross);
@@ -134,6 +138,8 @@ public class SettingsActivity extends AllowMeActivity {
         ((TextView) findViewById(R.id.minZoomButton)).setText(String.format(Locale.ENGLISH, "%.2f", Setting.getFloat(Constants.SETTING_MIN_ZOOM)));
         ((TextView) findViewById(R.id.maxZoomButton)).setText(String.format(Locale.ENGLISH, "%.2f", Setting.getFloat(Constants.SETTING_MAX_ZOOM)));
         ((TextView) findViewById(R.id.maxCarsButton)).setText(Integer.toString(Setting.getInt(Constants.SETTING_MAX_CARS)));
+        ((TextView) findViewById(R.id.millisForDrag)).setText(Integer.toString(Setting.getInt(Constants.SETTING_MINIMUM_MILLIS_DRAG)));
+        ((TextView) findViewById(R.id.tutorialAction)).setText(Text.get(Setting.getInt(Constants.SETTING_TUTORIAL_STAGE) <= Constants.TUTORIAL_MAX ? "WORD_SKIP" : "WORD_START"));
 
         // Google Play settings
         ((TextView) findViewById(R.id.autosaveDisplay)).setText(Integer.toString(Setting.getInt(Constants.SETTING_AUTOSAVE_FREQUENCY)));
@@ -171,7 +177,7 @@ public class SettingsActivity extends AllowMeActivity {
             }
         }
 
-        final Spinner spinner = (Spinner)findViewById(spinnerId);
+        final Spinner spinner = (Spinner) findViewById(spinnerId);
         int setting = Setting.get(settingId).getIntValue();
         spinner.setAdapter(envAdapter);
         spinner.setSelection(setting);
@@ -220,7 +226,9 @@ public class SettingsActivity extends AllowMeActivity {
                 }
             }
 
-            @Override public void onNothingSelected(AdapterView<?> parentView) {}
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
         };
     }
 
@@ -276,11 +284,11 @@ public class SettingsActivity extends AllowMeActivity {
     }
 
     public void changeFloat(View v) {
-        AlertDialogHelper.changeSettingFloat(this, Integer.parseInt((String)v.getTag()));
+        AlertDialogHelper.changeSettingFloat(this, Integer.parseInt((String) v.getTag()));
     }
 
     public void changeInt(View v) {
-        AlertDialogHelper.changeSettingInt(this, Integer.parseInt((String)v.getTag()));
+        AlertDialogHelper.changeSettingInt(this, Integer.parseInt((String) v.getTag()));
     }
 
     public void openSupportCode(View v) {
@@ -301,10 +309,24 @@ public class SettingsActivity extends AllowMeActivity {
         language.setIntValue(Constants.LANGUAGE_EN);
         language.save();
 
-        Text.deleteAll(Text.class, "language <> " + Constants.LANGUAGE_EN);
+        Text.deleteAll(Text.class);
+        TextHelper.installLanguagePack(Constants.LANGUAGE_EN);
 
         populateText();
         createDropdowns();
+    }
+
+    public void tutorialAction(View v) {
+        Setting setting = Setting.get(Constants.SETTING_TUTORIAL_STAGE);
+        if (setting.getIntValue() <= Constants.TUTORIAL_MAX) {
+            setting.setIntValue(Constants.TUTORIAL_MAX + 1);
+            AlertHelper.success(this, Text.get("ALERT_TUTORIAL_SKIPPED"));
+        } else {
+            setting.setIntValue(Constants.TUTORIAL_MIN);
+            AlertHelper.success(this, Text.get("ALERT_TUTORIAL_RESTARTED"));
+        }
+        setting.save();
+        populateSettings();
     }
 
     public void openCredits(View v) {
@@ -356,6 +378,11 @@ public class SettingsActivity extends AllowMeActivity {
         if (GooglePlayHelper.IsConnected()) {
             startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_LEADERBOARDS);
         }
+    }
+
+    public void improveLanguage(View v) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/forms/d/1ZgSs4zVjlzGGQ7L4TOnIkLTWkGe8chA-1Tx7x4DtuoQ/"));
+        startActivity(browserIntent);
     }
 
     public void signIn(View v) {

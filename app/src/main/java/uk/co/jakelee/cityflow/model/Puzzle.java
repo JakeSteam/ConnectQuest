@@ -37,6 +37,22 @@ public class Puzzle extends SugarRecord {
         this.movesStar = EncryptHelper.encode(false, puzzleId + 3000);
     }
 
+    public static Puzzle getPuzzle(int puzzleId) {
+        return Select.from(Puzzle.class).where(Condition.prop("puzzle_id").eq(puzzleId)).first();
+    }
+
+    public static void shuffle(List<Tile> tiles) {
+        for (Tile tile : tiles) {
+            tile.setRotation(RandomHelper.getNumber(Constants.ROTATION_MIN, Constants.ROTATION_MAX));
+        }
+        Tile.saveInTx(tiles);
+    }
+
+    public static List<Puzzle> getCustomPuzzles(boolean displayOthers) {
+        int authorSelection = displayOthers ? 0 : 1;
+        return Select.from(Puzzle.class).where("puzzle_id IN (SELECT puzzle_id FROM puzzle_custom WHERE original_author = " + authorSelection + " ORDER BY date_added DESC)").list();
+    }
+
     public int getPuzzleId() {
         return puzzleId;
     }
@@ -81,16 +97,16 @@ public class Puzzle extends SugarRecord {
         return EncryptHelper.decodeToInt(bestMoves, puzzleId);
     }
 
+    public void setBestMoves(int bestMoves) {
+        this.bestMoves = EncryptHelper.encode(bestMoves, puzzleId);
+    }
+
     public String getBestMovesText() {
         int unfiltered = EncryptHelper.decodeToInt(bestMoves, puzzleId);
         if (unfiltered == 0 || unfiltered == Constants.PUZZLE_DEFAULT_MOVES) {
             return Text.get("WORD_NA");
         }
         return Integer.toString(unfiltered);
-    }
-
-    public void setBestMoves(int bestMoves) {
-        this.bestMoves = EncryptHelper.encode(bestMoves, puzzleId);
     }
 
     public boolean hasCompletionStar() {
@@ -144,15 +160,8 @@ public class Puzzle extends SugarRecord {
                 Condition.prop("puzzle_required").eq(puzzleId)).list();
     }
 
-    public static Puzzle getPuzzle(int puzzleId) {
-        return Select.from(Puzzle.class).where(Condition.prop("puzzle_id").eq(puzzleId)).first();
-    }
-
-    public static void shuffle(List<Tile> tiles) {
-        for (Tile tile : tiles) {
-            tile.setRotation(RandomHelper.getNumber(Constants.ROTATION_MIN, Constants.ROTATION_MAX));
-        }
-        Tile.saveInTx(tiles);
+    public void unlockRelatedTiles() {
+        TileType.executeQuery("UPDATE tile_type SET status = " + Constants.TILE_STATUS_UNLOCKED + " WHERE puzzle_required = " + puzzleId);
     }
 
     public int getStarCount() {
@@ -167,11 +176,6 @@ public class Puzzle extends SugarRecord {
             stars++;
         }
         return stars;
-    }
-
-    public static List<Puzzle> getCustomPuzzles(boolean displayOthers) {
-        int authorSelection = displayOthers ? 0 : 1;
-        return Select.from(Puzzle.class).where("puzzle_id IN (SELECT puzzle_id FROM puzzle_custom WHERE original_author = " + authorSelection + " ORDER BY date_added DESC)").list();
     }
 
     public PuzzleCustom getCustomData() {

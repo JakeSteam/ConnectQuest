@@ -8,18 +8,42 @@ import java.util.List;
 
 import uk.co.jakelee.cityflow.helper.EncryptHelper;
 
-public class Iap extends SugarRecord{
+public class Iap extends SugarRecord {
     private String iapCode;
     private String purchases;
+    private String maxPurchases;
     private String coins;
 
     public Iap() {
     }
 
-    public Iap(String iapCode, int coins) {
+    public Iap(String iapCode, int coins, int maxPurchases) {
         this.iapCode = iapCode;
         this.purchases = EncryptHelper.encode(0, 234);
+        this.maxPurchases = EncryptHelper.encode(maxPurchases, 333);
         this.coins = EncryptHelper.encode(coins, 456);
+    }
+
+    public static Iap get(String code) {
+        return Select.from(Iap.class).where(
+                Condition.prop("iap_code").eq(code)).first();
+    }
+
+    public static boolean hasCoinDoubler() {
+        Iap iap = Iap.get("x2_doubler");
+        return iap != null && iap.getPurchases() > 0;
+    }
+
+    public static boolean hasPurchasedAnything() {
+        boolean hasPurchased = false;
+        List<Iap> iaps = Iap.listAll(Iap.class);
+        for (Iap iap : iaps) {
+            if (iap.getPurchases() > 0) {
+                hasPurchased = true;
+                break;
+            }
+        }
+        return hasPurchased;
     }
 
     public String getIapCode() {
@@ -38,6 +62,14 @@ public class Iap extends SugarRecord{
         this.purchases = EncryptHelper.encode(purchases, 234);
     }
 
+    public int getMaxPurchases() {
+        return EncryptHelper.decodeToInt(maxPurchases, 333);
+    }
+
+    public void setMaxPurchases(int maxPurchases) {
+        this.maxPurchases = EncryptHelper.encode(maxPurchases, 333);
+    }
+
     public int getCoins() {
         return EncryptHelper.decodeToInt(coins, 456);
     }
@@ -46,24 +78,21 @@ public class Iap extends SugarRecord{
         this.coins = EncryptHelper.encode(coins, 456);
     }
 
-    public static Iap get(String code) {
-        return Select.from(Iap.class).where(
-                Condition.prop("iap_code").eq(code)).first();
+    public String getName() {
+        String coinString = Text.get("STATISTIC_6_NAME");
+        String allString = Text.get("WORD_ALL");
+        if (getCoins() > 0) {
+            return getCoins() + " " + coinString;
+        } else {
+            return "2x " + allString + "\n" + coinString;
+        }
     }
 
     public void purchase() {
-        Statistic.addCurrency(getCoins());
-    }
-
-    public static boolean hasPurchasedAnything() {
-        boolean hasPurchased = false;
-        List<Iap> iaps = Iap.listAll(Iap.class);
-        for (Iap iap : iaps) {
-            if (iap.getPurchases() > 0) {
-                hasPurchased = true;
-                break;
-            }
+        if (getCoins() > 0) {
+            Statistic.addCurrency(getCoins());
         }
-        return hasPurchased;
+        setPurchases(getPurchases() + 1);
+        save();
     }
 }

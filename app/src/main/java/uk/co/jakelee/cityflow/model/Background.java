@@ -29,6 +29,30 @@ public class Background extends SugarRecord {
         this.active = active;
     }
 
+    public static Background get(int backgroundId) {
+        return Select.from(Background.class).where(
+                Condition.prop("background_id").eq(backgroundId)).first();
+    }
+
+    public static int getActiveBackgroundColour() {
+        return Color.parseColor("#" + Background.getActiveBackground().getHex());
+    }
+
+    public static Background getActiveBackground() {
+        return Select.from(Background.class).where(
+                Condition.prop("active").eq(1)).first();
+    }
+
+    public static void setActiveBackground(int backgroundId) {
+        Background.executeQuery("UPDATE background SET active = 0");
+        Background.executeQuery("UPDATE background SET active = 1 WHERE background_id = " + backgroundId);
+    }
+
+    public static int getUnlockedBackgroundCount() {
+        return (int) Select.from(Background.class).where(
+                Condition.prop("unlocked").eq(1)).count();
+    }
+
     public int getBackgroundId() {
         return backgroundId;
     }
@@ -62,32 +86,8 @@ public class Background extends SugarRecord {
         this.active = active;
     }
 
-    public static Background get(int backgroundId) {
-        return Select.from(Background.class).where(
-                Condition.prop("background_id").eq(backgroundId)).first();
-    }
-
-    public static int getActiveBackgroundColour() {
-        return Color.parseColor("#" + Background.getActiveBackground().getHex());
-    }
-
     public int getBackgroundColour() {
         return Color.parseColor("#" + getHex());
-    }
-
-    public static Background getActiveBackground() {
-        return Select.from(Background.class).where(
-                Condition.prop("active").eq(1)).first();
-    }
-
-    public static int getUnlockedBackgroundCount() {
-        return (int) Select.from(Background.class).where(
-                Condition.prop("unlocked").eq(1)).count();
-    }
-
-    public static void setActiveBackground(int backgroundId) {
-        Background.executeQuery("UPDATE background SET active = 0");
-        Background.executeQuery("UPDATE background SET active = 1 WHERE background_id = " + backgroundId);
     }
 
     public String getName() {

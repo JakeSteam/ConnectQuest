@@ -8,22 +8,19 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.util.Log;
+import android.util.SparseArray;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.google.android.gms.vision.Frame;
+import com.google.android.gms.vision.barcode.Barcode;
+import com.google.android.gms.vision.barcode.BarcodeDetector;
 import com.google.zxing.BarcodeFormat;
-import com.google.zxing.BinaryBitmap;
-import com.google.zxing.DecodeHintType;
 import com.google.zxing.EncodeHintType;
-import com.google.zxing.LuminanceSource;
-import com.google.zxing.MultiFormatReader;
 import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.RGBLuminanceSource;
-import com.google.zxing.Result;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
-import com.google.zxing.common.HybridBinarizer;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -32,29 +29,30 @@ import java.util.Map;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
+import uk.co.jakelee.cityflow.model.Puzzle;
 
 public class StorageHelper {
-    private static final int screenshotSize = 500;
-
     public final static int WHITE = 0xFFFFFFFF;
     public final static int BLACK = 0xFF000000;
     public final static int WIDTH = 400;
     public final static int HEIGHT = 400;
+    private static final int screenshotSize = 500;
 
     public static void fillWithQrDrawable(ImageView imageView, String text) {
         try {
-            Bitmap bitmap = encodeAsBitmap(text);
+            Bitmap bitmap = generateQrCode(text);
             imageView.setImageBitmap(bitmap);
         } catch (WriterException e) {
             e.printStackTrace();
         }
     }
 
-    private static Bitmap encodeAsBitmap(String str) throws WriterException {
+    private static Bitmap generateQrCode(String str) throws WriterException {
         BitMatrix result;
         try {
             Map<EncodeHintType, Object> hints = new EnumMap<>(EncodeHintType.class);
-            hints.put(EncodeHintType.MARGIN, 4);
+            hints.put(EncodeHintType.MARGIN, 0);
+            hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
             result = new MultiFormatWriter().encode(str, BarcodeFormat.QR_CODE, WIDTH, HEIGHT, hints);
         } catch (IllegalArgumentException iae) {
             // Unsupported format
@@ -76,8 +74,8 @@ public class StorageHelper {
         return bitmap;
     }
 
-    public static void saveCustomPuzzleImage(Activity activity, int puzzleId, float screenshotScale, boolean forceSave) {
-        ZoomableViewGroup tileContainer = (ZoomableViewGroup)activity.findViewById(R.id.tileContainer);
+    public static void saveCustomPuzzleImage(Activity activity, int puzzleId, final float screenshotScale, boolean forceSave) {
+        final ZoomableViewGroup tileContainer = (ZoomableViewGroup) activity.findViewById(R.id.tileContainer);
         String filename = "puzzle_" + puzzleId + ".png";
         boolean existsAlready = activity.getFileStreamPath(filename).exists();
         if (tileContainer == null || (!forceSave && existsAlready)) {
@@ -86,14 +84,13 @@ public class StorageHelper {
 
         try {
             tileContainer.setBackgroundColor(Color.TRANSPARENT);
-            tileContainer.setScaleFactor(screenshotScale / 3, true);
+            tileContainer.reset(screenshotScale);
             tileContainer.setDrawingCacheEnabled(true);
             Bitmap b = Bitmap.createBitmap(tileContainer.getDrawingCache());
             b = resize(b);
             b = trim(b);
 
             FileOutputStream fos = activity.openFileOutput(filename, Context.MODE_PRIVATE);
-            Log.d("Saved", "Puzzle image: " + puzzleId);
             b.compress(Bitmap.CompressFormat.PNG, 100, fos);
             fos.flush();
             fos.close();
@@ -103,7 +100,8 @@ public class StorageHelper {
     }
 
     public static String saveCardImage(Activity activity, int puzzleId) {
-        RelativeLayout card = (RelativeLayout)activity.findViewById(R.id.puzzleCard);
+        RelativeLayout card = (RelativeLayout) activity.findViewById(R.id.puzzleCard);
+        String puzzleName = Puzzle.getPuzzle(puzzleId).getCustomData().getName();
 
         if (card == null) {
             return "";
@@ -111,28 +109,22 @@ public class StorageHelper {
 
         card.setDrawingCacheEnabled(true);
         Bitmap b = Bitmap.createBitmap(card.getDrawingCache());
-        return insertImage(activity.getContentResolver(), b, "CityFlow Puzzle Card");
+        return insertImage(activity.getContentResolver(), b, puzzleName + " - CityFlow Puzzle Card");
     }
 
-    public static String readQRImage(Bitmap bMap) {
+    public static String readQRImage(Activity activity, Bitmap bitmap) {
         String contents = "";
 
-        int[] intArray = new int[bMap.getWidth() * bMap.getHeight()];
-        bMap.getPixels(intArray, 0, bMap.getWidth(), 0, 0, bMap.getWidth(), bMap.getHeight());
+        BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(activity)
+                .setBarcodeFormats(Barcode.QR_CODE)
+                .build();
 
-        LuminanceSource source = new RGBLuminanceSource(bMap.getWidth(), bMap.getHeight(), intArray);
-        BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+        SparseArray<Barcode> detectedBarcodes = barcodeDetector.detect(new Frame.Builder()
+                .setBitmap(bitmap)
+                .build());
 
-        MultiFormatReader reader = new MultiFormatReader();
-        try {
-            Map<DecodeHintType, Object> hints = new EnumMap<>(DecodeHintType.class);
-            //hints.put(DecodeHintType.TRY_HARDER, true);
-            //hints.put(DecodeHintType.POSSIBLE_FORMATS, EnumSet.of(BarcodeFormat.QR_CODE));
-            //hints.put(DecodeHintType.PURE_BARCODE, false);
-            Result result = reader.decode(bitmap, hints);
-            contents = result.getText();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (detectedBarcodes.size() > 0 && detectedBarcodes.valueAt(0) != null) {
+            contents = detectedBarcodes.valueAt(0).rawValue;
         }
         return contents;
     }
@@ -149,39 +141,36 @@ public class StorageHelper {
         int finalWidth = maxWidth;
         int finalHeight = maxHeight;
         if (ratioMax > 1) {
-            finalWidth = (int) ((float)maxHeight * ratioBitmap);
+            finalWidth = (int) ((float) maxHeight * ratioBitmap);
         } else {
-            finalHeight = (int) ((float)maxWidth / ratioBitmap);
+            finalHeight = (int) ((float) maxWidth / ratioBitmap);
         }
         image = Bitmap.createScaledBitmap(image, finalWidth, finalHeight, true);
         return image;
     }
 
-    private static Bitmap trim(Bitmap sourceBitmap)
-    {
+    private static Bitmap trim(Bitmap sourceBitmap) {
         int minX = sourceBitmap.getWidth();
         int minY = sourceBitmap.getHeight();
         int maxX = -1;
         int maxY = -1;
-        for(int y = 0; y < sourceBitmap.getHeight(); y++)
-        {
-            for(int x = 0; x < sourceBitmap.getWidth(); x++)
-            {
+        for (int y = 0; y < sourceBitmap.getHeight(); y++) {
+            for (int x = 0; x < sourceBitmap.getWidth(); x++) {
                 int alpha = (sourceBitmap.getPixel(x, y) >> 24) & 255;
-                if(alpha > 0)   // pixel is not 100% transparent
+                if (alpha > 0)   // pixel is not 100% transparent
                 {
-                    if(x < minX)
+                    if (x < minX)
                         minX = x;
-                    if(x > maxX)
+                    if (x > maxX)
                         maxX = x;
-                    if(y < minY)
+                    if (y < minY)
                         minY = y;
-                    if(y > maxY)
+                    if (y > maxY)
                         maxY = y;
                 }
             }
         }
-        if((maxX < minX) || (maxY < minY))
+        if ((maxX < minX) || (maxY < minY))
             return null; // Bitmap is entirely transparent
 
         // crop bitmap to non-transparent area and return:

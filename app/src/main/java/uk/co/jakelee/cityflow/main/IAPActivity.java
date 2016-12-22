@@ -28,9 +28,9 @@ import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class IAPActivity extends Activity implements BillingProcessor.IBillingHandler {
+    boolean canBuyIAPs = false;
     private BillingProcessor bp;
     private DisplayHelper dh;
-    boolean canBuyIAPs = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +58,8 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
     }
 
     private void populateText() {
-        ((TextView)findViewById(R.id.iapTitle)).setText(Text.get("UI_IAP_TITLE"));
-        ((TextView)findViewById(R.id.teaserText)).setText(Text.get(Iap.hasPurchasedAnything() ? "UI_IAP_TIP" : "UI_IAP_TEASER"));
+        ((TextView) findViewById(R.id.iapTitle)).setText(Text.get("UI_IAP_TITLE"));
+        ((TextView) findViewById(R.id.teaserText)).setText(Text.get(Iap.hasPurchasedAnything() ? "UI_IAP_TIP" : "UI_IAP_TEASER"));
     }
 
     @Override
@@ -68,7 +68,10 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
 
     @Override
     public void onProductPurchased(String productId, TransactionDetails details) {
-        bp.consumePurchase(productId);
+        if (Iap.get(productId).getCoins() > 0) {
+            bp.consumePurchase(productId);
+        }
+
         Iap.get(productId).purchase();
 
         Pack iapUnlockedPack = Pack.getPack(9);
@@ -92,7 +95,8 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
     }
 
     @Override
-    public void onPurchaseHistoryRestored() {}
+    public void onPurchaseHistoryRestored() {
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -103,7 +107,7 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
 
     public void buyIAP(View v) {
         if (canBuyIAPs) {
-            bp.purchase(this, (String)v.getTag());
+            bp.purchase(this, (String) v.getTag());
         } else {
             AlertHelper.error(this, AlertHelper.getError(AlertHelper.Error.IAB_FAILED));
         }
@@ -117,7 +121,7 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
     }
 
     private void populateIaps() {
-        LinearLayout scrollView = (LinearLayout)findViewById(R.id.iapContainer);
+        LinearLayout scrollView = (LinearLayout) findViewById(R.id.iapContainer);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(10, 10, 10, 10);
 
@@ -127,30 +131,34 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
         for (Iap iap : iaps) {
             SkuDetails iapInfo = bp.getPurchaseListingDetails(iap.getIapCode());
             RelativeLayout iapButton = (RelativeLayout) inflater.inflate(R.layout.custom_iap_button, null);
-            ((ImageView) iapButton.findViewById(R.id.itemImage)).setImageResource(dh.getIabDrawableID(iap.getIapCode()));
 
-            if (iapInfo != null) {
+            ((ImageView) iapButton.findViewById(R.id.itemImage)).setImageResource(dh.getIabDrawableID(iap.getIapCode()));
+            ((TextView) iapButton.findViewById(R.id.itemName)).setText(iap.getName());
+
+            if (iapInfo != null && (iap.getPurchases() < iap.getMaxPurchases() || iap.getMaxPurchases() == 0)) {
                 ((TextView) iapButton.findViewById(R.id.itemPrice)).setText(iapInfo.currency + " " + iapInfo.priceText);
+                iapButton.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        buyIAP(v);
+                    }
+                });
+                iapButton.setTag(iap.getIapCode());
+            } else if (iapInfo != null) {
+                ((TextView) iapButton.findViewById(R.id.itemPrice)).setText(Text.get("WORD_NA"));
             } else {
-                ((TextView) iapButton.findViewById(R.id.itemPrice)).setText("£?.??");
+                ((TextView) iapButton.findViewById(R.id.itemPrice)).setText("?.??");
             }
 
-            iapButton.setTag(iap.getIapCode());
-            iapButton.setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View v) {
-                    buyIAP(v);
-                }
-            });
             scrollView.addView(iapButton, layoutParams);
         }
     }
 
-    public void closePopup (View v) {
+    public void closePopup(View v) {
         this.finish();
     }
 
     private String getPublicKey() {
-        String[] keyArray = new String[] {
+        String[] keyArray = new String[]{
                 "MIIBIjANBgkqhki",
                 "G9w0BAQEFAAOCAQ",
                 "8AMIIBCgKCAQEAg",

@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import uk.co.jakelee.cityflow.model.Statistic;
 
 public class StatisticHelper {
-    public enum StatisticType {typeString, typeInt, typeBool, typeLong}
-
     public static String getStatisticString(Statistic statistic) {
         ArrayList<Integer> packStats = new ArrayList<>();
         packStats.add(Constants.STATISTIC_COMPLETE_PACK_1);
@@ -23,7 +21,7 @@ public class StatisticHelper {
             return statistic.getIntValue() == 1 ? "True" : "False";
         }
 
-        switch(statistic.getStatisticType()) {
+        switch (statistic.getStatisticType()) {
             case typeString:
                 return statistic.getStringValue();
             case typeLong:
@@ -33,4 +31,6 @@ public class StatisticHelper {
         }
         return "";
     }
+
+    public enum StatisticType {typeString, typeInt, typeBool, typeLong}
 }

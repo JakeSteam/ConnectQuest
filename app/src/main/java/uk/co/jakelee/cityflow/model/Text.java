@@ -7,7 +7,7 @@ import com.orm.query.Select;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.main.MainActivity;
 
-public class Text extends SugarRecord{
+public class Text extends SugarRecord {
     private int language;
     private String textId;
     private String text;
@@ -18,30 +18,6 @@ public class Text extends SugarRecord{
     public Text(int language, String textId, String text) {
         this.language = language;
         this.textId = textId;
-        this.text = text;
-    }
-
-    public int getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(int language) {
-        this.language = language;
-    }
-
-    public String getTextId() {
-        return textId;
-    }
-
-    public void setTextId(String textId) {
-        this.textId = textId;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
         this.text = text;
     }
 
@@ -81,6 +57,30 @@ public class Text extends SugarRecord{
                 Condition.prop("language").eq(Constants.LANGUAGE_EN)).first();
 
         return text != null ? text.getText() : textId;
+    }
+
+    public int getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(int language) {
+        this.language = language;
+    }
+
+    public String getTextId() {
+        return textId;
+    }
+
+    public void setTextId(String textId) {
+        this.textId = textId;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
 }

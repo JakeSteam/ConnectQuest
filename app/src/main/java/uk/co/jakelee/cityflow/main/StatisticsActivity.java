@@ -46,11 +46,11 @@ public class StatisticsActivity extends Activity {
         LinearLayout container = (LinearLayout) findViewById(R.id.statisticsContainer);
         container.removeAllViews();
 
-        ((TextView)findViewById(R.id.statisticsTitle)).setText(Text.get("DIALOG_STATISTICS"));
+        ((TextView) findViewById(R.id.statisticsTitle)).setText(Text.get("DIALOG_STATISTICS"));
 
         // Get sorted map of name + value
         List<Statistic> statistics = Statistic.listAll(Statistic.class);
-        Map<String,String> statisticsInfo = new TreeMap<>();
+        Map<String, String> statisticsInfo = new TreeMap<>();
         for (int i = 0; i < statistics.size(); i++) {
             Statistic statistic = statistics.get(i);
             statisticsInfo.put(statistic.getName(), StatisticHelper.getStatisticString(statistic));
@@ -73,7 +73,7 @@ public class StatisticsActivity extends Activity {
         return textView;
     }
 
-    public void closePopup (View v) {
+    public void closePopup(View v) {
         this.finish();
     }
 }

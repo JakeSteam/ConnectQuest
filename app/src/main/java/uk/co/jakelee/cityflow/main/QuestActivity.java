@@ -1,6 +1,8 @@
 package uk.co.jakelee.cityflow.main;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -32,11 +34,12 @@ public class QuestActivity extends Activity {
     }
 
     private void populateText() {
-        ((TextView)findViewById(R.id.currentQuests)).setText(Text.get("QUEST_CURRENT"));
-        ((TextView)findViewById(R.id.availableQuests)).setText(Text.get("QUEST_AVAILABLE"));
-        ((TextView)findViewById(R.id.upcomingQuests)).setText(Text.get("QUEST_UPCOMING"));
-        ((TextView)findViewById(R.id.completedQuests)).setText(Text.get("QUEST_COMPLETED"));
-        ((TextView)findViewById(R.id.failedQuests)).setText(Text.get("QUEST_FAILED"));
+        ((TextView) findViewById(R.id.currentQuests)).setText(Text.get("QUEST_CURRENT"));
+        ((TextView) findViewById(R.id.availableQuests)).setText(Text.get("QUEST_AVAILABLE"));
+        ((TextView) findViewById(R.id.upcomingQuests)).setText(Text.get("QUEST_UPCOMING"));
+        ((TextView) findViewById(R.id.completedQuests)).setText(Text.get("QUEST_COMPLETED"));
+        ((TextView) findViewById(R.id.failedQuests)).setText(Text.get("QUEST_FAILED"));
+        ((TextView) findViewById(R.id.redditSchedule)).setText(Text.get("QUEST_SCHEDULE"));
     }
 
     public void currentQuests(View view) {
@@ -69,7 +72,12 @@ public class QuestActivity extends Activity {
         }
     }
 
-    public void closePopup (View v) {
+    public void redditSchedule(View view) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.reddit.com/r/CityFlow/comments/5f4va6/quest_list/"));
+        startActivity(browserIntent);
+    }
+
+    public void closePopup(View v) {
         this.finish();
     }
 }

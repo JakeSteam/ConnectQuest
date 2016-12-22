@@ -5,47 +5,51 @@
     android:layout_height="match_parent"
     android:background="@color/ltltgrey"
     android:padding="7dp">
+
     <uk.co.jakelee.cityflow.components.TextViewFont
         android:id="@+id/puzzleName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
         android:layout_margin="2dp"
         android:padding="3dp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
     <uk.co.jakelee.cityflow.components.TextAwesome
         android:id="@+id/deleteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/puzzleName"
         android:layout_margin="3dp"
-        android:padding="7dp"
-        android:textSize="26sp"
-        android:text="&#xf1f8;"
         android:background="@color/orange"
-        android:textColor="@color/black"/>
+        android:padding="7dp"
+        android:text="@string/icon_delete"
+        android:textColor="@color/black"
+        android:textSize="26sp" />
+
     <uk.co.jakelee.cityflow.components.TextAwesome
         android:id="@+id/moreButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/puzzleName"
-        android:layout_toRightOf="@id/deleteButton"
         android:layout_margin="3dp"
-        android:padding="7dp"
-        android:textSize="26sp"
-        android:text="&#xf141;"
+        android:layout_toRightOf="@id/deleteButton"
         android:background="@color/ltltgrey"
-        android:textColor="@color/black"/>
+        android:padding="7dp"
+        android:text="@string/icon_ellipsis"
+        android:textColor="@color/black"
+        android:textSize="26sp" />
+
     <uk.co.jakelee.cityflow.components.TextAwesome
         android:id="@+id/actionButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/puzzleName"
-        android:layout_toRightOf="@id/moreButton"
         android:layout_margin="3dp"
-        android:padding="7dp"
-        android:textSize="26sp"
-        android:gravity="center_horizontal"
+        android:layout_toRightOf="@id/moreButton"
         android:background="@color/blue"
-        android:textColor="@color/black"/>
+        android:gravity="center_horizontal"
+        android:padding="7dp"
+        android:textColor="@color/black"
+        android:textSize="26sp" />
 </RelativeLayout>

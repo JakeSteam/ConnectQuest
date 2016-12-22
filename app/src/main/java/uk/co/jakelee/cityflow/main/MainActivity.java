@@ -57,9 +57,8 @@ public class MainActivity extends Activity implements
         Tapjoy.onActivityStart(this);
 
         if (Setting.getSafeBoolean(Constants.SETTING_MUSIC)) {
-            SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.main);
+            SoundHelper.getInstance(this).playOrResumeMusic(SoundHelper.AUDIO.main);
         }
-        SoundHelper.getInstance(this).playOrResumeMusic(SoundHelper.AUDIO.main);
     }
 
     public void tryGoogleLogin() {
@@ -100,7 +99,7 @@ public class MainActivity extends Activity implements
         super.onResume();
 
         createAnimations();
-        ((TextView)findViewById(R.id.languageFlag)).setText(TextHelper.getLanguageFlag(prefs.getInt("language", Constants.LANGUAGE_EN)));
+        ((TextView) findViewById(R.id.languageFlag)).setText(TextHelper.getLanguageFlag(prefs.getInt("language", Constants.LANGUAGE_EN)));
 
         SoundHelper.getInstance(this).playOrResumeMusic(SoundHelper.AUDIO.main);
     }

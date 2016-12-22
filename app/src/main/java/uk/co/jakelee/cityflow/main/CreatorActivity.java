@@ -36,10 +36,10 @@ import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class CreatorActivity extends AllowMeActivity {
-    private boolean displayImported = false;
     final public static int INTENT_CAMERA = 1234;
     final public static int INTENT_FILE = 1235;
     final public static int INTENT_TEXT = 1236;
+    private boolean displayImported = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,7 @@ public class CreatorActivity extends AllowMeActivity {
     }
 
     public void populatePuzzles() {
-        LinearLayout puzzleContainer = ((LinearLayout)findViewById(R.id.puzzleContainer));
+        LinearLayout puzzleContainer = ((LinearLayout) findViewById(R.id.puzzleContainer));
         populatePuzzles(puzzleContainer);
         updateTabDisplay();
     }
@@ -132,7 +132,7 @@ public class CreatorActivity extends AllowMeActivity {
                 });
             }
 
-            ((TextView)othersPuzzle.findViewById(R.id.puzzleName)).setText(puzzleCustom.getName());
+            ((TextView) othersPuzzle.findViewById(R.id.puzzleName)).setText(puzzleCustom.getName());
 
             puzzleContainer.addView(othersPuzzle, lp);
         }
@@ -189,7 +189,7 @@ public class CreatorActivity extends AllowMeActivity {
             } else if (requestCode == INTENT_FILE) {
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
-                    puzzleString = StorageHelper.readQRImage(bitmap);
+                    puzzleString = StorageHelper.readQRImage(this, bitmap);
                 } catch (Exception e) {
                     AlertHelper.error(this, AlertHelper.getError(AlertHelper.Error.FILE_IMPORT_FAIL));
                 }
@@ -223,7 +223,7 @@ public class CreatorActivity extends AllowMeActivity {
     }
 
     public void updateTabDisplay() {
-        ((TextView)findViewById(R.id.myPuzzles)).setTextColor(displayImported ? Color.GRAY : Color.BLACK);
-        ((TextView)findViewById(R.id.othersPuzzles)).setTextColor(displayImported ? Color.BLACK : Color.GRAY);
+        ((TextView) findViewById(R.id.myPuzzles)).setTextColor(displayImported ? Color.GRAY : Color.BLACK);
+        ((TextView) findViewById(R.id.othersPuzzles)).setTextColor(displayImported ? Color.BLACK : Color.GRAY);
     }
 }

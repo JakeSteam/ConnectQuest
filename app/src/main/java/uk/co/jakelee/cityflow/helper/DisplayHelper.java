@@ -12,7 +12,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -26,22 +25,23 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.components.TextViewFont;
 import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
-import uk.co.jakelee.cityflow.main.EditorActivity;
+import uk.co.jakelee.cityflow.interfaces.PuzzleDisplayer;
 import uk.co.jakelee.cityflow.main.PackActivity;
-import uk.co.jakelee.cityflow.main.PuzzleActivity;
 import uk.co.jakelee.cityflow.main.ShopActivity;
 import uk.co.jakelee.cityflow.model.Puzzle;
+import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
 public class DisplayHelper {
-    private final Context context;
     private static DisplayHelper dhInstance = null;
+    private final Context context;
 
     public DisplayHelper(Context context) {
         this.context = context;
@@ -55,16 +55,16 @@ public class DisplayHelper {
     }
 
     public static int getTileDrawableId(Context context, int tile, int rotation) {
-        String name = String.format(context.getString(R.string.tile_filename), tile, rotation);
+        String name = String.format(Locale.ENGLISH, "tile_%1$d_%2$d", tile, rotation);
         return getDrawableId(context, name);
     }
 
     public static List<Integer> getAllTileDrawableIds(Context context, int tile) {
         List<Integer> ids = new ArrayList<>();
-            ids.add(getDrawableId(context, "tile_" + tile + "_1"));
-            ids.add(getDrawableId(context, "tile_" + tile + "_2"));
-            ids.add(getDrawableId(context, "tile_" + tile + "_3"));
-            ids.add(getDrawableId(context, "tile_" + tile + "_4"));
+        ids.add(getDrawableId(context, "tile_" + tile + "_1"));
+        ids.add(getDrawableId(context, "tile_" + tile + "_2"));
+        ids.add(getDrawableId(context, "tile_" + tile + "_3"));
+        ids.add(getDrawableId(context, "tile_" + tile + "_4"));
         return ids;
     }
 
@@ -86,20 +86,19 @@ public class DisplayHelper {
         return displaymetrics;
     }
 
-    public ImageView createTileImageView(final Activity activity, final Tile tile, int drawableId) {
-        final ImageView image = new ImageView(activity);
+    public ImageView createTileImageView(final PuzzleDisplayer puzzleDisplayer, final Tile tile, int drawableId, final int dragDelay) {
+        final ImageView image = new ImageView(puzzleDisplayer.getActivity());
         Picasso.with(context).load(drawableId).into(image);
 
         image.setDrawingCacheEnabled(true);
         image.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                Log.d("Clicked", event.toString());
                 boolean needsProcessing = false;
                 try {
                     if (event.getAction() == MotionEvent.ACTION_CANCEL) {
                         long time = event.getEventTime() - event.getDownTime();
-                        needsProcessing = time < 50;
+                        needsProcessing = time < dragDelay;
                     } else {
                         Bitmap bmp = Bitmap.createBitmap(v.getDrawingCache());
                         int color = bmp.getPixel((int) event.getX(), (int) event.getY());
@@ -112,18 +111,15 @@ public class DisplayHelper {
                         }
                     }
                 } catch (Exception e) {
-                   e.printStackTrace();
+                    e.printStackTrace();
                 }
 
                 if (needsProcessing) {
-                    if (activity.getClass().equals(PuzzleActivity.class)) {
-                        ((PuzzleActivity) activity).handleTileClick(image, tile);
-                    } else if (activity.getClass().equals(EditorActivity.class)) {
-                        ((EditorActivity) activity).handleTileClick(image, tile);
-                    }
+                    puzzleDisplayer.handleTileClick(image, tile);
                 }
                 return true;
-            }});
+            }
+        });
         return image;
     }
 
@@ -134,10 +130,10 @@ public class DisplayHelper {
         RelativeLayout puzzleButton = (RelativeLayout) LayoutInflater.from(activity).inflate(R.layout.custom_puzzle_select_button, null);
 
         puzzleButton.setBackgroundColor(ContextCompat.getColor(activity, isSelected ? R.color.green : R.color.ltltgrey));
-        ((TextView)puzzleButton.findViewById(R.id.puzzleNumber)).setText(" " + puzzleNumber + " ");
-        ((TextView)puzzleButton.findViewById(R.id.puzzleStatus)).setText(
+        ((TextView) puzzleButton.findViewById(R.id.puzzleNumber)).setText(" " + puzzleNumber + " ");
+        ((TextView) puzzleButton.findViewById(R.id.puzzleStatus)).setText(
                 !lastLevelCompleted ? R.string.icon_lock : hasAllStars ? R.string.icon_tick : hasCompleted ? R.string.icon_tick : R.string.icon_unlock);
-        ((TextView)puzzleButton.findViewById(R.id.puzzleStatus)).setTextColor(ContextCompat.getColor(activity,
+        ((TextView) puzzleButton.findViewById(R.id.puzzleStatus)).setTextColor(ContextCompat.getColor(activity,
                 !lastLevelCompleted ? R.color.ltred : hasAllStars ? R.color.gold : hasCompleted ? R.color.dkgreen : R.color.ltgrey));
 
         puzzleButton.setOnClickListener(new Button.OnClickListener() {
@@ -152,8 +148,8 @@ public class DisplayHelper {
     public RelativeLayout createItemSelectButton(final ShopActivity activity, final ShopItem item) {
         LayoutInflater inflater = LayoutInflater.from(activity);
         RelativeLayout itemButton = (RelativeLayout) inflater.inflate(R.layout.custom_item_select_button, null);
-        ((ImageView)itemButton.findViewById(R.id.itemImage)).setImageResource(getItemDrawableID(item.getItemId()));
-        ((TextView)itemButton.findViewById(R.id.itemPrice)).setText(item.atMaxPurchases() ? "N/A" : Integer.toString(item.getPrice()));
+        ((ImageView) itemButton.findViewById(R.id.itemImage)).setImageResource(getItemDrawableID(item.getItemId()));
+        ((TextView) itemButton.findViewById(R.id.itemPrice)).setText(item.atMaxPurchases() ? "N/A" : Integer.toString(item.getPrice()));
 
         itemButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -163,12 +159,12 @@ public class DisplayHelper {
         return itemButton;
     }
 
-    public ImageView createTileIcon(TileType tileType, int width, int height) {
+    public ImageView createTileIcon(TileType tileType, int width, int height, boolean displayStatus) {
         int padding = dpToPixel(3);
         ImageView tileIcon = new ImageView(context);
-        if (tileType.getStatus() == Constants.TILE_STATUS_UNPURCHASED) {
+        if (displayStatus && tileType.getStatus() == Constants.TILE_STATUS_UNPURCHASED) {
             tileIcon.setImageDrawable(createDrawable(R.drawable.tile_unbought, width, height));
-        } else if (tileType.getStatus() == Constants.TILE_STATUS_LOCKED){
+        } else if (displayStatus && tileType.getStatus() == Constants.TILE_STATUS_LOCKED) {
             tileIcon.setImageDrawable(createDrawable(R.drawable.tile_locked, width, height));
         } else {
             tileIcon.setImageDrawable(createDrawable(getTileDrawableID(tileType.getTypeId()), width, height));
@@ -178,10 +174,10 @@ public class DisplayHelper {
         return tileIcon;
     }
 
-    public int dpToPixel(float dp){
+    public int dpToPixel(float dp) {
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
-        float px = dp * ((float)metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+        float px = dp * ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
         return (int) px;
     }
 
@@ -261,24 +257,26 @@ public class DisplayHelper {
         int screenWidth = displayMetrics.widthPixels;
 
         double totalTilesAmount = (xTiles + yTiles) / 2.0;
-        int puzzleHeight = (int)(totalTilesAmount * getTileHeight());
-        int puzzleWidth = (int)(totalTilesAmount * getTileWidth());
+        int puzzleHeight = (int) (totalTilesAmount * getTileHeight());
+        int puzzleWidth = (int) (totalTilesAmount * getTileWidth());
 
-        float xZoomFactor = screenWidth / (float)(puzzleWidth);
-        float yZoomFactor = (screenHeight / (float)(puzzleHeight)) / 2;
+        float xZoomFactor = screenWidth / (float) (puzzleWidth);
+        float yZoomFactor = (screenHeight / (float) (puzzleHeight)) / 2;
         float zoomFactor = Math.min(xZoomFactor, yZoomFactor);
 
         int offset = puzzleHeight / 2;
         return new Pair<>(zoomFactor, new Pair<>(offset, yZoomFactor < xZoomFactor));
     }
 
-    public ImageView setupTileDisplay(Activity activity, List<Tile> tiles, ZoomableViewGroup tileContainer, int puzzleId, Tile selectedTile, ImageView selectedTileImage, boolean isEditor) {
+    public Pair<ImageView, Float> setupTileDisplay(PuzzleDisplayer puzzleDisplayer, List<Tile> tiles, ZoomableViewGroup tileContainer, int puzzleId, Tile selectedTile, ImageView selectedTileImage, boolean isEditor) {
         tileContainer.removeAllViews();
 
+        Setting minimumMillisForDrag = Setting.get(Constants.SETTING_MINIMUM_MILLIS_DRAG);
+        int dragDelay = minimumMillisForDrag != null ? minimumMillisForDrag.getIntValue() : 200;
         Pair<Integer, Integer> maxXY = TileHelper.getMaxXY(tiles);
 
         // <scaleFactor, <offset, isLeftOffset>>
-        Pair<Float, Pair<Integer, Boolean>> displayValues = getDisplayValues(activity, maxXY.first + 1, maxXY.second + 1);
+        Pair<Float, Pair<Integer, Boolean>> displayValues = getDisplayValues(puzzleDisplayer.getActivity(), maxXY.first + 1, maxXY.second + 1);
         float optimumScale = displayValues.first;
 
         int topOffset = displayValues.second.second ? 0 : displayValues.second.first;
@@ -287,30 +285,34 @@ public class DisplayHelper {
         tileContainer.setScaleFactor(optimumScale, true);
         tileContainer.removeAllViews();
         for (final Tile tile : tiles) {
+            if (!puzzleDisplayer.displayEmptyTile() && tile.getTileTypeId() == Constants.TILE_EMPTY) {
+                continue;
+            }
+
             ZoomableViewGroup.LayoutParams layoutParams = new ZoomableViewGroup.LayoutParams(ZoomableViewGroup.LayoutParams.WRAP_CONTENT, ZoomableViewGroup.LayoutParams.WRAP_CONTENT);
             int leftPadding = leftOffset + (tile.getY() + tile.getX()) * (getTileWidth() / 2);
             int topPadding = topOffset + (tile.getX() + maxXY.second - tile.getY()) * (getTileHeight() / 2);
             layoutParams.setMargins(leftPadding, topPadding, 0, 0);
 
-            int drawableId = getTileDrawableId(activity, tile.getTileTypeId(), tile.getRotation());
-            ImageView image = createTileImageView(activity, tile, drawableId);
+            int drawableId = getTileDrawableId(puzzleDisplayer.getActivity(), tile.getTileTypeId(), tile.getRotation());
+            ImageView image = createTileImageView(puzzleDisplayer, tile, drawableId, dragDelay);
 
-            //Make sure we always have a tile selected
+            // Make sure we always have a tile selected
             if (isEditor && (selectedTile == null || selectedTileImage == null)) {
                 image.setAlpha(0.75f);
                 image.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
                 selectedTileImage = image;
                 selectedTile = tile;
 
-                TextView selectedTileText = (TextView)activity.findViewById(R.id.selectedTileText);
+                TextView selectedTileText = (TextView) puzzleDisplayer.getActivity().findViewById(R.id.selectedTileText);
                 if (selectedTileText != null) {
-                    ((TextView) activity.findViewById(R.id.selectedTileText)).setText(tile.getName());
+                    ((TextView) puzzleDisplayer.getActivity().findViewById(R.id.selectedTileText)).setText(tile.getName());
                 }
             }
 
             tileContainer.addView(image, layoutParams);
         }
 
-        return selectedTileImage;
+        return new Pair<>(selectedTileImage, optimumScale);
     }
 }

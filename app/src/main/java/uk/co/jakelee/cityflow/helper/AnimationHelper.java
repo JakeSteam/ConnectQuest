@@ -17,7 +17,7 @@ public class AnimationHelper {
     }
 
     public static TranslateAnimation move(DisplayMetrics metrics, int rotation, int duration, int xOffset, int yOffset) {
-        float ratio = ((float)Constants.TILE_HEIGHT) / ((float)Constants.TILE_WIDTH);
+        float ratio = ((float) Constants.TILE_HEIGHT) / ((float) Constants.TILE_WIDTH);
         boolean goingRight = rotation == Constants.ROTATION_NORTH || rotation == Constants.ROTATION_EAST;
         boolean goingDown = rotation == Constants.ROTATION_SOUTH || rotation == Constants.ROTATION_EAST;
 

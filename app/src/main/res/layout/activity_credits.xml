@@ -12,89 +12,96 @@
         android:layout_margin="15dp"
         android:background="@color/city"
         android:fadeScrollbars="false">
+
         <LinearLayout
             android:id="@+id/creditsContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="7dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="7dp">
+
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/graphicsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="30sp"/>
+                android:textSize="30sp" />
+
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/graphicsText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="19sp"
-                android:textColorLink="@color/blue"/>
+                android:textColorLink="@color/blue"
+                android:textSize="19sp" />
 
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/localisationTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="30sp"/>
+                android:textSize="30sp" />
+
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/localisationText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="19sp"
-                android:textColorLink="@color/blue"/>
+                android:textColorLink="@color/blue"
+                android:textSize="19sp" />
 
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/technologiesTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="30sp"/>
+                android:textSize="30sp" />
+
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/technologiesText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="19sp"
-                android:textColorLink="@color/blue"/>
+                android:textColorLink="@color/blue"
+                android:textSize="19sp" />
 
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/soundsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="30sp"/>
+                android:textSize="30sp" />
+
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/soundsText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="19sp"
-                android:textColorLink="@color/blue"/>
+                android:textColorLink="@color/blue"
+                android:textSize="19sp" />
 
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/otherTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="30sp"/>
+                android:textSize="30sp" />
+
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/otherText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="19sp"
-                android:textColorLink="@color/blue"/>
+                android:textColorLink="@color/blue"
+                android:textSize="19sp" />
         </LinearLayout>
 
     </ScrollView>
+
     <LinearLayout
         android:id="@+id/croutonview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
-    </LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"></LinearLayout>
 </android.support.percent.PercentRelativeLayout>

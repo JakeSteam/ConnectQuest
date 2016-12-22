@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".main.TilePickerActivity">
@@ -11,116 +11,154 @@
         android:id="@+id/mainContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_marginTopPercent="5%"
-        app:layout_marginLeftPercent="3%"
-        app:layout_marginBottomPercent="5%"
-        app:layout_marginRightPercent="3%"
-        android:padding="10dp"
-        android:background="@color/city"
         android:layout_centerInParent="true"
+        android:background="@color/city"
+        android:padding="10dp"
+        android:shrinkColumns="1"
         android:stretchColumns="1"
-        android:shrinkColumns="1">
+        app:layout_marginBottomPercent="5%"
+        app:layout_marginLeftPercent="3%"
+        app:layout_marginRightPercent="3%"
+        app:layout_marginTopPercent="5%">
+
         <TableRow
             android:id="@+id/environmentContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/areaLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
                 android:textColor="@color/black"
-                android:textSize="22sp"
-                android:layout_margin="5dp"/>
+                android:textSize="22sp" />
+
             <uk.co.jakelee.cityflow.components.MultiSpinnerFont
                 android:id="@+id/environmentPicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:padding="5dp"
-                android:background="@color/blue"
-                android:layout_marginRight="40dp"
+                android:layout_marginBottom="5dp"
                 android:layout_marginLeft="5dp"
+                android:layout_marginRight="40dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"/>
+                android:background="@color/blue"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
         </TableRow>
+
         <TableRow
             android:id="@+id/flowContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical">
+
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/flowLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:textColor="@color/black"
-                android:textSize="22sp"
-                android:layout_margin="5dp"/>
+                android:textSize="22sp" />
+
             <uk.co.jakelee.cityflow.components.MultiSpinnerFont
                 android:id="@+id/flowPicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:padding="5dp"
-                android:background="@color/blue"
+                android:layout_marginBottom="5dp"
                 android:layout_marginLeft="5dp"
-                android:layout_marginBottom="5dp"/>
+                android:background="@color/blue"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
         </TableRow>
+
         <TableRow
             android:id="@+id/heightContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical">
+
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/heightLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:textColor="@color/black"
-                android:textSize="22sp"
-                android:layout_margin="5dp"/>
+                android:textSize="22sp" />
+
             <uk.co.jakelee.cityflow.components.MultiSpinnerFont
                 android:id="@+id/heightPicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:padding="5dp"
-                android:background="@color/blue"
+                android:layout_marginBottom="5dp"
                 android:layout_marginLeft="5dp"
-                android:layout_marginBottom="5dp"/>
+                android:background="@color/blue"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
         </TableRow>
+
+        <LinearLayout android:orientation="horizontal">
+
+            <uk.co.jakelee.cityflow.components.TextViewFont
+                android:id="@+id/hideLockedTilesText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:clickable="true"
+                android:onClick="hideLockedTilesToggle"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
+            <uk.co.jakelee.cityflow.components.TextAwesome
+                android:id="@+id/hideLockedTiles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="hideLockedTilesToggle"
+                android:padding="3dp"
+                android:textSize="25sp" />
+        </LinearLayout>
+
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical">
+
             <TableLayout
                 android:id="@+id/tileContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:stretchColumns="*"/>
+                android:stretchColumns="*" />
         </ScrollView>
     </TableLayout>
+
     <uk.co.jakelee.cityflow.components.TextAwesome
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="&#xf00d;"
-        android:textColor="@color/red"
-        android:layout_alignTop="@id/mainContainer"
         android:layout_alignRight="@id/mainContainer"
-        android:textSize="30sp"
+        android:layout_alignTop="@id/mainContainer"
+        android:layout_marginRight="-5dp"
+        android:layout_marginTop="-5dp"
+        android:background="@color/ltltgrey"
+        android:clickable="true"
         android:onClick="closePopup"
         android:padding="10dp"
-        android:layout_marginTop="-5dp"
-        android:layout_marginRight="-5dp"
-        android:background="@color/ltltgrey"/>
+        android:text="@string/icon_cross"
+        android:textColor="@color/red"
+        android:textSize="30sp" />
+
     <LinearLayout
         android:id="@+id/croutonview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
-    </LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"></LinearLayout>
 </android.support.percent.PercentRelativeLayout>

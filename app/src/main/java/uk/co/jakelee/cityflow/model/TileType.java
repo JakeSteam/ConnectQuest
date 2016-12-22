@@ -5,7 +5,6 @@ import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import uk.co.jakelee.cityflow.helper.Constants;
-import uk.co.jakelee.cityflow.helper.EncryptHelper;
 
 public class TileType extends SugarRecord {
     private int typeId;
@@ -18,7 +17,7 @@ public class TileType extends SugarRecord {
     private int heightEast;
     private int heightSouth;
     private int heightWest;
-    private String puzzleRequired;
+    private int puzzleRequired;
     private int status;
 
     public TileType() {
@@ -36,8 +35,19 @@ public class TileType extends SugarRecord {
         this.heightEast = height;
         this.heightSouth = height;
         this.heightWest = height;
-        this.puzzleRequired = EncryptHelper.encode(puzzleRequired, typeId);
-        this.status = Constants.TILE_STATUS_UNLOCKED;
+        this.puzzleRequired = puzzleRequired;
+
+        switch (puzzleRequired) {
+            case Constants.TILE_UNPURCHASED:
+                this.status = Constants.TILE_STATUS_UNPURCHASED;
+                break;
+            case Constants.TILE_UNLOCKED:
+                this.status = Constants.TILE_STATUS_UNLOCKED;
+                break;
+            default:
+                this.status = Constants.TILE_STATUS_LOCKED;
+                break;
+        }
     }
 
     public TileType(int typeId, int environmentId, int flowNorth, int flowEast, int flowSouth, int flowWest, int height, int puzzleRequired) {
@@ -51,8 +61,19 @@ public class TileType extends SugarRecord {
         this.heightEast = height;
         this.heightSouth = height;
         this.heightWest = height;
-        this.puzzleRequired = EncryptHelper.encode(puzzleRequired, typeId);
-        this.status = Constants.TILE_STATUS_UNLOCKED;
+        this.puzzleRequired = puzzleRequired;
+
+        switch (puzzleRequired) {
+            case Constants.TILE_UNPURCHASED:
+                this.status = Constants.TILE_STATUS_UNPURCHASED;
+                break;
+            case Constants.TILE_UNLOCKED:
+                this.status = Constants.TILE_STATUS_UNLOCKED;
+                break;
+            default:
+                this.status = Constants.TILE_STATUS_LOCKED;
+                break;
+        }
     }
 
     public TileType(int typeId, int environmentId, int flowNorth, int flowEast, int flowSouth, int flowWest, int heightNorth, int heightEast, int heightSouth, int heightWest, int puzzleRequired) {
@@ -66,8 +87,24 @@ public class TileType extends SugarRecord {
         this.heightEast = heightEast;
         this.heightSouth = heightSouth;
         this.heightWest = heightWest;
-        this.puzzleRequired = EncryptHelper.encode(puzzleRequired, typeId);
-        this.status = Constants.TILE_STATUS_UNLOCKED;
+        this.puzzleRequired = puzzleRequired;
+
+        switch (puzzleRequired) {
+            case Constants.TILE_UNPURCHASED:
+                this.status = Constants.TILE_STATUS_UNPURCHASED;
+                break;
+            case Constants.TILE_UNLOCKED:
+                this.status = Constants.TILE_STATUS_UNLOCKED;
+                break;
+            default:
+                this.status = Constants.TILE_STATUS_LOCKED;
+                break;
+        }
+    }
+
+    public static TileType get(int tileTypeId) {
+        return Select.from(TileType.class).where(
+                Condition.prop("type_id").eq(tileTypeId)).first();
     }
 
     public int getTypeId() {
@@ -151,11 +188,11 @@ public class TileType extends SugarRecord {
     }
 
     public int getPuzzleRequired() {
-        return EncryptHelper.decodeToInt(puzzleRequired, typeId);
+        return puzzleRequired;
     }
 
     public void setPuzzleRequired(int puzzleRequired) {
-        this.puzzleRequired = EncryptHelper.encode(puzzleRequired, typeId);
+        this.puzzleRequired = puzzleRequired;
     }
 
     public int getStatus() {
@@ -168,11 +205,6 @@ public class TileType extends SugarRecord {
 
     public String getName() {
         return Text.get("TILE_", getTypeId(), "_NAME");
-    }
-
-    public static TileType get(int tileTypeId) {
-        return Select.from(TileType.class).where(
-                Condition.prop("type_id").eq(tileTypeId)).first();
     }
 
     public Puzzle getRequiredPuzzle() {

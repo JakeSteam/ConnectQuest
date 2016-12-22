@@ -17,15 +17,13 @@ import uk.co.jakelee.cityflow.model.Setting;
 public class ZoomableViewGroup extends RelativeLayout {
 
     private static final int INVALID_POINTER_ID = 1;
+    public float mPosX;
+    public float mPosY;
     private int mActivePointerId = INVALID_POINTER_ID;
-
     private float mScaleFactor = 1;
     private ScaleGestureDetector mScaleDetector;
     private Matrix mScaleMatrix = new Matrix();
     private Matrix mScaleMatrixInverse = new Matrix();
-
-    private float mPosX;
-    private float mPosY;
     private Matrix mTranslateMatrix = new Matrix();
     private Matrix mTranslateMatrixInverse = new Matrix();
 
@@ -62,7 +60,7 @@ public class ZoomableViewGroup extends RelativeLayout {
         for (int i = 0; i < childCount; i++) {
             View child = getChildAt(i);
             if (child.getVisibility() != GONE) {
-                child.layout(child.getLeft(), child.getTop(), child.getLeft() + child.getMeasuredWidth(), child.getTop()  + child.getMeasuredHeight());
+                child.layout(child.getLeft(), child.getTop(), child.getLeft() + child.getMeasuredWidth(), child.getTop() + child.getMeasuredHeight());
             }
         }
     }
@@ -122,6 +120,20 @@ public class ZoomableViewGroup extends RelativeLayout {
         return super.invalidateChildInParent(location, dirty);
     }
 
+    public void reset(float screenshotScale) {
+        mPosX = 0.0f;
+        mPosY = 0.0f;
+        mFocusX = 0.0f;
+        mFocusY = 0.0f;
+        mLastTouchX = 0.0f;
+        mLastTouchY = 0.0f;
+
+        float values[] = new float[]{1, 0, 0, 0, 1, 0, 0, 0, 1};
+        mTranslateMatrix.setValues(values);
+        mTranslateMatrixInverse.setValues(values);
+        setScaleFactor(screenshotScale, true);
+    }
+
     public float getScaleFactor() {
         return mScaleFactor;
     }
@@ -150,7 +162,7 @@ public class ZoomableViewGroup extends RelativeLayout {
         return a;
     }
 
-    private float[] screenPointsToScaledPoints(float[] a){
+    private float[] screenPointsToScaledPoints(float[] a) {
         mTranslateMatrixInverse.mapPoints(a);
         mScaleMatrixInverse.mapPoints(a);
         return a;
@@ -244,7 +256,6 @@ public class ZoomableViewGroup extends RelativeLayout {
             }
             setScaleFactor(mScaleFactor, false);
             requestLayout();
-
 
             return true;
         }

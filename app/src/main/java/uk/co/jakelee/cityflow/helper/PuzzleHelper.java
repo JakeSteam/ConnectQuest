@@ -71,6 +71,7 @@ public class PuzzleHelper {
     public static void performBackgroundTasks(final Context context, final Puzzle puzzle, final boolean isCompletingPack, final int movesTaken, final int boostsUsed) {
         new Thread(new Runnable() {
             public void run() {
+                puzzle.unlockRelatedTiles();
                 Pack pack = Pack.getPack(puzzle.getPackId());
                 if (isCompletingPack) {
                     pack.increaseCompletedCount();
@@ -165,7 +166,7 @@ public class PuzzleHelper {
         String tileString = "";
         for (TileType tile : tiles) {
             tileString += tile.getName() + ", ";
-            tilesContainer.addView(dh.createTileIcon(tile, 50, 50));
+            tilesContainer.addView(dh.createTileIcon(tile, 50, 50, false));
         }
 
         if (tiles.size() > 0) {
@@ -210,15 +211,23 @@ public class PuzzleHelper {
     }
 
     public static int getDefaultTileId(int environmentId) {
-        switch(environmentId) {
-            case Constants.ENVIRONMENT_NONE: return 0;
-            case Constants.ENVIRONMENT_GRASS: return 6;
-            case Constants.ENVIRONMENT_CITY: return 21;
-            case Constants.ENVIRONMENT_FOREST: return 69;
-            case Constants.ENVIRONMENT_MOUNTAIN: return 87;
-            case Constants.ENVIRONMENT_DESERT: return 93;
-            case Constants.ENVIRONMENT_GOLF: return 138;
-            default: return 0;
+        switch (environmentId) {
+            case Constants.ENVIRONMENT_NONE:
+                return 0;
+            case Constants.ENVIRONMENT_GRASS:
+                return 6;
+            case Constants.ENVIRONMENT_CITY:
+                return 21;
+            case Constants.ENVIRONMENT_FOREST:
+                return 69;
+            case Constants.ENVIRONMENT_MOUNTAIN:
+                return 87;
+            case Constants.ENVIRONMENT_DESERT:
+                return 93;
+            case Constants.ENVIRONMENT_GOLF:
+                return 138;
+            default:
+                return 0;
         }
     }
 
@@ -260,7 +269,7 @@ public class PuzzleHelper {
         if (actualValue <= targetValue) {
             return 100;
         }
-        return (int) Math.floor(((double)targetValue / (double)actualValue) * 100);
+        return (int) Math.floor(((double) targetValue / (double) actualValue) * 100);
     }
 
     public static int getTotalStars() {

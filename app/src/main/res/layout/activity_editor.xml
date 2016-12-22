@@ -9,40 +9,42 @@
         android:id="@+id/topMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/green"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:background="@color/green">
+
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/openMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="50sp"
-            android:textColor="@color/dkgreen"
-            android:text="@string/icon_settings"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
             android:layout_margin="5dp"
-            android:paddingTop="5dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingBottom="5dp"
+            android:background="@color/ltltgrey"
+            android:clickable="true"
             android:gravity="center"
             android:onClick="openMenu"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:background="@color/ltltgrey"/>
+            android:paddingBottom="5dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:text="@string/icon_settings"
+            android:textColor="@color/dkgreen"
+            android:textSize="50sp" />
 
         <uk.co.jakelee.cityflow.components.AutofitTextViewFont
             android:id="@+id/selectedTileText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:textColor="@color/black"
-            android:maxLines="1"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:gravity="center"
-            android:layout_alignTop="@id/openMenu"
             android:layout_alignBottom="@+id/openMenu"
+            android:layout_alignTop="@id/openMenu"
             android:layout_centerHorizontal="true"
-            android:layout_toLeftOf="@id/openMenu" />
+            android:layout_toLeftOf="@id/openMenu"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
     </RelativeLayout>
 
     <uk.co.jakelee.cityflow.components.ZoomableViewGroup
@@ -57,71 +59,93 @@
         android:layout_height="70dp"
         android:layout_alignParentBottom="true"
         android:background="@color/green">
+
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/zoomIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="50sp"
-            android:textColor="@color/dkgreen"
-            android:text="@string/icon_zoomin"
-            android:onClick="zoomIn"
-            android:layout_margin="5dp"
-            android:padding="5dp"
-            android:gravity="center_horizontal"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:background="@color/ltltgrey"/>
+            android:layout_margin="5dp"
+            android:background="@color/ltltgrey"
+            android:clickable="true"
+            android:gravity="center_horizontal"
+            android:onClick="zoomIn"
+            android:padding="5dp"
+            android:text="@string/icon_zoomin"
+            android:textColor="@color/dkgreen"
+            android:textSize="50sp" />
 
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/zoomOut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="50sp"
-            android:textColor="@color/dkgreen"
-            android:text="@string/icon_zoomout"
-            android:onClick="zoomOut"
-            android:layout_margin="5dp"
-            android:padding="5dp"
-            android:gravity="center"
-            android:layout_toRightOf="@+id/zoomIn"
             android:layout_alignParentBottom="true"
-            android:background="@color/ltltgrey"/>
+            android:layout_margin="5dp"
+            android:layout_toRightOf="@+id/zoomIn"
+            android:background="@color/ltltgrey"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="zoomOut"
+            android:padding="5dp"
+            android:text="@string/icon_zoomout"
+            android:textColor="@color/dkgreen"
+            android:textSize="50sp" />
 
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/tileRotate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="50sp"
-            android:textColor="@color/dkgreen"
-            android:text="@string/icon_rotate"
-            android:onClick="rotateTile"
-            android:layout_margin="5dp"
-            android:padding="5dp"
-            android:gravity="center"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:background="@color/ltltgrey"/>
+            android:layout_margin="5dp"
+            android:background="@color/ltltgrey"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="rotateTile"
+            android:padding="5dp"
+            android:text="@string/icon_rotate"
+            android:textColor="@color/dkgreen"
+            android:textSize="50sp" />
+
+        <uk.co.jakelee.cityflow.components.TextAwesome
+            android:id="@+id/centrePuzzle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="5dp"
+            android:layout_toLeftOf="@id/tileRotate"
+            android:background="@color/ltltgrey"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="reset"
+            android:padding="5dp"
+            android:text="@string/icon_centre"
+            android:textColor="@color/dkgreen"
+            android:textSize="50sp" />
 
         <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/tileChange"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="50sp"
-            android:textColor="@color/dkgreen"
-            android:text="@string/icon_picktile"
-            android:onClick="pickTile"
-            android:layout_margin="5dp"
-            android:padding="5dp"
-            android:gravity="center"
-            android:layout_toLeftOf="@id/tileRotate"
             android:layout_alignParentBottom="true"
-            android:background="@color/ltltgrey"/>
+            android:layout_margin="5dp"
+            android:layout_toLeftOf="@id/centrePuzzle"
+            android:layout_toRightOf="@id/zoomOut"
+            android:background="@color/ltltgrey"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="pickTile"
+            android:padding="5dp"
+            android:text="@string/icon_picktile"
+            android:textColor="@color/dkgreen"
+            android:textSize="50sp" />
     </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/croutonview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
-    </LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"></LinearLayout>
 </RelativeLayout>

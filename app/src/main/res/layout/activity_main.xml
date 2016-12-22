@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".main.MainActivity">
@@ -9,14 +9,14 @@
     <android.support.percent.PercentRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:background="@color/green"
         android:gravity="center_horizontal"
-        android:background="@color/green">
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/main_background_repeat"/>
+            android:background="@drawable/main_background_repeat" />
 
         <RelativeLayout
             android:id="@+id/carContainer"
@@ -27,32 +27,34 @@
             android:id="@+id/mainLogo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_heightPercent="25%"
             android:layout_margin="5dp"
-            android:src="@drawable/main_logo"/>
+            android:src="@drawable/main_logo"
+            app:layout_heightPercent="25%" />
 
         <RelativeLayout
             android:id="@+id/progressWrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/mainLogo">
+
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/progressText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
+                android:padding="20dp"
                 android:textColor="@color/black"
-                android:textSize="40sp"
-                android:padding="20dp"/>
+                android:textSize="40sp" />
+
             <ProgressBar
                 android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_margin="30dp"
                 android:layout_below="@id/progressText"
-                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_margin="30dp"
                 android:indeterminate="false"
-                android:max="100"/>
+                android:max="100" />
         </RelativeLayout>
 
         <android.support.percent.PercentRelativeLayout
@@ -60,68 +62,74 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone">
+
             <ImageView
                 android:id="@+id/mainStory"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_marginTopPercent="27%"
-                app:layout_heightPercent="20%"
+                android:clickable="true"
+                android:onClick="openStory"
                 android:src="@drawable/main_play"
-                android:onClick="openStory"/>
+                app:layout_heightPercent="20%"
+                app:layout_marginTopPercent="27%" />
 
             <ImageView
                 android:id="@+id/mainBuild"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_marginTopPercent="47%"
-                app:layout_heightPercent="20%"
+                android:clickable="true"
+                android:onClick="openCreator"
                 android:src="@drawable/main_build"
-                android:onClick="openCreator"/>
+                app:layout_heightPercent="20%"
+                app:layout_marginTopPercent="47%" />
 
             <ImageView
                 android:id="@+id/mainShop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_marginTopPercent="67%"
-                app:layout_heightPercent="20%"
+                android:clickable="true"
+                android:onClick="openShop"
                 android:src="@drawable/main_shop"
-                android:onClick="openShop"/>
+                app:layout_heightPercent="20%"
+                app:layout_marginTopPercent="67%" />
 
             <uk.co.jakelee.cityflow.components.TextAwesome
                 android:id="@+id/mainQuests"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
                 android:layout_margin="5dp"
-                android:text="@string/icon_quests"
-                android:textSize="35sp"
-                android:textColor="@color/black"
-                android:padding="12dp"
                 android:background="@color/blue"
-                android:onClick="openQuestMenu"/>
+                android:clickable="true"
+                android:onClick="openQuestMenu"
+                android:padding="12dp"
+                android:text="@string/icon_quests"
+                android:textColor="@color/black"
+                android:textSize="35sp" />
 
             <uk.co.jakelee.cityflow.components.TextAwesome
                 android:id="@+id/mainSettings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
                 android:layout_margin="5dp"
-                android:text="@string/icon_settings"
-                android:textSize="35sp"
-                android:textColor="@color/black"
-                android:padding="12dp"
                 android:background="@color/blue"
-                android:onClick="openSettings"/>
+                android:clickable="true"
+                android:onClick="openSettings"
+                android:padding="12dp"
+                android:text="@string/icon_settings"
+                android:textColor="@color/black"
+                android:textSize="35sp" />
 
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/languageFlag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@id/mainSettings"
+                android:layout_alignBottom="@id/mainSettings"
                 android:layout_alignRight="@id/mainSettings"
-                android:textSize="25sp" />
+                android:textSize="23sp" />
         </android.support.percent.PercentRelativeLayout>
     </android.support.percent.PercentRelativeLayout>
 
@@ -129,7 +137,6 @@
         android:id="@+id/croutonview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
-    </LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"></LinearLayout>
 </android.support.percent.PercentRelativeLayout>

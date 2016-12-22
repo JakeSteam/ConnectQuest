@@ -28,6 +28,7 @@ import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
+import uk.co.jakelee.cityflow.model.Iap;
 import uk.co.jakelee.cityflow.model.ShopCategory;
 import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Statistic;
@@ -92,14 +93,17 @@ public class ShopActivity extends Activity {
         final Runnable everyFiveSeconds = new Runnable() {
             @Override
             public void run() {
-                Tapjoy.getCurrencyBalance(new TJGetCurrencyBalanceListener(){
+                Tapjoy.getCurrencyBalance(new TJGetCurrencyBalanceListener() {
                     @Override
                     public void onGetCurrencyBalanceResponse(String currencyName, int balance) {
                         if (AdvertHelper.synchroniseCoins(activity, balance)) {
                             populateText();
                         }
                     }
-                    @Override public void onGetCurrencyBalanceResponseFailure(String error) {}
+
+                    @Override
+                    public void onGetCurrencyBalanceResponseFailure(String error) {
+                    }
                 });
                 handler.postDelayed(this, DateHelper.MILLISECONDS_IN_SECOND * 5);
             }
@@ -115,6 +119,7 @@ public class ShopActivity extends Activity {
     }
 
     private void populateText() {
+        ((TextView) findViewById(R.id.freeCoinsBanner)).setText(Text.get("SHOP_BANNER"));
         ((TextView) findViewById(R.id.freeCurrencyAdvert)).setText(Text.get("SHOP_ADVERT"));
         ((TextView) findViewById(R.id.freeCurrencyOffers)).setText(Text.get("SHOP_OFFERS"));
         ((TextView) findViewById(R.id.currencyCountText)).setText(Integer.toString(Statistic.getCurrency()));
@@ -166,7 +171,7 @@ public class ShopActivity extends Activity {
         populateItems();
     }
 
-    public void buyCoins (View view) {
+    public void buyCoins(View view) {
         Intent intent = new Intent(this, IAPActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
@@ -184,7 +189,7 @@ public class ShopActivity extends Activity {
     }
 
     public void launchOffers(View v) {
-        if(Tapjoy.isConnected()) {
+        if (Tapjoy.isConnected()) {
             if (offerWall.isContentReady()) {
                 offerWall.showContent();
             } else {
@@ -194,7 +199,7 @@ public class ShopActivity extends Activity {
     }
 
     public void advertWatched() {
-        Statistic.addCurrency(Constants.CURRENCY_ADVERT);
+        Statistic.addCurrency((Iap.hasCoinDoubler() ? 2 : 1) * Constants.CURRENCY_ADVERT);
         AlertHelper.success(this, String.format(Locale.ENGLISH, Text.get("ALERT_COINS_EARNED_FREE"), Constants.CURRENCY_ADVERT));
         GooglePlayHelper.UpdateEvent(Constants.EVENT_WATCH_ADVERT, 1);
 

@@ -7,7 +7,7 @@ import com.orm.query.Select;
 
 import java.util.List;
 
-public class ShopCategory extends SugarRecord{
+public class ShopCategory extends SugarRecord {
     private int categoryId;
 
     public ShopCategory() {
@@ -15,6 +15,11 @@ public class ShopCategory extends SugarRecord{
 
     public ShopCategory(int categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public static List<ShopItem> getItems(int categoryId) {
+        return Select.from(ShopItem.class).where(
+                Condition.prop("category_id").eq(categoryId)).list();
     }
 
     public int getCategoryId() {
@@ -27,10 +32,5 @@ public class ShopCategory extends SugarRecord{
 
     public String getName() {
         return Text.get("SHOP_CATEGORY_", getCategoryId(), "_NAME");
-    }
-
-    public static List<ShopItem> getItems(int categoryId) {
-        return Select.from(ShopItem.class).where(
-                Condition.prop("category_id").eq(categoryId)).list();
     }
 }

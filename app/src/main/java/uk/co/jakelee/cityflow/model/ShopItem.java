@@ -33,15 +33,33 @@ public class ShopItem extends SugarRecord {
         this.applyMultiplier = applyMultiplier;
     }
 
-    public ShopItem(int itemId, int categoryId, int boostId, int boostQuantity, int price, int maxPurchases, boolean applyMultiplier) {
+    public ShopItem(int itemId, int categoryId, int subcategoryId, int miscData, int price, int maxPurchases, boolean applyMultiplier) {
         this.itemId = itemId;
         this.categoryId = categoryId;
-        this.subcategoryId = boostId;
-        this.miscData = boostQuantity;
+        this.subcategoryId = subcategoryId;
+        this.miscData = miscData;
         this.price = EncryptHelper.encode(price, itemId);
         this.purchases = EncryptHelper.encode(0, itemId);
         this.maxPurchases = maxPurchases;
         this.applyMultiplier = applyMultiplier;
+    }
+
+    public static ShopItem get(int itemId) {
+        return Select.from(ShopItem.class).where(
+                Condition.prop("item_id").eq(itemId)).first();
+    }
+
+    public static ShopItem getPackItem(int packId) {
+        return Select.from(ShopItem.class).where(
+                Condition.prop("category_id").eq(Constants.STORE_CATEGORY_MISC),
+                Condition.prop("subcategory_id").eq(Constants.STORE_SUBCATEGORY_PACK),
+                Condition.prop("misc_data").eq(packId)).first();
+    }
+
+    public static boolean isPurchased(int itemId) {
+        ShopItem item = Select.from(ShopItem.class).where(
+                Condition.prop("item_id").eq(itemId)).first();
+        return !(item == null || item.getPurchases() <= 0);
     }
 
     public int getItemId() {
@@ -123,18 +141,6 @@ public class ShopItem extends SugarRecord {
         return Text.get("ITEM_", getItemId(), "_DESC");
     }
 
-    public static ShopItem get(int itemId)  {
-        return Select.from(ShopItem.class).where(
-                Condition.prop("item_id").eq(itemId)).first();
-    }
-
-    public static ShopItem getPackItem(int packId) {
-        return Select.from(ShopItem.class).where(
-                Condition.prop("category_id").eq(Constants.STORE_CATEGORY_MISC),
-                Condition.prop("subcategory_id").eq(Constants.STORE_SUBCATEGORY_PACK),
-                Condition.prop("misc_data").eq(packId)).first();
-    }
-
     public void purchase() {
         ShopItem item = ShopItem.get(getItemId());
         Statistic currency = Statistic.find(Constants.STATISTIC_CURRENCY);
@@ -157,7 +163,7 @@ public class ShopItem extends SugarRecord {
             boost.save();
         } else if (getCategoryId() == Constants.STORE_CATEGORY_TILES) {
             TileType tileType = TileType.get(getSubcategoryId());
-            tileType.setPuzzleRequired(1);
+            tileType.setStatus(Constants.TILE_STATUS_UNLOCKED);
             tileType.save();
         } else if (getSubcategoryId() == Constants.STORE_SUBCATEGORY_PACK) {
             Pack targetPack = Pack.getPack(getMiscData());
@@ -180,11 +186,5 @@ public class ShopItem extends SugarRecord {
             return AlertHelper.Error.NOT_ENOUGH_CURRENCY;
         }
         return AlertHelper.Error.NO_ERROR;
-    }
-
-    public static boolean isPurchased(int itemId) {
-        ShopItem item = Select.from(ShopItem.class).where(
-                Condition.prop("item_id").eq(itemId)).first();
-        return !(item == null || item.getPurchases() <= 0);
     }
 }

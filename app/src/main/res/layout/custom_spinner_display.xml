@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<uk.co.jakelee.cityflow.components.TextViewFont
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<uk.co.jakelee.cityflow.components.TextViewFont xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/text1"
     style="?android:attr/spinnerItemStyle"
-    android:maxLines="1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:ellipsize="marquee"
-    android:textSize="20sp"
-    android:textColor="@color/black"
     android:background="@color/ltltgrey"
+    android:ellipsize="marquee"
+    android:gravity="center_horizontal"
+    android:maxLines="1"
     android:padding="5dp"
-    android:gravity="center_horizontal"/>
+    android:textColor="@color/black"
+    android:textSize="20sp" />

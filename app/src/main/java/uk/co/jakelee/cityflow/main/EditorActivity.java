@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
+import uk.co.jakelee.cityflow.interfaces.PuzzleDisplayer;
 import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
@@ -26,11 +28,12 @@ import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 import uk.co.jakelee.cityflow.objects.TileFilter;
 
-public class EditorActivity extends Activity {
+public class EditorActivity extends Activity implements PuzzleDisplayer {
     private DisplayHelper dh;
     private int puzzleId;
     private ImageView selectedTileImage;
     private Tile selectedTile;
+    private float optimumScale = 1.0f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +84,7 @@ public class EditorActivity extends Activity {
         selectedTile = Tile.get(selectedTile.getId());
         int drawableId = DisplayHelper.getTileDrawableId(this, selectedTile.getTileTypeId(), selectedTile.getRotation());
         Picasso.with(this).load(drawableId).into(selectedTileImage);
-        ((TextView)findViewById(R.id.selectedTileText)).setText(TileType.get(selectedTile.getTileTypeId()).getName());
+        ((TextView) findViewById(R.id.selectedTileText)).setText(TileType.get(selectedTile.getTileTypeId()).getName());
     }
 
     public void fetchImages(List<Tile> tiles) {
@@ -97,7 +100,9 @@ public class EditorActivity extends Activity {
 
 
     public void populateTiles(List<Tile> tiles) {
-        selectedTileImage = dh.setupTileDisplay(this, tiles, (ZoomableViewGroup)findViewById(R.id.tileContainer), puzzleId, selectedTile, selectedTileImage, true);
+        Pair<ImageView, Float> tileDisplayResults = dh.setupTileDisplay(this, tiles, (ZoomableViewGroup) findViewById(R.id.tileContainer), puzzleId, selectedTile, selectedTileImage, true);
+        selectedTileImage = tileDisplayResults.first;
+        optimumScale = tileDisplayResults.second;
         selectedTile = tiles.get(0);
     }
 
@@ -111,6 +116,10 @@ public class EditorActivity extends Activity {
         tileContainer.setScaleFactor(tileContainer.getScaleFactor() - 0.5f, false);
     }
 
+    public void reset(View v) {
+        ((ZoomableViewGroup) findViewById(R.id.tileContainer)).reset(optimumScale);
+    }
+
     public void handleTileClick(ImageView image, Tile tile) {
         if (selectedTileImage != null) {
             selectedTileImage.setAlpha(1f);
@@ -122,7 +131,7 @@ public class EditorActivity extends Activity {
         selectedTileImage.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
 
         selectedTile = tile;
-        ((TextView)findViewById(R.id.selectedTileText)).setText(TileType.get(selectedTile.getTileTypeId()).getName());
+        ((TextView) findViewById(R.id.selectedTileText)).setText(TileType.get(selectedTile.getTileTypeId()).getName());
     }
 
     public void rotateTile(View v) {
@@ -198,5 +207,13 @@ public class EditorActivity extends Activity {
         intent.putExtra(Constants.INTENT_IS_CUSTOM, true);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
+    }
+
+    public Activity getActivity() {
+        return this;
+    }
+
+    public boolean displayEmptyTile() {
+        return true;
     }
 }

@@ -11,7 +11,7 @@ import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class AlertHelper {
-    private static final Configuration.Builder configBuilder =  new Configuration.Builder()
+    private static final Configuration.Builder configBuilder = new Configuration.Builder()
             .setInAnimation(R.anim.bottom_up)
             .setOutAnimation(R.anim.bottom_down);
     private static final Configuration configNormal = configBuilder
@@ -43,8 +43,8 @@ public class AlertHelper {
     private static void display(Activity activity, String text, int layoutId, boolean infinite) {
         Crouton.cancelAllCroutons();
         View layout = activity.getLayoutInflater().inflate(layoutId, null);
-        ((TextView)layout.findViewById(R.id.text)).setText(text);
-        Crouton.make(activity, layout, (ViewGroup)activity.findViewById(R.id.croutonview)).setConfiguration(infinite ? configInfinite : configNormal).show();
+        ((TextView) layout.findViewById(R.id.text)).setText(text);
+        Crouton.make(activity, layout, (ViewGroup) activity.findViewById(R.id.croutonview)).setConfiguration(infinite ? configInfinite : configNormal).show();
     }
 
     public static String getError(Error error) {

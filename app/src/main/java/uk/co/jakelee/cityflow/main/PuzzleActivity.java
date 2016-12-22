@@ -35,8 +35,10 @@ import uk.co.jakelee.cityflow.helper.PuzzleHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.helper.StorageHelper;
 import uk.co.jakelee.cityflow.helper.TileHelper;
+import uk.co.jakelee.cityflow.interfaces.PuzzleDisplayer;
 import uk.co.jakelee.cityflow.model.Background;
 import uk.co.jakelee.cityflow.model.Boost;
+import uk.co.jakelee.cityflow.model.Iap;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Setting;
@@ -45,7 +47,7 @@ import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
-public class PuzzleActivity extends Activity {
+public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     private static final Handler handler = new Handler();
     private DisplayHelper dh;
     private int puzzleId;
@@ -64,6 +66,7 @@ public class PuzzleActivity extends Activity {
     private boolean justUndone = false;
     private boolean exitedPuzzle = false;
     private boolean playSounds = false;
+    private boolean currentlyPeeking = false;
     private Vibrator vibrator;
     private Picasso picasso;
     private float optimumScale = 1.0f;
@@ -73,6 +76,13 @@ public class PuzzleActivity extends Activity {
 
     private List<Integer> changedTilesX = new ArrayList<>();
     private List<Integer> changedTilesY = new ArrayList<>();
+    private Runnable updateTimerThread = new Runnable() {
+        public void run() {
+            timeInMilliseconds = (SystemClock.uptimeMillis() - startTime) - timeSpentPaused;
+            ((TextView) (findViewById(R.id.puzzleTimer))).setText(DateHelper.getPuzzleTimeString(timeInMilliseconds));
+            handler.postDelayed(this, 20);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +95,7 @@ public class PuzzleActivity extends Activity {
         Intent intent = getIntent();
         puzzleId = intent.getIntExtra(Constants.INTENT_PUZZLE, 0);
         isCustom = intent.getBooleanExtra(Constants.INTENT_IS_CUSTOM, true);
-        if(isCustom) {
+        if (isCustom) {
             puzzleCustom = PuzzleCustom.get(puzzleId);
         }
         picasso = Picasso.with(this);
@@ -152,15 +162,15 @@ public class PuzzleActivity extends Activity {
             findViewById(R.id.shuffleBoost).setVisibility(boostShuffle > 0 ? View.VISIBLE : View.INVISIBLE);
         }
 
-        ((TextView)findViewById(R.id.undoBoost)).setTextColor(boostUndo > 0 ? Color.BLACK : Color.LTGRAY);
-        ((TextView)findViewById(R.id.timeBoost)).setTextColor(boostTime > 0 ? Color.BLACK : Color.LTGRAY);
-        ((TextView)findViewById(R.id.moveBoost)).setTextColor(boostMove > 0 ? Color.BLACK : Color.LTGRAY);
-        ((TextView)findViewById(R.id.shuffleBoost)).setTextColor(boostShuffle > 0 ? Color.BLACK : Color.LTGRAY);
+        ((TextView) findViewById(R.id.undoBoost)).setTextColor(boostUndo > 0 ? Color.BLACK : Color.LTGRAY);
+        ((TextView) findViewById(R.id.timeBoost)).setTextColor(boostTime > 0 ? Color.BLACK : Color.LTGRAY);
+        ((TextView) findViewById(R.id.moveBoost)).setTextColor(boostMove > 0 ? Color.BLACK : Color.LTGRAY);
+        ((TextView) findViewById(R.id.shuffleBoost)).setTextColor(boostShuffle > 0 ? Color.BLACK : Color.LTGRAY);
 
-        ((TextView)findViewById(R.id.undoCount)).setText(Integer.toString(boostUndo));
-        ((TextView)findViewById(R.id.timeCount)).setText(Integer.toString(boostTime));
-        ((TextView)findViewById(R.id.moveCount)).setText(Integer.toString(boostMove));
-        ((TextView)findViewById(R.id.shuffleCount)).setText(Integer.toString(boostShuffle));
+        ((TextView) findViewById(R.id.undoCount)).setText(Integer.toString(boostUndo));
+        ((TextView) findViewById(R.id.timeCount)).setText(Integer.toString(boostTime));
+        ((TextView) findViewById(R.id.moveCount)).setText(Integer.toString(boostMove));
+        ((TextView) findViewById(R.id.shuffleCount)).setText(Integer.toString(boostShuffle));
     }
 
     @Override
@@ -189,7 +199,7 @@ public class PuzzleActivity extends Activity {
     }
 
     public void startCountdownTimer() {
-        final TextView countdownTimer = (TextView)findViewById(R.id.initialCountdownText);
+        final TextView countdownTimer = (TextView) findViewById(R.id.initialCountdownText);
         new CountDownTimer(4000, 100) {
             public void onTick(long millisUntilFinished) {
                 int timeLeft = (int) Math.ceil(millisUntilFinished / 1000);
@@ -216,23 +226,14 @@ public class PuzzleActivity extends Activity {
             handler.post(updateTimerThread);
         }
 
-        findViewById(R.id.zoomIn).setVisibility(View.VISIBLE);
-        findViewById(R.id.zoomOut).setVisibility(View.VISIBLE);
+        findViewById(R.id.controlWrapper).setVisibility(View.VISIBLE);
         findViewById(R.id.topUI).setVisibility(View.VISIBLE);
 
         startTime = SystemClock.uptimeMillis();
     }
 
-    private Runnable updateTimerThread = new Runnable() {
-        public void run() {
-            timeInMilliseconds = (SystemClock.uptimeMillis() - startTime) - timeSpentPaused;
-            ((TextView)(findViewById(R.id.puzzleTimer))).setText(DateHelper.getPuzzleTimeString(timeInMilliseconds));
-            handler.postDelayed(this, 20);
-        }
-    };
-
     public void populateTiles(List<Tile> tiles) {
-        dh.setupTileDisplay(this, tiles, (ZoomableViewGroup)findViewById(R.id.tileContainer), puzzleId, null, null, false);
+        optimumScale = dh.setupTileDisplay(this, tiles, (ZoomableViewGroup) findViewById(R.id.tileContainer), puzzleId, null, null, false).second;
     }
 
     public void zoomIn(View v) {
@@ -243,6 +244,10 @@ public class PuzzleActivity extends Activity {
     public void zoomOut(View v) {
         ZoomableViewGroup tileContainer = (ZoomableViewGroup) findViewById(R.id.tileContainer);
         tileContainer.setScaleFactor(tileContainer.getScaleFactor() - 0.5f, false);
+    }
+
+    public void reset(View v) {
+        ((ZoomableViewGroup) findViewById(R.id.tileContainer)).reset(optimumScale);
     }
 
     public void handleTileClick(ImageView image, Tile tile) {
@@ -314,7 +319,7 @@ public class PuzzleActivity extends Activity {
             Boost.use(Constants.BOOST_SHUFFLE);
 
             ((TextView) findViewById(R.id.moveCounter)).setText(Integer.toString(++movesMade));
-            ((TextView)findViewById(R.id.shuffleBoost)).setTextColor(Boost.getOwnedCount(Constants.BOOST_SHUFFLE) > 0 ? Color.BLACK : Color.LTGRAY);
+            ((TextView) findViewById(R.id.shuffleBoost)).setTextColor(Boost.getOwnedCount(Constants.BOOST_SHUFFLE) > 0 ? Color.BLACK : Color.LTGRAY);
 
             updateUiElements();
         }
@@ -355,7 +360,7 @@ public class PuzzleActivity extends Activity {
     public void displayPuzzleComplete() {
         final Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
         findViewById(R.id.puzzleTimer).setVisibility(View.GONE);
-        findViewById(R.id.zoomIn).setVisibility(View.GONE);
+        findViewById(R.id.controlWrapper).setVisibility(View.GONE);
         findViewById(R.id.zoomOut).setVisibility(View.GONE);
         findViewById(R.id.moveCounter).setVisibility(View.GONE);
         findViewById(R.id.topUI).setVisibility(View.GONE);
@@ -392,8 +397,8 @@ public class PuzzleActivity extends Activity {
         }
 
         int currencyEarned = PuzzleHelper.getCurrencyEarned(puzzleCustom, isFirstComplete, originalStars, stars);
-        Statistic.addCurrency(currencyEarned);
-        ((TextView)findViewById(R.id.currencyEarned)).setText(String.format(Locale.ENGLISH, Text.get("ALERT_COINS_EARNED"), currencyEarned));
+        Statistic.addCurrency((Iap.hasCoinDoubler() ? 2 : 1) * currencyEarned);
+        ((TextView) findViewById(R.id.currencyEarned)).setText(String.format(Locale.ENGLISH, Text.get("ALERT_COINS_EARNED"), (Iap.hasCoinDoubler() ? 2 : 1) * currencyEarned));
 
         findViewById(R.id.endGame).setVisibility(View.VISIBLE);
 
@@ -453,7 +458,7 @@ public class PuzzleActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        if (timePaused > 0) {
+        if (timePaused > 0 || timeInMilliseconds == 0) {
             this.finish();
         } else {
             pause();
@@ -482,6 +487,14 @@ public class PuzzleActivity extends Activity {
         startActivity(intent);
     }
 
+    public void toggleEndDisplay(View v) {
+        currentlyPeeking = !currentlyPeeking;
+        findViewById(R.id.endGameBackground).setAlpha(currentlyPeeking ? 0f : 0.7f);
+        findViewById(R.id.skyscraperContainer).setVisibility(currentlyPeeking ? View.INVISIBLE : View.VISIBLE);
+        findViewById(R.id.tilesContainer).setVisibility(currentlyPeeking ? View.INVISIBLE : View.VISIBLE);
+        findViewById(R.id.currencyContainer).setVisibility(currentlyPeeking ? View.INVISIBLE : View.VISIBLE);
+    }
+
     public void mainAction(View v) {
         if (isCustom) {
             this.finish();
@@ -504,5 +517,13 @@ public class PuzzleActivity extends Activity {
                 startActivity(intent);
             }
         }
+    }
+
+    public Activity getActivity() {
+        return this;
+    }
+
+    public boolean displayEmptyTile() {
+        return false;
     }
 }

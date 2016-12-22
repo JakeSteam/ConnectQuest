@@ -1,71 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".main.IAPActivity">
+
     <RelativeLayout
         android:id="@+id/popupWrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_marginLeftPercent="10%"
-        app:layout_marginRightPercent="10%"
-        android:padding="5dp"
+        android:layout_centerInParent="true"
         android:background="@color/city"
-        android:layout_centerInParent="true">
+        android:padding="5dp"
+        app:layout_marginLeftPercent="10%"
+        app:layout_marginRightPercent="10%">
+
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/iapTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:textSize="32sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="5dp"
+            android:text="IAPs"
             android:textColor="@color/black"
-            android:text="IAPs"/>
+            android:textSize="32sp" />
+
         <HorizontalScrollView
             android:id="@+id/iapContainerContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/iapTitle"
             android:layout_margin="5dp"
-            android:layout_below="@id/iapTitle">
+            android:fadeScrollbars="false">
+
             <LinearLayout
                 android:id="@+id/iapContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"/>
+                android:orientation="horizontal" />
         </HorizontalScrollView>
+
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/teaserText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/iapContainerContainer"
             android:layout_margin="5dp"
-            android:textSize="22sp"
+            android:text="Buy IAP, get a pack."
             android:textColor="@color/black"
-            android:text="Buy IAP, get a pack."/>
+            android:textSize="22sp" />
     </RelativeLayout>
+
     <uk.co.jakelee.cityflow.components.TextAwesome
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="&#xf00d;"
-        android:textColor="@color/red"
-        android:layout_alignTop="@id/popupWrapper"
         android:layout_alignRight="@id/popupWrapper"
-        android:textSize="30sp"
+        android:layout_alignTop="@id/popupWrapper"
+        android:layout_marginRight="-5dp"
+        android:layout_marginTop="-5dp"
+        android:background="@color/ltltgrey"
+        android:clickable="true"
         android:onClick="closePopup"
         android:padding="10dp"
-        android:layout_marginTop="-5dp"
-        android:layout_marginRight="-5dp"
-        android:background="@color/ltltgrey"/>
+        android:text="@string/icon_cross"
+        android:textColor="@color/red"
+        android:textSize="30sp" />
+
     <LinearLayout
         android:id="@+id/croutonview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
-    </LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"></LinearLayout>
 </android.support.percent.PercentRelativeLayout>

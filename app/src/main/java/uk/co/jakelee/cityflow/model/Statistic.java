@@ -56,6 +56,51 @@ public class Statistic extends SugarRecord {
         this.lastSentValue = lastSentValue;
     }
 
+    public static void increaseByOne(int statisticId) {
+        Statistic statToIncrease = Select.from(Statistic.class).where(
+                Condition.prop("statistic_id").eq(statisticId)).first();
+
+        if (statToIncrease != null) {
+            statToIncrease.setIntValue(statToIncrease.getIntValue() + 1);
+            statToIncrease.save();
+        }
+    }
+
+    public static void increaseByX(int statisticId, int value) {
+        Statistic statToIncrease = Select.from(Statistic.class).where(
+                Condition.prop("statistic_id").eq(statisticId)).first();
+
+        if (statToIncrease != null) {
+            statToIncrease.setIntValue(statToIncrease.getIntValue() + value);
+            statToIncrease.save();
+        }
+    }
+
+    public static int getInt(int statisticId) {
+        Statistic statToIncrease = Select.from(Statistic.class).where(
+                Condition.prop("statistic_id").eq(statisticId)).first();
+
+        if (statToIncrease != null) {
+            return statToIncrease.getIntValue();
+        }
+        return 0;
+    }
+
+    public static Statistic find(int statisticId) {
+        return Select.from(Statistic.class).where(
+                Condition.prop("statistic_id").eq(statisticId)).first();
+    }
+
+    public static int getCurrency() {
+        return Select.from(Statistic.class).where(
+                Condition.prop("statistic_id").eq(Constants.STATISTIC_CURRENCY)).first().getIntValue();
+    }
+
+    public static void addCurrency(int amount) {
+        GooglePlayHelper.UpdateEvent(Constants.EVENT_EARN_COINS, amount);
+        increaseByX(Constants.STATISTIC_CURRENCY, amount);
+    }
+
     public int getStatisticId() {
         return statisticId;
     }
@@ -114,51 +159,6 @@ public class Statistic extends SugarRecord {
 
     public String getName() {
         return Text.get("STATISTIC_", getStatisticId(), "_NAME");
-    }
-
-    public static void increaseByOne(int statisticId) {
-        Statistic statToIncrease = Select.from(Statistic.class).where(
-                Condition.prop("statistic_id").eq(statisticId)).first();
-
-        if (statToIncrease != null) {
-            statToIncrease.setIntValue(statToIncrease.getIntValue() + 1);
-            statToIncrease.save();
-        }
-    }
-
-    public static void increaseByX(int statisticId, int value) {
-        Statistic statToIncrease = Select.from(Statistic.class).where(
-                Condition.prop("statistic_id").eq(statisticId)).first();
-
-        if (statToIncrease != null) {
-            statToIncrease.setIntValue(statToIncrease.getIntValue() + value);
-            statToIncrease.save();
-        }
-    }
-
-    public static int getInt(int statisticId) {
-        Statistic statToIncrease = Select.from(Statistic.class).where(
-                Condition.prop("statistic_id").eq(statisticId)).first();
-
-        if (statToIncrease != null) {
-            return statToIncrease.getIntValue();
-        }
-        return 0;
-    }
-
-    public static Statistic find(int statisticId) {
-        return Select.from(Statistic.class).where(
-                Condition.prop("statistic_id").eq(statisticId)).first();
-    }
-
-    public static int getCurrency() {
-        return Select.from(Statistic.class).where(
-                Condition.prop("statistic_id").eq(Constants.STATISTIC_CURRENCY)).first().getIntValue();
-    }
-
-    public static void addCurrency(int amount) {
-        GooglePlayHelper.UpdateEvent(Constants.EVENT_EARN_COINS, amount);
-        increaseByX(Constants.STATISTIC_CURRENCY, amount);
     }
 
     public enum Fields {
