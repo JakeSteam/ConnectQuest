@@ -104,15 +104,19 @@ public class SoundHelper {
     }
 
     public void playOrResumeMusic(AUDIO musicRequest) {
-        if (songPlayer != null && currentTrack != null && musicRequest == currentTrack) {
-            // If we're already playing that track
-            songPlayer.start();
+        if (Setting.getSafeBoolean(Constants.SETTING_MUSIC)) {
+            if (songPlayer != null && currentTrack != null && musicRequest == currentTrack) {
+                // If we're already playing that track
+                songPlayer.start();
+            } else {
+                // Change track / start a song
+                playSound(musicRequest);
+            }
+            currentTrack = musicRequest;
+            SoundHelper.keepPlayingMusic = true;
         } else {
-            // Change track / start a song
-            playSound(musicRequest);
+            stopAudio(true);
         }
-        currentTrack = musicRequest;
-        SoundHelper.keepPlayingMusic = true;
     }
 
     public enum AUDIO {purchasing, rotating, settings, main, puzzle}
