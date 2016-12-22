@@ -30,7 +30,7 @@ public class PuzzleShareHelper {
         PuzzleCustom puzzleCustom = puzzle.getCustomData();
         StringBuilder sb = new StringBuilder();
         sb.append("texts.add(new Text(Constants.LANGUAGE_EN, \"PUZZLE_PUZZLE_ID_NAME\", \"" + puzzleCustom.getName() + "\"));\n");
-        sb.append(String.format("puzzles.add(new Puzzle(PUZZLE_ID, " + currentPack + ", %1$dL, %2$d, 0L, 0));\n",
+        sb.append(String.format(Locale.ENGLISH, "puzzles.add(new Puzzle(PUZZLE_ID, " + currentPack + ", %1$dL, %2$d, 0L, 0));\n",
                 puzzle.getBestTime(),
                 puzzle.getBestMoves()));
         List<Tile> tiles = puzzle.getTiles();

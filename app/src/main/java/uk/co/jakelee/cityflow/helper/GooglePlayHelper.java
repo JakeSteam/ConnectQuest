@@ -232,7 +232,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                     callingActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            AlertHelper.error(callingActivity, String.format(AlertHelper.getError(AlertHelper.Error.CLOUD_ERROR), e.getMessage()));
+                            AlertHelper.error(callingActivity, String.format(Locale.ENGLISH, AlertHelper.getError(AlertHelper.Error.CLOUD_ERROR), e.getMessage()));
                         }
                     });
                 }

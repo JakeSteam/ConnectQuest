@@ -143,7 +143,7 @@ public class TilePickerActivity extends Activity {
         tileContainer.removeAllViews();
 
         boolean displayLockedTiles = Setting.getSafeBoolean(Constants.SETTING_HIDE_LOCKED_TILES);
-        String whereClause = String.format("%1$s AND %2$s AND %3$s %4$s environment_id ASC",
+        String whereClause = String.format(Locale.ENGLISH, "%1$s AND %2$s AND %3$s %4$s environment_id ASC",
                 getEnvironmentSQL(),
                 getFlowSQL(),
                 getHeightSQL(),
@@ -229,7 +229,7 @@ public class TilePickerActivity extends Activity {
         }
 
         String flowListString = sb.toString().substring(0, sb.toString().length() - 1);
-        return String.format("(flow_north IN (%1$s) OR flow_east IN (%1$s) OR flow_south IN (%1$s) OR flow_west IN (%1$s))", flowListString);
+        return String.format(Locale.ENGLISH, "(flow_north IN (%1$s) OR flow_east IN (%1$s) OR flow_south IN (%1$s) OR flow_west IN (%1$s))", flowListString);
     }
 
     private String getHeightSQL() {
@@ -245,7 +245,7 @@ public class TilePickerActivity extends Activity {
         }
 
         String heightListString = sb.toString().substring(0, sb.toString().length() - 1);
-        return String.format("(height_north IN (%1$s) OR height_east IN (%1$s) OR height_south IN (%1$s) OR height_west IN (%1$s))", heightListString);
+        return String.format(Locale.ENGLISH, "(height_north IN (%1$s) OR height_east IN (%1$s) OR height_south IN (%1$s) OR height_west IN (%1$s))", heightListString);
     }
 
     public void hideLockedTilesToggle(View v) {
