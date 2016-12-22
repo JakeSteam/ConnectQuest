@@ -60,7 +60,8 @@
                     android:layout_gravity="center"
                     android:textSize="30sp"
                     android:padding="10dp"
-                    android:onClick="toggleSetting"/>
+                    android:clickable="true"
+android:onClick="toggleSetting"/>
             </TableRow>
 
             <TableRow>
@@ -84,7 +85,8 @@
                     android:layout_gravity="center"
                     android:textSize="30sp"
                     android:padding="10dp"
-                    android:onClick="toggleSetting"/>
+                    android:clickable="true"
+android:onClick="toggleSetting"/>
             </TableRow>
 
             <TableRow>
@@ -286,7 +288,8 @@
                     android:gravity="center_horizontal"
                     android:textSize="20sp"
                     android:ellipsize="end"
-                    android:onClick="openBackgroundPicker"
+                    android:clickable="true"
+android:onClick="openBackgroundPicker"
                     android:textColor="@color/black"
                     android:shadowColor="@color/white"
                     android:shadowDx="1.5"
@@ -315,7 +318,8 @@
                     android:layout_gravity="center"
                     android:textSize="30sp"
                     android:padding="10dp"
-                    android:onClick="toggleSetting"/>
+                    android:clickable="true"
+android:onClick="toggleSetting"/>
             </TableRow>
 
             <TableRow>
@@ -339,7 +343,8 @@
                     android:gravity="center"
                     android:textSize="30sp"
                     android:padding="10dp"
-                    android:onClick="toggleSetting"/>
+                    android:clickable="true"
+android:onClick="toggleSetting"/>
             </TableRow>
 
             <TableRow>
@@ -368,7 +373,8 @@
                     android:maxLines="3"
                     android:textColor="@color/black"
                     android:background="@color/ltltgrey"
-                    android:onClick="changeText"/>
+                    android:clickable="true"
+android:onClick="changeText"/>
             </TableRow>
 
             <TableRow>
@@ -397,7 +403,8 @@
                     android:maxLines="1"
                     android:textColor="@color/black"
                     android:background="@color/ltltgrey"
-                    android:onClick="changeFloat"
+                    android:clickable="true"
+android:onClick="changeFloat"
                     android:tag="3"/>
             </TableRow>
 
@@ -427,7 +434,8 @@
                     android:maxLines="1"
                     android:textColor="@color/black"
                     android:background="@color/ltltgrey"
-                    android:onClick="changeFloat"
+                    android:clickable="true"
+android:onClick="changeFloat"
                     android:tag="4"/>
             </TableRow>
 
@@ -452,7 +460,8 @@
                     android:gravity="center"
                     android:textSize="30sp"
                     android:padding="10dp"
-                    android:onClick="toggleSetting"/>
+                    android:clickable="true"
+android:onClick="toggleSetting"/>
             </TableRow>
 
             <TableRow android:id="@+id/maxCarsContainer">
@@ -480,7 +489,8 @@
                     android:ellipsize="end"
                     android:maxLines="3"
                     android:background="@color/ltltgrey"
-                    android:onClick="changeInt"
+                    android:clickable="true"
+android:onClick="changeInt"
                     android:tag="9"/>
             </TableRow>
 
@@ -510,7 +520,8 @@
                     android:maxLines="3"
                     android:textColor="@color/black"
                     android:background="@color/ltltgrey"
-                    android:onClick="tutorialAction"/>
+                    android:clickable="true"
+android:onClick="tutorialAction"/>
             </TableRow>
 
             <TableRow>
@@ -539,7 +550,8 @@
                     android:maxLines="3"
                     android:textColor="@color/black"
                     android:background="@color/ltltgrey"
-                    android:onClick="changeInt"
+                    android:clickable="true"
+android:onClick="changeInt"
                     android:tag="21"/>
             </TableRow>
 
@@ -580,7 +592,8 @@
                         android:padding="2dp"
                         android:layout_margin="5dp"
                         android:gravity="center"
-                        android:onClick="openAchievements"/>
+                        android:clickable="true"
+android:onClick="openAchievements"/>
                     <ImageView
                         android:layout_weight="1"
                         android:layout_width="30dp"
@@ -590,7 +603,8 @@
                         android:padding="2dp"
                         android:layout_margin="5dp"
                         android:gravity="center"
-                        android:onClick="openQuests"/>
+                        android:clickable="true"
+android:onClick="openQuests"/>
                     <ImageView
                         android:layout_weight="1"
                         android:layout_width="30dp"
@@ -600,7 +614,8 @@
                         android:padding="2dp"
                         android:layout_margin="5dp"
                         android:gravity="center"
-                        android:onClick="openLeaderboards"/>
+                        android:clickable="true"
+android:onClick="openLeaderboards"/>
                     <ImageView
                         android:layout_weight="1"
                         android:layout_width="30dp"
@@ -610,7 +625,8 @@
                         android:padding="2dp"
                         android:layout_margin="5dp"
                         android:gravity="center"
-                        android:onClick="openCloudSaves"/>
+                        android:clickable="true"
+android:onClick="openCloudSaves"/>
                 </LinearLayout>
 
                 <RelativeLayout android:gravity="center">
@@ -621,7 +637,8 @@
                         android:padding="5dp"
                         android:layout_margin="5dp"
                         android:background="@color/orange"
-                        android:onClick="signIn"
+                        android:clickable="true"
+android:onClick="signIn"
                         android:textColor="@color/black"
                         android:textSize="22sp" />
                     <uk.co.jakelee.cityflow.components.TextViewFont
@@ -633,7 +650,8 @@
                         android:layout_margin="5dp"
                         android:background="@color/orange"
                         android:gravity="center"
-                        android:onClick="signOut"
+                        android:clickable="true"
+android:onClick="signOut"
                         android:textColor="@color/black"
                         android:textSize="20sp"/>
                 </RelativeLayout>
@@ -665,7 +683,8 @@
                     android:maxLines="1"
                     android:textColor="@color/black"
                     android:background="@color/ltltgrey"
-                    android:onClick="changeInt"
+                    android:clickable="true"
+android:onClick="changeInt"
                     android:tag="11"/>
             </TableRow>
 
@@ -692,7 +711,7 @@
                     android:layout_margin="5dp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:layout_gravity="center_horizontal"/>
+                    android:layout_gravity="left|center_vertical"/>
             </TableRow>
 
             <!-- Other settings -->
@@ -727,7 +746,8 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:padding="8dp"
-                    android:onClick="openCredits"/>
+                    android:clickable="true"
+android:onClick="openCredits"/>
             </TableRow>
 
             <TableRow>
@@ -742,7 +762,8 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:padding="8dp"
-                    android:onClick="openStatistics"/>
+                    android:clickable="true"
+android:onClick="openStatistics"/>
             </TableRow>
 
             <TableRow>
@@ -757,7 +778,8 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:padding="8dp"
-                    android:onClick="resetLanguage"/>
+                    android:clickable="true"
+android:onClick="resetLanguage"/>
             </TableRow>
 
             <TableRow>
@@ -772,7 +794,8 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:padding="8dp"
-                    android:onClick="improveLanguage"/>
+                    android:clickable="true"
+android:onClick="improveLanguage"/>
             </TableRow>
 
             <TableRow>
@@ -787,7 +810,8 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:padding="8dp"
-                    android:onClick="openSupportCode"/>
+                    android:clickable="true"
+android:onClick="openSupportCode"/>
             </TableRow>
 
             <TableRow>

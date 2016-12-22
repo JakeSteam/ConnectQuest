@@ -28,7 +28,8 @@
             android:textColor="@color/ltgrey"
             android:text="@string/icon_restart"
             android:gravity="center"
-            android:onClick="useBoostUndo"
+            android:clickable="true"
+android:onClick="useBoostUndo"
             android:padding="5dp"
             android:layout_margin="2dp"
             android:background="@color/ltltgrey"/>
@@ -57,7 +58,8 @@
             android:layout_toRightOf="@id/undoBoost"
             android:text="@string/icon_time"
             android:gravity="center"
-            android:onClick="useBoostTime"
+            android:clickable="true"
+android:onClick="useBoostTime"
             android:padding="5dp"
             android:layout_margin="2dp"
             android:background="@color/ltltgrey"/>
@@ -86,7 +88,8 @@
             android:layout_toRightOf="@id/timeBoost"
             android:text="-1"
             android:gravity="center"
-            android:onClick="useBoostMove"
+            android:clickable="true"
+android:onClick="useBoostMove"
             android:padding="5dp"
             android:layout_margin="2dp"
             android:background="@color/ltltgrey"/>
@@ -115,7 +118,8 @@
             android:layout_toRightOf="@id/moveBoost"
             android:text="@string/icon_shuffle"
             android:gravity="center"
-            android:onClick="useBoostShuffle"
+            android:clickable="true"
+android:onClick="useBoostShuffle"
             android:padding="5dp"
             android:layout_margin="2dp"
             android:background="@color/ltltgrey"/>
@@ -146,7 +150,8 @@
             android:gravity="center"
             android:padding="5dp"
             android:layout_margin="2dp"
-            android:onClick="pausePuzzle"
+            android:clickable="true"
+android:onClick="pausePuzzle"
             android:background="@color/ltltgrey"/>
 
     </android.support.percent.PercentRelativeLayout>
@@ -179,7 +184,8 @@
             android:textSize="40sp"
             android:textColor="@color/black"
             android:text="@string/icon_zoomin"
-            android:onClick="zoomIn"
+            android:clickable="true"
+android:onClick="zoomIn"
             android:layout_margin="5dp"
             android:gravity="center_horizontal"
             android:shadowColor="@color/white"
@@ -194,7 +200,8 @@
             android:textSize="40sp"
             android:textColor="@color/black"
             android:text="@string/icon_zoomout"
-            android:onClick="zoomOut"
+            android:clickable="true"
+android:onClick="zoomOut"
             android:layout_margin="5dp"
             android:gravity="center_horizontal"
             android:shadowColor="@color/white"
@@ -209,7 +216,8 @@
             android:textSize="40sp"
             android:textColor="@color/black"
             android:text="@string/icon_centre"
-            android:onClick="reset"
+            android:clickable="true"
+android:onClick="reset"
             android:layout_margin="5dp"
             android:gravity="center_horizontal"
             android:shadowColor="@color/white"
@@ -251,14 +259,16 @@
                 android:background="@color/black"
                 android:alpha="0.6"
                 android:gravity="center"
-                android:onClick="suppressClick"/>
+                android:clickable="true"
+android:onClick="suppressClick"/>
         </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/pauseScreen"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:onClick="resumePuzzle"
+            android:clickable="true"
+android:onClick="resumePuzzle"
             android:visibility="gone">
             <ImageView
                 android:layout_width="match_parent"
@@ -288,7 +298,8 @@
                     android:text="@string/icon_cross"
                     android:padding="10dp"
                     android:layout_margin="5dp"
-                    android:onClick="closePuzzle"/>
+                    android:clickable="true"
+android:onClick="closePuzzle"/>
                 <uk.co.jakelee.cityflow.components.TextAwesome
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -299,7 +310,8 @@
                     android:text="@string/icon_restart"
                     android:padding="10dp"
                     android:layout_margin="5dp"
-                    android:onClick="restartPuzzle"/>
+                    android:clickable="true"
+android:onClick="restartPuzzle"/>
                 <uk.co.jakelee.cityflow.components.TextAwesome
                     android:id="@+id/resumeButton"
                     android:layout_width="match_parent"
@@ -311,7 +323,8 @@
                     android:text="@string/icon_play"
                     android:padding="10dp"
                     android:layout_margin="5dp"
-                    android:onClick="resumePuzzle"/>
+                    android:clickable="true"
+android:onClick="resumePuzzle"/>
             </LinearLayout>
         </RelativeLayout>
 
@@ -326,7 +339,8 @@
                 android:layout_height="match_parent"
                 android:src="@color/black"
                 android:alpha="0.7"
-                android:onClick="suppressClick"/>
+                android:clickable="true"
+android:onClick="suppressClick"/>
             <LinearLayout
                 android:id="@+id/skyscraperContainer"
                 android:layout_width="match_parent"
@@ -460,7 +474,8 @@
                     android:text="@string/icon_cross"
                     android:padding="10dp"
                     android:layout_margin="5dp"
-                    android:onClick="closePuzzle"/>
+                    android:clickable="true"
+android:onClick="closePuzzle"/>
                 <uk.co.jakelee.cityflow.components.TextAwesome
                     android:id="@+id/restartButton"
                     android:layout_width="wrap_content"
@@ -472,7 +487,8 @@
                     android:text="@string/icon_restart"
                     android:padding="10dp"
                     android:layout_margin="5dp"
-                    android:onClick="restartPuzzle"/>
+                    android:clickable="true"
+android:onClick="restartPuzzle"/>
                 <uk.co.jakelee.cityflow.components.TextAwesome
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -483,7 +499,8 @@
                     android:text="@string/icon_visibility"
                     android:padding="10dp"
                     android:layout_margin="5dp"
-                    android:onClick="toggleEndDisplay"/>
+                    android:clickable="true"
+android:onClick="toggleEndDisplay"/>
                 <uk.co.jakelee.cityflow.components.TextAwesome
                     android:id="@+id/mainActionButton"
                     android:layout_width="match_parent"
@@ -494,7 +511,8 @@
                     android:textSize="36sp"
                     android:padding="10dp"
                     android:layout_margin="5dp"
-                    android:onClick="mainAction"/>
+                    android:clickable="true"
+android:onClick="mainAction"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/tilesContainer"
@@ -537,7 +555,8 @@
                     android:text="@string/icon_shop"
                     android:padding="10dp"
                     android:layout_margin="6dp"
-                    android:onClick="openShop"/>
+                    android:clickable="true"
+android:onClick="openShop"/>
             </LinearLayout>
         </RelativeLayout>
 

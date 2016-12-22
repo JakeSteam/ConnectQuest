@@ -18,7 +18,8 @@
         android:shrinkColumns="1"
         android:stretchColumns="1">
         <TableRow
-            android:onClick="editPuzzleName">
+            android:clickable="true"
+android:onClick="editPuzzleName">
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/puzzleNameText"
                 android:layout_width="wrap_content"
@@ -38,7 +39,8 @@
                 android:ellipsize="end"/>
         </TableRow>
         <TableRow
-            android:onClick="editPuzzleDesc">
+            android:clickable="true"
+android:onClick="editPuzzleDesc">
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/puzzleDescText"
                 android:layout_width="wrap_content"
@@ -176,7 +178,8 @@
                 android:textColor="@color/black"
                 android:textSize="28sp"
                 android:gravity="center_horizontal"
-                android:onClick="copyPuzzle"/>
+                android:clickable="true"
+android:onClick="copyPuzzle"/>
             <uk.co.jakelee.cityflow.components.TextAwesome
                 android:id="@+id/exportButton"
                 android:layout_width="wrap_content"
@@ -187,7 +190,8 @@
                 android:text="@string/icon_export"
                 android:textColor="@color/grey"
                 android:textSize="28sp"
-                android:onClick="exportPuzzle"
+                android:clickable="true"
+android:onClick="exportPuzzle"
                 android:gravity="center_horizontal"/>
             <uk.co.jakelee.cityflow.components.TextAwesome
                 android:id="@+id/playButton"
@@ -200,7 +204,8 @@
                 android:textSize="28sp"
                 android:gravity="center_horizontal"
                 android:text="@string/icon_play"
-                android:onClick="playPuzzle"/>
+                android:clickable="true"
+android:onClick="playPuzzle"/>
         </LinearLayout>
     </TableLayout>
     <uk.co.jakelee.cityflow.components.TextAwesome
@@ -211,7 +216,8 @@
         android:layout_alignTop="@id/popupWrapper"
         android:layout_alignRight="@id/popupWrapper"
         android:textSize="30sp"
-        android:onClick="closePopup"
+        android:clickable="true"
+android:onClick="closePopup"
         android:padding="10dp"
         android:layout_marginTop="-5dp"
         android:layout_marginRight="-5dp"

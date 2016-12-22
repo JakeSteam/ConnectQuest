@@ -101,7 +101,8 @@
                 android:textColor="@color/black"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:onClick="hideLockedTilesToggle" />
+                android:clickable="true"
+android:onClick="hideLockedTilesToggle" />
             <uk.co.jakelee.cityflow.components.TextAwesome
                 android:id="@+id/hideLockedTiles"
                 android:layout_width="wrap_content"
@@ -110,7 +111,8 @@
                 android:textSize="25sp"
                 android:padding="3dp"
                 android:layout_gravity="center_vertical"
-                android:onClick="hideLockedTilesToggle"/>
+                android:clickable="true"
+android:onClick="hideLockedTilesToggle"/>
         </LinearLayout>
         <ScrollView
             android:layout_width="match_parent"
@@ -131,7 +133,8 @@
         android:layout_alignTop="@id/mainContainer"
         android:layout_alignRight="@id/mainContainer"
         android:textSize="30sp"
-        android:onClick="closePopup"
+        android:clickable="true"
+android:onClick="closePopup"
         android:padding="10dp"
         android:layout_marginTop="-5dp"
         android:layout_marginRight="-5dp"

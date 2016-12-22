@@ -39,7 +39,8 @@
                 android:gravity="center"
                 android:text="@string/icon_buy_currency"
                 android:textColor="@color/dkgrey"
-                android:onClick="buyCoins"
+                android:clickable="true"
+android:onClick="buyCoins"
                 android:textSize="34sp"
                 android:padding="5dp"/>
         </RelativeLayout>
@@ -76,7 +77,8 @@
                 android:textSize="26sp"
                 android:layout_margin="4dp"
                 android:background="@color/blue"
-                android:onClick="launchAdvert"/>
+                android:clickable="true"
+android:onClick="launchAdvert"/>
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/freeCurrencyOffers"
                 android:layout_width="wrap_content"
@@ -85,7 +87,8 @@
                 android:textSize="26sp"
                 android:layout_margin="4dp"
                 android:background="@color/blue"
-                android:onClick="launchOffers"/>
+                android:clickable="true"
+android:onClick="launchOffers"/>
         </LinearLayout>
     </LinearLayout>
 

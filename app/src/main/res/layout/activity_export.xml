@@ -106,7 +106,8 @@
             android:layout_margin="6dp"
             android:background="@color/ltltgrey"
             android:textSize="30sp"
-            android:onClick="save"/>
+            android:clickable="true"
+android:onClick="save"/>
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/shareCard"
             android:layout_width="wrap_content"
@@ -116,7 +117,8 @@
             android:layout_margin="6dp"
             android:background="@color/ltltgrey"
             android:textSize="30sp"
-            android:onClick="share"/>
+            android:clickable="true"
+android:onClick="share"/>
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/shareText"
             android:layout_width="wrap_content"
@@ -126,7 +128,8 @@
             android:layout_margin="6dp"
             android:background="@color/ltltgrey"
             android:textSize="30sp"
-            android:onClick="shareText"/>
+            android:clickable="true"
+android:onClick="shareText"/>
     </LinearLayout>
 
     <LinearLayout

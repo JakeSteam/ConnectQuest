@@ -29,7 +29,8 @@
                 android:background="@color/blue"
                 android:textColor="@color/black"
                 android:textSize="22sp"
-                android:onClick="playPuzzle"
+                android:clickable="true"
+android:onClick="playPuzzle"
                 android:gravity="center_horizontal"/>
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/changePuzzleName"
@@ -42,7 +43,8 @@
                 android:background="@color/blue"
                 android:textColor="@color/black"
                 android:textSize="22sp"
-                android:onClick="changePuzzleName"
+                android:clickable="true"
+android:onClick="changePuzzleName"
                 android:gravity="center_horizontal"/>
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/changePuzzleDesc"
@@ -55,7 +57,8 @@
                 android:background="@color/blue"
                 android:textColor="@color/black"
                 android:textSize="22sp"
-                android:onClick="changePuzzleDesc"
+                android:clickable="true"
+android:onClick="changePuzzleDesc"
                 android:gravity="center_horizontal"/>
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/shufflePuzzle"
@@ -68,7 +71,8 @@
                 android:background="@color/blue"
                 android:textColor="@color/black"
                 android:textSize="22sp"
-                android:onClick="shufflePuzzle"
+                android:clickable="true"
+android:onClick="shufflePuzzle"
                 android:gravity="center_horizontal"/>
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/rotatePuzzle"
@@ -81,7 +85,8 @@
                 android:background="@color/blue"
                 android:textColor="@color/black"
                 android:textSize="22sp"
-                android:onClick="rotatePuzzle"
+                android:clickable="true"
+android:onClick="rotatePuzzle"
                 android:gravity="center_horizontal"/>
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/changePuzzleSize"
@@ -94,7 +99,8 @@
                 android:background="@color/blue"
                 android:textColor="@color/black"
                 android:textSize="22sp"
-                android:onClick="changePuzzleSize"
+                android:clickable="true"
+android:onClick="changePuzzleSize"
                 android:gravity="center_horizontal"/>
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/savePuzzle"
@@ -105,7 +111,8 @@
                 android:background="@color/blue"
                 android:textColor="@color/black"
                 android:textSize="22sp"
-                android:onClick="savePuzzle"
+                android:clickable="true"
+android:onClick="savePuzzle"
                 android:gravity="center_horizontal"/>
         </LinearLayout>
     </ScrollView>
@@ -117,7 +124,8 @@
         android:layout_alignTop="@id/popupWrapper"
         android:layout_alignRight="@id/popupWrapper"
         android:textSize="30sp"
-        android:onClick="closePopup"
+        android:clickable="true"
+android:onClick="closePopup"
         android:padding="10dp"
         android:layout_marginTop="-5dp"
         android:layout_marginRight="-5dp"

@@ -21,7 +21,8 @@
             android:textSize="26sp"
             android:padding="10dp"
             android:layout_margin="5dp"
-            android:onClick="changeTab"
+            android:clickable="true"
+android:onClick="changeTab"
             android:tag="displayOwn"
             android:background="@color/ltltgrey"/>
         <uk.co.jakelee.cityflow.components.TextViewFont
@@ -33,7 +34,8 @@
             android:textSize="26sp"
             android:padding="10dp"
             android:layout_margin="5dp"
-            android:onClick="changeTab"
+            android:clickable="true"
+android:onClick="changeTab"
             android:tag="displayImported"
             android:background="@color/ltltgrey"/>
     </LinearLayout>
@@ -70,7 +72,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@color/ltltgrey"
-                    android:onClick="importFromCamera"
+                    android:clickable="true"
+android:onClick="importFromCamera"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal"
                     android:layout_margin="3dp">
@@ -96,7 +99,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@color/ltltgrey"
-                    android:onClick="importFromFile"
+                    android:clickable="true"
+android:onClick="importFromFile"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal"
                     android:layout_margin="3dp">
@@ -122,7 +126,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@color/ltltgrey"
-                    android:onClick="importFromText"
+                    android:clickable="true"
+android:onClick="importFromText"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal"
                     android:layout_margin="3dp">
@@ -149,7 +154,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/ltltgrey"
-                android:onClick="newPuzzle"
+                android:clickable="true"
+android:onClick="newPuzzle"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
                 <uk.co.jakelee.cityflow.components.TextViewFont

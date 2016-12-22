@@ -27,7 +27,8 @@
             android:background="@color/blue"
             android:textColor="@color/black"
             android:textSize="22sp"
-            android:onClick="currentQuests"
+            android:clickable="true"
+android:onClick="currentQuests"
             android:gravity="center_horizontal"/>
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/availableQuests"
@@ -40,7 +41,8 @@
             android:background="@color/blue"
             android:textColor="@color/black"
             android:textSize="22sp"
-            android:onClick="availableQuests"
+            android:clickable="true"
+android:onClick="availableQuests"
             android:gravity="center_horizontal"/>
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/upcomingQuests"
@@ -53,7 +55,8 @@
             android:background="@color/blue"
             android:textColor="@color/black"
             android:textSize="22sp"
-            android:onClick="upcomingQuests"
+            android:clickable="true"
+android:onClick="upcomingQuests"
             android:gravity="center_horizontal"/>
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/completedQuests"
@@ -66,7 +69,8 @@
             android:background="@color/blue"
             android:textColor="@color/black"
             android:textSize="22sp"
-            android:onClick="completedQuests"
+            android:clickable="true"
+android:onClick="completedQuests"
             android:gravity="center_horizontal"/>
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/failedQuests"
@@ -79,7 +83,8 @@
             android:background="@color/blue"
             android:textColor="@color/black"
             android:textSize="22sp"
-            android:onClick="failedQuests"
+            android:clickable="true"
+android:onClick="failedQuests"
             android:gravity="center_horizontal"/>
         <uk.co.jakelee.cityflow.components.TextViewFont
             android:id="@+id/redditSchedule"
@@ -90,7 +95,8 @@
             android:background="@color/blue"
             android:textColor="@color/black"
             android:textSize="22sp"
-            android:onClick="redditSchedule"
+            android:clickable="true"
+android:onClick="redditSchedule"
             android:gravity="center_horizontal"/>
     </LinearLayout>
     <uk.co.jakelee.cityflow.components.TextAwesome
@@ -101,7 +107,8 @@
         android:layout_alignTop="@id/popupWrapper"
         android:layout_alignRight="@id/popupWrapper"
         android:textSize="30sp"
-        android:onClick="closePopup"
+        android:clickable="true"
+android:onClick="closePopup"
         android:padding="10dp"
         android:layout_marginTop="-5dp"
         android:layout_marginRight="-5dp"

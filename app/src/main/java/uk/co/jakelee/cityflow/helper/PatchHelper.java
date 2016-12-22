@@ -94,7 +94,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         boolean languagePackModified = false;
         SharedPreferences prefs = callingActivity.getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE);
 
-        // If it's the initial install, we don't need to run any patches.
+        // If it's the initial install, or on latest version, we don't need to run any patches.
         // If it's a patch, install the patch, and reinstall text if necessary.
         if (prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.NO_DATABASE) {
             createDatabase();
@@ -134,6 +134,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
         if (Setting.get(Constants.SETTING_HIDE_LOCKED_TILES) == null) {
             List<Setting> settings = new ArrayList<>();
+            settings.add(new Setting(Constants.SETTING_TUTORIAL_STAGE, 1, Constants.TUTORIAL_MIN, Constants.TUTORIAL_MAX));
             settings.add(new Setting(Constants.SETTING_HIDE_LOCKED_TILES, false));
             settings.add(new Setting(Constants.SETTING_MINIMUM_MILLIS_DRAG, 150, 30, 1000));
             Setting.saveInTx(settings);

@@ -67,7 +67,8 @@
                 app:layout_marginTopPercent="27%"
                 app:layout_heightPercent="20%"
                 android:src="@drawable/main_play"
-                android:onClick="openStory"/>
+                android:clickable="true"
+android:onClick="openStory"/>
 
             <ImageView
                 android:id="@+id/mainBuild"
@@ -76,7 +77,8 @@
                 app:layout_marginTopPercent="47%"
                 app:layout_heightPercent="20%"
                 android:src="@drawable/main_build"
-                android:onClick="openCreator"/>
+                android:clickable="true"
+android:onClick="openCreator"/>
 
             <ImageView
                 android:id="@+id/mainShop"
@@ -85,7 +87,8 @@
                 app:layout_marginTopPercent="67%"
                 app:layout_heightPercent="20%"
                 android:src="@drawable/main_shop"
-                android:onClick="openShop"/>
+                android:clickable="true"
+android:onClick="openShop"/>
 
             <uk.co.jakelee.cityflow.components.TextAwesome
                 android:id="@+id/mainQuests"
@@ -99,7 +102,8 @@
                 android:textColor="@color/black"
                 android:padding="12dp"
                 android:background="@color/blue"
-                android:onClick="openQuestMenu"/>
+                android:clickable="true"
+android:onClick="openQuestMenu"/>
 
             <uk.co.jakelee.cityflow.components.TextAwesome
                 android:id="@+id/mainSettings"
@@ -113,7 +117,8 @@
                 android:textColor="@color/black"
                 android:padding="12dp"
                 android:background="@color/blue"
-                android:onClick="openSettings"/>
+                android:clickable="true"
+android:onClick="openSettings"/>
 
             <uk.co.jakelee.cityflow.components.TextViewFont
                 android:id="@+id/languageFlag"

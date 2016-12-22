@@ -9,4 +9,5 @@
     android:padding="10dp"
     android:textColor="@color/black"
     android:background="@color/ltltgrey"
-    android:onClick="changeTab"/>
+    android:clickable="true"
+android:onClick="changeTab"/>
