@@ -90,37 +90,39 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     @Override
     protected String doInBackground(String... params) {
-        boolean isInitialInstall = false;
+        int latestPatch = PatchHelper.V0_9_2;
         boolean languagePackModified = false;
         SharedPreferences prefs = callingActivity.getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE);
+
+        // If it's the initial install, we don't need to run any patches.
+        // If it's a patch, install the patch, and reinstall text if necessary.
         if (prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.NO_DATABASE) {
             createDatabase();
-            isInitialInstall = true;
-            prefs.edit().putInt("databaseVersion", PatchHelper.V0_9_1).apply();
+            prefs.edit().putInt("databaseVersion", latestPatch).apply();
 
             new Thread(new Runnable() {
                 public void run() {
                     createOtherPuzzles();
                 }
             }).start();
-        }
+        } else {
+            if (prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.V0_9_1) {
+                patch091to092();
+                languagePackModified = true;
+                prefs.edit().putInt("databaseVersion", PatchHelper.V0_9_2).apply();
+            }
 
-        if (prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.V0_9_1) {
-            patch091to092();
-            languagePackModified = true;
-            prefs.edit().putInt("databaseVersion", PatchHelper.V0_9_2).apply();
-        }
-
-        if (languagePackModified && !isInitialInstall) {
-            TextHelper.reinstallCurrentPack();
+            if (languagePackModified) {
+                TextHelper.reinstallCurrentPack();
+            }
         }
         return "";
     }
     
     private void patch091to092() {
         setProgress("Patch 0.9.2", 80);
-        Puzzle.executeQuery("UPDATE puzzle SET best_moves = 7 WHERE puzzle_id = 6");
-        Puzzle.executeQuery("UPDATE puzzle SET best_time = 17499 WHERE puzzle_id = 10");
+        Puzzle.executeQuery("UPDATE puzzle SET par_moves = 7 WHERE puzzle_id = 6");
+        Puzzle.executeQuery("UPDATE puzzle SET par_time = 17499 WHERE puzzle_id = 10");
 
         ShopItem.deleteAll(ShopItem.class);
         createStoreItem();

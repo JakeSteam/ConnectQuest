@@ -2539,7 +2539,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_PL, "CREDITS_OTHER_TITLE", "Inne"));
         texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_CHANGE_TEXT", "Zmiana %1$s tekst \n (max %2$d znaków)"));
         texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_CHANGE_SLIDER", "Zmiana %1$s wartość"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_CLOUD_LOAD_CONFIRM", "Czy na pewno chcesz załadować zapis z chmury?\n\Local: %1$s gwiazdy, %2$s monet \nCloud: %3$s gwiazdy, %4$s monety"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_CLOUD_LOAD_CONFIRM", "Czy na pewno chcesz załadować zapis z chmury?\n\nLocal: %1$s gwiazdy, %2$s monet \nCloud: %3$s gwiazdy, %4$s monety"));
         texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_CLOUD_SAVE_CONFIRM", "Czy na pewno chcesz nadpisać zapis w chmurze? \n%1$s \n\n (Utworzono %2$s na swoim %3$s) ze swoim lokalnym zapisem: \n\n%4$d Gwiazd | %5$d Monet | V%6$s?"));
         texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_BUTTON_CHANGE", "Zmiana"));
         texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_BUTTON_CONFIRM", "Potwierdzać"));
@@ -3117,8 +3117,8 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_BUTTON_DELETE", "Удалить"));
         texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_BUTTON_RESIZE", "Изменить размер"));
         texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_BUTTON_TEXT", "Текст"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_BUTTON_LEFT", "Лево (as noun) \ левый (as an adjective)"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_BUTTON_RIGHT", "Право (as noun) \ правый (as an adjective)"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_BUTTON_LEFT", "Лево"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_BUTTON_RIGHT", "Право"));
         texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_RESIZE_CONFIRM", "Вы уверены, что хотите изменить размер головоломки от %1$dх%2$d - %3$dх%4$d?"));
         texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_STATISTICS", "Статистика"));
         texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_SUPPORT_CODE", "Код поддержки"));
