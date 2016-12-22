@@ -121,7 +121,7 @@ public class TextHelper {
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_EN, "INSTALL_CHECK", ""));
 
-        // Added post-translation
+        // 0.9.2
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_LANGUAGE_INSTALL", "Installing language pack: %1$s"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_RESET_LANGUAGE", "Game language set to English!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_TUTORIAL_SKIPPED", "Tutorial skipped!"));
@@ -756,6 +756,25 @@ public class TextHelper {
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_DE, "INSTALL_CHECK", ""));
 
+        // 0.9.2
+        texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_LANGUAGE_INSTALL", "Sprachpaket installieren: %1$s"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_RESET_LANGUAGE", "Spielsprache auf Englisch eingestellt!"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_TUTORIAL_SKIPPED", "Tutorial übersprungen!"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_TUTORIAL_RESTARTED", "Tutorial neu gestartet!"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_RESET_LANGUAGE", "Sprache zurücksetzen"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_RESET_LANGUAGE_CONFIRM", "Zurücksetzen der Sprache auf Englisch, Deinstallieren der derzeit installierten %1$d Übersetzungen?\n\nPacks wiederherstellen, indem Sie Sprache ändern!"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_185_NAME", "Wüste (Pflanze)"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_186_NAME", "Wüstenblume"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "WORD_RANDOM", "Zufällig"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "WORD_SKIP", "Überspringen"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "SHOP_BANNER", "Freie Münzen!"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_LEADERBOARD_CONFIRM", "Welches Pack Leaderboard möchten Sie öffnen?"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_IMPROVE_LANGUAGE", "Übersetzungen verbessern"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "SETTING_19_NAME", "Anleitung"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "SETTING_20_NAME", "Gesperrte Fliesen ausblenden"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "SETTING_21_NAME", "Max Ms in Klicken"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "QUEST_SCHEDULE", "Zeitplan (Reddit)"));
+
         texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_BACKGROUND_UNLOCK", "Unlocked '%1$s' Hintergrund!"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_CARD_SAVED", "Kartenbild auf Galerie gespeichert!"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_COINS_PURCHASED", "Erfolgreich %1$d Münzen gekauft"));
@@ -1322,6 +1341,26 @@ public class TextHelper {
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_NL, "INSTALL_CHECK", ""));
 
+        // 0.9.2
+        texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_LANGUAGE_INSTALL", "Het installeren van taalpakket: %1$s"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_RESET_LANGUAGE", "Game taal in te stellen in het Engels!"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_TUTORIAL_SKIPPED", "Tutorial overgeslagen!"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_TUTORIAL_RESTARTED", "Tutorial hernieuwd!"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_RESET_LANGUAGE", "Reset Taal"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_RESET_LANGUAGE_CONFIRM", "Reset taal terug naar Engels, het verwijderen van de %1$d vertalingen die momenteel is geïnstalleerd? \n\nReinstall packs door het veranderen van de taal!"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_185_NAME", "Desert (Plant)"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_186_NAME", "Woestijnbloem)"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "WORD_RANDOM", "Toevallig"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "WORD_SKIP", "Overspringen"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "SHOP_BANNER", "Gratis munten!"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_LEADERBOARD_CONFIRM", "Welke verpakking leaderboard zou u willen openen?"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_IMPROVE_LANGUAGE", "Vertalingen Verbeteren (Form)"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "SETTING_19_NAME", "Tutorial"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "SETTING_20_NAME", "Hide Locked Tiles"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "SETTING_21_NAME", "Max Millis klik"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "QUEST_SCHEDULE", "Schedule (Reddit)"));
+
+
         texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_BACKGROUND_UNLOCK", "Unlocked '%1$s' achtergrond!"));
         texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_CARD_SAVED", "Image-kaart opgeslagen in galerij!"));
         texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_COINS_PURCHASED", "Succesvol %1$d gekocht!"));
@@ -1885,6 +1924,25 @@ public class TextHelper {
     private static void installFrenchText() {
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_FR, "INSTALL_CHECK", ""));
+
+        // 0.9.2
+        texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_LANGUAGE_INSTALL", "Installation du pack de langue: %1$s"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_RESET_LANGUAGE", "Langue de jeu réglée en anglais!"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_TUTORIAL_SKIPPED", "Tutoriel ignoré!"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_TUTORIAL_RESTARTED", "Tutorial redémarré!"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_RESET_LANGUAGE", "Réinitialiser la langue"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_RESET_LANGUAGE_CONFIRM", "Réinitialiser la langue à l'anglais, désinstaller les traductions %1$d actuellement installées?\n\nReinstallez les packs en changeant de langue!"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_185_NAME", "Désert (plante)"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_186_NAME", "Fleur du desert"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "WORD_RANDOM", "Aléatoire"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "WORD_SKIP", "Sauter"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "SHOP_BANNER", "Pièces gratuites!"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_LEADERBOARD_CONFIRM", "Quel classement souhaitez-vous ouvrir?"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_IMPROVE_LANGUAGE", "Améliorer les traductions (formulaire)"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "SETTING_19_NAME", "Tutoriel"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "SETTING_20_NAME", "Masquer les tuiles verrouillées"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "SETTING_21_NAME", "Max Millis En Clic"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "QUEST_SCHEDULE", "Calendrier (Reddit)"));
 
         texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_BACKGROUND_UNLOCK", "Fond '%1$s' déverouillé!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_CARD_SAVED", "L'image de la carte est sauvegardée dans la gallerie!"));
@@ -2450,6 +2508,25 @@ public class TextHelper {
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_PL, "INSTALL_CHECK", ""));
 
+        // 0.9.2
+        texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_LANGUAGE_INSTALL", "Instalacja pakietu językowego: %1$s"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_RESET_LANGUAGE", "Język gry ustawiony na angielski!"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_TUTORIAL_SKIPPED", "Tutorial pominięty!"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_TUTORIAL_RESTARTED", "Tutorial wznowiona!"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_RESET_LANGUAGE", "Resetowanie język"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_RESET_LANGUAGE_CONFIRM", "Zresetować język z powrotem na angielski, odinstalowanie %1$d tłumaczenia obecnie zainstalowane?\n\nReinstall pakuje zmieniając język!"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_185_NAME", "Desert (roślin)"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_186_NAME", "Desert (Kwiat)"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "WORD_RANDOM", "Losowy"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "WORD_SKIP", "Pominąć"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "SHOP_BANNER", "Darmowe monety!"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_LEADERBOARD_CONFIRM", "Które Leaderboard paczka chcesz otworzyć?"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_IMPROVE_LANGUAGE", "Poprawa Tłumaczenia (formularz)"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "SETTING_19_NAME", "Poradnik"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "SETTING_20_NAME", "Ukryj zablokowane płytki"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "SETTING_21_NAME", "Max Millis W Kliknij"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "QUEST_SCHEDULE", "Harmonogram (Reddit)"));
+
         texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_BACKGROUND_UNLOCK", "Odblokowano tło '%1$s'"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_CARD_SAVED", "Zapisano kartę do galerii!"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_COINS_PURCHASED", "Pomyślnie zakupiono '%1$s' monet!"));
@@ -3013,6 +3090,25 @@ public class TextHelper {
     private static void installRussianText() {
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_RU, "INSTALL_CHECK", ""));
+
+        // 0.9.2
+        texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_LANGUAGE_INSTALL", "Установка языкового пакета: %1$s"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_RESET_LANGUAGE", "Язык игры установлен на английский!"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_TUTORIAL_SKIPPED", "Учебное пособие по пропущено!"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_TUTORIAL_RESTARTED", "Учебник перезапущен!"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_RESET_LANGUAGE", "Сбросить Язык"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_RESET_LANGUAGE_CONFIRM", "Сброс языка на английский, деинсталлировать %1$d переводы установленные на данный момент?\n\nReinstall пакеты изменив язык!"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_185_NAME", "Десерт (завод)"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_186_NAME", "Цветок пустыни)"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "WORD_RANDOM", "случайный"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "WORD_SKIP", "Пропускать"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "SHOP_BANNER", "Бесплатные монеты!"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_LEADERBOARD_CONFIRM", "Какой пакет вы лидеров хотели бы открыть?"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_IMPROVE_LANGUAGE", "Улучшение Переводы (форма)"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "SETTING_19_NAME", "Руководство"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "SETTING_20_NAME", "Скрыть заблокированные плитки"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "SETTING_21_NAME", "Макс Миллис Увеличить"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "QUEST_SCHEDULE", "Расписание (Reddit)"));
 
         texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_BACKGROUND_UNLOCK", "Разблокирован '%1$s' фон!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_CARD_SAVED", "Изображение карты сохраняются в галерее!"));
@@ -3578,6 +3674,25 @@ public class TextHelper {
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_ES, "INSTALL_CHECK", ""));
 
+        // 0.9.2
+        texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_LANGUAGE_INSTALL", "Instalación del paquete de idioma: %1$s"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_RESET_LANGUAGE", "Idioma del juego establecido en Inglés!"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_TUTORIAL_SKIPPED", "Tutorial omitido!"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_TUTORIAL_RESTARTED", "Tutorial reiniciado!"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_RESET_LANGUAGE", "Restablecer idioma"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_RESET_LANGUAGE_CONFIRM", "¿Reestablecer el idioma de nuevo a inglés, desinstalando las traducciones de %1$d instaladas actualmente?\n\nReinstalar paquetes cambiando el idioma!"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_185_NAME", "Desierto (Planta)"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_186_NAME", "Flor del desierto)"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "WORD_RANDOM", "Aleatorio"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "WORD_SKIP", "Omitir"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "SHOP_BANNER", "¡Monedas gratis!"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_LEADERBOARD_CONFIRM", "¿Qué nivel de grupo desea abrir?"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_IMPROVE_LANGUAGE", "Mejorar Traducciones (Formulario)"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "SETTING_19_NAME", "Tutorial"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "SETTING_20_NAME", "Ocultar cuadros bloqueados"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "SETTING_21_NAME", "Max Millis En Clic"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "QUEST_SCHEDULE", "Programación (Reddit)"));
+
         texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_BACKGROUND_UNLOCK", "Desbloqueado fondo '%1$s'!"));
         texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_CARD_SAVED", "Imagen de la tarjeta guardada en la galería!"));
         texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_COINS_PURCHASED", "¡Compró con éxito  %1$d monedas!"));
@@ -4142,6 +4257,25 @@ public class TextHelper {
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_ZH, "INSTALL_CHECK", ""));
 
+        // 0.9.2
+        texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_LANGUAGE_INSTALL", "安装语言包： %1$s"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_RESET_LANGUAGE", "游戏语言设置为英语！"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_TUTORIAL_SKIPPED", "教程跳过！"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_TUTORIAL_RESTARTED", "教程重新启动！"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_RESET_LANGUAGE", "重置语言"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_RESET_LANGUAGE_CONFIRM", "将语言重置为英语，卸载当前安装的 %1$d 翻译？\n\n通过更改语言重新安装包！"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_185_NAME", "沙漠（植物）"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_186_NAME", "沙漠（花）"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "WORD_RANDOM", "随机"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "WORD_SKIP", "跳跃"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "SHOP_BANNER", "免费硬币！"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_LEADERBOARD_CONFIRM", "你想打开哪一个排行榜？"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_IMPROVE_LANGUAGE", "改进翻译（表格）"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "SETTING_19_NAME", "教程"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "SETTING_20_NAME", "隐藏锁定的瓷砖"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "SETTING_21_NAME", "Max Millis点击"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "QUEST_SCHEDULE", "日程表（Reddit）"));
+
         texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_BACKGROUND_UNLOCK", "已解锁“%1$s”背景！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_CARD_SAVED", "卡图像已保存到图库！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_COINS_PURCHASED", "已成功购买%1$d枚硬币！"));
@@ -4705,6 +4839,25 @@ public class TextHelper {
     private static void installSwedishText() {
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_SV, "INSTALL_CHECK", ""));
+
+        // 0.9.2
+        texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_LANGUAGE_INSTALL", "Installera språkpaket: %1$s"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_RESET_LANGUAGE", "Game språk inställt på engelska!"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_TUTORIAL_SKIPPED", "Tutorial hoppas över!"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_TUTORIAL_RESTARTED", "Tutorial omstartas!"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_RESET_LANGUAGE", "Återställ språk"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_RESET_LANGUAGE_CONFIRM", "Återställ språket tillbaka till engelska, avinstallera de %1$d översättningar installerade?\n\nReinstall förpackningar genom att ändra språk!"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_185_NAME", "Desert (Plant)"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_186_NAME", "Desert (blomma)"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "WORD_RANDOM", "Slumpmässig"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "WORD_SKIP", "Hoppa"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "SHOP_BANNER", "Fria mynt!"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_LEADERBOARD_CONFIRM", "Vilken pack leader vill du öppna?"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_IMPROVE_LANGUAGE", "Förbättra översättningar (Form)"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "SETTING_19_NAME", "Handledning"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "SETTING_20_NAME", "Göm Låsta Tiles"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "SETTING_21_NAME", "Max Millis in Klicka"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "QUEST_SCHEDULE", "Schema (Reddit)"));
 
         texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_BACKGROUND_UNLOCK", "Låste upp \"%1$s\" bakgrund!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_CARD_SAVED", "Kort sparats till galleriet!"));
