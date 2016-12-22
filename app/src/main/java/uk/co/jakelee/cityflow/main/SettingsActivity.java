@@ -3,6 +3,7 @@ package uk.co.jakelee.cityflow.main;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -106,6 +107,7 @@ public class SettingsActivity extends AllowMeActivity {
         ((TextView) findViewById(R.id.creditsButton)).setText(Text.get("DIALOG_CREDITS"));
         ((TextView) findViewById(R.id.statisticsButton)).setText(Text.get("DIALOG_STATISTICS"));
         ((TextView) findViewById(R.id.resetLanguageButton)).setText(Text.get("DIALOG_RESET_LANGUAGE"));
+        ((TextView) findViewById(R.id.improveLanguageButton)).setText(Text.get("DIALOG_IMPROVE_LANGUAGE"));
         ((TextView) findViewById(R.id.supportCodeButton)).setText(Text.get("DIALOG_SUPPORT_CODE"));
 
         ((TextView) findViewById(R.id.versionText)).setText("V" + BuildConfig.VERSION_CODE + ": " + BuildConfig.VERSION_NAME + "");
@@ -374,6 +376,11 @@ public class SettingsActivity extends AllowMeActivity {
         if (GooglePlayHelper.IsConnected()) {
             startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_LEADERBOARDS);
         }
+    }
+
+    public void improveLanguage(View v) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/forms/d/1ZgSs4zVjlzGGQ7L4TOnIkLTWkGe8chA-1Tx7x4DtuoQ/"));
+        startActivity(browserIntent);
     }
 
     public void signIn(View v) {

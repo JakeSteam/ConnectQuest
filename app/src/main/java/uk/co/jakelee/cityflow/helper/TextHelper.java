@@ -116,6 +116,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "WORD_SKIP", "Skip"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_BANNER", "Free Coins!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_LEADERBOARD_CONFIRM", "Which pack leaderboard would you like to open?"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_IMPROVE_LANGUAGE", "Improve Translations (Form)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_19_NAME", "Tutorial"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_20_NAME", "Hide Locked Tiles"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_21_NAME", "Max Millis In Click"));
