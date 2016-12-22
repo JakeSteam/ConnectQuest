@@ -18,6 +18,7 @@ import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
+import uk.co.jakelee.cityflow.model.TileType;
 
 public class ShopItemActivity extends Activity {
     private ShopItem shopItem;
@@ -45,7 +46,7 @@ public class ShopItemActivity extends Activity {
 
     private void populateItemInfo() {
         if (shopItem.getCategoryId() == Constants.STORE_CATEGORY_TILES) {
-            ((TextView) findViewById(R.id.itemName)).setText(Tile.get(shopItem.getSubcategoryId()).getName());
+            ((TextView) findViewById(R.id.itemName)).setText(TileType.get(shopItem.getSubcategoryId()).getName());
             ((TextView) findViewById(R.id.itemDesc)).setText("");
         } else {
             ((TextView) findViewById(R.id.itemName)).setText(shopItem.getName());
