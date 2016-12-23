@@ -18,7 +18,7 @@ public class Background extends SugarRecord {
     public Background(int backgroundId, String hex) {
         this.backgroundId = backgroundId;
         this.hex = hex;
-        this.unlocked = true;
+        this.unlocked = false;
         this.active = false;
     }
 
