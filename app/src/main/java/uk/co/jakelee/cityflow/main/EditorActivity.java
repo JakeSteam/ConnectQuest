@@ -34,6 +34,7 @@ public class EditorActivity extends Activity implements PuzzleDisplayer {
     private ImageView selectedTileImage;
     private Tile selectedTile;
     private float optimumScale = 1.0f;
+    private Picasso picasso;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class EditorActivity extends Activity implements PuzzleDisplayer {
             TileFilter tileFilter = TileFilter.quickCreateFilter(intent.getIntExtra(Constants.INTENT_ENVIRONMENT, 0));
             getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE).edit().putString("tilePickerEnvironments", tileFilter.selected.toString()).apply();
         }
+        picasso = Picasso.with(this);
 
         Puzzle puzzle = Puzzle.getPuzzle(puzzleId);
         puzzle.resetTileRotations();
@@ -83,7 +85,9 @@ public class EditorActivity extends Activity implements PuzzleDisplayer {
     private void redrawSelectedTile() {
         selectedTile = Tile.get(selectedTile.getId());
         int drawableId = DisplayHelper.getTileDrawableId(this, selectedTile.getTileTypeId(), selectedTile.getRotation());
-        Picasso.with(this).load(drawableId).into(selectedTileImage);
+        picasso.load(drawableId)
+                .placeholder(R.drawable.tile_0_1)
+                .into(selectedTileImage);
         ((TextView) findViewById(R.id.selectedTileText)).setText(TileType.get(selectedTile.getTileTypeId()).getName());
     }
 
@@ -91,8 +95,7 @@ public class EditorActivity extends Activity implements PuzzleDisplayer {
         for (Tile tile : tiles) {
             List<Integer> ids = DisplayHelper.getAllTileDrawableIds(this, tile.getTileTypeId());
             for (Integer id : ids) {
-                Picasso.with(this)
-                        .load(id)
+                picasso.load(id)
                         .fetch();
             }
         }
@@ -139,7 +142,9 @@ public class EditorActivity extends Activity implements PuzzleDisplayer {
             selectedTile = Tile.get(selectedTile.getId());
             selectedTile.rotate(false);
             int drawableId = DisplayHelper.getTileDrawableId(this, selectedTile.getTileTypeId(), selectedTile.getRotation());
-            Picasso.with(this).load(drawableId).into(selectedTileImage);
+            picasso.load(drawableId)
+                    .placeholder(R.drawable.tile_0_1)
+                    .into(selectedTileImage);
         }
     }
 
