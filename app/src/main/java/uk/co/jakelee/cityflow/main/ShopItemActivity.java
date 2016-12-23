@@ -82,12 +82,12 @@ public class ShopItemActivity extends Activity {
             if (!background.isUnlocked()) {
                 background.unlock();
                 AlertHelper.success(this, String.format(Locale.ENGLISH, Text.get("SHOP_ITEM_PURCHASED_BACKGROUND"),
-                        shopItem.getCategoryId() == Constants.STORE_CATEGORY_TILES ? Tile.get(shopItem.getSubcategoryId()).getName() : shopItem.getName(),
+                        shopItem.getCategoryId() == Constants.STORE_CATEGORY_TILES ? TileType.get(shopItem.getSubcategoryId()).getName() : shopItem.getName(),
                         shopItem.getPrice(),
                         background.getName()));
             } else {
                 AlertHelper.success(this, String.format(Locale.ENGLISH, Text.get("SHOP_ITEM_PURCHASED"),
-                        shopItem.getCategoryId() == Constants.STORE_CATEGORY_TILES ? Tile.get(shopItem.getSubcategoryId()).getName() : shopItem.getName(),
+                        shopItem.getCategoryId() == Constants.STORE_CATEGORY_TILES ? TileType.get(shopItem.getSubcategoryId()).getName() : shopItem.getName(),
                         shopItem.getPrice()));
             }
         }

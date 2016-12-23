@@ -331,15 +331,19 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
 
         while (badTiles.first.size() > 0 && badTiles.second.size() > 0 && !exitedPuzzle) {
             // Add any tiles that have changed to the array, so we recheck them
-            badTiles.first.addAll(changedTilesX);
-            badTiles.second.addAll(changedTilesY);
+            try {
+                badTiles.first.addAll(changedTilesX);
+                badTiles.second.addAll(changedTilesY);
 
-            // Empty the arrays since they've been added now
-            changedTilesX.clear();
-            changedTilesY.clear();
+                // Empty the arrays since they've been added now
+                changedTilesX.clear();
+                changedTilesY.clear();
 
-            // Check the tiles, then save the results back to the bad tiles arrays
-            badTiles = TileHelper.checkPuzzleFlow(puzzleId, badTiles);
+                // Check the tiles, then save the results back to the bad tiles arrays
+                badTiles = TileHelper.checkPuzzleFlow(puzzleId, badTiles);
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
         }
 
         final Activity activity = this;
