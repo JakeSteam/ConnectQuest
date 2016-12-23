@@ -47,7 +47,7 @@ public class TileType extends SugarRecord {
         this.heightSouth = height;
         this.heightWest = height;
         this.puzzleRequired = puzzleRequired;
-        this.status =  statusFromPuzzleRequired(puzzleRequired);
+        this.status = statusFromPuzzleRequired(puzzleRequired);
     }
 
     public TileType(int typeId, int environmentId, int flowNorth, int flowEast, int flowSouth, int flowWest, int height, int puzzleRequired) {
