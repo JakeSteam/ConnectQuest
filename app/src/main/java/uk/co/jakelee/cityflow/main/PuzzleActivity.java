@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -331,15 +332,19 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
 
         while (badTiles.first.size() > 0 && badTiles.second.size() > 0 && !exitedPuzzle) {
             // Add any tiles that have changed to the array, so we recheck them
-            badTiles.first.addAll(changedTilesX);
-            badTiles.second.addAll(changedTilesY);
+            try {
+                badTiles.first.addAll(changedTilesX);
+                badTiles.second.addAll(changedTilesY);
 
-            // Empty the arrays since they've been added now
-            changedTilesX.clear();
-            changedTilesY.clear();
+                // Empty the arrays since they've been added now
+                changedTilesX.clear();
+                changedTilesY.clear();
 
-            // Check the tiles, then save the results back to the bad tiles arrays
-            badTiles = TileHelper.checkPuzzleFlow(puzzleId, badTiles);
+                // Check the tiles, then save the results back to the bad tiles arrays
+                badTiles = TileHelper.checkPuzzleFlow(puzzleId, badTiles);
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
         }
 
         final Activity activity = this;
@@ -389,52 +394,56 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     }
 
     public void populatePuzzleCompleteScreen(Puzzle puzzle, boolean isFirstComplete, int originalStars, int stars, boolean isCustom) {
-        Animation myFadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.visibility_fade);
-        if (!isCustom) {
-            List<TileType> tilesUnlocked = puzzle.getUnlockableTiles();
-            findViewById(R.id.tilesContainer).setVisibility((tilesUnlocked.size() > 0 && isFirstComplete) ? View.VISIBLE : View.INVISIBLE);
-            PuzzleHelper.populateTileImages(dh, (LinearLayout) findViewById(R.id.tilesContainer), tilesUnlocked, isFirstComplete);
-        }
+        try {
+            Animation myFadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.visibility_fade);
+            if (!isCustom) {
+                List<TileType> tilesUnlocked = puzzle.getUnlockableTiles();
+                findViewById(R.id.tilesContainer).setVisibility((tilesUnlocked.size() > 0 && isFirstComplete) ? View.VISIBLE : View.INVISIBLE);
+                PuzzleHelper.populateTileImages(dh, (LinearLayout) findViewById(R.id.tilesContainer), tilesUnlocked, isFirstComplete);
+            }
 
-        int currencyEarned = PuzzleHelper.getCurrencyEarned(puzzleCustom, isFirstComplete, originalStars, stars);
-        Statistic.addCurrency((Iap.hasCoinDoubler() ? 2 : 1) * currencyEarned);
-        ((TextView) findViewById(R.id.currencyEarned)).setText(String.format(Locale.ENGLISH, Text.get("ALERT_COINS_EARNED"), (Iap.hasCoinDoubler() ? 2 : 1) * currencyEarned));
+            int currencyEarned = PuzzleHelper.getCurrencyEarned(puzzleCustom, isFirstComplete, originalStars, stars);
+            Statistic.addCurrency((Iap.hasCoinDoubler() ? 2 : 1) * currencyEarned);
+            ((TextView) findViewById(R.id.currencyEarned)).setText(String.format(Locale.ENGLISH, Text.get("ALERT_COINS_EARNED"), (Iap.hasCoinDoubler() ? 2 : 1) * currencyEarned));
 
-        findViewById(R.id.endGame).setVisibility(View.VISIBLE);
+            findViewById(R.id.endGame).setVisibility(View.VISIBLE);
 
-        ((TextView) findViewById(R.id.skyscraperCompletionTitle)).setText(Text.get("UI_SKYSCRAPER_COMPLETE_TITLE"));
-        ((TextView) findViewById(R.id.skyscraperCompletionTitle)).setTextColor(getResources().getColor(R.color.gold));
-        ((ImageView) findViewById(R.id.skyscraperCompletion)).setImageResource(PuzzleHelper.getSkyscraperDrawable(this, 100, Constants.SKYSCRAPER_COMPLETE));
-        ((TextView) findViewById(R.id.skyscraperCompletionText)).setText(Text.get("UI_SKYSCRAPER_COMPLETE_TEXT"));
+            ((TextView) findViewById(R.id.skyscraperCompletionTitle)).setText(Text.get("UI_SKYSCRAPER_COMPLETE_TITLE"));
+            ((TextView) findViewById(R.id.skyscraperCompletionTitle)).setTextColor(getResources().getColor(R.color.gold));
+            ((ImageView) findViewById(R.id.skyscraperCompletion)).setImageResource(PuzzleHelper.getSkyscraperDrawable(this, 100, Constants.SKYSCRAPER_COMPLETE));
+            ((TextView) findViewById(R.id.skyscraperCompletionText)).setText(Text.get("UI_SKYSCRAPER_COMPLETE_TEXT"));
 
-        int timeProgress = PuzzleHelper.getPuzzleCriteriaProgress((int) timeInMilliseconds, (int) puzzle.getParTime());
-        ((TextView) findViewById(R.id.skyscraperTimeTitle)).setText(String.format(Locale.ENGLISH, Text.get("UI_SKYSCRAPER_TIME_TITLE"), timeProgress));
-        ((TextView) findViewById(R.id.skyscraperTimeTitle)).setTextColor(getResources().getColor(timeProgress == 100 ? R.color.gold : R.color.white));
-        ((ImageView) findViewById(R.id.skyscraperTime)).setImageResource(PuzzleHelper.getSkyscraperDrawable(this, timeProgress, Constants.SKYSCRAPER_TIME));
-        ((TextView) findViewById(R.id.skyscraperTimeText)).setText(String.format(Locale.ENGLISH, Text.get("UI_SKYSCRAPER_TIME_TEXT"),
-                timeInMilliseconds > 0 ? DateHelper.getPuzzleTimeString(timeInMilliseconds) : "0",
-                DateHelper.getPuzzleTimeString(puzzle.getParTime())));
+            int timeProgress = PuzzleHelper.getPuzzleCriteriaProgress((int) timeInMilliseconds, (int) puzzle.getParTime());
+            ((TextView) findViewById(R.id.skyscraperTimeTitle)).setText(String.format(Locale.ENGLISH, Text.get("UI_SKYSCRAPER_TIME_TITLE"), timeProgress));
+            ((TextView) findViewById(R.id.skyscraperTimeTitle)).setTextColor(getResources().getColor(timeProgress == 100 ? R.color.gold : R.color.white));
+            ((ImageView) findViewById(R.id.skyscraperTime)).setImageResource(PuzzleHelper.getSkyscraperDrawable(this, timeProgress, Constants.SKYSCRAPER_TIME));
+            ((TextView) findViewById(R.id.skyscraperTimeText)).setText(String.format(Locale.ENGLISH, Text.get("UI_SKYSCRAPER_TIME_TEXT"),
+                    timeInMilliseconds > 0 ? DateHelper.getPuzzleTimeString(timeInMilliseconds) : "0",
+                    DateHelper.getPuzzleTimeString(puzzle.getParTime())));
 
-        int moveProgress = PuzzleHelper.getPuzzleCriteriaProgress(movesMade, puzzle.getParMoves());
-        ((TextView) findViewById(R.id.skyscraperMovesTitle)).setText(String.format(Locale.ENGLISH, Text.get("UI_SKYSCRAPER_MOVES_TITLE"), moveProgress));
-        ((TextView) findViewById(R.id.skyscraperMovesTitle)).setTextColor(getResources().getColor(moveProgress == 100 ? R.color.gold : R.color.white));
-        ((ImageView) findViewById(R.id.skyscraperMoves)).setImageResource(PuzzleHelper.getSkyscraperDrawable(this, moveProgress, Constants.SKYSCRAPER_MOVES));
-        ((TextView) findViewById(R.id.skyscraperMovesText)).setText(String.format(Locale.ENGLISH, Text.get("UI_SKYSCRAPER_MOVES_TEXT"),
-                movesMade > 0 ? movesMade : 0,
-                puzzle.getParMoves()));
+            int moveProgress = PuzzleHelper.getPuzzleCriteriaProgress(movesMade, puzzle.getParMoves());
+            ((TextView) findViewById(R.id.skyscraperMovesTitle)).setText(String.format(Locale.ENGLISH, Text.get("UI_SKYSCRAPER_MOVES_TITLE"), moveProgress));
+            ((TextView) findViewById(R.id.skyscraperMovesTitle)).setTextColor(getResources().getColor(moveProgress == 100 ? R.color.gold : R.color.white));
+            ((ImageView) findViewById(R.id.skyscraperMoves)).setImageResource(PuzzleHelper.getSkyscraperDrawable(this, moveProgress, Constants.SKYSCRAPER_MOVES));
+            ((TextView) findViewById(R.id.skyscraperMovesText)).setText(String.format(Locale.ENGLISH, Text.get("UI_SKYSCRAPER_MOVES_TEXT"),
+                    movesMade > 0 ? movesMade : 0,
+                    puzzle.getParMoves()));
 
-        if (puzzleCustom == null || puzzleCustom.isOriginalAuthor()) {
-            ((TextView) findViewById(R.id.mainActionButton)).setText(isCustom ? R.string.icon_edit : R.string.icon_next);
-        } else {
-            findViewById(R.id.mainActionButton).setVisibility(View.GONE);
-        }
+            if (puzzleCustom == null || puzzleCustom.isOriginalAuthor()) {
+                ((TextView) findViewById(R.id.mainActionButton)).setText(isCustom ? R.string.icon_edit : R.string.icon_next);
+            } else {
+                findViewById(R.id.mainActionButton).setVisibility(View.GONE);
+            }
 
-        findViewById(R.id.skyscraperCompletionGold).startAnimation(myFadeInAnimation);
-        if (timeProgress == 100) {
-            findViewById(R.id.skyscraperTimeGold).startAnimation(myFadeInAnimation);
-        }
-        if (moveProgress == 100) {
-            findViewById(R.id.skyscraperMovesGold).startAnimation(myFadeInAnimation);
+            findViewById(R.id.skyscraperCompletionGold).startAnimation(myFadeInAnimation);
+            if (timeProgress == 100) {
+                findViewById(R.id.skyscraperTimeGold).startAnimation(myFadeInAnimation);
+            }
+            if (moveProgress == 100) {
+                findViewById(R.id.skyscraperMovesGold).startAnimation(myFadeInAnimation);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

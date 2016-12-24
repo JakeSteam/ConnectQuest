@@ -136,7 +136,8 @@
                 android:id="@+id/tileContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:stretchColumns="*" />
+                android:stretchColumns="*"
+                android:fadeScrollbars="false"/>
         </ScrollView>
     </TableLayout>
 
@@ -160,5 +161,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal"></LinearLayout>
+        android:orientation="horizontal" />
 </android.support.percent.PercentRelativeLayout>

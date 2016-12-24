@@ -23,6 +23,7 @@ import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.helper.StorageHelper;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
+import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Text;
 
 public class ExportActivity extends AllowMeActivity {
@@ -59,7 +60,9 @@ public class ExportActivity extends AllowMeActivity {
         ((TextView) findViewById(R.id.shareText)).setText(Text.get("DIALOG_BUTTON_TEXT"));
 
         ((TextView) findViewById(R.id.puzzleName)).setText(puzzle.getName());
-        ((TextView) findViewById(R.id.puzzleAuthor)).setText(puzzleCustom.getAuthor());
+        ((TextView) findViewById(R.id.puzzleAuthor)).setText(puzzleCustom.isOriginalAuthor() ?
+                Setting.getString(Constants.SETTING_PLAYER_NAME) :
+                puzzleCustom.getAuthor());
 
         ((ImageView) findViewById(R.id.puzzleImage)).setImageDrawable(dh.getCustomPuzzleDrawable(puzzle.getPuzzleId()));
         ((TextView) findViewById(R.id.puzzleDesc)).setText(puzzleCustom.getDescription());

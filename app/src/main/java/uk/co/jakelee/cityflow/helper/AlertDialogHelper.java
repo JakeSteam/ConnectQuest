@@ -223,6 +223,7 @@ public class AlertDialogHelper {
         final EditText editText = new EditText(activity.getApplicationContext());
         editText.setInputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS);
         editText.setText(Setting.getString(Constants.SETTING_PLAYER_NAME));
+        editText.setSelectAllOnFocus(true);
         editText.setFilters(new InputFilter[]{FilterHelper.getFilter(Constants.PLAYER_NAME_MAX_LENGTH)});
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity, R.style.Theme_AlertDialog);
