@@ -138,7 +138,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         settings.add(new Setting(Constants.SETTING_MINIMUM_MILLIS_DRAG, 150, 30, 1000));
         Setting.saveInTx(settings);
 
-        Setting coins = Setting.get(Constants.STATISTIC_CURRENCY);
+        Statistic coins = Statistic.find(Constants.STATISTIC_CURRENCY);
         coins.setIntValue(123);
         coins.save();
 
