@@ -662,7 +662,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_158_NAME", "Desert Road/Rail T Junction"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_159_NAME", "Desert Road/Rail Corner"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_160_NAME", "Desert Rail/Road Corner"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_161_NAME", "Desert Path/Road Corner"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_161_NAME", "Desert Rail/Path Corner"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_162_NAME", "Desert Rail/Path Corner"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_163_NAME", "Desert High Road End"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_164_NAME", "Desert High Road Corner"));
