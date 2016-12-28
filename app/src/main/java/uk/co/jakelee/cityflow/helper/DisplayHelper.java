@@ -28,7 +28,9 @@ import java.util.List;
 import java.util.Locale;
 
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.components.DisplayValues;
 import uk.co.jakelee.cityflow.components.TextViewFont;
+import uk.co.jakelee.cityflow.components.TileDisplaySetup;
 import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
 import uk.co.jakelee.cityflow.interfaces.PuzzleDisplayer;
 import uk.co.jakelee.cityflow.main.PackActivity;
@@ -251,7 +253,7 @@ public class DisplayHelper {
         carView.startAnimation(AnimationHelper.move(metrics, rotation, duration));
     }
 
-    public Pair<Float, Pair<Integer, Boolean>> getDisplayValues(Activity activity, int xTiles, int yTiles) {
+    public DisplayValues getDisplayValues(Activity activity, int xTiles, int yTiles) {
         DisplayMetrics displayMetrics = getSizes(activity);
         int screenHeight = displayMetrics.heightPixels;
         int screenWidth = displayMetrics.widthPixels;
@@ -265,22 +267,21 @@ public class DisplayHelper {
         float zoomFactor = Math.min(xZoomFactor, yZoomFactor);
 
         int offset = puzzleHeight / 2;
-        return new Pair<>(zoomFactor, new Pair<>(offset, yZoomFactor < xZoomFactor));
+        return new DisplayValues(zoomFactor, offset, yZoomFactor < xZoomFactor);
     }
 
-    public Pair<ImageView, Float> setupTileDisplay(PuzzleDisplayer puzzleDisplayer, List<Tile> tiles, ZoomableViewGroup tileContainer, int puzzleId, Tile selectedTile, ImageView selectedTileImage, boolean isEditor) {
+    public TileDisplaySetup setupTileDisplay(PuzzleDisplayer puzzleDisplayer, List<Tile> tiles, ZoomableViewGroup tileContainer, Tile selectedTile, ImageView selectedTileImage, boolean isEditor) {
         tileContainer.removeAllViews();
 
         Setting minimumMillisForDrag = Setting.get(Constants.SETTING_MINIMUM_MILLIS_DRAG);
         int dragDelay = minimumMillisForDrag != null ? minimumMillisForDrag.getIntValue() : 200;
         Pair<Integer, Integer> maxXY = TileHelper.getMaxXY(tiles);
 
-        // <scaleFactor, <offset, isLeftOffset>>
-        Pair<Float, Pair<Integer, Boolean>> displayValues = getDisplayValues(puzzleDisplayer.getActivity(), maxXY.first + 1, maxXY.second + 1);
-        float optimumScale = displayValues.first;
+        DisplayValues displayValues = getDisplayValues(puzzleDisplayer.getActivity(), maxXY.first + 1, maxXY.second + 1);
+        float optimumScale = displayValues.getZoomFactor();
 
-        int topOffset = displayValues.second.second ? 0 : displayValues.second.first;
-        int leftOffset = displayValues.second.second ? displayValues.second.first : 0;
+        int topOffset = displayValues.isLeftOffset() ? 0 : displayValues.getOffset();
+        int leftOffset = displayValues.isLeftOffset() ? displayValues.getOffset() : 0;
 
         tileContainer.setScaleFactor(optimumScale, true);
         tileContainer.removeAllViews();
@@ -313,6 +314,6 @@ public class DisplayHelper {
             tileContainer.addView(image, layoutParams);
         }
 
-        return new Pair<>(selectedTileImage, optimumScale);
+        return new TileDisplaySetup(selectedTileImage, optimumScale);
     }
 }

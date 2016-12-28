@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +14,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.components.TileDisplaySetup;
 import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
 import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
@@ -103,9 +103,9 @@ public class EditorActivity extends Activity implements PuzzleDisplayer {
 
 
     public void populateTiles(List<Tile> tiles) {
-        Pair<ImageView, Float> tileDisplayResults = dh.setupTileDisplay(this, tiles, (ZoomableViewGroup) findViewById(R.id.tileContainer), puzzleId, selectedTile, selectedTileImage, true);
-        selectedTileImage = tileDisplayResults.first;
-        optimumScale = tileDisplayResults.second;
+        TileDisplaySetup tileDisplaySetup = dh.setupTileDisplay(this, tiles, (ZoomableViewGroup) findViewById(R.id.tileContainer), selectedTile, selectedTileImage, true);
+        selectedTileImage = tileDisplaySetup.getSelectedImageView();
+        optimumScale = tileDisplaySetup.getOptimumScale();
         selectedTile = tiles.get(0);
     }
 

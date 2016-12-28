@@ -20,7 +20,6 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -234,7 +233,7 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     }
 
     public void populateTiles(List<Tile> tiles) {
-        optimumScale = dh.setupTileDisplay(this, tiles, (ZoomableViewGroup) findViewById(R.id.tileContainer), puzzleId, null, null, false).second;
+        optimumScale = dh.setupTileDisplay(this, tiles, (ZoomableViewGroup) findViewById(R.id.tileContainer), null, null, false).getOptimumScale();
     }
 
     public void zoomIn(View v) {
