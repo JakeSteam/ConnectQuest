@@ -32,18 +32,17 @@ public class PatchHelper extends AsyncTask<String, String, String> {
     public final static int NO_DATABASE = 0;
     public final static int V0_9_1 = 1;
     public final static int V0_9_2 = 2;
+    public final static int LATEST_PATCH = V0_9_2;
     private Activity callingActivity;
     private TextView progressText;
     private ProgressBar progressBar;
 
-    public PatchHelper(Activity activity) {
+    public PatchHelper(Activity activity, boolean runningFromMain) {
         this.callingActivity = activity;
-        this.progressText = (TextView) activity.findViewById(R.id.progressText);
-        this.progressBar = (ProgressBar) activity.findViewById(R.id.progressBar);
-    }
-
-    public PatchHelper(Activity activity, boolean runningCloudImport) {
-        this.callingActivity = activity;
+        if (runningFromMain) {
+            this.progressText = (TextView) activity.findViewById(R.id.progressText);
+            this.progressBar = (ProgressBar) activity.findViewById(R.id.progressBar);
+        }
     }
 
     private void createDatabase() {
@@ -90,7 +89,6 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     @Override
     protected String doInBackground(String... params) {
-        int latestPatch = PatchHelper.V0_9_2;
         boolean languagePackModified = false;
         SharedPreferences prefs = callingActivity.getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE);
 
@@ -98,7 +96,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         // If it's a patch, install the patch, and reinstall text if necessary.
         if (prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.NO_DATABASE) {
             createDatabase();
-            prefs.edit().putInt("databaseVersion", latestPatch).apply();
+            prefs.edit().putInt("databaseVersion", LATEST_PATCH).apply();
 
             new Thread(new Runnable() {
                 public void run() {

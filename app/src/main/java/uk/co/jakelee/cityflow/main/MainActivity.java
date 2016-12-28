@@ -42,7 +42,7 @@ public class MainActivity extends Activity implements
         prefs = getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE);
         dh = DisplayHelper.getInstance(this);
 
-        new PatchHelper(this).execute();
+        new PatchHelper(this, true).execute();
 
         ratingPrompt();
 
