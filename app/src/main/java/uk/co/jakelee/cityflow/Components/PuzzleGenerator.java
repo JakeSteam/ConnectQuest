@@ -56,17 +56,16 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
         Tile southTile = tileY == 0 ? new Tile() : existingTiles.get(existingTiles.size() - 1); // Get the south tile, or an empty one if we're starting a new column
         Tile westTile = tileX == 0 ? new Tile() : existingTiles.get(existingTiles.size() - (maxY + 1)); // Get the west tile (#Y tiles previous), or empty if new row
 
-        int nFlow = tileY == maxY ? 0 : -1;
-        int eFlow = tileX == maxX ? 0 : -1;
+        int nFlow = tileY == maxY ? 0 : Constants.FLOW_ANY;
+        int eFlow = tileX == maxX ? 0 : Constants.FLOW_ANY;
         int sFlow = southTile.getFlow(Constants.SIDE_NORTH);
         int wFlow = westTile.getFlow(Constants.SIDE_EAST);
 
-        int nHeight = -1;
-        int eHeight = -1;
-
         // If there's no flow, then do any height we want
-        int sHeight = sFlow > 0 && tileY > 0 ? southTile.getHeight(Constants.SIDE_NORTH) : -1;
-        int wHeight = wFlow > 0 && tileX > 0 ? westTile.getHeight(Constants.SIDE_EAST) : -1;
+        int nHeight = Constants.FLOW_ANY;
+        int eHeight = Constants.FLOW_ANY;
+        int sHeight = sFlow > 0 && tileY > 0 ? southTile.getHeight(Constants.SIDE_NORTH) : Constants.FLOW_ANY;
+        int wHeight = wFlow > 0 && tileX > 0 ? westTile.getHeight(Constants.SIDE_EAST) : Constants.FLOW_ANY;
 
         // Make list
         List<Tile> tiles = getPossibleTilesByRotation(puzzleId, tileX, tileY, environmentId, Constants.ROTATION_NORTH, nFlow, eFlow, sFlow, wFlow, nHeight, eHeight, sHeight, wHeight);

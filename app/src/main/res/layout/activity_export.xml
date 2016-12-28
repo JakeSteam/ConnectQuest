@@ -101,7 +101,7 @@
         android:layout_below="@id/puzzleCard"
         android:gravity="center_horizontal">
 
-        <uk.co.jakelee.cityflow.components.TextViewFont
+        <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/saveCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -111,9 +111,10 @@
             android:onClick="save"
             android:padding="6dp"
             android:textColor="@color/black"
-            android:textSize="30sp" />
+            android:text="@string/icon_save"
+            android:textSize="40sp" />
 
-        <uk.co.jakelee.cityflow.components.TextViewFont
+        <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/shareCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -123,9 +124,10 @@
             android:onClick="share"
             android:padding="6dp"
             android:textColor="@color/black"
-            android:textSize="30sp" />
+            android:text="@string/icon_export"
+            android:textSize="40sp" />
 
-        <uk.co.jakelee.cityflow.components.TextViewFont
+        <uk.co.jakelee.cityflow.components.TextAwesome
             android:id="@+id/shareText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -135,7 +137,8 @@
             android:onClick="shareText"
             android:padding="6dp"
             android:textColor="@color/black"
-            android:textSize="30sp" />
+            android:text="@string/icon_text"
+            android:textSize="40sp" />
     </LinearLayout>
 
     <LinearLayout

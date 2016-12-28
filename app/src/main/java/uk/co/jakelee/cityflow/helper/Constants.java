@@ -137,8 +137,6 @@ public class Constants {
     public static final int HEIGHT_MIN = 0;
     public static final int HEIGHT_MAX = 4;
     public static final int HEIGHT_NO_CONNECT = 0;
-    public static final int HEIGHT_ULTRA_LOW = 1;
-    public static final int HEIGHT_LOW = 2;
     public static final int HEIGHT_NORMAL = 3;
     public static final int HEIGHT_HIGH = 4;
     public static final int ITEM_BOOST_UNDO = 1;
