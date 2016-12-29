@@ -32,7 +32,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
     public final static int NO_DATABASE = 0;
     public final static int V0_9_1 = 1;
     public final static int V0_9_2 = 2;
-    public final static int LATEST_PATCH = V0_9_2;
+    public final static int V0_9_4 = 3;
+    public final static int LATEST_PATCH = V0_9_4;
     private Activity callingActivity;
     private TextView progressText;
     private ProgressBar progressBar;
@@ -76,6 +77,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         setProgress("Puzzles", 70);
         createPuzzlesPack1();
 
+        patchTo094();
+
         callingActivity.getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE)
                 .edit().putInt("language", Setting.get(Constants.SETTING_LANGUAGE).getIntValue()).apply();
     }
@@ -105,10 +108,16 @@ public class PatchHelper extends AsyncTask<String, String, String> {
             }).start();
         } else {
             if (prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.V0_9_1) {
-                patch091to092();
+                patchTo092();
                 languagePackModified = true;
                 prefs.edit().putInt("databaseVersion", PatchHelper.V0_9_2).apply();
             }
+
+            /*if (prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.V0_9_2) {
+                patchTo094();
+                languagePackModified = true;
+                prefs.edit().putInt("databaseVersion", PatchHelper.V0_9_4).apply();
+            }*/
 
             if (languagePackModified) {
                 TextHelper.reinstallCurrentPack();
@@ -117,7 +126,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         return "";
     }
 
-    private void patch091to092() {
+    private void patchTo092() {
         setProgress("Patch 0.9.2", 80);
         Puzzle.executeQuery("UPDATE puzzle SET par_moves = 7 WHERE puzzle_id = 6");
         Puzzle.executeQuery("UPDATE puzzle SET par_time = 17499 WHERE puzzle_id = 10");
@@ -142,6 +151,32 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
         Iap.deleteAll(Iap.class);
         createIap();
+    }
+
+    private void patchTo094() {
+        List<TileType> tileTypes = new ArrayList<>();
+        tileTypes.add(new TileType(187, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(188, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(189, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(190, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_GRASS, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(191, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_VILLAGE_GRASS, Constants.FLOW_VILLAGE_GRASS, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(192, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_VILLAGE_GRASS, Constants.FLOW_VILLAGE_GRASS, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(193, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(194, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_VILLAGE_GRASS, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_GRASS, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(195, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_VILLAGE_GRASS, Constants.FLOW_PATH, Constants.FLOW_VILLAGE_GRASS, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(196, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_GRASS, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(197, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_GRASS, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(198, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(199, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(200, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(201, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, Constants.HEIGHT_HIGH, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(202, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, Constants.HEIGHT_NORMAL, Constants.HEIGHT_HIGH, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(203, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(204, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(205, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(206, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(207, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        TileType.saveInTx(tileTypes);
     }
 
     private void createOtherPuzzles() {
