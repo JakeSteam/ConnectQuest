@@ -77,46 +77,49 @@ public class TileHelper {
         return new Pair<>(newTilesX, newTilesY);
     }
 
-    public static boolean checkTileFlow(Tile tile) {
-        // If the neighbouring tile is empty, the height is fine.
-        // If the tile has no flow on that side, it's fine.
-        // Otherwise, check the heights match up.
+    private static boolean checkTileFlow(Tile tile) {
+        return checkTileFlow(tile, Constants.SIDE_NORTH) &&
+                checkTileFlow(tile, Constants.SIDE_EAST) &&
+                checkTileFlow(tile, Constants.SIDE_SOUTH) &&
+                checkTileFlow(tile, Constants.SIDE_WEST);
+    }
 
-        Tile northTile = getTile(tile, Constants.SIDE_NORTH);
-        boolean flowN = tile.getFlow(Constants.SIDE_NORTH) == northTile.getFlow(Constants.SIDE_SOUTH);
-        boolean heightN = (northTile.getTileTypeId() == 0 || tile.getFlow(Constants.SIDE_NORTH) == 0 || tile.getHeight(Constants.SIDE_NORTH) == northTile.getHeight(Constants.SIDE_SOUTH));
-        if (!flowN || !heightN) {
-            return false;
-        }
+    private static boolean checkTileFlow(Tile currentTile, int currentSide) {
+        Tile otherTile = getNeighbouringTile(currentTile, currentSide);
 
-        Tile eastTile = getTile(tile, Constants.SIDE_EAST);
-        boolean flowE = tile.getFlow(Constants.SIDE_EAST) == eastTile.getFlow(Constants.SIDE_WEST);
-        boolean heightE = (eastTile.getTileTypeId() == 0 || tile.getFlow(Constants.SIDE_EAST) == 0 || tile.getHeight(Constants.SIDE_EAST) == eastTile.getHeight(Constants.SIDE_WEST));
-        if (!flowE || !heightE) {
-            return false;
-        }
+        /*// Skip invisible tiles, and only check west & south flows if we're against the edge
+        if (currentSide == Constants.SIDE_WEST && currentTile.getX() != 0 || currentSide == Constants.SIDE_SOUTH && currentTile.getY() != 0) {
+            return true;
+        }*/
 
-        // Only check south flows if we're on the south side
-        if (tile.getY() == 0) {
-            Tile southTile = getTile(tile, Constants.SIDE_SOUTH);
-            boolean flowS = tile.getFlow(Constants.SIDE_SOUTH) == southTile.getFlow(Constants.SIDE_NORTH);
-            boolean heightS = (southTile.getTileTypeId() == 0 || tile.getFlow(Constants.SIDE_SOUTH) == 0 || tile.getHeight(Constants.SIDE_SOUTH) == southTile.getHeight(Constants.SIDE_NORTH));
-            if (!flowS || !heightS) {
+        int otherSide = (currentSide == Constants.SIDE_NORTH || currentSide == Constants.SIDE_EAST) ?
+                currentSide + 2 :
+                currentSide - 2;
+
+        int currentFlow = currentTile.getFlow(currentSide);
+        int currentHeight = currentTile.getHeight(currentSide);
+        int otherFlow = otherTile.getFlow(otherSide);
+        int otherHeight = otherTile.getHeight(otherSide);
+
+        boolean flow = currentFlow == otherFlow || tileIsInvisible(otherTile.getTileTypeId()) && flowIsDecorative(currentFlow);
+        boolean height = currentHeight == otherHeight || tileIsInvisible(otherTile.getTileTypeId()) || currentFlow == 0;
+
+        return flow && height;
+    }
+
+    private static boolean flowIsDecorative(int flow) {
+        switch (flow) {
+            case Constants.FLOW_VILLAGE_FIELD:
+            case Constants.FLOW_VILLAGE_MARBLE:
+            case Constants.FLOW_VILLAGE_PLANK:
+                return true;
+            default:
                 return false;
-            }
         }
+    }
 
-        // Only check west flows if we're on the west side
-        if (tile.getX() == 0) {
-            Tile westTile = getTile(tile, Constants.SIDE_WEST);
-            boolean flowW = tile.getFlow(Constants.SIDE_WEST) == westTile.getFlow(Constants.SIDE_EAST);
-            boolean heightW = (westTile.getTileTypeId() == 0 || tile.getFlow(Constants.SIDE_WEST) == 0 || tile.getHeight(Constants.SIDE_WEST) == westTile.getHeight(Constants.SIDE_EAST));
-            if (!flowW || !heightW) {
-                return false;
-            }
-        }
-
-        return true;
+    public static boolean tileIsInvisible(int tileTypeId) {
+        return tileTypeId == 0;
     }
 
     public static TileType getTileType(Tile tile) {
@@ -132,7 +135,7 @@ public class TileHelper {
         }
     }
 
-    private static Tile getTile(Tile tile, int side) {
+    private static Tile getNeighbouringTile(Tile tile, int side) {
         int x = tile.getX();
         int y = tile.getY();
         switch (side) {
@@ -150,10 +153,6 @@ public class TileHelper {
                 break;
         }
 
-        Tile tileDefault = new Tile();
-        tileDefault.setX(-99);
-        tileDefault.setY(-99);
-
         List<Tile> tileResults = Select.from(Tile.class).where(
                 Condition.prop("puzzle_id").eq(tile.getPuzzleId()),
                 Condition.prop("x").eq(x),
@@ -161,7 +160,7 @@ public class TileHelper {
                 Condition.prop("tile_type_id").gt(0)).list();
 
         if (tileResults.size() == 0) {
-            return tileDefault;
+            return new Tile();
         } else {
             return tileResults.get(0);
         }

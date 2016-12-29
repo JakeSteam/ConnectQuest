@@ -128,14 +128,13 @@ public class Tile extends SugarRecord {
     public int getHeight(int side) {
         int height = Constants.HEIGHT_NORMAL;
         TileType type = TileHelper.getTileType(this);
+        if (TileHelper.tileIsInvisible(type.getTypeId())) {
+            return height;
+        }
 
         int target = side + (5 - rotation);
         if (target > 4) {
             target -= 4;
-        }
-
-        if (type.getTypeId() == 0) {
-            return height;
         }
 
         if (target == Constants.ROTATION_NORTH) {
