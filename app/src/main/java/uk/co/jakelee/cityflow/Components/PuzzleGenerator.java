@@ -77,18 +77,12 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
     }
 
     private static List<Tile> getPossibleTilesByRotation(int puzzleId, int x, int y, int environmentId, int rotation, int nFlow, int eFlow, int sFlow, int wFlow, int nHeight, int eHeight, int sHeight, int wHeight) {
-        String sql = String.format(Locale.ENGLISH,
-                "SELECT * FROM tile_type WHERE environment_id %1$s %2$d AND flow_north %3$s %4$d AND flow_east %5$s %6$d AND flow_south %7$s %8$d AND flow_west %9$s %10$d AND height_north %11$s %12$d AND height_east %13$s %14$d AND height_south %15$s %16$d AND height_west %17$s %18$d AND status = %19$d " +
-                        (x == 0 && y == 0 ? "AND (flow_north > 0 OR flow_east > 0 OR flow_south > 0 OR flow_west > 0)" : ""),
+        String forceFlowSql = (x == 0 && y == 0 ? " AND (flow_north > 0 OR flow_east > 0 OR flow_south > 0 OR flow_west > 0)" : "");
+        String flowSql = String.format(Locale.ENGLISH, "flow_north %1$s AND flow_east %2$s AND flow_south %3$s AND flow_west %4$s %5$s", match(nFlow), match(eFlow), match(sFlow), match(wFlow), forceFlowSql);
+        String heightSql = String.format(Locale.ENGLISH, "height_north %1$s AND height_east %2$s AND height_south %3$s AND height_west %4$s", match(nHeight), match(eHeight), match(sHeight), match(wHeight));
+
+        String sql = String.format(Locale.ENGLISH, "SELECT * FROM tile_type WHERE environment_id %1$s %2$d AND " + flowSql + " AND " + heightSql + " AND status = %3$d",
                 environmentId > 0 ? "=" : ">=", environmentId,
-                nFlow >= 0 ? "=" : ">=", nFlow,
-                eFlow >= 0 ? "=" : ">=", eFlow,
-                sFlow >= 0 ? "=" : ">=", sFlow,
-                wFlow >= 0 ? "=" : ">=", wFlow,
-                nHeight >= 0 ? "=" : ">=", nHeight,
-                eHeight >= 0 ? "=" : ">=", eHeight,
-                sHeight >= 0 ? "=" : ">=", sHeight,
-                wHeight >= 0 ? "=" : ">=", wHeight,
                 Constants.TILE_STATUS_UNLOCKED);
         List<TileType> tileTypes = TileType.findWithQuery(TileType.class, sql);
 
@@ -97,6 +91,10 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
             tiles.add(new Tile(puzzleId, tile.getTypeId(), x, y, rotation));
         }
         return tiles;
+    }
+
+    private static String match(int value) {
+        return (value >= 0 ? "= " : ">= ") + value;
     }
 
     @Override
