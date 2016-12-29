@@ -177,6 +177,30 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tileTypes.add(new TileType(206, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
         tileTypes.add(new TileType(207, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
         TileType.saveInTx(tileTypes);
+
+        List<Text> texts = new ArrayList<>();
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_187_NAME", "Village Dirt"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_188_NAME", "Village Marble"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_189_NAME", "Village Dirt (Marble)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_190_NAME", "Village Grass"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_191_NAME", "Village Path"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_192_NAME", "Village Path (Clearing)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_193_NAME", "Village Path Interchange"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_194_NAME", "Village Path End"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_195_NAME", "Village Path Straight"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_196_NAME", "Village Grass (Rocks)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_197_NAME", "Village Grass (Stump)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_198_NAME", "Village Planks"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_199_NAME", "Village Planks (Hole)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_200_NAME", "Village Planks/Dirt Straight"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_201_NAME", "Village Marble Stairs (Damaged)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_202_NAME", "Village Marble Stairs"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_203_NAME", "Village Marble (Holes)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_204_NAME", "Village Marble/Dirt Straight"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_205_NAME", "Village Marble/Dirt Straight (Uneven)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_206_NAME", "Village Marble (Hole)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_207_NAME", "Village Marble (Uneven)"));
+        Text.saveInTx(texts);
     }
 
     private void createOtherPuzzles() {
