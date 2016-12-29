@@ -12,11 +12,13 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Locale;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.components.TileDisplaySetup;
 import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
 import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
+import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
@@ -49,6 +51,12 @@ public class EditorActivity extends Activity implements PuzzleDisplayer {
         if (intent.getIntExtra(Constants.INTENT_ENVIRONMENT, 0) > 0) {
             TileFilter tileFilter = TileFilter.quickCreateFilter(intent.getIntExtra(Constants.INTENT_ENVIRONMENT, 0));
             getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE).edit().putString("tilePickerEnvironments", tileFilter.selected.toString()).apply();
+        }
+
+        if (intent.getIntExtra(Constants.INTENT_FAILED_TILES, 0) > 0) {
+            AlertHelper.error(this, String.format(Locale.ENGLISH,
+                    AlertHelper.getError(AlertHelper.Error.GENERATION_INCOMPLETE),
+                    intent.getIntExtra(Constants.INTENT_FAILED_TILES, 0)));
         }
         picasso = Picasso.with(this);
 

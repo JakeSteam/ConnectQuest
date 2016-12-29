@@ -120,6 +120,12 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
             vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
         }
 
+        if (intent.getIntExtra(Constants.INTENT_FAILED_TILES, 0) > 0) {
+            AlertHelper.error(this, String.format(Locale.ENGLISH,
+                    AlertHelper.getError(AlertHelper.Error.GENERATION_INCOMPLETE),
+                    intent.getIntExtra(Constants.INTENT_FAILED_TILES, 0)));
+        }
+
         displayTutorial();
     }
 

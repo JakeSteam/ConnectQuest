@@ -176,9 +176,14 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tileTypes.add(new TileType(205, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
         tileTypes.add(new TileType(206, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
         tileTypes.add(new TileType(207, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(208, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_FIELD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(209, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_FIELD, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_FIELD, Constants.FLOW_VILLAGE_FIELD, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(209, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_HIGH, Constants.TILE_UNLOCKED));
         TileType.saveInTx(tileTypes);
 
         List<Text> texts = new ArrayList<>();
+        texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_GENERATION_INCOMPLETE", "Puzzle generation failed for %1$s tiles! Puzzle is probably not completable."));
+
         texts.add(new Text(Constants.LANGUAGE_EN, "ENVIRONMENT_7_NAME", "Village"));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_11_NAME", "Marble (Decorative)"));
@@ -192,7 +197,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_191_NAME", "Village Path"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_192_NAME", "Village Path (Clearing)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_193_NAME", "Village Path Interchange"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_194_NAME", "Village Path End"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_194_NAME", "Village Path/Dirt Straight"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_195_NAME", "Village Path Straight"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_196_NAME", "Village Grass (Rocks)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_197_NAME", "Village Grass (Stump)"));
@@ -206,6 +211,9 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_205_NAME", "Village Marble/Dirt Straight (Uneven)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_206_NAME", "Village Marble (Hole)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_207_NAME", "Village Marble (Uneven)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_208_NAME", "Village Grass End"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_209_NAME", "Village Path End"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_208_NAME", "Village Marble High"));
         Text.saveInTx(texts);
     }
 

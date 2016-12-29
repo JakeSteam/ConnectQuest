@@ -38,6 +38,7 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
     private boolean shuffleAndPlay;
     private int totalTiles;
     private boolean cancelReceived = false;
+    private int failedTiles = 0;
 
     public PuzzleGenerator(Activity activity, Dialog dialog, int xValue, int yValue, int environmentId, boolean blankPuzzle, boolean shuffleAndPlay) {
         this.activity = activity;
@@ -77,14 +78,23 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
     }
 
     private static List<Tile> getPossibleTilesByRotation(int puzzleId, int x, int y, int environmentId, int rotation, int nFlow, int eFlow, int sFlow, int wFlow, int nHeight, int eHeight, int sHeight, int wHeight) {
-        String forceFlowSql = (x == 0 && y == 0 ? " AND (flow_north > 0 OR flow_east > 0 OR flow_south > 0 OR flow_west > 0)" : "");
-        String flowSql = String.format(Locale.ENGLISH, "flow_north %1$s AND flow_east %2$s AND flow_south %3$s AND flow_west %4$s %5$s", match(nFlow), match(eFlow), match(sFlow), match(wFlow), forceFlowSql);
-        String heightSql = String.format(Locale.ENGLISH, "height_north %1$s AND height_east %2$s AND height_south %3$s AND height_west %4$s", match(nHeight), match(eHeight), match(sHeight), match(wHeight));
+        String flowSql = String.format(Locale.ENGLISH, "%1$s AND %2$s AND %3$s AND %4$s",
+                match("flow_north", nFlow, x == 0 || y == 0),
+                match("flow_east", eFlow, x == 0 || y == 0),
+                match("flow_south", sFlow, x == 0 || y == 0),
+                match("flow_west", wFlow, x == 0 || y == 0));
+        String forceFlowSql = (x == 0 && y == 0 ? " AND (flow_north > 0 OR flow_east > 0 OR flow_south > 0 OR flow_west > 0)" : ""); // This can be converted to use match();
 
-        String sql = String.format(Locale.ENGLISH, "SELECT * FROM tile_type WHERE environment_id %1$s %2$d AND " + flowSql + " AND " + heightSql + " AND status = %3$d",
+        String heightSql = String.format(Locale.ENGLISH, "%1$s AND %2$s AND %3$s AND %4$s",
+                match("height_north", nHeight),
+                match("height_east", eHeight),
+                match("height_south", sHeight),
+                match("height_west", wHeight));
+
+        String sql = String.format(Locale.ENGLISH, "environment_id %1$s %2$d AND " + flowSql + forceFlowSql + " AND " + heightSql + " AND status = %3$d",
                 environmentId > 0 ? "=" : ">=", environmentId,
                 Constants.TILE_STATUS_UNLOCKED);
-        List<TileType> tileTypes = TileType.findWithQuery(TileType.class, sql);
+        List<TileType> tileTypes = TileType.find(TileType.class, sql);
 
         List<Tile> tiles = new ArrayList<>();
         for (TileType tile : tileTypes) {
@@ -93,8 +103,15 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
         return tiles;
     }
 
-    private static String match(int value) {
-        return (value >= 0 ? "= " : ">= ") + value;
+    private static String match(String name, int value) {
+        return match(name, value, false);
+    }
+
+    private static String match(String name, int value, boolean decorativeFlow) {
+        String template = "(%1$s %2$s %3$s)";
+        String templateDecorative = "(%1$s %2$s %3$s OR (%1$s IN (11,12,13) AND flow_north = flow_east AND flow_east = flow_south AND flow_south = flow_west))";
+
+        return String.format(Locale.ENGLISH, decorativeFlow ? templateDecorative : template, name, (value >= 0 ? "=" : ">="), value);
     }
 
     @Override
@@ -106,11 +123,13 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
                 activity.startActivity(new Intent(activity, PuzzleActivity.class)
                         .putExtra(Constants.INTENT_PUZZLE, result)
                         .putExtra(Constants.INTENT_IS_CUSTOM, true)
+                        .putExtra(Constants.INTENT_FAILED_TILES, failedTiles)
                         .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
             } else {
                 activity.startActivity(new Intent(activity, EditorActivity.class)
                         .putExtra(Constants.INTENT_PUZZLE, result)
                         .putExtra(Constants.INTENT_ENVIRONMENT, environmentId)
+                        .putExtra(Constants.INTENT_FAILED_TILES, failedTiles)
                         .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
             }
         }
@@ -209,6 +228,7 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
                         prevY = y;
                         failedAttempts = 0;
                         totalAttempts = 0;
+                        failedTiles++;
                     } else {
                         tiles.remove(tiles.size() - 1);
                         if (y == 0) {
