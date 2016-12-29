@@ -158,14 +158,14 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tileTypes.add(new TileType(187, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
         tileTypes.add(new TileType(188, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
         tileTypes.add(new TileType(189, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(190, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_GRASS, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(191, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_VILLAGE_GRASS, Constants.FLOW_VILLAGE_GRASS, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(192, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_VILLAGE_GRASS, Constants.FLOW_VILLAGE_GRASS, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(190, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_FIELD, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(191, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_VILLAGE_FIELD, Constants.FLOW_VILLAGE_FIELD, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(192, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_VILLAGE_FIELD, Constants.FLOW_VILLAGE_FIELD, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
         tileTypes.add(new TileType(193, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(194, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_VILLAGE_GRASS, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_GRASS, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(195, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_VILLAGE_GRASS, Constants.FLOW_PATH, Constants.FLOW_VILLAGE_GRASS, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(196, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_GRASS, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(197, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_GRASS, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(194, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_VILLAGE_FIELD, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_FIELD, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(195, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_VILLAGE_FIELD, Constants.FLOW_PATH, Constants.FLOW_VILLAGE_FIELD, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(196, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_FIELD, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(197, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_FIELD, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
         tileTypes.add(new TileType(198, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
         tileTypes.add(new TileType(199, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
         tileTypes.add(new TileType(200, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
@@ -179,6 +179,12 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         TileType.saveInTx(tileTypes);
 
         List<Text> texts = new ArrayList<>();
+        texts.add(new Text(Constants.LANGUAGE_EN, "ENVIRONMENT_7_NAME", "Village"));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_11_NAME", "Marble (Decorative)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_12_NAME", "Field (Decorative)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_13_NAME", "Plank (Decorative)"));
+
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_187_NAME", "Village Dirt"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_188_NAME", "Village Marble"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_189_NAME", "Village Dirt (Marble)"));

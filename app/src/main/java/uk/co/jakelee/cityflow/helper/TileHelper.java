@@ -109,7 +109,7 @@ public class TileHelper {
 
     private static boolean flowIsDecorative(int flow) {
         switch (flow) {
-            case Constants.FLOW_VILLAGE_GRASS:
+            case Constants.FLOW_VILLAGE_FIELD:
             case Constants.FLOW_VILLAGE_MARBLE:
             case Constants.FLOW_VILLAGE_PLANK:
                 return true;
