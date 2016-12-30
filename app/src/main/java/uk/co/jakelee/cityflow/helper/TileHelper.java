@@ -101,19 +101,10 @@ public class TileHelper {
         int otherFlow = otherTile.getFlow(otherSide);
         int otherHeight = otherTile.getHeight(otherSide);
 
-        boolean flow = currentFlow == otherFlow || tileIsInvisible(otherTile.getTileTypeId()) && flowIsDecorative(currentFlow);
+        boolean flow = currentFlow == otherFlow; // || tileIsInvisible(otherTile.getTileTypeId()) && flowIsDecorative(currentFlow);
         boolean height = currentHeight == otherHeight || tileIsInvisible(otherTile.getTileTypeId()) || currentFlow == 0;
 
         return flow && height;
-    }
-
-    private static boolean flowIsDecorative(int flow) {
-        switch (flow) {
-            case Constants.FLOW_VILLAGE_FIELD:
-                return true;
-            default:
-                return false;
-        }
     }
 
     public static boolean tileIsInvisible(int tileTypeId) {

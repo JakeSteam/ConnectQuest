@@ -182,6 +182,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tileTypes.add(new TileType(211, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
         tileTypes.add(new TileType(212, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
         tileTypes.add(new TileType(213, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(214, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
         TileType.saveInTx(tileTypes);
 
         List<Text> texts = new ArrayList<>();
@@ -220,6 +221,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_211_NAME", "Village Planks Corner"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_212_NAME", "Village Planks Straight"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_213_NAME", "Village Planks End"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_213_NAME", "Village Path T Junction"));
         Text.saveInTx(texts);
     }
 
