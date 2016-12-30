@@ -104,14 +104,10 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
     }
 
     private static String match(String name, int value) {
-        return match(name, value, false);
-    }
-
-    private static String match(String name, int value, boolean decorativeFlow) {
-        String template = "(%1$s %2$s %3$s)";
-        String templateDecorative = "(%1$s %2$s %3$s OR (%1$s IN (11,12,13) AND flow_north = flow_east AND flow_east = flow_south AND flow_south = flow_west))";
-
-        return String.format(Locale.ENGLISH, decorativeFlow ? templateDecorative : template, name, (value >= 0 ? "=" : ">="), value);
+        return String.format(Locale.ENGLISH, "(%1$s %2$s %3$s)",
+                name,
+                (value >= 0 ? "=" : ">="),
+                value);
     }
 
     @Override
