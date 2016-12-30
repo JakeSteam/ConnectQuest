@@ -136,7 +136,7 @@ public class Constants {
     public static final int FLOW_GOLF = 9;
     public static final int FLOW_TOXIC = 10;
     public static final int FLOW_VILLAGE_MARBLE = 11;
-    public static final int FLOW_VILLAGE_FIELD = 12;
+    public static final int FLOW_VILLAGE_FIELD = FLOW_NONE;
     public static final int FLOW_VILLAGE_PLANK = 13;
     public static final int HEIGHT_ANY = -1;
     public static final int HEIGHT_MIN = 0;

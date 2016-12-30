@@ -162,7 +162,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tileTypes.add(new TileType(191, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_VILLAGE_FIELD, Constants.FLOW_VILLAGE_FIELD, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
         tileTypes.add(new TileType(192, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_VILLAGE_FIELD, Constants.FLOW_VILLAGE_FIELD, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
         tileTypes.add(new TileType(193, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(194, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_VILLAGE_FIELD, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_FIELD, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        //tileTypes.add(new TileType(194, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_VILLAGE_FIELD, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_FIELD, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
         tileTypes.add(new TileType(195, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_VILLAGE_FIELD, Constants.FLOW_PATH, Constants.FLOW_VILLAGE_FIELD, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
         tileTypes.add(new TileType(196, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_FIELD, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
         tileTypes.add(new TileType(197, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_FIELD, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));

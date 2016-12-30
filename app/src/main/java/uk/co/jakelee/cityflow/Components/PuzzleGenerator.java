@@ -79,10 +79,10 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
 
     private static List<Tile> getPossibleTilesByRotation(int puzzleId, int x, int y, int environmentId, int rotation, int nFlow, int eFlow, int sFlow, int wFlow, int nHeight, int eHeight, int sHeight, int wHeight) {
         String flowSql = String.format(Locale.ENGLISH, "%1$s AND %2$s AND %3$s AND %4$s",
-                match("flow_north", nFlow, x == 0 || y == 0),
-                match("flow_east", eFlow, x == 0 || y == 0),
-                match("flow_south", sFlow, x == 0 || y == 0),
-                match("flow_west", wFlow, x == 0 || y == 0));
+                match("flow_north", nFlow),
+                match("flow_east", eFlow),
+                match("flow_south", sFlow),
+                match("flow_west", wFlow));
         String forceFlowSql = (x == 0 && y == 0 ? " AND (flow_north > 0 OR flow_east > 0 OR flow_south > 0 OR flow_west > 0)" : ""); // This can be converted to use match();
 
         String heightSql = String.format(Locale.ENGLISH, "%1$s AND %2$s AND %3$s AND %4$s",
