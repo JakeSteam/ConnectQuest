@@ -173,6 +173,7 @@ public class Constants {
     public static final int ITEM_TILE_134 = 34;
     public static final int ITEM_TILE_157 = 35;
     public static final int ITEM_TILE_172 = 36;
+    public static final int ITEM_PACK_10 = 37;
     public static final int LANGUAGE_MIN = 0;
     public static final int LANGUAGE_MAX = 8;
     public static final int LANGUAGE_EN = 0;

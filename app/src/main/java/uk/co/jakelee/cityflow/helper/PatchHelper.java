@@ -6831,6 +6831,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         shopItems.add(new ShopItem(Constants.ITEM_PACK_8, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 8, 1800, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_MAX_CARS, Constants.STORE_CATEGORY_MISC, 400, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_ZEN_MODE, Constants.STORE_CATEGORY_MISC, 100, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_PACK_10, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 10, 1800, 1, false));
         ShopItem.saveInTx(shopItems);
     }
 
