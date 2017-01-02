@@ -691,7 +691,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_3", "Completing all the puzzles in a pack in fewer moves & less time than the par will unlock the next pack for free."));
         texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_4", "Flows can transition and cross over, it all still counts as flowing!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_5", "Puzzles also have different heights, and can be set in different environments. What's your favourite?"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_6", "Bored of packs? Over 186^225 (over 1 novensexagintacentillion!) different puzzles can be generated in the \"Build\" area!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_6", "Bored of packs? Over 186^225 (over 1 septuagintacentillion!) different puzzles can be generated in the \"Build\" area!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_7", "Not a fan of the music / sounds? Customise them in the settings menu!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_8", "You're probably reading these okay, but the language can be changed in the settings too. Almost all translations are fan-submitted, feel free to help out!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_9", "Want free coins? Completing quests & levels or watching adverts & offers are all good earners!"));
@@ -1274,7 +1274,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_DE, "TUTORIAL_3", "Vervollständigen Sie alle Puzzles in einer Packung in weniger Moves & weniger Zeit als die Par-Freischaltung der nächsten Packung kostenlos."));
         texts.add(new Text(Constants.LANGUAGE_DE, "TUTORIAL_4", "Ströme können übergehen und kreuzen, alles zählt immer noch als fließend!"));
         texts.add(new Text(Constants.LANGUAGE_DE, "TUTORIAL_5", "Puzzles haben auch unterschiedliche Höhen und können in verschiedenen Umgebungen eingestellt werden. Was ist dein Lieblings?"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "TUTORIAL_6", "Gelangweilt von Packs? Über 186 ^ 225 (über 1 novensexagintacentillion!) Können verschiedene Rätsel im \"Build\" Bereich erzeugt werden!"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TUTORIAL_6", "Gelangweilt von Packs? Über 217 ^ 238 (über 1 septuagintacentillion!) Können verschiedene Rätsel im \"Build\" Bereich erzeugt werden!"));
         texts.add(new Text(Constants.LANGUAGE_DE, "TUTORIAL_7", "Nicht ein Fan der Musik / Sounds? Passen Sie sie im Einstellungsmenü an!"));
         texts.add(new Text(Constants.LANGUAGE_DE, "TUTORIAL_8", "Du liest vermutlich dieses okay, aber die Sprache kann in den Einstellungen auch geändert werden. Fast alle Übersetzungen sind Fan-eingereicht, fühlen sich frei zu helfen!"));
         texts.add(new Text(Constants.LANGUAGE_DE, "TUTORIAL_9", "Möchten Sie kostenlose Münzen? Vollendung Quests & Ebenen oder Anzeigen & Anzeigen sind alle guten Verdiener!"));
@@ -1860,7 +1860,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_NL, "TUTORIAL_3", "Het invullen van alle puzzels in een pakket in minder bewegingen en minder tijd dan de fractiewaarde zal de volgende strip gratis te ontgrendelen."));
         texts.add(new Text(Constants.LANGUAGE_NL, "TUTORIAL_4", "Stromen kunnen overgang en steek over, het allemaal nog steeds geldt als stromen!"));
         texts.add(new Text(Constants.LANGUAGE_NL, "TUTORIAL_5", "Puzzels hebben ook verschillende hoogtes, en kan worden ingesteld in verschillende omgevingen. Wat is je favoriete?"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "TUTORIAL_6", "Bored verpakkingen? Meer dan 186 ^ 225 (meer dan 1 novensexagintacentillion!) Verschillende puzzels kunnen worden gegenereerd in de \"Build\" gebied!"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TUTORIAL_6", "Bored verpakkingen? Meer dan 217 ^ 238 (meer dan 1 septuagintacentillion!) Verschillende puzzels kunnen worden gegenereerd in de \"Build\" gebied!"));
         texts.add(new Text(Constants.LANGUAGE_NL, "TUTORIAL_7", "Geen fan van de muziek / geluiden? Pas hen in het instellingenmenu!"));
         texts.add(new Text(Constants.LANGUAGE_NL, "TUTORIAL_8", "Je bent waarschijnlijk het lezen van deze oke, maar de taal kan in de instellingen worden veranderd ook. Bijna alle vertalingen zijn-fan ingediend, voel je vrij om te helpen!"));
         texts.add(new Text(Constants.LANGUAGE_NL, "TUTORIAL_9", "Wil je gratis coins? Het invullen van quests en levels of het bekijken van advertenties en aanbiedingen zijn allemaal goede verdieners!"));
@@ -2443,7 +2443,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_FR, "TUTORIAL_3", "Compléter tous les casse-têtes dans un pack en moins de mouvements et moins de temps que le pair déverrouillera le pack suivant gratuitement."));
         texts.add(new Text(Constants.LANGUAGE_FR, "TUTORIAL_4", "Les flux peuvent transitioner et se traverser, et être comptés comme fluide!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "TUTORIAL_5", "Les casse-têtes ont aussi des hauteurs différentes, et peuvent être dans des milieux différents. Quel est votre favori?"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "TUTORIAL_6", "Vous vous ennuyez? Plus de 186 ^ 225 (plus de 1 novensexagintacentillion!) casse-têtes différents peuvent être générés dans la zone \"Build\"!"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TUTORIAL_6", "Vous vous ennuyez? Plus de 217 ^ 238 (plus de 1 septuagintacentillion!) casse-têtes différents peuvent être générés dans la zone \"Build\"!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "TUTORIAL_7", "Pas un fan de la musique / des sons? Personnalisez-les dans le menu des paramètres!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "TUTORIAL_8", "Vous lisez probablement ceci sans problème, mais la langue peut être changée dans les paramètres. Presques toutes les traductions sont fournies par des fans. N'hésitez pas à nous aider!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "TUTORIAL_9", "Vous voulez des pièces gratuites? Compléter des quêtes et des niveaux ou regarder des annonces et des offres paye bien!"));
@@ -3026,7 +3026,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_PL, "TUTORIAL_3", "Kończenie wszystkie zagadki w opakowaniu w mniejszej liczbie ruchów i mniej czasu niż par będzie odblokować następny pakiet za darmo."));
         texts.add(new Text(Constants.LANGUAGE_PL, "TUTORIAL_4", "Przepływy można przejść i przejechać, to wszystko wciąż liczy się jako płynącej!"));
         texts.add(new Text(Constants.LANGUAGE_PL, "TUTORIAL_5", "Puzzli mają różne wysokości i może być ustawiana w różnych środowiskach. Co jest Twoim ulubionym?"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "TUTORIAL_6", "Znudzony opakowaniach? Ponad 186 ^ 225 (ponad 1 novensexagintacentillion!) Różnych puzzli mogą być generowane w obszarze \"Build\"!"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TUTORIAL_6", "Znudzony opakowaniach? Ponad 217 ^ 238 (ponad 1 septuagintacentillion!) Różnych puzzli mogą być generowane w obszarze \"Build\"!"));
         texts.add(new Text(Constants.LANGUAGE_PL, "TUTORIAL_7", "Nie jestem fanem muzyki / dźwięków? Dostosuj je w menu ustawień!"));
         texts.add(new Text(Constants.LANGUAGE_PL, "TUTORIAL_8", "Pewnie czytając to w porządku, ale język można zmienić w ustawieniach też. Prawie wszystkie tłumaczenia są fan-składane, nie krępuj się pomóc!"));
         texts.add(new Text(Constants.LANGUAGE_PL, "TUTORIAL_9", "Chcesz darmowe monety? Ukończenie zadań i poziom lub oglądania ogłoszenia i oferty są dobre zarabiających!"));
@@ -3609,7 +3609,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_RU, "TUTORIAL_3", "Завершение всех головоломок в пачке в меньшем количестве ходов & меньше времени, чем пар будет разблокировать следующий пакет бесплатно."));
         texts.add(new Text(Constants.LANGUAGE_RU, "TUTORIAL_4", "Потоки могут переходить и пересекаются, все это до сих пор считается течет!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "TUTORIAL_5", "Пазлы также имеют разную высоту, и могут быть установлены в различных средах. Какой твой любимый?"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "TUTORIAL_6", "Скучно пакетов? Более 186 ^ 225 (более 1 novensexagintacentillion!) Различных головоломок могут быть сгенерированы в этой области \"Build\"!"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TUTORIAL_6", "Скучно пакетов? Более 217 ^ 238 (более 1 septuagintacentillion!) Различных головоломок могут быть сгенерированы в этой области \"Build\"!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "TUTORIAL_7", "Не поклонник музыки / звуков? Настройте их в меню настроек!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "TUTORIAL_8", "Вы, наверное, читаете это хорошо, но язык может быть изменен в настройках тоже. Почти все переводы вентилятор представил, не стесняйтесь, чтобы помочь!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "TUTORIAL_9", "Хотите бесплатно монеты? Выполнение заданий & уровней или смотреть объявления и предложения все хорошие работники!"));
@@ -4192,7 +4192,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ES, "TUTORIAL_3", "Completar todos los rompecabezas en un paquete en menos movimientos y menos tiempo que el par desbloqueará el siguiente paquete de forma gratuita."));
         texts.add(new Text(Constants.LANGUAGE_ES, "TUTORIAL_4", "¡Los flujos pueden transitar y cruzar, todo todavía cuenta como fluir!"));
         texts.add(new Text(Constants.LANGUAGE_ES, "TUTORIAL_5", "Puzzles también tienen diferentes alturas, y se puede establecer en diferentes entornos. ¿Cual es tu favorito?"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "TUTORIAL_6", "¿Aburrido de los paquetes? Más de 186 ^ 225 (más de 1 novensexagintacentillion!) Puzzles diferentes se pueden generar en el área \"Build\"!"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TUTORIAL_6", "¿Aburrido de los paquetes? Más de 217 ^ 238 (más de 1 septuagintacentillion!) Puzzles diferentes se pueden generar en el área \"Build\"!"));
         texts.add(new Text(Constants.LANGUAGE_ES, "TUTORIAL_7", "No es un fan de la música / sonidos? Personalizarlos en el menú de configuración!"));
         texts.add(new Text(Constants.LANGUAGE_ES, "TUTORIAL_8", "Usted probablemente está leyendo estas bien, pero el idioma se puede cambiar en la configuración también. ¡Casi todas las traducciones son enviadas por los fans, no dude en ayudar!"));
         texts.add(new Text(Constants.LANGUAGE_ES, "TUTORIAL_9", "Quieres monedas gratis? Completar misiones y niveles o ver anuncios y ofertas son todos buenos asalariados!"));
@@ -4775,7 +4775,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ZH, "TUTORIAL_3", "完成所有的谜题在一个包中的更少的动作和更少的时间比标准将解锁下一个包免费。"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "TUTORIAL_4", "流动可以过渡和交叉，它仍然算作流动！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "TUTORIAL_5", "拼图也有不同的高度，可以在不同的环境中设置。你最喜欢什么？"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "TUTORIAL_6", "无聊包？超过186 ^ 225(超过1 novensexagintacentillion！)不同的谜题可以在“构建”区域生成！"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TUTORIAL_6", "无聊包？超过217 ^ 238(超过1 septuagintacentillion！)不同的谜题可以在“构建”区域生成！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "TUTORIAL_7", "不是音乐/声音的粉丝？在设置菜单中自定义它们！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "TUTORIAL_8", "你可能正在读这些好，但语言可以在设置中更改。几乎所有的翻译是粉丝提交，随时帮助！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "TUTORIAL_9", "想要免费硬币？完成任务和等级或观看广告和优惠都是好的赢家！"));
@@ -5358,7 +5358,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_SV, "TUTORIAL_3", "Att slutföra alla pussel i ett Pack med hjälp av färre drag och mindre tid än det nominella kommer låsa upp nästa Pack gratis."));
         texts.add(new Text(Constants.LANGUAGE_SV, "TUTORIAL_4", "Flöden kan korsas och övergå, det räknas ändå som ett flöde!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "TUTORIAL_5", "Pussel har även olika höjder, och kan ställas in i olika miljöer. Vilken är din favorit?"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "TUTORIAL_6", "Trött på Packs? Fler än 186^255 (över 1 novensexagintacentillion!) olika pussel kan genereras i \"Bygg\" området!"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TUTORIAL_6", "Trött på Packs? Fler än 186^255 (över 1 septuagintacentillion!) olika pussel kan genereras i \"Bygg\" området!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "TUTORIAL_7", "Tycker du inte om musiken eller ljuden? Finjustera dem i inställningarna!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "TUTORIAL_8", "Du kan förmodligen läsa dessa utan vidare, men språket kan också ändras i inställningarna. Nästan alla översättningar är gjorda av fans, hjälp gärna till!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "TUTORIAL_9", "Vill du ha gratis mynt? Att utföra uppdrag och nivåer, eller att titta på annonser och erbjudanden kan tjäna bra!"));
