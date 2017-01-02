@@ -27,13 +27,11 @@ public class TileType extends SugarRecord {
     private int statusFromPuzzleRequired(int puzzleRequired) {
         switch (puzzleRequired) {
             case Constants.TILE_UNPURCHASED:
-                return Constants.TILE_STATUS_UNLOCKED;
-                //return Constants.TILE_STATUS_UNPURCHASED;
+                return Constants.TILE_STATUS_UNPURCHASED;
             case Constants.TILE_UNLOCKED:
                 return Constants.TILE_STATUS_UNLOCKED;
             default:
-                return Constants.TILE_STATUS_UNLOCKED;
-                //return Constants.TILE_STATUS_LOCKED;
+                return Constants.TILE_STATUS_LOCKED;
         }
     }
 

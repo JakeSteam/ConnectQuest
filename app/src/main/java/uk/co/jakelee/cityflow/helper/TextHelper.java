@@ -732,7 +732,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_PUZZLE_RESIZE_HINT", "Width = top left -> bottom right\nHeight = bottom left -> top right."));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_TILE_UNLOCK_PUZZLE", "To unlock \"%1$s\", complete puzzle \"%2$s\" in pack \"%3$s\"."));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_TILE_UNLOCK_SHOP", "Unlock \"%1$s\" by purchasing it in the shop."));
-        texts.add(new Text(Constants.LANGUAGE_EN, "UI_TILE_UNLOCK", "Unlocked %1$s tile(s)!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "UI_TILE_UNLOCK", "Unlocked %1$s tile!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "UI_TILE_NO_UNLOCK", "No tiles unlocked."));
         texts.add(new Text(Constants.LANGUAGE_EN, "WORD_ALL", "All"));
         texts.add(new Text(Constants.LANGUAGE_EN, "WORD_AREA", "Area"));
@@ -1315,7 +1315,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_DE, "UI_PUZZLE_RESIZE_HINT", "Breite = oben links -> unten rechts \nHöhe = unten links -> rechts oben."));
         texts.add(new Text(Constants.LANGUAGE_DE, "UI_TILE_UNLOCK_PUZZLE", "Um \"%1$s\" zu entriegeln, führe das Puzzle \"%2$s\" im Paket \"%3$s\" aus."));
         texts.add(new Text(Constants.LANGUAGE_DE, "UI_TILE_UNLOCK_SHOP", "Unlock \"%1$s\" durch den Kauf es im Shop."));
-        texts.add(new Text(Constants.LANGUAGE_DE, "UI_TILE_UNLOCK", "Unlocked %1$s Kachel (e)!"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "UI_TILE_UNLOCK", "Unlocked %1$s Kachel!"));
         texts.add(new Text(Constants.LANGUAGE_DE, "UI_TILE_NO_UNLOCK", "Keine Fliesen entriegelt."));
         texts.add(new Text(Constants.LANGUAGE_DE, "WORD_ALL", "Alle"));
         texts.add(new Text(Constants.LANGUAGE_DE, "WORD_AREA", "Bereich"));
@@ -1901,7 +1901,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_NL, "UI_PUZZLE_RESIZE_HINT", "Breedte = linksboven -> rechtsonder \nHoogte = linksonder -> rechterbovenhoek."));
         texts.add(new Text(Constants.LANGUAGE_NL, "UI_TILE_UNLOCK_PUZZLE", "Om te ontgrendelen \"%1$s\", speel puzzel \"%2$s\" vrij in pak\"%3$s\"."));
         texts.add(new Text(Constants.LANGUAGE_NL, "UI_TILE_UNLOCK_SHOP", "Unlock \"%1$s\" door de aankoop in de winkel."));
-        texts.add(new Text(Constants.LANGUAGE_NL, "UI_TILE_UNLOCK", "Telgel(s) %1$s vrijgespeeld."));
+        texts.add(new Text(Constants.LANGUAGE_NL, "UI_TILE_UNLOCK", "Telgel %1$s vrijgespeeld."));
         texts.add(new Text(Constants.LANGUAGE_NL, "UI_TILE_NO_UNLOCK", "Aantal tegels ontgrendeld."));
         texts.add(new Text(Constants.LANGUAGE_NL, "WORD_ALL", "Alle"));
         texts.add(new Text(Constants.LANGUAGE_NL, "WORD_AREA", "Gebied"));
@@ -2484,7 +2484,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_FR, "UI_PUZZLE_RESIZE_HINT", "Largeur = d'en haut à gauche -> en bas à droite. \nHauteur = d'en bas à gauche -> en haut à droite."));
         texts.add(new Text(Constants.LANGUAGE_FR, "UI_TILE_UNLOCK_PUZZLE", "Pour déverrouiller \"%1$s\", complétez le puzzle \"%2$s\" dans le Pack \"%3$s\"."));
         texts.add(new Text(Constants.LANGUAGE_FR, "UI_TILE_UNLOCK_SHOP", "Déverrouillez \"%1$s\" en l'achetant dans la boutique."));
-        texts.add(new Text(Constants.LANGUAGE_FR, "UI_TILE_UNLOCK", "Débloqué %1$s carreau(x)!"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "UI_TILE_UNLOCK", "Débloqué %1$s carreau!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "UI_TILE_NO_UNLOCK", "Aucun carreau déverrouillé."));
         texts.add(new Text(Constants.LANGUAGE_FR, "WORD_ALL", "Tout"));
         texts.add(new Text(Constants.LANGUAGE_FR, "WORD_AREA", "Région"));
@@ -3067,7 +3067,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_PL, "UI_PUZZLE_RESIZE_HINT", "Width = lewym górnym rogu -> dolny prawy \nHeight = lewy dolny -> w prawym górnym rogu."));
         texts.add(new Text(Constants.LANGUAGE_PL, "UI_TILE_UNLOCK_PUZZLE", "Aby odblokować \"%1$s\", kompletne puzzle \"%2$s\" w pakiecie \"%3$s\"."));
         texts.add(new Text(Constants.LANGUAGE_PL, "UI_TILE_UNLOCK_SHOP", "Odblokuj \"%1$s\" kupując go w sklepie."));
-        texts.add(new Text(Constants.LANGUAGE_PL, "UI_TILE_UNLOCK", "Odblokowany %1$s płytki (s)!"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "UI_TILE_UNLOCK", "Odblokowany %1$s płytki!"));
         texts.add(new Text(Constants.LANGUAGE_PL, "UI_TILE_NO_UNLOCK", "Brak płytki odblokowany."));
         texts.add(new Text(Constants.LANGUAGE_PL, "WORD_ALL", "Wszystko"));
         texts.add(new Text(Constants.LANGUAGE_PL, "WORD_AREA", "Powierzchnia"));
@@ -3650,7 +3650,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_RU, "UI_PUZZLE_RESIZE_HINT", "Ширина = верхний левый -> внизу справа\nHeight = нижний левый -> в правом верхнем углу."));
         texts.add(new Text(Constants.LANGUAGE_RU, "UI_TILE_UNLOCK_PUZZLE", "Для того, чтобы разблокировать \"%1$s\", полная головоломки \"%2$s\" в пакете \"%3$s\"."));
         texts.add(new Text(Constants.LANGUAGE_RU, "UI_TILE_UNLOCK_SHOP", "Разблокировать \"%1$s\", купив его в магазине."));
-        texts.add(new Text(Constants.LANGUAGE_RU, "UI_TILE_UNLOCK", "Разблокирована %1$s плитка (ы)!"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "UI_TILE_UNLOCK", "Разблокирована %1$s плитка!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "UI_TILE_NO_UNLOCK", "Нет плитки не разблокирован."));
         texts.add(new Text(Constants.LANGUAGE_RU, "WORD_ALL", "Все"));
         texts.add(new Text(Constants.LANGUAGE_RU, "WORD_AREA", "Площадь"));
@@ -5399,7 +5399,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_SV, "UI_PUZZLE_RESIZE_HINT", "Width = uppe till vänster -> nere till höger \nHöjd = nere till vänster -> uppe till höger."));
         texts.add(new Text(Constants.LANGUAGE_SV, "UI_TILE_UNLOCK_PUZZLE", "För att låsa upp \"%1$s\", slutför pussel \"%2$s\" i Pack \"%3$s\"."));
         texts.add(new Text(Constants.LANGUAGE_SV, "UI_TILE_UNLOCK_SHOP", "Lås upp \"%1$s\" genom att köpa den i Shoppen."));
-        texts.add(new Text(Constants.LANGUAGE_SV, "UI_TILE_UNLOCK", "Låste upp %1$s bricka/or!"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "UI_TILE_UNLOCK", "Låste upp %1$s bricka!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "UI_TILE_NO_UNLOCK", "Inga upplåsta brickor."));
         texts.add(new Text(Constants.LANGUAGE_SV, "WORD_ALL", "Allt"));
         texts.add(new Text(Constants.LANGUAGE_SV, "WORD_AREA", "Område"));

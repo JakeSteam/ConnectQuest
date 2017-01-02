@@ -155,41 +155,41 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     private void patchTo094() {
         List<TileType> tileTypes = new ArrayList<>();
-        tileTypes.add(new TileType(187, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(188, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(189, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(190, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(191, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(192, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(193, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(194, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(195, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(196, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(197, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(198, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(199, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(200, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(201, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(202, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(203, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(204, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(205, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(206, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(207, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(208, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_PLANK, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(209, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(187, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 209));
+        tileTypes.add(new TileType(188, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, 210));
+        tileTypes.add(new TileType(189, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 211));
+        tileTypes.add(new TileType(190, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 212));
+        tileTypes.add(new TileType(191, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 213));
+        tileTypes.add(new TileType(192, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 214));
+        tileTypes.add(new TileType(193, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.HEIGHT_NORMAL, 215));
+        tileTypes.add(new TileType(194, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, 216));
+        tileTypes.add(new TileType(195, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 217));
+        tileTypes.add(new TileType(196, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 218));
+        tileTypes.add(new TileType(197, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 219));
+        tileTypes.add(new TileType(198, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.HEIGHT_NORMAL, 220));
+        tileTypes.add(new TileType(199, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.HEIGHT_NORMAL, 221));
+        tileTypes.add(new TileType(200, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 222));
+        tileTypes.add(new TileType(201, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 223));
+        tileTypes.add(new TileType(202, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 224));
+        tileTypes.add(new TileType(203, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, 225));
+        tileTypes.add(new TileType(204, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 226));
+        tileTypes.add(new TileType(205, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 227));
+        tileTypes.add(new TileType(206, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, 228));
+        tileTypes.add(new TileType(207, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, 229));
+        tileTypes.add(new TileType(208, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_PLANK, Constants.HEIGHT_NORMAL, 230));
+        tileTypes.add(new TileType(209, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 231));
         tileTypes.add(new TileType(210, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(211, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(212, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(213, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(214, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(215, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(216, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
-        tileTypes.add(new TileType(217, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(211, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 232));
+        tileTypes.add(new TileType(212, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 233));
+        tileTypes.add(new TileType(213, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 234));
+        tileTypes.add(new TileType(214, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 235));
+        tileTypes.add(new TileType(215, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 236));
+        tileTypes.add(new TileType(216, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 237));
+        tileTypes.add(new TileType(217, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 238));
         TileType.saveInTx(tileTypes);
 
         List<Text> texts = new ArrayList<>();
-        texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_GENERATION_INCOMPLETE", "Puzzle generation failed for %1$s tiles! Puzzle is probably not completable."));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_GENERATION_INCOMPLETE", "Puzzle generation failed for %1$s tiles! Puzzle might not be completable."));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "ENVIRONMENT_7_NAME", "Village"));
 
@@ -230,11 +230,6 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_216_NAME", "Village Planks Corner (Table)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_217_NAME", "Village Planks Corner (Broken Table)"));
         Text.saveInTx(texts);
-
-
-
-
-        createPuzzlesPack10();
     }
 
     private void createOtherPuzzles() {
