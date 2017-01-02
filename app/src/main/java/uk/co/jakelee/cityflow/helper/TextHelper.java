@@ -106,7 +106,7 @@ public class TextHelper {
         installLanguagePack(currentPack);
     }
 
-    public static void deleteLanguagePack(int packId) {
+    private static void deleteLanguagePack(int packId) {
         Text.deleteAll(Text.class, "language = " + packId);
     }
 
@@ -121,24 +121,6 @@ public class TextHelper {
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_EN, "INSTALL_CHECK", ""));
 
-        // 0.9.2
-        texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_LANGUAGE_INSTALL", "Installing language pack: %1$s"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_RESET_LANGUAGE", "Game language set to English!"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_TUTORIAL_SKIPPED", "Tutorial skipped!"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_TUTORIAL_RESTARTED", "Tutorial restarted!"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_RESET_LANGUAGE", "Reset Language"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_RESET_LANGUAGE_CONFIRM", "Reset language back to English, uninstalling the %1$d translations currently installed?\n\nReinstall packs by changing language!"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_185_NAME", "Desert (Plant)"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_186_NAME", "Desert (Flower)"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "WORD_RANDOM", "Random"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "WORD_SKIP", "Skip"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_BANNER", "Free Coins!"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_LEADERBOARD_CONFIRM", "Which pack leaderboard would you like to open?"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_IMPROVE_LANGUAGE", "Improve Translations (Form)"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_19_NAME", "Tutorial"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_20_NAME", "Hide Locked Tiles"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_21_NAME", "Max Millis In Click"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "QUEST_SCHEDULE", "Schedule (Reddit)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_BACKGROUND_UNLOCK", "Unlocked '%1$s' background!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_CARD_SAVED", "Card image saved to gallery!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_COINS_PURCHASED", "Successfully purchased %1$d coins!"));
@@ -157,6 +139,10 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_SAVE_CONFLICT", "Save conflict detected! Currently resolving, this might take a few seconds, please be patient..."));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_SETTING_TOGGLE_ON", "Toggled %1$s on!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_SETTING_TOGGLE_OFF", "Toggled %1$s off!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_LANGUAGE_INSTALL", "Installing language pack: %1$s"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_RESET_LANGUAGE", "Game language set to English!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_TUTORIAL_SKIPPED", "Tutorial skipped!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_TUTORIAL_RESTARTED", "Tutorial restarted!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_1_NAME", "Plain"));
         texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_1_HINT", "This is already unlocked!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "BACKGROUND_2_NAME", "Night"));
@@ -317,6 +303,10 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_CHANGE_WIDTH", "Change Width"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_CHANGE_HEIGHT", "Change Height"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_SAVE_EXIT", "Save & Exit"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_RESET_LANGUAGE", "Reset Language"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_RESET_LANGUAGE_CONFIRM", "Reset language back to English, uninstalling the %1$d translations currently installed?\n\nReinstall packs by changing language!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_LEADERBOARD_CONFIRM", "Which pack leaderboard would you like to open?"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_IMPROVE_LANGUAGE", "Improve Translations (Form)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ENVIRONMENT_0_NAME", "None"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ENVIRONMENT_1_NAME", "Grass"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ENVIRONMENT_2_NAME", "City"));
@@ -452,6 +442,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "QUEST_COMPLETED", "Completed"));
         texts.add(new Text(Constants.LANGUAGE_EN, "QUEST_FAILED", "Failed"));
         texts.add(new Text(Constants.LANGUAGE_EN, "QUEST_COMPLETED_TEXT", "Completed the %1$s quest \"%2$s\" and earned %3$d coins!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "QUEST_SCHEDULE", "Schedule (Reddit)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_SECTION_AUDIO", "Audio Settings"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_SECTION_GAMEPLAY", "Game Settings"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_SECTION_GOOGLE", "Google Settings"));
@@ -474,6 +465,10 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_16_NAME", "Setting Change Sound"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_17_NAME", "Main Music"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_18_NAME", "Puzzle Music"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_19_NAME", "Tutorial"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_20_NAME", "Hide Locked Tiles"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_21_NAME", "Max Millis In Click"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_BANNER", "Free Coins!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_CATEGORY_1_NAME", "Boosts"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_CATEGORY_2_NAME", "Upgrades"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_CATEGORY_3_NAME", "Tiles"));
@@ -689,6 +684,8 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_182_NAME", "Grass Water T Junction"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_183_NAME", "Grass Water Interchange"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_184_NAME", "Grass Water Corner (Tree)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_185_NAME", "Desert (Plant)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_186_NAME", "Desert (Flower)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_187_NAME", "Village Dirt"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_188_NAME", "Village Marble"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_189_NAME", "Village Dirt (Marble)"));
@@ -783,31 +780,14 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "WORD_UNLOCK", "Unlock"));
         texts.add(new Text(Constants.LANGUAGE_EN, "WORD_LOCKED", "Locked"));
         texts.add(new Text(Constants.LANGUAGE_EN, "WORD_LOADING", "Loading"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "WORD_RANDOM", "Random"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "WORD_SKIP", "Skip"));
         Text.saveInTx(texts);
     }
 
     private static void installGermanText() {
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_DE, "INSTALL_CHECK", ""));
-
-        // 0.9.2
-        texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_LANGUAGE_INSTALL", "Sprachpaket installieren: %1$s"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_RESET_LANGUAGE", "Spielsprache auf Englisch eingestellt!"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_TUTORIAL_SKIPPED", "Tutorial übersprungen!"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_TUTORIAL_RESTARTED", "Tutorial neu gestartet!"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_RESET_LANGUAGE", "Sprache zurücksetzen"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_RESET_LANGUAGE_CONFIRM", "Zurücksetzen der Sprache auf Englisch, Deinstallieren der derzeit installierten %1$d Übersetzungen?\n\nPacks wiederherstellen, indem Sie Sprache ändern!"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_185_NAME", "Wüste (Pflanze)"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_186_NAME", "Wüstenblume"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "WORD_RANDOM", "Zufällig"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "WORD_SKIP", "Überspringen"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "SHOP_BANNER", "Freie Münzen!"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_LEADERBOARD_CONFIRM", "Welches Pack Leaderboard möchten Sie öffnen?"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_IMPROVE_LANGUAGE", "Übersetzungen verbessern"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "SETTING_19_NAME", "Anleitung"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "SETTING_20_NAME", "Gesperrte Fliesen ausblenden"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "SETTING_21_NAME", "Max Ms in Klicken"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "QUEST_SCHEDULE", "Zeitplan (Reddit)"));
 
         texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_BACKGROUND_UNLOCK", "Unlocked '%1$s' Hintergrund!"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_CARD_SAVED", "Kartenbild auf Galerie gespeichert!"));
@@ -827,6 +807,10 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_SAVE_CONFLICT", "Beim speichern ist ein Problem aufgetreten! Bitte habe etwas Geduld, das lösen des Problems kann ein paar Sekunden dauern ..."));
         texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_SETTING_TOGGLE_ON", "Toggled %1$s an!"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_SETTING_TOGGLE_OFF", "\"Toggled %1$s aus!"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_LANGUAGE_INSTALL", "Sprachpaket installieren: %1$s"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_RESET_LANGUAGE", "Spielsprache auf Englisch eingestellt!"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_TUTORIAL_SKIPPED", "Tutorial übersprungen!"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_TUTORIAL_RESTARTED", "Tutorial neu gestartet!"));
         texts.add(new Text(Constants.LANGUAGE_DE, "BACKGROUND_1_NAME", "Ebene"));
         texts.add(new Text(Constants.LANGUAGE_DE, "BACKGROUND_1_HINT", "Das ist schon freigeschaltet!"));
         texts.add(new Text(Constants.LANGUAGE_DE, "BACKGROUND_2_NAME", "Nacht"));
@@ -945,6 +929,10 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_CHANGE_WIDTH", "Breite ändern"));
         texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_CHANGE_HEIGHT", "Höhe ändern"));
         texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_SAVE_EXIT", "Sicherer Ausgang"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_RESET_LANGUAGE", "Sprache zurücksetzen"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_RESET_LANGUAGE_CONFIRM", "Zurücksetzen der Sprache auf Englisch, Deinstallieren der derzeit installierten %1$d Übersetzungen?\n\nPacks wiederherstellen, indem Sie Sprache ändern!"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_LEADERBOARD_CONFIRM", "Welches Pack Leaderboard möchten Sie öffnen?"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_IMPROVE_LANGUAGE", "Übersetzungen verbessern"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ENVIRONMENT_0_NAME", "Keiner"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ENVIRONMENT_1_NAME", "Gras"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ENVIRONMENT_2_NAME", "Stadt"));
@@ -952,6 +940,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_DE, "ENVIRONMENT_4_NAME", "Berg"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ENVIRONMENT_5_NAME", "Wüste"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ENVIRONMENT_6_NAME", "Golf"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "ENVIRONMENT_7_NAME", "Dorf"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ERROR_ADVERT_NOT_LOADED", "Fehler beim Laden der Anzeige! Dies kann auf eine schlechte Verbindung zurückzuführen sein, oder es sind möglicherweise keine Anzeigen verfügbar."));
         texts.add(new Text(Constants.LANGUAGE_DE, "ERROR_ADVERT_NOT_VERIFIED", "Etwas ging schief, und die Anzeigenansicht konnte nicht überprüft werden!"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ERROR_FAILED_TO_CONNECT", "Sie konnten sich nicht anmelden. Bitte versuchen Sie es später erneut."));
@@ -972,6 +961,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_DE, "ERROR_NO_IAB", "In der App-Abrechnung ist auf diesem Gerät nicht verfügbar!"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ERROR_IAB_FAILED", "Kauf gescheitert! Stellen Sie sicher, dass Sie angemeldet sind und eine Zahlungsmethode konfiguriert ist."));
         texts.add(new Text(Constants.LANGUAGE_DE, "ERROR_PUZZLE_SOLVED", "Puzzle schon gelöst! Versuchen Sie, die Fliesen zuerst zu schlurfen!"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "ERROR_GENERATION_INCOMPLETE", "Puzzle Generation fehlgeschlagen für %1$s Fliesen! Puzzle kann nicht abgeschlossen werden."));
         texts.add(new Text(Constants.LANGUAGE_DE, "FLOW_0_NAME", "Keiner"));
         texts.add(new Text(Constants.LANGUAGE_DE, "FLOW_1_NAME", "Wasser"));
         texts.add(new Text(Constants.LANGUAGE_DE, "FLOW_2_NAME", "Straße"));
@@ -983,6 +973,8 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_DE, "FLOW_8_NAME", "Schiene"));
         texts.add(new Text(Constants.LANGUAGE_DE, "FLOW_9_NAME", "Golf"));
         texts.add(new Text(Constants.LANGUAGE_DE, "FLOW_10_NAME", "Giftig"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "FLOW_11_NAME", "Murmeln (Dekor)"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "FLOW_12_NAME", "Planke (Dekorativ)"));
         texts.add(new Text(Constants.LANGUAGE_DE, "GOOGLE_SIGN_IN", "Anmelden"));
         texts.add(new Text(Constants.LANGUAGE_DE, "GOOGLE_SIGN_OUT", "Ausloggen"));
         texts.add(new Text(Constants.LANGUAGE_DE, "HEIGHT_0_NAME", "Keiner"));
@@ -1057,6 +1049,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_DE, "PACK_8_NAME", "Heady Höhen"));
         texts.add(new Text(Constants.LANGUAGE_DE, "PACK_9_NAME", "Beitragsforschung"));
         texts.add(new Text(Constants.LANGUAGE_DE, "PACK_9_CHALLENGE", "Kaufen Sie eine beliebige Anzahl von Münzen, um dieses Paket freizuschalten."));
+        texts.add(new Text(Constants.LANGUAGE_DE, "PACK_10_NAME", "Reste Eines Dorfes"));
         texts.add(new Text(Constants.LANGUAGE_DE, "PUZZLE_DEFAULT_NAME", "Neues Puzzle (%1$dx%2$d, %3$s)"));
         texts.add(new Text(Constants.LANGUAGE_DE, "PUZZLE_DEFAULT_DESC", "Keine Beschreibung."));
         texts.add(new Text(Constants.LANGUAGE_DE, "PUZZLE_EXPORT_START", "Beginn des Puzzle-Exportprozesses ..."));
@@ -1066,6 +1059,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_DE, "QUEST_COMPLETED", "Abgeschlossen"));
         texts.add(new Text(Constants.LANGUAGE_DE, "QUEST_FAILED", "Gescheitert"));
         texts.add(new Text(Constants.LANGUAGE_DE, "QUEST_COMPLETED_TEXT", "Erledigt die %1$s Quest \"%2$s\" und verdiente %3$d Münzen!"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "QUEST_SCHEDULE", "Zeitplan (Reddit)"));
         texts.add(new Text(Constants.LANGUAGE_DE, "SETTING_SECTION_AUDIO", "Audio Einstellungen"));
         texts.add(new Text(Constants.LANGUAGE_DE, "SETTING_SECTION_GAMEPLAY", "Spieleinstellungen"));
         texts.add(new Text(Constants.LANGUAGE_DE, "SETTING_SECTION_GOOGLE", "Google-Einstellungen"));
@@ -1088,6 +1082,10 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_DE, "SETTING_16_NAME", "Einstellung Sound ändern"));
         texts.add(new Text(Constants.LANGUAGE_DE, "SETTING_17_NAME", "Hauptmusik"));
         texts.add(new Text(Constants.LANGUAGE_DE, "SETTING_18_NAME", "Puzzlespiel-Musik"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "SETTING_19_NAME", "Anleitung"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "SETTING_20_NAME", "Gesperrte Fliesen ausblenden"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "SETTING_21_NAME", "Max Ms in Klicken"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "SHOP_BANNER", "Freie Münzen!"));
         texts.add(new Text(Constants.LANGUAGE_DE, "SHOP_CATEGORY_1_NAME", "Erhöht"));
         texts.add(new Text(Constants.LANGUAGE_DE, "SHOP_CATEGORY_2_NAME", "Aktualisierungen"));
         texts.add(new Text(Constants.LANGUAGE_DE, "SHOP_CATEGORY_3_NAME", "Fliesen"));
@@ -1303,6 +1301,39 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_DE, "TILE_182_NAME", "Gras Wasser T Junction"));
         texts.add(new Text(Constants.LANGUAGE_DE, "TILE_183_NAME", "Gras Wasseraustausch"));
         texts.add(new Text(Constants.LANGUAGE_DE, "TILE_184_NAME", "Gras Wasser Ecke (Baum)"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_185_NAME", "Wüste (Pflanze)"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_186_NAME", "Wüstenblume"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_187_NAME", "Dorf Schmutz"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_188_NAME", "Das Dorf Marmor"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_189_NAME", "Dorf Schmutz (Marmor)"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_190_NAME", "Dorf Gras"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_191_NAME", "Dorfpfad"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_192_NAME", "Dorfpfad (Löschen)"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_193_NAME", "Dorfpfad-Austausch"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_194_NAME", "Dorf-Marmor-T-Kreuzung"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_195_NAME", "Dorf Weg Gerade"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_196_NAME", "Dorf Gras (Felsen)"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_197_NAME", "Dorf Gras (Stumpf)"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_198_NAME", "Dorf-Bretter"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_199_NAME", "Dorfföhren (Loch)"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_200_NAME", "Dorf-Bretter / Schmutz-gerade"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_201_NAME", "Dorf-Marmor-Ecke"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_202_NAME", "Dorf-Marmor-gerade"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_203_NAME", "Dorfmarmor (Löcher)"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_204_NAME", "Dorf-Marmor / Schmutz-gerade"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_205_NAME", "Dorf Marmor / Schmutz-gerade (Ungleichmäßig)"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_206_NAME", "Dorfmarmor (Loch)"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_207_NAME", "Dorfmarmor (Uneben)"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_208_NAME", "Dächer T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_209_NAME", "Dorf Weg Ende"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_210_NAME", "Dorf Marmor Ende"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_211_NAME", "Dorf-Bretter-Ecke"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_212_NAME", "Dorf-Planken Gerade"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_213_NAME", "Dorf-Planken-Ende"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_214_NAME", "Gemeindepfad T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_215_NAME", "Village Marble Corner (Fass)"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_216_NAME", "Dorf-Planken-Ecke (Tabelle)"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "TILE_217_NAME", "Dorf-Bretter-Ecke (Defekter Tisch)"));
         texts.add(new Text(Constants.LANGUAGE_DE, "TUTORIAL_1", "Drehen Sie die Fliesen zu einem gleichmäßigen Fluss, ohne lose Enden zu bilden. Zum Drehen tippen!"));
         texts.add(new Text(Constants.LANGUAGE_DE, "TUTORIAL_2", "Ein Puzzle wird in der Regel entsperren eine neue Fliese in der Ebene Schöpfer, gibt es Hunderte!"));
         texts.add(new Text(Constants.LANGUAGE_DE, "TUTORIAL_3", "Vervollständigen Sie alle Puzzles in einer Packung in weniger Moves & weniger Zeit als die Par-Freischaltung der nächsten Packung kostenlos."));
@@ -1366,34 +1397,14 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_DE, "WORD_UNLOCK", "Entsperren"));
         texts.add(new Text(Constants.LANGUAGE_DE, "WORD_LOCKED", "Gesperrt"));
         texts.add(new Text(Constants.LANGUAGE_DE, "WORD_LOADING", "Laden"));
-
-        texts.add(new Text(Constants.LANGUAGE_DE, "SETTING_SECTION_GAMEPLAY", "GERMAN TEXT"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "WORD_RANDOM", "Zufällig"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "WORD_SKIP", "Überspringen"));
         Text.saveInTx(texts);
     }
 
     private static void installDutchText() {
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_NL, "INSTALL_CHECK", ""));
-
-        // 0.9.2
-        texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_LANGUAGE_INSTALL", "Het installeren van taalpakket: %1$s"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_RESET_LANGUAGE", "Game taal in te stellen in het Engels!"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_TUTORIAL_SKIPPED", "Tutorial overgeslagen!"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_TUTORIAL_RESTARTED", "Tutorial hernieuwd!"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_RESET_LANGUAGE", "Reset Taal"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_RESET_LANGUAGE_CONFIRM", "Reset taal terug naar Engels, het verwijderen van de %1$d vertalingen die momenteel is geïnstalleerd? \n\nReinstall packs door het veranderen van de taal!"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_185_NAME", "Desert (Plant)"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_186_NAME", "Woestijnbloem)"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "WORD_RANDOM", "Toevallig"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "WORD_SKIP", "Overspringen"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "SHOP_BANNER", "Gratis munten!"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_LEADERBOARD_CONFIRM", "Welke verpakking leaderboard zou u willen openen?"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_IMPROVE_LANGUAGE", "Vertalingen Verbeteren (Form)"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "SETTING_19_NAME", "Tutorial"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "SETTING_20_NAME", "Hide Locked Tiles"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "SETTING_21_NAME", "Max Millis klik"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "QUEST_SCHEDULE", "Schedule (Reddit)"));
-
 
         texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_BACKGROUND_UNLOCK", "Unlocked '%1$s' achtergrond!"));
         texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_CARD_SAVED", "Image-kaart opgeslagen in galerij!"));
@@ -1413,6 +1424,10 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_SAVE_CONFLICT", "Save conflict gedetecteerd! Bezig met oplossen, dit kan enkele seconden duren, even geduld..."));
         texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_SETTING_TOGGLE_ON", "Schakelen %1$s is aan!"));
         texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_SETTING_TOGGLE_OFF", "Schakelen %1$s is uit!"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_LANGUAGE_INSTALL", "Het installeren van taalpakket: %1$s"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_RESET_LANGUAGE", "Game taal in te stellen in het Engels!"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_TUTORIAL_SKIPPED", "Tutorial overgeslagen!"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_TUTORIAL_RESTARTED", "Tutorial hernieuwd!"));
         texts.add(new Text(Constants.LANGUAGE_NL, "BACKGROUND_1_NAME", "Vlakte"));
         texts.add(new Text(Constants.LANGUAGE_NL, "BACKGROUND_1_HINT", "Dit is al ontgrendeld!"));
         texts.add(new Text(Constants.LANGUAGE_NL, "BACKGROUND_2_NAME", "Nacht"));
@@ -1531,6 +1546,10 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_CHANGE_WIDTH", "Change Breedte"));
         texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_CHANGE_HEIGHT", "Change Hoogte"));
         texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_SAVE_EXIT", "Opslaan En Exit"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_RESET_LANGUAGE", "Reset Taal"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_RESET_LANGUAGE_CONFIRM", "Reset taal terug naar Engels, het verwijderen van de %1$d vertalingen die momenteel is geïnstalleerd? \n\nReinstall packs door het veranderen van de taal!"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_LEADERBOARD_CONFIRM", "Welke verpakking leaderboard zou u willen openen?"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_IMPROVE_LANGUAGE", "Vertalingen Verbeteren (Form)"));
         texts.add(new Text(Constants.LANGUAGE_NL, "ENVIRONMENT_0_NAME", "Geen"));
         texts.add(new Text(Constants.LANGUAGE_NL, "ENVIRONMENT_1_NAME", "Gras"));
         texts.add(new Text(Constants.LANGUAGE_NL, "ENVIRONMENT_2_NAME", "Stad"));
@@ -1538,6 +1557,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_NL, "ENVIRONMENT_4_NAME", "Berg"));
         texts.add(new Text(Constants.LANGUAGE_NL, "ENVIRONMENT_5_NAME", "Woestijn"));
         texts.add(new Text(Constants.LANGUAGE_NL, "ENVIRONMENT_6_NAME", "Golf"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "ENVIRONMENT_7_NAME", "Dorp"));
         texts.add(new Text(Constants.LANGUAGE_NL, "ERROR_ADVERT_NOT_LOADED", "Kan ad laden! Dit zou te wijten zijn aan een slechte verbinding, of er is geen sprake zijn van advertenties beschikbaar."));
         texts.add(new Text(Constants.LANGUAGE_NL, "ERROR_ADVERT_NOT_VERIFIED", "Er ging iets mis, en de ad uitzicht kon niet worden geverifieerd!"));
         texts.add(new Text(Constants.LANGUAGE_NL, "ERROR_FAILED_TO_CONNECT", "Kon niet inloggen. Probeer het later opnieuw."));
@@ -1558,6 +1578,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_NL, "ERROR_NO_IAB", "In app facturering is niet beschikbaar op dit apparaat!"));
         texts.add(new Text(Constants.LANGUAGE_NL, "ERROR_IAB_FAILED", "Aankoop mislukt! Zorg ervoor dat u bent aangemeld, en hebben een betaalmethode geconfigureerd."));
         texts.add(new Text(Constants.LANGUAGE_NL, "ERROR_PUZZLE_SOLVED", "Puzzel al opgelost! Probeer het schudden van de tegels eerst!"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "ERROR_GENERATION_INCOMPLETE", "Puzzle generatie mislukt voor %1$s tegels! Puzzle misschien niet meer afgemaakt worden."));
         texts.add(new Text(Constants.LANGUAGE_NL, "FLOW_0_NAME", "Geen"));
         texts.add(new Text(Constants.LANGUAGE_NL, "FLOW_1_NAME", "Water"));
         texts.add(new Text(Constants.LANGUAGE_NL, "FLOW_2_NAME", "Weg"));
@@ -1569,6 +1590,8 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_NL, "FLOW_8_NAME", "Spoor"));
         texts.add(new Text(Constants.LANGUAGE_NL, "FLOW_9_NAME", "Golf"));
         texts.add(new Text(Constants.LANGUAGE_NL, "FLOW_10_NAME", "Giftig"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "FLOW_11_NAME", "Marmer (decoratieve)"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "FLOW_12_NAME", "Plank (decoratieve)"));
         texts.add(new Text(Constants.LANGUAGE_NL, "GOOGLE_SIGN_IN", "Aanmelden"));
         texts.add(new Text(Constants.LANGUAGE_NL, "GOOGLE_SIGN_OUT", "Afmelden"));
         texts.add(new Text(Constants.LANGUAGE_NL, "HEIGHT_0_NAME", "Geen"));
@@ -1643,6 +1666,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_NL, "PACK_8_NAME", "Onstuimige Hoogten"));
         texts.add(new Text(Constants.LANGUAGE_NL, "PACK_9_NAME", "Uitdaging Contribuant"));
         texts.add(new Text(Constants.LANGUAGE_NL, "PACK_9_CHALLENGE", "Aankoop van een aantal munten om dit pakket te openen."));
+        texts.add(new Text(Constants.LANGUAGE_NL, "PACK_10_NAME", "Resten van een Dorp"));
         texts.add(new Text(Constants.LANGUAGE_NL, "PUZZLE_DEFAULT_NAME", "Nieuw Puzzel (%1$dx%2$d, %3$s)"));
         texts.add(new Text(Constants.LANGUAGE_NL, "PUZZLE_DEFAULT_DESC", "Geen beschrijving."));
         texts.add(new Text(Constants.LANGUAGE_NL, "PUZZLE_EXPORT_START", "Beginnend puzzel exporteren ..."));
@@ -1652,6 +1676,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_NL, "QUEST_COMPLETED", "Voltooid"));
         texts.add(new Text(Constants.LANGUAGE_NL, "QUEST_FAILED", "Mislukt"));
         texts.add(new Text(Constants.LANGUAGE_NL, "QUEST_COMPLETED_TEXT", "Voltooide de %1$s quest \"%2$s\" en verdiende%3$d munten!"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "QUEST_SCHEDULE", "Schedule (Reddit)"));
         texts.add(new Text(Constants.LANGUAGE_NL, "SETTING_SECTION_AUDIO", "Geluidsinstellingen"));
         texts.add(new Text(Constants.LANGUAGE_NL, "SETTING_SECTION_GAMEPLAY", "Spelinstellingen"));
         texts.add(new Text(Constants.LANGUAGE_NL, "SETTING_SECTION_GOOGLE", "Google-instellingen"));
@@ -1674,10 +1699,14 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_NL, "SETTING_16_NAME", "Instelling Change Sound"));
         texts.add(new Text(Constants.LANGUAGE_NL, "SETTING_17_NAME", "Main Music"));
         texts.add(new Text(Constants.LANGUAGE_NL, "SETTING_18_NAME", "Puzzel Music"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "SETTING_19_NAME", "Tutorial"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "SETTING_20_NAME", "Hide Locked Tiles"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "SETTING_21_NAME", "Max Millis klik"));
         texts.add(new Text(Constants.LANGUAGE_NL, "SHOP_CATEGORY_1_NAME", "Verhoogt"));
         texts.add(new Text(Constants.LANGUAGE_NL, "SHOP_CATEGORY_2_NAME", "Upgrades"));
         texts.add(new Text(Constants.LANGUAGE_NL, "SHOP_CATEGORY_3_NAME", "Tegels"));
         texts.add(new Text(Constants.LANGUAGE_NL, "SHOP_CATEGORY_4_NAME", "Misc"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "SHOP_BANNER", "Gratis munten!"));
         texts.add(new Text(Constants.LANGUAGE_NL, "SHOP_ADVERT", "Advertentie"));
         texts.add(new Text(Constants.LANGUAGE_NL, "SHOP_OFFERS", "Aanbiedingen"));
         texts.add(new Text(Constants.LANGUAGE_NL, "SHOP_PURCHASE_TEXT", "Koop voor %1$s munten"));
@@ -1889,6 +1918,39 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_NL, "TILE_182_NAME", "Gras Water T-Kruising"));
         texts.add(new Text(Constants.LANGUAGE_NL, "TILE_183_NAME", "Gras Water Uitwisselen"));
         texts.add(new Text(Constants.LANGUAGE_NL, "TILE_184_NAME", "Gras Water Hoek (Boom)"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_185_NAME", "Desert (Plant)"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_186_NAME", "Woestijnbloem)"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_187_NAME", "Village Dirt"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_188_NAME", "Village Marble"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_189_NAME", "Village Dirt (Marmer)"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_190_NAME", "Village Grass"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_191_NAME", "Village Path"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_192_NAME", "Village Path (Clearing)"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_193_NAME", "Village Path Interchange"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_194_NAME", "Village Marble T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_195_NAME", "Village Path Straight"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_196_NAME", "Village Grass (Rocks)"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_197_NAME", "Village Grass (Stomp)"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_198_NAME", "Village Planken"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_199_NAME", "Village Planken (Hole)"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_200_NAME", "Village Planken / Dirt Straight"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_201_NAME", "Village Marble Corner"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_202_NAME", "Village Marble Straight"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_203_NAME", "Village Marble (gaten)"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_204_NAME", "Village Marble / Dirt Straight"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_205_NAME", "Village Marble / Dirt Straight (Ongelijke)"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_206_NAME", "Village Marble (Hole)"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_207_NAME", "Village Marble (Ongelijke)"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_208_NAME", "Village Planken T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_209_NAME", "Village Path End"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_210_NAME", "Village Marble End"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_211_NAME", "Village Planken Corner"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_212_NAME", "Village Planken Straight"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_213_NAME", "Village Planken End"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_214_NAME", "Village Path T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_215_NAME", "Village Marble Corner (Barrel)"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_216_NAME", "Village Planken Corner (Tabel)"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "TILE_217_NAME", "Village Planken Corner (Broken Tabel)"));
         texts.add(new Text(Constants.LANGUAGE_NL, "TUTORIAL_1", "Draai tegels om een ​​constante stroom, zonder losse eindjes te vormen. Tik om te draaien!"));
         texts.add(new Text(Constants.LANGUAGE_NL, "TUTORIAL_2", "De voltooiing van een puzzel zal meestal ontgrendelen een nieuwe tegels in het niveau schepper, is er honderden!"));
         texts.add(new Text(Constants.LANGUAGE_NL, "TUTORIAL_3", "Het invullen van alle puzzels in een pakket in minder bewegingen en minder tijd dan de fractiewaarde zal de volgende strip gratis te ontgrendelen."));
@@ -1952,31 +2014,14 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_NL, "WORD_UNLOCK", "Ontgrendelen"));
         texts.add(new Text(Constants.LANGUAGE_NL, "WORD_LOCKED", "Vergrendeld"));
         texts.add(new Text(Constants.LANGUAGE_NL, "WORD_LOADING", "Laden"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "WORD_RANDOM", "Toevallig"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "WORD_SKIP", "Overspringen"));
         Text.saveInTx(texts);
     }
 
     private static void installFrenchText() {
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_FR, "INSTALL_CHECK", ""));
-
-        // 0.9.2
-        texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_LANGUAGE_INSTALL", "Installation du pack de langue: %1$s"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_RESET_LANGUAGE", "Langue de jeu réglée en anglais!"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_TUTORIAL_SKIPPED", "Tutoriel ignoré!"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_TUTORIAL_RESTARTED", "Tutorial redémarré!"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_RESET_LANGUAGE", "Réinitialiser la langue"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_RESET_LANGUAGE_CONFIRM", "Réinitialiser la langue à l'anglais, désinstaller les traductions %1$d actuellement installées?\n\nReinstallez les packs en changeant de langue!"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_185_NAME", "Désert (plante)"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_186_NAME", "Fleur du desert"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "WORD_RANDOM", "Aléatoire"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "WORD_SKIP", "Sauter"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "SHOP_BANNER", "Pièces gratuites!"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_LEADERBOARD_CONFIRM", "Quel classement souhaitez-vous ouvrir?"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_IMPROVE_LANGUAGE", "Améliorer les traductions (formulaire)"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "SETTING_19_NAME", "Tutoriel"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "SETTING_20_NAME", "Masquer les tuiles verrouillées"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "SETTING_21_NAME", "Max Millis En Clic"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "QUEST_SCHEDULE", "Calendrier (Reddit)"));
 
         texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_BACKGROUND_UNLOCK", "Fond '%1$s' déverouillé!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_CARD_SAVED", "L'image de la carte est sauvegardée dans la gallerie!"));
@@ -1996,6 +2041,10 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_SAVE_CONFLICT", "Conflit d'enregistrement détecté! En cours de résolution. Cela peut prendre quelques secondes. Un peu de patience..."));
         texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_SETTING_TOGGLE_ON", "%1$s activé(e)!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_SETTING_TOGGLE_OFF", "%1$s désactivé(e)!"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_LANGUAGE_INSTALL", "Installation du pack de langue: %1$s"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_RESET_LANGUAGE", "Langue de jeu réglée en anglais!"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_TUTORIAL_SKIPPED", "Tutoriel ignoré!"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_TUTORIAL_RESTARTED", "Tutorial redémarré!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "BACKGROUND_1_NAME", "Plaine"));
         texts.add(new Text(Constants.LANGUAGE_FR, "BACKGROUND_1_HINT", "C'est déjà déveirouillé!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "BACKGROUND_2_NAME", "Nuit"));
@@ -2114,6 +2163,10 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_CHANGE_WIDTH", "Modifier la largeur"));
         texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_CHANGE_HEIGHT", "Changer la hauteur"));
         texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_SAVE_EXIT", "Enregistrer et quitter"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_RESET_LANGUAGE", "Réinitialiser la langue"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_RESET_LANGUAGE_CONFIRM", "Réinitialiser la langue à l'anglais, désinstaller les traductions %1$d actuellement installées?\n\nReinstallez les packs en changeant de langue!"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_LEADERBOARD_CONFIRM", "Quel classement souhaitez-vous ouvrir?"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_IMPROVE_LANGUAGE", "Améliorer les traductions (formulaire)"));
         texts.add(new Text(Constants.LANGUAGE_FR, "ENVIRONMENT_0_NAME", "Aucun"));
         texts.add(new Text(Constants.LANGUAGE_FR, "ENVIRONMENT_1_NAME", "Herbe"));
         texts.add(new Text(Constants.LANGUAGE_FR, "ENVIRONMENT_2_NAME", "Ville"));
@@ -2121,6 +2174,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_FR, "ENVIRONMENT_4_NAME", "Montagne"));
         texts.add(new Text(Constants.LANGUAGE_FR, "ENVIRONMENT_5_NAME", "Désert"));
         texts.add(new Text(Constants.LANGUAGE_FR, "ENVIRONMENT_6_NAME", "Golf"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "ENVIRONMENT_7_NAME", "Village"));
         texts.add(new Text(Constants.LANGUAGE_FR, "ERROR_ADVERT_NOT_LOADED", "Impossible de charger la publicité! Cela peut être dû à une mauvaise connexion, ou il n'y a pas de publicité disponible."));
         texts.add(new Text(Constants.LANGUAGE_FR, "ERROR_ADVERT_NOT_VERIFIED", "Une erreur s'est produite, et la vue de publicité n'a pas pu être vérifiée!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "ERROR_FAILED_TO_CONNECT", "Impossible de connecter. Veuillez essayer plau tard."));
@@ -2141,6 +2195,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_FR, "ERROR_NO_IAB", "Les achats intégres ne sont pas disponibles sur cet appareil!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "ERROR_IAB_FAILED", "Achat raté! Veuillez vous assurer d'être connecté et avoir configuré une méthode de paiement."));
         texts.add(new Text(Constants.LANGUAGE_FR, "ERROR_PUZZLE_SOLVED", "Le casse-tête est déjà résolu! Essayez d'abord de mélanger les tuiles!"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "ERROR_GENERATION_INCOMPLETE", "La génération de puzzle a échoué pour %1$s tiles! Puzzle pourrait ne pas être compléter."));
         texts.add(new Text(Constants.LANGUAGE_FR, "FLOW_0_NAME", "Aucun"));
         texts.add(new Text(Constants.LANGUAGE_FR, "FLOW_1_NAME", "Eau"));
         texts.add(new Text(Constants.LANGUAGE_FR, "FLOW_2_NAME", "Route"));
@@ -2152,6 +2207,8 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_FR, "FLOW_8_NAME", "Rails"));
         texts.add(new Text(Constants.LANGUAGE_FR, "FLOW_9_NAME", "Golf"));
         texts.add(new Text(Constants.LANGUAGE_FR, "FLOW_10_NAME", "Toxique"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "FLOW_11_NAME", "Marbre (décoratif)"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "FLOW_12_NAME", "Planche (décoratif)"));
         texts.add(new Text(Constants.LANGUAGE_FR, "GOOGLE_SIGN_IN", "Se connecter"));
         texts.add(new Text(Constants.LANGUAGE_FR, "GOOGLE_SIGN_OUT", "Se déconnecter"));
         texts.add(new Text(Constants.LANGUAGE_FR, "HEIGHT_0_NAME", "Aucun"));
@@ -2226,6 +2283,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_FR, "PACK_8_NAME", "La Tête en l’Air"));
         texts.add(new Text(Constants.LANGUAGE_FR, "PACK_9_NAME", "Défi des contributeurs"));
         texts.add(new Text(Constants.LANGUAGE_FR, "PACK_9_CHALLENGE", "Achetez n'importe quel nombre de pièces pour débloquer ce pack."));
+        texts.add(new Text(Constants.LANGUAGE_FR, "PACK_10_NAME", "Les restes d'un village"));
         texts.add(new Text(Constants.LANGUAGE_FR, "PUZZLE_DEFAULT_NAME", "Nouveau casse-tête (%1$dx%2$d, %3$s)"));
         texts.add(new Text(Constants.LANGUAGE_FR, "PUZZLE_DEFAULT_DESC", "Pas de description."));
         texts.add(new Text(Constants.LANGUAGE_FR, "PUZZLE_EXPORT_START", "Début de l'exportation du casse-tête..."));
@@ -2235,6 +2293,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_FR, "QUEST_COMPLETED", "Complété(e)(s)"));
         texts.add(new Text(Constants.LANGUAGE_FR, "QUEST_FAILED", "Échoué(e)(s)"));
         texts.add(new Text(Constants.LANGUAGE_FR, "QUEST_COMPLETED_TEXT", "Complété la quête %1$s \"%2$s\" et gagné %3$d pièces!"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "QUEST_SCHEDULE", "Calendrier (Reddit)"));
         texts.add(new Text(Constants.LANGUAGE_FR, "SETTING_SECTION_AUDIO", "Paramètres Audio"));
         texts.add(new Text(Constants.LANGUAGE_FR, "SETTING_SECTION_GAMEPLAY", "Paramètres de Jeu"));
         texts.add(new Text(Constants.LANGUAGE_FR, "SETTING_SECTION_GOOGLE", "Paramètres Google"));
@@ -2257,6 +2316,9 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_FR, "SETTING_16_NAME", "Son de Changement de Paramètre"));
         texts.add(new Text(Constants.LANGUAGE_FR, "SETTING_17_NAME", "Musique principale"));
         texts.add(new Text(Constants.LANGUAGE_FR, "SETTING_18_NAME", "Musique de casse-tête"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "SETTING_19_NAME", "Tutoriel"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "SETTING_20_NAME", "Masquer les tuiles verrouillées"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "SETTING_21_NAME", "Max Millis En Clic"));
         texts.add(new Text(Constants.LANGUAGE_FR, "SHOP_CATEGORY_1_NAME", "Renforcements"));
         texts.add(new Text(Constants.LANGUAGE_FR, "SHOP_CATEGORY_2_NAME", "Améliorations"));
         texts.add(new Text(Constants.LANGUAGE_FR, "SHOP_CATEGORY_3_NAME", "Carreaux"));
@@ -2269,6 +2331,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_FR, "SHOP_ITEM_PURCHASED", "Acheté pour %1$s pièces!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "SHOP_ITEM_PURCHASED_BACKGROUND", "Acheté %1$s pour %2$d pièces et déverouillé '%3$s'!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "SHOP_MAX_PURCHASED", "Maximum acheté"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "SHOP_BANNER", "Pièces gratuites!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "STATISTIC_1_NAME", "Casse-Têtes Résolus"));
         texts.add(new Text(Constants.LANGUAGE_FR, "STATISTIC_2_NAME", "Carreaux Tournés"));
         texts.add(new Text(Constants.LANGUAGE_FR, "STATISTIC_3_NAME", "Quêtes Complétées"));
@@ -2472,6 +2535,39 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_FR, "TILE_182_NAME", "Jonction en T d'Eau sur Herbe"));
         texts.add(new Text(Constants.LANGUAGE_FR, "TILE_183_NAME", "Échangeur d'Eau sur Herbe"));
         texts.add(new Text(Constants.LANGUAGE_FR, "TILE_184_NAME", "Coin d'Eau sur Herbe (Arbre)"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_185_NAME", "Désert (plante)"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_186_NAME", "Fleur du desert"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_187_NAME", "Village Dirt"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_188_NAME", "Village Marble"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_189_NAME", "Village Dirt (marbre)"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_190_NAME", "Village d'herbe"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_191_NAME", "Chemin du village"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_192_NAME", "Chemin du village (effacement)"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_193_NAME", "Échange de chemins de village"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_194_NAME", "Village Marble T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_195_NAME", "Chemin du village droit"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_196_NAME", "Village Grass (Roches)"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_197_NAME", "Village d'herbe (Stump)"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_198_NAME", "Planches de village"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_199_NAME", "Planches de village (Trou)"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_200_NAME", "Planches de village / Dirt Straight"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_201_NAME", "Village Marble Corner"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_202_NAME", "Village Marble Straight"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_203_NAME", "Village Marbre (Trous)"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_204_NAME", "Village Marbre / Dirt Straight"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_205_NAME", "Village Marbre / Dirt Straight (Inégalé)"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_206_NAME", "Village Marbre (Trou)"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_207_NAME", "Village Marble (Inégalé)"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_208_NAME", "Village Planks T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_209_NAME", "Chemin du village"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_210_NAME", "Village Marble End"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_211_NAME", "Plan du site"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_212_NAME", "Planches de village droites"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_213_NAME", "Fin de planches de village"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_214_NAME", "Chemin du Village T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_215_NAME", "Village Marble Corner (Barrel)"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_216_NAME", "Coin des planches du village (Table)"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "TILE_217_NAME", "Village Planks Corner (Table Brisée)"));
         texts.add(new Text(Constants.LANGUAGE_FR, "TUTORIAL_1", "Faites pivoter les carreaux pour former un flux constant, sans extrémités libres. Touchez pour faire pivoter!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "TUTORIAL_2", "Compléter un casse-tête déverrouillera généralement un nouveau carreau dans le créateur de niveau, il yen a des centaines!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "TUTORIAL_3", "Compléter tous les casse-têtes dans un pack en moins de mouvements et moins de temps que le pair déverrouillera le pack suivant gratuitement."));
@@ -2535,31 +2631,14 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_FR, "WORD_UNLOCK", "Déverouiller"));
         texts.add(new Text(Constants.LANGUAGE_FR, "WORD_LOCKED", "Verrouillé"));
         texts.add(new Text(Constants.LANGUAGE_FR, "WORD_LOADING", "Chargement"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "WORD_RANDOM", "Aléatoire"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "WORD_SKIP", "Sauter"));
         Text.saveInTx(texts);
     }
 
     private static void installPolishText() {
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_PL, "INSTALL_CHECK", ""));
-
-        // 0.9.2
-        texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_LANGUAGE_INSTALL", "Instalacja pakietu językowego: %1$s"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_RESET_LANGUAGE", "Język gry ustawiony na angielski!"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_TUTORIAL_SKIPPED", "Tutorial pominięty!"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_TUTORIAL_RESTARTED", "Tutorial wznowiona!"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_RESET_LANGUAGE", "Resetowanie język"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_RESET_LANGUAGE_CONFIRM", "Zresetować język z powrotem na angielski, odinstalowanie %1$d tłumaczenia obecnie zainstalowane?\n\nReinstall pakuje zmieniając język!"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_185_NAME", "Desert (roślin)"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_186_NAME", "Desert (Kwiat)"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "WORD_RANDOM", "Losowy"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "WORD_SKIP", "Pominąć"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "SHOP_BANNER", "Darmowe monety!"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_LEADERBOARD_CONFIRM", "Które Leaderboard paczka chcesz otworzyć?"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_IMPROVE_LANGUAGE", "Poprawa Tłumaczenia (formularz)"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "SETTING_19_NAME", "Poradnik"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "SETTING_20_NAME", "Ukryj zablokowane płytki"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "SETTING_21_NAME", "Max Millis W Kliknij"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "QUEST_SCHEDULE", "Harmonogram (Reddit)"));
 
         texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_BACKGROUND_UNLOCK", "Odblokowano tło '%1$s'"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_CARD_SAVED", "Zapisano kartę do galerii!"));
@@ -2579,6 +2658,10 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_SAVE_CONFLICT", "Wykryto konflikt zapisu. Próba naprawy zapisu, może to zająć kilka sekund, prosimy o cierpliwość"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_SETTING_TOGGLE_ON", "Włączono '%1$s'"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_SETTING_TOGGLE_OFF", "Wyłączono '%1$s'"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_LANGUAGE_INSTALL", "Instalacja pakietu językowego: %1$s"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_RESET_LANGUAGE", "Język gry ustawiony na angielski!"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_TUTORIAL_SKIPPED", "Tutorial pominięty!"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_TUTORIAL_RESTARTED", "Tutorial wznowiona!"));
         texts.add(new Text(Constants.LANGUAGE_PL, "BACKGROUND_1_NAME", "Równina"));
         texts.add(new Text(Constants.LANGUAGE_PL, "BACKGROUND_1_HINT", "To już jest odblokowane!"));
         texts.add(new Text(Constants.LANGUAGE_PL, "BACKGROUND_2_NAME", "Noc"));
@@ -2697,6 +2780,10 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_CHANGE_WIDTH", "Zmień szerokość"));
         texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_CHANGE_HEIGHT", "zmiana wysokości"));
         texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_SAVE_EXIT", "Zapisz I Wyjdź"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_RESET_LANGUAGE", "Resetowanie język"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_RESET_LANGUAGE_CONFIRM", "Zresetować język z powrotem na angielski, odinstalowanie %1$d tłumaczenia obecnie zainstalowane?\n\nReinstall pakuje zmieniając język!"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_LEADERBOARD_CONFIRM", "Które Leaderboard paczka chcesz otworzyć?"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_IMPROVE_LANGUAGE", "Poprawa Tłumaczenia (formularz)"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ENVIRONMENT_0_NAME", "Żaden"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ENVIRONMENT_1_NAME", "Trawa"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ENVIRONMENT_2_NAME", "Miasto"));
@@ -2704,6 +2791,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_PL, "ENVIRONMENT_4_NAME", "Góra"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ENVIRONMENT_5_NAME", "Pustynia"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ENVIRONMENT_6_NAME", "Golf"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "ENVIRONMENT_7_NAME", "Wioska"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ERROR_ADVERT_NOT_LOADED", "Nie udało się załadować reklamy. Może być to spowodowane słabym zasięgiem lub nie ma akutalnie dostępnych reklam"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ERROR_ADVERT_NOT_VERIFIED", "Coś poszło nie tak i nie da się zweryfikować widoku reklamy"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ERROR_FAILED_TO_CONNECT", "Nie udało się zalogować. Spróbuj ponownie później."));
@@ -2724,6 +2812,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_PL, "ERROR_NO_IAB", "W aplikacji rozliczeniowych nie jest dostępny na tym urządzeniu!"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ERROR_IAB_FAILED", "Zakup nie powiodło się! Należy upewnić się, że jesteś zalogowany i mieć metoda płatności skonfigurowany."));
         texts.add(new Text(Constants.LANGUAGE_PL, "ERROR_PUZZLE_SOLVED", "Puzzle już rozwiązany! Spróbuj tasowanie płytek pierwszy!"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "ERROR_GENERATION_INCOMPLETE", "Generacji logiczne powiodło się dla %1$s płytki! Puzzle nie może stanowić wykonalne."));
         texts.add(new Text(Constants.LANGUAGE_PL, "FLOW_0_NAME", "Żaden"));
         texts.add(new Text(Constants.LANGUAGE_PL, "FLOW_1_NAME", "Woda"));
         texts.add(new Text(Constants.LANGUAGE_PL, "FLOW_2_NAME", "Droga"));
@@ -2735,6 +2824,8 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_PL, "FLOW_8_NAME", "Szyna"));
         texts.add(new Text(Constants.LANGUAGE_PL, "FLOW_9_NAME", "Golf"));
         texts.add(new Text(Constants.LANGUAGE_PL, "FLOW_10_NAME", "Toksyczny"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "FLOW_11_NAME", "Marmur (Dekoracyjna)"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "FLOW_12_NAME", "Plank (Dekoracyjna)"));
         texts.add(new Text(Constants.LANGUAGE_PL, "GOOGLE_SIGN_IN", "Zaloguj"));
         texts.add(new Text(Constants.LANGUAGE_PL, "GOOGLE_SIGN_OUT", "Wyloguj się"));
         texts.add(new Text(Constants.LANGUAGE_PL, "HEIGHT_0_NAME", "Żaden"));
@@ -2809,6 +2900,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_PL, "PACK_8_NAME", "Zuchwali Wysokości"));
         texts.add(new Text(Constants.LANGUAGE_PL, "PACK_9_NAME", "Współtwórcy Wyzwanie"));
         texts.add(new Text(Constants.LANGUAGE_PL, "PACK_9_CHALLENGE", "Zakupić dowolną liczbę monet, aby odblokować tę paczkę."));
+        texts.add(new Text(Constants.LANGUAGE_PL, "PACK_10_NAME", "Pozostałości wioski"));
         texts.add(new Text(Constants.LANGUAGE_PL, "PUZZLE_DEFAULT_NAME", "Nowa Logiczna (%1$dx%2$d, %3$s)"));
         texts.add(new Text(Constants.LANGUAGE_PL, "PUZZLE_DEFAULT_DESC", "Bez opisu."));
         texts.add(new Text(Constants.LANGUAGE_PL, "PUZZLE_EXPORT_START", "Rozpoczynając proces eksportu puzzle ..."));
@@ -2818,6 +2910,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_PL, "QUEST_COMPLETED", "Zakończony"));
         texts.add(new Text(Constants.LANGUAGE_PL, "QUEST_FAILED", "Niepowodzenie"));
         texts.add(new Text(Constants.LANGUAGE_PL, "QUEST_COMPLETED_TEXT", "Zakończyła %1$s questów \"%2$s\" i zdobył %3$d monety!"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "QUEST_SCHEDULE", "Harmonogram (Reddit)"));
         texts.add(new Text(Constants.LANGUAGE_PL, "SETTING_SECTION_AUDIO", "Ustawienia dźwięku"));
         texts.add(new Text(Constants.LANGUAGE_PL, "SETTING_SECTION_GAMEPLAY", "Ustawienia gry"));
         texts.add(new Text(Constants.LANGUAGE_PL, "SETTING_SECTION_GOOGLE", "Ustawienia Google"));
@@ -2840,6 +2933,9 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_PL, "SETTING_16_NAME", "Ustawianie Zmień dźwięk"));
         texts.add(new Text(Constants.LANGUAGE_PL, "SETTING_17_NAME", "główna Muzyka"));
         texts.add(new Text(Constants.LANGUAGE_PL, "SETTING_18_NAME", "Muzyka Puzzle"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "SETTING_19_NAME", "Poradnik"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "SETTING_20_NAME", "Ukryj zablokowane płytki"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "SETTING_21_NAME", "Max Millis W Kliknij"));
         texts.add(new Text(Constants.LANGUAGE_PL, "SHOP_CATEGORY_1_NAME", "zwiększa"));
         texts.add(new Text(Constants.LANGUAGE_PL, "SHOP_CATEGORY_2_NAME", "Uaktualnienia"));
         texts.add(new Text(Constants.LANGUAGE_PL, "SHOP_CATEGORY_3_NAME", "Płytki"));
@@ -2852,6 +2948,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_PL, "SHOP_ITEM_PURCHASED", "Pomyślnie zakupiono %1$s do %2$za d monet!"));
         texts.add(new Text(Constants.LANGUAGE_PL, "SHOP_ITEM_PURCHASED_BACKGROUND", "Pomyślnie zakupiono %1$s do %2$d monet i odblokowana '%3$s'!"));
         texts.add(new Text(Constants.LANGUAGE_PL, "SHOP_MAX_PURCHASED", "Maksymalna Zakupione"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "SHOP_BANNER", "Darmowe monety!"));
         texts.add(new Text(Constants.LANGUAGE_PL, "STATISTIC_1_NAME", "Puzzle Zakończony"));
         texts.add(new Text(Constants.LANGUAGE_PL, "STATISTIC_2_NAME", "Płytki Rotated"));
         texts.add(new Text(Constants.LANGUAGE_PL, "STATISTIC_3_NAME", "zadania Zakończone"));
@@ -3055,6 +3152,39 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_PL, "TILE_182_NAME", "Trawa Woda T Węzeł"));
         texts.add(new Text(Constants.LANGUAGE_PL, "TILE_183_NAME", "Trawa Woda Wymieniać"));
         texts.add(new Text(Constants.LANGUAGE_PL, "TILE_184_NAME", "Trawa Woda Kąt (Drzewo)"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_185_NAME", "Desert (roślin)"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_186_NAME", "Desert (Kwiat)"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_187_NAME", "Brud wsi"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_188_NAME", "wioska Marmur"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_189_NAME", "Brud wsi (Marmur)"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_190_NAME", "wioska trawy"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_191_NAME", "Ścieżka wsi"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_192_NAME", "Ścieżka wsi (Clearing)"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_193_NAME", "Wioska Ścieżka Interchange"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_194_NAME", "Wioska marmur T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_195_NAME", "Wioska Ścieżka Prosto"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_196_NAME", "Wioska Trawy (Skały)"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_197_NAME", "Wioska Trawy (Stump)"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_198_NAME", "Deski wiejskie"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_199_NAME", "Deski wiejskie (Hole)"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_200_NAME", "Deski Village / Dirt Prosto"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_201_NAME", "Wioska Marmur Corner"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_202_NAME", "Wioska Marmur Prosto"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_203_NAME", "Wioska Marmur (Otwory)"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_204_NAME", "Wioska marmurowa / Dirt Prosto"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_205_NAME", "Wioska marmurowa / Dirt Prosto (Nierówne)"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_206_NAME", "Wioska Marmur (Hole)"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_207_NAME", "Wioska Marmur (Nierówne)"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_208_NAME", "Wioska Deski T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_209_NAME", "Wioska Path End"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_210_NAME", "Wioska Marmur End"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_211_NAME", "Wioska Deski Corner"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_212_NAME", "Wioska Deski Prosto"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_213_NAME", "Wioska Deski End"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_214_NAME", "Ścieżka wsi T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_215_NAME", "Wioska Marmur Corner (Beczka)"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_216_NAME", "Wioska Deski Corner (Tabela)"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "TILE_217_NAME", "Wioska Deski Corner (łamany tabela)"));
         texts.add(new Text(Constants.LANGUAGE_PL, "TUTORIAL_1", "Obracanie płytki, aby utworzyć stały przepływ, bez luźnych końców. Dotknij, aby obrócić!"));
         texts.add(new Text(Constants.LANGUAGE_PL, "TUTORIAL_2", "Kończenie puzzle zwykle odblokować nowe płytki w twórcę poziomu, tam setki!"));
         texts.add(new Text(Constants.LANGUAGE_PL, "TUTORIAL_3", "Kończenie wszystkie zagadki w opakowaniu w mniejszej liczbie ruchów i mniej czasu niż par będzie odblokować następny pakiet za darmo."));
@@ -3118,31 +3248,14 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_PL, "WORD_UNLOCK", "Odblokować"));
         texts.add(new Text(Constants.LANGUAGE_PL, "WORD_LOCKED", "Zablokowany"));
         texts.add(new Text(Constants.LANGUAGE_PL, "WORD_LOADING", "Załadunek"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "WORD_RANDOM", "Losowy"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "WORD_SKIP", "Pominąć"));
         Text.saveInTx(texts);
     }
 
     private static void installRussianText() {
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_RU, "INSTALL_CHECK", ""));
-
-        // 0.9.2
-        texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_LANGUAGE_INSTALL", "Установка языкового пакета: %1$s"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_RESET_LANGUAGE", "Язык игры установлен на английский!"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_TUTORIAL_SKIPPED", "Учебное пособие по пропущено!"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_TUTORIAL_RESTARTED", "Учебник перезапущен!"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_RESET_LANGUAGE", "Сбросить Язык"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_RESET_LANGUAGE_CONFIRM", "Сброс языка на английский, деинсталлировать %1$d переводы установленные на данный момент?\n\nReinstall пакеты изменив язык!"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_185_NAME", "Десерт (завод)"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_186_NAME", "Цветок пустыни)"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "WORD_RANDOM", "случайный"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "WORD_SKIP", "Пропускать"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "SHOP_BANNER", "Бесплатные монеты!"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_LEADERBOARD_CONFIRM", "Какой пакет вы лидеров хотели бы открыть?"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_IMPROVE_LANGUAGE", "Улучшение Переводы (форма)"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "SETTING_19_NAME", "Руководство"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "SETTING_20_NAME", "Скрыть заблокированные плитки"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "SETTING_21_NAME", "Макс Миллис Увеличить"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "QUEST_SCHEDULE", "Расписание (Reddit)"));
 
         texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_BACKGROUND_UNLOCK", "Разблокирован '%1$s' фон!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_CARD_SAVED", "Изображение карты сохраняются в галерее!"));
@@ -3162,6 +3275,10 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_SAVE_CONFLICT", "Обнаружен конфликт сохранений игры. Пожалуйста подождите несколько секунд, пока эта проблема решается..."));
         texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_SETTING_TOGGLE_ON", "Включено"));
         texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_SETTING_TOGGLE_OFF", "Выключено"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_LANGUAGE_INSTALL", "Установка языкового пакета: %1$s"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_RESET_LANGUAGE", "Язык игры установлен на английский!"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_TUTORIAL_SKIPPED", "Учебное пособие по пропущено!"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_TUTORIAL_RESTARTED", "Учебник перезапущен!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "BACKGROUND_1_NAME", "Обычный"));
         texts.add(new Text(Constants.LANGUAGE_RU, "BACKGROUND_1_HINT", "Уже разблокировано!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "BACKGROUND_2_NAME", "Ночь"));
@@ -3280,6 +3397,10 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_CHANGE_WIDTH", "Изменить ширину"));
         texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_CHANGE_HEIGHT", "Изменить высоту"));
         texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_SAVE_EXIT", "Сохранить и выйти"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_RESET_LANGUAGE", "Сбросить Язык"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_RESET_LANGUAGE_CONFIRM", "Сброс языка на английский, деинсталлировать %1$d переводы установленные на данный момент?\n\nReinstall пакеты изменив язык!"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_LEADERBOARD_CONFIRM", "Какой пакет вы лидеров хотели бы открыть?"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_IMPROVE_LANGUAGE", "Улучшение Переводы (форма)"));
         texts.add(new Text(Constants.LANGUAGE_RU, "ENVIRONMENT_0_NAME", "Нет"));
         texts.add(new Text(Constants.LANGUAGE_RU, "ENVIRONMENT_1_NAME", "трава"));
         texts.add(new Text(Constants.LANGUAGE_RU, "ENVIRONMENT_2_NAME", "город"));
@@ -3287,6 +3408,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_RU, "ENVIRONMENT_4_NAME", "гора"));
         texts.add(new Text(Constants.LANGUAGE_RU, "ENVIRONMENT_5_NAME", "Пустыня"));
         texts.add(new Text(Constants.LANGUAGE_RU, "ENVIRONMENT_6_NAME", "Гольф"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "ENVIRONMENT_7_NAME", "Деревня"));
         texts.add(new Text(Constants.LANGUAGE_RU, "ERROR_ADVERT_NOT_LOADED", "Не удалось загрузить рекламу! Это может вызвано плохой свзяью, либо реклама отсутствует в наличии в данный момент."));
         texts.add(new Text(Constants.LANGUAGE_RU, "ERROR_ADVERT_NOT_VERIFIED", "Что-то пошло не так, и просмотр рекламы не может быть подтвержден!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "ERROR_FAILED_TO_CONNECT", "Не удалось войти. Пожалуйста, повторите попытку позже."));
@@ -3307,6 +3429,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_RU, "ERROR_NO_IAB", "Покупки внутри приложения недоступны на этом устройстве!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "ERROR_IAB_FAILED", "Не удалось совершить покупку! Пожалуйста, убедитесь, что вы вошли в систему, и настроили метод оплаты."));
         texts.add(new Text(Constants.LANGUAGE_RU, "ERROR_PUZZLE_SOLVED", "Головоломка уже решена! Для начала попробуйте перемешать плитки!"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "ERROR_GENERATION_INCOMPLETE", "поколение головоломки не удалось 1 $ S плитки для%! Головоломка не может быть completable."));
         texts.add(new Text(Constants.LANGUAGE_RU, "FLOW_0_NAME", "Нет"));
         texts.add(new Text(Constants.LANGUAGE_RU, "FLOW_1_NAME", "вода"));
         texts.add(new Text(Constants.LANGUAGE_RU, "FLOW_2_NAME", "Дорога"));
@@ -3318,6 +3441,8 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_RU, "FLOW_8_NAME", "Рельсы"));
         texts.add(new Text(Constants.LANGUAGE_RU, "FLOW_9_NAME", "Гольф"));
         texts.add(new Text(Constants.LANGUAGE_RU, "FLOW_10_NAME", "токсичный"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "FLOW_11_NAME", "Мрамор (декоративные)"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "FLOW_12_NAME", "Планк (декоративные)"));
         texts.add(new Text(Constants.LANGUAGE_RU, "GOOGLE_SIGN_IN", "Войти в систему"));
         texts.add(new Text(Constants.LANGUAGE_RU, "GOOGLE_SIGN_OUT", "Выход из системы"));
         texts.add(new Text(Constants.LANGUAGE_RU, "HEIGHT_0_NAME", "Никто"));
@@ -3392,6 +3517,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_RU, "PACK_8_NAME", "пьянящие высоты"));
         texts.add(new Text(Constants.LANGUAGE_RU, "PACK_9_NAME", "Участника Вызов"));
         texts.add(new Text(Constants.LANGUAGE_RU, "PACK_9_CHALLENGE", "Купите любое количество монет, чтобы разблокировать этот пакет."));
+        texts.add(new Text(Constants.LANGUAGE_RU, "PACK_10_NAME", "Остатки деревни"));
         texts.add(new Text(Constants.LANGUAGE_RU, "PUZZLE_DEFAULT_NAME", "Новая головоломка (%1$dх%2$d, %3$s)"));
         texts.add(new Text(Constants.LANGUAGE_RU, "PUZZLE_DEFAULT_DESC", "Без описания."));
         texts.add(new Text(Constants.LANGUAGE_RU, "PUZZLE_EXPORT_START", "Начиная процесс экспорта головоломка ..."));
@@ -3401,6 +3527,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_RU, "QUEST_COMPLETED", "Завершенный"));
         texts.add(new Text(Constants.LANGUAGE_RU, "QUEST_FAILED", "Не смогли"));
         texts.add(new Text(Constants.LANGUAGE_RU, "QUEST_COMPLETED_TEXT", "Завершивших%1$s квест \"%2$s\" и зарабатывал%3$d монеты!"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "QUEST_SCHEDULE", "Расписание (Reddit)"));
         texts.add(new Text(Constants.LANGUAGE_RU, "SETTING_SECTION_AUDIO", "Настройки звука"));
         texts.add(new Text(Constants.LANGUAGE_RU, "SETTING_SECTION_GAMEPLAY", "Игровые настройки"));
         texts.add(new Text(Constants.LANGUAGE_RU, "SETTING_SECTION_GOOGLE", "Настройки Google"));
@@ -3423,6 +3550,9 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_RU, "SETTING_16_NAME", "Настройка звука Изменить"));
         texts.add(new Text(Constants.LANGUAGE_RU, "SETTING_17_NAME", "Главная Музыка"));
         texts.add(new Text(Constants.LANGUAGE_RU, "SETTING_18_NAME", "головоломки Музыка"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "SETTING_19_NAME", "Руководство"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "SETTING_20_NAME", "Скрыть заблокированные плитки"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "SETTING_21_NAME", "Макс Миллис Увеличить"));
         texts.add(new Text(Constants.LANGUAGE_RU, "SHOP_CATEGORY_1_NAME", "Усиливает"));
         texts.add(new Text(Constants.LANGUAGE_RU, "SHOP_CATEGORY_2_NAME", "Обновления"));
         texts.add(new Text(Constants.LANGUAGE_RU, "SHOP_CATEGORY_3_NAME", "плитки"));
@@ -3435,6 +3565,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_RU, "SHOP_ITEM_PURCHASED", "Успешно приобрели %1$s для %2$d монеты!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "SHOP_ITEM_PURCHASED_BACKGROUND", "Успешно приобрели %1$s для %2$d монет и разблокирован '%3$s'!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "SHOP_MAX_PURCHASED", "Максимальная Приобретенные"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "SHOP_BANNER", "Бесплатные монеты!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "STATISTIC_1_NAME", "Пазлы Завершено"));
         texts.add(new Text(Constants.LANGUAGE_RU, "STATISTIC_2_NAME", "Плитка повернутого"));
         texts.add(new Text(Constants.LANGUAGE_RU, "STATISTIC_3_NAME", "Задания Завершенные"));
@@ -3638,6 +3769,39 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_RU, "TILE_182_NAME", "Трава воды Тройник"));
         texts.add(new Text(Constants.LANGUAGE_RU, "TILE_183_NAME", "Трава Вода взаимообмен"));
         texts.add(new Text(Constants.LANGUAGE_RU, "TILE_184_NAME", "Трава воды угол (Дерево)"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_185_NAME", "Десерт (завод)"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_186_NAME", "Цветок пустыни)"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_187_NAME", "Деревня Грязь"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_188_NAME", "Деревня Мраморный"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_189_NAME", "Деревня Грязь (мрамор)"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_190_NAME", "Деревня Grass"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_191_NAME", "Деревня Путь"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_192_NAME", "Деревня Path (клиринг)"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_193_NAME", "Деревня Path Interchange"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_194_NAME", "Деревня Мраморные T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_195_NAME", "Деревня прямой путь"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_196_NAME", "Деревня Трава (Скалы)"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_197_NAME", "Деревня Трава (пней)"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_198_NAME", "Деревня Планки"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_199_NAME", "Деревня Планки (Hole)"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_200_NAME", "Деревня Планки / Грязь Прямой"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_201_NAME", "Деревня Мраморный Corner"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_202_NAME", "Деревня Мраморные Straight"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_203_NAME", "Деревня Marble (отверстия)"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_204_NAME", "Деревня Мрамор / Грязь Прямой"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_205_NAME", "Деревня Marble / Грязь Прямой (Неравномерное)"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_206_NAME", "Деревня Marble (Hole)"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_207_NAME", "Деревня Marble (Неравномерное)"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_208_NAME", "Деревня Планки T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_209_NAME", "Деревня Путь Конец"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_210_NAME", "Деревня Мраморный End"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_211_NAME", "Деревня Планки Corner"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_212_NAME", "Деревня Планки Прямой"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_213_NAME", "Деревня Планки Конец"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_214_NAME", "Деревня Путь T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_215_NAME", "Деревня Мраморные Corner (Бочка)"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_216_NAME", "Деревня Планки Corner (таблица)"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "TILE_217_NAME", "Деревня Планки Corner (Поврежденная таблица)"));
         texts.add(new Text(Constants.LANGUAGE_RU, "TUTORIAL_1", "Повернуть плитки, чтобы сформировать непрерывный поток, без свободных концов. Нажмите, чтобы повернуть!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "TUTORIAL_2", "Завершение головоломки обычно разблокировать новую плитку в создателя уровня, есть сотни!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "TUTORIAL_3", "Завершение всех головоломок в пачке в меньшем количестве ходов & меньше времени, чем пар будет разблокировать следующий пакет бесплатно."));
@@ -3701,31 +3865,14 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_RU, "WORD_UNLOCK", "отпереть"));
         texts.add(new Text(Constants.LANGUAGE_RU, "WORD_LOCKED", "запертый"));
         texts.add(new Text(Constants.LANGUAGE_RU, "WORD_LOADING", "загрузка"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "WORD_RANDOM", "случайный"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "WORD_SKIP", "Пропускать"));
         Text.saveInTx(texts);
     }
 
     private static void installSpanishText() {
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_ES, "INSTALL_CHECK", ""));
-
-        // 0.9.2
-        texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_LANGUAGE_INSTALL", "Instalación del paquete de idioma: %1$s"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_RESET_LANGUAGE", "Idioma del juego establecido en Inglés!"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_TUTORIAL_SKIPPED", "Tutorial omitido!"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_TUTORIAL_RESTARTED", "Tutorial reiniciado!"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_RESET_LANGUAGE", "Restablecer idioma"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_RESET_LANGUAGE_CONFIRM", "¿Reestablecer el idioma de nuevo a inglés, desinstalando las traducciones de %1$d instaladas actualmente?\n\nReinstalar paquetes cambiando el idioma!"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_185_NAME", "Desierto (Planta)"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_186_NAME", "Flor del desierto)"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "WORD_RANDOM", "Aleatorio"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "WORD_SKIP", "Omitir"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "SHOP_BANNER", "¡Monedas gratis!"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_LEADERBOARD_CONFIRM", "¿Qué nivel de grupo desea abrir?"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_IMPROVE_LANGUAGE", "Mejorar Traducciones (Formulario)"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "SETTING_19_NAME", "Tutorial"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "SETTING_20_NAME", "Ocultar cuadros bloqueados"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "SETTING_21_NAME", "Max Millis En Clic"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "QUEST_SCHEDULE", "Programación (Reddit)"));
 
         texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_BACKGROUND_UNLOCK", "Desbloqueado fondo '%1$s'!"));
         texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_CARD_SAVED", "Imagen de la tarjeta guardada en la galería!"));
@@ -3745,6 +3892,10 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_SAVE_CONFLICT", "Conflicto en el guardado! Resolviendo, esto puede tardar unos segundos. ten paciencia..."));
         texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_SETTING_TOGGLE_ON", "Se ha activado %1$s!"));
         texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_SETTING_TOGGLE_OFF", "Se ha desactivado %1$s!"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_LANGUAGE_INSTALL", "Instalación del paquete de idioma: %1$s"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_RESET_LANGUAGE", "Idioma del juego establecido en Inglés!"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_TUTORIAL_SKIPPED", "Tutorial omitido!"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_TUTORIAL_RESTARTED", "Tutorial reiniciado!"));
         texts.add(new Text(Constants.LANGUAGE_ES, "BACKGROUND_1_NAME", "Llanura"));
         texts.add(new Text(Constants.LANGUAGE_ES, "BACKGROUND_1_HINT", "Esto ya está desbloqueado!"));
         texts.add(new Text(Constants.LANGUAGE_ES, "BACKGROUND_2_NAME", "Noche"));
@@ -3863,6 +4014,10 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_CHANGE_WIDTH", "Cambiar ancho"));
         texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_CHANGE_HEIGHT", "Cambiar Altura"));
         texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_SAVE_EXIT", "Guardar y Salir"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_RESET_LANGUAGE", "Restablecer idioma"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_RESET_LANGUAGE_CONFIRM", "¿Reestablecer el idioma de nuevo a inglés, desinstalando las traducciones de %1$d instaladas actualmente?\n\nReinstalar paquetes cambiando el idioma!"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_LEADERBOARD_CONFIRM", "¿Qué nivel de grupo desea abrir?"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_IMPROVE_LANGUAGE", "Mejorar Traducciones (Formulario)"));
         texts.add(new Text(Constants.LANGUAGE_ES, "ENVIRONMENT_0_NAME", "Ninguna"));
         texts.add(new Text(Constants.LANGUAGE_ES, "ENVIRONMENT_1_NAME", "Césped"));
         texts.add(new Text(Constants.LANGUAGE_ES, "ENVIRONMENT_2_NAME", "Ciudad"));
@@ -3870,6 +4025,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ES, "ENVIRONMENT_4_NAME", "Montaña"));
         texts.add(new Text(Constants.LANGUAGE_ES, "ENVIRONMENT_5_NAME", "Desierto"));
         texts.add(new Text(Constants.LANGUAGE_ES, "ENVIRONMENT_6_NAME", "Golf"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "ENVIRONMENT_7_NAME", "Pueblo"));
         texts.add(new Text(Constants.LANGUAGE_ES, "ERROR_ADVERT_NOT_LOADED", "No se pudo cargar el anuncio. Esto puede deberse a una conexión deficiente o puede que no haya anuncios disponibles."));
         texts.add(new Text(Constants.LANGUAGE_ES, "ERROR_ADVERT_NOT_VERIFIED", "Se ha producido un error y no se pudo verificar la vista del anuncio."));
         texts.add(new Text(Constants.LANGUAGE_ES, "ERROR_FAILED_TO_CONNECT", "No se pudo iniciar sesión. Vuelve a intentarlo más tarde."));
@@ -3890,6 +4046,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ES, "ERROR_NO_IAB", "¡En la facturación de aplicaciones no está disponible en este dispositivo!"));
         texts.add(new Text(Constants.LANGUAGE_ES, "ERROR_IAB_FAILED", "¡La compra falló! Asegúrate de haber iniciado sesión y configurado un método de pago."));
         texts.add(new Text(Constants.LANGUAGE_ES, "ERROR_PUZZLE_SOLVED", "Puzzle ya resuelto! ¡Trata de barajar los azulejos primero!"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "ERROR_GENERATION_INCOMPLETE", "¡No se pudo generar el rompecabezas para %1$s tiles! El rompecabezas podría no ser completable."));
         texts.add(new Text(Constants.LANGUAGE_ES, "FLOW_0_NAME", "Ninguna"));
         texts.add(new Text(Constants.LANGUAGE_ES, "FLOW_1_NAME", "Agua"));
         texts.add(new Text(Constants.LANGUAGE_ES, "FLOW_2_NAME", "Carretera"));
@@ -3901,6 +4058,8 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ES, "FLOW_8_NAME", "Carril"));
         texts.add(new Text(Constants.LANGUAGE_ES, "FLOW_9_NAME", "Golf"));
         texts.add(new Text(Constants.LANGUAGE_ES, "FLOW_10_NAME", "Tóxico"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "FLOW_11_NAME", "Mármol (Decorativo)"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "FLOW_12_NAME", "Tablón (Decorativo)"));
         texts.add(new Text(Constants.LANGUAGE_ES, "GOOGLE_SIGN_IN", "Registrarse"));
         texts.add(new Text(Constants.LANGUAGE_ES, "GOOGLE_SIGN_OUT", "Desconectarse"));
         texts.add(new Text(Constants.LANGUAGE_ES, "HEIGHT_0_NAME", "Ninguna"));
@@ -3975,6 +4134,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ES, "PACK_8_NAME", "Alturas Embriagadoras"));
         texts.add(new Text(Constants.LANGUAGE_ES, "PACK_9_NAME", "Desafío del colaborador"));
         texts.add(new Text(Constants.LANGUAGE_ES, "PACK_9_CHALLENGE", "Compre cualquier cantidad de monedas para desbloquear este paquete."));
+        texts.add(new Text(Constants.LANGUAGE_ES, "PACK_10_NAME", "Restos de una aldea"));
         texts.add(new Text(Constants.LANGUAGE_ES, "PUZZLE_DEFAULT_NAME", "Nuevo rompecabezas (%1$dx%2$d, %3$s)"));
         texts.add(new Text(Constants.LANGUAGE_ES, "PUZZLE_DEFAULT_DESC", "Sin descripción."));
         texts.add(new Text(Constants.LANGUAGE_ES, "PUZZLE_EXPORT_START", "Comienzo proceso de exportación de rompecabezas ..."));
@@ -3984,6 +4144,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ES, "QUEST_COMPLETED", "Terminado"));
         texts.add(new Text(Constants.LANGUAGE_ES, "QUEST_FAILED", "Ha fallado"));
         texts.add(new Text(Constants.LANGUAGE_ES, "QUEST_COMPLETED_TEXT", "Completó la búsqueda de %1$s \"%2$s\" y obtuvo %3$d monedas!"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "QUEST_SCHEDULE", "Programación (Reddit)"));
         texts.add(new Text(Constants.LANGUAGE_ES, "SETTING_SECTION_AUDIO", "Configuraciones de audio"));
         texts.add(new Text(Constants.LANGUAGE_ES, "SETTING_SECTION_GAMEPLAY", "Configuraciones de juego"));
         texts.add(new Text(Constants.LANGUAGE_ES, "SETTING_SECTION_GOOGLE", "Configuración de Google"));
@@ -4006,6 +4167,9 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ES, "SETTING_16_NAME", "Configuración del cambio de sonido"));
         texts.add(new Text(Constants.LANGUAGE_ES, "SETTING_17_NAME", "Música principal"));
         texts.add(new Text(Constants.LANGUAGE_ES, "SETTING_18_NAME", "Música del rompecabezas"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "SETTING_19_NAME", "Tutorial"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "SETTING_20_NAME", "Ocultar cuadros bloqueados"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "SETTING_21_NAME", "Max Millis En Clic"));
         texts.add(new Text(Constants.LANGUAGE_ES, "SHOP_CATEGORY_1_NAME", "Aumentadores"));
         texts.add(new Text(Constants.LANGUAGE_ES, "SHOP_CATEGORY_2_NAME", "Mejoras"));
         texts.add(new Text(Constants.LANGUAGE_ES, "SHOP_CATEGORY_3_NAME", "Mosaicos"));
@@ -4018,6 +4182,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ES, "SHOP_ITEM_PURCHASED", "¡Compró con éxito %1$s para %2$d monedas!"));
         texts.add(new Text(Constants.LANGUAGE_ES, "SHOP_ITEM_PURCHASED_BACKGROUND", "¡Compró con éxito %1$s para %2$d monedas y desbloqueó '%3$s'!"));
         texts.add(new Text(Constants.LANGUAGE_ES, "SHOP_MAX_PURCHASED", "Máximo comprado"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "SHOP_BANNER", "¡Monedas gratis!"));
         texts.add(new Text(Constants.LANGUAGE_ES, "STATISTIC_1_NAME", "Puzzles Completado"));
         texts.add(new Text(Constants.LANGUAGE_ES, "STATISTIC_2_NAME", "Mosaicos Girados"));
         texts.add(new Text(Constants.LANGUAGE_ES, "STATISTIC_3_NAME", "Misiones completadas"));
@@ -4221,6 +4386,39 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ES, "TILE_182_NAME", "Unión de hierba T Unión"));
         texts.add(new Text(Constants.LANGUAGE_ES, "TILE_183_NAME", "Intercambio de agua de hierba"));
         texts.add(new Text(Constants.LANGUAGE_ES, "TILE_184_NAME", "Rincón del agua de hierba (árbol)"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_185_NAME", "Desierto (Planta)"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_186_NAME", "Flor del desierto)"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_187_NAME", "Village Dirt"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_188_NAME", "Mármol del pueblo"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_189_NAME", "Village Dirt (Mármol)"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_190_NAME", "Pueblo de hierba"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_191_NAME", "Camino del pueblo"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_192_NAME", "Camino del pueblo (limpieza)"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_193_NAME", "Intercambio de la ruta del pueblo"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_194_NAME", "Village Marble T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_195_NAME", "Camino del pueblo recto"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_196_NAME", "Pueblo de hierba (rocas)"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_197_NAME", "Aldea de hierba (Stump)"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_198_NAME", "Tablones de la aldea"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_199_NAME", "Tablones de la aldea (agujero)"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_200_NAME", "Tablas de la aldea / suciedad recta"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_201_NAME", "Esquina del mármol de la aldea"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_202_NAME", "Village Marble Straight"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_203_NAME", "Aldea Mármol (hoyos)"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_204_NAME", "Pueblo Mármol / Suciedad Recta"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_205_NAME", "Pueblo Mármol / Suciedad Recta (Desigual)"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_206_NAME", "Aldea Mármol (agujero)"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_207_NAME", "Mármol del pueblo (desigual)"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_208_NAME", "Placas de pueblo T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_209_NAME", "Village Path End"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_210_NAME", "Pueblo Marble End"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_211_NAME", "Rincón de las tablas de la aldea"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_212_NAME", "Tablones de la aldea rectos"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_213_NAME", "Final de las tablas de la aldea"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_214_NAME", "Trayectoria del pueblo T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_215_NAME", "Esquina del mármol de la aldea (barril)"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_216_NAME", "Esquina de las tablas de la aldea (tabla)"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "TILE_217_NAME", "Rincón de las tablas de la aldea (tabla quebrada)"));
         texts.add(new Text(Constants.LANGUAGE_ES, "TUTORIAL_1", "Gire las baldosas para formar un flujo constante, sin extremos sueltos. Toca para girar!"));
         texts.add(new Text(Constants.LANGUAGE_ES, "TUTORIAL_2", "Completar un rompecabezas por lo general desbloquear un nuevo azulejo en el nivel creador, hay cientos!"));
         texts.add(new Text(Constants.LANGUAGE_ES, "TUTORIAL_3", "Completar todos los rompecabezas en un paquete en menos movimientos y menos tiempo que el par desbloqueará el siguiente paquete de forma gratuita."));
@@ -4284,31 +4482,14 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ES, "WORD_UNLOCK", "Desbloquear"));
         texts.add(new Text(Constants.LANGUAGE_ES, "WORD_LOCKED", "Bloqueado"));
         texts.add(new Text(Constants.LANGUAGE_ES, "WORD_LOADING", "Cargando"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "WORD_RANDOM", "Aleatorio"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "WORD_SKIP", "Omitir"));
         Text.saveInTx(texts);
     }
 
     private static void installChineseText() {
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_ZH, "INSTALL_CHECK", ""));
-
-        // 0.9.2
-        texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_LANGUAGE_INSTALL", "安装语言包： %1$s"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_RESET_LANGUAGE", "游戏语言设置为英语！"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_TUTORIAL_SKIPPED", "教程跳过！"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_TUTORIAL_RESTARTED", "教程重新启动！"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_RESET_LANGUAGE", "重置语言"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_RESET_LANGUAGE_CONFIRM", "将语言重置为英语，卸载当前安装的 %1$d 翻译？\n\n通过更改语言重新安装包！"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_185_NAME", "沙漠（植物）"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_186_NAME", "沙漠（花）"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "WORD_RANDOM", "随机"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "WORD_SKIP", "跳跃"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "SHOP_BANNER", "免费硬币！"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_LEADERBOARD_CONFIRM", "你想打开哪一个排行榜？"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_IMPROVE_LANGUAGE", "改进翻译（表格）"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "SETTING_19_NAME", "教程"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "SETTING_20_NAME", "隐藏锁定的瓷砖"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "SETTING_21_NAME", "Max Millis点击"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "QUEST_SCHEDULE", "日程表（Reddit）"));
 
         texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_BACKGROUND_UNLOCK", "已解锁“%1$s”背景！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_CARD_SAVED", "卡图像已保存到图库！"));
@@ -4328,6 +4509,10 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_SAVE_CONFLICT", "保存冲突检测！目前正在解决，这可能需要几秒钟，请耐心等待..."));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_SETTING_TOGGLE_ON", "已开启%1$s！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_SETTING_TOGGLE_OFF", "已关闭%1$s！"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_LANGUAGE_INSTALL", "安装语言包： %1$s"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_RESET_LANGUAGE", "游戏语言设置为英语！"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_TUTORIAL_SKIPPED", "教程跳过！"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_TUTORIAL_RESTARTED", "教程重新启动！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "BACKGROUND_1_NAME", "平原"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "BACKGROUND_1_HINT", "这已经解锁！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "BACKGROUND_2_NAME", "晚上"));
@@ -4446,6 +4631,10 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_CHANGE_WIDTH", "更改宽度"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_CHANGE_HEIGHT", "更改高度"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_SAVE_EXIT", "保存并退出"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_RESET_LANGUAGE", "重置语言"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_RESET_LANGUAGE_CONFIRM", "将语言重置为英语，卸载当前安装的 %1$d 翻译？\n\n通过更改语言重新安装包！"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_LEADERBOARD_CONFIRM", "你想打开哪一个排行榜？"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_IMPROVE_LANGUAGE", "改进翻译（表格）"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ENVIRONMENT_0_NAME", "没有"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ENVIRONMENT_1_NAME", "草"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ENVIRONMENT_2_NAME", "市"));
@@ -4453,6 +4642,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ZH, "ENVIRONMENT_4_NAME", "山"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ENVIRONMENT_5_NAME", "沙漠"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ENVIRONMENT_6_NAME", "高尔夫球"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "ENVIRONMENT_7_NAME", "村"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ERROR_ADVERT_NOT_LOADED", "无法加载广告！这可能是因为连接不良，或者可能没有可用的广告。"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ERROR_ADVERT_NOT_VERIFIED", "出现问题，无法验证广告视图！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ERROR_FAILED_TO_CONNECT", "无法登录，请稍后再试。"));
@@ -4473,6 +4663,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ZH, "ERROR_NO_IAB", "在此设备上无法使用应用内结算功能！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ERROR_IAB_FAILED", "购买失败！请确保您已登录，并配置了付款方式。"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ERROR_PUZZLE_SOLVED", "拼图已经解决了！尝试改变瓷砖第一！"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "ERROR_GENERATION_INCOMPLETE", "%1$s 圖塊的拼圖生成失敗！ 拼圖可能不是完整的。"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "FLOW_0_NAME", "没有"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "FLOW_1_NAME", "水"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "FLOW_2_NAME", "路"));
@@ -4484,6 +4675,8 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ZH, "FLOW_8_NAME", "轨"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "FLOW_9_NAME", "高尔夫球"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "FLOW_10_NAME", "有毒"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "FLOW_11_NAME", "大理石（裝飾）"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "FLOW_12_NAME", "木板（裝飾）"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "GOOGLE_SIGN_IN", "签到"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "GOOGLE_SIGN_OUT", "退出"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "HEIGHT_0_NAME", "没有"));
@@ -4558,6 +4751,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ZH, "PACK_8_NAME", "头高"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "PACK_9_NAME", "贡献者的挑战"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "PACK_9_CHALLENGE", "购买任意数量的硬币解锁这个包。"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "PACK_10_NAME", "的殘餘"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "PUZZLE_DEFAULT_NAME", "新拼图(%1$dx%2$d，%3$s)"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "PUZZLE_DEFAULT_DESC", "没有说明。"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "PUZZLE_EXPORT_START", "开始拼图输出过程..."));
@@ -4567,6 +4761,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ZH, "QUEST_COMPLETED", "已完成"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "QUEST_FAILED", "失败"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "QUEST_COMPLETED_TEXT", "完成了%1$s任务“%2$s”和赢得%3$d硬币！"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "QUEST_SCHEDULE", "日程表（Reddit）"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "SETTING_SECTION_AUDIO", "音频设置"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "SETTING_SECTION_GAMEPLAY", "游戏设置"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "SETTING_SECTION_GOOGLE", "Google设置"));
@@ -4589,6 +4784,9 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ZH, "SETTING_16_NAME", "设置更改声音"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "SETTING_17_NAME", "主音乐"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "SETTING_18_NAME", "拼图音乐"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "SETTING_19_NAME", "教程"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "SETTING_20_NAME", "隐藏锁定的瓷砖"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "SETTING_21_NAME", "Max Millis点击"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "SHOP_CATEGORY_1_NAME", "提升"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "SHOP_CATEGORY_2_NAME", "升级"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "SHOP_CATEGORY_3_NAME", "瓷砖"));
@@ -4601,6 +4799,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ZH, "SHOP_ITEM_PURCHASED", "已成功为%2$d硬币购买%1$s！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "SHOP_ITEM_PURCHASED_BACKGROUND", "已成功为%2$d硬币购买%1$s，并解锁“%3$s”！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "SHOP_MAX_PURCHASED", "最高购买量"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "SHOP_BANNER", "免费硬币！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "STATISTIC_1_NAME", "拼图已完成"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "STATISTIC_2_NAME", "瓷砖旋转"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "STATISTIC_3_NAME", "任务已完成"));
@@ -4804,6 +5003,39 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_182_NAME", "草水T交界处"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_183_NAME", "草水交汇处"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_184_NAME", "草水角(树)"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_185_NAME", "沙漠（植物）"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_186_NAME", "沙漠（花）"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_187_NAME", "村莊土"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_188_NAME", "村莊大理石"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_189_NAME", "村莊泥（大理石）"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_190_NAME", "村莊草"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_191_NAME", "村莊路徑"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_192_NAME", "村莊路徑（結算）"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_193_NAME", "村路徑交匯處"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_194_NAME", "村莊大理石T結"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_195_NAME", "村莊道路直"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_196_NAME", "村莊草（岩石）"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_197_NAME", "村莊草（樹樁）"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_198_NAME", "村木板"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_199_NAME", "村木板（孔）"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_200_NAME", "村木板/泥土直"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_201_NAME", "村莊大理石角"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_202_NAME", "村莊大理石直"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_203_NAME", "村莊大理石（孔）"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_204_NAME", "村莊大理石/污垢直"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_205_NAME", "村莊大理石/污垢直（不均勻）"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_206_NAME", "村莊大理石（孔）"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_207_NAME", "村莊大理石（不平）"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_208_NAME", "村木板T交界處"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_209_NAME", "村路徑結束"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_210_NAME", "村大理石結束"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_211_NAME", "村木板角"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_212_NAME", "村莊板條直"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_213_NAME", "村板塊結束"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_214_NAME", "村路徑T連接點"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_215_NAME", "村莊大理石角（桶）"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_216_NAME", "村木板角（表）"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_217_NAME", "村木板角（破碎桌）"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "TUTORIAL_1", "旋转瓷砖形成一致的流动，没有松散的末端。点按即可旋转！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "TUTORIAL_2", "完成一个谜题通常会解锁一个新的瓷砖在关卡创建者，有数百！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "TUTORIAL_3", "完成所有的谜题在一个包中的更少的动作和更少的时间比标准将解锁下一个包免费。"));
@@ -4867,31 +5099,14 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ZH, "WORD_UNLOCK", "开锁"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "WORD_LOCKED", "锁定"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "WORD_LOADING", "载入中"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "WORD_RANDOM", "随机"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "WORD_SKIP", "跳跃"));
         Text.saveInTx(texts);
     }
 
     private static void installSwedishText() {
         List<Text> texts = new ArrayList<>();
         texts.add(new Text(Constants.LANGUAGE_SV, "INSTALL_CHECK", ""));
-
-        // 0.9.2
-        texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_LANGUAGE_INSTALL", "Installera språkpaket: %1$s"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_RESET_LANGUAGE", "Game språk inställt på engelska!"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_TUTORIAL_SKIPPED", "Tutorial hoppas över!"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_TUTORIAL_RESTARTED", "Tutorial omstartas!"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_RESET_LANGUAGE", "Återställ språk"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_RESET_LANGUAGE_CONFIRM", "Återställ språket tillbaka till engelska, avinstallera de %1$d översättningar installerade?\n\nReinstall förpackningar genom att ändra språk!"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_185_NAME", "Desert (Plant)"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_186_NAME", "Desert (blomma)"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "WORD_RANDOM", "Slumpmässig"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "WORD_SKIP", "Hoppa"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "SHOP_BANNER", "Fria mynt!"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_LEADERBOARD_CONFIRM", "Vilken pack leader vill du öppna?"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_IMPROVE_LANGUAGE", "Förbättra översättningar (Form)"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "SETTING_19_NAME", "Handledning"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "SETTING_20_NAME", "Göm Låsta Tiles"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "SETTING_21_NAME", "Max Millis in Klicka"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "QUEST_SCHEDULE", "Schema (Reddit)"));
 
         texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_BACKGROUND_UNLOCK", "Låste upp \"%1$s\" bakgrund!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_CARD_SAVED", "Kort sparats till galleriet!"));
@@ -4911,6 +5126,10 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_SAVE_CONFLICT", "Inkompatibla sparfiler har upptäckts! Försöker lösa problemet, detta kanske tar några sekunder, tack för ditt tålamod..."));
         texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_SETTING_TOGGLE_ON", "%1$s sattes på!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_SETTING_TOGGLE_OFF", "%1$s stängdes av!"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_LANGUAGE_INSTALL", "Installera språkpaket: %1$s"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_RESET_LANGUAGE", "Game språk inställt på engelska!"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_TUTORIAL_SKIPPED", "Tutorial hoppas över!"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_TUTORIAL_RESTARTED", "Tutorial omstartas!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "BACKGROUND_1_NAME", "Enkel"));
         texts.add(new Text(Constants.LANGUAGE_SV, "BACKGROUND_1_HINT", "Detta har redan låsts upp!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "BACKGROUND_2_NAME", "Natt"));
@@ -5029,6 +5248,10 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_CHANGE_WIDTH", "Ändra Bredd"));
         texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_CHANGE_HEIGHT", "Ändra Höjd"));
         texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_SAVE_EXIT", "Spara & Avsluta"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_RESET_LANGUAGE", "Återställ språk"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_RESET_LANGUAGE_CONFIRM", "Återställ språket tillbaka till engelska, avinstallera de %1$d översättningar installerade?\n\nReinstall förpackningar genom att ändra språk!"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_LEADERBOARD_CONFIRM", "Vilken pack leader vill du öppna?"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_IMPROVE_LANGUAGE", "Förbättra översättningar (Form)"));
         texts.add(new Text(Constants.LANGUAGE_SV, "ENVIRONMENT_0_NAME", "Ingen"));
         texts.add(new Text(Constants.LANGUAGE_SV, "ENVIRONMENT_1_NAME", "Gräs"));
         texts.add(new Text(Constants.LANGUAGE_SV, "ENVIRONMENT_2_NAME", "Stad"));
@@ -5036,6 +5259,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_SV, "ENVIRONMENT_4_NAME", "Berg"));
         texts.add(new Text(Constants.LANGUAGE_SV, "ENVIRONMENT_5_NAME", "Öken"));
         texts.add(new Text(Constants.LANGUAGE_SV, "ENVIRONMENT_6_NAME", "Golf"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "ENVIRONMENT_7_NAME", "By"));
         texts.add(new Text(Constants.LANGUAGE_SV, "ERROR_ADVERT_NOT_LOADED", "Det gick inte att ladda annonsen! Detta kan bero på en dålig anslutning, eller brist på annonser."));
         texts.add(new Text(Constants.LANGUAGE_SV, "ERROR_ADVERT_NOT_VERIFIED", "Något gick fel, och annonsen kunde inte verifieras!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "ERROR_FAILED_TO_CONNECT", "Det gick inte att logga in. Försök igen senare."));
@@ -5056,6 +5280,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_SV, "ERROR_NO_IAB", "Köp i app är inte tillgängligt på denna enhet."));
         texts.add(new Text(Constants.LANGUAGE_SV, "ERROR_IAB_FAILED", "Något gick fel vid köpet. Kontrollera att du är inloggad och har en betalningsmetod konfigurerad."));
         texts.add(new Text(Constants.LANGUAGE_SV, "ERROR_PUZZLE_SOLVED", "Pusslet är redan löst! Försök blanda brickorna först!"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "ERROR_GENERATION_INCOMPLETE", "Pussel generation misslyckades för %1$s brickor! Pussel kanske inte completable."));
         texts.add(new Text(Constants.LANGUAGE_SV, "FLOW_0_NAME", "Ingen"));
         texts.add(new Text(Constants.LANGUAGE_SV, "FLOW_1_NAME", "Vatten"));
         texts.add(new Text(Constants.LANGUAGE_SV, "FLOW_2_NAME", "Väg"));
@@ -5066,7 +5291,9 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_SV, "FLOW_7_NAME", "Jord"));
         texts.add(new Text(Constants.LANGUAGE_SV, "FLOW_8_NAME", "Järnväg"));
         texts.add(new Text(Constants.LANGUAGE_SV, "FLOW_9_NAME", "Golf"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "FLOW_9_NAME", "Giftig"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "FLOW_10_NAME", "Toxisk"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "FLOW_11_NAME", "Marmor (Dekorativ)"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "FLOW_12_NAME", "Plankan (Dekorativ)"));
         texts.add(new Text(Constants.LANGUAGE_SV, "GOOGLE_SIGN_IN", "Logga in"));
         texts.add(new Text(Constants.LANGUAGE_SV, "GOOGLE_SIGN_OUT", "Logga ut"));
         texts.add(new Text(Constants.LANGUAGE_SV, "HEIGHT_0_NAME", "Ingen"));
@@ -5141,6 +5368,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_SV, "PACK_8_NAME", "Höga Höjder"));
         texts.add(new Text(Constants.LANGUAGE_SV, "PACK_9_NAME", "Bidragarutmaning"));
         texts.add(new Text(Constants.LANGUAGE_SV, "PACK_9_CHALLENGE", "Köp valfritt antal mynt för att låsa upp detta Pack."));
+        texts.add(new Text(Constants.LANGUAGE_SV, "PACK_10_NAME", "Kvarlevor av en by"));
         texts.add(new Text(Constants.LANGUAGE_SV, "PUZZLE_DEFAULT_NAME", "Nytt Pussel (%1$dx%2$d, %3$s)"));
         texts.add(new Text(Constants.LANGUAGE_SV, "PUZZLE_DEFAULT_DESC", "Ingen beskrivning."));
         texts.add(new Text(Constants.LANGUAGE_SV, "PUZZLE_EXPORT_START", "Påbörjar exportering av pussel..."));
@@ -5150,6 +5378,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_SV, "QUEST_COMPLETED", "Avslutad"));
         texts.add(new Text(Constants.LANGUAGE_SV, "QUEST_FAILED", "Misslyckades"));
         texts.add(new Text(Constants.LANGUAGE_SV, "QUEST_COMPLETED_TEXT", "Slutförde %1$s uppdraget \"%2$s\" och tjänat %3$d mynt!"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "QUEST_SCHEDULE", "Schema (Reddit)"));
         texts.add(new Text(Constants.LANGUAGE_SV, "SETTING_SECTION_AUDIO", "Ljudinställningar"));
         texts.add(new Text(Constants.LANGUAGE_SV, "SETTING_SECTION_GAMEPLAY", "Spelinställningar"));
         texts.add(new Text(Constants.LANGUAGE_SV, "SETTING_SECTION_GOOGLE", "Google Inställningar"));
@@ -5172,6 +5401,9 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_SV, "SETTING_16_NAME", "Inställningar Övriga Ljud"));
         texts.add(new Text(Constants.LANGUAGE_SV, "SETTING_17_NAME", "Huvudmusik"));
         texts.add(new Text(Constants.LANGUAGE_SV, "SETTING_18_NAME", "Pusselmusik"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "SETTING_19_NAME", "Handledning"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "SETTING_20_NAME", "Göm Låsta Tiles"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "SETTING_21_NAME", "Max Millis in Klicka"));
         texts.add(new Text(Constants.LANGUAGE_SV, "SHOP_CATEGORY_1_NAME", "Boosts"));
         texts.add(new Text(Constants.LANGUAGE_SV, "SHOP_CATEGORY_2_NAME", "Uppgraderingar"));
         texts.add(new Text(Constants.LANGUAGE_SV, "SHOP_CATEGORY_3_NAME", "Brickor"));
@@ -5184,6 +5416,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_SV, "SHOP_ITEM_PURCHASED", "Köpte %1$s för %2$d mynt!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "SHOP_ITEM_PURCHASED_BACKGROUND", "Köpte %1$s för %2$d mynt, och låste upp \"%3$s '!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "SHOP_MAX_PURCHASED", "Maximal Inköpta"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "SHOP_BANNER", "Fria mynt!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "STATISTIC_1_NAME", "Pussel Slutförda"));
         texts.add(new Text(Constants.LANGUAGE_SV, "STATISTIC_2_NAME", "Brickor Roterade"));
         texts.add(new Text(Constants.LANGUAGE_SV, "STATISTIC_3_NAME", "Uppdrag Slutförda"));
@@ -5387,6 +5620,39 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_SV, "TILE_182_NAME", "Gräs Vatten T-Korsning"));
         texts.add(new Text(Constants.LANGUAGE_SV, "TILE_183_NAME", "Gräs Vatten Korsning"));
         texts.add(new Text(Constants.LANGUAGE_SV, "TILE_184_NAME", "Gräs Vatten Hörn (Träd)"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_185_NAME", "Desert (Plant)"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_186_NAME", "Desert (blomma)"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_187_NAME", "by Smuts"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_188_NAME", "by Marble"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_189_NAME", "By Dirt (Marmor)"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_190_NAME", "By Grass"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_191_NAME", "By Path"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_192_NAME", "By Path (Clearing)"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_193_NAME", "By Path Interchange"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_194_NAME", "By Marble T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_195_NAME", "By Path Hetero"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_196_NAME", "By Grass (Rocks)"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_197_NAME", "By Grass (Stump)"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_198_NAME", "By Plankor"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_199_NAME", "By Plank (Hole)"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_200_NAME", "By plankor / Dirt Rak"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_201_NAME", "By Marble Corner"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_202_NAME", "By Marble Hetero"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_203_NAME", "By Marmor (Hål)"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_204_NAME", "By Marmor / Dirt Rak"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_205_NAME", "By Marmor / Dirt Rak (Ojämn)"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_206_NAME", "By Marmor (hål)"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_207_NAME", "By Marmor (Ojämn)"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_208_NAME", "By Plankor T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_209_NAME", "By Path End"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_210_NAME", "By Marble End"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_211_NAME", "By Planks Corner"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_212_NAME", "By Planks Rak"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_213_NAME", "By Planks End"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_214_NAME", "By Path T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_215_NAME", "By Marble Corner (Barrel)"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_216_NAME", "By Plankor Corner (Tabell)"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "TILE_217_NAME", "By Plankor Corner (Bruten Tabell)"));
         texts.add(new Text(Constants.LANGUAGE_SV, "TUTORIAL_1", "Rotera brickor för att bilda ett flöde så att alla brickor håller ihop. Tryck för att rotera!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "TUTORIAL_2", "Att slutföra ett pussel låser vanligtvis upp en ny sorts bricka i Pusselskaparen, det finns hundratals!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "TUTORIAL_3", "Att slutföra alla pussel i ett Pack med hjälp av färre drag och mindre tid än det nominella kommer låsa upp nästa Pack gratis."));
@@ -5450,6 +5716,8 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_SV, "WORD_UNLOCK", "Lås upp"));
         texts.add(new Text(Constants.LANGUAGE_SV, "WORD_LOCKED", "Låst"));
         texts.add(new Text(Constants.LANGUAGE_SV, "WORD_LOADING", "Laddar"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "WORD_RANDOM", "Slumpmässig"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "WORD_SKIP", "Hoppa"));
         Text.saveInTx(texts);
     }
 }
