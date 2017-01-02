@@ -139,8 +139,6 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_20_NAME", "Hide Locked Tiles"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SETTING_21_NAME", "Max Millis In Click"));
         texts.add(new Text(Constants.LANGUAGE_EN, "QUEST_SCHEDULE", "Schedule (Reddit)"));
-
-
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_BACKGROUND_UNLOCK", "Unlocked '%1$s' background!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_CARD_SAVED", "Card image saved to gallery!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_COINS_PURCHASED", "Successfully purchased %1$d coins!"));
@@ -326,6 +324,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "ENVIRONMENT_4_NAME", "Mountain"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ENVIRONMENT_5_NAME", "Desert"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ENVIRONMENT_6_NAME", "Golf"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ENVIRONMENT_7_NAME", "Village"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_ADVERT_NOT_LOADED", "Failed to load ad! This might be due to a poor connection, or there might not be any ads available."));
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_ADVERT_NOT_VERIFIED", "Something went wrong, and the ad view couldn't be verified!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_FAILED_TO_CONNECT", "Couldn't log in. Please try again later."));
@@ -346,6 +345,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_NO_IAB", "In app billing is not available on this device!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_IAB_FAILED", "Purchase failed! Please ensure you're logged in, and have a payment method configured."));
         texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_PUZZLE_SOLVED", "Puzzle already solved! Try shuffling the tiles first!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ERROR_GENERATION_INCOMPLETE", "Puzzle generation failed for %1$s tiles! Puzzle might not be completable."));
         texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_0_NAME", "None"));
         texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_1_NAME", "Water"));
         texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_2_NAME", "Road"));
@@ -357,6 +357,8 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_8_NAME", "Rail"));
         texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_9_NAME", "Golf"));
         texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_10_NAME", "Toxic"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_11_NAME", "Marble (Decorative)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_12_NAME", "Plank (Decorative)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "GOOGLE_SIGN_IN", "Sign In"));
         texts.add(new Text(Constants.LANGUAGE_EN, "GOOGLE_SIGN_OUT", "Sign Out"));
         texts.add(new Text(Constants.LANGUAGE_EN, "HEIGHT_0_NAME", "None"));
@@ -440,6 +442,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "PACK_8_NAME", "Heady Heights"));
         texts.add(new Text(Constants.LANGUAGE_EN, "PACK_9_NAME", "Contributor's Challenge"));
         texts.add(new Text(Constants.LANGUAGE_EN, "PACK_9_CHALLENGE", "Purchase any number of coins to unlock this pack."));
+        texts.add(new Text(Constants.LANGUAGE_EN, "PACK_10_NAME", "Remnants Of A Village"));
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_DEFAULT_NAME", "New Puzzle (%1$dx%2$d, %3$s)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_DEFAULT_DESC", "No description."));
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_EXPORT_START", "Beginning puzzle export process..."));
@@ -686,6 +689,37 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_182_NAME", "Grass Water T Junction"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_183_NAME", "Grass Water Interchange"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_184_NAME", "Grass Water Corner (Tree)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_187_NAME", "Village Dirt"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_188_NAME", "Village Marble"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_189_NAME", "Village Dirt (Marble)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_190_NAME", "Village Grass"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_191_NAME", "Village Path"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_192_NAME", "Village Path (Clearing)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_193_NAME", "Village Path Interchange"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_194_NAME", "Village Marble T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_195_NAME", "Village Path Straight"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_196_NAME", "Village Grass (Rocks)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_197_NAME", "Village Grass (Stump)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_198_NAME", "Village Planks"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_199_NAME", "Village Planks (Hole)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_200_NAME", "Village Planks/Dirt Straight"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_201_NAME", "Village Marble Corner"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_202_NAME", "Village Marble Straight"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_203_NAME", "Village Marble (Holes)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_204_NAME", "Village Marble/Dirt Straight"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_205_NAME", "Village Marble/Dirt Straight (Uneven)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_206_NAME", "Village Marble (Hole)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_207_NAME", "Village Marble (Uneven)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_208_NAME", "Village Planks T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_209_NAME", "Village Path End"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_210_NAME", "Village Marble End"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_211_NAME", "Village Planks Corner"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_212_NAME", "Village Planks Straight"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_213_NAME", "Village Planks End"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_214_NAME", "Village Path T Junction"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_215_NAME", "Village Marble Corner (Barrel)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_216_NAME", "Village Planks Corner (Table)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "TILE_217_NAME", "Village Planks Corner (Broken Table)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_1", "Rotate tiles to form a consistent flow, with no loose ends. Tap to rotate!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_2", "Completing a puzzle will usually unlock a new tile in the level creator, there's hundreds!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TUTORIAL_3", "Completing all the puzzles in a pack in fewer moves & less time than the par will unlock the next pack for free."));
