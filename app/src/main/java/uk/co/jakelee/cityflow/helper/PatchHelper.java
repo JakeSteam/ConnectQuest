@@ -196,6 +196,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_11_NAME", "Marble (Decorative)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "FLOW_12_NAME", "Plank (Decorative)"));
 
+        texts.add(new Text(Constants.LANGUAGE_EN, "PACK_10_NAME", "Remnants Of A Village"));
+
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_187_NAME", "Village Dirt"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_188_NAME", "Village Marble"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_189_NAME", "Village Dirt (Marble)"));
@@ -228,6 +230,11 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_216_NAME", "Village Planks Corner (Table)"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_217_NAME", "Village Planks Corner (Broken Table)"));
         Text.saveInTx(texts);
+
+
+
+
+        createPuzzlesPack10();
     }
 
     private void createOtherPuzzles() {
@@ -239,6 +246,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         createPuzzlesPack7();
         createPuzzlesPack8();
         createPuzzlesPack9();
+        createPuzzlesPack10();
     }
 
     @Override
@@ -295,6 +303,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         achievements.add(new Achievement("Complete Pack 7", 1, Constants.STATISTIC_COMPLETE_PACK_7, "CgkIgrzuo64REAIQMw", Constants.BACKGROUND_MUDDY_PINK));
         achievements.add(new Achievement("Complete Pack 8", 1, Constants.STATISTIC_COMPLETE_PACK_8, "CgkIgrzuo64REAIQNA", Constants.BACKGROUND_PEACH));
         achievements.add(new Achievement("Complete Pack 9", 1, Constants.STATISTIC_COMPLETE_PACK_9, "CgkIgrzuo64REAIQNQ", Constants.BACKGROUND_PASSIONFRUIT));
+        achievements.add(new Achievement("Complete Pack 10", 1, Constants.STATISTIC_COMPLETE_PACK_10, "CgkIgrzuo64REAIQWA", Constants.BACKGROUND_DIRTY));
         Achievement.saveInTx(achievements);
     }
 
@@ -346,6 +355,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         backgrounds.add(new Background(Constants.BACKGROUND_MUDDY_PINK, "decfd2"));
         backgrounds.add(new Background(Constants.BACKGROUND_PEACH, "fdcfb7"));
         backgrounds.add(new Background(Constants.BACKGROUND_PASSIONFRUIT, "f4828c"));
+        backgrounds.add(new Background(Constants.BACKGROUND_DIRTY, "ddb4a0"));
 
         // Buying shop item
         backgrounds.add(new Background(Constants.BACKGROUND_THE_END, "775c6a"));
@@ -354,8 +364,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         backgrounds.add(new Background(Constants.BACKGROUND_DESERT, "f7ecd6"));
 
         // Unassigned
-        /*backgrounds.add(new Background(Constants.BACKGROUND_DIRTY, "ddb4a0"));
-        backgrounds.add(new Background(Constants.BACKGROUND_OVERCAST, "d0c6c4"));
+        /*backgrounds.add(new Background(Constants.BACKGROUND_OVERCAST, "d0c6c4"));
         backgrounds.add(new Background(Constants.BACKGROUND_PRETTY_IN_PINK, "f8e4e3"));
         backgrounds.add(new Background(Constants.BACKGROUND_RAINFOREST, "7ca0a0"));
         backgrounds.add(new Background(Constants.BACKGROUND_MUSHROOM, "8e857c"));
@@ -391,6 +400,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         packs.add(new Pack(7, "CgkIgrzuo64REAIQPA", "CgkIgrzuo64REAIQPQ", 90, true));
         packs.add(new Pack(8, "CgkIgrzuo64REAIQPg", "CgkIgrzuo64REAIQPw", 90, true));
         packs.add(new Pack(9, "CgkIgrzuo64REAIQQA", "CgkIgrzuo64REAIQQQ", 45, false));
+        packs.add(new Pack(10, "CgkIgrzuo64REAIQWQ", "CgkIgrzuo64REAIQWg", 90, true));
         Pack.saveInTx(packs);
     }
 
@@ -6230,6 +6240,183 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         Tile.saveInTx(tiles);
     }
 
+    private void createPuzzlesPack10() {
+        // Remnants Of A Village
+        List<Puzzle> puzzles = new ArrayList<>();
+        List<Text> texts = new ArrayList<>();
+        List<Tile> tiles = new ArrayList<>();
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_209_NAME", "Stripes"));
+        puzzles.add(new Puzzle(209, 10, 4893L, 10, 0L, 0));
+        tiles.add(new Tile(209, 205, 0, 2, 2));
+        tiles.add(new Tile(209, 196, 1, 2, 2));
+        tiles.add(new Tile(209, 196, 2, 2, 4));
+        tiles.add(new Tile(209, 215, 0, 1, 2));
+        tiles.add(new Tile(209, 202, 1, 1, 4));
+        tiles.add(new Tile(209, 205, 2, 1, 4));
+        tiles.add(new Tile(209, 200, 0, 0, 3));
+        tiles.add(new Tile(209, 212, 1, 0, 4));
+        tiles.add(new Tile(209, 213, 2, 0, 2));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_210_NAME", "Sprawling Plain"));
+        puzzles.add(new Puzzle(210, 10, 12316L, 21, 0L, 0));
+        tiles.add(new Tile(210, 190, 0, 3, 1));
+        tiles.add(new Tile(210, 190, 1, 3, 4));
+        tiles.add(new Tile(210, 192, 2, 3, 2));
+        tiles.add(new Tile(210, 209, 3, 3, 4));
+        tiles.add(new Tile(210, 190, 4, 3, 4));
+        tiles.add(new Tile(210, 209, 0, 2, 2));
+        tiles.add(new Tile(210, 214, 1, 2, 1));
+        tiles.add(new Tile(210, 192, 2, 2, 1));
+        tiles.add(new Tile(210, 187, 3, 2, 3));
+        tiles.add(new Tile(210, 209, 4, 2, 2));
+        tiles.add(new Tile(210, 187, 0, 1, 1));
+        tiles.add(new Tile(210, 191, 1, 1, 2));
+        tiles.add(new Tile(210, 195, 2, 1, 2));
+        tiles.add(new Tile(210, 195, 3, 1, 3));
+        tiles.add(new Tile(210, 214, 4, 1, 4));
+        tiles.add(new Tile(210, 210, 0, 0, 4));
+        tiles.add(new Tile(210, 202, 1, 0, 4));
+        tiles.add(new Tile(210, 210, 2, 0, 1));
+        tiles.add(new Tile(210, 189, 3, 0, 2));
+        tiles.add(new Tile(210, 209, 4, 0, 3));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_211_NAME", "Castle Entrance"));
+        puzzles.add(new Puzzle(211, 10, 7859L, 11, 0L, 0));
+        tiles.add(new Tile(211, 205, 0, 2, 4));
+        tiles.add(new Tile(211, 189, 1, 2, 1));
+        tiles.add(new Tile(211, 210, 2, 2, 3));
+        tiles.add(new Tile(211, 194, 0, 1, 4));
+        tiles.add(new Tile(211, 202, 1, 1, 4));
+        tiles.add(new Tile(211, 215, 2, 1, 2));
+        tiles.add(new Tile(211, 201, 0, 0, 1));
+        tiles.add(new Tile(211, 204, 1, 0, 3));
+        tiles.add(new Tile(211, 196, 2, 0, 1));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_212_NAME", "Marsh Docks"));
+        puzzles.add(new Puzzle(212, 10, 5399L, 12, 0L, 0));
+        tiles.add(new Tile(212, 209, 0, 5, 2));
+        tiles.add(new Tile(212, 209, 1, 5, 4));
+        tiles.add(new Tile(212, 197, 0, 4, 4));
+        tiles.add(new Tile(212, 213, 1, 4, 4));
+        tiles.add(new Tile(212, 189, 0, 3, 4));
+        tiles.add(new Tile(212, 212, 1, 3, 3));
+        tiles.add(new Tile(212, 200, 0, 2, 4));
+        tiles.add(new Tile(212, 211, 1, 2, 3));
+        tiles.add(new Tile(212, 204, 0, 1, 2));
+        tiles.add(new Tile(212, 189, 1, 1, 1));
+        tiles.add(new Tile(212, 205, 0, 0, 3));
+        tiles.add(new Tile(212, 189, 1, 0, 1));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_213_NAME", "A Mixture"));
+        puzzles.add(new Puzzle(213, 10, 4925L, 8, 0L, 0));
+        tiles.add(new Tile(213, 215, 0, 3, 2));
+        tiles.add(new Tile(213, 205, 1, 3, 1));
+        tiles.add(new Tile(213, 190, 2, 3, 1));
+        tiles.add(new Tile(213, 210, 0, 2, 4));
+        tiles.add(new Tile(213, 192, 1, 2, 3));
+        tiles.add(new Tile(213, 191, 2, 2, 2));
+        tiles.add(new Tile(213, 213, 0, 1, 1));
+        tiles.add(new Tile(213, 191, 1, 1, 4));
+        tiles.add(new Tile(213, 192, 2, 1, 4));
+        tiles.add(new Tile(213, 216, 0, 0, 1));
+        tiles.add(new Tile(213, 212, 1, 0, 1));
+        tiles.add(new Tile(213, 213, 2, 0, 3));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_214_NAME", "Winding Through Docks"));
+        puzzles.add(new Puzzle(214, 10, 20181L, 23, 0L, 0));
+        tiles.add(new Tile(214, 187, 0, 2, 2));
+        tiles.add(new Tile(214, 217, 1, 2, 3));
+        tiles.add(new Tile(214, 213, 2, 2, 4));
+        tiles.add(new Tile(214, 210, 3, 2, 1));
+        tiles.add(new Tile(214, 194, 4, 2, 4));
+        tiles.add(new Tile(214, 210, 5, 2, 2));
+        tiles.add(new Tile(214, 216, 0, 1, 3));
+        tiles.add(new Tile(214, 208, 1, 1, 2));
+        tiles.add(new Tile(214, 190, 2, 1, 1));
+        tiles.add(new Tile(214, 213, 3, 1, 2));
+        tiles.add(new Tile(214, 204, 4, 1, 1));
+        tiles.add(new Tile(214, 189, 5, 1, 4));
+        tiles.add(new Tile(214, 211, 0, 0, 1));
+        tiles.add(new Tile(214, 217, 1, 0, 1));
+        tiles.add(new Tile(214, 189, 2, 0, 1));
+        tiles.add(new Tile(214, 217, 3, 0, 1));
+        tiles.add(new Tile(214, 212, 4, 0, 3));
+        tiles.add(new Tile(214, 200, 5, 0, 4));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_215_NAME", "Desire Path"));
+        puzzles.add(new Puzzle(215, 10, 2888L, 6, 0L, 0));
+        tiles.add(new Tile(215, 187, 0, 2, 4));
+        tiles.add(new Tile(215, 191, 1, 2, 4));
+        tiles.add(new Tile(215, 195, 2, 2, 4));
+        tiles.add(new Tile(215, 209, 3, 2, 2));
+        tiles.add(new Tile(215, 191, 0, 1, 4));
+        tiles.add(new Tile(215, 192, 1, 1, 3));
+        tiles.add(new Tile(215, 190, 2, 1, 2));
+        tiles.add(new Tile(215, 190, 3, 1, 3));
+        tiles.add(new Tile(215, 209, 0, 0, 4));
+        tiles.add(new Tile(215, 187, 1, 0, 4));
+        tiles.add(new Tile(215, 190, 2, 0, 2));
+        tiles.add(new Tile(215, 187, 3, 0, 2));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_216_NAME", "Drunken Brawl"));
+        puzzles.add(new Puzzle(216, 10, 4193L, 10, 0L, 0));
+        tiles.add(new Tile(216, 216, 0, 1, 2));
+        tiles.add(new Tile(216, 217, 1, 1, 1));
+        tiles.add(new Tile(216, 196, 2, 1, 1));
+        tiles.add(new Tile(216, 191, 3, 1, 4));
+        tiles.add(new Tile(216, 209, 4, 1, 2));
+        tiles.add(new Tile(216, 200, 0, 0, 2));
+        tiles.add(new Tile(216, 200, 1, 0, 3));
+        tiles.add(new Tile(216, 209, 2, 0, 3));
+        tiles.add(new Tile(216, 191, 3, 0, 2));
+        tiles.add(new Tile(216, 197, 4, 0, 2));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_217_NAME", "Wooden Maze"));
+        puzzles.add(new Puzzle(217, 10, 20958L, 21, 0L, 0));
+        tiles.add(new Tile(217, 213, 0, 3, 1));
+        tiles.add(new Tile(217, 217, 1, 3, 2));
+        tiles.add(new Tile(217, 212, 2, 3, 1));
+        tiles.add(new Tile(217, 211, 3, 3, 2));
+        tiles.add(new Tile(217, 211, 0, 2, 1));
+        tiles.add(new Tile(217, 217, 1, 2, 1));
+        tiles.add(new Tile(217, 217, 2, 2, 1));
+        tiles.add(new Tile(217, 208, 3, 2, 4));
+        tiles.add(new Tile(217, 211, 0, 1, 3));
+        tiles.add(new Tile(217, 212, 1, 1, 2));
+        tiles.add(new Tile(217, 208, 2, 1, 4));
+        tiles.add(new Tile(217, 211, 3, 1, 1));
+        tiles.add(new Tile(217, 216, 0, 0, 1));
+        tiles.add(new Tile(217, 200, 1, 0, 3));
+        tiles.add(new Tile(217, 196, 2, 0, 2));
+        tiles.add(new Tile(217, 187, 3, 0, 2));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_218_NAME", "Lookout Post"));
+        puzzles.add(new Puzzle(218, 10, 9258L, 10, 0L, 0));
+        tiles.add(new Tile(218, 187, 0, 3, 3));
+        tiles.add(new Tile(218, 213, 1, 3, 1));
+        tiles.add(new Tile(218, 213, 2, 3, 4));
+        tiles.add(new Tile(218, 196, 3, 3, 4));
+        tiles.add(new Tile(218, 196, 0, 2, 1));
+        tiles.add(new Tile(218, 208, 1, 2, 1));
+        tiles.add(new Tile(218, 208, 2, 2, 3));
+        tiles.add(new Tile(218, 213, 3, 2, 4));
+        tiles.add(new Tile(218, 210, 0, 1, 2));
+        tiles.add(new Tile(218, 217, 1, 1, 1));
+        tiles.add(new Tile(218, 208, 2, 1, 3));
+        tiles.add(new Tile(218, 217, 3, 1, 4));
+        tiles.add(new Tile(218, 205, 0, 0, 2));
+        tiles.add(new Tile(218, 196, 1, 0, 1));
+        tiles.add(new Tile(218, 189, 2, 0, 4));
+        tiles.add(new Tile(218, 187, 3, 0, 2));
+
+
+
+        Puzzle.saveInTx(puzzles);
+        Text.saveInTx(texts);
+        Tile.saveInTx(tiles);
+    }
+
     private void createSetting() {
         List<Setting> settings = new ArrayList<>();
         settings.add(new Setting(Constants.SETTING_MUSIC, true));
@@ -6275,6 +6462,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_7, 0, 0));
         statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_8, 0, 0));
         statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_9, 0, 0));
+        statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_10, 0, 0));
         Statistic.saveInTx(statistics);
     }
 

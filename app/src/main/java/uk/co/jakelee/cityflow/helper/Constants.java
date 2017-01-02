@@ -105,8 +105,6 @@ public class Constants {
     public static final int BACKGROUND_PRETTY_IN_PINK = 37;
     public static final int BACKGROUND_RAINFOREST = 38;
     public static final int BACKGROUND_MUSHROOM = 39;
-    public static final int BOOST_MIN = 1;
-    public static final int BOOST_MAX = 4;
     public static final int BOOST_UNDO = 1;
     public static final int BOOST_TIME = 2;
     public static final int BOOST_MOVE = 3;
@@ -234,6 +232,7 @@ public class Constants {
     public static final int STATISTIC_COMPLETE_PACK_7 = 15;
     public static final int STATISTIC_COMPLETE_PACK_8 = 16;
     public static final int STATISTIC_COMPLETE_PACK_9 = 17;
+    public static final int STATISTIC_COMPLETE_PACK_10 = 18;
     public static final int STORE_CATEGORY_BOOSTS = 1;
     public static final int STORE_CATEGORY_UPGRADES = 2;
     public static final int STORE_CATEGORY_TILES = 3;
