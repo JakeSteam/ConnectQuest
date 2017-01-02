@@ -140,8 +140,7 @@ public class DisplayHelper {
 
         puzzleButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                activity.selectedPuzzle = puzzle;
-                activity.populatePuzzles();
+                activity.updateSelectedPuzzle(puzzle, v);
             }
         });
         return puzzleButton;

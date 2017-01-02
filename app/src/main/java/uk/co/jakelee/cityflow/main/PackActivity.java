@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TableLayout;
@@ -23,8 +24,11 @@ import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Text;
 
+import static uk.co.jakelee.cityflow.R.id.puzzleButton;
+
 public class PackActivity extends Activity {
     public Puzzle selectedPuzzle = new Puzzle();
+    private View selectedPuzzleView;
     private DisplayHelper dh;
     private Pack selectedPack;
     private int lastCompletedPuzzle = 0;
@@ -68,6 +72,16 @@ public class PackActivity extends Activity {
         SoundHelper.stopIfExiting(this);
     }
 
+    public void updateSelectedPuzzle(Puzzle newPuzzle, View newPuzzleView) {
+        selectedPuzzleView.setBackgroundColor(ContextCompat.getColor(this, R.color.ltltgrey));
+
+        newPuzzleView.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
+        selectedPuzzleView = newPuzzleView;
+        selectedPuzzle = newPuzzle;
+
+        showPuzzleInfo();
+    }
+
     public void populatePuzzles() {
         TableLayout puzzleContainer = (TableLayout) findViewById(R.id.puzzleContainer);
         puzzleContainer.removeAllViews();
@@ -91,7 +105,11 @@ public class PackActivity extends Activity {
             }
 
             boolean isSelected = selectedPuzzle.getPuzzleId() == puzzle.getPuzzleId();
-            row.addView(dh.createPuzzleSelectButton(this, puzzle.getPuzzleId(), puzzle, isSelected, puzzle.getPuzzleId() == firstPackPuzzle || puzzle.getPuzzleId() <= lastCompletedPuzzle + 1), layoutParams);
+            View button = dh.createPuzzleSelectButton(this, puzzle.getPuzzleId(), puzzle, isSelected, puzzle.getPuzzleId() == firstPackPuzzle || puzzle.getPuzzleId() <= lastCompletedPuzzle + 1);
+            if (selectedPuzzleView == null) {
+                selectedPuzzleView = button;
+            }
+            row.addView(button, layoutParams);
 
             if (puzzleIndex % 4 == 0 || puzzleIndex == numPuzzles) {
                 puzzleContainer.addView(row);
@@ -121,7 +139,7 @@ public class PackActivity extends Activity {
         ((TextView) findViewById(R.id.puzzleTilesUnlocked)).setText((selectedPuzzle.hasCompletionStar() ? numTiles : 0) + " / " + numTiles);
         ((TextView) findViewById(R.id.puzzleTilesUnlocked)).setTextColor(selectedPuzzle.hasCompletionStar() ? Color.YELLOW : Color.BLACK);
 
-        ((TextView) findViewById(R.id.puzzleButton)).setText(Text.get((selectedPuzzle.getPuzzleId() == firstPackPuzzle || selectedPuzzle.getPuzzleId() <= lastCompletedPuzzle + 1) ?
+        ((TextView) findViewById(puzzleButton)).setText(Text.get((selectedPuzzle.getPuzzleId() == firstPackPuzzle || selectedPuzzle.getPuzzleId() <= lastCompletedPuzzle + 1) ?
                 "WORD_START" :
                 "WORD_LOCKED"));
     }
