@@ -72,7 +72,7 @@ public class PackActivity extends Activity {
         TableLayout puzzleContainer = (TableLayout) findViewById(R.id.puzzleContainer);
         puzzleContainer.removeAllViews();
 
-        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
+        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1);
         int margins = dh.dpToPixel(5);
         layoutParams.setMargins(margins, margins, margins, margins);
 
