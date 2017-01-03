@@ -24,11 +24,6 @@ android {
     }
 }
 
-ext {
-    supportLibraryVersion = '25.1.0'
-    playLibraryVersion = '10.0.1'
-}
-
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':BaseGameUtils')
@@ -40,7 +35,11 @@ dependencies {
     compile "com.android.support:appcompat-v7:$supportLibraryVersion"
     compile "com.android.support:design:$supportLibraryVersion"
     compile "com.android.support:percent:$supportLibraryVersion"
-    compile "com.google.android.gms:play-services:$playLibraryVersion"
+    compile "com.google.android.gms:play-services-ads:$playLibraryVersion"
+    compile "com.google.android.gms:play-services-auth:$playLibraryVersion"
+    compile "com.google.android.gms:play-services-games:$playLibraryVersion"
+    compile "com.google.android.gms:play-services-gcm:$playLibraryVersion"
+    compile "com.google.android.gms:play-services-vision:$playLibraryVersion"
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.github.hotchemi:android-rate:1.0.1'
     compile 'me.grantland:autofittextview:0.2.1'

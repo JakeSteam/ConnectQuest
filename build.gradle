@@ -12,6 +12,11 @@ buildscript {
     }
 }
 
+ext {
+    supportLibraryVersion = '25.1.0'
+    playLibraryVersion = '10.0.1'
+}
+
 allprojects {
     repositories {
         jcenter()
