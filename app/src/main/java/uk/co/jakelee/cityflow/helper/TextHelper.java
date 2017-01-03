@@ -936,6 +936,9 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_RESET_LANGUAGE_CONFIRM", "Zurücksetzen der Sprache auf Englisch, Deinstallieren der derzeit installierten %1$d Übersetzungen?\n\nPacks wiederherstellen, indem Sie Sprache ändern!"));
         texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_LEADERBOARD_CONFIRM", "Welches Pack Leaderboard möchten Sie öffnen?"));
         texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_IMPROVE_LANGUAGE", "Übersetzungen verbessern"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_COIN_DOUBLER", "Münzenverdoppler"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_UNLOCK_ALL_TILES", "Alle Fliesen freischalten"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "IAP_ITEM_PURCHASED", "Erfolgreich gekauft %1$s!"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ENVIRONMENT_0_NAME", "Keiner"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ENVIRONMENT_1_NAME", "Gras"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ENVIRONMENT_2_NAME", "Stadt"));
@@ -1555,6 +1558,9 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_RESET_LANGUAGE_CONFIRM", "Reset taal terug naar Engels, het verwijderen van de %1$d vertalingen die momenteel is geïnstalleerd? \n\nReinstall packs door het veranderen van de taal!"));
         texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_LEADERBOARD_CONFIRM", "Welke verpakking leaderboard zou u willen openen?"));
         texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_IMPROVE_LANGUAGE", "Vertalingen Verbeteren (Form)"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_COIN_DOUBLER", "Coin Verdubbelaar"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_UNLOCK_ALL_TILES", "Open Alle Tegels"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "IAP_ITEM_PURCHASED", "Succes Kocht %1$s!"));
         texts.add(new Text(Constants.LANGUAGE_NL, "ENVIRONMENT_0_NAME", "Geen"));
         texts.add(new Text(Constants.LANGUAGE_NL, "ENVIRONMENT_1_NAME", "Gras"));
         texts.add(new Text(Constants.LANGUAGE_NL, "ENVIRONMENT_2_NAME", "Stad"));
@@ -2174,6 +2180,9 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_RESET_LANGUAGE_CONFIRM", "Réinitialiser la langue à l'anglais, désinstaller les traductions %1$d actuellement installées?\n\nReinstallez les packs en changeant de langue!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_LEADERBOARD_CONFIRM", "Quel classement souhaitez-vous ouvrir?"));
         texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_IMPROVE_LANGUAGE", "Améliorer les traductions (formulaire)"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_COIN_DOUBLER", "Doubler Les Pièces"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_UNLOCK_ALL_TILES", "Déverrouiller Toutes Les Tuiles"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "IAP_ITEM_PURCHASED", "Acheté Avec Succès %1$s!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "ENVIRONMENT_0_NAME", "Aucun"));
         texts.add(new Text(Constants.LANGUAGE_FR, "ENVIRONMENT_1_NAME", "Herbe"));
         texts.add(new Text(Constants.LANGUAGE_FR, "ENVIRONMENT_2_NAME", "Ville"));
@@ -2793,6 +2802,9 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_RESET_LANGUAGE_CONFIRM", "Zresetować język z powrotem na angielski, odinstalowanie %1$d tłumaczenia obecnie zainstalowane?\n\nReinstall pakuje zmieniając język!"));
         texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_LEADERBOARD_CONFIRM", "Które Leaderboard paczka chcesz otworzyć?"));
         texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_IMPROVE_LANGUAGE", "Poprawa Tłumaczenia (formularz)"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_COIN_DOUBLER", "Moneta Podwajacz"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_UNLOCK_ALL_TILES", "Odblokuj Wszystkie Płytki"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "IAP_ITEM_PURCHASED", "Pomyślnie Zakupiono %1$s!"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ENVIRONMENT_0_NAME", "Żaden"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ENVIRONMENT_1_NAME", "Trawa"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ENVIRONMENT_2_NAME", "Miasto"));
@@ -3412,6 +3424,9 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_RESET_LANGUAGE_CONFIRM", "Сброс языка на английский, деинсталлировать %1$d переводы установленные на данный момент?\n\nReinstall пакеты изменив язык!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_LEADERBOARD_CONFIRM", "Какой пакет вы лидеров хотели бы открыть?"));
         texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_IMPROVE_LANGUAGE", "Улучшение Переводы (форма)"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_COIN_DOUBLER", "Монета дублер"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_UNLOCK_ALL_TILES", "Разблокировать все плитки"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "IAP_ITEM_PURCHASED", "Успешно куплен %1$s!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "ENVIRONMENT_0_NAME", "Нет"));
         texts.add(new Text(Constants.LANGUAGE_RU, "ENVIRONMENT_1_NAME", "трава"));
         texts.add(new Text(Constants.LANGUAGE_RU, "ENVIRONMENT_2_NAME", "город"));
@@ -4031,6 +4046,9 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_RESET_LANGUAGE_CONFIRM", "¿Reestablecer el idioma de nuevo a inglés, desinstalando las traducciones de %1$d instaladas actualmente?\n\nReinstalar paquetes cambiando el idioma!"));
         texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_LEADERBOARD_CONFIRM", "¿Qué nivel de grupo desea abrir?"));
         texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_IMPROVE_LANGUAGE", "Mejorar Traducciones (Formulario)"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_COIN_DOUBLER", "Doblador De Monedas"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_UNLOCK_ALL_TILES", "Desbloquear Todas Las Baldosas"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "IAP_ITEM_PURCHASED", "¡Compró %1$s Con Éxito!"));
         texts.add(new Text(Constants.LANGUAGE_ES, "ENVIRONMENT_0_NAME", "Ninguna"));
         texts.add(new Text(Constants.LANGUAGE_ES, "ENVIRONMENT_1_NAME", "Césped"));
         texts.add(new Text(Constants.LANGUAGE_ES, "ENVIRONMENT_2_NAME", "Ciudad"));
@@ -4650,6 +4668,9 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_RESET_LANGUAGE_CONFIRM", "将语言重置为英语，卸载当前安装的 %1$d 翻译？\n\n通过更改语言重新安装包！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_LEADERBOARD_CONFIRM", "你想打开哪一个排行榜？"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_IMPROVE_LANGUAGE", "改进翻译（表格）"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_COIN_DOUBLER", "硬幣倍"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_UNLOCK_ALL_TILES", "解鎖所有圖塊"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "IAP_ITEM_PURCHASED", "已成功購買 %1$s！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ENVIRONMENT_0_NAME", "没有"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ENVIRONMENT_1_NAME", "草"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ENVIRONMENT_2_NAME", "市"));
@@ -5269,6 +5290,9 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_RESET_LANGUAGE_CONFIRM", "Återställ språket tillbaka till engelska, avinstallera de %1$d översättningar installerade?\n\nReinstall förpackningar genom att ändra språk!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_LEADERBOARD_CONFIRM", "Vilken pack leader vill du öppna?"));
         texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_IMPROVE_LANGUAGE", "Förbättra översättningar (Form)"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_COIN_DOUBLER", "Myntdubblare"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_UNLOCK_ALL_TILES", "Låsa Upp Alla Brickor"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "IAP_ITEM_PURCHASED", "Framgångsrikt Köpt %1$s!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "ENVIRONMENT_0_NAME", "Ingen"));
         texts.add(new Text(Constants.LANGUAGE_SV, "ENVIRONMENT_1_NAME", "Gräs"));
         texts.add(new Text(Constants.LANGUAGE_SV, "ENVIRONMENT_2_NAME", "Stad"));
