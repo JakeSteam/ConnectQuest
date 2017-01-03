@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+//noinspection GroovyMissingReturnStatement
 android {
     compileSdkVersion apiVersion
     buildToolsVersion compilerVersion
@@ -13,12 +14,12 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.pro'
         }
         debug {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-debug.pro'
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.pro'
         }
     }
 }
