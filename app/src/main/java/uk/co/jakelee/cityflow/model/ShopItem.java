@@ -145,11 +145,11 @@ public class ShopItem extends SugarRecord {
         ShopItem item = ShopItem.get(getItemId());
         Statistic currency = Statistic.find(Constants.STATISTIC_CURRENCY);
 
-        item.setPurchases(item.getPurchases() + 1);
-        item.save();
-
         currency.setIntValue(currency.getIntValue() - item.getPrice());
         currency.save();
+
+        item.setPurchases(item.getPurchases() + 1);
+        item.save();
 
         // Go through each category first, then the misc subcategories
         if (getCategoryId() == Constants.STORE_CATEGORY_BOOSTS) {
