@@ -123,8 +123,8 @@ public class TextHelper {
 
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_BACKGROUND_UNLOCK", "Unlocked '%1$s' background!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_CARD_SAVED", "Card image saved to gallery!"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_COINS_PURCHASED", "Successfully purchased %1$d coins!"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_COINS_PURCHASED_PACK", "Successfully purchased %1$d coins, and unlocked an exclusive puzzle pack & a new background!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_ITEM_PURCHASED", "Successfully purchased %1$s!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_ITEM_PURCHASED_PACK", "Successfully purchased %1$s, and unlocked an exclusive puzzle pack & a new background!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_CLOUD_BEGINNING", "Comparing local and cloud saves..."));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_CLOUD_SAVING", "Saving to cloud..."));
         texts.add(new Text(Constants.LANGUAGE_EN, "ALERT_CLOUD_SAVED", "Successfully saved game to cloud!"));
@@ -307,6 +307,8 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_RESET_LANGUAGE_CONFIRM", "Reset language back to English, uninstalling the %1$d translations currently installed?\n\nReinstall packs by changing language!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_LEADERBOARD_CONFIRM", "Which pack leaderboard would you like to open?"));
         texts.add(new Text(Constants.LANGUAGE_EN, "DIALOG_IMPROVE_LANGUAGE", "Improve Translations (Form)"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "IAP_COIN_DOUBLER", "Coin Doubler"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "IAP_UNLOCK_ALL_TILES", "Unlock All Tiles"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ENVIRONMENT_0_NAME", "None"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ENVIRONMENT_1_NAME", "Grass"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ENVIRONMENT_2_NAME", "City"));
@@ -483,7 +485,6 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_ITEM_PURCHASED", "Successfully purchased %1$s for %2$d coins!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_ITEM_PURCHASED_BACKGROUND", "Successfully purchased %1$s for %2$d coins, and unlocked '%3$s'!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_MAX_PURCHASED", "Maximum Purchased"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "IAP_ITEM_PURCHASED", "Successfully purchased %1$s!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "STATISTIC_1_NAME", "Puzzles Completed"));
         texts.add(new Text(Constants.LANGUAGE_EN, "STATISTIC_2_NAME", "Tiles Rotated"));
         texts.add(new Text(Constants.LANGUAGE_EN, "STATISTIC_3_NAME", "Quests Completed"));
@@ -795,8 +796,8 @@ public class TextHelper {
 
         texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_BACKGROUND_UNLOCK", "Unlocked '%1$s' Hintergrund!"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_CARD_SAVED", "Kartenbild auf Galerie gespeichert!"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_COINS_PURCHASED", "Erfolgreich %1$d Münzen gekauft"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_COINS_PURCHASED_PACK", "Erfolgreich %1$d Münzen gekauft und ein exklusives Puzzle-Pack und einen neuen Hintergrund freigeschaltet"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_ITEM_PURCHASED", "Erfolgreich %1$s Münzen gekauft"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_ITEM_PURCHASED_PACK", "Erfolgreich %1$s Münzen gekauft und ein exklusives Puzzle-Pack und einen neuen Hintergrund freigeschaltet"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_CLOUD_BEGINNING", "vergleiche lokale Daten mit Cloud Daten"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_CLOUD_SAVING", "In Cloud speichern ..."));
         texts.add(new Text(Constants.LANGUAGE_DE, "ALERT_CLOUD_SAVED", "Spiel erfolgreich in Cloud gespeichert"));
@@ -937,9 +938,8 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_RESET_LANGUAGE_CONFIRM", "Zurücksetzen der Sprache auf Englisch, Deinstallieren der derzeit installierten %1$d Übersetzungen?\n\nPacks wiederherstellen, indem Sie Sprache ändern!"));
         texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_LEADERBOARD_CONFIRM", "Welches Pack Leaderboard möchten Sie öffnen?"));
         texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_IMPROVE_LANGUAGE", "Übersetzungen verbessern"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_COIN_DOUBLER", "Münzenverdoppler"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "DIALOG_UNLOCK_ALL_TILES", "Alle Fliesen freischalten"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "IAP_ITEM_PURCHASED", "Erfolgreich gekauft %1$s!"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "IAP_COIN_DOUBLER", "Münzenverdoppler"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "IAP_UNLOCK_ALL_TILES", "Alle Fliesen freischalten"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ENVIRONMENT_0_NAME", "Keiner"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ENVIRONMENT_1_NAME", "Gras"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ENVIRONMENT_2_NAME", "Stadt"));
@@ -1418,8 +1418,8 @@ public class TextHelper {
 
         texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_BACKGROUND_UNLOCK", "Unlocked '%1$s' achtergrond!"));
         texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_CARD_SAVED", "Image-kaart opgeslagen in galerij!"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_COINS_PURCHASED", "Succesvol %1$d gekocht!"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_COINS_PURCHASED_PACK", "Succesvol %1$d gekocht, en een exclusieve puzzel en achtergrond vrijgespeeld."));
+        texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_ITEM_PURCHASED", "Succesvol %1$s!"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_ITEM_PURCHASED_PACK", "Succesvol %1$s, en een exclusieve puzzel en achtergrond vrijgespeeld."));
         texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_CLOUD_BEGINNING", "Lokale en cloud save aan het vergelijken..."));
         texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_CLOUD_SAVING", "Opslaan naar de cloud..."));
         texts.add(new Text(Constants.LANGUAGE_NL, "ALERT_CLOUD_SAVED", "Succesvol spel naar de cloud opgeslagen!"));
@@ -1560,9 +1560,8 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_RESET_LANGUAGE_CONFIRM", "Reset taal terug naar Engels, het verwijderen van de %1$d vertalingen die momenteel is geïnstalleerd? \n\nReinstall packs door het veranderen van de taal!"));
         texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_LEADERBOARD_CONFIRM", "Welke verpakking leaderboard zou u willen openen?"));
         texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_IMPROVE_LANGUAGE", "Vertalingen Verbeteren (Form)"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_COIN_DOUBLER", "Coin Verdubbelaar"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "DIALOG_UNLOCK_ALL_TILES", "Open Alle Tegels"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "IAP_ITEM_PURCHASED", "Succes Kocht %1$s!"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "IAP_COIN_DOUBLER", "Coin Verdubbelaar"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "IAP_UNLOCK_ALL_TILES", "Open Alle Tegels"));
         texts.add(new Text(Constants.LANGUAGE_NL, "ENVIRONMENT_0_NAME", "Geen"));
         texts.add(new Text(Constants.LANGUAGE_NL, "ENVIRONMENT_1_NAME", "Gras"));
         texts.add(new Text(Constants.LANGUAGE_NL, "ENVIRONMENT_2_NAME", "Stad"));
@@ -2041,8 +2040,8 @@ public class TextHelper {
 
         texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_BACKGROUND_UNLOCK", "Fond '%1$s' déverouillé!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_CARD_SAVED", "L'image de la carte est sauvegardée dans la gallerie!"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_COINS_PURCHASED", "%1$d pièces achetées!"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_COINS_PURCHASED_PACK", "%1$d pièces achetées,plus une collection de casse-têtes exclusifs et un nouveau fond déverouillés!"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_ITEM_PURCHASED", "%1$s pièces achetées!"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_ITEM_PURCHASED_PACK", "%1$s pièces achetées,plus une collection de casse-têtes exclusifs et un nouveau fond déverouillés!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_CLOUD_BEGINNING", "Comparaison des sauvegardes locales et du nuage ​​..."));
         texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_CLOUD_SAVING", "Sauvegarde sur le nuage..."));
         texts.add(new Text(Constants.LANGUAGE_FR, "ALERT_CLOUD_SAVED", "Sauvegarde sur le nuage réussie!"));
@@ -2183,9 +2182,8 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_RESET_LANGUAGE_CONFIRM", "Réinitialiser la langue à l'anglais, désinstaller les traductions %1$d actuellement installées?\n\nReinstallez les packs en changeant de langue!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_LEADERBOARD_CONFIRM", "Quel classement souhaitez-vous ouvrir?"));
         texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_IMPROVE_LANGUAGE", "Améliorer les traductions (formulaire)"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_COIN_DOUBLER", "Doubler Les Pièces"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "DIALOG_UNLOCK_ALL_TILES", "Déverrouiller Toutes Les Tuiles"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "IAP_ITEM_PURCHASED", "Acheté Avec Succès %1$s!"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "IAP_COIN_DOUBLER", "Doubler Les Pièces"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "IAP_UNLOCK_ALL_TILES", "Déverrouiller Toutes Les Tuiles"));
         texts.add(new Text(Constants.LANGUAGE_FR, "ENVIRONMENT_0_NAME", "Aucun"));
         texts.add(new Text(Constants.LANGUAGE_FR, "ENVIRONMENT_1_NAME", "Herbe"));
         texts.add(new Text(Constants.LANGUAGE_FR, "ENVIRONMENT_2_NAME", "Ville"));
@@ -2664,8 +2662,8 @@ public class TextHelper {
 
         texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_BACKGROUND_UNLOCK", "Odblokowano tło '%1$s'"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_CARD_SAVED", "Zapisano kartę do galerii!"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_COINS_PURCHASED", "Pomyślnie zakupiono '%1$s' monet!"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_COINS_PURCHASED_PACK", "Pomyślnie zakupiono '%1$s' monet i odblokowano ekskluzywny pakiet puzzli i nowe tło"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_ITEM_PURCHASED", "Pomyślnie zakupiono '%1$s' monet!"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_ITEM_PURCHASED_PACK", "Pomyślnie zakupiono '%1$s' monet i odblokowano ekskluzywny pakiet puzzli i nowe tło"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_CLOUD_BEGINNING", "Porównywanie lokalnego zapisu oraz zapisu w chmurze"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_CLOUD_SAVING", "Zapisywanie do chmury"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ALERT_CLOUD_SAVED", "Pomyślnie zapisano grę do chmury"));
@@ -2806,9 +2804,8 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_RESET_LANGUAGE_CONFIRM", "Zresetować język z powrotem na angielski, odinstalowanie %1$d tłumaczenia obecnie zainstalowane?\n\nReinstall pakuje zmieniając język!"));
         texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_LEADERBOARD_CONFIRM", "Które Leaderboard paczka chcesz otworzyć?"));
         texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_IMPROVE_LANGUAGE", "Poprawa Tłumaczenia (formularz)"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_COIN_DOUBLER", "Moneta Podwajacz"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "DIALOG_UNLOCK_ALL_TILES", "Odblokuj Wszystkie Płytki"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "IAP_ITEM_PURCHASED", "Pomyślnie Zakupiono %1$s!"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "IAP_COIN_DOUBLER", "Moneta Podwajacz"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "IAP_UNLOCK_ALL_TILES", "Odblokuj Wszystkie Płytki"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ENVIRONMENT_0_NAME", "Żaden"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ENVIRONMENT_1_NAME", "Trawa"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ENVIRONMENT_2_NAME", "Miasto"));
@@ -3287,8 +3284,8 @@ public class TextHelper {
 
         texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_BACKGROUND_UNLOCK", "Разблокирован '%1$s' фон!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_CARD_SAVED", "Изображение карты сохраняются в галерее!"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_COINS_PURCHASED", "Успешно приобретены монеты: %1$d !"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_COINS_PURCHASED_PACK", "Успешно приобретены монеты: %1$d, а также открыт эксклюзивный пакет головоломок и новый фон!"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_ITEM_PURCHASED", "Успешно приобретены монеты: %1$s !"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_ITEM_PURCHASED_PACK", "Успешно приобретены монеты: %1$s, а также открыт эксклюзивный пакет головоломок и новый фон!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_CLOUD_BEGINNING", "Сравниваются сохранения на устройстве и в облаке ..."));
         texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_CLOUD_SAVING", "Сохранение в облако ..."));
         texts.add(new Text(Constants.LANGUAGE_RU, "ALERT_CLOUD_SAVED", "Игра успешно сохранена в облако!"));
@@ -3429,9 +3426,8 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_RESET_LANGUAGE_CONFIRM", "Сброс языка на английский, деинсталлировать %1$d переводы установленные на данный момент?\n\nReinstall пакеты изменив язык!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_LEADERBOARD_CONFIRM", "Какой пакет вы лидеров хотели бы открыть?"));
         texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_IMPROVE_LANGUAGE", "Улучшение Переводы (форма)"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_COIN_DOUBLER", "Монета дублер"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "DIALOG_UNLOCK_ALL_TILES", "Разблокировать все плитки"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "IAP_ITEM_PURCHASED", "Успешно куплен %1$s!"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "IAP_COIN_DOUBLER", "Монета дублер"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "IAP_UNLOCK_ALL_TILES", "Разблокировать все плитки"));
         texts.add(new Text(Constants.LANGUAGE_RU, "ENVIRONMENT_0_NAME", "Нет"));
         texts.add(new Text(Constants.LANGUAGE_RU, "ENVIRONMENT_1_NAME", "трава"));
         texts.add(new Text(Constants.LANGUAGE_RU, "ENVIRONMENT_2_NAME", "город"));
@@ -3910,8 +3906,8 @@ public class TextHelper {
 
         texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_BACKGROUND_UNLOCK", "Desbloqueado fondo '%1$s'!"));
         texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_CARD_SAVED", "Imagen de la tarjeta guardada en la galería!"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_COINS_PURCHASED", "¡Compró con éxito  %1$d monedas!"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_COINS_PURCHASED_PACK", "¡Compró con éxito %1$d monedas, y desbloqueó un paquete exclusivo de rompecabezas y un nuevo fondo!"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_ITEM_PURCHASED", "¡Compró con éxito %1$s monedas!"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_ITEM_PURCHASED_PACK", "¡Compró con éxito %1$s monedas, y desbloqueó un paquete exclusivo de rompecabezas y un nuevo fondo!"));
         texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_CLOUD_BEGINNING", "Comparando juegos guardados locales y en la nube..."));
         texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_CLOUD_SAVING", "Guardando en la nube..."));
         texts.add(new Text(Constants.LANGUAGE_ES, "ALERT_CLOUD_SAVED", "Juego guardado con éxito en la nube!"));
@@ -4052,9 +4048,8 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_RESET_LANGUAGE_CONFIRM", "¿Reestablecer el idioma de nuevo a inglés, desinstalando las traducciones de %1$d instaladas actualmente?\n\nReinstalar paquetes cambiando el idioma!"));
         texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_LEADERBOARD_CONFIRM", "¿Qué nivel de grupo desea abrir?"));
         texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_IMPROVE_LANGUAGE", "Mejorar Traducciones (Formulario)"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_COIN_DOUBLER", "Doblador De Monedas"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "DIALOG_UNLOCK_ALL_TILES", "Desbloquear Todas Las Baldosas"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "IAP_ITEM_PURCHASED", "¡Compró %1$s Con Éxito!"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "IAP_COIN_DOUBLER", "Doblador De Monedas"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "IAP_UNLOCK_ALL_TILES", "Desbloquear Todas Las Baldosas"));
         texts.add(new Text(Constants.LANGUAGE_ES, "ENVIRONMENT_0_NAME", "Ninguna"));
         texts.add(new Text(Constants.LANGUAGE_ES, "ENVIRONMENT_1_NAME", "Césped"));
         texts.add(new Text(Constants.LANGUAGE_ES, "ENVIRONMENT_2_NAME", "Ciudad"));
@@ -4533,8 +4528,8 @@ public class TextHelper {
 
         texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_BACKGROUND_UNLOCK", "已解锁“%1$s”背景！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_CARD_SAVED", "卡图像已保存到图库！"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_COINS_PURCHASED", "已成功购买%1$d枚硬币！"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_COINS_PURCHASED_PACK", "已成功购买%1$d硬币，并解锁一个独家拼图包和新的背景！"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_ITEM_PURCHASED", "已成功购买%1$s枚硬币！"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_ITEM_PURCHASED_PACK", "已成功购买%1$s硬币，并解锁一个独家拼图包和新的背景！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_CLOUD_BEGINNING", "正在相比本机保存与云存储..."));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_CLOUD_SAVING", "正在保存到云存储..."));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ALERT_CLOUD_SAVED", "成功地将游戏保存到云存储！"));
@@ -4675,9 +4670,8 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_RESET_LANGUAGE_CONFIRM", "将语言重置为英语，卸载当前安装的 %1$d 翻译？\n\n通过更改语言重新安装包！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_LEADERBOARD_CONFIRM", "你想打开哪一个排行榜？"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_IMPROVE_LANGUAGE", "改进翻译（表格）"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_COIN_DOUBLER", "硬幣倍"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "DIALOG_UNLOCK_ALL_TILES", "解鎖所有圖塊"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "IAP_ITEM_PURCHASED", "已成功購買 %1$s！"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "IAP_COIN_DOUBLER", "硬幣倍"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "IAP_UNLOCK_ALL_TILES", "解鎖所有圖塊"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ENVIRONMENT_0_NAME", "没有"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ENVIRONMENT_1_NAME", "草"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ENVIRONMENT_2_NAME", "市"));
@@ -5156,8 +5150,8 @@ public class TextHelper {
 
         texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_BACKGROUND_UNLOCK", "Låste upp \"%1$s\" bakgrund!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_CARD_SAVED", "Kort sparats till galleriet!"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_COINS_PURCHASED", "Köpt %1$d mynt!"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_COINS_PURCHASED_PACK", "Köpt %1$d mynt, och låste upp ett exklusivt pusselpack & en ny bakgrund!"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_ITEM_PURCHASED", "Köpt %1$s mynt!"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_ITEM_PURCHASED_PACK", "Köpt %1$s mynt, och låste upp ett exklusivt pusselpack & en ny bakgrund!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_CLOUD_BEGINNING", "Jämför lokala- och Molnfiler..."));
         texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_CLOUD_SAVING", "Sparat till Molnet..."));
         texts.add(new Text(Constants.LANGUAGE_SV, "ALERT_CLOUD_SAVED", "Spelet har sparats till Molnet!"));
@@ -5298,9 +5292,8 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_RESET_LANGUAGE_CONFIRM", "Återställ språket tillbaka till engelska, avinstallera de %1$d översättningar installerade?\n\nReinstall förpackningar genom att ändra språk!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_LEADERBOARD_CONFIRM", "Vilken pack leader vill du öppna?"));
         texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_IMPROVE_LANGUAGE", "Förbättra översättningar (Form)"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_COIN_DOUBLER", "Myntdubblare"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "DIALOG_UNLOCK_ALL_TILES", "Låsa Upp Alla Brickor"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "IAP_ITEM_PURCHASED", "Framgångsrikt Köpt %1$s!"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "IAP_COIN_DOUBLER", "Myntdubblare"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "IAP_UNLOCK_ALL_TILES", "Låsa Upp Alla Brickor"));
         texts.add(new Text(Constants.LANGUAGE_SV, "ENVIRONMENT_0_NAME", "Ingen"));
         texts.add(new Text(Constants.LANGUAGE_SV, "ENVIRONMENT_1_NAME", "Gräs"));
         texts.add(new Text(Constants.LANGUAGE_SV, "ENVIRONMENT_2_NAME", "Stad"));
