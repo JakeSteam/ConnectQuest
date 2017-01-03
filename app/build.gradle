@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "24.0.0"
+    compileSdkVersion apiVersion
+    buildToolsVersion compilerVersion
 
     defaultConfig {
         applicationId "uk.co.jakelee.cityflow"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion apiVersion
         versionCode 7
         versionName "0.9.3"
         multiDexEnabled true
