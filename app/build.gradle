@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
+    compileSdkVersion 25
     buildToolsVersion "24.0.0"
 
     defaultConfig {
         applicationId "uk.co.jakelee.cityflow"
         minSdkVersion 15
-        targetSdkVersion 24
+        targetSdkVersion 25
         versionCode 7
         versionName "0.9.3"
         multiDexEnabled true
@@ -25,7 +25,8 @@ android {
 }
 
 ext {
-    supportLibraryVersion = '24.2.0'
+    supportLibraryVersion = '25.1.0'
+    playLibraryVersion = '10.0.1'
 }
 
 dependencies {
@@ -39,8 +40,7 @@ dependencies {
     compile "com.android.support:appcompat-v7:$supportLibraryVersion"
     compile "com.android.support:design:$supportLibraryVersion"
     compile "com.android.support:percent:$supportLibraryVersion"
-    compile 'com.google.android.gms:play-services-ads:9.4.0'
-    compile 'com.google.android.gms:play-services:9.6.1'
+    compile "com.google.android.gms:play-services:$playLibraryVersion"
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.github.hotchemi:android-rate:1.0.1'
     compile 'me.grantland:autofittextview:0.2.1'
