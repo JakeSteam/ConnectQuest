@@ -501,6 +501,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "STATISTIC_15_NAME", "Pack 7 Completed"));
         texts.add(new Text(Constants.LANGUAGE_EN, "STATISTIC_16_NAME", "Pack 8 Completed"));
         texts.add(new Text(Constants.LANGUAGE_EN, "STATISTIC_17_NAME", "Pack 9 Completed"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "STATISTIC_18_NAME", "Pack 10 Completed"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SUCCESS_SUPPORT_CODE", "Successfully applied support code!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_0_NAME", "Invisible Tile"));
         texts.add(new Text(Constants.LANGUAGE_EN, "TILE_1_NAME", "Grass Road Corner"));
@@ -1123,6 +1124,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_DE, "STATISTIC_15_NAME", "Pack 7 abgeschlossen"));
         texts.add(new Text(Constants.LANGUAGE_DE, "STATISTIC_16_NAME", "Pack 8 Abgeschlossen"));
         texts.add(new Text(Constants.LANGUAGE_DE, "STATISTIC_17_NAME", "Pack 9 Abgeschlossen"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "STATISTIC_18_NAME", "Pack 10 Abgeschlossen"));
         texts.add(new Text(Constants.LANGUAGE_DE, "SUCCESS_SUPPORT_CODE", "Erfolgreich angewandter Supportcode!"));
         texts.add(new Text(Constants.LANGUAGE_DE, "TILE_0_NAME", "Unsichtbare Kachel"));
         texts.add(new Text(Constants.LANGUAGE_DE, "TILE_1_NAME", "Gras Straße Ecke"));
@@ -1743,8 +1745,9 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_NL, "STATISTIC_13_NAME", "Pack 5 Voltooid"));
         texts.add(new Text(Constants.LANGUAGE_NL, "STATISTIC_14_NAME", "Pack 6 Voltooid"));
         texts.add(new Text(Constants.LANGUAGE_NL, "STATISTIC_15_NAME", "Pack 7 Voltooid"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "STATISTIC_16_NAME", "Pack 8 Voltooide"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "STATISTIC_16_NAME", "Pack 8 Voltooid"));
         texts.add(new Text(Constants.LANGUAGE_NL, "STATISTIC_17_NAME", "Pack 9 Voltooid"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "STATISTIC_18_NAME", "Pack 10 Voltooid"));
         texts.add(new Text(Constants.LANGUAGE_NL, "SUCCESS_SUPPORT_CODE", "Met succes toegepast support code!"));
         texts.add(new Text(Constants.LANGUAGE_NL, "TILE_0_NAME", "Invisible Tile"));
         texts.add(new Text(Constants.LANGUAGE_NL, "TILE_1_NAME", "Gras Weg Hoek"));
@@ -2367,6 +2370,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_FR, "STATISTIC_15_NAME", "Pack 7 Complété"));
         texts.add(new Text(Constants.LANGUAGE_FR, "STATISTIC_16_NAME", "Pack 8 Complété"));
         texts.add(new Text(Constants.LANGUAGE_FR, "STATISTIC_17_NAME", "Pack 9 Complété"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "STATISTIC_18_NAME", "Pack 10 Complété"));
         texts.add(new Text(Constants.LANGUAGE_FR, "SUCCESS_SUPPORT_CODE", "Code d'assistance appliqué avec succès!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "TILE_0_NAME", "Carreau Invisible"));
         texts.add(new Text(Constants.LANGUAGE_FR, "TILE_1_NAME", "Coin de Route sur Herbe"));
@@ -2989,6 +2993,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_PL, "STATISTIC_15_NAME", "Pakiet 7 Zakończony"));
         texts.add(new Text(Constants.LANGUAGE_PL, "STATISTIC_16_NAME", "Pakiet 8 Zakończony"));
         texts.add(new Text(Constants.LANGUAGE_PL, "STATISTIC_17_NAME", "Pakiet 9 Zakończony"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "STATISTIC_18_NAME", "Pakiet 10 Zakończony"));
         texts.add(new Text(Constants.LANGUAGE_PL, "SUCCESS_SUPPORT_CODE", "Z powodzeniem stosowany kod wsparcie!"));
         texts.add(new Text(Constants.LANGUAGE_PL, "TILE_0_NAME", "Płytka Niewidoczne"));
         texts.add(new Text(Constants.LANGUAGE_PL, "TILE_1_NAME", "Trawa Droga Kąt"));
@@ -3610,7 +3615,8 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_RU, "STATISTIC_14_NAME", "Пакет 6 Завершено"));
         texts.add(new Text(Constants.LANGUAGE_RU, "STATISTIC_15_NAME", "Пакет 7 Завершено"));
         texts.add(new Text(Constants.LANGUAGE_RU, "STATISTIC_16_NAME", "Пакет 8 Завершено"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "STATISTIC_17_NAME", "Пакет 9 Завершенный"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "STATISTIC_17_NAME", "Пакет 9 Завершено"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "STATISTIC_18_NAME", "Пакет 10 Завершено"));
         texts.add(new Text(Constants.LANGUAGE_RU, "SUCCESS_SUPPORT_CODE", "Успешно применяется код поддержки!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "TILE_0_NAME", "Невидимый плитка"));
         texts.add(new Text(Constants.LANGUAGE_RU, "TILE_1_NAME", "Трава-роуд угол"));
@@ -4233,6 +4239,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ES, "STATISTIC_15_NAME", "Paquete 7 Completado"));
         texts.add(new Text(Constants.LANGUAGE_ES, "STATISTIC_16_NAME", "Paquete 8 Completado"));
         texts.add(new Text(Constants.LANGUAGE_ES, "STATISTIC_17_NAME", "Paquete 9 Completado"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "STATISTIC_18_NAME", "Paquete 10 Completado"));
         texts.add(new Text(Constants.LANGUAGE_ES, "SUCCESS_SUPPORT_CODE", "Código de soporte aplicado correctamente."));
         texts.add(new Text(Constants.LANGUAGE_ES, "TILE_0_NAME", "Teja Invisible"));
         texts.add(new Text(Constants.LANGUAGE_ES, "TILE_1_NAME", "Rincón del camino de hierba"));
@@ -4855,6 +4862,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ZH, "STATISTIC_15_NAME", "包 7已完成"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "STATISTIC_16_NAME", "包 8已完成"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "STATISTIC_17_NAME", "包 9已完成"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "STATISTIC_18_NAME", "包 10已完成"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "SUCCESS_SUPPORT_CODE", "已成功应用支持代码！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_0_NAME", "不可见的瓷砖"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "TILE_1_NAME", "草路角"));
@@ -5477,6 +5485,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_SV, "STATISTIC_15_NAME", "Pack 7 Slutfört"));
         texts.add(new Text(Constants.LANGUAGE_SV, "STATISTIC_16_NAME", "Pack 8 Slutfört"));
         texts.add(new Text(Constants.LANGUAGE_SV, "STATISTIC_17_NAME", "Pack 9 Slutfört"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "STATISTIC_18_NAME", "Pack 10 Slutfört"));
         texts.add(new Text(Constants.LANGUAGE_SV, "SUCCESS_SUPPORT_CODE", "Tillämpade Servicekoden!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "TILE_0_NAME", "Osynlig Bricka"));
         texts.add(new Text(Constants.LANGUAGE_SV, "TILE_1_NAME", "Gräs Väg Hörn"));
