@@ -483,6 +483,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_ITEM_PURCHASED", "Successfully purchased %1$s for %2$d coins!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_ITEM_PURCHASED_BACKGROUND", "Successfully purchased %1$s for %2$d coins, and unlocked '%3$s'!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "SHOP_MAX_PURCHASED", "Maximum Purchased"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "IAP_ITEM_PURCHASED", "Successfully purchased %1$s!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "STATISTIC_1_NAME", "Puzzles Completed"));
         texts.add(new Text(Constants.LANGUAGE_EN, "STATISTIC_2_NAME", "Tiles Rotated"));
         texts.add(new Text(Constants.LANGUAGE_EN, "STATISTIC_3_NAME", "Quests Completed"));

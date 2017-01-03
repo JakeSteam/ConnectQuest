@@ -17,6 +17,7 @@ import com.anjlab.android.iab.v3.SkuDetails;
 import com.anjlab.android.iab.v3.TransactionDetails;
 
 import java.util.List;
+import java.util.Locale;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
@@ -108,6 +109,7 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
     public void buyIAP(View v) {
         if (canBuyIAPs) {
             bp.purchase(this, (String) v.getTag());
+            AlertHelper.success(this, String.format(Locale.ENGLISH, Text.get("IAP_ITEM_PURCHASED"), Iap.get((String)v.getTag()).getName()));
         } else {
             AlertHelper.error(this, AlertHelper.getError(AlertHelper.Error.IAB_FAILED));
         }

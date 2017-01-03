@@ -84,12 +84,16 @@ public class Iap extends SugarRecord {
     }
 
     public String getName() {
-        String coinString = Text.get("STATISTIC_6_NAME");
-        String allString = Text.get("WORD_ALL");
-        if (getCoins() > 0) {
-            return getCoins() + " " + coinString;
-        } else {
-            return "2x " + allString + "\n" + coinString;
+        switch (iapCode) {
+            case "100_coins":
+            case "1000_coins":
+                return getCoins() + " " + Text.get("STATISTIC_6_NAME");
+            case "x2_coins":
+                return Text.get("IAP_COIN_DOUBLER");
+            case "all_tiles":
+                return Text.get("IAP_UNLOCK_ALL_TILES");
+            default:
+                return "";
         }
     }
 
