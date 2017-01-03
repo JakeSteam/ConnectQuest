@@ -1,12 +1,12 @@
 package uk.co.jakelee.cityflow;
 
-import android.support.multidex.MultiDexApplication;
+import android.app.Application;
 
 import com.orm.SugarContext;
 
 import uk.co.jakelee.cityflow.helper.AdvertHelper;
 
-public class MainApplication extends MultiDexApplication {
+public class MainApplication extends Application {
 
     @Override
     public void onCreate() {
