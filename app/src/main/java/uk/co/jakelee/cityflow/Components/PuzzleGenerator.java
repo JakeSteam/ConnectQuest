@@ -16,6 +16,7 @@ import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.RandomHelper;
 import uk.co.jakelee.cityflow.main.EditorActivity;
 import uk.co.jakelee.cityflow.main.PuzzleActivity;
+import uk.co.jakelee.cityflow.model.Iap;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Tile;
@@ -39,6 +40,7 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
     private int totalTiles;
     private boolean cancelReceived = false;
     private int failedTiles = 0;
+    private boolean hasAllTiles = false;
 
     public PuzzleGenerator(Activity activity, Dialog dialog, int xValue, int yValue, int environmentId, boolean blankPuzzle, boolean shuffleAndPlay) {
         this.activity = activity;
@@ -48,12 +50,13 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
         this.environmentId = environmentId;
         this.blankPuzzle = blankPuzzle;
         this.shuffleAndPlay = shuffleAndPlay;
+        this.hasAllTiles = Iap.hasAllTiles();
 
         this.progressText = (TextView) dialog.findViewById(R.id.progressText);
         this.progressPercentage = (TextView) dialog.findViewById(R.id.progressPercentage);
     }
 
-    private static List<Tile> getPossibleTiles(int puzzleId, List<Tile> existingTiles, int tileX, int tileY, int maxX, int maxY, int environmentId) {
+    private List<Tile> getPossibleTiles(int puzzleId, List<Tile> existingTiles, int tileX, int tileY, int maxX, int maxY, int environmentId) {
         Tile southTile = tileY == 0 ? new Tile() : existingTiles.get(existingTiles.size() - 1); // Get the south tile, or an empty one if we're starting a new column
         Tile westTile = tileX == 0 ? new Tile() : existingTiles.get(existingTiles.size() - (maxY + 1)); // Get the west tile (#Y tiles previous), or empty if new row
 
@@ -77,13 +80,13 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
         return tiles;
     }
 
-    private static List<Tile> getPossibleTilesByRotation(int puzzleId, int x, int y, int environmentId, int rotation, int nFlow, int eFlow, int sFlow, int wFlow, int nHeight, int eHeight, int sHeight, int wHeight) {
+    private List<Tile> getPossibleTilesByRotation(int puzzleId, int x, int y, int environmentId, int rotation, int nFlow, int eFlow, int sFlow, int wFlow, int nHeight, int eHeight, int sHeight, int wHeight) {
         String flowSql = String.format(Locale.ENGLISH, "%1$s AND %2$s AND %3$s AND %4$s",
                 match("flow_north", nFlow),
                 match("flow_east", eFlow),
                 match("flow_south", sFlow),
                 match("flow_west", wFlow));
-        String forceFlowSql = (x == 0 && y == 0 ? " AND (flow_north > 0 OR flow_east > 0 OR flow_south > 0 OR flow_west > 0)" : ""); // This can be converted to use match();
+        String forceFlowSql = (x == 0 && y == 0 ? " AND (flow_north > 0 OR flow_east > 0 OR flow_south > 0 OR flow_west > 0)" : "");
 
         String heightSql = String.format(Locale.ENGLISH, "%1$s AND %2$s AND %3$s AND %4$s",
                 match("height_north", nHeight),
@@ -91,8 +94,9 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
                 match("height_south", sHeight),
                 match("height_west", wHeight));
 
-        String sql = String.format(Locale.ENGLISH, "environment_id %1$s %2$d AND " + flowSql + forceFlowSql + " AND " + heightSql + " AND status = %3$d",
+        String sql = String.format(Locale.ENGLISH, "environment_id %1$s %2$d AND " + flowSql + forceFlowSql + " AND " + heightSql + " AND status %3$s %4$d",
                 environmentId > 0 ? "=" : ">=", environmentId,
+                hasAllTiles ? ">=" : "=",
                 Constants.TILE_STATUS_UNLOCKED);
         List<TileType> tileTypes = TileType.find(TileType.class, sql);
 

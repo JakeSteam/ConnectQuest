@@ -273,6 +273,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         iaps.add(new Iap("100_coins", 100, 0));
         iaps.add(new Iap("1000_coins", 1000, 0));
         iaps.add(new Iap("x2_coins", 0, 1));
+        iaps.add(new Iap("all_tiles", 0, 1));
         Iap.saveInTx(iaps);
     }
 

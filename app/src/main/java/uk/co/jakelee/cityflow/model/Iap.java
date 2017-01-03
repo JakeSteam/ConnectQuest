@@ -30,7 +30,12 @@ public class Iap extends SugarRecord {
     }
 
     public static boolean hasCoinDoubler() {
-        Iap iap = Iap.get("x2_doubler");
+        Iap iap = Iap.get("x2_coins");
+        return iap != null && iap.getPurchases() > 0;
+    }
+
+    public static boolean hasAllTiles() {
+        Iap iap = Iap.get("all_tiles");
         return iap != null && iap.getPurchases() > 0;
     }
 

@@ -160,15 +160,15 @@ public class DisplayHelper {
         return itemButton;
     }
 
-    public ImageView createTileIcon(TileType tileType, int width, int height, boolean displayStatus) {
+    public ImageView createTileIcon(TileType tileType, int width, int height, boolean displayLockedStatus) {
         int padding = dpToPixel(3);
         ImageView tileIcon = new ImageView(context);
-        if (displayStatus && tileType.getStatus() == Constants.TILE_STATUS_UNPURCHASED) {
-            tileIcon.setImageDrawable(createDrawable(R.drawable.tile_unbought, width, height));
-        } else if (displayStatus && tileType.getStatus() == Constants.TILE_STATUS_LOCKED) {
-            tileIcon.setImageDrawable(createDrawable(R.drawable.tile_locked, width, height));
-        } else {
+        if (!displayLockedStatus || tileType.getStatus() == Constants.TILE_STATUS_UNLOCKED) {
             tileIcon.setImageDrawable(createDrawable(getTileDrawableID(tileType.getTypeId()), width, height));
+        } else if (tileType.getStatus() == Constants.TILE_STATUS_UNPURCHASED) {
+            tileIcon.setImageDrawable(createDrawable(R.drawable.tile_unbought, width, height));
+        } else if (tileType.getStatus() == Constants.TILE_STATUS_LOCKED) {
+            tileIcon.setImageDrawable(createDrawable(R.drawable.tile_locked, width, height));
         }
         tileIcon.setPadding(padding, padding, padding, padding);
 

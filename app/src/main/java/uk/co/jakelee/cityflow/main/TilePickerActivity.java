@@ -25,6 +25,7 @@ import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
+import uk.co.jakelee.cityflow.model.Iap;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Setting;
@@ -143,11 +144,12 @@ public class TilePickerActivity extends Activity {
         tileContainer.removeAllViews();
 
         boolean displayLockedTiles = Setting.getSafeBoolean(Constants.SETTING_HIDE_LOCKED_TILES);
+        boolean hasAllTiles = Iap.hasAllTiles();
         String whereClause = String.format(Locale.ENGLISH, "%1$s AND %2$s AND %3$s %4$s environment_id ASC",
                 getEnvironmentSQL(),
                 getFlowSQL(),
                 getHeightSQL(),
-                displayLockedTiles ? "ORDER BY status ASC," : "AND status = " + Constants.TILE_STATUS_UNLOCKED + " ORDER BY");
+                hasAllTiles ? "ORDER BY" : displayLockedTiles ? "ORDER BY status ASC," : "AND status = " + Constants.TILE_STATUS_UNLOCKED + " ORDER BY");
         List<TileType> tileTypes = TileType.find(TileType.class, whereClause);
 
         int numTiles = tileTypes.size();
@@ -155,7 +157,8 @@ public class TilePickerActivity extends Activity {
         for (int tileIndex = 1; tileIndex <= numTiles; tileIndex++) {
             final TileType tileType = tileTypes.get(tileIndex - 1);
 
-            ImageView tileImage = dh.createTileIcon(tileType, 80, 80, true);
+            // If they have all tiles IAP, just display as unlocked
+            ImageView tileImage = dh.createTileIcon(tileType, 80, 80, !hasAllTiles);
             tileImage.setTag(tileType);
             tileImage.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
@@ -179,11 +182,11 @@ public class TilePickerActivity extends Activity {
     }
 
     public void selectTile(TileType tileType) {
+        boolean isUnlocked = Iap.hasAllTiles();
+
         switch (tileType.getStatus()) {
             case Constants.TILE_STATUS_UNLOCKED:
-                tile.setTileTypeId(tileType.getTypeId());
-                tile.save();
-                this.finish();
+                isUnlocked = true;
                 break;
             case Constants.TILE_STATUS_LOCKED:
                 Puzzle puzzle = tileType.getRequiredPuzzle();
@@ -197,6 +200,12 @@ public class TilePickerActivity extends Activity {
                 AlertHelper.info(this, String.format(Locale.ENGLISH, Text.get("UI_TILE_UNLOCK_SHOP"),
                         tileType.getName()));
                 break;
+        }
+
+        if (isUnlocked) {
+            tile.setTileTypeId(tileType.getTypeId());
+            tile.save();
+            this.finish();
         }
     }
 
