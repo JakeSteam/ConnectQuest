@@ -10,7 +10,6 @@ android {
         targetSdkVersion apiVersion
         versionCode 7
         versionName "0.9.3"
-        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -27,7 +26,6 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':BaseGameUtils')
-    compile 'com.android.support:multidex:1.0.1'
     compile 'com.github.satyan:sugar:1.5'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.thomashaertel:multispinner:0.1.1'
