@@ -73,7 +73,7 @@ public class QuestActivity extends Activity {
     }
 
     public void redditSchedule(View view) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.reddit.com/r/CityFlow/comments/5f4va6/quest_list/"));
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.reddit.com/r/CityFlow/wiki/guides/quests"));
         startActivity(browserIntent);
     }
 
