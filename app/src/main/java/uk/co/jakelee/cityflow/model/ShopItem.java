@@ -169,6 +169,10 @@ public class ShopItem extends SugarRecord {
             Pack targetPack = Pack.getPack(getMiscData());
             targetPack.setPurchased(true);
             targetPack.save();
+        } else if (getItemId() == Constants.ITEM_ZEN_MODE) {
+            Setting zenMode = Setting.get(Constants.SETTING_ZEN_MODE);
+            zenMode.setBooleanValue(true);
+            zenMode.save();
         }
     }
 

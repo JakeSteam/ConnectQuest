@@ -161,7 +161,7 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
         int boostMove = Boost.getOwnedCount(Constants.BOOST_MOVE);
         int boostShuffle = Boost.getOwnedCount(Constants.BOOST_SHUFFLE);
 
-        if (Setting.isTrue(Constants.SETTING_HIDE_UNSTOCKED_BOOSTS)) {
+        if (Setting.getSafeBoolean(Constants.SETTING_HIDE_UNSTOCKED_BOOSTS)) {
             findViewById(R.id.undoBoost).setVisibility(boostUndo > 0 ? View.VISIBLE : View.INVISIBLE);
             findViewById(R.id.timeBoost).setVisibility(boostTime > 0 ? View.VISIBLE : View.INVISIBLE);
             findViewById(R.id.moveBoost).setVisibility(boostMove > 0 ? View.VISIBLE : View.INVISIBLE);
@@ -226,12 +226,12 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     }
 
     public void startTimeTakenTimer() {
-        if (!Setting.isTrue(Constants.SETTING_ZEN_MODE)) {
+        if (!Setting.getSafeBoolean(Constants.SETTING_ZEN_MODE)) {
             findViewById(R.id.moveCounter).setVisibility(View.VISIBLE);
             findViewById(R.id.puzzleTimer).setVisibility(View.VISIBLE);
-            handler.post(updateTimerThread);
         }
 
+        handler.post(updateTimerThread);
         findViewById(R.id.controlWrapper).setVisibility(View.VISIBLE);
         findViewById(R.id.topUI).setVisibility(View.VISIBLE);
 

@@ -42,13 +42,6 @@ public class Setting extends SugarRecord {
         this.stringValue = stringValue;
     }
 
-    public static boolean isTrue(int settingId) {
-        Setting setting = Select.from(Setting.class).where(
-                Condition.prop("setting_id").eq(settingId)).first();
-
-        return setting != null && setting.getBooleanValue();
-    }
-
     public static Setting get(int settingId) {
         return Select.from(Setting.class).where(
                 Condition.prop("setting_id").eq(settingId)).first();
