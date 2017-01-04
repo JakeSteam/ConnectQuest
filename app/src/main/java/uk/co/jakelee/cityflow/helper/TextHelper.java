@@ -411,7 +411,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_27_NAME", "Unlock Pack 8"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_27_DESC", "Instantly unlock pack 8, without collecting all stars."));
         texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_28_NAME", "Zen Mode"));
-        texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_28_DESC", "Hide puzzle timer and move counter, for a more relaxing experience!"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_28_DESC", "Auto-earn time star and hide timer / move counter, for a more relaxing experience!"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_37_NAME", "Unlock Pack 10"));
         texts.add(new Text(Constants.LANGUAGE_EN, "ITEM_37_DESC", "Instantly unlock pack 10, without collecting all stars."));
         texts.add(new Text(Constants.LANGUAGE_EN, "LANGUAGE_0_NAME", "English"));
@@ -1042,7 +1042,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_DE, "ITEM_27_NAME", "Entsperren 8"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ITEM_27_DESC", "Packen 8 sofort entriegeln, ohne alle Sterne zu sammeln."));
         texts.add(new Text(Constants.LANGUAGE_DE, "ITEM_28_NAME", "Zen-Modus"));
-        texts.add(new Text(Constants.LANGUAGE_DE, "ITEM_28_DESC", "Hide Puzzle-Timer und bewegen Zähler, für eine entspannende Erfahrung!"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "ITEM_28_DESC", "Auto-verdienen Sie Zeitstern und verstecken Sie Timer / verschieben Sie Zählwerk, für eine entspannende Erfahrung!"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ITEM_37_NAME", "Entsperren 10"));
         texts.add(new Text(Constants.LANGUAGE_DE, "ITEM_37_DESC", "Packen 10 sofort entriegeln, ohne alle Sterne zu sammeln."));
         texts.add(new Text(Constants.LANGUAGE_DE, "METRIC_TILES_EARNED", "Fliesen verdient"));
@@ -1664,7 +1664,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_NL, "ITEM_27_NAME", "Ontsluiten Pack 8"));
         texts.add(new Text(Constants.LANGUAGE_NL, "ITEM_27_DESC", "Onmiddellijk ontgrendelen pak 8, zonder dat het verzamelen van alle sterren."));
         texts.add(new Text(Constants.LANGUAGE_NL, "ITEM_28_NAME", "Zen-modus"));
-        texts.add(new Text(Constants.LANGUAGE_NL, "ITEM_28_DESC", "Hide puzzel timer en beweeg teller, voor een meer ontspannen ervaring!"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "ITEM_28_DESC", "Auto-verdien tijd ster en timer verbergen / verplaatsen teller, voor een meer ontspannen ervaring!"));
         texts.add(new Text(Constants.LANGUAGE_NL, "ITEM_37_NAME", "Ontsluiten Pack 10"));
         texts.add(new Text(Constants.LANGUAGE_NL, "ITEM_37_DESC", "Onmiddellijk ontgrendelen pak 10, zonder dat het verzamelen van alle sterren."));
         texts.add(new Text(Constants.LANGUAGE_NL, "METRIC_TILES_EARNED", "Tegels Verdiende"));
@@ -2286,7 +2286,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_FR, "ITEM_27_NAME", "Déverouiller Pack 8."));
         texts.add(new Text(Constants.LANGUAGE_FR, "ITEM_27_DESC", "Déverrouillez instantanément le Pack 8, sans devoir collecter toutes les étoiles."));
         texts.add(new Text(Constants.LANGUAGE_FR, "ITEM_28_NAME", "Mode Zen"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "ITEM_28_DESC", "Cachez le chronomètre et déplacez le compteur, pour une expérience plus relaxante!"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "ITEM_28_DESC", "Auto-gagner l'étoile du temps et masquer temporisateur / compteur de mouvement, pour une expérience plus relaxante!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "ITEM_37_NAME", "Déverouiller Pack 10."));
         texts.add(new Text(Constants.LANGUAGE_FR, "ITEM_37_DESC", "Déverrouillez instantanément le Pack 10, sans devoir collecter toutes les étoiles."));
         texts.add(new Text(Constants.LANGUAGE_FR, "METRIC_TILES_EARNED", "Carreaux gagnés"));
@@ -2908,7 +2908,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_PL, "ITEM_27_NAME", "Odblokuj Pakiet 8"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ITEM_27_DESC", "Natychmiast odblokować pakiet 8, nie zbierając wszystkie gwiazdy."));
         texts.add(new Text(Constants.LANGUAGE_PL, "ITEM_28_NAME", "Tryb Zen"));
-        texts.add(new Text(Constants.LANGUAGE_PL, "ITEM_28_DESC", "Ukryj puzzle timer i przenieść licznik, bardziej relaksujące doświadczenie!"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "ITEM_28_DESC", "Auto-zarobić gwiazda czasu i ukryć stoper / licznik przenieść na bardziej relaksujące doświadczenie!"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ITEM_37_NAME", "Odblokuj Pakiet 10"));
         texts.add(new Text(Constants.LANGUAGE_PL, "ITEM_37_DESC", "Natychmiast odblokować pakiet 10, nie zbierając wszystkie gwiazdy."));
         texts.add(new Text(Constants.LANGUAGE_PL, "METRIC_TILES_EARNED", "Płytki Zdobył"));
@@ -3530,7 +3530,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_RU, "ITEM_27_NAME", "Разблокировка обновления 8"));
         texts.add(new Text(Constants.LANGUAGE_RU, "ITEM_27_DESC", "Мгновенно разблокировать пакет 8, не собирая всех звезд."));
         texts.add(new Text(Constants.LANGUAGE_RU, "ITEM_28_NAME", "Режим Zen"));
-        texts.add(new Text(Constants.LANGUAGE_RU, "ITEM_28_DESC", "Скрыть таймер головоломки и перемещать счетчик, для более спокойного опыта!"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "ITEM_28_DESC", "Авто-заработать времени звезду и скрыть таймер / счетчик перемещения, для более спокойного опыта!"));
         texts.add(new Text(Constants.LANGUAGE_RU, "ITEM_37_NAME", "Разблокировка обновления 10"));
         texts.add(new Text(Constants.LANGUAGE_RU, "ITEM_37_DESC", "Мгновенно разблокировать пакет 10, не собирая всех звезд."));
         texts.add(new Text(Constants.LANGUAGE_RU, "METRIC_TILES_EARNED", "плитки Заработанные"));
@@ -4152,7 +4152,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ES, "ITEM_27_NAME", "Desbloquear paquete 8"));
         texts.add(new Text(Constants.LANGUAGE_ES, "ITEM_27_DESC", "Desbloquee al instante el paquete 8, sin recoger todas las estrellas."));
         texts.add(new Text(Constants.LANGUAGE_ES, "ITEM_28_NAME", "Modo Zen"));
-        texts.add(new Text(Constants.LANGUAGE_ES, "ITEM_28_DESC", "¡Esconde el temporizador del rompecabezas y mueva el mostrador, para una experiencia más relajante!"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "ITEM_28_DESC", "¡Auto-ganar tiempo estrella y ocultar temporizador / mover contador, para una experiencia más relajante!"));
         texts.add(new Text(Constants.LANGUAGE_ES, "ITEM_37_NAME", "Desbloquear paquete 10"));
         texts.add(new Text(Constants.LANGUAGE_ES, "ITEM_37_DESC", "Desbloquee al instante el paquete 10, sin recoger todas las estrellas."));
         texts.add(new Text(Constants.LANGUAGE_ES, "METRIC_TILES_EARNED", "Mosaicos Ganados"));
@@ -4774,7 +4774,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ZH, "ITEM_27_NAME", "解锁包8"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ITEM_27_DESC", "立即解锁包8，不收集所有的星星。"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ITEM_28_NAME", "禅模式"));
-        texts.add(new Text(Constants.LANGUAGE_ZH, "ITEM_28_DESC", "隐藏谜题计时器和移动计数器，为更放松的体验！"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "ITEM_28_DESC", "自動獲取時間星和隱藏計時器/移動計數器，更輕鬆的體驗！"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ITEM_37_NAME", "解锁包10"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "ITEM_37_DESC", "立即解锁包10，不收集所有的星星。"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "METRIC_TILES_EARNED", "获得的砖"));
@@ -5396,7 +5396,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_SV, "ITEM_27_NAME", "Lås upp Pack 8"));
         texts.add(new Text(Constants.LANGUAGE_SV, "ITEM_27_DESC", "Lås genast upp Pack 8, utan att samla alla stjärnor."));
         texts.add(new Text(Constants.LANGUAGE_SV, "ITEM_28_NAME", "Zen Läge"));
-        texts.add(new Text(Constants.LANGUAGE_SV, "ITEM_28_DESC", "Dölj timer och dragräknare, för en mer avkopplande upplevelse!"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "ITEM_28_DESC", "Auto-tjäna tid stjärna och dölja timer / flytta disk, för en mer avkopplande upplevelse!"));
         texts.add(new Text(Constants.LANGUAGE_SV, "ITEM_37_NAME", "Lås upp Pack 10"));
         texts.add(new Text(Constants.LANGUAGE_SV, "ITEM_37_DESC", "Lås genast upp Pack 10, utan att samla alla stjärnor."));
         texts.add(new Text(Constants.LANGUAGE_SV, "METRIC_TILES_EARNED", "Brickor Tjänade"));

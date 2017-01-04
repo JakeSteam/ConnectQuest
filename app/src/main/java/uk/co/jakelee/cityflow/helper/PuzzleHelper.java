@@ -32,7 +32,7 @@ public class PuzzleHelper {
         if (timeTaken >= 0 && (timeTaken < puzzle.getBestTime() || puzzle.getBestTime() == 0)) {
             puzzle.setBestTime(timeTaken);
             newBestTime = true;
-            if (timeTaken <= puzzle.getParTime() && !puzzle.hasTimeStar()) {
+            if ((timeTaken <= puzzle.getParTime() || Setting.getSafeBoolean(Constants.SETTING_ZEN_MODE)) && !puzzle.hasTimeStar()) {
                 puzzle.setTimeStar(true);
                 if (puzzleCustom != null) {
                     puzzle.setParTime(timeTaken);
