@@ -87,6 +87,7 @@ public class Iap extends SugarRecord {
         switch (iapCode) {
             case "100_coins":
             case "1000_coins":
+            case "10000_coins":
                 return getCoins() + " " + Text.get("STATISTIC_6_NAME");
             case "x2_coins":
                 return Text.get("IAP_COIN_DOUBLER");

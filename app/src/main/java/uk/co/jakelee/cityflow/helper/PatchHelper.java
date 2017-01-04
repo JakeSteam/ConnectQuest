@@ -270,10 +270,11 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         Iap.deleteAll(Iap.class);
 
         List<Iap> iaps = new ArrayList<>();
-        iaps.add(new Iap("100_coins", 100, 0));
-        iaps.add(new Iap("1000_coins", 1000, 0));
         iaps.add(new Iap("x2_coins", 0, 1));
         iaps.add(new Iap("all_tiles", 0, 1));
+        iaps.add(new Iap("100_coins", 100, 0));
+        iaps.add(new Iap("1000_coins", 1000, 0));
+        iaps.add(new Iap("10000_coins", 10000, 0));
         Iap.saveInTx(iaps);
     }
 
@@ -6780,7 +6781,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         statistics.add(new Statistic(Constants.STATISTIC_QUESTS_COMPLETED, 0, 0));
         statistics.add(new Statistic(Constants.STATISTIC_PUZZLES_COMPLETED_FULLY, 0, 0));
         statistics.add(new Statistic(Constants.STATISTIC_BOOSTS_USED, 0, 0));
-        statistics.add(new Statistic(Constants.STATISTIC_CURRENCY, 123));
+        statistics.add(new Statistic(Constants.STATISTIC_CURRENCY, 100));
         statistics.add(new Statistic(Constants.STATISTIC_TAPJOY_COINS, 0));
         statistics.add(new Statistic(Constants.STATISTIC_LAST_AUTOSAVE, 0L));
         statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_1, 0, 0));
@@ -6815,23 +6816,23 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         shopItems.add(new ShopItem(Constants.ITEM_BOOST_TIME_UPGRADE, Constants.STORE_CATEGORY_UPGRADES, Constants.BOOST_UNDO, 0, 150, 5, true));
         shopItems.add(new ShopItem(Constants.ITEM_BOOST_MOVES_UPGRADE, Constants.STORE_CATEGORY_UPGRADES, Constants.BOOST_MOVE, 0, 150, 5, true));
         shopItems.add(new ShopItem(Constants.ITEM_BOOST_SHUFFLE_UPGRADE, Constants.STORE_CATEGORY_UPGRADES, Constants.BOOST_SHUFFLE, 0, 100, 1, true));
-        shopItems.add(new ShopItem(Constants.ITEM_TILE_0, Constants.STORE_CATEGORY_TILES, 0, 0, 1500, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_TILE_0, Constants.STORE_CATEGORY_TILES, 0, 0, 600, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_TILE_10, Constants.STORE_CATEGORY_TILES, 10, 0, 400, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_TILE_58, Constants.STORE_CATEGORY_TILES, 58, 0, 400, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_TILE_78, Constants.STORE_CATEGORY_TILES, 78, 0, 500, 1, false));
-        shopItems.add(new ShopItem(Constants.ITEM_TILE_116, Constants.STORE_CATEGORY_TILES, 116, 0, 800, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_TILE_116, Constants.STORE_CATEGORY_TILES, 116, 0, 200, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_TILE_134, Constants.STORE_CATEGORY_TILES, 134, 0, 200, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_TILE_157, Constants.STORE_CATEGORY_TILES, 157, 0, 300, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_TILE_172, Constants.STORE_CATEGORY_TILES, 172, 0, 100, 1, false));
-        shopItems.add(new ShopItem(Constants.ITEM_PACK_2, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 2, 1000, 1, false));
-        shopItems.add(new ShopItem(Constants.ITEM_PACK_3, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 3, 1000, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_PACK_2, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 2, 400, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_PACK_3, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 3, 600, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_PACK_4, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 4, 1300, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_PACK_5, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 5, 1300, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_PACK_6, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 6, 1300, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_PACK_7, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 7, 1800, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_PACK_8, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 8, 1800, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_MAX_CARS, Constants.STORE_CATEGORY_MISC, 400, 1, false));
-        shopItems.add(new ShopItem(Constants.ITEM_ZEN_MODE, Constants.STORE_CATEGORY_MISC, 100, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_ZEN_MODE, Constants.STORE_CATEGORY_MISC, 200, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_PACK_10, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 10, 1800, 1, false));
         ShopItem.saveInTx(shopItems);
     }
