@@ -20,7 +20,6 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -91,6 +90,7 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
         setContentView(R.layout.activity_puzzle);
 
         playSounds = Setting.getSafeBoolean(Constants.SETTING_SOUNDS);
+        SoundHelper.getInstance(this).playOrResumeMusic(SoundHelper.AUDIO.puzzle);
         dh = DisplayHelper.getInstance(this);
 
         Intent intent = getIntent();
@@ -121,6 +121,12 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
             vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
         }
 
+        if (intent.getIntExtra(Constants.INTENT_FAILED_TILES, 0) > 0) {
+            AlertHelper.error(this, String.format(Locale.ENGLISH,
+                    AlertHelper.getError(AlertHelper.Error.GENERATION_INCOMPLETE),
+                    intent.getIntExtra(Constants.INTENT_FAILED_TILES, 0)));
+        }
+
         displayTutorial();
     }
 
@@ -128,13 +134,6 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     protected void onPause() {
         super.onPause();
         pause();
-        SoundHelper.getInstance(this).stopAudio(true);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        SoundHelper.getInstance(this).playOrResumeMusic(SoundHelper.AUDIO.puzzle);
     }
 
     private void displayTutorial() {
@@ -156,7 +155,7 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
         int boostMove = Boost.getOwnedCount(Constants.BOOST_MOVE);
         int boostShuffle = Boost.getOwnedCount(Constants.BOOST_SHUFFLE);
 
-        if (Setting.isTrue(Constants.SETTING_HIDE_UNSTOCKED_BOOSTS)) {
+        if (Setting.getSafeBoolean(Constants.SETTING_HIDE_UNSTOCKED_BOOSTS)) {
             findViewById(R.id.undoBoost).setVisibility(boostUndo > 0 ? View.VISIBLE : View.INVISIBLE);
             findViewById(R.id.timeBoost).setVisibility(boostTime > 0 ? View.VISIBLE : View.INVISIBLE);
             findViewById(R.id.moveBoost).setVisibility(boostMove > 0 ? View.VISIBLE : View.INVISIBLE);
@@ -181,6 +180,8 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
         Puzzle.getPuzzle(puzzleId).resetTileRotations();
         exitedPuzzle = true;
         handler.removeCallbacksAndMessages(null);
+        SoundHelper.stopIfExiting(this);
+        finish();
     }
 
     public void prefetchImages(List<Tile> tiles) {
@@ -221,12 +222,12 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     }
 
     public void startTimeTakenTimer() {
-        if (!Setting.isTrue(Constants.SETTING_ZEN_MODE)) {
+        if (!Setting.getSafeBoolean(Constants.SETTING_ZEN_MODE)) {
             findViewById(R.id.moveCounter).setVisibility(View.VISIBLE);
             findViewById(R.id.puzzleTimer).setVisibility(View.VISIBLE);
-            handler.post(updateTimerThread);
         }
 
+        handler.post(updateTimerThread);
         findViewById(R.id.controlWrapper).setVisibility(View.VISIBLE);
         findViewById(R.id.topUI).setVisibility(View.VISIBLE);
 
@@ -234,7 +235,7 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     }
 
     public void populateTiles(List<Tile> tiles) {
-        optimumScale = dh.setupTileDisplay(this, tiles, (ZoomableViewGroup) findViewById(R.id.tileContainer), puzzleId, null, null, false).second;
+        optimumScale = dh.setupTileDisplay(this, tiles, (ZoomableViewGroup) findViewById(R.id.tileContainer), null, null, false).getOptimumScale();
     }
 
     public void zoomIn(View v) {

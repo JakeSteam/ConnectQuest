@@ -313,7 +313,7 @@ public class SettingsActivity extends AllowMeActivity {
         TextHelper.installLanguagePack(Constants.LANGUAGE_EN);
 
         populateText();
-        createDropdowns();
+        populateSettings();
     }
 
     public void tutorialAction(View v) {

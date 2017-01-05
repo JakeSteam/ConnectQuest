@@ -16,9 +16,10 @@ public class StatisticHelper {
         packStats.add(Constants.STATISTIC_COMPLETE_PACK_7);
         packStats.add(Constants.STATISTIC_COMPLETE_PACK_8);
         packStats.add(Constants.STATISTIC_COMPLETE_PACK_9);
+        packStats.add(Constants.STATISTIC_COMPLETE_PACK_10);
 
         if (packStats.contains(statistic.getStatisticId())) {
-            return statistic.getIntValue() == 1 ? "True" : "False";
+            return statistic.getIntValue() == 1 ? "Yes" : "No";
         }
 
         switch (statistic.getStatisticType()) {

@@ -17,6 +17,7 @@ import com.anjlab.android.iab.v3.SkuDetails;
 import com.anjlab.android.iab.v3.TransactionDetails;
 
 import java.util.List;
+import java.util.Locale;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
@@ -72,16 +73,18 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
             bp.consumePurchase(productId);
         }
 
-        Iap.get(productId).purchase();
+        Iap iap = Iap.get(productId);
+        iap.purchase();
 
         Pack iapUnlockedPack = Pack.getPack(9);
-        if (iapUnlockedPack.isPurchased()) {
-            AlertHelper.success(this, Text.get("ALERT_COINS_PURCHASED_PACK"));
+        if (!iapUnlockedPack.isPurchased()) {
             Background.get(uk.co.jakelee.cityflow.helper.Constants.BACKGROUND_SUMMER).unlock();
             iapUnlockedPack.setPurchased(true);
             iapUnlockedPack.save();
+
+            AlertHelper.success(this, String.format(Locale.ENGLISH, Text.get("ALERT_ITEM_PURCHASED_PACK"), iap.getName()));
         } else {
-            AlertHelper.success(this, Text.get("ALERT_COINS_PURCHASED"));
+            AlertHelper.success(this, String.format(Locale.ENGLISH, Text.get("ALERT_ITEM_PURCHASED"), iap.getName()));
         }
 
         populateText();
@@ -147,6 +150,12 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
                 ((TextView) iapButton.findViewById(R.id.itemPrice)).setText(Text.get("WORD_NA"));
             } else {
                 ((TextView) iapButton.findViewById(R.id.itemPrice)).setText("?.??");
+                iapButton.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        buyIAP(v);
+                    }
+                });
+                iapButton.setTag(iap.getIapCode());
             }
 
             scrollView.addView(iapButton, layoutParams);

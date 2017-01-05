@@ -158,6 +158,8 @@ public class Pack extends SugarRecord {
             case 9:
                 packCompleteStatistic = Constants.STATISTIC_COMPLETE_PACK_9;
                 break;
+            case 10:
+                packCompleteStatistic = Constants.STATISTIC_COMPLETE_PACK_10;
         }
         if (packCompleteStatistic > 0) {
             Statistic.increaseByOne(packCompleteStatistic);

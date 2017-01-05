@@ -1,37 +1,32 @@
 apply plugin: 'com.android.application'
 
+//noinspection GroovyMissingReturnStatement
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.0"
+    compileSdkVersion apiVersion
+    buildToolsVersion compilerVersion
 
     defaultConfig {
         applicationId "uk.co.jakelee.cityflow"
         minSdkVersion 15
-        targetSdkVersion 24
-        versionCode 7
-        versionName "0.9.3"
-        multiDexEnabled true
+        targetSdkVersion apiVersion
+        versionCode 9
+        versionName "1.0.0"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.pro'
         }
         debug {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-debug.pro'
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.pro'
         }
     }
-}
-
-ext {
-    supportLibraryVersion = '24.2.0'
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':BaseGameUtils')
-    compile 'com.android.support:multidex:1.0.1'
     compile 'com.github.satyan:sugar:1.5'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.thomashaertel:multispinner:0.1.1'
@@ -39,8 +34,11 @@ dependencies {
     compile "com.android.support:appcompat-v7:$supportLibraryVersion"
     compile "com.android.support:design:$supportLibraryVersion"
     compile "com.android.support:percent:$supportLibraryVersion"
-    compile 'com.google.android.gms:play-services-ads:9.4.0'
-    compile 'com.google.android.gms:play-services:9.6.1'
+    compile "com.google.android.gms:play-services-ads:$playLibraryVersion"
+    compile "com.google.android.gms:play-services-auth:$playLibraryVersion"
+    compile "com.google.android.gms:play-services-games:$playLibraryVersion"
+    compile "com.google.android.gms:play-services-gcm:$playLibraryVersion"
+    compile "com.google.android.gms:play-services-vision:$playLibraryVersion"
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.github.hotchemi:android-rate:1.0.1'
     compile 'me.grantland:autofittextview:0.2.1'

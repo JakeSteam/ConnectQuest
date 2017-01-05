@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,10 +12,13 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Locale;
 
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.components.TileDisplaySetup;
 import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
 import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
+import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
@@ -49,6 +51,12 @@ public class EditorActivity extends Activity implements PuzzleDisplayer {
         if (intent.getIntExtra(Constants.INTENT_ENVIRONMENT, 0) > 0) {
             TileFilter tileFilter = TileFilter.quickCreateFilter(intent.getIntExtra(Constants.INTENT_ENVIRONMENT, 0));
             getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE).edit().putString("tilePickerEnvironments", tileFilter.selected.toString()).apply();
+        }
+
+        if (intent.getIntExtra(Constants.INTENT_FAILED_TILES, 0) > 0) {
+            AlertHelper.error(this, String.format(Locale.ENGLISH,
+                    AlertHelper.getError(AlertHelper.Error.GENERATION_INCOMPLETE),
+                    intent.getIntExtra(Constants.INTENT_FAILED_TILES, 0)));
         }
         picasso = Picasso.with(this);
 
@@ -103,9 +111,9 @@ public class EditorActivity extends Activity implements PuzzleDisplayer {
 
 
     public void populateTiles(List<Tile> tiles) {
-        Pair<ImageView, Float> tileDisplayResults = dh.setupTileDisplay(this, tiles, (ZoomableViewGroup) findViewById(R.id.tileContainer), puzzleId, selectedTile, selectedTileImage, true);
-        selectedTileImage = tileDisplayResults.first;
-        optimumScale = tileDisplayResults.second;
+        TileDisplaySetup tileDisplaySetup = dh.setupTileDisplay(this, tiles, (ZoomableViewGroup) findViewById(R.id.tileContainer), selectedTile, selectedTileImage, true);
+        selectedTileImage = tileDisplaySetup.getSelectedImageView();
+        optimumScale = tileDisplaySetup.getOptimumScale();
         selectedTile = tiles.get(0);
     }
 
@@ -192,6 +200,7 @@ public class EditorActivity extends Activity implements PuzzleDisplayer {
     public void shuffleTiles() {
         List<Tile> tiles = Puzzle.getPuzzle(puzzleId).getTiles();
         Puzzle.shuffle(tiles);
+        Tile.executeQuery("UPDATE tile SET default_rotation = rotation WHERE puzzle_id = " + puzzleId);
         drawPuzzle(tiles);
     }
 

@@ -22,11 +22,13 @@ import com.google.android.gms.games.snapshot.SnapshotMetadataChange;
 import com.google.android.gms.games.snapshot.Snapshots;
 import com.google.example.games.basegameutils.BaseGameUtils;
 import com.google.gson.Gson;
+import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -252,7 +254,7 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
             @Override
             public void run() {
                 if (!checkIsImprovement) {
-                    AlertHelper.info(callingActivity, Text.get("ALERT_CLOUD_LOADING"));
+                    AlertHelper.info(callingActivity, Text.get("ALERT_CLOUD_LOADING"), true);
                 }
             }
         });
@@ -389,27 +391,31 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         return GooglePlayHelper.mGoogleApiClient != null && GooglePlayHelper.mGoogleApiClient.isConnected();
     }
 
+    @SuppressWarnings("unchecked")
+    private static Class<? extends SugarRecord>[] backupClasses = new Class[] {
+            Background.class,
+            Boost.class,
+            Iap.class,
+            Pack.class,
+            Puzzle.class,
+            PuzzleCustom.class,
+            ShopItem.class,
+            Setting.class,
+            Statistic.class,
+            SupportCode.class,
+            Tile.class,
+            TileType.class};
+
     public static byte[] createBackup() {
         Gson gson = new Gson();
-        String backupString = "";
 
-        if (MainActivity.prefs != null) {
-            backupString = MainActivity.prefs.getInt("databaseVersion", PatchHelper.V0_9_1) + GooglePlayHelper.SAVE_DELIMITER;
-        }
+        String backupString = PatchHelper.LATEST_PATCH + GooglePlayHelper.SAVE_DELIMITER;
         backupString += PuzzleHelper.getTotalStars() + GooglePlayHelper.SAVE_DELIMITER;
         backupString += Statistic.getCurrency() + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(Background.listAll(Boost.class)) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(Boost.listAll(Boost.class)) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(Iap.listAll(Iap.class)) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(Pack.listAll(Pack.class)) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(Puzzle.listAll(Puzzle.class)) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(PuzzleCustom.listAll(PuzzleCustom.class)) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(ShopItem.listAll(ShopItem.class)) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(Setting.listAll(Setting.class)) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(Statistic.listAll(Statistic.class)) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(SupportCode.listAll(SupportCode.class)) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(Tile.listAll(Tile.class)) + GooglePlayHelper.SAVE_DELIMITER;
-        backupString += gson.toJson(TileType.listAll(TileType.class)) + GooglePlayHelper.SAVE_DELIMITER;
+
+        for (Class<? extends SugarRecord> backupClass : backupClasses) {
+            backupString += gson.toJson(SugarRecord.listAll(backupClass)) + GooglePlayHelper.SAVE_DELIMITER;
+        }
 
         return backupString.getBytes();
     }
@@ -418,85 +424,24 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
         Gson gson = new Gson();
         String[] splitData = splitBackupData(backupData);
 
+        if (backupData.length() == 0 || splitData.length <= 3) {
+            return;
+        }
+
         if (MainActivity.prefs != null) {
             MainActivity.prefs.edit().putInt("databaseVersion", Integer.parseInt(splitData[0])).apply();
         }
 
-        // Skipping [1] and [2], as they're used for comparing saves
-        int fieldNumber = 3;
-        if (splitData.length > fieldNumber) {
-            Background[] backgrounds = gson.fromJson(splitData[fieldNumber++], Background[].class);
-            Background.deleteAll(Background.class);
-            Background.saveInTx(backgrounds);
+        // 0 is db version, 1 & 2 are stars & coins
+        int backupPosition = 3;
+        for (Class<? extends SugarRecord> backupClass : backupClasses) {
+            if (splitData.length > backupPosition) {
+                SugarRecord.deleteAll(backupClass);
+                SugarRecord.saveInTx(fromJsonList(gson, splitData[backupPosition++], backupClass));
+            }
         }
 
-        if (splitData.length > fieldNumber) {
-            Boost[] boosts = gson.fromJson(splitData[fieldNumber++], Boost[].class);
-            Boost.deleteAll(Boost.class);
-            Boost.saveInTx(boosts);
-        }
-
-        if (splitData.length > fieldNumber) {
-            Iap[] iaps = gson.fromJson(splitData[fieldNumber++], Iap[].class);
-            Iap.deleteAll(Boost.class);
-            Iap.saveInTx(iaps);
-        }
-
-        if (splitData.length > fieldNumber) {
-            Pack[] packs = gson.fromJson(splitData[fieldNumber++], Pack[].class);
-            Pack.deleteAll(Pack.class);
-            Pack.saveInTx(packs);
-        }
-
-        if (splitData.length > fieldNumber) {
-            Puzzle[] puzzles = gson.fromJson(splitData[fieldNumber++], Puzzle[].class);
-            Puzzle.deleteAll(Puzzle.class);
-            Puzzle.saveInTx(puzzles);
-        }
-
-        if (splitData.length > fieldNumber) {
-            PuzzleCustom[] puzzleCustoms = gson.fromJson(splitData[fieldNumber++], PuzzleCustom[].class);
-            PuzzleCustom.deleteAll(PuzzleCustom.class);
-            PuzzleCustom.saveInTx(puzzleCustoms);
-        }
-
-        if (splitData.length > fieldNumber) {
-            ShopItem[] shopItems = gson.fromJson(splitData[fieldNumber++], ShopItem[].class);
-            ShopItem.deleteAll(ShopItem.class);
-            ShopItem.saveInTx(shopItems);
-        }
-
-        if (splitData.length > fieldNumber) {
-            Setting[] settings = gson.fromJson(splitData[fieldNumber++], Setting[].class);
-            Setting.deleteAll(Setting.class);
-            Setting.saveInTx(settings);
-        }
-
-        if (splitData.length > fieldNumber) {
-            Statistic[] statistics = gson.fromJson(splitData[fieldNumber++], Statistic[].class);
-            Statistic.deleteAll(Statistic.class);
-            Statistic.saveInTx(statistics);
-        }
-
-        if (splitData.length > fieldNumber) {
-            SupportCode[] supportCodes = gson.fromJson(splitData[fieldNumber++], SupportCode[].class);
-            SupportCode.deleteAll(SupportCode.class);
-            SupportCode.saveInTx(supportCodes);
-        }
-
-        if (splitData.length > fieldNumber) {
-            Tile[] tiles = gson.fromJson(splitData[fieldNumber++], Tile[].class);
-            Tile.deleteAll(Tile.class);
-            Tile.saveInTx(tiles);
-        }
-
-        if (splitData.length > fieldNumber) {
-            TileType[] tileTypes = gson.fromJson(splitData[fieldNumber++], TileType[].class);
-            TileType.deleteAll(TileType.class);
-            TileType.saveInTx(tileTypes);
-        }
-
-        new PatchHelper(callingActivity, true).execute();
+        new PatchHelper(callingActivity, false).execute();
 
         if (callingActivity != null) {
             callingActivity.runOnUiThread(new Runnable() {
@@ -506,6 +451,16 @@ public class GooglePlayHelper implements com.google.android.gms.common.api.Resul
                 }
             });
         }
+    }
+
+    private static <T extends SugarRecord> List<T> fromJsonList(Gson gson, String json, Class<T> className) {
+        Object[] array = (Object[])java.lang.reflect.Array.newInstance(className, 1);
+        array = gson.fromJson(json, array.getClass());
+        List<T> list = new ArrayList<>();
+        for (Object item : array) {
+            list.add((T)item);
+        }
+        return list;
     }
 
     public static Pair<Integer, Integer> getStarsAndCoinsFromSave(byte[] saveBytes) {

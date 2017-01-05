@@ -12,6 +12,7 @@ public class Constants {
     public static final String INTENT_TILE = "uk.co.jakelee.cityflow.tile";
     public static final String INTENT_IAP = "uk.co.jakelee.cityflow.iap";
     public static final String INTENT_ITEM = "uk.co.jakelee.cityflow.item";
+    public static final String INTENT_FAILED_TILES = "uk.co.jakelee.cityflow.failedtiles";
 
     // Game constants
     public static final int TILE_WIDTH = 130;
@@ -38,16 +39,16 @@ public class Constants {
 
     // Currency incomes
     public static final int CURRENCY_RECOMPLETE = 1;
-    public static final int CURRENCY_FIRST_COMPLETE = 5;
-    public static final int CURRENCY_FIRST_COMPLETE_FULL = 10;
+    public static final int CURRENCY_FIRST_COMPLETE = 4;
+    public static final int CURRENCY_FIRST_COMPLETE_FULL = 8;
     public static final int CURRENCY_CUSTOM_FIRST_COMPLETE = 1;
     public static final int CURRENCY_CUSTOM_FIRST_COMPLETE_FULL = 1;
     public static final int CURRENCY_ADVERT = 30;
-    public static final int CURRENCY_ACHIEVEMENT = 100;
-    public static final int CURRENCY_QUEST_EASY = 50;
-    public static final int CURRENCY_QUEST_MEDIUM = 80;
-    public static final int CURRENCY_QUEST_HARD = 110;
-    public static final int CURRENCY_QUEST_ELITE = 150;
+    public static final int CURRENCY_ACHIEVEMENT = 60;
+    public static final int CURRENCY_QUEST_EASY = 40;
+    public static final int CURRENCY_QUEST_MEDIUM = 60;
+    public static final int CURRENCY_QUEST_HARD = 80;
+    public static final int CURRENCY_QUEST_ELITE = 110;
 
     // Google play constants
     public static final String EVENT_COMPLETE_PUZZLE = "CgkIgrzuo64REAIQBA";
@@ -104,14 +105,12 @@ public class Constants {
     public static final int BACKGROUND_PRETTY_IN_PINK = 37;
     public static final int BACKGROUND_RAINFOREST = 38;
     public static final int BACKGROUND_MUSHROOM = 39;
-    public static final int BOOST_MIN = 1;
-    public static final int BOOST_MAX = 4;
     public static final int BOOST_UNDO = 1;
     public static final int BOOST_TIME = 2;
     public static final int BOOST_MOVE = 3;
     public static final int BOOST_SHUFFLE = 4;
     public static final int ENVIRONMENT_MIN = 0;
-    public static final int ENVIRONMENT_MAX = 6;
+    public static final int ENVIRONMENT_MAX = 7;
     public static final int ENVIRONMENT_NONE = 0;
     public static final int ENVIRONMENT_GRASS = 1;
     public static final int ENVIRONMENT_CITY = 2;
@@ -119,9 +118,10 @@ public class Constants {
     public static final int ENVIRONMENT_MOUNTAIN = 4;
     public static final int ENVIRONMENT_DESERT = 5;
     public static final int ENVIRONMENT_GOLF = 6;
+    public static final int ENVIRONMENT_VILLAGE = 7;
     public static final int FLOW_ANY = -1;
     public static final int FLOW_MIN = 0;
-    public static final int FLOW_MAX = 10;
+    public static final int FLOW_MAX = 12;
     public static final int FLOW_NONE = 0;
     public static final int FLOW_WATER = 1;
     public static final int FLOW_ROAD = 2;
@@ -133,12 +133,12 @@ public class Constants {
     public static final int FLOW_RAIL = 8;
     public static final int FLOW_GOLF = 9;
     public static final int FLOW_TOXIC = 10;
+    public static final int FLOW_VILLAGE_MARBLE = 11;
+    public static final int FLOW_VILLAGE_PLANK = 12;
     public static final int HEIGHT_ANY = -1;
     public static final int HEIGHT_MIN = 0;
     public static final int HEIGHT_MAX = 4;
     public static final int HEIGHT_NO_CONNECT = 0;
-    public static final int HEIGHT_ULTRA_LOW = 1;
-    public static final int HEIGHT_LOW = 2;
     public static final int HEIGHT_NORMAL = 3;
     public static final int HEIGHT_HIGH = 4;
     public static final int ITEM_BOOST_UNDO = 1;
@@ -173,6 +173,7 @@ public class Constants {
     public static final int ITEM_TILE_134 = 34;
     public static final int ITEM_TILE_157 = 35;
     public static final int ITEM_TILE_172 = 36;
+    public static final int ITEM_PACK_10 = 37;
     public static final int LANGUAGE_MIN = 0;
     public static final int LANGUAGE_MAX = 8;
     public static final int LANGUAGE_EN = 0;
@@ -232,6 +233,7 @@ public class Constants {
     public static final int STATISTIC_COMPLETE_PACK_7 = 15;
     public static final int STATISTIC_COMPLETE_PACK_8 = 16;
     public static final int STATISTIC_COMPLETE_PACK_9 = 17;
+    public static final int STATISTIC_COMPLETE_PACK_10 = 18;
     public static final int STORE_CATEGORY_BOOSTS = 1;
     public static final int STORE_CATEGORY_UPGRADES = 2;
     public static final int STORE_CATEGORY_TILES = 3;

@@ -30,20 +30,18 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class PatchHelper extends AsyncTask<String, String, String> {
     public final static int NO_DATABASE = 0;
-    public final static int V0_9_1 = 1;
-    public final static int V0_9_2 = 2;
+    public final static int V1_0_0 = 4;
+    public final static int LATEST_PATCH = V1_0_0;
     private Activity callingActivity;
     private TextView progressText;
     private ProgressBar progressBar;
 
-    public PatchHelper(Activity activity) {
+    public PatchHelper(Activity activity, boolean runningFromMain) {
         this.callingActivity = activity;
-        this.progressText = (TextView) activity.findViewById(R.id.progressText);
-        this.progressBar = (ProgressBar) activity.findViewById(R.id.progressBar);
-    }
-
-    public PatchHelper(Activity activity, boolean runningCloudImport) {
-        this.callingActivity = activity;
+        if (runningFromMain) {
+            this.progressText = (TextView) activity.findViewById(R.id.progressText);
+            this.progressBar = (ProgressBar) activity.findViewById(R.id.progressBar);
+        }
     }
 
     private void createDatabase() {
@@ -60,10 +58,10 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         setProgress("Statistics", 20);
         createStatistic();
         setProgress("Store Items", 25);
-        createStoreItem();
+        createShopItem();
         createIap();
         setProgress("Store Categories", 30);
-        createStoreCategory();
+        createShopCategory();
         setProgress("Tile Types", 35);
         createTileType();
         setProgress("English Text", 40);
@@ -90,15 +88,13 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     @Override
     protected String doInBackground(String... params) {
-        int latestPatch = PatchHelper.V0_9_2;
         boolean languagePackModified = false;
         SharedPreferences prefs = callingActivity.getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE);
 
-        // If it's the initial install, or on latest version, we don't need to run any patches.
-        // If it's a patch, install the patch, and reinstall text if necessary.
         if (prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.NO_DATABASE) {
+            // If it's the initial install, do a full DB install
             createDatabase();
-            prefs.edit().putInt("databaseVersion", latestPatch).apply();
+            prefs.edit().putInt("databaseVersion", LATEST_PATCH).apply();
 
             new Thread(new Runnable() {
                 public void run() {
@@ -106,44 +102,18 @@ public class PatchHelper extends AsyncTask<String, String, String> {
                 }
             }).start();
         } else {
-            if (prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.V0_9_1) {
-                patch091to092();
+            // If it's a patch, install the patch, and reinstall text if necessary.
+            /*if (prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.V1_0_0) {
+                patchTo101();
                 languagePackModified = true;
-                prefs.edit().putInt("databaseVersion", PatchHelper.V0_9_2).apply();
+                prefs.edit().putInt("databaseVersion", PatchHelper.V1_0_1).apply();
             }
 
             if (languagePackModified) {
                 TextHelper.reinstallCurrentPack();
-            }
+            }*/
         }
         return "";
-    }
-
-    private void patch091to092() {
-        setProgress("Patch 0.9.2", 80);
-        Puzzle.executeQuery("UPDATE puzzle SET par_moves = 7 WHERE puzzle_id = 6");
-        Puzzle.executeQuery("UPDATE puzzle SET par_time = 17499 WHERE puzzle_id = 10");
-
-        ShopItem.deleteAll(ShopItem.class);
-        createStoreItem();
-
-        TileType.deleteAll(TileType.class);
-        createTileType();
-
-        Pack.executeQuery("UPDATE pack SET max_stars = 84 WHERE pack_id = 6");
-
-        List<Setting> settings = new ArrayList<>();
-        settings.add(new Setting(Constants.SETTING_TUTORIAL_STAGE, 1, Constants.TUTORIAL_MIN, Constants.TUTORIAL_MAX));
-        settings.add(new Setting(Constants.SETTING_HIDE_LOCKED_TILES, false));
-        settings.add(new Setting(Constants.SETTING_MINIMUM_MILLIS_DRAG, 150, 30, 1000));
-        Setting.saveInTx(settings);
-
-        Statistic coins = Statistic.find(Constants.STATISTIC_CURRENCY);
-        coins.setIntValue(123);
-        coins.save();
-
-        Iap.deleteAll(Iap.class);
-        createIap();
     }
 
     private void createOtherPuzzles() {
@@ -155,6 +125,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         createPuzzlesPack7();
         createPuzzlesPack8();
         createPuzzlesPack9();
+        createPuzzlesPack10();
     }
 
     @Override
@@ -181,6 +152,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
     }
 
     private void createAchievement() {
+        Achievement.deleteAll(Achievement.class);
+
         List<Achievement> achievements = new ArrayList<>();
         achievements.add(new Achievement("Turn It Up 1", 100, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQAw", Constants.BACKGROUND_SUNRISE));
         achievements.add(new Achievement("Turn It Up 2", 1000, Constants.STATISTIC_TILES_ROTATED, "CgkIgrzuo64REAIQFw", Constants.BACKGROUND_GRASS));
@@ -211,10 +184,13 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         achievements.add(new Achievement("Complete Pack 7", 1, Constants.STATISTIC_COMPLETE_PACK_7, "CgkIgrzuo64REAIQMw", Constants.BACKGROUND_MUDDY_PINK));
         achievements.add(new Achievement("Complete Pack 8", 1, Constants.STATISTIC_COMPLETE_PACK_8, "CgkIgrzuo64REAIQNA", Constants.BACKGROUND_PEACH));
         achievements.add(new Achievement("Complete Pack 9", 1, Constants.STATISTIC_COMPLETE_PACK_9, "CgkIgrzuo64REAIQNQ", Constants.BACKGROUND_PASSIONFRUIT));
+        achievements.add(new Achievement("Complete Pack 10", 1, Constants.STATISTIC_COMPLETE_PACK_10, "CgkIgrzuo64REAIQWA", Constants.BACKGROUND_DIRTY));
         Achievement.saveInTx(achievements);
     }
 
     private void createBackground() {
+        Background.deleteAll(Background.class);
+
         List<Background> backgrounds = new ArrayList<>();
         // Unlocked by default
         backgrounds.add(new Background(Constants.BACKGROUND_PLAIN, "FFFFFF", true, true));
@@ -262,6 +238,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         backgrounds.add(new Background(Constants.BACKGROUND_MUDDY_PINK, "decfd2"));
         backgrounds.add(new Background(Constants.BACKGROUND_PEACH, "fdcfb7"));
         backgrounds.add(new Background(Constants.BACKGROUND_PASSIONFRUIT, "f4828c"));
+        backgrounds.add(new Background(Constants.BACKGROUND_DIRTY, "ddb4a0"));
 
         // Buying shop item
         backgrounds.add(new Background(Constants.BACKGROUND_THE_END, "775c6a"));
@@ -270,8 +247,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         backgrounds.add(new Background(Constants.BACKGROUND_DESERT, "f7ecd6"));
 
         // Unassigned
-        /*backgrounds.add(new Background(Constants.BACKGROUND_DIRTY, "ddb4a0"));
-        backgrounds.add(new Background(Constants.BACKGROUND_OVERCAST, "d0c6c4"));
+        /*backgrounds.add(new Background(Constants.BACKGROUND_OVERCAST, "d0c6c4"));
         backgrounds.add(new Background(Constants.BACKGROUND_PRETTY_IN_PINK, "f8e4e3"));
         backgrounds.add(new Background(Constants.BACKGROUND_RAINFOREST, "7ca0a0"));
         backgrounds.add(new Background(Constants.BACKGROUND_MUSHROOM, "8e857c"));
@@ -280,6 +256,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
     }
 
     private void createBoost() {
+        Boost.deleteAll(Boost.class);
+
         List<Boost> boosts = new ArrayList<>();
         boosts.add(new Boost(Constants.BOOST_UNDO, 1, 0, 0));
         boosts.add(new Boost(Constants.BOOST_TIME, 1, 0, 0));
@@ -289,14 +267,20 @@ public class PatchHelper extends AsyncTask<String, String, String> {
     }
 
     private void createIap() {
+        Iap.deleteAll(Iap.class);
+
         List<Iap> iaps = new ArrayList<>();
+        iaps.add(new Iap("x2_coins", 0, 1));
+        iaps.add(new Iap("all_tiles", 0, 1));
         iaps.add(new Iap("100_coins", 100, 0));
         iaps.add(new Iap("1000_coins", 1000, 0));
-        iaps.add(new Iap("x2_coins", 0, 1));
+        iaps.add(new Iap("10000_coins", 10000, 0));
         Iap.saveInTx(iaps);
     }
 
     private void createPack() {
+        Pack.deleteAll(Pack.class);
+
         List<Pack> packs = new ArrayList<>();
         packs.add(new Pack(1, "CgkIgrzuo64REAIQEA", "CgkIgrzuo64REAIQEQ", 30, true));
         packs.add(new Pack(2, "CgkIgrzuo64REAIQEw", "CgkIgrzuo64REAIQFA", 90, true));
@@ -307,10 +291,13 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         packs.add(new Pack(7, "CgkIgrzuo64REAIQPA", "CgkIgrzuo64REAIQPQ", 90, true));
         packs.add(new Pack(8, "CgkIgrzuo64REAIQPg", "CgkIgrzuo64REAIQPw", 90, true));
         packs.add(new Pack(9, "CgkIgrzuo64REAIQQA", "CgkIgrzuo64REAIQQQ", 45, false));
+        packs.add(new Pack(10, "CgkIgrzuo64REAIQWQ", "CgkIgrzuo64REAIQWg", 90, true));
         Pack.saveInTx(packs);
     }
 
     private void createPuzzlesPack1() {
+        Puzzle.deleteAll(Puzzle.class);
+
         // Tutorial
         List<Puzzle> puzzles = new ArrayList<>();
         List<Text> texts = new ArrayList<>();
@@ -6146,7 +6133,620 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         Tile.saveInTx(tiles);
     }
 
+    private void createPuzzlesPack10() {
+        // Remnants Of A Village
+        List<Puzzle> puzzles = new ArrayList<>();
+        List<Text> texts = new ArrayList<>();
+        List<Tile> tiles = new ArrayList<>();
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_209_NAME", "Stripes"));
+        puzzles.add(new Puzzle(209, 10, 4899L, 10, 0L, 0));
+        tiles.add(new Tile(209, 205, 0, 2, 2));
+        tiles.add(new Tile(209, 196, 1, 2, 2));
+        tiles.add(new Tile(209, 196, 2, 2, 4));
+        tiles.add(new Tile(209, 215, 0, 1, 2));
+        tiles.add(new Tile(209, 202, 1, 1, 4));
+        tiles.add(new Tile(209, 205, 2, 1, 4));
+        tiles.add(new Tile(209, 200, 0, 0, 3));
+        tiles.add(new Tile(209, 212, 1, 0, 4));
+        tiles.add(new Tile(209, 213, 2, 0, 2));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_210_NAME", "Sprawling Plain"));
+        puzzles.add(new Puzzle(210, 10, 12399L, 21, 0L, 0));
+        tiles.add(new Tile(210, 190, 0, 3, 1));
+        tiles.add(new Tile(210, 190, 1, 3, 4));
+        tiles.add(new Tile(210, 192, 2, 3, 2));
+        tiles.add(new Tile(210, 209, 3, 3, 4));
+        tiles.add(new Tile(210, 190, 4, 3, 4));
+        tiles.add(new Tile(210, 209, 0, 2, 2));
+        tiles.add(new Tile(210, 214, 1, 2, 1));
+        tiles.add(new Tile(210, 192, 2, 2, 1));
+        tiles.add(new Tile(210, 187, 3, 2, 3));
+        tiles.add(new Tile(210, 209, 4, 2, 2));
+        tiles.add(new Tile(210, 187, 0, 1, 1));
+        tiles.add(new Tile(210, 191, 1, 1, 2));
+        tiles.add(new Tile(210, 195, 2, 1, 2));
+        tiles.add(new Tile(210, 195, 3, 1, 3));
+        tiles.add(new Tile(210, 214, 4, 1, 4));
+        tiles.add(new Tile(210, 210, 0, 0, 4));
+        tiles.add(new Tile(210, 202, 1, 0, 4));
+        tiles.add(new Tile(210, 210, 2, 0, 1));
+        tiles.add(new Tile(210, 189, 3, 0, 2));
+        tiles.add(new Tile(210, 209, 4, 0, 3));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_211_NAME", "Castle Entrance"));
+        puzzles.add(new Puzzle(211, 10, 7899L, 11, 0L, 0));
+        tiles.add(new Tile(211, 205, 0, 2, 4));
+        tiles.add(new Tile(211, 189, 1, 2, 1));
+        tiles.add(new Tile(211, 210, 2, 2, 3));
+        tiles.add(new Tile(211, 194, 0, 1, 4));
+        tiles.add(new Tile(211, 202, 1, 1, 4));
+        tiles.add(new Tile(211, 215, 2, 1, 2));
+        tiles.add(new Tile(211, 201, 0, 0, 1));
+        tiles.add(new Tile(211, 204, 1, 0, 3));
+        tiles.add(new Tile(211, 196, 2, 0, 1));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_212_NAME", "Marsh Docks"));
+        puzzles.add(new Puzzle(212, 10, 5399L, 12, 0L, 0));
+        tiles.add(new Tile(212, 209, 0, 5, 2));
+        tiles.add(new Tile(212, 209, 1, 5, 4));
+        tiles.add(new Tile(212, 197, 0, 4, 4));
+        tiles.add(new Tile(212, 213, 1, 4, 4));
+        tiles.add(new Tile(212, 189, 0, 3, 4));
+        tiles.add(new Tile(212, 212, 1, 3, 3));
+        tiles.add(new Tile(212, 200, 0, 2, 4));
+        tiles.add(new Tile(212, 211, 1, 2, 3));
+        tiles.add(new Tile(212, 204, 0, 1, 2));
+        tiles.add(new Tile(212, 189, 1, 1, 1));
+        tiles.add(new Tile(212, 205, 0, 0, 3));
+        tiles.add(new Tile(212, 189, 1, 0, 1));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_213_NAME", "A Mixture"));
+        puzzles.add(new Puzzle(213, 10, 4999L, 8, 0L, 0));
+        tiles.add(new Tile(213, 215, 0, 3, 2));
+        tiles.add(new Tile(213, 205, 1, 3, 1));
+        tiles.add(new Tile(213, 190, 2, 3, 1));
+        tiles.add(new Tile(213, 210, 0, 2, 4));
+        tiles.add(new Tile(213, 192, 1, 2, 3));
+        tiles.add(new Tile(213, 191, 2, 2, 2));
+        tiles.add(new Tile(213, 213, 0, 1, 1));
+        tiles.add(new Tile(213, 191, 1, 1, 4));
+        tiles.add(new Tile(213, 192, 2, 1, 4));
+        tiles.add(new Tile(213, 216, 0, 0, 1));
+        tiles.add(new Tile(213, 212, 1, 0, 1));
+        tiles.add(new Tile(213, 213, 2, 0, 3));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_214_NAME", "Winding Through Docks"));
+        puzzles.add(new Puzzle(214, 10, 16099L, 23, 0L, 0));
+        tiles.add(new Tile(214, 187, 0, 2, 2));
+        tiles.add(new Tile(214, 217, 1, 2, 3));
+        tiles.add(new Tile(214, 213, 2, 2, 4));
+        tiles.add(new Tile(214, 210, 3, 2, 1));
+        tiles.add(new Tile(214, 194, 4, 2, 4));
+        tiles.add(new Tile(214, 210, 5, 2, 2));
+        tiles.add(new Tile(214, 216, 0, 1, 3));
+        tiles.add(new Tile(214, 208, 1, 1, 2));
+        tiles.add(new Tile(214, 190, 2, 1, 1));
+        tiles.add(new Tile(214, 213, 3, 1, 2));
+        tiles.add(new Tile(214, 204, 4, 1, 1));
+        tiles.add(new Tile(214, 189, 5, 1, 4));
+        tiles.add(new Tile(214, 211, 0, 0, 1));
+        tiles.add(new Tile(214, 217, 1, 0, 1));
+        tiles.add(new Tile(214, 189, 2, 0, 1));
+        tiles.add(new Tile(214, 217, 3, 0, 1));
+        tiles.add(new Tile(214, 212, 4, 0, 3));
+        tiles.add(new Tile(214, 200, 5, 0, 4));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_215_NAME", "Desire Path"));
+        puzzles.add(new Puzzle(215, 10, 2899L, 6, 0L, 0));
+        tiles.add(new Tile(215, 187, 0, 2, 4));
+        tiles.add(new Tile(215, 191, 1, 2, 4));
+        tiles.add(new Tile(215, 195, 2, 2, 4));
+        tiles.add(new Tile(215, 209, 3, 2, 2));
+        tiles.add(new Tile(215, 191, 0, 1, 4));
+        tiles.add(new Tile(215, 192, 1, 1, 3));
+        tiles.add(new Tile(215, 190, 2, 1, 2));
+        tiles.add(new Tile(215, 190, 3, 1, 3));
+        tiles.add(new Tile(215, 209, 0, 0, 4));
+        tiles.add(new Tile(215, 187, 1, 0, 4));
+        tiles.add(new Tile(215, 190, 2, 0, 2));
+        tiles.add(new Tile(215, 187, 3, 0, 2));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_216_NAME", "Drunken Brawl"));
+        puzzles.add(new Puzzle(216, 10, 4199L, 10, 0L, 0));
+        tiles.add(new Tile(216, 216, 0, 1, 2));
+        tiles.add(new Tile(216, 217, 1, 1, 1));
+        tiles.add(new Tile(216, 196, 2, 1, 1));
+        tiles.add(new Tile(216, 191, 3, 1, 4));
+        tiles.add(new Tile(216, 209, 4, 1, 2));
+        tiles.add(new Tile(216, 200, 0, 0, 2));
+        tiles.add(new Tile(216, 200, 1, 0, 3));
+        tiles.add(new Tile(216, 209, 2, 0, 3));
+        tiles.add(new Tile(216, 191, 3, 0, 2));
+        tiles.add(new Tile(216, 197, 4, 0, 2));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_217_NAME", "Wooden Maze"));
+        puzzles.add(new Puzzle(217, 10, 14599L, 21, 0L, 0));
+        tiles.add(new Tile(217, 213, 0, 3, 1));
+        tiles.add(new Tile(217, 217, 1, 3, 2));
+        tiles.add(new Tile(217, 212, 2, 3, 1));
+        tiles.add(new Tile(217, 211, 3, 3, 2));
+        tiles.add(new Tile(217, 211, 0, 2, 1));
+        tiles.add(new Tile(217, 217, 1, 2, 1));
+        tiles.add(new Tile(217, 217, 2, 2, 1));
+        tiles.add(new Tile(217, 208, 3, 2, 4));
+        tiles.add(new Tile(217, 211, 0, 1, 3));
+        tiles.add(new Tile(217, 212, 1, 1, 2));
+        tiles.add(new Tile(217, 208, 2, 1, 4));
+        tiles.add(new Tile(217, 211, 3, 1, 1));
+        tiles.add(new Tile(217, 216, 0, 0, 1));
+        tiles.add(new Tile(217, 200, 1, 0, 3));
+        tiles.add(new Tile(217, 196, 2, 0, 2));
+        tiles.add(new Tile(217, 187, 3, 0, 2));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_218_NAME", "Lookout Post"));
+        puzzles.add(new Puzzle(218, 10, 9299L, 10, 0L, 0));
+        tiles.add(new Tile(218, 187, 0, 3, 3));
+        tiles.add(new Tile(218, 213, 1, 3, 1));
+        tiles.add(new Tile(218, 213, 2, 3, 4));
+        tiles.add(new Tile(218, 196, 3, 3, 4));
+        tiles.add(new Tile(218, 196, 0, 2, 1));
+        tiles.add(new Tile(218, 208, 1, 2, 1));
+        tiles.add(new Tile(218, 208, 2, 2, 3));
+        tiles.add(new Tile(218, 213, 3, 2, 4));
+        tiles.add(new Tile(218, 210, 0, 1, 2));
+        tiles.add(new Tile(218, 217, 1, 1, 1));
+        tiles.add(new Tile(218, 208, 2, 1, 3));
+        tiles.add(new Tile(218, 217, 3, 1, 4));
+        tiles.add(new Tile(218, 205, 0, 0, 2));
+        tiles.add(new Tile(218, 196, 1, 0, 1));
+        tiles.add(new Tile(218, 189, 2, 0, 4));
+        tiles.add(new Tile(218, 187, 3, 0, 2));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_219_NAME", "Battlements"));
+        puzzles.add(new Puzzle(219, 10, 12199L, 16, 0L, 0));
+        tiles.add(new Tile(219, 190, 0, 2, 3));
+        tiles.add(new Tile(219, 205, 1, 2, 2));
+        tiles.add(new Tile(219, 201, 2, 2, 1));
+        tiles.add(new Tile(219, 201, 3, 2, 3));
+        tiles.add(new Tile(219, 196, 4, 2, 2));
+        tiles.add(new Tile(219, 187, 5, 2, 4));
+        tiles.add(new Tile(219, 215, 0, 1, 2));
+        tiles.add(new Tile(219, 203, 1, 1, 3));
+        tiles.add(new Tile(219, 188, 2, 1, 3));
+        tiles.add(new Tile(219, 201, 3, 1, 4));
+        tiles.add(new Tile(219, 204, 4, 1, 1));
+        tiles.add(new Tile(219, 210, 5, 1, 4));
+        tiles.add(new Tile(219, 215, 0, 0, 4));
+        tiles.add(new Tile(219, 194, 1, 0, 2));
+        tiles.add(new Tile(219, 194, 2, 0, 3));
+        tiles.add(new Tile(219, 210, 3, 0, 3));
+        tiles.add(new Tile(219, 205, 4, 0, 1));
+        tiles.add(new Tile(219, 205, 5, 0, 1));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_220_NAME", "2Fort"));
+        puzzles.add(new Puzzle(220, 10, 8199L, 15, 0L, 0));
+        tiles.add(new Tile(220, 217, 0, 8, 1));
+        tiles.add(new Tile(220, 217, 1, 8, 1));
+        tiles.add(new Tile(220, 217, 0, 7, 3));
+        tiles.add(new Tile(220, 211, 1, 7, 2));
+        tiles.add(new Tile(220, 187, 0, 6, 3));
+        tiles.add(new Tile(220, 197, 1, 6, 4));
+        tiles.add(new Tile(220, 189, 0, 5, 4));
+        tiles.add(new Tile(220, 197, 1, 5, 3));
+        tiles.add(new Tile(220, 189, 0, 4, 3));
+        tiles.add(new Tile(220, 190, 1, 4, 3));
+        tiles.add(new Tile(220, 217, 0, 3, 4));
+        tiles.add(new Tile(220, 211, 1, 3, 3));
+        tiles.add(new Tile(220, 212, 0, 2, 1));
+        tiles.add(new Tile(220, 212, 1, 2, 1));
+        tiles.add(new Tile(220, 208, 0, 1, 1));
+        tiles.add(new Tile(220, 208, 1, 1, 2));
+        tiles.add(new Tile(220, 217, 0, 0, 2));
+        tiles.add(new Tile(220, 211, 1, 0, 4));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_221_NAME", "Scattered Outpost"));
+        puzzles.add(new Puzzle(221, 10, 7699L, 10, 0L, 0));
+        tiles.add(new Tile(221, 216, 0, 3, 2));
+        tiles.add(new Tile(221, 213, 1, 3, 1));
+        tiles.add(new Tile(221, 213, 2, 3, 4));
+        tiles.add(new Tile(221, 217, 0, 2, 4));
+        tiles.add(new Tile(221, 212, 1, 2, 2));
+        tiles.add(new Tile(221, 208, 2, 2, 3));
+        tiles.add(new Tile(221, 200, 0, 1, 4));
+        tiles.add(new Tile(221, 208, 1, 1, 3));
+        tiles.add(new Tile(221, 216, 2, 1, 4));
+        tiles.add(new Tile(221, 200, 0, 0, 2));
+        tiles.add(new Tile(221, 216, 1, 0, 2));
+        tiles.add(new Tile(221, 187, 2, 0, 3));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_222_NAME", "Warring Factions"));
+        puzzles.add(new Puzzle(222, 10, 10099L, 14, 0L, 0));
+        tiles.add(new Tile(222, 196, 0, 2, 2));
+        tiles.add(new Tile(222, 189, 1, 2, 2));
+        tiles.add(new Tile(222, 187, 2, 2, 2));
+        tiles.add(new Tile(222, 211, 3, 2, 4));
+        tiles.add(new Tile(222, 213, 4, 2, 4));
+        tiles.add(new Tile(222, 210, 0, 1, 4));
+        tiles.add(new Tile(222, 201, 1, 1, 3));
+        tiles.add(new Tile(222, 204, 2, 1, 3));
+        tiles.add(new Tile(222, 212, 3, 1, 4));
+        tiles.add(new Tile(222, 197, 4, 1, 2));
+        tiles.add(new Tile(222, 215, 0, 0, 1));
+        tiles.add(new Tile(222, 215, 1, 0, 4));
+        tiles.add(new Tile(222, 187, 2, 0, 4));
+        tiles.add(new Tile(222, 211, 3, 0, 1));
+        tiles.add(new Tile(222, 200, 4, 0, 2));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_223_NAME", "Intermingled"));
+        puzzles.add(new Puzzle(223, 10, 9899L, 16, 0L, 0));
+        tiles.add(new Tile(223, 216, 0, 4, 1));
+        tiles.add(new Tile(223, 213, 1, 4, 2));
+        tiles.add(new Tile(223, 210, 2, 4, 4));
+        tiles.add(new Tile(223, 200, 0, 3, 3));
+        tiles.add(new Tile(223, 210, 1, 3, 1));
+        tiles.add(new Tile(223, 201, 2, 3, 4));
+        tiles.add(new Tile(223, 190, 0, 2, 3));
+        tiles.add(new Tile(223, 190, 1, 2, 1));
+        tiles.add(new Tile(223, 213, 2, 2, 2));
+        tiles.add(new Tile(223, 205, 0, 1, 1));
+        tiles.add(new Tile(223, 200, 1, 1, 2));
+        tiles.add(new Tile(223, 217, 2, 1, 1));
+        tiles.add(new Tile(223, 204, 0, 0, 4));
+        tiles.add(new Tile(223, 210, 1, 0, 3));
+        tiles.add(new Tile(223, 204, 2, 0, 4));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_224_NAME", "The Town"));
+        puzzles.add(new Puzzle(224, 10, 36999L, 51, 0L, 0));
+        tiles.add(new Tile(224, 196, 0, 5, 1));
+        tiles.add(new Tile(224, 192, 1, 5, 2));
+        tiles.add(new Tile(224, 195, 2, 5, 2));
+        tiles.add(new Tile(224, 195, 3, 5, 2));
+        tiles.add(new Tile(224, 209, 4, 5, 3));
+        tiles.add(new Tile(224, 189, 5, 5, 2));
+        tiles.add(new Tile(224, 191, 0, 4, 3));
+        tiles.add(new Tile(224, 192, 1, 4, 4));
+        tiles.add(new Tile(224, 209, 2, 4, 1));
+        tiles.add(new Tile(224, 189, 3, 4, 1));
+        tiles.add(new Tile(224, 210, 4, 4, 1));
+        tiles.add(new Tile(224, 210, 5, 4, 4));
+        tiles.add(new Tile(224, 191, 0, 3, 3));
+        tiles.add(new Tile(224, 195, 1, 3, 3));
+        tiles.add(new Tile(224, 214, 2, 3, 1));
+        tiles.add(new Tile(224, 195, 3, 3, 1));
+        tiles.add(new Tile(224, 192, 4, 3, 4));
+        tiles.add(new Tile(224, 213, 5, 3, 2));
+        tiles.add(new Tile(224, 204, 0, 2, 1));
+        tiles.add(new Tile(224, 205, 1, 2, 3));
+        tiles.add(new Tile(224, 202, 2, 2, 3));
+        tiles.add(new Tile(224, 204, 3, 2, 4));
+        tiles.add(new Tile(224, 209, 4, 2, 2));
+        tiles.add(new Tile(224, 213, 5, 2, 3));
+        tiles.add(new Tile(224, 194, 0, 1, 4));
+        tiles.add(new Tile(224, 204, 1, 1, 3));
+        tiles.add(new Tile(224, 196, 2, 1, 4));
+        tiles.add(new Tile(224, 200, 3, 1, 4));
+        tiles.add(new Tile(224, 211, 4, 1, 3));
+        tiles.add(new Tile(224, 211, 5, 1, 1));
+        tiles.add(new Tile(224, 210, 0, 0, 1));
+        tiles.add(new Tile(224, 196, 1, 0, 4));
+        tiles.add(new Tile(224, 213, 2, 0, 3));
+        tiles.add(new Tile(224, 211, 3, 0, 3));
+        tiles.add(new Tile(224, 217, 4, 0, 2));
+        tiles.add(new Tile(224, 216, 5, 0, 1));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_225_NAME", "Local Tavern"));
+        puzzles.add(new Puzzle(225, 10, 20799L, 22, 0L, 0));
+        tiles.add(new Tile(225, 196, 0, 4, 2));
+        tiles.add(new Tile(225, 213, 1, 4, 2));
+        tiles.add(new Tile(225, 200, 2, 4, 2));
+        tiles.add(new Tile(225, 211, 0, 3, 3));
+        tiles.add(new Tile(225, 198, 1, 3, 1));
+        tiles.add(new Tile(225, 217, 2, 3, 1));
+        tiles.add(new Tile(225, 216, 0, 2, 1));
+        tiles.add(new Tile(225, 211, 1, 2, 1));
+        tiles.add(new Tile(225, 200, 2, 2, 3));
+        tiles.add(new Tile(225, 197, 0, 1, 1));
+        tiles.add(new Tile(225, 216, 1, 1, 2));
+        tiles.add(new Tile(225, 208, 2, 1, 3));
+        tiles.add(new Tile(225, 213, 0, 0, 1));
+        tiles.add(new Tile(225, 216, 1, 0, 2));
+        tiles.add(new Tile(225, 213, 2, 0, 3));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_226_NAME", "Small Islands"));
+        puzzles.add(new Puzzle(226, 10, 7099L, 14, 0L, 0));
+        tiles.add(new Tile(226, 190, 0, 3, 4));
+        tiles.add(new Tile(226, 205, 1, 3, 3));
+        tiles.add(new Tile(226, 205, 2, 3, 1));
+        tiles.add(new Tile(226, 197, 3, 3, 2));
+        tiles.add(new Tile(226, 204, 0, 2, 4));
+        tiles.add(new Tile(226, 204, 1, 2, 2));
+        tiles.add(new Tile(226, 213, 2, 2, 3));
+        tiles.add(new Tile(226, 213, 3, 2, 2));
+        tiles.add(new Tile(226, 216, 0, 1, 3));
+        tiles.add(new Tile(226, 200, 1, 1, 1));
+        tiles.add(new Tile(226, 190, 2, 1, 4));
+        tiles.add(new Tile(226, 209, 3, 1, 4));
+        tiles.add(new Tile(226, 200, 0, 0, 3));
+        tiles.add(new Tile(226, 187, 1, 0, 1));
+        tiles.add(new Tile(226, 209, 2, 0, 4));
+        tiles.add(new Tile(226, 192, 3, 0, 2));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_227_NAME", "Coexistence"));
+        puzzles.add(new Puzzle(227, 10, 12099L, 20, 0L, 0));
+        tiles.add(new Tile(227, 217, 0, 3, 3));
+        tiles.add(new Tile(227, 217, 1, 3, 1));
+        tiles.add(new Tile(227, 187, 2, 3, 1));
+        tiles.add(new Tile(227, 187, 3, 3, 2));
+        tiles.add(new Tile(227, 196, 4, 3, 4));
+        tiles.add(new Tile(227, 211, 0, 2, 3));
+        tiles.add(new Tile(227, 216, 1, 2, 1));
+        tiles.add(new Tile(227, 190, 2, 2, 4));
+        tiles.add(new Tile(227, 196, 3, 2, 1));
+        tiles.add(new Tile(227, 196, 4, 2, 4));
+        tiles.add(new Tile(227, 215, 0, 1, 2));
+        tiles.add(new Tile(227, 202, 1, 1, 3));
+        tiles.add(new Tile(227, 210, 2, 1, 3));
+        tiles.add(new Tile(227, 191, 3, 1, 2));
+        tiles.add(new Tile(227, 192, 4, 1, 2));
+        tiles.add(new Tile(227, 210, 0, 0, 1));
+        tiles.add(new Tile(227, 200, 1, 0, 3));
+        tiles.add(new Tile(227, 200, 2, 0, 1));
+        tiles.add(new Tile(227, 192, 3, 0, 1));
+        tiles.add(new Tile(227, 192, 4, 0, 2));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_228_NAME", "Detached Room"));
+        puzzles.add(new Puzzle(228, 10, 12099L, 21, 0L, 0));
+        tiles.add(new Tile(228, 216, 0, 2, 4));
+        tiles.add(new Tile(228, 217, 1, 2, 1));
+        tiles.add(new Tile(228, 210, 2, 2, 2));
+        tiles.add(new Tile(228, 202, 3, 2, 2));
+        tiles.add(new Tile(228, 210, 4, 2, 4));
+        tiles.add(new Tile(228, 208, 0, 1, 3));
+        tiles.add(new Tile(228, 217, 1, 1, 1));
+        tiles.add(new Tile(228, 200, 2, 1, 2));
+        tiles.add(new Tile(228, 213, 3, 1, 3));
+        tiles.add(new Tile(228, 196, 4, 1, 3));
+        tiles.add(new Tile(228, 211, 0, 0, 3));
+        tiles.add(new Tile(228, 212, 1, 0, 2));
+        tiles.add(new Tile(228, 212, 2, 0, 1));
+        tiles.add(new Tile(228, 200, 3, 0, 2));
+        tiles.add(new Tile(228, 190, 4, 0, 2));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_229_NAME", "Crop Circles"));
+        puzzles.add(new Puzzle(229, 10, 5899L, 14, 0L, 0));
+        tiles.add(new Tile(229, 192, 0, 2, 1));
+        tiles.add(new Tile(229, 192, 1, 2, 4));
+        tiles.add(new Tile(229, 209, 2, 2, 4));
+        tiles.add(new Tile(229, 191, 0, 1, 3));
+        tiles.add(new Tile(229, 214, 1, 1, 2));
+        tiles.add(new Tile(229, 192, 2, 1, 4));
+        tiles.add(new Tile(229, 205, 0, 0, 2));
+        tiles.add(new Tile(229, 204, 1, 0, 4));
+        tiles.add(new Tile(229, 189, 2, 0, 3));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_230_NAME", "Remains"));
+        puzzles.add(new Puzzle(230, 10, 28299L, 32, 0L, 0));
+        tiles.add(new Tile(230, 210, 0, 3, 4));
+        tiles.add(new Tile(230, 215, 1, 3, 3));
+        tiles.add(new Tile(230, 196, 2, 3, 3));
+        tiles.add(new Tile(230, 190, 3, 3, 1));
+        tiles.add(new Tile(230, 216, 4, 3, 1));
+        tiles.add(new Tile(230, 200, 5, 3, 2));
+        tiles.add(new Tile(230, 190, 0, 2, 4));
+        tiles.add(new Tile(230, 194, 1, 2, 4));
+        tiles.add(new Tile(230, 204, 2, 2, 1));
+        tiles.add(new Tile(230, 205, 3, 2, 4));
+        tiles.add(new Tile(230, 213, 4, 2, 2));
+        tiles.add(new Tile(230, 200, 5, 2, 3));
+        tiles.add(new Tile(230, 215, 0, 1, 4));
+        tiles.add(new Tile(230, 203, 1, 1, 1));
+        tiles.add(new Tile(230, 202, 2, 1, 3));
+        tiles.add(new Tile(230, 206, 3, 1, 2));
+        tiles.add(new Tile(230, 205, 4, 1, 3));
+        tiles.add(new Tile(230, 212, 5, 1, 1));
+        tiles.add(new Tile(230, 201, 0, 0, 4));
+        tiles.add(new Tile(230, 194, 1, 0, 2));
+        tiles.add(new Tile(230, 205, 2, 0, 1));
+        tiles.add(new Tile(230, 204, 3, 0, 1));
+        tiles.add(new Tile(230, 197, 4, 0, 1));
+        tiles.add(new Tile(230, 213, 5, 0, 1));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_231_NAME", "Ancient Temple"));
+        puzzles.add(new Puzzle(231, 10, 19099L, 24, 0L, 0));
+        tiles.add(new Tile(231, 196, 0, 3, 4));
+        tiles.add(new Tile(231, 190, 1, 3, 2));
+        tiles.add(new Tile(231, 197, 2, 3, 3));
+        tiles.add(new Tile(231, 210, 3, 3, 2));
+        tiles.add(new Tile(231, 190, 4, 3, 1));
+        tiles.add(new Tile(231, 189, 0, 2, 1));
+        tiles.add(new Tile(231, 196, 1, 2, 4));
+        tiles.add(new Tile(231, 215, 2, 2, 2));
+        tiles.add(new Tile(231, 203, 3, 2, 2));
+        tiles.add(new Tile(231, 210, 4, 2, 1));
+        tiles.add(new Tile(231, 210, 0, 1, 4));
+        tiles.add(new Tile(231, 204, 1, 1, 2));
+        tiles.add(new Tile(231, 194, 2, 1, 3));
+        tiles.add(new Tile(231, 203, 3, 1, 2));
+        tiles.add(new Tile(231, 201, 4, 1, 2));
+        tiles.add(new Tile(231, 204, 0, 0, 4));
+        tiles.add(new Tile(231, 197, 1, 0, 4));
+        tiles.add(new Tile(231, 189, 2, 0, 1));
+        tiles.add(new Tile(231, 204, 3, 0, 4));
+        tiles.add(new Tile(231, 205, 4, 0, 2));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_232_NAME", "Differing Styles"));
+        puzzles.add(new Puzzle(232, 10, 12299L, 27, 0L, 0));
+        tiles.add(new Tile(232, 187, 0, 4, 1));
+        tiles.add(new Tile(232, 197, 1, 4, 2));
+        tiles.add(new Tile(232, 197, 2, 4, 3));
+        tiles.add(new Tile(232, 211, 0, 3, 3));
+        tiles.add(new Tile(232, 212, 1, 3, 3));
+        tiles.add(new Tile(232, 213, 2, 3, 1));
+        tiles.add(new Tile(232, 208, 0, 2, 3));
+        tiles.add(new Tile(232, 212, 1, 2, 1));
+        tiles.add(new Tile(232, 213, 2, 2, 4));
+        tiles.add(new Tile(232, 213, 0, 1, 2));
+        tiles.add(new Tile(232, 191, 1, 1, 4));
+        tiles.add(new Tile(232, 192, 2, 1, 1));
+        tiles.add(new Tile(232, 209, 0, 0, 2));
+        tiles.add(new Tile(232, 214, 1, 0, 2));
+        tiles.add(new Tile(232, 192, 2, 0, 1));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_233_NAME", "Scattered Ashes"));
+        puzzles.add(new Puzzle(233, 10, 11999L, 24, 0L, 0));
+        tiles.add(new Tile(233, 196, 0, 4, 1));
+        tiles.add(new Tile(233, 210, 1, 4, 2));
+        tiles.add(new Tile(233, 201, 2, 4, 2));
+        tiles.add(new Tile(233, 213, 3, 4, 4));
+        tiles.add(new Tile(233, 189, 0, 3, 4));
+        tiles.add(new Tile(233, 189, 1, 3, 3));
+        tiles.add(new Tile(233, 210, 2, 3, 1));
+        tiles.add(new Tile(233, 212, 3, 3, 2));
+        tiles.add(new Tile(233, 204, 0, 2, 4));
+        tiles.add(new Tile(233, 197, 1, 2, 4));
+        tiles.add(new Tile(233, 196, 2, 2, 1));
+        tiles.add(new Tile(233, 212, 3, 2, 3));
+        tiles.add(new Tile(233, 202, 0, 1, 2));
+        tiles.add(new Tile(233, 200, 1, 1, 4));
+        tiles.add(new Tile(233, 213, 2, 1, 2));
+        tiles.add(new Tile(233, 216, 3, 1, 1));
+        tiles.add(new Tile(233, 210, 0, 0, 2));
+        tiles.add(new Tile(233, 211, 1, 0, 4));
+        tiles.add(new Tile(233, 200, 2, 0, 4));
+        tiles.add(new Tile(233, 187, 3, 0, 1));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_234_NAME", "Defendable"));
+        puzzles.add(new Puzzle(234, 10, 19899L, 28, 0L, 0));
+        tiles.add(new Tile(234, 204, 0, 6, 4));
+        tiles.add(new Tile(234, 189, 1, 6, 2));
+        tiles.add(new Tile(234, 205, 2, 6, 1));
+        tiles.add(new Tile(234, 190, 3, 6, 4));
+        tiles.add(new Tile(234, 215, 0, 5, 2));
+        tiles.add(new Tile(234, 202, 1, 5, 1));
+        tiles.add(new Tile(234, 201, 2, 5, 3));
+        tiles.add(new Tile(234, 196, 3, 5, 2));
+        tiles.add(new Tile(234, 210, 0, 4, 2));
+        tiles.add(new Tile(234, 201, 1, 4, 3));
+        tiles.add(new Tile(234, 205, 2, 4, 4));
+        tiles.add(new Tile(234, 189, 3, 4, 3));
+        tiles.add(new Tile(234, 215, 0, 3, 2));
+        tiles.add(new Tile(234, 206, 1, 3, 1));
+        tiles.add(new Tile(234, 206, 2, 3, 3));
+        tiles.add(new Tile(234, 215, 3, 3, 3));
+        tiles.add(new Tile(234, 201, 0, 2, 3));
+        tiles.add(new Tile(234, 194, 1, 2, 3));
+        tiles.add(new Tile(234, 194, 2, 2, 3));
+        tiles.add(new Tile(234, 215, 3, 2, 1));
+        tiles.add(new Tile(234, 187, 0, 1, 2));
+        tiles.add(new Tile(234, 191, 1, 1, 2));
+        tiles.add(new Tile(234, 191, 2, 1, 2));
+        tiles.add(new Tile(234, 213, 3, 1, 2));
+        tiles.add(new Tile(234, 209, 0, 0, 3));
+        tiles.add(new Tile(234, 214, 1, 0, 1));
+        tiles.add(new Tile(234, 191, 2, 0, 3));
+        tiles.add(new Tile(234, 200, 3, 0, 1));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_235_NAME", "Archaeological Dig"));
+        puzzles.add(new Puzzle(235, 10, 5099L, 8, 0L, 0));
+        tiles.add(new Tile(235, 205, 0, 2, 1));
+        tiles.add(new Tile(235, 189, 1, 2, 1));
+        tiles.add(new Tile(235, 189, 2, 2, 3));
+        tiles.add(new Tile(235, 194, 0, 1, 4));
+        tiles.add(new Tile(235, 202, 1, 1, 4));
+        tiles.add(new Tile(235, 210, 2, 1, 1));
+        tiles.add(new Tile(235, 201, 0, 0, 2));
+        tiles.add(new Tile(235, 204, 1, 0, 1));
+        tiles.add(new Tile(235, 189, 2, 0, 3));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_236_NAME", "Ye Olde Tavern"));
+        puzzles.add(new Puzzle(236, 10, 30699L, 28, 0L, 0));
+        tiles.add(new Tile(236, 210, 0, 5, 3));
+        tiles.add(new Tile(236, 217, 1, 5, 4));
+        tiles.add(new Tile(236, 217, 2, 5, 2));
+        tiles.add(new Tile(236, 211, 3, 5, 2));
+        tiles.add(new Tile(236, 200, 4, 5, 1));
+        tiles.add(new Tile(236, 202, 0, 4, 3));
+        tiles.add(new Tile(236, 208, 1, 4, 1));
+        tiles.add(new Tile(236, 199, 2, 4, 1));
+        tiles.add(new Tile(236, 198, 3, 4, 3));
+        tiles.add(new Tile(236, 213, 4, 4, 1));
+        tiles.add(new Tile(236, 205, 0, 3, 4));
+        tiles.add(new Tile(236, 208, 1, 3, 2));
+        tiles.add(new Tile(236, 199, 2, 3, 2));
+        tiles.add(new Tile(236, 216, 3, 3, 4));
+        tiles.add(new Tile(236, 197, 4, 3, 4));
+        tiles.add(new Tile(236, 217, 0, 2, 2));
+        tiles.add(new Tile(236, 198, 1, 2, 2));
+        tiles.add(new Tile(236, 198, 2, 2, 3));
+        tiles.add(new Tile(236, 200, 3, 2, 4));
+        tiles.add(new Tile(236, 189, 4, 2, 2));
+        tiles.add(new Tile(236, 208, 0, 1, 1));
+        tiles.add(new Tile(236, 208, 1, 1, 1));
+        tiles.add(new Tile(236, 199, 2, 1, 3));
+        tiles.add(new Tile(236, 217, 3, 1, 4));
+        tiles.add(new Tile(236, 204, 4, 1, 2));
+        tiles.add(new Tile(236, 216, 0, 0, 1));
+        tiles.add(new Tile(236, 212, 1, 0, 3));
+        tiles.add(new Tile(236, 216, 2, 0, 2));
+        tiles.add(new Tile(236, 213, 3, 0, 1));
+        tiles.add(new Tile(236, 210, 4, 0, 4));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_237_NAME", "The Bar Brawl"));
+        puzzles.add(new Puzzle(237, 10, 10999L, 18, 0L, 0));
+        tiles.add(new Tile(237, 197, 0, 3, 3));
+        tiles.add(new Tile(237, 200, 1, 3, 3));
+        tiles.add(new Tile(237, 211, 2, 3, 3));
+        tiles.add(new Tile(237, 216, 3, 3, 4));
+        tiles.add(new Tile(237, 217, 0, 2, 2));
+        tiles.add(new Tile(237, 199, 1, 2, 2));
+        tiles.add(new Tile(237, 198, 2, 2, 3));
+        tiles.add(new Tile(237, 216, 3, 2, 4));
+        tiles.add(new Tile(237, 217, 0, 1, 4));
+        tiles.add(new Tile(237, 208, 1, 1, 4));
+        tiles.add(new Tile(237, 211, 2, 1, 3));
+        tiles.add(new Tile(237, 205, 3, 1, 2));
+        tiles.add(new Tile(237, 213, 0, 0, 4));
+        tiles.add(new Tile(237, 213, 1, 0, 1));
+        tiles.add(new Tile(237, 189, 2, 0, 4));
+        tiles.add(new Tile(237, 204, 3, 0, 2));
+
+        texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_238_NAME", "Intersecting Marble"));
+        puzzles.add(new Puzzle(238, 10, 20299L, 36, 0L, 0));
+        tiles.add(new Tile(238, 200, 0, 4, 3));
+        tiles.add(new Tile(238, 213, 1, 4, 2));
+        tiles.add(new Tile(238, 187, 2, 4, 2));
+        tiles.add(new Tile(238, 215, 3, 4, 1));
+        tiles.add(new Tile(238, 201, 4, 4, 2));
+        tiles.add(new Tile(238, 201, 0, 3, 4));
+        tiles.add(new Tile(238, 202, 1, 3, 3));
+        tiles.add(new Tile(238, 202, 2, 3, 4));
+        tiles.add(new Tile(238, 194, 3, 3, 2));
+        tiles.add(new Tile(238, 201, 4, 3, 3));
+        tiles.add(new Tile(238, 205, 0, 2, 1));
+        tiles.add(new Tile(238, 213, 1, 2, 1));
+        tiles.add(new Tile(238, 213, 2, 2, 3));
+        tiles.add(new Tile(238, 213, 3, 2, 1));
+        tiles.add(new Tile(238, 200, 4, 2, 2));
+        tiles.add(new Tile(238, 190, 0, 1, 3));
+        tiles.add(new Tile(238, 190, 1, 1, 4));
+        tiles.add(new Tile(238, 200, 2, 1, 4));
+        tiles.add(new Tile(238, 212, 3, 1, 4));
+        tiles.add(new Tile(238, 212, 4, 1, 1));
+        tiles.add(new Tile(238, 209, 0, 0, 1));
+        tiles.add(new Tile(238, 209, 1, 0, 4));
+        tiles.add(new Tile(238, 211, 2, 0, 1));
+        tiles.add(new Tile(238, 208, 3, 0, 2));
+        tiles.add(new Tile(238, 216, 4, 0, 1));
+
+        Puzzle.saveInTx(puzzles);
+        Text.saveInTx(texts);
+        Tile.saveInTx(tiles);
+    }
+
     private void createSetting() {
+        Setting.deleteAll(Setting.class);
+
         List<Setting> settings = new ArrayList<>();
         settings.add(new Setting(Constants.SETTING_MUSIC, true));
         settings.add(new Setting(Constants.SETTING_SOUNDS, true));
@@ -6173,13 +6773,15 @@ public class PatchHelper extends AsyncTask<String, String, String> {
     }
 
     private void createStatistic() {
+        Statistic.deleteAll(Statistic.class);
+
         List<Statistic> statistics = new ArrayList<>();
         statistics.add(new Statistic(Constants.STATISTIC_PUZZLES_COMPLETED, 0, 0));
         statistics.add(new Statistic(Constants.STATISTIC_TILES_ROTATED, 0, 0));
         statistics.add(new Statistic(Constants.STATISTIC_QUESTS_COMPLETED, 0, 0));
         statistics.add(new Statistic(Constants.STATISTIC_PUZZLES_COMPLETED_FULLY, 0, 0));
         statistics.add(new Statistic(Constants.STATISTIC_BOOSTS_USED, 0, 0));
-        statistics.add(new Statistic(Constants.STATISTIC_CURRENCY, 123));
+        statistics.add(new Statistic(Constants.STATISTIC_CURRENCY, 100));
         statistics.add(new Statistic(Constants.STATISTIC_TAPJOY_COINS, 0));
         statistics.add(new Statistic(Constants.STATISTIC_LAST_AUTOSAVE, 0L));
         statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_1, 0, 0));
@@ -6191,10 +6793,13 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_7, 0, 0));
         statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_8, 0, 0));
         statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_9, 0, 0));
+        statistics.add(new Statistic(Constants.STATISTIC_COMPLETE_PACK_10, 0, 0));
         Statistic.saveInTx(statistics);
     }
 
-    private void createStoreItem() {
+    private void createShopItem() {
+        ShopItem.deleteAll(ShopItem.class);
+
         List<ShopItem> shopItems = new ArrayList<>();
         shopItems.add(new ShopItem(Constants.ITEM_BOOST_UNDO, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_UNDO, 1, 4, 0, false));
         shopItems.add(new ShopItem(Constants.ITEM_BOOST_UNDO_10, Constants.STORE_CATEGORY_BOOSTS, Constants.BOOST_UNDO, 10, 36, 0, false));
@@ -6211,27 +6816,30 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         shopItems.add(new ShopItem(Constants.ITEM_BOOST_TIME_UPGRADE, Constants.STORE_CATEGORY_UPGRADES, Constants.BOOST_UNDO, 0, 150, 5, true));
         shopItems.add(new ShopItem(Constants.ITEM_BOOST_MOVES_UPGRADE, Constants.STORE_CATEGORY_UPGRADES, Constants.BOOST_MOVE, 0, 150, 5, true));
         shopItems.add(new ShopItem(Constants.ITEM_BOOST_SHUFFLE_UPGRADE, Constants.STORE_CATEGORY_UPGRADES, Constants.BOOST_SHUFFLE, 0, 100, 1, true));
-        shopItems.add(new ShopItem(Constants.ITEM_TILE_0, Constants.STORE_CATEGORY_TILES, 0, 0, 1500, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_TILE_0, Constants.STORE_CATEGORY_TILES, 0, 0, 600, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_TILE_10, Constants.STORE_CATEGORY_TILES, 10, 0, 400, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_TILE_58, Constants.STORE_CATEGORY_TILES, 58, 0, 400, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_TILE_78, Constants.STORE_CATEGORY_TILES, 78, 0, 500, 1, false));
-        shopItems.add(new ShopItem(Constants.ITEM_TILE_116, Constants.STORE_CATEGORY_TILES, 116, 0, 800, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_TILE_116, Constants.STORE_CATEGORY_TILES, 116, 0, 200, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_TILE_134, Constants.STORE_CATEGORY_TILES, 134, 0, 200, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_TILE_157, Constants.STORE_CATEGORY_TILES, 157, 0, 300, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_TILE_172, Constants.STORE_CATEGORY_TILES, 172, 0, 100, 1, false));
-        shopItems.add(new ShopItem(Constants.ITEM_PACK_2, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 2, 1000, 1, false));
-        shopItems.add(new ShopItem(Constants.ITEM_PACK_3, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 3, 1000, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_PACK_2, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 2, 400, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_PACK_3, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 3, 600, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_PACK_4, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 4, 1300, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_PACK_5, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 5, 1300, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_PACK_6, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 6, 1300, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_PACK_7, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 7, 1800, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_PACK_8, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 8, 1800, 1, false));
         shopItems.add(new ShopItem(Constants.ITEM_MAX_CARS, Constants.STORE_CATEGORY_MISC, 400, 1, false));
-        shopItems.add(new ShopItem(Constants.ITEM_ZEN_MODE, Constants.STORE_CATEGORY_MISC, 100, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_ZEN_MODE, Constants.STORE_CATEGORY_MISC, 200, 1, false));
+        shopItems.add(new ShopItem(Constants.ITEM_PACK_10, Constants.STORE_CATEGORY_MISC, Constants.STORE_SUBCATEGORY_PACK, 10, 1800, 1, false));
         ShopItem.saveInTx(shopItems);
     }
 
-    private void createStoreCategory() {
+    private void createShopCategory() {
+        ShopCategory.deleteAll(ShopCategory.class);
+
         List<ShopCategory> categories = new ArrayList<>();
         categories.add(new ShopCategory(Constants.STORE_CATEGORY_BOOSTS));
         categories.add(new ShopCategory(Constants.STORE_CATEGORY_UPGRADES));
@@ -6241,6 +6849,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
     }
 
     private void createTileType() {
+        TileType.deleteAll(TileType.class);
+
         List<TileType> tileTypes = new ArrayList<>();
         tileTypes.add(new TileType(0, Constants.ENVIRONMENT_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNPURCHASED));
         tileTypes.add(new TileType(1, Constants.ENVIRONMENT_GRASS, Constants.FLOW_ROAD, Constants.FLOW_ROAD, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 41));
@@ -6429,6 +7039,37 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tileTypes.add(new TileType(184, Constants.ENVIRONMENT_GRASS, Constants.FLOW_WATER, Constants.FLOW_WATER, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 64));
         tileTypes.add(new TileType(185, Constants.ENVIRONMENT_DESERT, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 171));
         tileTypes.add(new TileType(186, Constants.ENVIRONMENT_DESERT, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 172));
+        tileTypes.add(new TileType(187, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 209));
+        tileTypes.add(new TileType(188, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, 210));
+        tileTypes.add(new TileType(189, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 211));
+        tileTypes.add(new TileType(190, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 212));
+        tileTypes.add(new TileType(191, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 213));
+        tileTypes.add(new TileType(192, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 214));
+        tileTypes.add(new TileType(193, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.HEIGHT_NORMAL, 215));
+        tileTypes.add(new TileType(194, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, 216));
+        tileTypes.add(new TileType(195, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 217));
+        tileTypes.add(new TileType(196, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 218));
+        tileTypes.add(new TileType(197, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 219));
+        tileTypes.add(new TileType(198, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.HEIGHT_NORMAL, 220));
+        tileTypes.add(new TileType(199, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.HEIGHT_NORMAL, 221));
+        tileTypes.add(new TileType(200, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 222));
+        tileTypes.add(new TileType(201, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 223));
+        tileTypes.add(new TileType(202, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 224));
+        tileTypes.add(new TileType(203, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, 225));
+        tileTypes.add(new TileType(204, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 226));
+        tileTypes.add(new TileType(205, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 227));
+        tileTypes.add(new TileType(206, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, 228));
+        tileTypes.add(new TileType(207, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.HEIGHT_NORMAL, 229));
+        tileTypes.add(new TileType(208, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_PLANK, Constants.HEIGHT_NORMAL, 230));
+        tileTypes.add(new TileType(209, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 231));
+        tileTypes.add(new TileType(210, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, Constants.TILE_UNLOCKED));
+        tileTypes.add(new TileType(211, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 232));
+        tileTypes.add(new TileType(212, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 233));
+        tileTypes.add(new TileType(213, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_NONE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 234));
+        tileTypes.add(new TileType(214, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_PATH, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 235));
+        tileTypes.add(new TileType(215, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_VILLAGE_MARBLE, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 236));
+        tileTypes.add(new TileType(216, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 237));
+        tileTypes.add(new TileType(217, Constants.ENVIRONMENT_VILLAGE, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_VILLAGE_PLANK, Constants.FLOW_NONE, Constants.FLOW_NONE, Constants.HEIGHT_NORMAL, 238));
         TileType.saveInTx(tileTypes);
     }
 }

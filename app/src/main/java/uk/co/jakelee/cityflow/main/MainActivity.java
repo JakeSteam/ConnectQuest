@@ -42,7 +42,7 @@ public class MainActivity extends Activity implements
         prefs = getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE);
         dh = DisplayHelper.getInstance(this);
 
-        new PatchHelper(this).execute();
+        new PatchHelper(this, true).execute();
 
         ratingPrompt();
 
@@ -173,8 +173,12 @@ public class MainActivity extends Activity implements
     }
 
     public void openQuestMenu(View view) {
-        startActivity(new Intent(this,
-                QuestActivity.class)
-                .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+        if (GooglePlayHelper.IsConnected()) {
+            startActivity(new Intent(this,
+                    QuestActivity.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+        } else {
+            AlertHelper.error(this, AlertHelper.getError(AlertHelper.Error.FAILED_TO_CONNECT));
+        }
     }
 }

@@ -55,10 +55,6 @@ public class ExportActivity extends AllowMeActivity {
     }
 
     private void populateCard() {
-        ((TextView) findViewById(R.id.saveCard)).setText(Text.get("DIALOG_BUTTON_SAVE"));
-        ((TextView) findViewById(R.id.shareCard)).setText(Text.get("DIALOG_BUTTON_SHARE"));
-        ((TextView) findViewById(R.id.shareText)).setText(Text.get("DIALOG_BUTTON_TEXT"));
-
         ((TextView) findViewById(R.id.puzzleName)).setText(puzzle.getName());
         ((TextView) findViewById(R.id.puzzleAuthor)).setText(puzzleCustom.isOriginalAuthor() ?
                 Setting.getString(Constants.SETTING_PLAYER_NAME) :

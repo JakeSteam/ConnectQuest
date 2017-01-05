@@ -5,7 +5,6 @@ import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import uk.co.jakelee.cityflow.helper.Constants;
-import uk.co.jakelee.cityflow.helper.TileHelper;
 
 public class Tile extends SugarRecord {
     private int puzzleId;
@@ -102,52 +101,6 @@ public class Tile extends SugarRecord {
             }
         }
         this.save();
-    }
-
-    public int getFlow(int side) {
-        int flow = Constants.FLOW_NONE;
-        TileType type = TileHelper.getTileType(this);
-
-        int target = side + (5 - rotation);
-        if (target > 4) {
-            target -= 4;
-        }
-
-        if (target == Constants.ROTATION_NORTH) {
-            flow = type.getFlowNorth();
-        } else if (target == Constants.ROTATION_EAST) {
-            flow = type.getFlowEast();
-        } else if (target == Constants.ROTATION_SOUTH) {
-            flow = type.getFlowSouth();
-        } else if (target == Constants.ROTATION_WEST) {
-            flow = type.getFlowWest();
-        }
-        return flow;
-    }
-
-    public int getHeight(int side) {
-        int height = Constants.HEIGHT_NORMAL;
-        TileType type = TileHelper.getTileType(this);
-
-        int target = side + (5 - rotation);
-        if (target > 4) {
-            target -= 4;
-        }
-
-        if (type.getTypeId() == 0) {
-            return height;
-        }
-
-        if (target == Constants.ROTATION_NORTH) {
-            height = type.getHeightNorth();
-        } else if (target == Constants.ROTATION_EAST && type.getHeightEast() != Constants.HEIGHT_NORMAL) {
-            height = type.getHeightEast();
-        } else if (target == Constants.ROTATION_SOUTH && type.getHeightSouth() != Constants.HEIGHT_NORMAL) {
-            height = type.getHeightSouth();
-        } else if (target == Constants.ROTATION_WEST && type.getHeightWest() != Constants.HEIGHT_NORMAL) {
-            height = type.getHeightWest();
-        }
-        return height;
     }
 
     public String getName() {
