@@ -9,7 +9,7 @@ android {
         applicationId "uk.co.jakelee.cityflow"
         minSdkVersion 15
         targetSdkVersion apiVersion
-        versionCode 8
+        versionCode 9
         versionName "1.0.0"
     }
     buildTypes {
