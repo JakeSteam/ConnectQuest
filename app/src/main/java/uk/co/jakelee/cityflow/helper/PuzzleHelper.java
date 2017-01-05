@@ -88,6 +88,12 @@ public class PuzzleHelper {
                     GooglePlayHelper.UpdateLeaderboards(Constants.LEADERBOARD_PUZZLES_FULLY_COMPLETED, Statistic.getInt(Constants.STATISTIC_PUZZLES_COMPLETED_FULLY)); // Leaderboards
                 }
 
+                Setting tutorialStage = Setting.get(Constants.SETTING_TUTORIAL_STAGE);
+                if (tutorialStage.getIntValue() <= Constants.TUTORIAL_MAX) {
+                    tutorialStage.setIntValue(tutorialStage.getIntValue() + 1);
+                    tutorialStage.save();
+                }
+
                 // Update for quests
                 GooglePlayHelper.UpdateEvent(Constants.EVENT_COMPLETE_PUZZLE, 1);
                 GooglePlayHelper.UpdateEvent(Constants.EVENT_USE_BOOST, boostsUsed);
@@ -105,12 +111,6 @@ public class PuzzleHelper {
 
                 if (GooglePlayHelper.shouldAutosave()) {
                     GooglePlayHelper.autosave(context);
-                }
-
-                Setting tutorialStage = Setting.get(Constants.SETTING_TUTORIAL_STAGE);
-                if (tutorialStage.getIntValue() <= Constants.TUTORIAL_MAX) {
-                    tutorialStage.setIntValue(tutorialStage.getIntValue() + 1);
-                    tutorialStage.save();
                 }
             }
         }).start();
