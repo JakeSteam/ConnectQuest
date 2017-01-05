@@ -90,6 +90,7 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
         setContentView(R.layout.activity_puzzle);
 
         playSounds = Setting.getSafeBoolean(Constants.SETTING_SOUNDS);
+        SoundHelper.getInstance(this).playOrResumeMusic(SoundHelper.AUDIO.puzzle);
         dh = DisplayHelper.getInstance(this);
 
         Intent intent = getIntent();
@@ -133,13 +134,6 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     protected void onPause() {
         super.onPause();
         pause();
-        SoundHelper.getInstance(this).stopAudio(true);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        SoundHelper.getInstance(this).playOrResumeMusic(SoundHelper.AUDIO.puzzle);
     }
 
     private void displayTutorial() {
@@ -186,6 +180,8 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
         Puzzle.getPuzzle(puzzleId).resetTileRotations();
         exitedPuzzle = true;
         handler.removeCallbacksAndMessages(null);
+        SoundHelper.stopIfExiting(this);
+        finish();
     }
 
     public void prefetchImages(List<Tile> tiles) {
