@@ -150,14 +150,12 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
                 ((TextView) iapButton.findViewById(R.id.itemPrice)).setText(Text.get("WORD_NA"));
             } else {
                 ((TextView) iapButton.findViewById(R.id.itemPrice)).setText("?.??");
-                if (uk.co.jakelee.cityflow.helper.Constants.DEBUG_MODE) {
-                    iapButton.setOnClickListener(new Button.OnClickListener() {
-                        public void onClick(View v) {
-                            buyIAP(v);
-                        }
-                    });
-                    iapButton.setTag(iap.getIapCode());
-                }
+                iapButton.setOnClickListener(new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        buyIAP(v);
+                    }
+                });
+                iapButton.setTag(iap.getIapCode());
             }
 
             scrollView.addView(iapButton, layoutParams);

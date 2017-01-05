@@ -200,6 +200,7 @@ public class EditorActivity extends Activity implements PuzzleDisplayer {
     public void shuffleTiles() {
         List<Tile> tiles = Puzzle.getPuzzle(puzzleId).getTiles();
         Puzzle.shuffle(tiles);
+        Tile.executeQuery("UPDATE tile SET default_rotation = rotation WHERE puzzle_id = " + puzzleId);
         drawPuzzle(tiles);
     }
 

@@ -121,7 +121,7 @@ public class Constants {
     public static final int ENVIRONMENT_VILLAGE = 7;
     public static final int FLOW_ANY = -1;
     public static final int FLOW_MIN = 0;
-    public static final int FLOW_MAX = 13;
+    public static final int FLOW_MAX = 12;
     public static final int FLOW_NONE = 0;
     public static final int FLOW_WATER = 1;
     public static final int FLOW_ROAD = 2;
