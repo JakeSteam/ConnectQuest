@@ -32,8 +32,8 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
     private TextView progressText;
     private TextView progressPercentage;
     private Dialog dialog;
-    private int xValue;
-    private int yValue;
+    private int maxX;
+    private int maxY;
     private int environmentId;
     private boolean blankPuzzle;
     private boolean shuffleAndPlay;
@@ -42,11 +42,11 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
     private int failedTiles = 0;
     private boolean hasAllTiles = false;
 
-    public PuzzleGenerator(Activity activity, Dialog dialog, int xValue, int yValue, int environmentId, boolean blankPuzzle, boolean shuffleAndPlay) {
+    public PuzzleGenerator(Activity activity, Dialog dialog, int maxX, int maxY, int environmentId, boolean blankPuzzle, boolean shuffleAndPlay) {
         this.activity = activity;
         this.dialog = dialog;
-        this.xValue = xValue;
-        this.yValue = yValue;
+        this.maxX = maxX;
+        this.maxY = maxY;
         this.environmentId = environmentId;
         this.blankPuzzle = blankPuzzle;
         this.shuffleAndPlay = shuffleAndPlay;
@@ -72,15 +72,15 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
 
     @Override
     protected Integer doInBackground(String... params) {
-        totalTiles = xValue * yValue;
+        totalTiles = maxX * maxY;
         if (blankPuzzle) {
-            return createEmptyPuzzle(xValue, yValue, environmentId);
+            return createEmptyPuzzle();
         } else {
-            return createFilledPuzzle(xValue, yValue, environmentId);
+            return createFilledPuzzle();
         }
     }
 
-    private int createEmptyPuzzle(int maxX, int maxY, final int environmentId) {
+    private int createEmptyPuzzle() {
         int newPuzzleId = getNextCustomPuzzleId();
         int defaultTileId = getDefaultTileId(environmentId);
         Puzzle newPuzzle = createBasicPuzzleObject(newPuzzleId);
@@ -105,7 +105,7 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
         return newPuzzleId;
     }
 
-    private int createFilledPuzzle(int maxX, int maxY, int environmentId) {
+    private int createFilledPuzzle() {
         int newPuzzleId = getNextCustomPuzzleId();
         Puzzle newPuzzle = createBasicPuzzleObject(newPuzzleId);
         PuzzleCustom puzzleCustom = createBasicPuzzleCustomObject(newPuzzleId, maxX, maxY);
