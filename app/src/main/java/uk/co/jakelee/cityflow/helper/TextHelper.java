@@ -228,8 +228,9 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "CREATOR_NEW_PUZZLE", "New Puzzle"));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_GRAPHICS_TITLE", "Graphics"));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_GRAPHICS_TEXT", "<a href='http://www.dafont.com/claudep.d857'>Claude P</a>: Main font (Yagiuhf No 2).<br>" +
-                "<a href='http://fontello.com/'>Fontello</a>: Most icons.<br>" +
-                "<a href='http://kenney.nl/'>Kenney</a>: Base tilesets, majority of UI elements.<br>" +
+                "<a href='http://fontello.com/'>Fontello</a>: Most action icons.<br>" +
+                "<a href='http://kenney.nl/'>Kenney</a>: Base tilesets.<br>" +
+                "<a href='https://www.reddit.com/user/berzerKunt'>Rosiu Cristian</a>: Concept art.<br>" +
                 ""));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_LOCAL_TITLE", "Localisation"));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_LOCAL_TEXT", "<b>Chinese</b>: Dalziel45<br>" +
