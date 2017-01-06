@@ -161,20 +161,6 @@
 
     </android.support.percent.PercentRelativeLayout>
 
-    <uk.co.jakelee.cityflow.components.TextViewFont
-        android:id="@+id/puzzleTimer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="45dp"
-        android:gravity="center_horizontal"
-        android:shadowColor="@color/white"
-        android:shadowDx="1.5"
-        android:shadowDy="1.3"
-        android:shadowRadius="1.6"
-        android:textColor="@color/black"
-        android:textSize="55sp" />
-
     <LinearLayout
         android:id="@+id/controlWrapper"
         android:layout_width="wrap_content"
@@ -238,7 +224,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:padding="10dp"
         android:shadowColor="@color/white"
         android:shadowDx="1.5"
         android:shadowDy="1.3"
@@ -247,6 +232,21 @@
         android:textColor="@color/black"
         android:textSize="50sp"
         android:visibility="invisible" />
+
+    <uk.co.jakelee.cityflow.components.TextViewFont
+        android:id="@+id/puzzleTimer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@id/moveCounter"
+        android:layout_toRightOf="@id/controlWrapper"
+        android:gravity="center_horizontal"
+        android:shadowColor="@color/white"
+        android:shadowDx="1.5"
+        android:shadowDy="1.3"
+        android:shadowRadius="1.6"
+        android:textColor="@color/black"
+        android:textSize="50sp" />
 
     <RelativeLayout
         android:id="@+id/blockingMessage"

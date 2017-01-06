@@ -79,7 +79,7 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     private Runnable updateTimerThread = new Runnable() {
         public void run() {
             timeInMilliseconds = (SystemClock.uptimeMillis() - startTime) - timeSpentPaused;
-            ((TextView) (findViewById(R.id.puzzleTimer))).setText(DateHelper.getPuzzleTimeString(timeInMilliseconds));
+            ((TextView) (findViewById(R.id.puzzleTimer))).setText(DateHelper.getInGameTimeString(timeInMilliseconds));
             handler.postDelayed(this, 20);
         }
     };
@@ -160,6 +160,11 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
             findViewById(R.id.timeBoost).setVisibility(boostTime > 0 ? View.VISIBLE : View.INVISIBLE);
             findViewById(R.id.moveBoost).setVisibility(boostMove > 0 ? View.VISIBLE : View.INVISIBLE);
             findViewById(R.id.shuffleBoost).setVisibility(boostShuffle > 0 ? View.VISIBLE : View.INVISIBLE);
+
+            findViewById(R.id.undoCount).setVisibility(boostUndo > 0 ? View.VISIBLE : View.INVISIBLE);
+            findViewById(R.id.timeCount).setVisibility(boostTime > 0 ? View.VISIBLE : View.INVISIBLE);
+            findViewById(R.id.moveCount).setVisibility(boostMove > 0 ? View.VISIBLE : View.INVISIBLE);
+            findViewById(R.id.shuffleCount).setVisibility(boostShuffle > 0 ? View.VISIBLE : View.INVISIBLE);
         }
 
         ((TextView) findViewById(R.id.undoBoost)).setTextColor(boostUndo > 0 ? Color.BLACK : Color.LTGRAY);

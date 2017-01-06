@@ -68,4 +68,11 @@ public class DateHelper {
         }
         return String.format(Locale.ENGLISH, "%.2fs", (double) timeTaken / 1000);
     }
+
+    public static String getInGameTimeString(long timeTaken) {
+        if (timeTaken == 0 || timeTaken == Constants.PUZZLE_DEFAULT_TIME) {
+            return "N/A";
+        }
+        return String.format(Locale.ENGLISH, "%.1fs", (double) timeTaken / 1000);
+    }
 }
