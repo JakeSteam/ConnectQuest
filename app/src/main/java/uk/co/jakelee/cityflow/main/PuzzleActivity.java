@@ -421,7 +421,7 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
 
             int timeProgress = PuzzleHelper.getPuzzleCriteriaProgress((int) timeInMilliseconds, (int) puzzle.getParTime());
             ((TextView) findViewById(R.id.skyscraperTimeTitle)).setText(String.format(Locale.ENGLISH, Text.get("UI_SKYSCRAPER_TIME_TITLE"), timeProgress));
-            ((TextView) findViewById(R.id.skyscraperTimeTitle)).setTextColor(getResources().getColor(timeProgress == 100 ? R.color.gold : R.color.white));
+            ((TextView) findViewById(R.id.skyscraperTimeTitle)).setTextColor(getResources().getColor((timeProgress == 100 || Setting.getSafeBoolean(Constants.SETTING_ZEN_MODE)) ? R.color.gold : R.color.white));
             ((ImageView) findViewById(R.id.skyscraperTime)).setImageResource(PuzzleHelper.getSkyscraperDrawable(this, timeProgress, Constants.SKYSCRAPER_TIME));
             ((TextView) findViewById(R.id.skyscraperTimeText)).setText(String.format(Locale.ENGLISH, Text.get("UI_SKYSCRAPER_TIME_TEXT"),
                     timeInMilliseconds > 0 ? DateHelper.getPuzzleTimeString(timeInMilliseconds) : "0",
