@@ -153,19 +153,18 @@ public class ShopActivity extends Activity {
 
         List<ShopItem> items = ShopCategory.getItems(selectedCategory);
         int numItems = items.size();
+        int numItemsProcessed = 0;
         TableRow row = new TableRow(this);
 
-        for (int itemIndex = 1; itemIndex <= numItems; itemIndex++) {
-            ShopItem item = items.get(itemIndex - 1);
-
+        for (ShopItem item : items) {
             if (item.getCategoryId() == Constants.STORE_CATEGORY_MISC
                     && item.getSubcategoryId() == Constants.STORE_SUBCATEGORY_PACK
                     && Pack.getPack(item.getMiscData()).isUnlocked()) {
                     continue;
             }
             row.addView(dh.createItemSelectButton(this, item), layoutParams);
-
-            if (itemIndex % 3 == 0 || itemIndex == numItems) {
+            numItemsProcessed++;
+            if (numItemsProcessed % 3 == 0 || numItemsProcessed == numItems) {
                 itemContainer.addView(row);
                 row = new TableRow(this);
             }
