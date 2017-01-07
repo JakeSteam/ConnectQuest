@@ -35,11 +35,13 @@ public class EncryptHelper {
     }
 
     public static long decodeToLong(String encrypted, int salt) {
-        return Long.parseLong(decode(encrypted, salt));
+        String result = decode(encrypted, salt);
+        return result.equals("") ? 0 : Long.parseLong(result);
     }
 
     public static int decodeToInt(String encrypted, int salt) {
-        return Integer.parseInt(decode(encrypted, salt));
+        String result = decode(encrypted, salt);
+        return result.equals("") ? 0 : Integer.parseInt(decode(encrypted, salt));
     }
 
     public static boolean decodeToBool(String encrypted, int salt) {
