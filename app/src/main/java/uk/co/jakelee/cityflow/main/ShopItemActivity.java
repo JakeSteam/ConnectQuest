@@ -17,7 +17,6 @@ import uk.co.jakelee.cityflow.model.Boost;
 import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.Text;
-import uk.co.jakelee.cityflow.model.Tile;
 import uk.co.jakelee.cityflow.model.TileType;
 
 public class ShopItemActivity extends Activity {
@@ -56,13 +55,15 @@ public class ShopItemActivity extends Activity {
         if (shopItem.getCategoryId() == Constants.STORE_CATEGORY_BOOSTS && shopItem.getSubcategoryId() > 0) {
             Boost boost = Boost.get(shopItem.getSubcategoryId());
             ((TextView) findViewById(R.id.itemPurchases)).setText(String.format(Locale.ENGLISH, Text.get("SHOP_NUMBER_OWNED"), boost.getOwned()));
+        } else if (shopItem.isUnlockedPack()) {
+            ((TextView) findViewById(R.id.itemPurchases)).setText(Text.get("WORD_NA"));
         } else {
             ((TextView) findViewById(R.id.itemPurchases)).setText(String.format(Locale.ENGLISH, Text.get("SHOP_NUMBER_PURCHASES"),
                     shopItem.getPurchases(),
                     shopItem.getMaxPurchases() > 0 ? "/" + shopItem.getMaxPurchases() : ""));
         }
 
-        if (shopItem.getMaxPurchases() > 0 && shopItem.getPurchases() >= shopItem.getMaxPurchases()) {
+        if ((shopItem.getMaxPurchases() > 0 && shopItem.getPurchases() >= shopItem.getMaxPurchases()) || shopItem.isUnlockedPack()) {
             ((TextView) findViewById(R.id.purchaseButton)).setText(Text.get("SHOP_MAX_PURCHASED"));
         } else {
             ((TextView) findViewById(R.id.purchaseButton)).setText(String.format(Locale.ENGLISH, Text.get("SHOP_PURCHASE_TEXT"), shopItem.getPrice()));
