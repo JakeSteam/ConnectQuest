@@ -252,7 +252,7 @@ public class DisplayHelper {
         carView.startAnimation(AnimationHelper.move(metrics, rotation, duration));
     }
 
-    public DisplayValues getDisplayValues(Activity activity, int xTiles, int yTiles) {
+    private DisplayValues getDisplayValues(Activity activity, int xTiles, int yTiles) {
         DisplayMetrics displayMetrics = getSizes(activity);
         int screenHeight = displayMetrics.heightPixels;
         int screenWidth = displayMetrics.widthPixels;

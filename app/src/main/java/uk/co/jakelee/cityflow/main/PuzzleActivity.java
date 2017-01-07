@@ -260,12 +260,31 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     public void handleTileClick(ImageView image, Tile tile) {
         tile.rotate(undoing);
 
-        changedTilesX.add(tile.getX());
-        changedTilesY.add(tile.getY());
         int drawableId = DisplayHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());
         picasso.load(drawableId)
                 .placeholder(R.drawable.tile_0_1)
                 .into(image);
+
+        // If rotating will have no technical effect, just update cosmetics
+        if (TileType.get(tile.getTileTypeId()).canBeRotated()) {
+            changedTilesX.add(tile.getX());
+            changedTilesY.add(tile.getY());
+
+            ((TextView) findViewById(R.id.moveCounter)).setText(Integer.toString(++movesMade));
+
+            timeLastMoved = SystemClock.uptimeMillis();
+
+            if (undoing) {
+                Boost.use(Constants.BOOST_UNDO);
+                updateUiElements();
+            }
+
+            undoing = false;
+            justUndone = false;
+
+            this.lastChangedImage = image;
+            this.lastChangedTile = tile;
+        }
 
         if (vibrator != null) {
             vibrator.vibrate(30);
@@ -274,21 +293,6 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
         if (playSounds) {
             SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.rotating);
         }
-
-        ((TextView) findViewById(R.id.moveCounter)).setText(Integer.toString(++movesMade));
-
-        timeLastMoved = SystemClock.uptimeMillis();
-
-        if (undoing) {
-            Boost.use(Constants.BOOST_UNDO);
-            updateUiElements();
-        }
-
-        undoing = false;
-        justUndone = false;
-
-        this.lastChangedImage = image;
-        this.lastChangedTile = tile;
     }
 
     public void useBoostUndo(View v) {

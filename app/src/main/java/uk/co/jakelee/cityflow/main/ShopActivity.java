@@ -29,6 +29,7 @@ import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.model.Iap;
+import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.ShopCategory;
 import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Statistic;
@@ -156,6 +157,12 @@ public class ShopActivity extends Activity {
 
         for (int itemIndex = 1; itemIndex <= numItems; itemIndex++) {
             ShopItem item = items.get(itemIndex - 1);
+
+            if (item.getCategoryId() == Constants.STORE_CATEGORY_MISC
+                    && item.getSubcategoryId() == Constants.STORE_SUBCATEGORY_PACK
+                    && Pack.getPack(item.getMiscData()).isUnlocked()) {
+                    continue;
+            }
             row.addView(dh.createItemSelectButton(this, item), layoutParams);
 
             if (itemIndex % 3 == 0 || itemIndex == numItems) {

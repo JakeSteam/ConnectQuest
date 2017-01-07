@@ -110,6 +110,7 @@
         android:layout_marginLeft="7dp"
         android:layout_marginRight="7dp"
         android:background="@color/city"
+        android:scrollbarThumbVertical="@color/black"
         android:fadeScrollbars="false">
 
         <TableLayout
