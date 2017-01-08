@@ -26,7 +26,9 @@ import java.util.Locale;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.components.PuzzleCreationOptions;
 import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
+import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
@@ -440,7 +442,8 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
                     puzzle.getParMoves()));
 
             if (puzzleCustom == null || puzzleCustom.isOriginalAuthor()) {
-                ((TextView) findViewById(R.id.mainActionButton)).setText(isCustom ? R.string.icon_edit : R.string.icon_next);
+                boolean loadNextLevel = new PuzzleCreationOptions(this).isShuffleAndPlay();
+                ((TextView) findViewById(R.id.mainActionButton)).setText((isCustom && !loadNextLevel) ? R.string.icon_edit : R.string.icon_next);
             } else {
                 findViewById(R.id.mainActionButton).setVisibility(View.GONE);
             }
@@ -517,11 +520,15 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     public void mainAction(View v) {
         if (isCustom) {
             this.finish();
-            if (puzzleCustom.isOriginalAuthor()) {
+
+            PuzzleCreationOptions options = new PuzzleCreationOptions(this);
+            if (puzzleCustom.isOriginalAuthor() && !options.isShuffleAndPlay()) {
                 Intent intent = new Intent(this, EditorActivity.class);
                 intent.putExtra(Constants.INTENT_PUZZLE, puzzleId);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
+            } else if (puzzleCustom.isOriginalAuthor() && options.isShuffleAndPlay()) {
+                AlertDialogHelper.puzzleLoadingProgress(this, options);
             }
         } else {
             int nextPuzzle = PuzzleHelper.getNextPuzzleId(puzzleId);

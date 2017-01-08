@@ -391,7 +391,7 @@ public class AlertDialogHelper {
                 if (options.getX() <= 1 && options.getY() <= 1) {
                     AlertHelper.error(activity, AlertHelper.getError(AlertHelper.Error.PUZZLE_TOO_SMALL));
                 } else {
-                    puzzleLoadingProgress(activity, options.getX(), options.getY(), options.getEnvironmentId(), options.isEmptyPuzzle(), options.isShuffleAndPlay());
+                    puzzleLoadingProgress(activity, options);
                     options.save();
                     dialog.dismiss();
                 }
@@ -407,21 +407,14 @@ public class AlertDialogHelper {
         dialog.show();
     }
 
-    private static void puzzleLoadingProgress(final Activity activity, int xValue, int yValue, int environmentId, boolean blankPuzzle, boolean shuffleAndPlay) {
+    public static void puzzleLoadingProgress(final Activity activity, PuzzleCreationOptions options) {
         final Dialog dialog = new Dialog(activity);
         dialog.setContentView(R.layout.custom_dialog_puzzle_loading);
         dialog.setCancelable(true);
         ((TextView) dialog.findViewById(R.id.title)).setText(Text.get("WORD_LOADING"));
         dialog.show();
 
-        PuzzleGenerator puzzleGenerator = new PuzzleGenerator(activity,
-                dialog,
-                xValue,
-                yValue,
-                environmentId,
-                blankPuzzle,
-                shuffleAndPlay);
-        puzzleGenerator.execute("");
+        new PuzzleGenerator(activity, dialog, options).execute("");
     }
 
     public static void resizePuzzle(final EditorActivity activity, final int puzzleId) {
