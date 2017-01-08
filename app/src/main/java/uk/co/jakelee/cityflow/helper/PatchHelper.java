@@ -31,7 +31,8 @@ import static android.content.Context.MODE_PRIVATE;
 public class PatchHelper extends AsyncTask<String, String, String> {
     public final static int NO_DATABASE = 0;
     public final static int V1_0_0 = 4;
-    public final static int LATEST_PATCH = V1_0_0;
+    public final static int V1_0_2 = 5;
+    public final static int LATEST_PATCH = V1_0_2;
     private Activity callingActivity;
     private TextView progressText;
     private ProgressBar progressBar;
@@ -103,17 +104,21 @@ public class PatchHelper extends AsyncTask<String, String, String> {
             }).start();
         } else {
             // If it's a patch, install the patch, and reinstall text if necessary.
-            /*if (prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.V1_0_0) {
-                patchTo101();
-                languagePackModified = true;
-                prefs.edit().putInt("databaseVersion", PatchHelper.V1_0_1).apply();
+            if (prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.V1_0_0) {
+                patchTo102();
+                languagePackModified = false;
+                prefs.edit().putInt("databaseVersion", PatchHelper.V1_0_2).apply();
             }
 
             if (languagePackModified) {
                 TextHelper.reinstallCurrentPack();
-            }*/
+            }
         }
         return "";
+    }
+
+    private void patchTo102() {
+        Puzzle.executeQuery("UPDATE puzzle SET par_moves = \"" + EncryptHelper.encode(21, 47) + "\" WHERE puzzle_id = 47");
     }
 
     private void createOtherPuzzles() {
@@ -1083,7 +1088,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(46, 45, 4, 0, 1));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_47_NAME", "Waterworks"));
-        puzzles.add(new Puzzle(47, 3, 8899L, 19, 0L, 0));
+        puzzles.add(new Puzzle(47, 3, 8899L, 21, 0L, 0));
         tiles.add(new Tile(47, 8, 0, 3, 4));
         tiles.add(new Tile(47, 9, 1, 3, 1));
         tiles.add(new Tile(47, 8, 2, 3, 1));

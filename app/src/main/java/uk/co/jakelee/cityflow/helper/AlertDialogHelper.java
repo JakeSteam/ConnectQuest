@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
@@ -173,12 +174,13 @@ public class AlertDialogHelper {
 
         alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_CONFIRM"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                //String supportCode = EncryptHelper.encode("1571111687000|UPDATE setting SET boolean_value = 1");
+                //String supportCode = EncryptHelper.encode((System.currentTimeMillis() + 172800000) + "|UPDATE puzzle SET par_moves = \"" + EncryptHelper.encode(21, 47) + "\" WHERE puzzle_id = 47");
                 String supportCode = supportCodeBox.getText().toString().trim();
                 if (SupportCode.alreadyApplied(supportCode)) {
                     AlertHelper.error(activity, AlertHelper.getError(AlertHelper.Error.SUPPORT_CODE_USED));
                 } else if (EncryptHelper.applyCode(supportCode)) {
                     AlertHelper.success(activity, Text.get("SUCCESS_SUPPORT_CODE"));
+                    Log.d("Support code", supportCode);
                 } else {
                     AlertHelper.error(activity, AlertHelper.getError(AlertHelper.Error.SUPPORT_CODE_INVALID));
                 }
