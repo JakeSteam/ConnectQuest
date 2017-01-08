@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import uk.co.jakelee.cityflow.helper.Constants;
 
 import static android.content.Context.MODE_PRIVATE;
-import static uk.co.jakelee.cityflow.helper.PatchHelper.LATEST_PATCH;
 
 public class PuzzleCreationOptions {
     private int x;
@@ -21,11 +20,19 @@ public class PuzzleCreationOptions {
         prefs = activity.getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE);
         x = prefs.getInt("puzzleOptions-x", Constants.PUZZLE_X_DEFAULT);
         y = prefs.getInt("puzzleOptions-y", Constants.PUZZLE_Y_DEFAULT);
+        environmentId = prefs.getInt("puzzleOptions-environment", Constants.ENVIRONMENT_GRASS);
+        emptyPuzzle = prefs.getBoolean("puzzleOptions-empty", false);
+        shuffleAndPlay = prefs.getBoolean("puzzleOptions-shuffle", false);
     }
 
     public void save() {
-        prefs.edit().putInt("puzzleOptions-x", x).apply();
-        prefs.edit().putInt("puzzleOptions-y", y).apply();
+        prefs.edit()
+                .putInt("puzzleOptions-x", x)
+                .putInt("puzzleOptions-y", y)
+                .putInt("puzzleOptions-environment", environmentId)
+                .putBoolean("puzzleOptions-empty", emptyPuzzle)
+                .putBoolean("puzzleOptions-shuffle", shuffleAndPlay)
+                .apply();
     }
 
     public int getX() {

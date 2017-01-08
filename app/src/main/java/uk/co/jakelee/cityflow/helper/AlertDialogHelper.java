@@ -363,7 +363,8 @@ public class AlertDialogHelper {
 
         // Disable "Blank puzzle" option if we're shuffle + playing
         final CheckBox shuffleCheckbox = (CheckBox) dialog.findViewById(R.id.shuffleCheckbox);
-        ((CheckBox) dialog.findViewById(R.id.emptyCheckbox)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        final CheckBox emptyCheckbox = (CheckBox) dialog.findViewById(R.id.emptyCheckbox);
+        emptyCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 shuffleCheckbox.setEnabled(!b);
@@ -373,21 +374,24 @@ public class AlertDialogHelper {
         // Disable area spinner if we're using all tiles
         final Spinner environmentPicker = (Spinner) dialog.findViewById(R.id.environmentPicker);
         environmentPicker.setAdapter(envAdapter);
-        environmentPicker.setSelection(1);
+        environmentPicker.setSelection(options.getEnvironmentId());
+
+        shuffleCheckbox.setChecked(options.isShuffleAndPlay());
+        emptyCheckbox.setChecked(options.isEmptyPuzzle());
 
         // Create button
         dialog.findViewById(R.id.createButton).setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 options.setX(getIntFromProgress(sliderWidth.getProgress(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX));
                 options.setY(getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX));
-                boolean blankPuzzle = ((CheckBox) dialog.findViewById(R.id.emptyCheckbox)).isChecked();
-                boolean shuffleAndPlay = ((CheckBox) dialog.findViewById(R.id.shuffleCheckbox)).isChecked();
+                options.setEnvironmentId(environmentPicker.getSelectedItemPosition());
+                options.setEmptyPuzzle(emptyCheckbox.isChecked());
+                options.setShuffleAndPlay(shuffleCheckbox.isChecked());
 
                 if (options.getX() <= 1 && options.getY() <= 1) {
                     AlertHelper.error(activity, AlertHelper.getError(AlertHelper.Error.PUZZLE_TOO_SMALL));
                 } else {
-                    int environmentId = environmentPicker.getSelectedItemPosition();
-                    puzzleLoadingProgress(activity, options.getX(), options.getY(), environmentId, blankPuzzle, shuffleAndPlay);
+                    puzzleLoadingProgress(activity, options.getX(), options.getY(), options.getEnvironmentId(), options.isEmptyPuzzle(), options.isShuffleAndPlay());
                     options.save();
                     dialog.dismiss();
                 }
