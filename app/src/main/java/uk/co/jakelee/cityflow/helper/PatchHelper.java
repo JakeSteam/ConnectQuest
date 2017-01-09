@@ -119,6 +119,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     private void patchTo102() {
         Puzzle.executeQuery("UPDATE puzzle SET par_moves = \"" + EncryptHelper.encode(21, 47) + "\" WHERE puzzle_id = 47");
+        Puzzle.executeQuery("UPDATE puzzle SET par_moves = \"" + EncryptHelper.encode(33, 48) + "\" WHERE puzzle_id = 48");
     }
 
     private void createOtherPuzzles() {
@@ -1107,7 +1108,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(47, 8, 3, 0, 2));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_48_NAME", "The Moat"));
-        puzzles.add(new Puzzle(48, 3, 22199L, 39, 0L, 0));
+        puzzles.add(new Puzzle(48, 3, 22199L, 33, 0L, 0));
         tiles.add(new Tile(48, 1, 0, 4, 2));
         tiles.add(new Tile(48, 1, 1, 4, 4));
         tiles.add(new Tile(48, 45, 2, 4, 4));
