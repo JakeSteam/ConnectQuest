@@ -106,7 +106,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
             // If it's a patch, install the patch, and reinstall text if necessary.
             if (prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.V1_0_0) {
                 patchTo102();
-                languagePackModified = false;
+                languagePackModified = true;
                 prefs.edit().putInt("databaseVersion", PatchHelper.V1_0_2).apply();
             }
 

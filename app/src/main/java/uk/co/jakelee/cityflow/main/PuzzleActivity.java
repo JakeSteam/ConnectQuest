@@ -14,6 +14,7 @@ import android.util.Pair;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -184,7 +185,10 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     public void onStop() {
         super.onStop();
 
-        Puzzle.getPuzzle(puzzleId).resetTileRotations();
+        Puzzle currentPuzzle = Puzzle.getPuzzle(puzzleId);
+        if (currentPuzzle != null) {
+            Puzzle.getPuzzle(puzzleId).resetTileRotations();
+        }
         exitedPuzzle = true;
         handler.removeCallbacksAndMessages(null);
         SoundHelper.stopIfExiting(this);
@@ -442,8 +446,15 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
                     puzzle.getParMoves()));
 
             if (puzzleCustom == null || puzzleCustom.isOriginalAuthor()) {
-                boolean loadNextLevel = new PuzzleCreationOptions(this).isShuffleAndPlay();
+                PuzzleCreationOptions options = new PuzzleCreationOptions(this);
+                boolean loadNextLevel = options.isShuffleAndPlay();
                 ((TextView) findViewById(R.id.mainActionButton)).setText((isCustom && !loadNextLevel) ? R.string.icon_edit : R.string.icon_next);
+                if (loadNextLevel) {
+                    findViewById(R.id.tilesContainer).setVisibility(View.GONE);
+                    findViewById(R.id.deletePuzzleContainer).setVisibility(View.VISIBLE);
+                    ((TextView)findViewById(R.id.deletePuzzleText)).setText(Text.get("DIALOG_BUTTON_DELETE") + " " + Text.get("WORD_PUZZLE"));
+                    ((CheckBox)findViewById(R.id.deletePuzzleCheckbox)).setChecked(options.isDeleteAfterPlay());
+                }
             } else {
                 findViewById(R.id.mainActionButton).setVisibility(View.GONE);
             }
@@ -528,6 +539,14 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             } else if (puzzleCustom.isOriginalAuthor() && options.isShuffleAndPlay()) {
+                boolean deletingPuzzle = ((CheckBox)findViewById(R.id.deletePuzzleCheckbox)).isChecked();
+                if (deletingPuzzle != options.isDeleteAfterPlay()) {
+                    options.setDeleteAfterPlay(deletingPuzzle);
+                    options.save();
+                }
+                if (deletingPuzzle) {
+                    Puzzle.getPuzzle(puzzleId).safelyDelete();
+                }
                 AlertDialogHelper.puzzleLoadingProgress(this, options);
             }
         } else {

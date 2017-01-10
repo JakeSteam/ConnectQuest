@@ -786,6 +786,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_EN, "WORD_UNLOCK", "Unlock"));
         texts.add(new Text(Constants.LANGUAGE_EN, "WORD_LOCKED", "Locked"));
         texts.add(new Text(Constants.LANGUAGE_EN, "WORD_LOADING", "Loading"));
+        texts.add(new Text(Constants.LANGUAGE_EN, "WORD_PUZZLE", "Puzzle"));
         texts.add(new Text(Constants.LANGUAGE_EN, "WORD_RANDOM", "Random"));
         texts.add(new Text(Constants.LANGUAGE_EN, "WORD_SKIP", "Skip"));
         Text.saveInTx(texts);
@@ -1408,6 +1409,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_DE, "WORD_UNLOCK", "Entsperren"));
         texts.add(new Text(Constants.LANGUAGE_DE, "WORD_LOCKED", "Gesperrt"));
         texts.add(new Text(Constants.LANGUAGE_DE, "WORD_LOADING", "Laden"));
+        texts.add(new Text(Constants.LANGUAGE_DE, "WORD_PUZZLE", "Puzzle"));
         texts.add(new Text(Constants.LANGUAGE_DE, "WORD_RANDOM", "Zufällig"));
         texts.add(new Text(Constants.LANGUAGE_DE, "WORD_SKIP", "Überspringen"));
         Text.saveInTx(texts);
@@ -2030,6 +2032,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_NL, "WORD_UNLOCK", "Ontgrendelen"));
         texts.add(new Text(Constants.LANGUAGE_NL, "WORD_LOCKED", "Vergrendeld"));
         texts.add(new Text(Constants.LANGUAGE_NL, "WORD_LOADING", "Laden"));
+        texts.add(new Text(Constants.LANGUAGE_NL, "WORD_PUZZLE", "Puzzel"));
         texts.add(new Text(Constants.LANGUAGE_NL, "WORD_RANDOM", "Toevallig"));
         texts.add(new Text(Constants.LANGUAGE_NL, "WORD_SKIP", "Overspringen"));
         Text.saveInTx(texts);
@@ -2652,6 +2655,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_FR, "WORD_UNLOCK", "Déverouiller"));
         texts.add(new Text(Constants.LANGUAGE_FR, "WORD_LOCKED", "Verrouillé"));
         texts.add(new Text(Constants.LANGUAGE_FR, "WORD_LOADING", "Chargement"));
+        texts.add(new Text(Constants.LANGUAGE_FR, "WORD_PUZZLE", "Puzzle"));
         texts.add(new Text(Constants.LANGUAGE_FR, "WORD_RANDOM", "Aléatoire"));
         texts.add(new Text(Constants.LANGUAGE_FR, "WORD_SKIP", "Sauter"));
         Text.saveInTx(texts);
@@ -3274,6 +3278,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_PL, "WORD_UNLOCK", "Odblokować"));
         texts.add(new Text(Constants.LANGUAGE_PL, "WORD_LOCKED", "Zablokowany"));
         texts.add(new Text(Constants.LANGUAGE_PL, "WORD_LOADING", "Załadunek"));
+        texts.add(new Text(Constants.LANGUAGE_PL, "WORD_PUZZLE", "Puzzle"));
         texts.add(new Text(Constants.LANGUAGE_PL, "WORD_RANDOM", "Losowy"));
         texts.add(new Text(Constants.LANGUAGE_PL, "WORD_SKIP", "Pominąć"));
         Text.saveInTx(texts);
@@ -3896,6 +3901,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_RU, "WORD_UNLOCK", "отпереть"));
         texts.add(new Text(Constants.LANGUAGE_RU, "WORD_LOCKED", "запертый"));
         texts.add(new Text(Constants.LANGUAGE_RU, "WORD_LOADING", "загрузка"));
+        texts.add(new Text(Constants.LANGUAGE_RU, "WORD_PUZZLE", "головоломка"));
         texts.add(new Text(Constants.LANGUAGE_RU, "WORD_RANDOM", "случайный"));
         texts.add(new Text(Constants.LANGUAGE_RU, "WORD_SKIP", "Пропускать"));
         Text.saveInTx(texts);
@@ -4518,6 +4524,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ES, "WORD_UNLOCK", "Desbloquear"));
         texts.add(new Text(Constants.LANGUAGE_ES, "WORD_LOCKED", "Bloqueado"));
         texts.add(new Text(Constants.LANGUAGE_ES, "WORD_LOADING", "Cargando"));
+        texts.add(new Text(Constants.LANGUAGE_ES, "WORD_PUZZKE", "Rompecabezas"));
         texts.add(new Text(Constants.LANGUAGE_ES, "WORD_RANDOM", "Aleatorio"));
         texts.add(new Text(Constants.LANGUAGE_ES, "WORD_SKIP", "Omitir"));
         Text.saveInTx(texts);
@@ -5140,6 +5147,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_ZH, "WORD_UNLOCK", "开锁"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "WORD_LOCKED", "锁定"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "WORD_LOADING", "载入中"));
+        texts.add(new Text(Constants.LANGUAGE_ZH, "WORD_PUZZLE", "難題"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "WORD_RANDOM", "随机"));
         texts.add(new Text(Constants.LANGUAGE_ZH, "WORD_SKIP", "跳跃"));
         Text.saveInTx(texts);
@@ -5762,6 +5770,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_SV, "WORD_UNLOCK", "Lås upp"));
         texts.add(new Text(Constants.LANGUAGE_SV, "WORD_LOCKED", "Låst"));
         texts.add(new Text(Constants.LANGUAGE_SV, "WORD_LOADING", "Laddar"));
+        texts.add(new Text(Constants.LANGUAGE_SV, "WORD_PUZZLE", "Pussel"));
         texts.add(new Text(Constants.LANGUAGE_SV, "WORD_RANDOM", "Slumpmässig"));
         texts.add(new Text(Constants.LANGUAGE_SV, "WORD_SKIP", "Hoppa"));
         Text.saveInTx(texts);

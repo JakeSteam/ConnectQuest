@@ -14,6 +14,7 @@ public class PuzzleCreationOptions {
     private int environmentId;
     private boolean emptyPuzzle;
     private boolean shuffleAndPlay;
+    private boolean deleteAfterPlay;
     private SharedPreferences prefs;
 
     public PuzzleCreationOptions(Activity activity) {
@@ -23,6 +24,7 @@ public class PuzzleCreationOptions {
         environmentId = prefs.getInt("puzzleOptions-environment", Constants.ENVIRONMENT_GRASS);
         emptyPuzzle = prefs.getBoolean("puzzleOptions-empty", false);
         shuffleAndPlay = prefs.getBoolean("puzzleOptions-shuffle", false);
+        deleteAfterPlay = prefs.getBoolean("puzzleOptions-delete", false);
     }
 
     public void save() {
@@ -32,6 +34,7 @@ public class PuzzleCreationOptions {
                 .putInt("puzzleOptions-environment", environmentId)
                 .putBoolean("puzzleOptions-empty", emptyPuzzle)
                 .putBoolean("puzzleOptions-shuffle", shuffleAndPlay)
+                .putBoolean("puzzleOptions-delete", deleteAfterPlay)
                 .apply();
     }
 
@@ -73,5 +76,13 @@ public class PuzzleCreationOptions {
 
     public void setShuffleAndPlay(boolean shuffleAndPlay) {
         this.shuffleAndPlay = shuffleAndPlay;
+    }
+
+    public boolean isDeleteAfterPlay() {
+        return deleteAfterPlay;
+    }
+
+    public void setDeleteAfterPlay(boolean deleteAfterPlay) {
+        this.deleteAfterPlay = deleteAfterPlay;
     }
 }
