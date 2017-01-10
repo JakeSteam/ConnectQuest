@@ -24,6 +24,13 @@ android {
     }
 }
 
+repositories {
+    mavenCentral()
+    maven {
+        url 'http://maven.batch.com/release'
+    }
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':BaseGameUtils')
@@ -46,6 +53,7 @@ dependencies {
     compile 'com.anjlab.android.iab.v3:library:1.0.31'
     compile 'com.google.zxing:core:3.2.1'
     compile 'com.github.aitorvs:allowme:0.3.2'
+    compile 'com.batch.android:batch-sdk:1.7+'
 
     compile files('libs/applovin-sdk-6.3.0.jar')
     compile files('libs/tapjoyconnectlibrary.jar')
