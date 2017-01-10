@@ -70,6 +70,7 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     private boolean exitedPuzzle = false;
     private boolean playSounds = false;
     private boolean currentlyPeeking = false;
+    private boolean cameFromGenerator = false;
     private Vibrator vibrator;
     private Picasso picasso;
     private float optimumScale = 1.0f;
@@ -98,6 +99,7 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
 
         Intent intent = getIntent();
         puzzleId = intent.getIntExtra(Constants.INTENT_PUZZLE, 0);
+        cameFromGenerator = intent.getBooleanExtra(Constants.INTENT_IS_SHUFFLE_AND_PLAY, false);
         isCustom = intent.getBooleanExtra(Constants.INTENT_IS_CUSTOM, true);
         if (isCustom) {
             puzzleCustom = PuzzleCustom.get(puzzleId);
@@ -447,9 +449,8 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
 
             if (puzzleCustom == null || puzzleCustom.isOriginalAuthor()) {
                 PuzzleCreationOptions options = new PuzzleCreationOptions(this);
-                boolean loadNextLevel = options.isShuffleAndPlay();
-                ((TextView) findViewById(R.id.mainActionButton)).setText((isCustom && !loadNextLevel) ? R.string.icon_edit : R.string.icon_next);
-                if (loadNextLevel) {
+                ((TextView) findViewById(R.id.mainActionButton)).setText((isCustom && !cameFromGenerator) ? R.string.icon_edit : R.string.icon_next);
+                if (cameFromGenerator) {
                     findViewById(R.id.tilesContainer).setVisibility(View.GONE);
                     findViewById(R.id.deletePuzzleContainer).setVisibility(View.VISIBLE);
                     ((TextView)findViewById(R.id.deletePuzzleText)).setText(Text.get("DIALOG_BUTTON_DELETE") + " " + Text.get("WORD_PUZZLE"));
