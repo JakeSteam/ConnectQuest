@@ -182,6 +182,7 @@ public class Pack extends SugarRecord {
                 allCompleted = false;
             }
         }
+        setCurrentStars(bestStars);
 
         if (allCompleted && (getCurrentMoves() == 0 || bestMoves < getCurrentMoves())) {
             setCurrentMoves(bestMoves);
@@ -192,7 +193,6 @@ public class Pack extends SugarRecord {
             setCurrentTime(bestTime);
             GooglePlayHelper.UpdateLeaderboards(getTimeLeaderboard(), bestTime);
         }
-        setCurrentStars(bestStars);
         save();
     }
 

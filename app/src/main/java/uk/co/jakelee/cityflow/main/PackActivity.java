@@ -47,7 +47,7 @@ public class PackActivity extends Activity {
 
     private void populateText() {
         ((TextView) findViewById(R.id.packName)).setText(selectedPack.getName());
-        ((TextView) findViewById(R.id.totalMoves)).setText("" + selectedPack.getCurrentMoves());
+        ((TextView) findViewById(R.id.totalMoves)).setText(selectedPack.getCurrentMoves() == 0 ? Text.get("WORD_NA") : Integer.toString(selectedPack.getCurrentMoves()));
         ((TextView) findViewById(R.id.totalTime)).setText(DateHelper.displayTime((long) selectedPack.getCurrentTime(), DateHelper.time));
         ((TextView) findViewById(R.id.totalStars)).setText(selectedPack.getCurrentStars() + "/" + selectedPack.getMaxStars());
         ((TextView) findViewById(R.id.bestTime)).setText(Text.get("METRIC_BEST_TIME"));
