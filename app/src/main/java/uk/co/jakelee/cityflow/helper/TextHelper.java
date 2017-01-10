@@ -234,7 +234,7 @@ public class TextHelper {
                 ""));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_LOCAL_TITLE", "Localisation"));
         texts.add(new Text(Constants.LANGUAGE_EN, "CREDITS_LOCAL_TEXT", "<b>Chinese</b>: Dalziel45<br>" +
-                "<b>Dutch</b>: Finniespin<br>" +
+                "<b>Dutch</b>: Finniespin / Neeshoo<br>" +
                 "<b>French</b>: Vincent<br>" +
                 "<b>German</b>: Chey<br>" +
                 "<b>Polish</b>: Repcak<br>" +
