@@ -19,7 +19,8 @@ public class ShopCategory extends SugarRecord {
 
     public static List<ShopItem> getItems(int categoryId) {
         return Select.from(ShopItem.class).where(
-                Condition.prop("category_id").eq(categoryId)).list();
+                Condition.prop("category_id").eq(categoryId))
+                .orderBy("subcategory_id ASC, misc_data ASC").list();
     }
 
     public int getCategoryId() {

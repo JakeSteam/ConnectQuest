@@ -14,6 +14,7 @@ import android.util.Pair;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,7 +27,9 @@ import java.util.Locale;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.components.PuzzleCreationOptions;
 import uk.co.jakelee.cityflow.components.ZoomableViewGroup;
+import uk.co.jakelee.cityflow.helper.AlertDialogHelper;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
@@ -67,6 +70,7 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     private boolean exitedPuzzle = false;
     private boolean playSounds = false;
     private boolean currentlyPeeking = false;
+    private boolean cameFromGenerator = false;
     private Vibrator vibrator;
     private Picasso picasso;
     private float optimumScale = 1.0f;
@@ -95,6 +99,7 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
 
         Intent intent = getIntent();
         puzzleId = intent.getIntExtra(Constants.INTENT_PUZZLE, 0);
+        cameFromGenerator = intent.getBooleanExtra(Constants.INTENT_IS_SHUFFLE_AND_PLAY, false);
         isCustom = intent.getBooleanExtra(Constants.INTENT_IS_CUSTOM, true);
         if (isCustom) {
             puzzleCustom = PuzzleCustom.get(puzzleId);
@@ -182,7 +187,10 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     public void onStop() {
         super.onStop();
 
-        Puzzle.getPuzzle(puzzleId).resetTileRotations();
+        Puzzle currentPuzzle = Puzzle.getPuzzle(puzzleId);
+        if (currentPuzzle != null) {
+            Puzzle.getPuzzle(puzzleId).resetTileRotations();
+        }
         exitedPuzzle = true;
         handler.removeCallbacksAndMessages(null);
         SoundHelper.stopIfExiting(this);
@@ -260,12 +268,31 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     public void handleTileClick(ImageView image, Tile tile) {
         tile.rotate(undoing);
 
-        changedTilesX.add(tile.getX());
-        changedTilesY.add(tile.getY());
         int drawableId = DisplayHelper.getTileDrawableId(this, tile.getTileTypeId(), tile.getRotation());
         picasso.load(drawableId)
                 .placeholder(R.drawable.tile_0_1)
                 .into(image);
+
+        // If rotating will have no technical effect, just update cosmetics
+        if (TileType.get(tile.getTileTypeId()).canBeRotated()) {
+            changedTilesX.add(tile.getX());
+            changedTilesY.add(tile.getY());
+
+            ((TextView) findViewById(R.id.moveCounter)).setText(Integer.toString(++movesMade));
+
+            timeLastMoved = SystemClock.uptimeMillis();
+
+            if (undoing) {
+                Boost.use(Constants.BOOST_UNDO);
+                updateUiElements();
+            }
+
+            undoing = false;
+            justUndone = false;
+
+            this.lastChangedImage = image;
+            this.lastChangedTile = tile;
+        }
 
         if (vibrator != null) {
             vibrator.vibrate(30);
@@ -274,21 +301,6 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
         if (playSounds) {
             SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.rotating);
         }
-
-        ((TextView) findViewById(R.id.moveCounter)).setText(Integer.toString(++movesMade));
-
-        timeLastMoved = SystemClock.uptimeMillis();
-
-        if (undoing) {
-            Boost.use(Constants.BOOST_UNDO);
-            updateUiElements();
-        }
-
-        undoing = false;
-        justUndone = false;
-
-        this.lastChangedImage = image;
-        this.lastChangedTile = tile;
     }
 
     public void useBoostUndo(View v) {
@@ -436,7 +448,14 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
                     puzzle.getParMoves()));
 
             if (puzzleCustom == null || puzzleCustom.isOriginalAuthor()) {
-                ((TextView) findViewById(R.id.mainActionButton)).setText(isCustom ? R.string.icon_edit : R.string.icon_next);
+                PuzzleCreationOptions options = new PuzzleCreationOptions(this);
+                ((TextView) findViewById(R.id.mainActionButton)).setText((isCustom && !cameFromGenerator) ? R.string.icon_edit : R.string.icon_next);
+                if (cameFromGenerator) {
+                    findViewById(R.id.tilesContainer).setVisibility(View.GONE);
+                    findViewById(R.id.deletePuzzleContainer).setVisibility(View.VISIBLE);
+                    ((TextView)findViewById(R.id.deletePuzzleText)).setText(Text.get("DIALOG_BUTTON_DELETE") + " " + Text.get("WORD_PUZZLE"));
+                    ((CheckBox)findViewById(R.id.deletePuzzleCheckbox)).setChecked(options.isDeleteAfterPlay());
+                }
             } else {
                 findViewById(R.id.mainActionButton).setVisibility(View.GONE);
             }
@@ -513,11 +532,23 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
     public void mainAction(View v) {
         if (isCustom) {
             this.finish();
-            if (puzzleCustom.isOriginalAuthor()) {
+
+            PuzzleCreationOptions options = new PuzzleCreationOptions(this);
+            if (puzzleCustom.isOriginalAuthor() && !options.isShuffleAndPlay()) {
                 Intent intent = new Intent(this, EditorActivity.class);
                 intent.putExtra(Constants.INTENT_PUZZLE, puzzleId);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
+            } else if (puzzleCustom.isOriginalAuthor() && options.isShuffleAndPlay()) {
+                boolean deletingPuzzle = ((CheckBox)findViewById(R.id.deletePuzzleCheckbox)).isChecked();
+                if (deletingPuzzle != options.isDeleteAfterPlay()) {
+                    options.setDeleteAfterPlay(deletingPuzzle);
+                    options.save();
+                }
+                if (deletingPuzzle) {
+                    Puzzle.getPuzzle(puzzleId).safelyDelete();
+                }
+                AlertDialogHelper.puzzleLoadingProgress(this, options);
             }
         } else {
             int nextPuzzle = PuzzleHelper.getNextPuzzleId(puzzleId);

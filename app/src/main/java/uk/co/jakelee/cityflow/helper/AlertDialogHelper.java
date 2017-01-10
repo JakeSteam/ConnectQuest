@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
@@ -26,6 +27,7 @@ import java.util.Locale;
 
 import uk.co.jakelee.cityflow.BuildConfig;
 import uk.co.jakelee.cityflow.R;
+import uk.co.jakelee.cityflow.components.PuzzleCreationOptions;
 import uk.co.jakelee.cityflow.components.PuzzleGenerator;
 import uk.co.jakelee.cityflow.main.CreatorActivity;
 import uk.co.jakelee.cityflow.main.CustomInfoActivity;
@@ -173,12 +175,13 @@ public class AlertDialogHelper {
 
         alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_CONFIRM"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                //String supportCode = EncryptHelper.encode("1571111687000|UPDATE setting SET boolean_value = 1");
+                //String supportCode = EncryptHelper.encode((System.currentTimeMillis() + 172800000) + "|UPDATE puzzle SET par_moves = \"" + EncryptHelper.encode(21, 47) + "\" WHERE puzzle_id = 47");
                 String supportCode = supportCodeBox.getText().toString().trim();
                 if (SupportCode.alreadyApplied(supportCode)) {
                     AlertHelper.error(activity, AlertHelper.getError(AlertHelper.Error.SUPPORT_CODE_USED));
                 } else if (EncryptHelper.applyCode(supportCode)) {
                     AlertHelper.success(activity, Text.get("SUCCESS_SUPPORT_CODE"));
+                    Log.d("Support code", supportCode);
                 } else {
                     AlertHelper.error(activity, AlertHelper.getError(AlertHelper.Error.SUPPORT_CODE_INVALID));
                 }
@@ -297,6 +300,9 @@ public class AlertDialogHelper {
         dialog.setTitle(Text.get("UI_PUZZLE_OPTIONS"));
         dialog.setCancelable(true);
 
+        // Get saved options
+        final PuzzleCreationOptions options = new PuzzleCreationOptions(activity);
+
         // Filling in all the text fields
         ((TextView) dialog.findViewById(R.id.close)).setText(Text.get("DIALOG_BUTTON_CLOSE"));
         ((TextView) dialog.findViewById(R.id.createButton)).setText(Text.get("DIALOG_BUTTON_CREATE"));
@@ -305,15 +311,15 @@ public class AlertDialogHelper {
         ((TextView) dialog.findViewById(R.id.maxWidth)).setText(Integer.toString(Constants.PUZZLE_X_MAX));
         ((TextView) dialog.findViewById(R.id.minHeight)).setText(Integer.toString(Constants.PUZZLE_Y_MIN));
         ((TextView) dialog.findViewById(R.id.maxHeight)).setText(Integer.toString(Constants.PUZZLE_Y_MAX));
-        ((TextView) dialog.findViewById(R.id.currentWidth)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_WIDTH"), Constants.PUZZLE_X_DEFAULT));
-        ((TextView) dialog.findViewById(R.id.currentHeight)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_HEIGHT"), Constants.PUZZLE_Y_DEFAULT));
+        ((TextView) dialog.findViewById(R.id.currentWidth)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_WIDTH"), options.getX()));
+        ((TextView) dialog.findViewById(R.id.currentHeight)).setText(String.format(Locale.ENGLISH, Text.get("UI_PUZZLE_HEIGHT"), options.getY()));
         ((TextView) dialog.findViewById(R.id.environmentText)).setText(Text.get("WORD_AREA"));
         ((TextView) dialog.findViewById(R.id.emptyText)).setText(Text.get("UI_PUZZLE_AUTOGENERATE"));
         ((TextView) dialog.findViewById(R.id.shuffleText)).setText(Text.get("UI_PUZZLE_SHUFFLE_PLAY"));
 
         // Creating X slider
         final SeekBar sliderWidth = (SeekBar) dialog.findViewById(R.id.sliderWidth);
-        sliderWidth.setProgress(getProgressFromFloat(Constants.PUZZLE_X_DEFAULT, Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX));
+        sliderWidth.setProgress(getProgressFromFloat(options.getX(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX));
         sliderWidth.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
@@ -331,7 +337,7 @@ public class AlertDialogHelper {
 
         // Creating Y slider
         final SeekBar sliderHeight = (SeekBar) dialog.findViewById(R.id.sliderHeight);
-        sliderHeight.setProgress(getProgressFromFloat(Constants.PUZZLE_Y_DEFAULT, Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX));
+        sliderHeight.setProgress(getProgressFromFloat(options.getY(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX));
         sliderHeight.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
@@ -357,7 +363,8 @@ public class AlertDialogHelper {
 
         // Disable "Blank puzzle" option if we're shuffle + playing
         final CheckBox shuffleCheckbox = (CheckBox) dialog.findViewById(R.id.shuffleCheckbox);
-        ((CheckBox) dialog.findViewById(R.id.emptyCheckbox)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        final CheckBox emptyCheckbox = (CheckBox) dialog.findViewById(R.id.emptyCheckbox);
+        emptyCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 shuffleCheckbox.setEnabled(!b);
@@ -367,21 +374,25 @@ public class AlertDialogHelper {
         // Disable area spinner if we're using all tiles
         final Spinner environmentPicker = (Spinner) dialog.findViewById(R.id.environmentPicker);
         environmentPicker.setAdapter(envAdapter);
-        environmentPicker.setSelection(1);
+        environmentPicker.setSelection(options.getEnvironmentId());
+
+        shuffleCheckbox.setChecked(options.isShuffleAndPlay());
+        emptyCheckbox.setChecked(options.isEmptyPuzzle());
 
         // Create button
         dialog.findViewById(R.id.createButton).setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                int xValue = getIntFromProgress(sliderWidth.getProgress(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX);
-                int yValue = getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX);
-                boolean blankPuzzle = ((CheckBox) dialog.findViewById(R.id.emptyCheckbox)).isChecked();
-                boolean shuffleAndPlay = ((CheckBox) dialog.findViewById(R.id.shuffleCheckbox)).isChecked();
+                options.setX(getIntFromProgress(sliderWidth.getProgress(), Constants.PUZZLE_X_MIN, Constants.PUZZLE_X_MAX));
+                options.setY(getIntFromProgress(sliderHeight.getProgress(), Constants.PUZZLE_Y_MIN, Constants.PUZZLE_Y_MAX));
+                options.setEnvironmentId(environmentPicker.getSelectedItemPosition());
+                options.setEmptyPuzzle(emptyCheckbox.isChecked());
+                options.setShuffleAndPlay(shuffleCheckbox.isChecked());
 
-                if (xValue <= 1 && yValue <= 1) {
+                if (options.getX() <= 1 && options.getY() <= 1) {
                     AlertHelper.error(activity, AlertHelper.getError(AlertHelper.Error.PUZZLE_TOO_SMALL));
                 } else {
-                    int environmentId = environmentPicker.getSelectedItemPosition();
-                    puzzleLoadingProgress(activity, xValue, yValue, environmentId, blankPuzzle, shuffleAndPlay);
+                    puzzleLoadingProgress(activity, options);
+                    options.save();
                     dialog.dismiss();
                 }
             }
@@ -396,21 +407,14 @@ public class AlertDialogHelper {
         dialog.show();
     }
 
-    private static void puzzleLoadingProgress(final Activity activity, int xValue, int yValue, int environmentId, boolean blankPuzzle, boolean shuffleAndPlay) {
+    public static void puzzleLoadingProgress(final Activity activity, PuzzleCreationOptions options) {
         final Dialog dialog = new Dialog(activity);
         dialog.setContentView(R.layout.custom_dialog_puzzle_loading);
         dialog.setCancelable(true);
         ((TextView) dialog.findViewById(R.id.title)).setText(Text.get("WORD_LOADING"));
         dialog.show();
 
-        PuzzleGenerator puzzleGenerator = new PuzzleGenerator(activity,
-                dialog,
-                xValue,
-                yValue,
-                environmentId,
-                blankPuzzle,
-                shuffleAndPlay);
-        puzzleGenerator.execute("");
+        new PuzzleGenerator(activity, dialog, options).execute("");
     }
 
     public static void resizePuzzle(final EditorActivity activity, final int puzzleId) {

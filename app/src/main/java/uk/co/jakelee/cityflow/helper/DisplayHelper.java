@@ -150,7 +150,7 @@ public class DisplayHelper {
         LayoutInflater inflater = LayoutInflater.from(activity);
         RelativeLayout itemButton = (RelativeLayout) inflater.inflate(R.layout.custom_item_select_button, null);
         ((ImageView) itemButton.findViewById(R.id.itemImage)).setImageResource(getItemDrawableID(item.getItemId()));
-        ((TextView) itemButton.findViewById(R.id.itemPrice)).setText(item.atMaxPurchases() ? "N/A" : Integer.toString(item.getPrice()));
+        ((TextView) itemButton.findViewById(R.id.itemPrice)).setText((item.atMaxPurchases() || item.isUnlockedPack()) ? "N/A" : Integer.toString(item.getPrice()));
 
         itemButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -252,7 +252,7 @@ public class DisplayHelper {
         carView.startAnimation(AnimationHelper.move(metrics, rotation, duration));
     }
 
-    public DisplayValues getDisplayValues(Activity activity, int xTiles, int yTiles) {
+    private DisplayValues getDisplayValues(Activity activity, int xTiles, int yTiles) {
         DisplayMetrics displayMetrics = getSizes(activity);
         int screenHeight = displayMetrics.heightPixels;
         int screenWidth = displayMetrics.widthPixels;

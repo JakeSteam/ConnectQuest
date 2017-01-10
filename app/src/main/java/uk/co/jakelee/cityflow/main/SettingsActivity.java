@@ -25,6 +25,7 @@ import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
+import uk.co.jakelee.cityflow.helper.PatchHelper;
 import uk.co.jakelee.cityflow.helper.PermissionHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.helper.TextHelper;
@@ -109,7 +110,11 @@ public class SettingsActivity extends AllowMeActivity {
         ((TextView) findViewById(R.id.improveLanguageButton)).setText(Text.get("DIALOG_IMPROVE_LANGUAGE"));
         ((TextView) findViewById(R.id.supportCodeButton)).setText(Text.get("DIALOG_SUPPORT_CODE"));
 
-        ((TextView) findViewById(R.id.versionText)).setText("V" + BuildConfig.VERSION_CODE + ": " + BuildConfig.VERSION_NAME + "");
+
+        ((TextView) findViewById(R.id.versionText)).setText(String.format(Locale.ENGLISH, "V%1$s (App: %2$d, DB: %3$d)",
+                BuildConfig.VERSION_NAME,
+                BuildConfig.VERSION_CODE,
+                this.getSharedPreferences("uk.co.jakelee.cityflow", MODE_PRIVATE).getInt("databaseVersion", PatchHelper.NO_DATABASE)));
     }
 
     public void populateSettings() {

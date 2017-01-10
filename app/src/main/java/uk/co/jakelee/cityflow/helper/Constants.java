@@ -9,6 +9,7 @@ public class Constants {
     public static final String INTENT_PUZZLE = "uk.co.jakelee.cityflow.puzzle";
     public static final String INTENT_ENVIRONMENT = "uk.co.jakelee.cityflow.environment";
     public static final String INTENT_IS_CUSTOM = "uk.co.jakelee.cityflow.puzzletype";
+    public static final String INTENT_IS_SHUFFLE_AND_PLAY = "uk.co.jakelee.cityflow.shuffleandplay";
     public static final String INTENT_TILE = "uk.co.jakelee.cityflow.tile";
     public static final String INTENT_IAP = "uk.co.jakelee.cityflow.iap";
     public static final String INTENT_ITEM = "uk.co.jakelee.cityflow.item";

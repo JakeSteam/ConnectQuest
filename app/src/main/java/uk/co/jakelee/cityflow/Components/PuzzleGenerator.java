@@ -42,14 +42,14 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
     private int failedTiles = 0;
     private boolean hasAllTiles = false;
 
-    public PuzzleGenerator(Activity activity, Dialog dialog, int maxX, int maxY, int environmentId, boolean blankPuzzle, boolean shuffleAndPlay) {
+    public PuzzleGenerator(Activity activity, Dialog dialog, PuzzleCreationOptions options) {
         this.activity = activity;
         this.dialog = dialog;
-        this.maxX = maxX;
-        this.maxY = maxY;
-        this.environmentId = environmentId;
-        this.blankPuzzle = blankPuzzle;
-        this.shuffleAndPlay = shuffleAndPlay;
+        this.maxX = options.getX();
+        this.maxY = options.getY();
+        this.environmentId = options.getEnvironmentId();
+        this.blankPuzzle = options.isEmptyPuzzle();
+        this.shuffleAndPlay = options.isShuffleAndPlay();
         this.hasAllTiles = Iap.hasAllTiles();
 
         this.progressText = (TextView) dialog.findViewById(R.id.progressText);
@@ -233,6 +233,7 @@ public class PuzzleGenerator extends AsyncTask<String, Integer, Integer> {
                 activity.startActivity(new Intent(activity, PuzzleActivity.class)
                         .putExtra(Constants.INTENT_PUZZLE, result)
                         .putExtra(Constants.INTENT_IS_CUSTOM, true)
+                        .putExtra(Constants.INTENT_IS_SHUFFLE_AND_PLAY, true)
                         .putExtra(Constants.INTENT_FAILED_TILES, failedTiles)
                         .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
             } else {

@@ -231,6 +231,16 @@ public class TileType extends SugarRecord {
         }
         return height;
     }
+
+    public boolean canBeRotated() {
+        return !(getFlowNorth() == getFlowEast()
+                    && getFlowEast() == getFlowSouth()
+                    && getFlowSouth() == getFlowWest())
+                ||
+                !(getHeightNorth() == getHeightEast()
+                        && getHeightEast() == getHeightSouth()
+                        && getHeightSouth() == getHeightWest());
+    }
 }
 
 

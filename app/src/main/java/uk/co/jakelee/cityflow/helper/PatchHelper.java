@@ -31,7 +31,8 @@ import static android.content.Context.MODE_PRIVATE;
 public class PatchHelper extends AsyncTask<String, String, String> {
     public final static int NO_DATABASE = 0;
     public final static int V1_0_0 = 4;
-    public final static int LATEST_PATCH = V1_0_0;
+    public final static int V1_0_2 = 5;
+    public final static int LATEST_PATCH = V1_0_2;
     private Activity callingActivity;
     private TextView progressText;
     private ProgressBar progressBar;
@@ -103,17 +104,24 @@ public class PatchHelper extends AsyncTask<String, String, String> {
             }).start();
         } else {
             // If it's a patch, install the patch, and reinstall text if necessary.
-            /*if (prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.V1_0_0) {
-                patchTo101();
+            if (prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.V1_0_0) {
+                setProgress("Patch 1.0.2", 40);
+                patchTo102();
                 languagePackModified = true;
-                prefs.edit().putInt("databaseVersion", PatchHelper.V1_0_1).apply();
+                prefs.edit().putInt("databaseVersion", PatchHelper.V1_0_2).apply();
             }
 
             if (languagePackModified) {
+                setProgress("Text Updates", 80);
                 TextHelper.reinstallCurrentPack();
-            }*/
+            }
         }
         return "";
+    }
+
+    private void patchTo102() {
+        Puzzle.executeQuery("UPDATE puzzle SET par_moves = \"" + EncryptHelper.encode(21, 47) + "\" WHERE puzzle_id = 47");
+        Puzzle.executeQuery("UPDATE puzzle SET par_moves = \"" + EncryptHelper.encode(33, 48) + "\" WHERE puzzle_id = 48");
     }
 
     private void createOtherPuzzles() {
@@ -1083,7 +1091,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(46, 45, 4, 0, 1));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_47_NAME", "Waterworks"));
-        puzzles.add(new Puzzle(47, 3, 8899L, 19, 0L, 0));
+        puzzles.add(new Puzzle(47, 3, 8899L, 21, 0L, 0));
         tiles.add(new Tile(47, 8, 0, 3, 4));
         tiles.add(new Tile(47, 9, 1, 3, 1));
         tiles.add(new Tile(47, 8, 2, 3, 1));
@@ -1102,7 +1110,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(47, 8, 3, 0, 2));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_48_NAME", "The Moat"));
-        puzzles.add(new Puzzle(48, 3, 22199L, 39, 0L, 0));
+        puzzles.add(new Puzzle(48, 3, 22199L, 33, 0L, 0));
         tiles.add(new Tile(48, 1, 0, 4, 2));
         tiles.add(new Tile(48, 1, 1, 4, 4));
         tiles.add(new Tile(48, 45, 2, 4, 4));

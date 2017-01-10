@@ -184,11 +184,17 @@ public class ShopItem extends SugarRecord {
 
         if (item == null) {
             return AlertHelper.Error.TECHNICAL;
-        } else if (item.atMaxPurchases()) {
+        } else if (item.atMaxPurchases() || item.isUnlockedPack()) {
             return AlertHelper.Error.MAX_PURCHASES;
         } else if (item.getPrice() > currency.getIntValue()) {
             return AlertHelper.Error.NOT_ENOUGH_CURRENCY;
         }
         return AlertHelper.Error.NO_ERROR;
+    }
+
+    public boolean isUnlockedPack() {
+        return (getCategoryId() == Constants.STORE_CATEGORY_MISC
+                && getSubcategoryId() == Constants.STORE_SUBCATEGORY_PACK
+                && Pack.getPack(getMiscData()).isUnlocked());
     }
 }
