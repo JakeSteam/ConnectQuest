@@ -216,7 +216,7 @@ public class MainActivity extends Activity implements
     {
         // Give resources & features contained in the campaign to the user
         for(Resource resource : offer.getResources()) {
-            if (resource.getReference().equals("1000_coins")) {
+            if (resource.getReference().equals("1000_COINS")) {
                 Statistic.addCurrency(1000);
             }
         }
