@@ -218,6 +218,7 @@ public class MainActivity extends Activity implements
         for(Resource resource : offer.getResources()) {
             if (resource.getReference().equals("1000_COINS")) {
                 Statistic.addCurrency(1000);
+                AlertHelper.success(this, "Received 1000 free coins, thanks to AppGratis!");
             }
         }
     }
