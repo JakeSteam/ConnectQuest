@@ -37,11 +37,15 @@ public class TileHelper {
 
         final int tileCount = badTiles.first.size();
         for (int i = 0; i < tileCount; i++) {
-            Tile tile = Tile.get(puzzleId, badTiles.first.get(i), badTiles.second.get(i));
-            if (tile != null && !checkedIds.contains(tile.getId()) && !checkTileFlow(tile)) {
-                checkedIds.add(tile.getId());
-                newTilesX.add(tile.getX());
-                newTilesY.add(tile.getY());
+            try {
+                Tile tile = Tile.get(puzzleId, badTiles.first.get(i), badTiles.second.get(i));
+                if (tile != null && !checkedIds.contains(tile.getId()) && !checkTileFlow(tile)) {
+                    checkedIds.add(tile.getId());
+                    newTilesX.add(tile.getX());
+                    newTilesY.add(tile.getY());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
