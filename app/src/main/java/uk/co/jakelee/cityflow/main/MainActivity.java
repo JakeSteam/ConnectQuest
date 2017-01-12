@@ -9,6 +9,10 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.batch.android.Batch;
+import com.batch.android.BatchUnlockListener;
+import com.batch.android.Offer;
+import com.batch.android.Resource;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Drive;
@@ -27,11 +31,13 @@ import uk.co.jakelee.cityflow.helper.PatchHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.helper.TextHelper;
 import uk.co.jakelee.cityflow.model.Setting;
+import uk.co.jakelee.cityflow.model.Statistic;
 
 public class MainActivity extends Activity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
-        QuestUpdateListener {
+        QuestUpdateListener,
+        BatchUnlockListener {
     public static SharedPreferences prefs;
     private DisplayHelper dh;
 
@@ -59,6 +65,14 @@ public class MainActivity extends Activity implements
         if (Setting.getSafeBoolean(Constants.SETTING_MUSIC)) {
             SoundHelper.getInstance(this).playOrResumeMusic(SoundHelper.AUDIO.main);
         }
+    }
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        Batch.Unlock.setUnlockListener(this);
+        Batch.onStart(this);
     }
 
     public void tryGoogleLogin() {
@@ -117,6 +131,7 @@ public class MainActivity extends Activity implements
 
     @Override
     protected void onStop() {
+        Batch.onStop(this);
         super.onStop();
 
         Tapjoy.onActivityStop(this);
@@ -179,6 +194,32 @@ public class MainActivity extends Activity implements
                     .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
         } else {
             AlertHelper.error(this, AlertHelper.getError(AlertHelper.Error.FAILED_TO_CONNECT));
+        }
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        Batch.onDestroy(this);
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent)
+    {
+        Batch.onNewIntent(this, intent);
+        super.onNewIntent(intent);
+    }
+
+    @Override
+    public void onRedeemAutomaticOffer(Offer offer)
+    {
+        // Give resources & features contained in the campaign to the user
+        for(Resource resource : offer.getResources()) {
+            if (resource.getReference().equals("1000_COINS")) {
+                Statistic.addCurrency(1000);
+                AlertHelper.success(this, "Received 1000 free coins, thanks to AppGratis!");
+            }
         }
     }
 }
