@@ -9,8 +9,8 @@ android {
         applicationId "uk.co.jakelee.cityflow"
         minSdkVersion 15
         targetSdkVersion apiVersion
-        versionCode 11
-        versionName "1.0.2"
+        versionCode 12
+        versionName "1.0.3"
     }
     buildTypes {
         release {
@@ -21,6 +21,13 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.pro'
         }
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'http://maven.batch.com/release'
     }
 }
 
@@ -46,6 +53,7 @@ dependencies {
     compile 'com.anjlab.android.iab.v3:library:1.0.31'
     compile 'com.google.zxing:core:3.2.1'
     compile 'com.github.aitorvs:allowme:0.3.2'
+    compile 'com.batch.android:batch-sdk:1.7+'
 
     compile files('libs/applovin-sdk-6.3.0.jar')
     compile files('libs/tapjoyconnectlibrary.jar')

@@ -26,7 +26,16 @@ public static final *** NULL;
 -keepnames class * implements android.os.Parcelable {
 public static final ** CREATOR;
 }
--keep class com.google.android.gms.ads.identifier.** { *; }
+-keep class com.batch.** {
+  *;
+}
+-keep class com.google.android.gms.** {
+  *;
+}
+
+-dontwarn com.batch.android.mediation.**
+
+-dontwarn com.batch.android.BatchPushService
 
 -dontwarn org.apache.http.**
 -dontwarn android.net.**

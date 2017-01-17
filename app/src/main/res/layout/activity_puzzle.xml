@@ -408,9 +408,12 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/skyscraperTimeContainer"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:onClick="buyZenIfUnbought"
+                    android:clickable="true">
 
                     <uk.co.jakelee.cityflow.components.TextViewFont
                         android:id="@+id/skyscraperTimeTitle"
