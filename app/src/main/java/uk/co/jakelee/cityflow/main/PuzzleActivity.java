@@ -45,6 +45,7 @@ import uk.co.jakelee.cityflow.model.Iap;
 import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.PuzzleCustom;
 import uk.co.jakelee.cityflow.model.Setting;
+import uk.co.jakelee.cityflow.model.ShopItem;
 import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.Text;
 import uk.co.jakelee.cityflow.model.Tile;
@@ -437,7 +438,8 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
             ((ImageView) findViewById(R.id.skyscraperTime)).setImageResource(PuzzleHelper.getSkyscraperDrawable(this, timeProgress, Constants.SKYSCRAPER_TIME));
             ((TextView) findViewById(R.id.skyscraperTimeText)).setText(String.format(Locale.ENGLISH, Text.get("UI_SKYSCRAPER_TIME_TEXT"),
                     timeInMilliseconds > 0 ? DateHelper.getPuzzleTimeString(timeInMilliseconds) : "0",
-                    DateHelper.getPuzzleTimeString(puzzle.getParTime())));
+                    DateHelper.getPuzzleTimeString(puzzle.getParTime())) +
+                    (!Setting.getSafeBoolean(Constants.SETTING_ZEN_MODE) ? "\n(No Zen)" : ""));
 
             int moveProgress = PuzzleHelper.getPuzzleCriteriaProgress(movesMade, puzzle.getParMoves());
             ((TextView) findViewById(R.id.skyscraperMovesTitle)).setText(String.format(Locale.ENGLISH, Text.get("UI_SKYSCRAPER_MOVES_TITLE"), moveProgress));
@@ -488,6 +490,16 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
         timeSpentPaused += (System.currentTimeMillis() - timePaused);
         timePaused = 0;
         handler.post(updateTimerThread);
+    }
+
+    public void buyZenIfUnbought(View v) {
+        ShopItem zenItem = ShopItem.get(Constants.ITEM_ZEN_MODE);
+        if (zenItem.getPurchases() == 0) {
+            Intent intent = new Intent(getApplicationContext(), ShopActivity.class);
+            intent.putExtra(Constants.INTENT_ITEM, zenItem.getItemId());
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
+        }
     }
 
     @Override
