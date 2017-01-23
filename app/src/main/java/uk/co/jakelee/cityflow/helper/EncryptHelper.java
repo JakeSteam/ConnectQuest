@@ -113,7 +113,7 @@ public class EncryptHelper {
         String plaintext = "";
         try {
             plaintext = AESCrypt.decrypt(encryptionPwd, encrypted);
-        } catch (GeneralSecurityException e) {
+        } catch (GeneralSecurityException|IllegalArgumentException e) {
             Log.d("DecryptionError4", e.toString());
         }
         return plaintext;
