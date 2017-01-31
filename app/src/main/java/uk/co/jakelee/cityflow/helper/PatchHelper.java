@@ -135,6 +135,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     private void patchTo105() {
         Puzzle.executeQuery("UPDATE puzzle SET par_moves = \"" + EncryptHelper.encode(18, 131) + "\" WHERE puzzle_id = 131");
+        Puzzle.executeQuery("UPDATE pack SET max_stars = \"" + EncryptHelper.encode(54, 7) + "\" WHERE pack_id = 7");
     }
 
     private void createOtherPuzzles() {
@@ -309,7 +310,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         packs.add(new Pack(4, "CgkIgrzuo64REAIQNg", "CgkIgrzuo64REAIQNw", 90, true));
         packs.add(new Pack(5, "CgkIgrzuo64REAIQOA", "CgkIgrzuo64REAIQOQ", 45, true));
         packs.add(new Pack(6, "CgkIgrzuo64REAIQOg", "CgkIgrzuo64REAIQOw", 84, true));
-        packs.add(new Pack(7, "CgkIgrzuo64REAIQPA", "CgkIgrzuo64REAIQPQ", 90, true));
+        packs.add(new Pack(7, "CgkIgrzuo64REAIQPA", "CgkIgrzuo64REAIQPQ", 54, true));
         packs.add(new Pack(8, "CgkIgrzuo64REAIQPg", "CgkIgrzuo64REAIQPw", 90, true));
         packs.add(new Pack(9, "CgkIgrzuo64REAIQQA", "CgkIgrzuo64REAIQQQ", 45, false));
         packs.add(new Pack(10, "CgkIgrzuo64REAIQWQ", "CgkIgrzuo64REAIQWg", 90, true));
