@@ -29,7 +29,7 @@ public class PuzzleHelper {
     public static Pair<Boolean, Boolean> processPuzzleCompletion(Context context, final Puzzle puzzle, final boolean isCompletingPack, long timeTaken, final int movesTaken, final int boostsUsed, PuzzleCustom puzzleCustom) {
         boolean newBestTime = false;
         boolean newBestMoves = false;
-        if (timeTaken >= 0 && (timeTaken < puzzle.getBestTime() || puzzle.getBestTime() == 0)) {
+        if (timeTaken >= 0 && (timeTaken <= puzzle.getBestTime() || puzzle.getBestTime() == 0)) {
             puzzle.setBestTime(timeTaken);
             newBestTime = true;
             if ((timeTaken <= puzzle.getParTime() || Setting.getSafeBoolean(Constants.SETTING_ZEN_MODE)) && !puzzle.hasTimeStar()) {
@@ -40,7 +40,7 @@ public class PuzzleHelper {
                 }
             }
         }
-        if (movesTaken >= 0 && (movesTaken < puzzle.getBestMoves() || puzzle.getBestMoves() == 0)) {
+        if (movesTaken >= 0 && (movesTaken <= puzzle.getBestMoves() || puzzle.getBestMoves() == 0)) {
             puzzle.setBestMoves(movesTaken);
             newBestMoves = true;
             if (movesTaken <= puzzle.getParMoves() && !puzzle.hasMovesStar()) {
