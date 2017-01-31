@@ -2199,7 +2199,7 @@ public class TextHelper {
         texts.add(new Text(Constants.LANGUAGE_FR, "ENVIRONMENT_7_NAME", "Village"));
         texts.add(new Text(Constants.LANGUAGE_FR, "ERROR_ADVERT_NOT_LOADED", "Impossible de charger la publicité! Cela peut être dû à une mauvaise connexion, ou il n'y a pas de publicité disponible."));
         texts.add(new Text(Constants.LANGUAGE_FR, "ERROR_ADVERT_NOT_VERIFIED", "Une erreur s'est produite, et la vue de publicité n'a pas pu être vérifiée!"));
-        texts.add(new Text(Constants.LANGUAGE_FR, "ERROR_FAILED_TO_CONNECT", "Impossible de connecter. Veuillez essayer plau tard."));
+        texts.add(new Text(Constants.LANGUAGE_FR, "ERROR_FAILED_TO_CONNECT", "Impossible de se connecter. Veuillez essayer plus tard."));
         texts.add(new Text(Constants.LANGUAGE_FR, "ERROR_MAX_PURCHASES", "Vous avez acheté le maximum pour cet article!"));
         texts.add(new Text(Constants.LANGUAGE_FR, "ERROR_NO_ERROR", ""));
         texts.add(new Text(Constants.LANGUAGE_FR, "ERROR_NOT_ENOUGH_CURRENCY", "Vous ne pouvez pas vous permettre cet article!"));

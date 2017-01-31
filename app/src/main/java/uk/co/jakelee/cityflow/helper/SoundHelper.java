@@ -15,6 +15,7 @@ public class SoundHelper {
     public static final int[] purchasingSounds = {R.raw.purchase1, R.raw.purchase2};
     public static final int[] rotatingSounds = {R.raw.click1, R.raw.click2, R.raw.click3, R.raw.click4, R.raw.click5, R.raw.click6, R.raw.click7, R.raw.click8, R.raw.click9, R.raw.click10};
     public static final int[] settingSounds = {R.raw.setting1, R.raw.setting2};
+    private static final int[] levelCompleteSounds = {R.raw.levelcomplete};
     private static SoundHelper soundHelper = null;
     private static boolean keepPlayingMusic = false;
     private final Context context;
@@ -56,6 +57,9 @@ public class SoundHelper {
             case settings:
                 sounds = settingSounds;
                 settingId = Constants.SETTING_SOUND_SETTINGS;
+                break;
+            case completing:
+                sounds = levelCompleteSounds;
                 break;
             case main:
                 sounds = mainSongs;
@@ -119,5 +123,5 @@ public class SoundHelper {
         }
     }
 
-    public enum AUDIO {purchasing, rotating, settings, main, puzzle}
+    public enum AUDIO {purchasing, rotating, settings, main, puzzle, completing}
 }

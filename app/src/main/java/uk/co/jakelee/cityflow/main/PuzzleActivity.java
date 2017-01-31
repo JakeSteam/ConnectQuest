@@ -389,6 +389,7 @@ public class PuzzleActivity extends Activity implements PuzzleDisplayer {
         findViewById(R.id.moveCounter).setVisibility(View.GONE);
         findViewById(R.id.topUI).setVisibility(View.GONE);
 
+        SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.completing);
         if (isCustom) {
             final Activity activity = this;
             new Thread(new Runnable() {

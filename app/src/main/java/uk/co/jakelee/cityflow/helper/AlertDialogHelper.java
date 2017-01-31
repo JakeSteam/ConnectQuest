@@ -175,7 +175,7 @@ public class AlertDialogHelper {
 
         alertDialog.setPositiveButton(Text.get("DIALOG_BUTTON_CONFIRM"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                //String supportCode = EncryptHelper.encode((System.currentTimeMillis() + 172800000) + "|UPDATE puzzle SET par_moves = \"" + EncryptHelper.encode(21, 47) + "\" WHERE puzzle_id = 47");
+                //String supportCode = EncryptHelper.encode((System.currentTimeMillis() + 172800000) + "|UPDATE statistic SET int_value = \"" + EncryptHelper.encode(1200, 6) + "\" WHERE statistic_id = 6");
                 String supportCode = supportCodeBox.getText().toString().trim();
                 if (SupportCode.alreadyApplied(supportCode)) {
                     AlertHelper.error(activity, AlertHelper.getError(AlertHelper.Error.SUPPORT_CODE_USED));
