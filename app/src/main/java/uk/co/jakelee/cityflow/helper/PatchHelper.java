@@ -32,7 +32,10 @@ public class PatchHelper extends AsyncTask<String, String, String> {
     public final static int NO_DATABASE = 0;
     public final static int V1_0_0 = 4;
     public final static int V1_0_2 = 5;
-    public final static int LATEST_PATCH = V1_0_2;
+    public final static int V1_0_5 = 6;
+
+    public final static int LATEST_PATCH = V1_0_5;
+
     private Activity callingActivity;
     private TextView progressText;
     private ProgressBar progressBar;
@@ -111,6 +114,12 @@ public class PatchHelper extends AsyncTask<String, String, String> {
                 prefs.edit().putInt("databaseVersion", PatchHelper.V1_0_2).apply();
             }
 
+            if (prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.V1_0_2) {
+                setProgress("Patch 1.0.5", 50);
+                patchTo105();
+                prefs.edit().putInt("databaseVersion", PatchHelper.V1_0_5).apply();
+            }
+
             if (languagePackModified) {
                 setProgress("Text Updates", 80);
                 TextHelper.reinstallCurrentPack();
@@ -122,6 +131,10 @@ public class PatchHelper extends AsyncTask<String, String, String> {
     private void patchTo102() {
         Puzzle.executeQuery("UPDATE puzzle SET par_moves = \"" + EncryptHelper.encode(21, 47) + "\" WHERE puzzle_id = 47");
         Puzzle.executeQuery("UPDATE puzzle SET par_moves = \"" + EncryptHelper.encode(33, 48) + "\" WHERE puzzle_id = 48");
+    }
+
+    private void patchTo105() {
+        Puzzle.executeQuery("UPDATE puzzle SET par_moves = \"" + EncryptHelper.encode(18, 131) + "\" WHERE puzzle_id = 131");
     }
 
     private void createOtherPuzzles() {
@@ -3310,7 +3323,7 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         tiles.add(new Tile(130, 160, 4, 0, 2));
 
         texts.add(new Text(Constants.LANGUAGE_EN, "PUZZLE_131_NAME", "Looping Round"));
-        puzzles.add(new Puzzle(131, 6, 8399L, 15, 0L, 0));
+        puzzles.add(new Puzzle(131, 6, 8399L, 18, 0L, 0));
         tiles.add(new Tile(131, 127, 0, 2, 1));
         tiles.add(new Tile(131, 96, 1, 2, 4));
         tiles.add(new Tile(131, 163, 2, 2, 4));
