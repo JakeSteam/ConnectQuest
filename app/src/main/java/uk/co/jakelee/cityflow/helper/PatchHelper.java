@@ -33,8 +33,9 @@ public class PatchHelper extends AsyncTask<String, String, String> {
     public final static int V1_0_0 = 4;
     public final static int V1_0_2 = 5;
     public final static int V1_0_5 = 6;
+    public final static int V1_0_6 = 7;
 
-    public final static int LATEST_PATCH = V1_0_5;
+    public final static int LATEST_PATCH = V1_0_6;
 
     private Activity callingActivity;
     private TextView progressText;
@@ -120,6 +121,12 @@ public class PatchHelper extends AsyncTask<String, String, String> {
                 prefs.edit().putInt("databaseVersion", PatchHelper.V1_0_5).apply();
             }
 
+            if (prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.V1_0_5) {
+                setProgress("Patch 1.0.6", 60);
+                patchTo106();
+                prefs.edit().putInt("databaseVersion", PatchHelper.V1_0_6).apply();
+            }
+
             if (languagePackModified) {
                 setProgress("Text Updates", 80);
                 TextHelper.reinstallCurrentPack();
@@ -136,6 +143,10 @@ public class PatchHelper extends AsyncTask<String, String, String> {
     private void patchTo105() {
         Puzzle.executeQuery("UPDATE puzzle SET par_moves = \"" + EncryptHelper.encode(18, 131) + "\" WHERE puzzle_id = 131");
         Puzzle.executeQuery("UPDATE pack SET max_stars = \"" + EncryptHelper.encode(54, 7) + "\" WHERE pack_id = 7");
+    }
+
+    private void patchTo106() {
+        Puzzle.executeQuery("UPDATE puzzle SET par_moves = \"" + EncryptHelper.encode(16, 156) + "\" WHERE puzzle_id = 156");
     }
 
     private void createOtherPuzzles() {
