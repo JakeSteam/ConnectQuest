@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">City Flow</string>
+    <string name="app_name">Connect Quest</string>
     <string name="icon_play">&#xe800;</string>
     <string name="icon_edit">&#xe801;</string>
     <string name="icon_next">&#xe802;</string>
@@ -34,7 +34,7 @@
     <string name="icon_visibility">&#xe81F;</string>
 
     <string name="rate_dialog_cancel">Later</string>
-    <string name="rate_dialog_message">If you\'re enjoying City Flow, would you mind leaving a rating? It really helps the game out, and lets me know all the development hours were worth it! Thanks!</string>
+    <string name="rate_dialog_message">If you\'re enjoying Connect Quest, would you mind leaving a rating? It really helps the game out, and lets me know all the development hours were worth it! Thanks!</string>
     <string name="rate_dialog_no">No! >:(</string>
     <string name="rate_dialog_ok">Okay! :)</string>
     <string name="rate_dialog_title">Leave a rating</string>
