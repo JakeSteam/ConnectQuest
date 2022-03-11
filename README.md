@@ -80,7 +80,3 @@ Happy flowing, connect questers!
 ## Licensing
 * Entire repository is under the MIT license, essentially do whatever you want but don't blame me if it breaks!
 * All images are modified versions of [Kenney](https://www.kenney.nl/assets?s=city) assets.
-
-## Redacted information
-* `MainApplication.java`: [Batch](https://doc.batch.com/) config & GCM sender ID redacted.
-* `AndroidManifest.xml`: [AppLovin](https://www.applovin.com/) SDK key redacted.
