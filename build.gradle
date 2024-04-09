@@ -1,27 +1,29 @@
 buildscript {
     repositories {
+        google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:7.0.0'
     }
 }
 
 ext {
-    apiVersion = 25
+    apiVersion = 33
     compilerVersion = '25.0.1'
     supportLibraryVersion = '25.1.0'
-    playLibraryVersion = '10.0.1'
+    playLibraryVersion = '17.0.0'
 }
 
 allprojects {
     repositories {
+        google()
         jcenter()
         maven {
             url "https://jitpack.io"
         }
         maven {
-            url 'http://maven.batch.com/release'
+            url 'https://maven.batch.com/release'
         }
     }
 }

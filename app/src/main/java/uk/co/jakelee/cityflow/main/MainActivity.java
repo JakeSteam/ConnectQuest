@@ -19,7 +19,6 @@ import com.google.android.gms.drive.Drive;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.quest.Quest;
 import com.google.android.gms.games.quest.QuestUpdateListener;
-import com.tapjoy.Tapjoy;
 
 import hotchemi.android.rate.AppRate;
 import uk.co.jakelee.cityflow.R;
@@ -59,8 +58,6 @@ public class MainActivity extends Activity implements
                 .addApi(Drive.API).addScope(Drive.SCOPE_APPFOLDER)
                 .build();
         tryGoogleLogin();
-
-        Tapjoy.onActivityStart(this);
 
         if (Setting.getSafeBoolean(Constants.SETTING_MUSIC)) {
             SoundHelper.getInstance(this).playOrResumeMusic(SoundHelper.AUDIO.main);
@@ -134,7 +131,6 @@ public class MainActivity extends Activity implements
         Batch.onStop(this);
         super.onStop();
 
-        Tapjoy.onActivityStop(this);
         SoundHelper.stopIfExiting(this);
     }
 

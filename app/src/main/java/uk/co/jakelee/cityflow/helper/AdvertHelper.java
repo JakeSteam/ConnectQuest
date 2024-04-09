@@ -9,11 +9,6 @@ import com.applovin.sdk.AppLovinAdDisplayListener;
 import com.applovin.sdk.AppLovinAdRewardListener;
 import com.applovin.sdk.AppLovinAdVideoPlaybackListener;
 import com.applovin.sdk.AppLovinSdk;
-import com.tapjoy.TJActionRequest;
-import com.tapjoy.TJError;
-import com.tapjoy.TJPlacement;
-import com.tapjoy.TJPlacementListener;
-import com.tapjoy.Tapjoy;
 
 import java.util.Locale;
 import java.util.Map;
@@ -23,7 +18,7 @@ import uk.co.jakelee.cityflow.model.Iap;
 import uk.co.jakelee.cityflow.model.Statistic;
 import uk.co.jakelee.cityflow.model.Text;
 
-public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplayListener, AppLovinAdVideoPlaybackListener, TJPlacementListener {
+public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplayListener, AppLovinAdVideoPlaybackListener {
     private static AdvertHelper dhInstance = null;
     public AppLovinIncentivizedInterstitial advert;
     private Context context;
@@ -32,9 +27,6 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
 
     public AdvertHelper(Context context) {
         this.context = context;
-
-        Tapjoy.connect(context, "kgX9Y9-zQuGTCApHM5TuUwECacqwGwpWQshWxLsTNMPC8QU65rl-psQ76RrV", null);
-        Tapjoy.setGcmSender("596538793474");
 
         AppLovinSdk.initializeSdk(context);
         advert = AppLovinIncentivizedInterstitial.create(context);
@@ -73,14 +65,12 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
         return 0;
     }
 
-    public void showAdvert(ShopActivity activity, TJPlacement adPlacement) {
+    public void showAdvert(ShopActivity activity) {
         verified = false;
         callingActivity = activity;
 
         if (advert.isAdReadyToDisplay()) {
             advert.show(activity, this, this, this);
-        } else if (adPlacement.isContentReady()) {
-            adPlacement.showContent();
         } else {
             AlertHelper.error(callingActivity, AlertHelper.getError(AlertHelper.Error.ADVERT_NOT_LOADED));
         }
@@ -96,27 +86,6 @@ public class AdvertHelper implements AppLovinAdRewardListener, AppLovinAdDisplay
 
         advert.preload(null);
     }
-
-    public void onContentDismiss(TJPlacement placement) {
-    }
-
-    public void onPurchaseRequest(TJPlacement placement, TJActionRequest tjActionRequest, String string) {
-    } // Called when the SDK has made contact with Tapjoy's servers. It does not necessarily mean that any content is available.
-
-    public void onRewardRequest(TJPlacement placement, TJActionRequest tjActionRequest, String string, int number) {
-    } // Called when the SDK has made contact with Tapjoy's servers. It does not necessarily mean that any content is available.
-
-    public void onRequestSuccess(TJPlacement placement) {
-    } // Called when the SDK has made contact with Tapjoy's servers. It does not necessarily mean that any content is available.
-
-    public void onRequestFailure(TJPlacement placement, TJError error) {
-    } // Called when there was a problem during connecting Tapjoy servers.
-
-    public void onContentReady(TJPlacement placement) {
-    } // Called when the content is actually available to display.
-
-    public void onContentShow(TJPlacement placement) {
-    } // Called when the content is showed.
 
     @Override
     public void userRewardVerified(AppLovinAd appLovinAd, Map map) {

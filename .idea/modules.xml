@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BaseGameUtils/BaseGameUtils.iml" filepath="$PROJECT_DIR$/BaseGameUtils/BaseGameUtils.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CityFlow.iml" filepath="$PROJECT_DIR$/CityFlow.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ConnectQuest.iml" filepath="$PROJECT_DIR$/.idea/modules/ConnectQuest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BaseGameUtils/ConnectQuest.BaseGameUtils.iml" filepath="$PROJECT_DIR$/.idea/modules/BaseGameUtils/ConnectQuest.BaseGameUtils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BaseGameUtils/ConnectQuest.BaseGameUtils.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/BaseGameUtils/ConnectQuest.BaseGameUtils.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BaseGameUtils/ConnectQuest.BaseGameUtils.main.iml" filepath="$PROJECT_DIR$/.idea/modules/BaseGameUtils/ConnectQuest.BaseGameUtils.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BaseGameUtils/ConnectQuest.BaseGameUtils.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/BaseGameUtils/ConnectQuest.BaseGameUtils.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ConnectQuest.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ConnectQuest.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ConnectQuest.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ConnectQuest.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ConnectQuest.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ConnectQuest.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ConnectQuest.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ConnectQuest.app.unitTest.iml" />
     </modules>
   </component>
 </project>

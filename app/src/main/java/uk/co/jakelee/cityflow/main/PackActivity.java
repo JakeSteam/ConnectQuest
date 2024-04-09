@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TableLayout;
@@ -25,6 +24,8 @@ import uk.co.jakelee.cityflow.model.Puzzle;
 import uk.co.jakelee.cityflow.model.Text;
 
 import static uk.co.jakelee.cityflow.R.id.puzzleButton;
+
+import androidx.core.content.ContextCompat;
 
 public class PackActivity extends Activity {
     public Puzzle selectedPuzzle = new Puzzle();

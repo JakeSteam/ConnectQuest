@@ -9,7 +9,6 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.os.Vibrator;
-import android.support.v4.content.ContextCompat;
 import android.util.Pair;
 import android.view.View;
 import android.view.animation.Animation;
@@ -18,6 +17,8 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import com.squareup.picasso.Picasso;
 

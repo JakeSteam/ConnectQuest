@@ -11,7 +11,6 @@
     public static ** valueOf(java.lang.String);
 }
 
--keep class com.tapjoy.** { *; }
 -keepattributes JavascriptInterface
 -keep class * extends java.util.ListResourceBundle {
 protected Object[][] getContents();

@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.Constants;
+import com.anjlab.android.iab.v3.PurchaseInfo;
 import com.anjlab.android.iab.v3.SkuDetails;
-import com.anjlab.android.iab.v3.TransactionDetails;
 
 import java.util.List;
 import java.util.Locale;
@@ -68,9 +68,9 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
     }
 
     @Override
-    public void onProductPurchased(String productId, TransactionDetails details) {
+    public void onProductPurchased(String productId, PurchaseInfo details) {
         if (Iap.get(productId).getCoins() > 0) {
-            bp.consumePurchase(productId);
+            bp.consumePurchaseAsync(productId, null);
         }
 
         Iap iap = Iap.get(productId);
@@ -92,20 +92,11 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
 
     @Override
     public void onBillingError(int errorCode, Throwable error) {
-        if (errorCode != Constants.BILLING_RESPONSE_RESULT_USER_CANCELED) {
-            AlertHelper.error(this, AlertHelper.getError(AlertHelper.Error.IAB_FAILED));
-        }
+        AlertHelper.error(this, AlertHelper.getError(AlertHelper.Error.IAB_FAILED));
     }
 
     @Override
     public void onPurchaseHistoryRestored() {
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (!bp.handleActivityResult(requestCode, resultCode, data)) {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
     }
 
     public void buyIAP(View v) {
@@ -132,31 +123,18 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
         List<Iap> iaps = Iap.listAll(Iap.class);
 
         for (Iap iap : iaps) {
-            SkuDetails iapInfo = bp.getPurchaseListingDetails(iap.getIapCode());
             RelativeLayout iapButton = (RelativeLayout) inflater.inflate(R.layout.custom_iap_button, null);
 
             ((ImageView) iapButton.findViewById(R.id.itemImage)).setImageResource(dh.getIabDrawableID(iap.getIapCode()));
             ((TextView) iapButton.findViewById(R.id.itemName)).setText(iap.getName());
 
-            if (iapInfo != null && (iap.getPurchases() < iap.getMaxPurchases() || iap.getMaxPurchases() == 0)) {
-                ((TextView) iapButton.findViewById(R.id.itemPrice)).setText(iapInfo.currency + " " + iapInfo.priceText);
-                iapButton.setOnClickListener(new Button.OnClickListener() {
-                    public void onClick(View v) {
-                        buyIAP(v);
-                    }
-                });
-                iapButton.setTag(iap.getIapCode());
-            } else if (iapInfo != null) {
-                ((TextView) iapButton.findViewById(R.id.itemPrice)).setText(Text.get("WORD_NA"));
-            } else {
-                ((TextView) iapButton.findViewById(R.id.itemPrice)).setText("?.??");
-                iapButton.setOnClickListener(new Button.OnClickListener() {
-                    public void onClick(View v) {
-                        buyIAP(v);
-                    }
-                });
-                iapButton.setTag(iap.getIapCode());
-            }
+            ((TextView) iapButton.findViewById(R.id.itemPrice)).setText("?.??");
+            iapButton.setOnClickListener(new Button.OnClickListener() {
+                public void onClick(View v) {
+                    buyIAP(v);
+                }
+            });
+            iapButton.setTag(iap.getIapCode());
 
             scrollView.addView(iapButton, layoutParams);
         }
