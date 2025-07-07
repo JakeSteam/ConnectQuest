@@ -4,14 +4,18 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion apiVersion
     buildToolsVersion compilerVersion
+    namespace = "uk.co.jakelee.cityflow"
 
     defaultConfig {
         applicationId "uk.co.jakelee.cityflow"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion apiVersion
-        versionCode 18
-        versionName "1.1.0"
+        versionCode 19
+        versionName "1.1.1"
         multiDexEnabled true
+    }
+    buildFeatures {
+        buildConfig = true
     }
     buildTypes {
         release {
@@ -50,7 +54,7 @@ dependencies {
     implementation 'com.github.hotchemi:android-rate:1.0.1'
     implementation 'me.grantland:autofittextview:0.2.1'
     implementation 'de.keyboardsurfer.android.widget:crouton:1.8.5@aar'
-    implementation 'com.anjlab.android.iab.v3:library:2.1.0'
+    implementation 'com.anjlab.android.iab.v3:library:2.2.0'
     implementation 'com.google.zxing:core:3.2.1'
     implementation 'com.github.aitorvs:allowme:0.3.2'
     implementation 'com.batch.android:batch-sdk:1.7+'
