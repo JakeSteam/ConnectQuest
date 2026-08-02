@@ -5,14 +5,13 @@
 
     <uses-permission android:name="com.android.vending.BILLING" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- Only needed to put an exported puzzle card into MediaStore on API 28 and below. -->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
-    <permission android:name="uk.co.jakelee.cityflow.permission.C2D_MESSAGE" android:protectionLevel="signature" />
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <uses-permission android:name="uk.co.jakelee.cityflow.permission.C2D_MESSAGE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" tools:node="remove" />
 
     <application
         android:name=".MainApplication"
@@ -43,10 +42,6 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <meta-data
-            android:name="applovin.sdk.key"
-            android:value="d8B0h7p58eRdbK8r8r6cntx7TDbAl2WMBiNtqAyypOaPikFsTLSKCNSgb3rL5MiG347uE4r2SPSA7h0g1S_ErR" />
-
         <activity android:name=".main.MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -74,9 +69,6 @@
             android:name=".main.TilePickerActivity"
             android:theme="@style/Theme.Popup" />
         <activity
-            android:name=".main.QuestActivity"
-            android:theme="@style/Theme.Popup" />
-        <activity
             android:name=".main.ExportActivity"
             android:theme="@style/Theme.PopupCompat" />
         <activity
@@ -89,22 +81,6 @@
             android:name=".main.StatisticsActivity"
             android:theme="@style/Theme.Popup" />
 
-        <activity android:name="com.applovin.adview.AppLovinInterstitialActivity" />
-        <activity android:name="com.applovin.adview.AppLovinConfirmationActivity" />
-
-        <service android:name="com.batch.android.BatchPushService" />
-        <receiver android:name="com.batch.android.BatchPushReceiver" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                <category android:name="uk.co.jakelee.cityflow" />
-            </intent-filter>
-        </receiver>
-
-        <service android:name="com.batch.android.BatchPushInstanceIDService" android:exported="true">
-            <intent-filter>
-                <action android:name="com.google.android.gms.iid.InstanceID"/>
-            </intent-filter>
-        </service>
     </application>
 
 </manifest>

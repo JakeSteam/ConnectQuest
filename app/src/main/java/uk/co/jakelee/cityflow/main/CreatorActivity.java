@@ -1,6 +1,5 @@
 package uk.co.jakelee.cityflow.main;
 
-import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -28,7 +27,6 @@ import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.EncryptHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
-import uk.co.jakelee.cityflow.helper.PermissionHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.helper.StorageHelper;
@@ -159,13 +157,10 @@ public class CreatorActivity extends AllowMeActivity {
         }
     }
 
+    // ACTION_GET_CONTENT grants access to the URI it returns, so no storage permission is needed -
+    // and READ_EXTERNAL_STORAGE is no longer declared, so asking would deny and drop the import.
     public void importFromFile(View v) {
-        PermissionHelper.runIfPossible(Manifest.permission.READ_EXTERNAL_STORAGE, new Runnable() {
-            @Override
-            public void run() {
-                importFromFile();
-            }
-        });
+        importFromFile();
     }
 
     private void importFromFile() {

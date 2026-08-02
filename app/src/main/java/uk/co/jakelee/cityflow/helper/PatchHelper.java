@@ -34,8 +34,9 @@ public class PatchHelper extends AsyncTask<String, String, String> {
     public final static int V1_0_2 = 5;
     public final static int V1_0_5 = 6;
     public final static int V1_0_6 = 7;
+    public final static int V1_2_0 = 8;
 
-    public final static int LATEST_PATCH = V1_0_6;
+    public final static int LATEST_PATCH = V1_2_0;
 
     private Activity callingActivity;
     private TextView progressText;
@@ -127,6 +128,12 @@ public class PatchHelper extends AsyncTask<String, String, String> {
                 prefs.edit().putInt("databaseVersion", PatchHelper.V1_0_6).apply();
             }
 
+            if (prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.V1_0_6) {
+                setProgress("Patch 1.2.0", 70);
+                patchTo120();
+                prefs.edit().putInt("databaseVersion", PatchHelper.V1_2_0).apply();
+            }
+
             if (languagePackModified) {
                 setProgress("Text Updates", 80);
                 TextHelper.reinstallCurrentPack();
@@ -147,6 +154,16 @@ public class PatchHelper extends AsyncTask<String, String, String> {
 
     private void patchTo106() {
         Puzzle.executeQuery("UPDATE puzzle SET par_moves = \"" + EncryptHelper.encode(16, 156) + "\" WHERE puzzle_id = 156");
+    }
+
+    private void patchTo120() {
+        // The four "The Best Quest" achievements were the only way to earn these, and the Quests
+        // service is gone, so grant them rather than leaving the content locked away for good.
+        Background.executeQuery("UPDATE background SET unlocked = 1 WHERE background_id IN ("
+                + Constants.BACKGROUND_PINK + ", "
+                + Constants.BACKGROUND_BARK + ", "
+                + Constants.BACKGROUND_EARTH + ", "
+                + Constants.BACKGROUND_STORMY_SKY + ")");
     }
 
     private void createOtherPuzzles() {
@@ -237,11 +254,12 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         backgrounds.add(new Background(Constants.BACKGROUND_SALMON, "ffbdbd"));
         backgrounds.add(new Background(Constants.BACKGROUND_BLUISH, "c9c9ff"));
 
-        // Questing achievements
-        backgrounds.add(new Background(Constants.BACKGROUND_PINK, "f1cbff"));
-        backgrounds.add(new Background(Constants.BACKGROUND_BARK, "756454"));
-        backgrounds.add(new Background(Constants.BACKGROUND_EARTH, "483e34"));
-        backgrounds.add(new Background(Constants.BACKGROUND_STORMY_SKY, "606060"));
+        // Formerly the questing achievements, which can no longer be earned, so these ship
+        // unlocked - patchTo120 does the same for existing saves.
+        backgrounds.add(new Background(Constants.BACKGROUND_PINK, "f1cbff", true, false));
+        backgrounds.add(new Background(Constants.BACKGROUND_BARK, "756454", true, false));
+        backgrounds.add(new Background(Constants.BACKGROUND_EARTH, "483e34", true, false));
+        backgrounds.add(new Background(Constants.BACKGROUND_STORMY_SKY, "606060", true, false));
 
         // Puzzles completed achievement
         backgrounds.add(new Background(Constants.BACKGROUND_DEEP_SEA, "8f99a3"));

@@ -94,21 +94,6 @@
                 app:layout_marginTopPercent="67%" />
 
             <uk.co.jakelee.cityflow.components.TextAwesome
-                android:id="@+id/mainQuests"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_margin="5dp"
-                android:background="@color/blue"
-                android:clickable="true"
-                android:onClick="openQuestMenu"
-                android:padding="12dp"
-                android:text="@string/icon_quests"
-                android:textColor="@color/black"
-                android:textSize="35sp" />
-
-            <uk.co.jakelee.cityflow.components.TextAwesome
                 android:id="@+id/mainSettings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

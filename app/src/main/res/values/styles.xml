@@ -6,6 +6,8 @@
         <item name="colorAccent">@color/black</item>
         <item name="android:navigationBarColor" tools:targetApi="21">@color/green</item>
         <item name="android:windowFullscreen">true</item>
+        <!-- Shows in the strip beside a display cutout, so black reads as bezel, not a white band. -->
+        <item name="android:windowBackground">@color/black</item>
     </style>
 
     <style name="Theme.AlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">

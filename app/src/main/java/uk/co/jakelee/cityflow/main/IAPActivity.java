@@ -11,16 +11,15 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.anjlab.android.iab.v3.BillingProcessor;
-import com.anjlab.android.iab.v3.Constants;
-import com.anjlab.android.iab.v3.PurchaseInfo;
-import com.anjlab.android.iab.v3.SkuDetails;
-
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import uk.co.jakelee.cityflow.R;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
+import uk.co.jakelee.cityflow.helper.BillingHelper;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.model.Background;
@@ -28,9 +27,8 @@ import uk.co.jakelee.cityflow.model.Iap;
 import uk.co.jakelee.cityflow.model.Pack;
 import uk.co.jakelee.cityflow.model.Text;
 
-public class IAPActivity extends Activity implements BillingProcessor.IBillingHandler {
-    boolean canBuyIAPs = false;
-    private BillingProcessor bp;
+public class IAPActivity extends Activity implements BillingHelper.Listener {
+    private BillingHelper billing;
     private DisplayHelper dh;
 
     @Override
@@ -40,12 +38,17 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
         SoundHelper.getInstance(this).playOrResumeMusic(SoundHelper.AUDIO.main);
 
         dh = DisplayHelper.getInstance(this);
-        canBuyIAPs = BillingProcessor.isIabServiceAvailable(this);
-        if (canBuyIAPs) {
-            bp = new BillingProcessor(this, getPublicKey(), this);
-        } else {
-            AlertHelper.error(this, AlertHelper.getError(AlertHelper.Error.NO_IAB));
+
+        List<String> products = new ArrayList<>();
+        Set<String> consumables = new HashSet<>();
+        for (Iap iap : Iap.listAll(Iap.class)) {
+            products.add(iap.getIapCode());
+            // Coin packs can be re-bought; the doubler and tile unlock are permanent.
+            if (iap.getCoins() > 0) {
+                consumables.add(iap.getIapCode());
+            }
         }
+        billing = new BillingHelper(this, this, products, consumables);
 
         populateText();
         populateIaps();
@@ -64,16 +67,25 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
     }
 
     @Override
-    public void onBillingInitialized() {
+    public void onBillingReady(Set<String> ownedProducts) {
+        // Restores entitlements after a reinstall, which the old code never did, and relabels the
+        // buttons now Play has told us the real prices.
+        for (String productId : ownedProducts) {
+            Iap iap = Iap.get(productId);
+            if (iap != null && iap.getPurchases() == 0) {
+                iap.purchase();
+            }
+        }
+        populateIaps();
+        populateText();
     }
 
     @Override
-    public void onProductPurchased(String productId, PurchaseInfo details) {
-        if (Iap.get(productId).getCoins() > 0) {
-            bp.consumePurchaseAsync(productId, null);
-        }
-
+    public void onProductPurchased(String productId) {
         Iap iap = Iap.get(productId);
+        if (iap == null) {
+            return;
+        }
         iap.purchase();
 
         Pack iapUnlockedPack = Pack.getPack(9);
@@ -91,17 +103,13 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
     }
 
     @Override
-    public void onBillingError(int errorCode, Throwable error) {
+    public void onBillingError() {
         AlertHelper.error(this, AlertHelper.getError(AlertHelper.Error.IAB_FAILED));
     }
 
-    @Override
-    public void onPurchaseHistoryRestored() {
-    }
-
     public void buyIAP(View v) {
-        if (canBuyIAPs) {
-            bp.purchase(this, (String) v.getTag());
+        if (billing.isReady()) {
+            billing.purchase((String) v.getTag());
         } else {
             AlertHelper.error(this, AlertHelper.getError(AlertHelper.Error.IAB_FAILED));
         }
@@ -109,13 +117,14 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
 
     @Override
     public void onDestroy() {
-        if (bp != null)
-            bp.release();
+        if (billing != null)
+            billing.release();
         super.onDestroy();
     }
 
     private void populateIaps() {
         LinearLayout scrollView = (LinearLayout) findViewById(R.id.iapContainer);
+        scrollView.removeAllViews();
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(10, 10, 10, 10);
 
@@ -128,7 +137,8 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
             ((ImageView) iapButton.findViewById(R.id.itemImage)).setImageResource(dh.getIabDrawableID(iap.getIapCode()));
             ((TextView) iapButton.findViewById(R.id.itemName)).setText(iap.getName());
 
-            ((TextView) iapButton.findViewById(R.id.itemPrice)).setText("?.??");
+            String price = billing == null ? null : billing.getFormattedPrice(iap.getIapCode());
+            ((TextView) iapButton.findViewById(R.id.itemPrice)).setText(price == null ? "?.??" : price);
             iapButton.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View v) {
                     buyIAP(v);
@@ -144,32 +154,4 @@ public class IAPActivity extends Activity implements BillingProcessor.IBillingHa
         this.finish();
     }
 
-    private String getPublicKey() {
-        String[] keyArray = new String[]{
-                "MIIBIjANBgkqhki",
-                "G9w0BAQEFAAOCAQ",
-                "8AMIIBCgKCAQEAg",
-                "lb0laN6iAJ3ktHB",
-                "uB2UVLkoPSPAs1Y",
-                "KmeB/pbm2y2JcgD",
-                "VKF9zXHLOC6xG+D",
-                "KBsb2v01ESSm7pX",
-                "twqOyQB+Ik6u9BM",
-                "qJ46gwKm1sKs06d",
-                "oMHaG3+73/fb1iL",
-                "G1ochlXaj96jxYN",
-                "PMppDva3Wt0A9nD2Pnw+0UjWkzo9403d+lXjFvWGRqj4yxG",
-                "irGnWlFZSgJzJNfJiYpqdgaw7O9tu0GEJDYZON5RqLmTimb",
-                "kT4CjMGGL2Kuubu7LcKWRLaEikEL7bzUWGHJzGzMpzj1F40",
-                "nJB4yUJiXLq0SI5zETUisxq3XjeJ0v1xGR/T+VzBttJ5skO",
-                "fSpGknAdjSSc77CMOQIDAQAB"
-        };
-
-        StringBuilder builder = new StringBuilder();
-        for (String keyPart : keyArray) {
-            builder.append(keyPart);
-        }
-
-        return builder.toString();
-    }
 }

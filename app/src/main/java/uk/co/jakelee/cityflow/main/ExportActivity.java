@@ -1,6 +1,5 @@
 package uk.co.jakelee.cityflow.main;
 
-import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -74,7 +73,7 @@ public class ExportActivity extends AllowMeActivity {
     }
 
     public void save(View view) {
-        PermissionHelper.runIfPossible(Manifest.permission.WRITE_EXTERNAL_STORAGE, new Runnable() {
+        PermissionHelper.runWithImageWriteAccess(new Runnable() {
             @Override
             public void run() {
                 save();
@@ -83,7 +82,7 @@ public class ExportActivity extends AllowMeActivity {
     }
 
     public void share(View view) {
-        PermissionHelper.runIfPossible(Manifest.permission.WRITE_EXTERNAL_STORAGE, new Runnable() {
+        PermissionHelper.runWithImageWriteAccess(new Runnable() {
             @Override
             public void run() {
                 share();

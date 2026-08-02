@@ -627,18 +627,6 @@
                         android:background="@color/ltltgrey"
                         android:clickable="true"
                         android:gravity="center"
-                        android:onClick="openQuests"
-                        android:padding="2dp"
-                        android:src="@drawable/ic_quests" />
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_margin="5dp"
-                        android:layout_weight="1"
-                        android:background="@color/ltltgrey"
-                        android:clickable="true"
-                        android:gravity="center"
                         android:onClick="openLeaderboards"
                         android:padding="2dp"
                         android:src="@drawable/ic_leaderboards" />
@@ -670,19 +658,6 @@
                         android:textColor="@color/black"
                         android:textSize="22sp" />
 
-                    <uk.co.jakelee.cityflow.components.TextViewFont
-                        android:id="@+id/signOutButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:background="@color/orange"
-                        android:clickable="true"
-                        android:gravity="center"
-                        android:onClick="signOut"
-                        android:padding="5dp"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:visibility="gone" />
                 </RelativeLayout>
             </TableRow>
 
