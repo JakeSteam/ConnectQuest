@@ -14,8 +14,6 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 
 import com.aitorvs.android.allowme.AllowMeActivity;
-import com.google.android.gms.games.Games;
-import com.google.android.gms.games.quest.Quests;
 
 import java.util.Locale;
 
@@ -67,7 +65,6 @@ public class SettingsActivity extends AllowMeActivity {
     public void updateVisibilities() {
         boolean isConnected = GooglePlayHelper.IsConnected();
         findViewById(R.id.signInButton).setVisibility(isConnected ? View.GONE : View.VISIBLE);
-        findViewById(R.id.signOutButton).setVisibility(isConnected ? View.VISIBLE : View.GONE);
         findViewById(R.id.googlePlayFeatureButtons).setVisibility(isConnected ? View.VISIBLE : View.GONE);
         findViewById(R.id.autosaveRow).setVisibility(isConnected ? View.VISIBLE : View.GONE);
 
@@ -100,7 +97,6 @@ public class SettingsActivity extends AllowMeActivity {
 
         ((TextView) findViewById(R.id.settingSectionGoogle)).setText(Text.get("SETTING_SECTION_GOOGLE"));
         ((TextView) findViewById(R.id.signInButton)).setText(Text.get("GOOGLE_SIGN_IN"));
-        ((TextView) findViewById(R.id.signOutButton)).setText(Text.get("GOOGLE_SIGN_OUT"));
         ((TextView) findViewById(R.id.autosaveText)).setText(Text.get("SETTING_11_NAME"));
         ((TextView) findViewById(R.id.lastAutosaveText)).setText(Text.get("STATISTIC_8_NAME"));
 
@@ -355,29 +351,15 @@ public class SettingsActivity extends AllowMeActivity {
     }
 
     public void openAchievements(View v) {
-        if (GooglePlayHelper.IsConnected()) {
-            startActivityForResult(Games.Achievements.getAchievementsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_ACHIEVEMENTS);
-        }
+        GooglePlayHelper.ShowAchievements(this);
     }
 
     public void openCloudSaves(View v) {
-        if (GooglePlayHelper.IsConnected()) {
-            Intent savedGamesIntent = Games.Snapshots.getSelectSnapshotIntent(GooglePlayHelper.mGoogleApiClient,
-                    "Cloud Saves", true, true, 1);
-            startActivityForResult(savedGamesIntent, GooglePlayHelper.RC_SAVED_GAMES);
-        }
-    }
-
-    public void openQuests(View v) {
-        if (GooglePlayHelper.IsConnected()) {
-            startActivityForResult(Games.Quests.getQuestsIntent(GooglePlayHelper.mGoogleApiClient, Quests.SELECT_ALL_QUESTS), GooglePlayHelper.RC_QUESTS);
-        }
+        GooglePlayHelper.ShowSavedGames(this);
     }
 
     public void openLeaderboards(View v) {
-        if (GooglePlayHelper.IsConnected()) {
-            startActivityForResult(Games.Leaderboards.getAllLeaderboardsIntent(GooglePlayHelper.mGoogleApiClient), GooglePlayHelper.RC_LEADERBOARDS);
-        }
+        GooglePlayHelper.ShowAllLeaderboards(this);
     }
 
     public void improveLanguage(View v) {
@@ -385,31 +367,13 @@ public class SettingsActivity extends AllowMeActivity {
         startActivity(browserIntent);
     }
 
+    // v2 signs in automatically, so this is only a retry for when that didn't take. There is no
+    // sign-out to pair with it.
     public void signIn(View v) {
-        if (GooglePlayHelper.mGoogleApiClient.isConnecting() || GooglePlayHelper.mGoogleApiClient.isConnected()) {
-            return;
-        }
-        GooglePlayHelper.mGoogleApiClient.connect();
-
-        Setting signIn = Setting.findById(Setting.class, Constants.SETTING_SIGN_IN);
-        signIn.setBooleanValue(true);
-        signIn.save();
-
-        populateSettings();
-    }
-
-    public void signOut(View v) {
-        if (!GooglePlayHelper.mGoogleApiClient.isConnected()) {
+        if (GooglePlayHelper.IsConnected()) {
             return;
         }
 
-        Games.signOut(GooglePlayHelper.mGoogleApiClient);
-        GooglePlayHelper.mGoogleApiClient.disconnect();
-
-        Setting signIn = Setting.findById(Setting.class, Constants.SETTING_SIGN_IN);
-        signIn.setBooleanValue(false);
-        signIn.save();
-
-        populateSettings();
+        GooglePlayHelper.signIn(this);
     }
 }

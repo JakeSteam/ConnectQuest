@@ -21,7 +21,6 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.android.gms.games.Games;
 
 import java.util.Locale;
 
@@ -583,13 +582,13 @@ public class AlertDialogHelper {
 
         alertDialog.setNegativeButton(Text.get("METRIC_BEST_TIME"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                activity.startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, timeLeaderboard), GooglePlayHelper.RC_LEADERBOARDS);
+                GooglePlayHelper.ShowLeaderboard(activity, timeLeaderboard);
             }
         });
 
         alertDialog.setPositiveButton(Text.get("METRIC_BEST_MOVES"), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                activity.startActivityForResult(Games.Leaderboards.getLeaderboardIntent(GooglePlayHelper.mGoogleApiClient, movesLeaderboard), GooglePlayHelper.RC_LEADERBOARDS);
+                GooglePlayHelper.ShowLeaderboard(activity, movesLeaderboard);
             }
         });
 

@@ -56,7 +56,6 @@ repositories {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(':BaseGameUtils')
     implementation 'com.github.satyan:sugar:1.5'
     implementation 'com.google.code.gson:gson:2.6.2'
     implementation 'com.thomashaertel:multispinner:0.1.1'
@@ -64,8 +63,7 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
     implementation "com.android.support:design:$supportLibraryVersion"
     implementation "com.android.support:percent:$supportLibraryVersion"
-    implementation "com.google.android.gms:play-services-auth:$playLibraryVersion"
-    implementation "com.google.android.gms:play-services-games:$playLibraryVersion"
+    implementation "com.google.android.gms:play-services-games-v2:$gamesLibraryVersion"
     implementation "com.google.android.gms:play-services-gcm:$playLibraryVersion"
     implementation "com.google.android.gms:play-services-vision:17.0.2"
     implementation 'com.squareup.picasso:picasso:2.5.2'

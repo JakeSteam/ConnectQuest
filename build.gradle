@@ -14,6 +14,9 @@ ext {
     compileVersion = 37
     supportLibraryVersion = '25.1.0'
     playLibraryVersion = '17.0.0'
+    // Stays at 21.0.0: play-services-games-v2 22.x requires minSdk 24, and Play Billing 9 pins
+    // this app to 23.
+    gamesLibraryVersion = '21.0.0'
 }
 
 allprojects {

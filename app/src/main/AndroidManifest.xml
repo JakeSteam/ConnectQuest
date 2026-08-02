@@ -74,9 +74,6 @@
             android:name=".main.TilePickerActivity"
             android:theme="@style/Theme.Popup" />
         <activity
-            android:name=".main.QuestActivity"
-            android:theme="@style/Theme.Popup" />
-        <activity
             android:name=".main.ExportActivity"
             android:theme="@style/Theme.PopupCompat" />
         <activity

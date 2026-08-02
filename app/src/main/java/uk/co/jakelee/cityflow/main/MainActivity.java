@@ -13,12 +13,6 @@ import com.batch.android.Batch;
 import com.batch.android.BatchUnlockListener;
 import com.batch.android.Offer;
 import com.batch.android.Resource;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.drive.Drive;
-import com.google.android.gms.games.Games;
-import com.google.android.gms.games.quest.Quest;
-import com.google.android.gms.games.quest.QuestUpdateListener;
 
 import hotchemi.android.rate.AppRate;
 import uk.co.jakelee.cityflow.R;
@@ -32,11 +26,7 @@ import uk.co.jakelee.cityflow.helper.TextHelper;
 import uk.co.jakelee.cityflow.model.Setting;
 import uk.co.jakelee.cityflow.model.Statistic;
 
-public class MainActivity extends Activity implements
-        GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener,
-        QuestUpdateListener,
-        BatchUnlockListener {
+public class MainActivity extends Activity implements BatchUnlockListener {
     public static SharedPreferences prefs;
     private DisplayHelper dh;
 
@@ -51,13 +41,7 @@ public class MainActivity extends Activity implements
 
         ratingPrompt();
 
-        GooglePlayHelper.mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(Games.API).addScope(Games.SCOPE_GAMES)
-                .addApi(Drive.API).addScope(Drive.SCOPE_APPFOLDER)
-                .build();
-        tryGoogleLogin();
+        GooglePlayHelper.initialise(this);
 
         if (Setting.getSafeBoolean(Constants.SETTING_MUSIC)) {
             SoundHelper.getInstance(this).playOrResumeMusic(SoundHelper.AUDIO.main);
@@ -70,16 +54,6 @@ public class MainActivity extends Activity implements
         super.onStart();
         Batch.Unlock.setUnlockListener(this);
         Batch.onStart(this);
-    }
-
-    public void tryGoogleLogin() {
-        // If we've got all we need, and we need to sign in, or it is first run.
-        if (GooglePlayHelper.AreGooglePlayServicesInstalled(this) &&
-                !GooglePlayHelper.IsConnected() &&
-                !GooglePlayHelper.mGoogleApiClient.isConnecting() &&
-                (Setting.getSafeBoolean(Constants.SETTING_SIGN_IN) || prefs.getInt("databaseVersion", PatchHelper.NO_DATABASE) <= PatchHelper.NO_DATABASE)) {
-            GooglePlayHelper.mGoogleApiClient.connect();
-        }
     }
 
     private void ratingPrompt() {
@@ -112,6 +86,10 @@ public class MainActivity extends Activity implements
         createAnimations();
         ((TextView) findViewById(R.id.languageFlag)).setText(TextHelper.getLanguageFlag(prefs.getInt("language", Constants.LANGUAGE_EN)));
 
+        // Sign-in can complete while the game is backgrounded, so re-read it rather than trusting
+        // whatever the launch-time check saw.
+        GooglePlayHelper.refreshAuthentication(this);
+
         SoundHelper.getInstance(this).playOrResumeMusic(SoundHelper.AUDIO.main);
     }
 
@@ -132,31 +110,6 @@ public class MainActivity extends Activity implements
         super.onStop();
 
         SoundHelper.stopIfExiting(this);
-    }
-
-    @Override
-    public void onConnected(Bundle connectionHint) {
-        if (GooglePlayHelper.IsConnected()) {
-            Games.Quests.registerQuestUpdateListener(GooglePlayHelper.mGoogleApiClient, this);
-        }
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-        GooglePlayHelper.ConnectionFailed(this, connectionResult);
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        GooglePlayHelper.mGoogleApiClient.connect();
-    }
-
-    public void onQuestCompleted(Quest quest) {
-        AlertHelper.success(this, GooglePlayHelper.CompleteQuest(quest));
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        GooglePlayHelper.ActivityResult(this, requestCode, resultCode);
     }
 
     public void openStory(View view) {
@@ -181,16 +134,6 @@ public class MainActivity extends Activity implements
         startActivity(new Intent(this,
                 ShopActivity.class)
                 .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
-    }
-
-    public void openQuestMenu(View view) {
-        if (GooglePlayHelper.IsConnected()) {
-            startActivity(new Intent(this,
-                    QuestActivity.class)
-                    .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
-        } else {
-            AlertHelper.error(this, AlertHelper.getError(AlertHelper.Error.FAILED_TO_CONNECT));
-        }
     }
 
     @Override
