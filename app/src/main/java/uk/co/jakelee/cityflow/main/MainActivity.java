@@ -9,14 +9,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.batch.android.Batch;
-import com.batch.android.BatchUnlockListener;
-import com.batch.android.Offer;
-import com.batch.android.Resource;
-
 import hotchemi.android.rate.AppRate;
 import uk.co.jakelee.cityflow.R;
-import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DisplayHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
@@ -24,9 +18,8 @@ import uk.co.jakelee.cityflow.helper.PatchHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.helper.TextHelper;
 import uk.co.jakelee.cityflow.model.Setting;
-import uk.co.jakelee.cityflow.model.Statistic;
 
-public class MainActivity extends Activity implements BatchUnlockListener {
+public class MainActivity extends Activity {
     public static SharedPreferences prefs;
     private DisplayHelper dh;
 
@@ -46,14 +39,6 @@ public class MainActivity extends Activity implements BatchUnlockListener {
         if (Setting.getSafeBoolean(Constants.SETTING_MUSIC)) {
             SoundHelper.getInstance(this).playOrResumeMusic(SoundHelper.AUDIO.main);
         }
-    }
-
-    @Override
-    protected void onStart()
-    {
-        super.onStart();
-        Batch.Unlock.setUnlockListener(this);
-        Batch.onStart(this);
     }
 
     private void ratingPrompt() {
@@ -106,7 +91,6 @@ public class MainActivity extends Activity implements BatchUnlockListener {
 
     @Override
     protected void onStop() {
-        Batch.onStop(this);
         super.onStop();
 
         SoundHelper.stopIfExiting(this);
@@ -136,30 +120,4 @@ public class MainActivity extends Activity implements BatchUnlockListener {
                 .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
     }
 
-    @Override
-    protected void onDestroy()
-    {
-        Batch.onDestroy(this);
-        super.onDestroy();
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent)
-    {
-        Batch.onNewIntent(this, intent);
-        super.onNewIntent(intent);
-    }
-
-    @Override
-    public void onRedeemAutomaticOffer(Offer offer)
-    {
-        // Give resources & features contained in the campaign to the user
-        String rewardMessage = offer.getOfferAdditionalParameters().get("reward_message");
-        for(Resource resource : offer.getResources()) {
-            if (resource.getReference().equals("1000_COINS")) {
-                Statistic.addCurrency(1000);
-                AlertHelper.success(this, rewardMessage != null ? rewardMessage : "1000 coins rewarded!");
-            }
-        }
-    }
 }
