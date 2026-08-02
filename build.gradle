@@ -1,16 +1,17 @@
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.5.0'
+        // API 37 needs AGP 9.3+, which in turn needs Gradle 9.5.0.
+        classpath 'com.android.tools.build:gradle:9.3.1'
     }
 }
 
 ext {
     apiVersion = 35
-    compilerVersion = '25.0.1'
+    compileVersion = 37
     supportLibraryVersion = '25.1.0'
     playLibraryVersion = '17.0.0'
 }
@@ -18,7 +19,7 @@ ext {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
         maven {
             url "https://jitpack.io"
         }

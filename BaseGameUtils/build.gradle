@@ -1,16 +1,5 @@
 apply plugin: 'com.android.library'
 
-buildscript {
-    repositories {
-        google()
-        jcenter()
-    }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:8.5.0'
-    }
-}
-
 dependencies {
     implementation "com.android.support:appcompat-v7:${supportLibraryVersion}"
     implementation "com.android.support:support-v4:${supportLibraryVersion}"
@@ -20,7 +9,6 @@ dependencies {
 
 android {
     namespace = "com.google.example.games.basegameutils"
-    compileSdkVersion apiVersion
-    buildToolsVersion compilerVersion
-}
+    compileSdk compileVersion
+    }
 

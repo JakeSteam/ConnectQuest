@@ -238,32 +238,28 @@ public class SettingsActivity extends AllowMeActivity {
         };
     }
 
+    // if/else rather than switch: resource IDs are non-final from AGP 9 onwards.
     public void toggleSetting(View v) {
-        switch (v.getId()) {
-            case R.id.musicToggleButton:
-                toggleSetting(Constants.SETTING_MUSIC);
-                SoundHelper.getInstance(this).stopAudio(true);
-                SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.main);
-                break;
-            case R.id.soundToggleButton:
-                toggleSetting(Constants.SETTING_SOUNDS);
-                SoundHelper.getInstance(this).stopAudio(false);
-                SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.settings);
-                break;
-            case R.id.zenToggleButton:
-                toggleSetting(Constants.SETTING_ZEN_MODE);
-                break;
-            case R.id.hideBoostButton:
-                toggleSetting(Constants.SETTING_HIDE_UNSTOCKED_BOOSTS);
-                break;
-            case R.id.vibrationToggleButton:
-                PermissionHelper.runIfPossible(Manifest.permission.VIBRATE, new Runnable() {
-                    @Override
-                    public void run() {
-                        toggleSetting(Constants.SETTING_VIBRATION);
-                    }
-                });
-                break;
+        int id = v.getId();
+        if (id == R.id.musicToggleButton) {
+            toggleSetting(Constants.SETTING_MUSIC);
+            SoundHelper.getInstance(this).stopAudio(true);
+            SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.main);
+        } else if (id == R.id.soundToggleButton) {
+            toggleSetting(Constants.SETTING_SOUNDS);
+            SoundHelper.getInstance(this).stopAudio(false);
+            SoundHelper.getInstance(this).playSound(SoundHelper.AUDIO.settings);
+        } else if (id == R.id.zenToggleButton) {
+            toggleSetting(Constants.SETTING_ZEN_MODE);
+        } else if (id == R.id.hideBoostButton) {
+            toggleSetting(Constants.SETTING_HIDE_UNSTOCKED_BOOSTS);
+        } else if (id == R.id.vibrationToggleButton) {
+            PermissionHelper.runIfPossible(Manifest.permission.VIBRATE, new Runnable() {
+                @Override
+                public void run() {
+                    toggleSetting(Constants.SETTING_VIBRATION);
+                }
+            });
         }
     }
 
@@ -282,10 +278,8 @@ public class SettingsActivity extends AllowMeActivity {
     }
 
     public void changeText(View v) {
-        switch (v.getId()) {
-            case R.id.playerNameDisplay:
-                AlertDialogHelper.changeSettingText(this, Constants.SETTING_PLAYER_NAME);
-                break;
+        if (v.getId() == R.id.playerNameDisplay) {
+            AlertDialogHelper.changeSettingText(this, Constants.SETTING_PLAYER_NAME);
         }
     }
 
