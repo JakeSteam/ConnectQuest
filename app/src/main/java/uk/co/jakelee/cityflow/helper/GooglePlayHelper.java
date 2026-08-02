@@ -46,9 +46,9 @@ import uk.co.jakelee.cityflow.model.TileType;
 import static uk.co.jakelee.cityflow.model.Statistic.find;
 
 /**
- * Play Games Services v2: sign-in is automatic and there is no sign-out. Every v2 client needs an
- * Activity, but the fire-and-forget writes are called from places holding only a Context, so
- * MainActivity registers itself here on creation and those calls borrow it.
+ * Play Games Services v2: sign-in is automatic and there is no sign-out. Every client needs an
+ * Activity, but the fire-and-forget writes only hold a Context, so MainActivity registers itself
+ * here and those calls borrow it.
  */
 public class GooglePlayHelper {
     public static final int RC_ACHIEVEMENTS = 9002;
@@ -256,7 +256,7 @@ public class GooglePlayHelper {
     }
 
     // v2's Task callbacks arrive on the main thread, unlike the AsyncTask this replaced, so the
-    // read and applyBackup - which rewrites twelve tables a row at a time - are moved off it.
+    // read and applyBackup - twelve tables, a row at a time - are moved off it.
     private static void useSnapshot(final Snapshot snapshot, final boolean loading) {
         if (snapshot == null) {
             return;
@@ -328,7 +328,7 @@ public class GooglePlayHelper {
         callingActivity.runOnUiThread(() -> AlertHelper.info(callingActivity, Text.get("ALERT_CLOUD_SAVING")));
 
         // Serialising reads twelve tables, so it stays off the main thread; the commit goes back
-        // onto it, where the Play Games client expects to be used.
+        // onto it, where the client expects to be used.
         new Thread(new Runnable() {
             public void run() {
                 byte[] data = createBackup();
@@ -371,8 +371,7 @@ public class GooglePlayHelper {
         return BitmapFactory.decodeResource(context.getResources(), R.drawable.main_logo, options);
     }
 
-    // The autosave is fire-and-forget: it opens its own snapshot, so it neither reads nor disturbs
-    // the manual save slot above.
+    // Fire-and-forget, and on its own snapshot, so it never disturbs the manual save slot.
     public static void autosave(final Context context) {
         if (!IsConnected()) {
             return;
@@ -551,8 +550,8 @@ public class GooglePlayHelper {
         int stars = 0;
         int coins = 0;
 
-        // Runs before isPlausibleSave, so it has to tolerate a garbage snapshot rather than throw
-        // out of a background thread. Zeroes fall through to the "cloud save is worse" prompt.
+        // Runs before isPlausibleSave, so it tolerates a garbage snapshot rather than throwing out
+        // of a background thread. Zeroes fall through to the "cloud save is worse" prompt.
         String[] splitData = splitBackupData(new String(saveBytes));
         if (splitData.length > 2) {
             try {

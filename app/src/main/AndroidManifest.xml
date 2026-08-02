@@ -5,8 +5,7 @@
 
     <uses-permission android:name="com.android.vending.BILLING" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- Only needed to put an exported puzzle card into MediaStore on API 28 and below. From 29
-         the insert needs no permission, and from 33 this one cannot be granted. -->
+    <!-- Only needed to put an exported puzzle card into MediaStore on API 28 and below. -->
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />

@@ -157,10 +157,8 @@ public class CreatorActivity extends AllowMeActivity {
         }
     }
 
-    // ACTION_GET_CONTENT hands back a URI the app already has access to, so this needs no storage
-    // permission. READ_EXTERNAL_STORAGE is not declared either - it only ever reached the manifest
-    // as an implied permission from the vendored BaseGameUtils module - so asking for it would
-    // deny, and drop the import silently.
+    // ACTION_GET_CONTENT grants access to the URI it returns, so no storage permission is needed -
+    // and READ_EXTERNAL_STORAGE is no longer declared, so asking would deny and drop the import.
     public void importFromFile(View v) {
         importFromFile();
     }

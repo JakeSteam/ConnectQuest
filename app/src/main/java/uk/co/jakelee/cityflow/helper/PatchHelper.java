@@ -157,9 +157,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
     }
 
     private void patchTo120() {
-        // The four "The Best Quest" achievements were the only way to unlock these backgrounds,
-        // and Google shut the Quests service down, so they can never be earned again. Grant them
-        // to everyone rather than leaving the content locked away for good.
+        // The four "The Best Quest" achievements were the only way to earn these, and the Quests
+        // service is gone, so grant them rather than leaving the content locked away for good.
         Background.executeQuery("UPDATE background SET unlocked = 1 WHERE background_id IN ("
                 + Constants.BACKGROUND_PINK + ", "
                 + Constants.BACKGROUND_BARK + ", "
@@ -255,8 +254,8 @@ public class PatchHelper extends AsyncTask<String, String, String> {
         backgrounds.add(new Background(Constants.BACKGROUND_SALMON, "ffbdbd"));
         backgrounds.add(new Background(Constants.BACKGROUND_BLUISH, "c9c9ff"));
 
-        // Formerly the questing achievements. Google shut the Quests service down, so these can no
-        // longer be earned and ship unlocked - patchTo120 does the same for existing saves.
+        // Formerly the questing achievements, which can no longer be earned, so these ship
+        // unlocked - patchTo120 does the same for existing saves.
         backgrounds.add(new Background(Constants.BACKGROUND_PINK, "f1cbff", true, false));
         backgrounds.add(new Background(Constants.BACKGROUND_BARK, "756454", true, false));
         backgrounds.add(new Background(Constants.BACKGROUND_EARTH, "483e34", true, false));

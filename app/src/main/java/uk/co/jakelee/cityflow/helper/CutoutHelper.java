@@ -8,13 +8,9 @@ import android.view.DisplayCutout;
 import android.view.View;
 
 /**
- * Targeting 35+ forces edge to edge and pins the window's cutout mode to "always", which a theme
- * cannot override. A hole-punch camera therefore sits on top of anything drawn at the very top of
- * the screen: titles, top controls, and messages.
- *
- * The game has no shared base activity - seventeen activities extend either Activity or
- * AllowMeActivity - so rather than reparent them all, this registers once against the Application
- * and insets every activity's content view as it is created.
+ * Targeting 35+ pins the cutout mode to "always" and ignores the theme override, so without this a
+ * hole-punch camera sits on top of whatever is drawn at the very top. There is no shared base
+ * activity to hook, so this registers against the Application and covers every activity at once.
  */
 public class CutoutHelper {
 
@@ -55,9 +51,8 @@ public class CutoutHelper {
         });
     }
 
-    // Runs after the activity's own onCreate, so setContentView has already happened and the
-    // content view exists. Does nothing on a device without a cutout, where getDisplayCutout()
-    // returns null.
+    // Runs after the activity's onCreate, so setContentView has already happened. No effect on a
+    // device without a cutout, where getDisplayCutout() is null.
     private static void applyCutoutInsets(Activity activity) {
         final View content = activity.findViewById(android.R.id.content);
         if (content == null) {
