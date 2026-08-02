@@ -1,6 +1,5 @@
 package uk.co.jakelee.cityflow.main;
 
-import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -28,7 +27,6 @@ import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.EncryptHelper;
 import uk.co.jakelee.cityflow.helper.GooglePlayHelper;
-import uk.co.jakelee.cityflow.helper.PermissionHelper;
 import uk.co.jakelee.cityflow.helper.PuzzleShareHelper;
 import uk.co.jakelee.cityflow.helper.SoundHelper;
 import uk.co.jakelee.cityflow.helper.StorageHelper;
@@ -159,13 +157,12 @@ public class CreatorActivity extends AllowMeActivity {
         }
     }
 
+    // ACTION_GET_CONTENT hands back a URI the app already has access to, so this needs no storage
+    // permission. READ_EXTERNAL_STORAGE is not declared either - it only ever reached the manifest
+    // as an implied permission from the vendored BaseGameUtils module - so asking for it would
+    // deny, and drop the import silently.
     public void importFromFile(View v) {
-        PermissionHelper.runIfPossible(Manifest.permission.READ_EXTERNAL_STORAGE, new Runnable() {
-            @Override
-            public void run() {
-                importFromFile();
-            }
-        });
+        importFromFile();
     }
 
     private void importFromFile() {
