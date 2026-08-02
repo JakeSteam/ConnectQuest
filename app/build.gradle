@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "uk.co.jakelee.cityflow"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion apiVersion
         versionCode 19
         versionName "1.1.1"
@@ -72,7 +72,7 @@ dependencies {
     implementation 'com.github.hotchemi:android-rate:1.0.1'
     implementation 'me.grantland:autofittextview:0.2.1'
     implementation 'de.keyboardsurfer.android.widget:crouton:1.8.5@aar'
-    implementation 'com.anjlab.android.iab.v3:library:2.2.0'
+    implementation 'com.android.billingclient:billing:9.1.0'
     implementation 'com.google.zxing:core:3.2.1'
     implementation 'com.github.aitorvs:allowme:0.3.2'
     implementation 'com.batch.android:batch-sdk:1.7+'
@@ -80,6 +80,10 @@ dependencies {
     implementation files('libs/applovin-sdk-6.3.0.jar')
 
     constraints {
+        // Billing 9 pulls in kotlin-stdlib-jdk8:1.6.21, whose classes moved in Kotlin 1.8.
+        implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22'
+        implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22'
+
         // Jetifier maps onto androidx 1.0.0, where both declare the same namespace, which AGP 9
         // rejects. 1.1.0 is the first release that separates them.
         implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
