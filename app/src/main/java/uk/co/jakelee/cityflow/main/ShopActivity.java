@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Locale;
 
 import uk.co.jakelee.cityflow.R;
-import uk.co.jakelee.cityflow.helper.AdvertHelper;
 import uk.co.jakelee.cityflow.helper.AlertHelper;
 import uk.co.jakelee.cityflow.helper.Constants;
 import uk.co.jakelee.cityflow.helper.DateHelper;
@@ -150,11 +149,4 @@ public class ShopActivity extends Activity {
         startActivity(intent);
     }
 
-    public void advertWatched() {
-        Statistic.addCurrency((Iap.hasCoinDoubler() ? 2 : 1) * Constants.CURRENCY_ADVERT);
-        AlertHelper.success(this, String.format(Locale.ENGLISH, Text.get("ALERT_COINS_EARNED_FREE"), Constants.CURRENCY_ADVERT));
-        GooglePlayHelper.UpdateEvent(Constants.EVENT_WATCH_ADVERT, 1);
-
-        populateText();
-    }
 }

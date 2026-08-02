@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.orm.SugarContext;
 
-import uk.co.jakelee.cityflow.helper.AdvertHelper;
 import uk.co.jakelee.cityflow.helper.CutoutHelper;
 
 public class MainApplication extends Application {
@@ -14,7 +13,6 @@ public class MainApplication extends Application {
         super.onCreate();
         SugarContext.init(this);
         CutoutHelper.register(this);
-        AdvertHelper.getInstance(this);
     }
 
     @Override
