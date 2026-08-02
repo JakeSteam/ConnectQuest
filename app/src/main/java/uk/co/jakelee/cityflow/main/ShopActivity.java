@@ -86,7 +86,6 @@ public class ShopActivity extends Activity {
     }
 
     private void populateText() {
-        ((TextView) findViewById(R.id.freeCoinsBanner)).setText(Text.get("SHOP_BANNER"));
         ((TextView) findViewById(R.id.currencyCountText)).setText(Integer.toString(Statistic.getCurrency()));
     }
 
