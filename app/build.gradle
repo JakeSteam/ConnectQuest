@@ -1,5 +1,10 @@
 apply plugin: 'com.android.application'
 
+// One keystore signs all three games, from ~/.gradle/gradle.properties, outside the repo.
+def signingReady = ['PB_STORE_FILE', 'PB_STORE_PASSWORD', 'PB_KEY_ALIAS', 'PB_KEY_PASSWORD'].every {
+    project.hasProperty(it)
+} && file(project.findProperty('PB_STORE_FILE').toString()).exists()
+
 //noinspection GroovyMissingReturnStatement
 android {
     compileSdk compileVersion
@@ -13,6 +18,16 @@ android {
         versionName "1.1.1"
         multiDexEnabled true
     }
+    if (signingReady) {
+        signingConfigs {
+            shipping {
+                storeFile = file(project.findProperty('PB_STORE_FILE').toString())
+                storePassword = project.findProperty('PB_STORE_PASSWORD').toString()
+                keyAlias = project.findProperty('PB_KEY_ALIAS').toString()
+                keyPassword = project.findProperty('PB_KEY_PASSWORD').toString()
+            }
+        }
+    }
     buildFeatures {
         buildConfig = true
     }
@@ -20,10 +35,14 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard.pro'
+            if (signingReady) signingConfig = signingConfigs.shipping
         }
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard.pro'
+            // Shipping certificate: Play Games and Billing match on package name plus
+            // certificate, so a debug-signed build fails with DEVELOPER_ERROR.
+            if (signingReady) signingConfig = signingConfigs.shipping
         }
     }
 }
